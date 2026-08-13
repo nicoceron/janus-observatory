@@ -3,6 +3,7 @@
 import type { ScenarioId } from '@janus/domain';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import type { CSSProperties } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import {
@@ -159,6 +160,7 @@ function OcularOverlay({
 export function StoryExperience() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [branchProgress, setBranchProgress] = useState(0);
+  const [observerProgress, setObserverProgress] = useState(0);
   const [readingMode, setReadingMode] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const navigationTargetRef = useRef<number | null>(null);
@@ -166,8 +168,13 @@ export function StoryExperience() {
   const ratiosRef = useRef<number[]>(storySteps.map(() => 0));
   const currentStep = storySteps[activeIndex] ?? storySteps[0];
   const reducedMotion = readingMode || prefersReducedMotion;
+  const observerStepIndex = storySteps.findIndex(({ id }) => id === 'observer-turn');
   const stageVisual =
     activeIndex === 0 && branchProgress > 0.001 ? storySteps[1].visual : currentStep.visual;
+  const opticalProgress =
+    currentStep.visual.kind === 'observer' && !reducedMotion
+      ? Math.min(1, Math.max(0, (observerProgress - 0.72) / 0.28))
+      : 0;
 
   useEffect(() => {
     const query = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -211,31 +218,46 @@ export function StoryExperience() {
     if (readingMode || prefersReducedMotion) {
       const frame = window.requestAnimationFrame(() => {
         setBranchProgress(readingMode ? 0 : activeIndex > 0 ? 1 : 0);
+        setObserverProgress(activeIndex > observerStepIndex ? 1 : 0);
       });
       return () => window.cancelAnimationFrame(frame);
     }
 
     let animationFrame = 0;
-    const updateBranchProgress = () => {
+    const updateScrollProgress = () => {
       animationFrame = 0;
       const branchStep = stepRefs.current[1];
-      if (!branchStep) return;
-      const rect = branchStep.getBoundingClientRect();
-      const revealStart = window.innerHeight * 0.66;
-      const revealEnd = window.innerHeight * -0.08;
-      const progress = Math.min(
-        1,
-        Math.max(0, (revealStart - rect.top) / (revealStart - revealEnd)),
-      );
-      setBranchProgress((previous) =>
-        Math.abs(previous - progress) > 0.001 ? progress : previous,
-      );
+      if (branchStep) {
+        const rect = branchStep.getBoundingClientRect();
+        const revealStart = window.innerHeight * 0.66;
+        const revealEnd = window.innerHeight * -0.08;
+        const progress = Math.min(
+          1,
+          Math.max(0, (revealStart - rect.top) / (revealStart - revealEnd)),
+        );
+        setBranchProgress((previous) =>
+          Math.abs(previous - progress) > 0.001 ? progress : previous,
+        );
+      }
+
+      const observerStep = stepRefs.current[observerStepIndex];
+      if (observerStep) {
+        const rect = observerStep.getBoundingClientRect();
+        // The shot begins when the observer card takes over half the viewport and
+        // reaches the eyepiece just before the next ocular chapter takes control.
+        const moveStart = window.innerHeight * 0.52;
+        const moveEnd = window.innerHeight * -0.38;
+        const progress = Math.min(1, Math.max(0, (moveStart - rect.top) / (moveStart - moveEnd)));
+        setObserverProgress((previous) =>
+          Math.abs(previous - progress) > 0.001 ? progress : previous,
+        );
+      }
     };
     const requestUpdate = () => {
-      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateBranchProgress);
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateScrollProgress);
     };
 
-    updateBranchProgress();
+    updateScrollProgress();
     window.addEventListener('scroll', requestUpdate, { passive: true });
     window.addEventListener('resize', requestUpdate);
     return () => {
@@ -243,7 +265,7 @@ export function StoryExperience() {
       window.removeEventListener('resize', requestUpdate);
       if (animationFrame) window.cancelAnimationFrame(animationFrame);
     };
-  }, [activeIndex, prefersReducedMotion, readingMode]);
+  }, [activeIndex, observerStepIndex, prefersReducedMotion, readingMode]);
 
   const activeObservation = useMemo(() => {
     return {
@@ -313,9 +335,25 @@ export function StoryExperience() {
             <div className="storyStage" data-active-step={currentStep.id}>
               <EarthStage
                 branchProgress={branchProgress}
+                observerProgress={observerProgress}
                 reducedMotion={reducedMotion}
                 state={stageVisual}
               />
+
+              <div
+                aria-hidden="true"
+                className="opticalBridge"
+                data-active={opticalProgress > 0.001 ? 'true' : 'false'}
+                style={
+                  {
+                    '--optical-progress': Math.min(1, opticalProgress * 1.35),
+                    '--optical-aperture': `${(1 - opticalProgress) * 48}%`,
+                    '--optical-blackout': Math.min(1, Math.max(0, (opticalProgress - 0.78) / 0.22)),
+                  } as CSSProperties
+                }
+              >
+                <span />
+              </div>
 
               <div className="stageMeta">
                 <span>Chapter {currentStep.chapter}</span>

@@ -107,7 +107,8 @@ test.describe('guided story', () => {
       await expect(stage).toHaveAttribute('data-scene-kind', kind);
       if (kind === 'observer') {
         await expect(stage).toHaveAttribute('data-observer-asset', 'fab-animated-v3');
-        await expect(stage).toHaveAttribute('data-observer-motion', 'six-clip-reach-loop');
+        await expect(stage).toHaveAttribute('data-observer-motion', 'six-clip-scroll-scrub');
+        await expect(stage).toHaveAttribute('data-observer-camera', 'shoulder-eyepiece-ocular');
       }
       const sameCanvas = await page.evaluate(
         (element) =>

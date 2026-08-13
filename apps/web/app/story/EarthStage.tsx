@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import {
   AdditiveBlending,
   BackSide,
+  CatmullRomCurve3,
   LoopRepeat,
   Quaternion,
   SRGBColorSpace,
@@ -53,6 +54,7 @@ type EarthStageProps = {
   state: StoryVisualState;
   reducedMotion: boolean;
   branchProgress?: number;
+  observerProgress?: number;
   className?: string;
 };
 
@@ -908,9 +910,11 @@ const fabObserverModelPath = '/assets/models/janus-alien-observer-v3.glb';
 function AlienObserverAsset({
   state,
   reducedMotion,
+  observerProgress,
 }: {
   state: StoryVisualState;
   reducedMotion: boolean;
+  observerProgress: number;
 }) {
   // Asset contributions: “Cute Alien Character” © Ndevisuals (CC BY 4.0),
   // and “Telescope” © Usman Ahmed Gill (Fab Standard License). The project
@@ -918,7 +922,8 @@ function AlienObserverAsset({
   const assetRoot = useRef<Group>(null);
   const { scene, animations } = useGLTF(fabObserverModelPath);
   const observerScene = useMemo(() => scene.clone(true), [scene]);
-  const { actions, names } = useAnimations(animations, assetRoot);
+  const { actions, mixer, names } = useAnimations(animations, assetRoot);
+  const { invalidate } = useThree();
 
   useEffect(() => {
     const shouldAnimate = state.kind === 'observer' && !reducedMotion;
@@ -926,7 +931,8 @@ function AlienObserverAsset({
       const action = actions[name];
       if (!action) return [];
       if (shouldAnimate) {
-        action.reset().setLoop(LoopRepeat, Number.POSITIVE_INFINITY).fadeIn(0.28).play();
+        action.reset().setLoop(LoopRepeat, Number.POSITIVE_INFINITY).play();
+        action.paused = true;
       } else {
         action.stop();
       }
@@ -936,6 +942,20 @@ function AlienObserverAsset({
       clips.forEach((action) => action.stop());
     };
   }, [actions, names, reducedMotion, state.kind]);
+
+  useLayoutEffect(() => {
+    if (state.kind !== 'observer' || reducedMotion) return;
+    // Scrub only through the reach and focus hold. The final quarter of the
+    // authored loop lowers the arm, so it remains reserved for a future exit shot.
+    const playhead = observerProgress * 3.08;
+    names.forEach((name) => {
+      const action = actions[name];
+      if (!action) return;
+      action.time = Math.min(playhead, action.getClip().duration * 0.77);
+    });
+    mixer.update(0);
+    invalidate();
+  }, [actions, invalidate, mixer, names, observerProgress, reducedMotion, state.kind]);
 
   return (
     <group position={[0.5, -0.8, 0.18]} ref={assetRoot}>
@@ -950,9 +970,11 @@ function AlienObserverAsset({
 function AlienAstronomer({
   state,
   reducedMotion,
+  observerProgress,
 }: {
   state: StoryVisualState;
   reducedMotion: boolean;
+  observerProgress: number;
 }) {
   const accent = state.scenarioId ? getScenarioProfile(state.scenarioId).accent : '#b8f15c';
   return (
@@ -972,7 +994,11 @@ function AlienAstronomer({
         </mesh>
       ))}
 
-      <AlienObserverAsset reducedMotion={reducedMotion} state={state} />
+      <AlienObserverAsset
+        observerProgress={observerProgress}
+        reducedMotion={reducedMotion}
+        state={state}
+      />
       <Limb
         color={accent}
         emissive={accent}
@@ -1017,10 +1043,41 @@ function CameraRig({
   state,
   reducedMotion,
   branchProgress = 0,
-}: Pick<EarthStageProps, 'state' | 'reducedMotion' | 'branchProgress'>) {
+  observerProgress = 0,
+}: Pick<EarthStageProps, 'state' | 'reducedMotion' | 'branchProgress' | 'observerProgress'>) {
   const { camera, invalidate, size } = useThree();
+  const target = useRef(new Vector3(0, 0, 0));
+  const portrait = size.width / size.height < 0.72;
+  const observerCameraPath = useMemo(() => {
+    const y = portrait ? 1.25 : 0;
+    return new CatmullRomCurve3(
+      [
+        new Vector3(0, portrait ? 0.12 : 0.08, portrait ? 12.8 : 8.5),
+        new Vector3(0.18, y + 0.22, portrait ? 9.4 : 6.35),
+        new Vector3(0.58, y + 0.42, portrait ? 5.2 : 3.55),
+        new Vector3(0.52, y + 0.58, portrait ? 2.2 : 1.72),
+        new Vector3(0.46, y + 0.78, portrait ? 1.55 : 1.15),
+      ],
+      false,
+      'centripetal',
+    );
+  }, [portrait]);
+  const observerTargetPath = useMemo(() => {
+    const y = portrait ? 1.25 : 0;
+    return new CatmullRomCurve3(
+      [
+        new Vector3(0, 0, 0),
+        new Vector3(0.18, y + 0.16, 0.08),
+        new Vector3(0.28, y + 0.34, 0.18),
+        new Vector3(0.24, y + 0.38, 0.18),
+        new Vector3(0.2, y + 0.36, 0.18),
+      ],
+      false,
+      'centripetal',
+    );
+  }, [portrait]);
+
   useLayoutEffect(() => {
-    const portrait = size.width / size.height < 0.72;
     if (state.kind === 'branches' && !reducedMotion) {
       const progress = progressBetween(branchProgress, 0, 0.24);
       const start: Point3 = [0, 0, portrait ? 10.4 : 7.2];
@@ -1031,6 +1088,15 @@ function CameraRig({
         start[2] + (end[2] - start[2]) * progress,
       );
       camera.lookAt(0, 0, 0);
+      target.current.set(0, 0, 0);
+      invalidate();
+      return;
+    }
+    if (state.kind === 'observer' && !reducedMotion) {
+      const progress = progressBetween(observerProgress, 0, 1);
+      observerCameraPath.getPoint(progress, camera.position);
+      observerTargetPath.getPoint(progress, target.current);
+      camera.lookAt(target.current);
       invalidate();
       return;
     }
@@ -1058,27 +1124,31 @@ function CameraRig({
               : state.kind === 'system'
                 ? [0, 0, 8.8]
                 : [0, 0, 7.2];
-    const tween = gsap.to(camera.position, {
-      duration,
-      ease: 'power3.inOut',
-      x: position[0],
-      y: position[1],
-      z: position[2],
+    const lookTarget: Point3 =
+      state.kind === 'ocular'
+        ? [0, portrait ? 0.55 : 0, 0]
+        : [0, state.kind === 'system' && portrait ? 0.7 : 0, 0];
+    const timeline = gsap.timeline({
+      defaults: { duration, ease: 'power3.inOut', overwrite: 'auto' },
       onUpdate: () => {
-        camera.lookAt(0, 0, 0);
+        camera.lookAt(target.current);
         invalidate();
       },
     });
+    timeline.to(camera.position, { x: position[0], y: position[1], z: position[2] }, 0);
+    timeline.to(target.current, { x: lookTarget[0], y: lookTarget[1], z: lookTarget[2] }, 0);
     return () => {
-      tween.kill();
+      timeline.kill();
     };
   }, [
     branchProgress,
     camera,
     invalidate,
+    observerCameraPath,
+    observerProgress,
+    observerTargetPath,
+    portrait,
     reducedMotion,
-    size.height,
-    size.width,
     state.kind,
     state.scenarioId,
   ]);
@@ -1089,7 +1159,8 @@ function Scene({
   state,
   reducedMotion,
   branchProgress = 0,
-}: Pick<EarthStageProps, 'state' | 'reducedMotion' | 'branchProgress'>) {
+  observerProgress = 0,
+}: Pick<EarthStageProps, 'state' | 'reducedMotion' | 'branchProgress' | 'observerProgress'>) {
   const { invalidate, size } = useThree();
   const portrait = size.width / size.height < 0.72;
   const presentEarth = useRef<Group>(null);
@@ -1315,12 +1386,20 @@ function Scene({
       timeline.to(ocularTunnel.current.scale, { x: scale, y: scale, z: scale }, at);
       timeline.to(
         ocularTunnel.current.position,
-        { x: 0, y: portrait ? 0.55 : 0, z: ocular ? 0 : 4.8 },
+        {
+          x: 0,
+          y: portrait ? 0.55 : 0,
+          z: ocular ? 0 : 4.8,
+        },
         at,
       );
       timeline.to(
         ocularTunnel.current.rotation,
-        { z: ocular ? Math.PI * 0.08 : -Math.PI * 0.2 },
+        {
+          x: 0,
+          y: 0,
+          z: ocular ? Math.PI * 0.08 : -Math.PI * 0.2,
+        },
         at,
       );
     }
@@ -1360,7 +1439,12 @@ function Scene({
   return (
     <group data-persistent-world="true">
       <Stars reducedMotion={reducedMotion} />
-      <CameraRig branchProgress={branchProgress} reducedMotion={reducedMotion} state={state} />
+      <CameraRig
+        branchProgress={branchProgress}
+        observerProgress={observerProgress}
+        reducedMotion={reducedMotion}
+        state={state}
+      />
 
       <group
         ref={presentEarth}
@@ -1487,7 +1571,11 @@ function Scene({
       ))}
 
       <group ref={observer} position={[-7.5, -1.6, -4]} scale={0.08}>
-        <AlienAstronomer reducedMotion={reducedMotion} state={state} />
+        <AlienAstronomer
+          observerProgress={observerProgress}
+          reducedMotion={reducedMotion}
+          state={state}
+        />
       </group>
 
       <group ref={ocularTunnel} position={[0, portrait ? 0.55 : 0, 4.8]} scale={0.001}>
@@ -1530,6 +1618,7 @@ export function EarthStage({
   state,
   reducedMotion,
   branchProgress = 0,
+  observerProgress = 0,
   className = '',
 }: EarthStageProps) {
   const profile = state.scenarioId ? getScenarioProfile(state.scenarioId) : undefined;
@@ -1556,7 +1645,9 @@ export function EarthStage({
       data-branch-animation="scroll-scrubbed"
       data-branch-progress={branchProgress.toFixed(3)}
       data-observer-asset="fab-animated-v3"
-      data-observer-motion={reducedMotion ? 'reduced' : 'six-clip-reach-loop'}
+      data-observer-motion={reducedMotion ? 'reduced' : 'six-clip-scroll-scrub'}
+      data-observer-camera="shoulder-eyepiece-ocular"
+      data-observer-progress={observerProgress.toFixed(3)}
       data-world-lifecycle="persistent"
       ref={wrapper}
       style={{ '--scene-accent': profile?.accent ?? '#b8f15c' } as React.CSSProperties}
@@ -1600,7 +1691,12 @@ export function EarthStage({
           <pointLight color="#ffb15c" intensity={10} position={[2.5, 2, 1]} />
           <Suspense fallback={null}>
             <CanvasReady onReady={() => setWebglReady(true)} />
-            <Scene branchProgress={branchProgress} reducedMotion={reducedMotion} state={state} />
+            <Scene
+              branchProgress={branchProgress}
+              observerProgress={observerProgress}
+              reducedMotion={reducedMotion}
+              state={state}
+            />
           </Suspense>
         </Canvas>
       </CanvasGuard>

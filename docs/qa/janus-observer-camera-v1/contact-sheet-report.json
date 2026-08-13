@@ -1,0 +1,33 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "docs/qa/janus-observer-camera-v1/01-wide.png",
+    "docs/qa/janus-observer-camera-v1/02-reach.png",
+    "docs/qa/janus-observer-camera-v1/03-eyepiece.png",
+    "docs/qa/janus-observer-camera-v1/04-iris.png",
+    "docs/qa/janus-observer-camera-v1/05-ocular.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "01-wide.png",
+      "to": "02-reach.png",
+      "mean_rgb_diff": 33.93959720637892
+    },
+    {
+      "from": "02-reach.png",
+      "to": "03-eyepiece.png",
+      "mean_rgb_diff": 63.76300158270529
+    },
+    {
+      "from": "03-eyepiece.png",
+      "to": "04-iris.png",
+      "mean_rgb_diff": 72.92224172167137
+    },
+    {
+      "from": "04-iris.png",
+      "to": "05-ocular.png",
+      "mean_rgb_diff": 38.692366940633924
+    }
+  ],
+  "warnings": ["High frame-to-frame visual jump: 72.92"]
+}
