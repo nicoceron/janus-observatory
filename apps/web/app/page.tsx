@@ -1,7 +1,9 @@
 import { scenarioIds } from '@janus/domain';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { ObservatorySlice } from './ObservatorySlice';
+import { HeroSplineLayer } from './components/HeroSplineLayer';
 import { StoryExperience } from './story/StoryExperience';
 
 const principles = [
@@ -38,13 +40,17 @@ export default function Home() {
       </nav>
 
       <section className="hero" id="top">
-        <div className="orbitalField" aria-hidden="true">
-          <div className="orbit orbitOuter" />
-          <div className="orbit orbitInner" />
-          <div className="earth">
-            <div className="earthGlow" />
-          </div>
-          <span className="observer" />
+        <div className="heroImageField" aria-hidden="true">
+          <Image
+            alt=""
+            className="heroImage"
+            fill
+            preload
+            quality={90}
+            sizes="(max-width: 880px) 100vw, 68vw"
+            src="/assets/hero/solar-system-basic-v1.webp"
+          />
+          <HeroSplineLayer />
         </div>
 
         <div className="heroCopy">
@@ -52,7 +58,7 @@ export default function Home() {
           <h1>
             Ten futures.
             <br />
-            <span>One planet.</span>
+            <span>One system.</span>
           </h1>
           <p className="lede">
             An interactive, evidence-backed atlas asking how technological civilizations endure,

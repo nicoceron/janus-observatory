@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "reviewedAt": "2026-08-13T06:10:00+00:00",
+  "reviewedAt": "2026-08-13T10:44:25-05:00",
   "entries": [
     {
       "id": "janus.artifact.s3.2.3",
@@ -172,6 +172,136 @@
       "notes": []
     },
     {
+      "id": "spline.solar-system-basic.hero-v1",
+      "title": "Solar System - Basic scene and AI-enhanced poster derivative",
+      "creator": "Caner Sevince; derivative enhanced with OpenAI image generation",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "model",
+      "sourceUrl": "https://app.spline.design/community/file/bf1c301a-7620-4b6b-8096-9391e209ce10",
+      "directFileUrls": [
+        "https://community-filepreview.spline.design/webp-90/bf1c301a-7620-4b6b-8096-9391e209ce10.webp",
+        "https://app.spline.design/file/f5454200-ebd6-49c9-9e41-ea232c88cb61?view=preview"
+      ],
+      "sourceVersion": "Spline Community file bf1c301a-7620-4b6b-8096-9391e209ce10, reviewed 2026-08-13",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Solar System - Basic by Caner Sevince, sourced from the Spline Community under CC0 1.0; poster derivative enhanced with OpenAI image generation.",
+      "aiAssistanceDisclosure": "Detail restoration and enhancement performed with OpenAI image generation.",
+      "allowedTransformations": [
+        "resizing",
+        "format conversion",
+        "image optimization",
+        "responsive cropping",
+        "AI-assisted detail restoration"
+      ],
+      "sourceChecksum": "sha256:70f6307c7b27a21ac52159a467ae924f0d57d5631dee62911357a85e57360a72",
+      "derivativeChecksum": "sha256:fbdd27c280ec30de49dd523a397a24ca4ddd00706c7b3225aa1539715fafbd36",
+      "derivativePublicPath": "/assets/hero/solar-system-basic-v1.webp",
+      "transformations": [
+        "Enhanced the 1304 × 820 Spline Community preview with OpenAI image generation to restore detail while preserving the centered Solar System composition; generated intermediate checksum sha256:4abce3bd1bfd61c0b2800ae254f804276670f1fa762edc9b17b3f05ea21f8ede.",
+        "Resampled the 1582 × 994 enhanced PNG to 3200 × 1906 with ImageMagick Lanczos filtering and a light unsharp pass.",
+        "Converted the 3200 × 1906 result to WebP with cwebp 1.6.0 at quality 92, method 6, with metadata removed."
+      ],
+      "notes": [
+        "The Spline Community page identifies the original scene as Solar System - Basic by Caner Sevince and licenses it under CC0 1.0.",
+        "The live decorative scene loads after browser idle only when the hero is visible, WebGL is available, and reduced motion is not requested; the poster provides the initial and fallback render.",
+        "The visual is an interpretive presentation asset, not a scale model or canonical scientific data."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.earth-day-threejs",
+      "title": "Earth day texture used by the Three.js WebGPU TSL Earth example",
+      "creator": "Solar System Scope; resized and merged by Three.js example contributors",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "texture",
+      "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "directFileUrls": [
+        "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_day_4096.jpg"
+      ],
+      "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example.",
+      "aiAssistanceDisclosure": null,
+      "allowedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "sourceChecksum": "sha256:cd7712d3e891425d9948ea5ac18d3bb1e7e834ea038188587897e689a7b35d0f",
+      "derivativeChecksum": "sha256:cd7712d3e891425d9948ea5ac18d3bb1e7e834ea038188587897e689a7b35d0f",
+      "derivativePublicPath": "/assets/planets/earth-day-4096.jpg",
+      "transformations": [
+        "Copied the pinned Three.js example texture unchanged into the public asset tree."
+      ],
+      "notes": [
+        "The official Three.js example credits Solar System Scope and states that the source textures were resized and merged.",
+        "Solar System Scope publishes the texture pack under CC BY 4.0."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.earth-night-threejs",
+      "title": "Earth night texture used by the Three.js WebGPU TSL Earth example",
+      "creator": "Solar System Scope; resized and merged by Three.js example contributors",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "texture",
+      "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "directFileUrls": [
+        "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_night_4096.jpg"
+      ],
+      "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example.",
+      "aiAssistanceDisclosure": null,
+      "allowedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "sourceChecksum": "sha256:17a868f79c7be40fa1f557e6114d7889d907f18f7a3fce51f33b0b830ef50242",
+      "derivativeChecksum": "sha256:17a868f79c7be40fa1f557e6114d7889d907f18f7a3fce51f33b0b830ef50242",
+      "derivativePublicPath": "/assets/planets/earth-night-4096.jpg",
+      "transformations": [
+        "Copied the pinned Three.js example texture unchanged into the public asset tree."
+      ],
+      "notes": [
+        "The official Three.js example credits Solar System Scope and states that the source textures were resized and merged.",
+        "Solar System Scope publishes the texture pack under CC BY 4.0."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.earth-bump-clouds-threejs",
+      "title": "Earth bump, roughness, and clouds texture used by the Three.js WebGPU TSL Earth example",
+      "creator": "Solar System Scope; resized and merged by Three.js example contributors",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "texture",
+      "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "directFileUrls": [
+        "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_bump_roughness_clouds_4096.jpg"
+      ],
+      "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example.",
+      "aiAssistanceDisclosure": null,
+      "allowedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "sourceChecksum": "sha256:0796f4211c209d1afe9e26a06a283cdc21434430a780a25457b2417568a8591e",
+      "derivativeChecksum": "sha256:0796f4211c209d1afe9e26a06a283cdc21434430a780a25457b2417568a8591e",
+      "derivativePublicPath": "/assets/planets/earth-bump-roughness-clouds-4096.jpg",
+      "transformations": [
+        "Copied the pinned Three.js example texture unchanged into the public asset tree."
+      ],
+      "notes": [
+        "The combined map supplies bump, roughness, and clouds channels to the TSL node material.",
+        "Solar System Scope publishes the texture pack under CC BY 4.0."
+      ]
+    },
+    {
       "id": "nasa.texture.blue-marble",
       "title": "Earth (A)",
       "creator": "NASA 3D Resources contributors",
@@ -233,35 +363,72 @@
       ]
     },
     {
-      "id": "janus.original.alien-observer-v1",
-      "title": "Janus alien astronomer and observatory telescope",
-      "creator": "Janus Observatory project; modeled with OpenAI Codex and Blender",
+      "id": "fab.ndvisuals.cute-alien-character",
+      "title": "Cute Alien Character",
+      "creator": "Ndevisuals",
       "scenarioId": null,
       "artifactId": null,
       "kind": "model",
-      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceUrl": "https://www.fab.com/listings/e659c1e0-d53c-4146-b877-a5496d0a7598",
       "directFileUrls": [],
-      "sourceVersion": "original-v1-2026-08-13",
-      "license": "Project-authored original asset",
-      "rightsStatus": "permission_granted",
+      "sourceVersion": "Fab listing and Blender source package reviewed 2026-08-13",
+      "license": "Creative Commons Attribution 4.0 International",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
       "admissionStatus": "approved",
-      "requiredCreditText": "Original Janus Observatory alien astronomer and telescope, created for this project with OpenAI Codex and Blender.",
-      "aiAssistanceDisclosure": "Procedurally modeled with OpenAI Codex and rendered/exported with Blender 5.2.",
+      "requiredCreditText": "‘Cute Alien Character’ by Ndevisuals, licensed under CC BY 4.0. Modified for Janus Observatory.",
+      "aiAssistanceDisclosure": "Fab marks the source asset as not generated with AI. OpenAI Codex assisted the project-specific Blender rig, animation staging, export pipeline, and integration code.",
       "allowedTransformations": [
+        "rigging",
+        "posing",
+        "animation",
         "web optimization",
-        "mesh compression",
         "material tuning",
         "responsive scaling"
       ],
-      "sourceChecksum": "sha256:b307e25f806fcd8c2eef0af5382f22707ae634bb9be0e8a38b15f8bfde5a34aa",
-      "derivativeChecksum": "sha256:f8d9b6d1baa10f877833ceac613e46523e7ad9e76dbf621ac6f1ae6845e81900",
-      "derivativePublicPath": "/assets/models/janus-alien-observer-v1.glb",
+      "sourceChecksum": "sha256:b887ace9d23987347ce20310c08d2e04b4359948fcffeadbba018598f9a42ba1",
+      "derivativeChecksum": "sha256:1884007f6074ff70386b682a5cf68ecae5c2a72dfd5c9d1c8ae9ade6820a5a0d",
+      "derivativePublicPath": "/assets/models/janus-alien-observer-v2.glb",
       "transformations": [
-        "Authored as original procedural meshes and PBR materials in Blender 5.2, then exported to binary glTF without external textures or runtime compression."
+        "Imported the original Blender source into Blender 5.2, added an object-level performance rig, authored a four-second telescope-observation loop with body settling, blink, and antenna secondary motion, staged it against the admitted telescope, and exported the combined scene as binary glTF."
       ],
       "notes": [
         "Interpretive fictional visualization; it is not a Project Janus research artifact or a proposed real instrument design.",
-        "Editable Blender source and the deterministic generation script are retained in assets/sources/original/."
+        "The original source package, editable Blender derivative, deterministic build script, and contact-sheet QA are retained under assets/sources/fab/ and docs/qa/."
+      ]
+    },
+    {
+      "id": "fab.usman-ahmed-gill.telescope",
+      "title": "Telescope",
+      "creator": "Usman Ahmed Gill",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "model",
+      "sourceUrl": "https://www.fab.com/listings/ad439e6a-e804-468b-93ac-f1b6d649a883",
+      "directFileUrls": [],
+      "sourceVersion": "Fab listing and FBX source package reviewed 2026-08-13",
+      "license": "Fab Standard License",
+      "licenseUrl": "https://www.fab.com/eula",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "‘Telescope’ by Usman Ahmed Gill, used under the Fab Standard License. Modified for Janus Observatory.",
+      "aiAssistanceDisclosure": "Fab marks the source asset as not generated with AI. OpenAI Codex assisted the project-specific Blender staging, animation pipeline, web export, and integration code.",
+      "allowedTransformations": [
+        "incorporation into the Janus Observatory project",
+        "posing and staging",
+        "web optimization",
+        "material tuning",
+        "responsive scaling"
+      ],
+      "sourceChecksum": "sha256:57a20d0a8f6ca782ba8aee4595685b0ac66a4f06f91ae75aae7baa36db6bce4b",
+      "derivativeChecksum": "sha256:1884007f6074ff70386b682a5cf68ecae5c2a72dfd5c9d1c8ae9ade6820a5a0d",
+      "derivativePublicPath": "/assets/models/janus-alien-observer-v2.glb",
+      "transformations": [
+        "Imported the original FBX and navy swatch texture into Blender 5.2, scaled and positioned the telescope to preserve tripod contact and align the eyepiece with the animated character, then exported it inside the combined binary glTF scene."
+      ],
+      "notes": [
+        "Interpretive observer prop; it is not a Project Janus research artifact, HWO design, LIFE design, or validated scientific instrument model.",
+        "The source telescope is incorporated into the combined Janus Observatory scene and is not offered as a standalone asset."
       ]
     }
   ]

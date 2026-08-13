@@ -3,21 +3,24 @@
 This log records access claims separately from public reuse rights. Access to a private workspace or
 permission to inspect research material does not automatically authorize public redistribution.
 
-## 2026-08-13 — Original alien observer model
+## 2026-08-13 — Fab alien observer and telescope
 
-- The alien astronomer, physical telescope, focus assembly, tripod, robe, and bio-interface cable
-  are original project geometry authored procedurally with OpenAI Codex and Blender 5.2.
-- The editable `.blend` source and deterministic Blender script are retained in
-  `assets/sources/original/`; the 683 KB distributable GLB is
-  `apps/web/public/assets/models/janus-alien-observer-v1.glb`.
-- Source SHA-256:
-  `b307e25f806fcd8c2eef0af5382f22707ae634bb9be0e8a38b15f8bfde5a34aa`.
-- Derivative SHA-256:
-  `f8d9b6d1baa10f877833ceac613e46523e7ad9e76dbf621ac6f1ae6845e81900`.
+- The project owner selected “Cute Alien Character” by Ndevisuals from Fab under CC BY 4.0 and
+  “Telescope” by Usman Ahmed Gill under the Fab Standard License. The applicable Fab EULA was
+  accepted to obtain the source packages.
+- Original package SHA-256 values are
+  `b887ace9d23987347ce20310c08d2e04b4359948fcffeadbba018598f9a42ba1` (alien) and
+  `57a20d0a8f6ca782ba8aee4595685b0ac66a4f06f91ae75aae7baa36db6bce4b` (telescope).
+- Janus Observatory adds an object-level performance rig, a four-second telescope-viewing loop,
+  blink and antenna secondary motion, scene staging, and web export. The 1.1 MB combined derivative
+  is `apps/web/public/assets/models/janus-alien-observer-v2.glb`, SHA-256
+  `1884007f6074ff70386b682a5cf68ecae5c2a72dfd5c9d1c8ae9ade6820a5a0d`.
+- The downloaded packages, extracted files, and editable `.blend` remain ignored controlled inputs.
+  The Fab telescope source is not redistributed as a standalone asset.
 
-Interpretation: this is a fictional, interpretive project asset, not a Project Janus artifact or a
-NASA instrument design. Its disclosure, permitted transformations, public path, and credits are
-recorded in `data/assets/ledger.json`.
+Interpretation: the combined scene is a licensed, fictional observer visualization—not a Project
+Janus artifact, NASA mission render, HWO design, or validated scientific instrument. Credits,
+permitted transformations, checksums, and public path are recorded in `data/assets/ledger.json`.
 
 ## 2026-08-12 — Direct Project Janus content authorization
 

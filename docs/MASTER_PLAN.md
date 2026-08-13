@@ -39,7 +39,9 @@ The product must never describe the scenarios as forecasts, probabilities, ranki
 - No Cesium dependency unless the product later needs geospatial tiles at planetary scale.
 - No full Gaia catalog in the browser.
 - No client-side PDF parsing.
-- No all-planets-loaded hero scene.
+- No all-planets-loaded scene in the initial hero payload. The approved decorative Spline scene may
+  mount after the browser is idle, with reduced-motion, offscreen, and no-WebGL fallback behavior as
+  recorded in Decision 003.
 - No UMAP/t-SNE of only ten scenarios presented as meaningful ML analysis.
 - No reproduction of The Pudding's logo, branded fonts, or visual identity.
 
@@ -203,7 +205,7 @@ Engineering success:
 
 ```text
 /
-  Guided story: Ten Futures, One Planet
+  Guided story: Ten Futures, One System
 
 /observatory
   Alien observer simulator and instrument ladder
@@ -243,6 +245,15 @@ The guided story can deep-link into Observatory and Atlas states. Query paramete
 
 Each step declares a complete visual state. Entering a step cannot depend on a prior animation having completed. Rapid forward/back scroll must render the correct state immediately.
 
+The guided story uses one persistent R3F world from the first Earth frame through the final Solar
+System handoff. Story chapters animate complete targets for the camera, present Earth, ten scenario
+worlds, branch connectors, observer, ocular tunnel, and system context; they do not replace separate
+canvas scenes. The selected scenario world is the same mounted object that leaves the branch map,
+enters the observer's target, fills the ocular view, and settles into the system view. Native
+`IntersectionObserver` selects authored target states and GSAP performs the transitions. WebGPU/TSL
+provides the Earth day/night, roughness, cloud, bump, and atmosphere material, with Three.js's WebGL2
+compatibility backend and the structured DOM fallback preserving the baseline experience.
+
 ### Chapter 0 - Loading and consent
 
 Purpose: load the minimum Earth scene and establish user control.
@@ -250,9 +261,11 @@ Purpose: load the minimum Earth scene and establish user control.
 - Display the title, one-sentence promise, and estimated scene readiness.
 - Controls: `Start story`, `Read without animation`, and `Skip to Atlas`.
 - Do not auto-play sound or capture the scroll wheel.
-- Initial visual payload: one optimized Earth day texture, night-light layer, atmosphere shader, low-density star field, required fonts, and core DOM/CSS.
+- Initial visual payload: the optimized Solar System poster, required fonts, and core DOM/CSS. The
+  decorative Spline animation mounts only after browser idle when the hero is visible, WebGL is
+  available, and reduced motion is not requested; the poster remains the fallback.
 
-### Chapter 1 - Ten futures, one planet
+### Chapter 1 - Ten futures, one system
 
 Purpose: establish that futures branch but are not assigned probabilities.
 
@@ -260,10 +273,11 @@ Purpose: establish that futures branch but are not assigned probabilities.
 - Pull back into a branching structure, initially showing three conceptual families rather than ten tiny labels: stability, collapse/recovery, and continued growth.
 - Reveal the ten named scenarios only after the families are understood.
 - Explicit text: “These are not forecasts and they are not equally weighted probabilities.”
-- Visual primitive: Earth as the stable anchor; scenario branches are D3/SVG paths composited with the 3D stage.
+- Visual primitive: Earth as the stable anchor; spatial branch connectors and worlds remain in the
+  persistent 3D stage while labels and accessible meaning remain DOM/SVG.
 - Accessible equivalent: nested list of families and scenarios with canonical summaries.
 
-### Chapter 2 - The same planet can leave different traces
+### Chapter 2 - The same home system can leave different traces
 
 Purpose: connect lived futures to physical observables.
 

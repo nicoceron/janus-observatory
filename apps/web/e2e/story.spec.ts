@@ -6,6 +6,9 @@ test.describe('guided story', () => {
   test('starts as a scroll story and offers Read and Skip paths', async ({ page }) => {
     await page.goto('/');
 
+    await expect(page.getByRole('heading', { name: 'Ten futures. One system.' })).toBeVisible();
+    await expect(page.locator('.heroSpline')).toHaveCount(1);
+
     const story = page.getByRole('region', { name: storyName });
     await expect(story.getByRole('link', { name: 'Begin first light' })).toHaveAttribute(
       'href',
@@ -21,12 +24,26 @@ test.describe('guided story', () => {
 
     const steps = story.getByLabel('Story chapters').getByRole('article');
     await steps.nth(1).scrollIntoViewIfNeeded();
+    await expect(page.locator('.heroSpline')).toHaveCount(0);
     await expect(steps.nth(1)).toHaveAttribute('aria-current', 'step');
     await expect(story.locator('.storyStage')).toHaveAttribute(
       'data-active-step',
       'possibility-space',
     );
     await expect(story.locator('.earthStage')).toHaveAttribute('data-scene-kind', 'branches');
+    await expect(story.locator('.earthStage')).toHaveAttribute(
+      'data-branch-layout',
+      'trunk-spine-stems',
+    );
+    await expect(story.locator('.earthStage')).toHaveAttribute(
+      'data-branch-animation',
+      'scroll-scrubbed',
+    );
+    await expect
+      .poll(async () =>
+        Number(await story.locator('.earthStage').getAttribute('data-branch-progress')),
+      )
+      .toBeGreaterThan(0);
 
     await story.getByRole('button', { name: 'Read as article' }).click();
     await expect(story.locator('.storySticky')).toBeHidden();
@@ -60,11 +77,54 @@ test.describe('guided story', () => {
     await expect(story.locator('.storyStage')).toHaveAttribute('data-active-step', 'present');
   });
 
+  test('keeps one 3D world mounted from Earth through the system handoff', async ({ page }) => {
+    test.setTimeout(60_000);
+    await page.goto('/');
+    await page.addStyleTag({ content: 'html { scroll-behavior: auto !important; }' });
+
+    const story = page.getByRole('region', { name: storyName });
+    const stage = story.locator('.earthStage');
+    const canvas = stage.locator('canvas');
+    const steps = story.getByLabel('Story chapters').getByRole('article');
+
+    await expect(stage).toHaveAttribute('data-world-lifecycle', 'persistent', { timeout: 20_000 });
+    await expect(canvas).toHaveCount(1, { timeout: 20_000 });
+    await page.evaluate(
+      (element) => {
+        (window as Window & { __janusStoryCanvas?: Element }).__janusStoryCanvas = element;
+      },
+      await canvas.elementHandle(),
+    );
+
+    for (const [index, kind] of [
+      [1, 'branches'],
+      [3, 'scenario'],
+      [13, 'observer'],
+      [14, 'ocular'],
+      [17, 'system'],
+    ] as const) {
+      await steps.nth(index).scrollIntoViewIfNeeded();
+      await expect(stage).toHaveAttribute('data-scene-kind', kind);
+      if (kind === 'observer') {
+        await expect(stage).toHaveAttribute('data-observer-asset', 'fab-animated-v2');
+        await expect(stage).toHaveAttribute('data-observer-motion', 'four-clip-loop');
+      }
+      const sameCanvas = await page.evaluate(
+        (element) =>
+          (window as Window & { __janusStoryCanvas?: Element }).__janusStoryCanvas === element,
+        await canvas.elementHandle(),
+      );
+      expect(sameCanvas).toBe(true);
+    }
+  });
+
   test('honors reduced motion without losing story content', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
 
+    await expect(page.locator('.heroSpline')).toHaveCount(0);
     const story = page.getByRole('region', { name: storyName });
+    await expect(story.locator('.earthStage')).toHaveAttribute('data-observer-motion', 'reduced');
     await expect(story.getByText('Motion reduced')).toBeVisible();
     await expect(story.getByLabel('Story chapters').getByRole('article')).toHaveCount(18);
     await expect(story.getByText(/Current visual state:/)).toContainText(
@@ -86,6 +146,7 @@ test.describe('guided story', () => {
     });
     await page.goto('/');
 
+    await expect(page.locator('.heroSpline')).toHaveCount(0);
     const story = page.getByRole('region', { name: storyName });
     const steps = story.getByLabel('Story chapters').getByRole('article');
     await steps.nth(0).focus();

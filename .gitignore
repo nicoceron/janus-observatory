@@ -32,5 +32,13 @@ playwright-report/
 test-results/
 tmp/
 
+# Licensed Fab source packages are controlled local inputs, not distributable repo assets.
+assets/sources/fab/*.zip
+assets/sources/fab/*.blend
+assets/sources/fab/*.blend1
+assets/sources/fab/extracted/
+docs/qa/fab-source-inspection/
+docs/qa/janus-fab-observer-v2/frame-*.png
+
 # Repo-local Codex home (auth.json, sessions, logs) - separate account for this repo
 .codex/

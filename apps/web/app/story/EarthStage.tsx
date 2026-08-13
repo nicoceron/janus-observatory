@@ -1,13 +1,12 @@
 'use client';
 
-import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
-import { useGLTF } from '@react-three/drei';
+import { Canvas, useFrame, useLoader, useThree, type GLProps } from '@react-three/fiber';
+import { useAnimations, useGLTF } from '@react-three/drei';
 import gsap from 'gsap';
 import {
   AdditiveBlending,
   BackSide,
-  CanvasTexture,
-  LinearFilter,
+  LoopRepeat,
   Quaternion,
   SRGBColorSpace,
   TextureLoader,
@@ -15,7 +14,26 @@ import {
   type Group,
   type Mesh,
   type Points,
+  type Texture,
 } from 'three';
+import { MeshBasicNodeMaterial, MeshStandardNodeMaterial, WebGPURenderer } from 'three/webgpu';
+import {
+  bumpMap,
+  cameraPosition,
+  color,
+  max,
+  mix,
+  normalWorldGeometry,
+  normalize,
+  output,
+  positionWorld,
+  step,
+  texture,
+  uniform,
+  uv,
+  vec3,
+  vec4,
+} from 'three/tsl';
 import {
   Component,
   Suspense,
@@ -34,10 +52,53 @@ import { worldArtProfiles, type WorldArtProfile } from './world-art';
 type EarthStageProps = {
   state: StoryVisualState;
   reducedMotion: boolean;
+  branchProgress?: number;
   className?: string;
 };
 
 type Point3 = [number, number, number];
+
+const earthTexturePaths: string[] = [
+  '/assets/planets/earth-day-4096.jpg',
+  '/assets/planets/earth-night-4096.jpg',
+  '/assets/planets/earth-bump-roughness-clouds-4096.jpg',
+];
+
+type RendererFactory = Extract<GLProps, (...args: never[]) => unknown>;
+
+async function createWebGpuRenderer({ canvas }: Parameters<RendererFactory>[0]) {
+  const renderer = new WebGPURenderer({
+    alpha: true,
+    antialias: true,
+    canvas: canvas as HTMLCanvasElement,
+    powerPreference: 'high-performance',
+  });
+  await renderer.init();
+  return renderer;
+}
+
+class EarthTextureLoader extends TextureLoader {
+  override load(
+    url: string,
+    onLoad?: (data: Texture<HTMLImageElement>) => void,
+    onProgress?: (event: ProgressEvent) => void,
+    onError?: (error: unknown) => void,
+  ) {
+    return super.load(
+      url,
+      (loadedTexture) => {
+        if (url.includes('earth-day') || url.includes('earth-night')) {
+          loadedTexture.colorSpace = SRGBColorSpace;
+        }
+        loadedTexture.anisotropy = 8;
+        loadedTexture.needsUpdate = true;
+        onLoad?.(loadedTexture);
+      },
+      onProgress,
+      onError,
+    );
+  }
+}
 
 const futurePositions: Point3[] = [
   [-4.25, 0.78, -0.2],
@@ -52,15 +113,38 @@ const futurePositions: Point3[] = [
   [4.25, 0.78, -0.28],
 ];
 const branchOrigin: Point3 = [0, 2.35, 0];
+const branchSpineY = 1.28;
+const branchDepth = -0.16;
 
-function branchTarget(index: number, branchState: StoryVisualState['branchState']): Point3 {
-  const base = futurePositions[index];
-  if (branchState !== 'budding') return base;
-  return [
-    branchOrigin[0] + (base[0] - branchOrigin[0]) * 0.58,
-    branchOrigin[1] + (base[1] - branchOrigin[1]) * 0.58,
-    base[2] * 0.58,
-  ];
+function progressBetween(progress: number, start: number, end: number) {
+  const linear = Math.min(1, Math.max(0, (progress - start) / (end - start)));
+  return linear * linear * (3 - 2 * linear);
+}
+
+function backOut(progress: number) {
+  const overshoot = 1.35;
+  const shifted = progress - 1;
+  return 1 + (overshoot + 1) * shifted ** 3 + overshoot * shifted ** 2;
+}
+
+function setBranchHead(
+  head: Mesh | null,
+  start: Point3,
+  end: Point3,
+  progress: number,
+  size: number,
+) {
+  if (!head) return;
+  head.position.set(
+    start[0] + (end[0] - start[0]) * progress,
+    start[1] + (end[1] - start[1]) * progress,
+    start[2] + (end[2] - start[2]) * progress,
+  );
+  const pulse =
+    progress > 0.001 && progress < 0.999
+      ? size * (0.8 + Math.sin(progress * Math.PI) * 0.55)
+      : 0.001;
+  head.scale.setScalar(pulse);
 }
 
 class CanvasGuard extends Component<{ children: ReactNode }, { failed: boolean }> {
@@ -106,24 +190,6 @@ function Stars({ reducedMotion }: { reducedMotion: boolean }) {
   );
 }
 
-function createLightTexture() {
-  const canvas = document.createElement('canvas');
-  canvas.width = 32;
-  canvas.height = 32;
-  const context = canvas.getContext('2d');
-  if (context) {
-    const gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
-    gradient.addColorStop(0, 'rgba(255,239,170,1)');
-    gradient.addColorStop(0.2, 'rgba(255,184,82,.9)');
-    gradient.addColorStop(1, 'rgba(255,120,32,0)');
-    context.fillStyle = gradient;
-    context.fillRect(0, 0, 32, 32);
-  }
-  const texture = new CanvasTexture(canvas);
-  texture.minFilter = LinearFilter;
-  return texture;
-}
-
 function CityLights({ intensity, color }: { intensity: number; color: string }) {
   const positions = useMemo(() => {
     const count = Math.max(0, Math.min(72, Math.round(intensity)));
@@ -138,7 +204,6 @@ function CityLights({ intensity, color }: { intensity: number; color: string }) 
     }
     return points;
   }, [intensity]);
-  const texture = useMemo(() => createLightTexture(), []);
   if (positions.length === 0) return null;
   return (
     <points>
@@ -146,12 +211,12 @@ function CityLights({ intensity, color }: { intensity: number; color: string }) 
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        alphaMap={texture}
         blending={AdditiveBlending}
         color={color}
         depthWrite={false}
-        opacity={0.88}
-        size={0.072}
+        opacity={0.76}
+        size={0.045}
+        sizeAttenuation
         transparent
       />
     </points>
@@ -520,21 +585,21 @@ function WorldPlanet({
   reducedMotion,
   present = false,
   showLights = true,
+  detailLevel = 'full',
 }: {
   profile?: ScenarioProfile;
   reducedMotion: boolean;
   present?: boolean;
   showLights?: boolean;
+  detailLevel?: 'full' | 'subtle' | 'none';
 }) {
-  const sourceTexture = useLoader(TextureLoader, '/assets/planets/earth-day-1440.webp');
-  const texture = useMemo(() => {
-    const configuredTexture = sourceTexture.clone();
-    configuredTexture.colorSpace = SRGBColorSpace;
-    configuredTexture.needsUpdate = true;
-    return configuredTexture;
-  }, [sourceTexture]);
+  const [dayTexture, nightTexture, bumpRoughnessCloudsTexture] = useLoader(
+    EarthTextureLoader,
+    earthTexturePaths,
+  );
   const planet = useRef<Mesh>(null);
   const orbit = useRef<Group>(null);
+  const surface = useRef<Group>(null);
   const art = profile ? worldArtProfiles[profile.id] : undefined;
   const illumination = profile?.planetary.find(
     ({ body, signatureId }) => body === 'Earth' && signatureId === 'artificial_illumination',
@@ -550,6 +615,60 @@ function WorldPlanet({
       : Math.max(0, Math.min(72, 8 + Math.log10(Math.max(illumination, 0.0001)) * 18));
   const atmosphereColor =
     pollution && pollution > 1 ? '#df8b66' : (art?.atmosphere ?? profile?.accent ?? '#76c9ff');
+  const twilightColor = pollution && pollution > 1 ? '#ef7b38' : '#bc490b';
+  const { atmosphereMaterial, globeMaterial } = useMemo(() => {
+    const viewDirection = positionWorld.sub(cameraPosition).normalize();
+    const fresnel = viewDirection.dot(normalWorldGeometry).abs().oneMinus().toVar();
+    const sunOrientation = normalWorldGeometry.dot(normalize(vec3(4, 2.5, 5))).toVar();
+    const dayAtmosphere = uniform(color(atmosphereColor));
+    const twilightAtmosphere = uniform(color(twilightColor));
+    const atmosphere = mix(
+      twilightAtmosphere,
+      dayAtmosphere,
+      sunOrientation.smoothstep(-0.25, 0.75),
+    );
+    const cloudStrength = texture(bumpRoughnessCloudsTexture, uv()).b.smoothstep(0.2, 1);
+    const surfaceTint = color(art?.surfaceTint ?? '#ffffff');
+    const baseDay = mix(texture(dayTexture), surfaceTint, art ? 0.12 : 0);
+    const material = new MeshStandardNodeMaterial();
+    material.colorNode = mix(baseDay, vec3(1), cloudStrength.mul(2));
+    const roughness = max(texture(bumpRoughnessCloudsTexture).g, step(0.01, cloudStrength));
+    material.roughnessNode = roughness.remap(
+      0,
+      1,
+      uniform(art?.roughness ? Math.max(0.18, art.roughness - 0.55) : 0.25),
+      uniform(art?.roughness ? Math.min(0.78, art.roughness) : 0.35),
+    );
+    const night = texture(nightTexture);
+    const dayStrength = sunOrientation.smoothstep(-0.25, 0.5);
+    const atmosphereDayStrength = sunOrientation.smoothstep(-0.5, 1);
+    const atmosphereMix = atmosphereDayStrength.mul(fresnel.pow(2)).clamp(0, 1);
+    let finalOutput = mix(night.rgb, output.rgb, dayStrength);
+    finalOutput = mix(finalOutput, atmosphere, atmosphereMix);
+    material.outputNode = vec4(finalOutput, output.a);
+    material.normalNode = bumpMap(max(texture(bumpRoughnessCloudsTexture).r, cloudStrength));
+
+    const halo = new MeshBasicNodeMaterial({ side: BackSide, transparent: true });
+    let alpha = fresnel.remap(0.73, 1, 1, 0).pow(3);
+    alpha = alpha.mul(sunOrientation.smoothstep(-0.5, 1));
+    halo.outputNode = vec4(atmosphere, alpha.mul(pollution && pollution > 1 ? 1.35 : 1));
+    return { atmosphereMaterial: halo, globeMaterial: material };
+  }, [
+    art,
+    atmosphereColor,
+    bumpRoughnessCloudsTexture,
+    dayTexture,
+    nightTexture,
+    pollution,
+    twilightColor,
+  ]);
+
+  useEffect(() => {
+    return () => {
+      atmosphereMaterial.dispose();
+      globeMaterial.dispose();
+    };
+  }, [atmosphereMaterial, globeMaterial]);
 
   useFrame((_, delta) => {
     if (reducedMotion) return;
@@ -557,34 +676,48 @@ function WorldPlanet({
     if (orbit.current) orbit.current.rotation.y -= delta * 0.05;
   });
 
+  useLayoutEffect(() => {
+    const scale = detailLevel === 'none' ? 0.001 : detailLevel === 'subtle' ? 0.64 : 1;
+    const duration = reducedMotion ? 0 : 0.9;
+    const targets = [surface.current, orbit.current].filter((target): target is Group =>
+      Boolean(target),
+    );
+    const tweens = targets.map((target) =>
+      gsap.to(target.scale, {
+        duration,
+        ease: 'power3.inOut',
+        overwrite: 'auto',
+        x: scale,
+        y: scale,
+        z: scale,
+      }),
+    );
+    return () => {
+      tweens.forEach((tween) => tween.kill());
+    };
+  }, [detailLevel, reducedMotion]);
+
   return (
     <group>
       <mesh ref={planet} rotation={art?.rotation ?? [0.08, -0.6, -0.16]}>
-        <sphereGeometry args={[1, 48, 48]} />
-        <meshStandardMaterial
-          color={art?.surfaceTint ?? '#ffffff'}
-          map={texture}
-          metalness={art?.metalness ?? 0.03}
-          roughness={art?.roughness ?? 0.82}
-        />
-        {showLights && <CityLights color={profile?.accent ?? '#ffd98a'} intensity={lights} />}
-        {art && <SurfaceInterventions accent={profile?.accent ?? art.secondary} art={art} />}
+        <sphereGeometry args={[1, 64, 64]} />
+        <primitive attach="material" object={globeMaterial} />
+        <group visible={showLights}>
+          <CityLights color={profile?.accent ?? '#ffd98a'} intensity={lights} />
+        </group>
+        <group
+          ref={surface}
+          scale={detailLevel === 'full' ? 1 : 0.64}
+          visible={detailLevel !== 'none'}
+        >
+          {art && <SurfaceInterventions accent={profile?.accent ?? art.secondary} art={art} />}
+        </group>
       </mesh>
-      <mesh scale={1.035}>
-        <sphereGeometry args={[1, 32, 32]} />
-        <meshBasicMaterial color="#d4f3ff" opacity={0.05} transparent wireframe />
+      <mesh scale={1.04}>
+        <sphereGeometry args={[1, 64, 64]} />
+        <primitive attach="material" object={atmosphereMaterial} />
       </mesh>
-      <mesh scale={1.08}>
-        <sphereGeometry args={[1, 40, 40]} />
-        <meshBasicMaterial
-          blending={AdditiveBlending}
-          color={atmosphereColor}
-          opacity={pollution && pollution > 1 ? 0.15 : (art?.atmosphereOpacity ?? 0.08)}
-          side={BackSide}
-          transparent
-        />
-      </mesh>
-      <group ref={orbit}>
+      <group ref={orbit} scale={detailLevel === 'full' ? 1 : 0.64} visible={detailLevel !== 'none'}>
         {art && (
           <OrbitalArchitecture
             accent={profile?.accent ?? '#b8f15c'}
@@ -634,6 +767,45 @@ function Limb({
         transparent={opacity < 1}
       />
     </mesh>
+  );
+}
+
+function BranchSegment({
+  start,
+  end,
+  color,
+  segmentRef,
+  radius = 0.018,
+}: {
+  start: Point3;
+  end: Point3;
+  color: string;
+  segmentRef: (element: Group | null) => void;
+  radius?: number;
+}) {
+  const { length, quaternion } = useMemo(() => {
+    const from = new Vector3(...start);
+    const direction = new Vector3(...end).sub(from);
+    return {
+      length: direction.length(),
+      quaternion: new Quaternion().setFromUnitVectors(new Vector3(0, 1, 0), direction.normalize()),
+    };
+  }, [end, start]);
+
+  return (
+    <group position={start} quaternion={quaternion} ref={segmentRef} scale={[1, 0.001, 1]}>
+      <mesh position={[0, length / 2, 0]}>
+        <cylinderGeometry args={[radius * 0.74, radius, length, 10]} />
+        <meshStandardMaterial
+          color={color}
+          emissive={color}
+          emissiveIntensity={0.72}
+          opacity={0.68}
+          roughness={0.42}
+          transparent
+        />
+      </mesh>
+    </group>
   );
 }
 
@@ -731,11 +903,42 @@ function InstrumentAdapter({ state }: { state: StoryVisualState }) {
   }
 }
 
-function AlienObserverAsset({ state }: { state: StoryVisualState }) {
-  const { scene } = useGLTF('/assets/models/janus-alien-observer-v1.glb');
+const fabObserverModelPath = '/assets/models/janus-alien-observer-v2.glb';
+
+function AlienObserverAsset({
+  state,
+  reducedMotion,
+}: {
+  state: StoryVisualState;
+  reducedMotion: boolean;
+}) {
+  // Asset contributions: “Cute Alien Character” © Ndevisuals (CC BY 4.0),
+  // and “Telescope” © Usman Ahmed Gill (Fab Standard License). The project
+  // adds the object rig, observing performance, staging, and web optimization.
+  const assetRoot = useRef<Group>(null);
+  const { scene, animations } = useGLTF(fabObserverModelPath);
   const observerScene = useMemo(() => scene.clone(true), [scene]);
+  const { actions, names } = useAnimations(animations, assetRoot);
+
+  useEffect(() => {
+    const shouldAnimate = state.kind === 'observer' && !reducedMotion;
+    const clips = names.flatMap((name) => {
+      const action = actions[name];
+      if (!action) return [];
+      if (shouldAnimate) {
+        action.reset().setLoop(LoopRepeat, Number.POSITIVE_INFINITY).fadeIn(0.28).play();
+      } else {
+        action.stop();
+      }
+      return [action];
+    });
+    return () => {
+      clips.forEach((action) => action.stop());
+    };
+  }, [actions, names, reducedMotion, state.kind]);
+
   return (
-    <group position={[0.5, -0.8, 0.18]}>
+    <group position={[0.5, -0.8, 0.18]} ref={assetRoot}>
       <primitive object={observerScene} />
       <group position={[0.28, 1.22, 0.02]} scale={0.52}>
         <InstrumentAdapter state={state} />
@@ -744,7 +947,13 @@ function AlienObserverAsset({ state }: { state: StoryVisualState }) {
   );
 }
 
-function AlienAstronomer({ state }: { state: StoryVisualState }) {
+function AlienAstronomer({
+  state,
+  reducedMotion,
+}: {
+  state: StoryVisualState;
+  reducedMotion: boolean;
+}) {
   const accent = state.scenarioId ? getScenarioProfile(state.scenarioId).accent : '#b8f15c';
   return (
     <group>
@@ -763,15 +972,7 @@ function AlienAstronomer({ state }: { state: StoryVisualState }) {
         </mesh>
       ))}
 
-      <AlienObserverAsset state={state} />
-
-      <group position={[3.45, 0.62, -1.12]} scale={0.39}>
-        <WorldPlanet
-          profile={state.scenarioId ? getScenarioProfile(state.scenarioId) : undefined}
-          reducedMotion
-          showLights={false}
-        />
-      </group>
+      <AlienObserverAsset reducedMotion={reducedMotion} state={state} />
       <Limb
         color={accent}
         emissive={accent}
@@ -784,15 +985,12 @@ function AlienAstronomer({ state }: { state: StoryVisualState }) {
   );
 }
 
-useGLTF.preload('/assets/models/janus-alien-observer-v1.glb');
+useGLTF.preload(fabObserverModelPath);
 
-function SystemScene({ state, reducedMotion }: Pick<EarthStageProps, 'state' | 'reducedMotion'>) {
+function SystemScene({ state }: Pick<EarthStageProps, 'state'>) {
   const profile = state.scenarioId ? getScenarioProfile(state.scenarioId) : undefined;
   return (
     <group>
-      <group scale={0.78}>
-        <WorldPlanet profile={profile} reducedMotion={reducedMotion} />
-      </group>
       <group position={[-3.4, 0.72, -1.3]}>
         <mesh>
           <sphereGeometry args={[0.28, 32, 32]} />
@@ -815,11 +1013,28 @@ function SystemScene({ state, reducedMotion }: Pick<EarthStageProps, 'state' | '
   );
 }
 
-function CameraRig({ state, reducedMotion }: Pick<EarthStageProps, 'state' | 'reducedMotion'>) {
-  const { camera, size } = useThree();
+function CameraRig({
+  state,
+  reducedMotion,
+  branchProgress = 0,
+}: Pick<EarthStageProps, 'state' | 'reducedMotion' | 'branchProgress'>) {
+  const { camera, invalidate, size } = useThree();
   useLayoutEffect(() => {
-    const duration = reducedMotion ? 0 : 1.35;
     const portrait = size.width / size.height < 0.72;
+    if (state.kind === 'branches' && !reducedMotion) {
+      const progress = progressBetween(branchProgress, 0, 0.24);
+      const start: Point3 = [0, 0, portrait ? 10.4 : 7.2];
+      const end: Point3 = portrait ? [0, 0.2, 15.8] : [0, 0.12, 10.2];
+      camera.position.set(
+        start[0] + (end[0] - start[0]) * progress,
+        start[1] + (end[1] - start[1]) * progress,
+        start[2] + (end[2] - start[2]) * progress,
+      );
+      camera.lookAt(0, 0, 0);
+      invalidate();
+      return;
+    }
+    const duration = reducedMotion ? 0 : state.kind === 'branches' ? 0.78 : 1.35;
     const position: Point3 = portrait
       ? state.kind === 'branches'
         ? [0, 0.2, 15.8]
@@ -849,191 +1064,457 @@ function CameraRig({ state, reducedMotion }: Pick<EarthStageProps, 'state' | 're
       x: position[0],
       y: position[1],
       z: position[2],
-      onUpdate: () => camera.lookAt(0, 0, 0),
+      onUpdate: () => {
+        camera.lookAt(0, 0, 0);
+        invalidate();
+      },
     });
     return () => {
       tween.kill();
     };
-  }, [camera, reducedMotion, size.height, size.width, state.kind, state.scenarioId]);
+  }, [
+    branchProgress,
+    camera,
+    invalidate,
+    reducedMotion,
+    size.height,
+    size.width,
+    state.kind,
+    state.scenarioId,
+  ]);
   return null;
 }
 
-function Scene({ state, reducedMotion }: Pick<EarthStageProps, 'state' | 'reducedMotion'>) {
-  const { size } = useThree();
+function Scene({
+  state,
+  reducedMotion,
+  branchProgress = 0,
+}: Pick<EarthStageProps, 'state' | 'reducedMotion' | 'branchProgress'>) {
+  const { invalidate, size } = useThree();
   const portrait = size.width / size.height < 0.72;
-  const present = useRef<Group>(null);
-  const constellation = useRef<Group>(null);
-  const branchConnectors = useRef<Group>(null);
-  const origin = useRef<Group>(null);
+  const presentEarth = useRef<Group>(null);
+  const branchTrunk = useRef<Group>(null);
+  const branchRailLeft = useRef<Group>(null);
+  const branchRailRight = useRef<Group>(null);
+  const branchJunctions = useRef<Group>(null);
+  const branchStems = useRef<Array<Group | null>>([]);
+  const branchTrunkHead = useRef<Mesh>(null);
+  const branchRailHeads = useRef<Array<Mesh | null>>([]);
+  const branchStemHeads = useRef<Array<Mesh | null>>([]);
   const observer = useRef<Group>(null);
-  const ocular = useRef<Group>(null);
+  const ocularTunnel = useRef<Group>(null);
+  const gravitationalLens = useRef<Group>(null);
   const system = useRef<Group>(null);
   const worlds = useRef<Array<Group | null>>([]);
 
   useLayoutEffect(() => {
-    const duration = reducedMotion ? 0 : 1.15;
-    const ease = 'power3.inOut';
-    const context = gsap.context(() => {
-      if (origin.current) {
-        const originScale =
-          state.kind === 'branches' ? 0.64 : state.kind === 'scenario' ? 0.18 : 0.64;
-        gsap.to(origin.current.scale, {
-          duration,
-          ease,
-          x: originScale,
-          y: originScale,
-          z: originScale,
-        });
-        gsap.to(origin.current.position, {
-          duration,
-          ease,
-          x: state.kind === 'scenario' ? 1.85 : branchOrigin[0],
-          y: state.kind === 'scenario' ? 1.75 : branchOrigin[1],
-          z: state.kind === 'scenario' ? -1.1 : branchOrigin[2],
-        });
+    if (state.kind !== 'branches') return;
+    const progress = reducedMotion ? 1 : branchProgress;
+    const earthProgress = progressBetween(progress, 0, 0.22);
+    const presentY = portrait ? 0.62 : 0;
+    const targetY = portrait ? 2.75 : 2.35;
+    const presentScale = portrait ? 1.05 : 1.52;
+    const targetScale = portrait ? 0.38 : 0.46;
+
+    if (presentEarth.current) {
+      presentEarth.current.position.set(
+        0,
+        presentY + (targetY - presentY) * earthProgress,
+        -0.15 * earthProgress,
+      );
+      const scale = presentScale + (targetScale - presentScale) * earthProgress;
+      presentEarth.current.scale.setScalar(scale);
+      presentEarth.current.rotation.set(
+        -0.12 * earthProgress,
+        0.28 * earthProgress,
+        -0.08 * earthProgress,
+      );
+    }
+
+    const trunkProgress = progressBetween(progress, 0.12, 0.34);
+    const railProgress = progressBetween(progress, 0.3, 0.58);
+    branchTrunk.current?.scale.set(1, Math.max(0.001, trunkProgress), 1);
+    branchRailLeft.current?.scale.set(1, Math.max(0.001, railProgress), 1);
+    branchRailRight.current?.scale.set(1, Math.max(0.001, railProgress), 1);
+    const junctionProgress = progressBetween(progress, 0.48, 0.64);
+    branchJunctions.current?.scale.setScalar(Math.max(0.001, junctionProgress));
+
+    const trunkStart: Point3 = [0, branchOrigin[1] - 0.48, branchDepth];
+    const trunkEnd: Point3 = [0, branchSpineY, branchDepth];
+    setBranchHead(branchTrunkHead.current, trunkStart, trunkEnd, trunkProgress, 1);
+    setBranchHead(
+      branchRailHeads.current[0],
+      trunkEnd,
+      [futurePositions[0][0], branchSpineY, branchDepth],
+      railProgress,
+      0.8,
+    );
+    setBranchHead(
+      branchRailHeads.current[1],
+      trunkEnd,
+      [futurePositions.at(-1)?.[0] ?? 4.25, branchSpineY, branchDepth],
+      railProgress,
+      0.8,
+    );
+
+    worlds.current.forEach((world, index) => {
+      if (!world) return;
+      const target = futurePositions[index];
+      const centerDistance = Math.abs(index - 4.5);
+      const stemStart = 0.53 + centerDistance * 0.022;
+      const stemEnd = stemStart + 0.2;
+      const stemProgress = progressBetween(progress, stemStart, stemEnd);
+      branchStems.current[index]?.scale.set(1, Math.max(0.001, stemProgress), 1);
+      setBranchHead(
+        branchStemHeads.current[index],
+        [target[0], branchSpineY, branchDepth],
+        target,
+        stemProgress,
+        0.65,
+      );
+
+      const worldProgress = progressBetween(progress, stemEnd - 0.015, stemEnd + 0.15);
+      const easedWorldProgress = Math.max(0, backOut(worldProgress));
+      const budding = state.branchState === 'budding';
+      const targetWorldScale = budding ? (portrait ? 0.18 : 0.34) : portrait ? 0.26 : 0.48;
+      world.position.set(...target);
+      world.scale.setScalar(Math.max(0.001, targetWorldScale * easedWorldProgress));
+      world.rotation.set(
+        (1 - worldProgress) * -0.18,
+        index * 0.035 + (1 - worldProgress) * -0.8,
+        (1 - worldProgress) * 0.12,
+      );
+    });
+    invalidate();
+  }, [branchProgress, invalidate, portrait, reducedMotion, state.branchState, state.kind]);
+
+  useLayoutEffect(() => {
+    const duration = reducedMotion
+      ? 0
+      : state.kind === 'observer' || state.kind === 'ocular'
+        ? 1.6
+        : 1.25;
+    const timeline = gsap.timeline({
+      defaults: { duration, ease: 'power3.inOut', overwrite: 'auto' },
+      onUpdate: invalidate,
+    });
+    const at = 0;
+
+    if (presentEarth.current && state.kind !== 'branches') {
+      const isPresent = state.kind === 'present';
+      const target = isPresent
+        ? ([0, portrait ? 0.62 : 0, 0] as Point3)
+        : ([0, portrait ? 4.8 : 4.1, -2.8] as Point3);
+      const scale = isPresent ? (portrait ? 1.05 : 1.52) : 0.04;
+      timeline.to(presentEarth.current.position, { x: target[0], y: target[1], z: target[2] }, at);
+      timeline.to(presentEarth.current.scale, { x: scale, y: scale, z: scale }, at);
+      timeline.to(
+        presentEarth.current.rotation,
+        {
+          x: isPresent ? 0 : -0.12,
+          y: isPresent ? 0 : 0.28,
+          z: 0,
+        },
+        at,
+      );
+    }
+
+    const branching = state.kind === 'branches';
+    const branchLines = [branchTrunk.current, branchRailLeft.current, branchRailRight.current];
+    if (!branching) {
+      branchStems.current.forEach((stem, index) => {
+        if (stem)
+          timeline.to(stem.scale, { duration: 0.28, y: 0.001 }, reducedMotion ? 0 : index * 0.012);
+      });
+      if (branchJunctions.current) {
+        timeline.to(
+          branchJunctions.current.scale,
+          { duration: 0.22, x: 0.001, y: 0.001, z: 0.001 },
+          reducedMotion ? 0 : 0.18,
+        );
+      }
+      branchLines.slice(1).forEach((rail) => {
+        if (rail) timeline.to(rail.scale, { duration: 0.36, y: 0.001 }, reducedMotion ? 0 : 0.26);
+      });
+      if (branchTrunk.current) {
+        timeline.to(
+          branchTrunk.current.scale,
+          { duration: 0.28, y: 0.001 },
+          reducedMotion ? 0 : 0.5,
+        );
+      }
+    }
+
+    worlds.current.forEach((world, index) => {
+      if (!world) return;
+      const base = futurePositions[index];
+      const active = allScenarioProfiles[index].id === state.scenarioId;
+      let target: Point3 = [branchOrigin[0], branchOrigin[1], branchOrigin[2]];
+      let scale = 0.001;
+      const worldAt = at;
+
+      if (state.kind === 'branches') {
+        target = futurePositions[index];
+        timeline.set(world.position, { x: target[0], y: target[1], z: target[2] }, at);
+      } else if (state.kind === 'scenario') {
+        target = active
+          ? portrait
+            ? [0, 0.3, 0.72]
+            : [0.2, -0.05, 0.65]
+          : portrait
+            ? [2.15 + base[0] * 0.12, 0.85 + base[1] * 0.42, -1.2]
+            : [2.25 + base[0] * 0.26, 0.05 + base[1] * 0.5, -1.05];
+        scale = active ? (portrait ? 0.9 : 1.28) : portrait ? 0.15 : 0.27;
+      } else if (state.kind === 'observer') {
+        target = active
+          ? portrait
+            ? [2.28, 1.68, -1.08]
+            : [3.45, 0.62, -1.12]
+          : [base[0] * 1.4, -4.6 - (index % 2), -4.2];
+        scale = active ? (portrait ? 0.28 : 0.39) : 0.001;
+      } else if (state.kind === 'ocular') {
+        target = active ? [0, portrait ? 0.55 : 0, 0.35] : [base[0] * 1.2, -5.4, -5];
+        scale = active ? (portrait ? 1.05 : 1.62) : 0.001;
+      } else if (state.kind === 'system') {
+        target = active ? [0, portrait ? 0.7 : 0, 0.2] : [base[0], -5.6, -5];
+        scale = active ? (portrait ? 0.6 : 0.78) : 0.001;
       }
 
-      worlds.current.forEach((world, index) => {
-        if (!world) return;
-        const base = futurePositions[index];
-        const active = allScenarioProfiles[index].id === state.scenarioId;
-        const budding = state.kind === 'branches' && state.branchState === 'budding';
-        const focused = state.kind === 'scenario';
-        const target: Point3 = focused
-          ? active
-            ? [0.2, -0.05, 0.65]
-            : [2.25 + base[0] * 0.26, 0.05 + base[1] * 0.5, -1.05]
-          : branchTarget(index, state.branchState);
-        const scale = focused
-          ? active
-            ? portrait
-              ? 0.9
-              : 1.28
-            : portrait
-              ? 0.18
-              : 0.27
-          : budding
-            ? portrait
-              ? 0.18
-              : 0.34
-            : portrait
-              ? 0.26
-              : 0.48;
-        gsap.to(world.position, {
-          duration,
-          ease,
-          x: target[0],
-          y: target[1],
-          z: target[2],
-        });
-        gsap.to(world.scale, { duration, ease, x: scale, y: scale, z: scale });
-      });
+      if (state.kind !== 'branches') {
+        timeline.to(world.position, { x: target[0], y: target[1], z: target[2] }, at);
+      }
+      if (state.kind !== 'branches') {
+        timeline.to(world.scale, { x: scale, y: scale, z: scale }, worldAt);
+        timeline.to(
+          world.rotation,
+          { x: active ? -0.04 : 0, y: active ? 0.16 : index * 0.035, z: active ? -0.05 : 0 },
+          worldAt,
+        );
+      }
     });
-    return () => context.revert();
-  }, [portrait, reducedMotion, state.branchState, state.kind, state.scenarioId]);
+
+    if (observer.current) {
+      const observing = state.kind === 'observer';
+      const passingThrough = state.kind === 'ocular';
+      const target = observing
+        ? ([0, portrait ? 1.25 : 0, 0] as Point3)
+        : passingThrough
+          ? ([-18, -7, 10] as Point3)
+          : state.kind === 'system'
+            ? ([-13, -4.5, 7] as Point3)
+            : ([-7.5, -1.6, -4] as Point3);
+      const scale = observing ? (portrait ? 0.68 : 1) : passingThrough ? 0.001 : 0.08;
+      timeline.to(observer.current.position, { x: target[0], y: target[1], z: target[2] }, at);
+      timeline.to(observer.current.scale, { x: scale, y: scale, z: scale }, at);
+      timeline.to(observer.current.rotation, { x: 0, y: passingThrough ? -0.18 : 0, z: 0 }, at);
+    }
+
+    if (ocularTunnel.current) {
+      const ocular = state.kind === 'ocular';
+      const scale = ocular ? (portrait ? 0.82 : 1) : 0.001;
+      timeline.to(ocularTunnel.current.scale, { x: scale, y: scale, z: scale }, at);
+      timeline.to(
+        ocularTunnel.current.position,
+        { x: 0, y: portrait ? 0.55 : 0, z: ocular ? 0 : 4.8 },
+        at,
+      );
+      timeline.to(
+        ocularTunnel.current.rotation,
+        { z: ocular ? Math.PI * 0.08 : -Math.PI * 0.2 },
+        at,
+      );
+    }
+
+    if (gravitationalLens.current) {
+      const active = state.kind === 'ocular' && state.instrument === 'solar_gravitational_lens';
+      const scale = active ? 1 : 0.001;
+      timeline.to(gravitationalLens.current.scale, { x: scale, y: scale, z: scale }, at);
+      timeline.to(gravitationalLens.current.rotation, { z: active ? Math.PI * 0.22 : 0 }, at);
+    }
+
+    if (system.current) {
+      const active = state.kind === 'system';
+      const scale = active ? (portrait ? 0.72 : 1) : 0.001;
+      timeline.to(system.current.scale, { x: scale, y: scale, z: scale }, at);
+      timeline.to(
+        system.current.position,
+        { x: 0, y: active && portrait ? 0.7 : 0, z: active ? 0 : -4.5 },
+        at,
+      );
+      timeline.to(system.current.rotation, { y: active ? 0.22 : -0.45, z: active ? -0.08 : 0 }, at);
+    }
+
+    return () => {
+      timeline.kill();
+    };
+  }, [
+    invalidate,
+    portrait,
+    reducedMotion,
+    state.branchState,
+    state.instrument,
+    state.kind,
+    state.scenarioId,
+  ]);
 
   return (
-    <>
+    <group data-persistent-world="true">
       <Stars reducedMotion={reducedMotion} />
-      <CameraRig reducedMotion={reducedMotion} state={state} />
+      <CameraRig branchProgress={branchProgress} reducedMotion={reducedMotion} state={state} />
 
       <group
-        position={portrait ? [0, 0.7, 0] : [0, 0, 0]}
-        ref={present}
-        scale={portrait ? 0.7 : 1}
-        visible={state.kind === 'present'}
+        ref={presentEarth}
+        position={[0, portrait ? 0.62 : 0, 0]}
+        scale={portrait ? 1.05 : 1.52}
       >
-        <group scale={1.52}>
-          <WorldPlanet present reducedMotion={reducedMotion} />
-        </group>
+        <WorldPlanet present reducedMotion={reducedMotion} />
       </group>
 
-      <group
-        position={portrait ? [0, 1.05, 0] : state.kind === 'branches' ? [-1.3, 0.3, 0] : [0, 0, 0]}
-        ref={constellation}
-        scale={portrait ? 0.44 : state.kind === 'branches' ? 0.72 : 1}
-        visible={state.kind === 'branches' || state.kind === 'scenario'}
-      >
-        <group ref={origin} position={branchOrigin} scale={0.64}>
-          <WorldPlanet present reducedMotion={reducedMotion} showLights={false} />
-        </group>
-        <group ref={branchConnectors} visible={state.kind === 'branches'}>
-          {allScenarioProfiles.map((profile, index) => (
-            <Limb
+      <group>
+        <BranchSegment
+          color="#b8f15c"
+          end={[0, branchSpineY, branchDepth]}
+          segmentRef={(element) => {
+            branchTrunk.current = element;
+          }}
+          radius={0.024}
+          start={[0, branchOrigin[1] - 0.48, branchDepth]}
+        />
+        <BranchSegment
+          color="#89bfa8"
+          end={[futurePositions[0][0], branchSpineY, branchDepth]}
+          segmentRef={(element) => {
+            branchRailLeft.current = element;
+          }}
+          radius={0.019}
+          start={[0, branchSpineY, branchDepth]}
+        />
+        <BranchSegment
+          color="#89bfa8"
+          end={[futurePositions.at(-1)?.[0] ?? 4.25, branchSpineY, branchDepth]}
+          segmentRef={(element) => {
+            branchRailRight.current = element;
+          }}
+          radius={0.019}
+          start={[0, branchSpineY, branchDepth]}
+        />
+        {allScenarioProfiles.map((profile, index) => {
+          const target = futurePositions[index];
+          return (
+            <BranchSegment
               color={profile.accent}
-              emissive={profile.accent}
-              end={branchTarget(index, state.branchState)}
+              end={target}
               key={profile.id}
-              opacity={0.48}
-              radius={0.018}
-              start={branchOrigin}
+              segmentRef={(element) => {
+                branchStems.current[index] = element;
+              }}
+              radius={0.014}
+              start={[target[0], branchSpineY, branchDepth]}
             />
+          );
+        })}
+        <group ref={branchJunctions} scale={0.001}>
+          <mesh position={[0, branchSpineY, branchDepth]}>
+            <sphereGeometry args={[0.055, 16, 16]} />
+            <meshBasicMaterial color="#b8f15c" />
+          </mesh>
+          {allScenarioProfiles.map((profile, index) => (
+            <mesh
+              key={profile.id}
+              position={[futurePositions[index][0], branchSpineY, branchDepth]}
+            >
+              <sphereGeometry args={[0.032, 14, 14]} />
+              <meshBasicMaterial color={profile.accent} />
+            </mesh>
           ))}
         </group>
-        {allScenarioProfiles.map((profile, index) => (
-          <group
-            key={profile.id}
-            position={futurePositions[index]}
+        <mesh ref={branchTrunkHead} scale={0.001}>
+          <sphereGeometry args={[0.068, 18, 18]} />
+          <meshBasicMaterial color="#efffc8" />
+        </mesh>
+        {['#c5ffe4', '#c5ffe4'].map((color, index) => (
+          <mesh
+            key={`${color}-${index}`}
             ref={(element) => {
-              worlds.current[index] = element;
+              branchRailHeads.current[index] = element;
             }}
-            scale={0.48}
+            scale={0.001}
           >
-            <WorldPlanet
-              profile={profile}
-              reducedMotion={reducedMotion}
-              showLights={state.kind === 'scenario' && profile.id === state.scenarioId}
-            />
-          </group>
+            <sphereGeometry args={[0.052, 16, 16]} />
+            <meshBasicMaterial color={color} />
+          </mesh>
+        ))}
+        {allScenarioProfiles.map((profile, index) => (
+          <mesh
+            key={`head-${profile.id}`}
+            ref={(element) => {
+              branchStemHeads.current[index] = element;
+            }}
+            scale={0.001}
+          >
+            <sphereGeometry args={[0.046, 14, 14]} />
+            <meshBasicMaterial color={profile.accent} />
+          </mesh>
         ))}
       </group>
 
-      <group
-        position={portrait ? [0, 1.25, 0] : [0, 0, 0]}
-        ref={observer}
-        scale={portrait ? 0.68 : 1}
-        visible={state.kind === 'observer'}
-      >
-        <AlienAstronomer state={state} />
-      </group>
-
-      <group
-        position={portrait ? [0, 0.6, 0] : [0, 0, 0]}
-        ref={ocular}
-        scale={portrait ? 0.72 : 1}
-        visible={state.kind === 'ocular'}
-      >
-        <group scale={1.62}>
+      {allScenarioProfiles.map((profile, index) => (
+        <group
+          key={profile.id}
+          position={branchOrigin}
+          ref={(element) => {
+            worlds.current[index] = element;
+          }}
+          scale={0.001}
+        >
           <WorldPlanet
-            profile={state.scenarioId ? getScenarioProfile(state.scenarioId) : undefined}
+            detailLevel={
+              profile.id === state.scenarioId
+                ? state.kind === 'ocular'
+                  ? 'none'
+                  : state.kind === 'observer'
+                    ? 'subtle'
+                    : 'full'
+                : 'subtle'
+            }
+            profile={
+              profile.id === state.scenarioId && state.kind === 'ocular' ? undefined : profile
+            }
             reducedMotion={reducedMotion}
+            showLights={profile.id === state.scenarioId}
           />
         </group>
-        {state.instrument === 'solar_gravitational_lens' && (
-          <group rotation={[0, 0.15, 0]}>
-            {[2.05, 2.35, 2.72].map((radius, index) => (
-              <mesh key={radius}>
-                <torusGeometry args={[radius, 0.012, 8, 128]} />
-                <meshBasicMaterial
-                  color={index === 0 ? '#fff2b0' : '#a997ff'}
-                  opacity={0.46}
-                  transparent
-                />
-              </mesh>
-            ))}
-          </group>
-        )}
+      ))}
+
+      <group ref={observer} position={[-7.5, -1.6, -4]} scale={0.08}>
+        <AlienAstronomer reducedMotion={reducedMotion} state={state} />
       </group>
 
-      <group
-        position={portrait ? [0, 0.8, 0] : [0, 0, 0]}
-        ref={system}
-        scale={portrait ? 0.72 : 1}
-        visible={state.kind === 'system'}
-      >
-        <SystemScene reducedMotion={reducedMotion} state={state} />
+      <group ref={ocularTunnel} position={[0, portrait ? 0.55 : 0, 4.8]} scale={0.001}>
+        {[2.05, 2.32, 2.62].map((radius, index) => (
+          <mesh key={radius} position={[0, 0, index * -0.08]}>
+            <torusGeometry args={[radius, 0.014 - index * 0.002, 8, 128]} />
+            <meshBasicMaterial color="#d9efe2" opacity={0.18 - index * 0.035} transparent />
+          </mesh>
+        ))}
+        <group ref={gravitationalLens} scale={0.001}>
+          {[2.12, 2.42, 2.78].map((radius, index) => (
+            <mesh key={radius} rotation={[0, index * 0.08, index * 0.12]}>
+              <torusGeometry args={[radius, 0.018, 8, 128]} />
+              <meshBasicMaterial
+                color={index === 0 ? '#fff2b0' : '#a997ff'}
+                opacity={0.58 - index * 0.1}
+                transparent
+              />
+            </mesh>
+          ))}
+        </group>
       </group>
-    </>
+
+      <group ref={system} position={[0, 0, -4.5]} scale={0.001}>
+        <SystemScene state={state} />
+      </group>
+    </group>
   );
 }
 
@@ -1045,7 +1526,12 @@ function CanvasReady({ onReady }: { onReady: () => void }) {
   return null;
 }
 
-export function EarthStage({ state, reducedMotion, className = '' }: EarthStageProps) {
+export function EarthStage({
+  state,
+  reducedMotion,
+  branchProgress = 0,
+  className = '',
+}: EarthStageProps) {
   const profile = state.scenarioId ? getScenarioProfile(state.scenarioId) : undefined;
   const [webglReady, setWebglReady] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -1066,6 +1552,12 @@ export function EarthStage({ state, reducedMotion, className = '' }: EarthStageP
       className={`earthStage ${webglReady ? 'earthStageWebglReady' : ''} ${className}`}
       data-scene-kind={state.kind}
       data-branch-state={state.branchState}
+      data-branch-layout="trunk-spine-stems"
+      data-branch-animation="scroll-scrubbed"
+      data-branch-progress={branchProgress.toFixed(3)}
+      data-observer-asset="fab-animated-v2"
+      data-observer-motion={reducedMotion ? 'reduced' : 'four-clip-loop'}
+      data-world-lifecycle="persistent"
       ref={wrapper}
       style={{ '--scene-accent': profile?.accent ?? '#b8f15c' } as React.CSSProperties}
     >
@@ -1099,7 +1591,7 @@ export function EarthStage({ state, reducedMotion, className = '' }: EarthStageP
           className="earthCanvas"
           dpr={[1, 1.5]}
           frameloop={reducedMotion || !visible ? 'demand' : 'always'}
-          gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
+          gl={createWebGpuRenderer}
         >
           <ambientLight intensity={0.56} />
           <directionalLight intensity={3.2} position={[4, 2.5, 5]} />
@@ -1108,7 +1600,7 @@ export function EarthStage({ state, reducedMotion, className = '' }: EarthStageP
           <pointLight color="#ffb15c" intensity={10} position={[2.5, 2, 1]} />
           <Suspense fallback={null}>
             <CanvasReady onReady={() => setWebglReady(true)} />
-            <Scene reducedMotion={reducedMotion} state={state} />
+            <Scene branchProgress={branchProgress} reducedMotion={reducedMotion} state={state} />
           </Suspense>
         </Canvas>
       </CanvasGuard>

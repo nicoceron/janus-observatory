@@ -63,10 +63,14 @@ export default function SourcesPage() {
       <section className="proseSection">
         <h2>Credits and agency assets</h2>
         <p>
-          The spatial globe uses an optimized derivative of the admitted NASA Earth texture below.
-          Scenario surfaces and orbital structures are original interpretive geometry. The alien
-          observer and telescope are a project-authored Blender model, not a NASA mission render or
-          a Project Janus research artifact.
+          The hero progressively enhances an AI-enhanced poster with Caner Sevince&apos;s animated
+          CC0 Spline scene, “Solar System – Basic.” The spatial globe uses an optimized derivative
+          of the admitted NASA Earth texture. Scenario surfaces and orbital structures are original
+          interpretive geometry. The animated observer combines Ndevisuals&apos; “Cute Alien
+          Character” under CC BY 4.0 with Usman Ahmed Gill&apos;s “Telescope” under the Fab Standard
+          License. Janus Observatory adds the Blender performance rig, telescope-viewing animation,
+          staging, and web optimization. It is not a NASA mission render or a Project Janus research
+          artifact.
         </p>
         <div className="sourceCards">
           {assetLedger.entries

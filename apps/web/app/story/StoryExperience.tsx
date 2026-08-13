@@ -59,19 +59,21 @@ function MetricReadout({ scenarioId }: { scenarioId: ScenarioId }) {
 function WorldLabels({
   activeScenario,
   budding,
+  visible,
 }: {
   activeScenario?: ScenarioId;
   budding: boolean;
+  visible: boolean;
 }) {
   return (
     <div
       aria-label="All ten Janus scenario worlds. Their spatial separation does not encode probability."
       className={
         activeScenario
-          ? 'worldLabels worldLabelsFocused'
+          ? `worldLabels worldLabelsFocused ${visible ? 'storyOverlayVisible' : ''}`
           : budding
-            ? 'worldLabels worldLabelsBudding'
-            : 'worldLabels'
+            ? `worldLabels worldLabelsBudding ${visible ? 'storyOverlayVisible' : ''}`
+            : `worldLabels ${visible ? 'storyOverlayVisible' : ''}`
       }
       role="group"
     >
@@ -117,16 +119,18 @@ function WorldLabels({
 function OcularOverlay({
   scenarioId,
   instrument,
+  visible,
 }: {
   scenarioId: ScenarioId;
   instrument: keyof typeof instrumentCopy;
+  visible: boolean;
 }) {
   const profile = getScenarioProfile(scenarioId);
   const observation = profile.observations.find(({ id }) => id === instrument)!;
   const hasSignatures = observation.result.signatures.length > 0;
 
   return (
-    <div className="ocularOverlay">
+    <div className={`ocularOverlay ${visible ? 'storyOverlayVisible' : ''}`}>
       <div className="ocularReticle" aria-hidden="true">
         <i />
         <i />
@@ -154,12 +158,16 @@ function OcularOverlay({
 
 export function StoryExperience() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [branchProgress, setBranchProgress] = useState(0);
   const [readingMode, setReadingMode] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const navigationTargetRef = useRef<number | null>(null);
   const stepRefs = useRef<Array<HTMLElement | null>>([]);
   const ratiosRef = useRef<number[]>(storySteps.map(() => 0));
   const currentStep = storySteps[activeIndex] ?? storySteps[0];
   const reducedMotion = readingMode || prefersReducedMotion;
+  const stageVisual =
+    activeIndex === 0 && branchProgress > 0.001 ? storySteps[1].visual : currentStep.visual;
 
   useEffect(() => {
     const query = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -178,6 +186,14 @@ export function StoryExperience() {
           const index = Number((entry.target as HTMLElement).dataset.stepIndex);
           if (Number.isInteger(index)) ratiosRef.current[index] = entry.intersectionRatio;
         });
+        const navigationTarget = navigationTargetRef.current;
+        if (navigationTarget !== null) {
+          if (ratiosRef.current[navigationTarget] >= 0.45) {
+            navigationTargetRef.current = null;
+            setActiveIndex(navigationTarget);
+          }
+          return;
+        }
         const nextIndex = ratiosRef.current.reduce(
           (best, ratio, index, ratios) => (ratio > ratios[best] ? index : best),
           0,
@@ -191,22 +207,55 @@ export function StoryExperience() {
     return () => observer.disconnect();
   }, [readingMode]);
 
-  const activeObservation = useMemo(() => {
-    if (
-      currentStep.visual.kind !== 'ocular' ||
-      !currentStep.visual.scenarioId ||
-      !currentStep.visual.instrument
-    ) {
-      return undefined;
+  useEffect(() => {
+    if (readingMode || prefersReducedMotion) {
+      const frame = window.requestAnimationFrame(() => {
+        setBranchProgress(readingMode ? 0 : activeIndex > 0 ? 1 : 0);
+      });
+      return () => window.cancelAnimationFrame(frame);
     }
+
+    let animationFrame = 0;
+    const updateBranchProgress = () => {
+      animationFrame = 0;
+      const branchStep = stepRefs.current[1];
+      if (!branchStep) return;
+      const rect = branchStep.getBoundingClientRect();
+      const revealStart = window.innerHeight * 0.66;
+      const revealEnd = window.innerHeight * -0.08;
+      const progress = Math.min(
+        1,
+        Math.max(0, (revealStart - rect.top) / (revealStart - revealEnd)),
+      );
+      setBranchProgress((previous) =>
+        Math.abs(previous - progress) > 0.001 ? progress : previous,
+      );
+    };
+    const requestUpdate = () => {
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateBranchProgress);
+    };
+
+    updateBranchProgress();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    return () => {
+      window.removeEventListener('scroll', requestUpdate);
+      window.removeEventListener('resize', requestUpdate);
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    };
+  }, [activeIndex, prefersReducedMotion, readingMode]);
+
+  const activeObservation = useMemo(() => {
     return {
-      scenarioId: currentStep.visual.scenarioId,
-      instrument: currentStep.visual.instrument,
+      instrument: currentStep.visual.instrument ?? 'habitable_worlds_observatory',
+      scenarioId: currentStep.visual.scenarioId ?? 'S1',
+      visible: currentStep.visual.kind === 'ocular',
     };
   }, [currentStep]);
 
   function moveTo(index: number) {
     const nextIndex = Math.min(Math.max(index, 0), storySteps.length - 1);
+    navigationTargetRef.current = readingMode ? null : nextIndex;
     setActiveIndex(nextIndex);
     stepRefs.current[nextIndex]?.focus({ preventScroll: true });
     stepRefs.current[nextIndex]?.scrollIntoView({
@@ -262,7 +311,11 @@ export function StoryExperience() {
         {!readingMode && (
           <div className="storySticky">
             <div className="storyStage" data-active-step={currentStep.id}>
-              <EarthStage reducedMotion={reducedMotion} state={currentStep.visual} />
+              <EarthStage
+                branchProgress={branchProgress}
+                reducedMotion={reducedMotion}
+                state={stageVisual}
+              />
 
               <div className="stageMeta">
                 <span>Chapter {currentStep.chapter}</span>
@@ -272,24 +325,26 @@ export function StoryExperience() {
                 <span>{prefersReducedMotion ? 'Motion reduced' : currentStep.visual.kind}</span>
               </div>
 
-              {(currentStep.visual.kind === 'branches' ||
-                currentStep.visual.kind === 'scenario') && (
-                <WorldLabels
-                  activeScenario={currentStep.visual.scenarioId}
-                  budding={currentStep.visual.branchState === 'budding'}
-                />
-              )}
+              <WorldLabels
+                activeScenario={currentStep.visual.scenarioId}
+                budding={currentStep.visual.branchState === 'budding'}
+                visible={
+                  currentStep.visual.kind === 'scenario' ||
+                  (currentStep.visual.kind === 'branches' && branchProgress > 0.78)
+                }
+              />
 
-              {currentStep.visual.showMetrics && currentStep.scenarioId && (
-                <MetricReadout scenarioId={currentStep.scenarioId} />
-              )}
+              <div
+                className={`storyMetricsLayer ${currentStep.visual.showMetrics ? 'storyOverlayVisible' : ''}`}
+              >
+                <MetricReadout scenarioId={currentStep.scenarioId ?? 'S1'} />
+              </div>
 
-              {activeObservation && (
-                <OcularOverlay
-                  instrument={activeObservation.instrument}
-                  scenarioId={activeObservation.scenarioId}
-                />
-              )}
+              <OcularOverlay
+                instrument={activeObservation.instrument}
+                scenarioId={activeObservation.scenarioId}
+                visible={activeObservation.visible}
+              />
 
               <div className="storyProgress" aria-hidden="true">
                 {storySteps.map((step, index) => (
