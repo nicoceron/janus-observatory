@@ -1,7 +1,7 @@
 """Build the licensed Fab alien-at-telescope scene for the Janus story.
 
-The source character is unrigged. This script adds an object-level performance rig,
-animates the character settling into the eyepiece, adds a restrained telescope scan,
+The source character is unrigged. This script separates its authored arm components,
+adds an object-level shoulder and wrist rig, animates a reach/focus/settle performance,
 renders QA frames, preserves an editable Blender source, and exports a web GLB.
 
 Source contributions:
@@ -22,9 +22,9 @@ ALIEN_BLEND = (
     ROOT / "assets/sources/fab/extracted/alien/source/Cute Alien Character.blend"
 )
 TELESCOPE_FBX = ROOT / "assets/sources/fab/extracted/telescope/source/TELESCOPE.fbx"
-SOURCE_BLEND = ROOT / "assets/sources/fab/janus-fab-observer-v2.blend"
-PUBLIC_GLB = ROOT / "apps/web/public/assets/models/janus-alien-observer-v2.glb"
-QA_DIR = ROOT / "docs/qa/janus-fab-observer-v2"
+SOURCE_BLEND = ROOT / "assets/sources/fab/janus-fab-observer-v3.blend"
+PUBLIC_GLB = ROOT / "apps/web/public/assets/models/janus-alien-observer-v3.glb"
+QA_DIR = ROOT / "docs/qa/janus-fab-observer-v3"
 
 START_FRAME = 1
 END_FRAME = 120
@@ -50,6 +50,90 @@ def descendants(root: bpy.types.Object) -> list[bpy.types.Object]:
     for child in root.children:
         found.extend(descendants(child))
     return found
+
+
+def object_center_x(obj: bpy.types.Object) -> float:
+    return sum((obj.matrix_world @ Vector(corner)).x for corner in obj.bound_box) / 8
+
+
+def separate_side_components(
+    source_name: str,
+) -> tuple[bpy.types.Object, bpy.types.Object]:
+    """Split one mirrored source mesh and return its negative/positive-X halves."""
+
+    source = bpy.data.objects.get(source_name)
+    if source is None or source.type != "MESH":
+        raise RuntimeError(f"Expected mirrored arm mesh {source_name!r}.")
+
+    before = set(bpy.context.scene.objects)
+    bpy.ops.object.select_all(action="DESELECT")
+    source.select_set(True)
+    bpy.context.view_layer.objects.active = source
+    bpy.ops.object.mode_set(mode="EDIT")
+    bpy.ops.mesh.select_all(action="SELECT")
+    bpy.ops.mesh.separate(type="LOOSE")
+    bpy.ops.object.mode_set(mode="OBJECT")
+
+    parts = [source, *[obj for obj in bpy.context.scene.objects if obj not in before]]
+    parts = [obj for obj in parts if obj.type == "MESH"]
+    if len(parts) != 2:
+        raise RuntimeError(
+            f"Expected two loose components in {source_name!r}, found {len(parts)}."
+        )
+    negative_x, positive_x = sorted(parts, key=object_center_x)
+    return negative_x, positive_x
+
+
+def join_objects(objects: tuple[bpy.types.Object, ...], name: str) -> bpy.types.Object:
+    bpy.ops.object.select_all(action="DESELECT")
+    for obj in objects:
+        obj.select_set(True)
+    active = objects[0]
+    bpy.context.view_layer.objects.active = active
+    bpy.ops.object.join()
+    active.name = name
+    return active
+
+
+def apply_object_transform(obj: bpy.types.Object) -> None:
+    bpy.ops.object.select_all(action="DESELECT")
+    obj.select_set(True)
+    bpy.context.view_layer.objects.active = obj
+    bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+
+
+def set_origin(obj: bpy.types.Object, location: tuple[float, float, float]) -> None:
+    bpy.context.scene.cursor.location = location
+    bpy.ops.object.select_all(action="DESELECT")
+    obj.select_set(True)
+    bpy.context.view_layer.objects.active = obj
+    bpy.ops.object.origin_set(type="ORIGIN_CURSOR", center="MEDIAN")
+
+
+def prepare_arm_rig() -> tuple[bpy.types.Object, bpy.types.Object]:
+    """Build a light object rig from the source's mirrored sleeve/cuff/hand meshes."""
+
+    far_sleeve, near_sleeve = separate_side_components("Cylinder")
+    far_cuff, near_cuff = separate_side_components("Cylinder.001")
+    far_hand, near_hand = separate_side_components("Object_8.006")
+
+    # Keep the quiet arm as one static draw unit, and preserve the active hand as
+    # a child so a small focus-wheel turn can follow the larger shoulder arc.
+    far_arm = join_objects((far_sleeve, far_cuff, far_hand), "FarArm")
+    near_arm = join_objects((near_sleeve, near_cuff), "NearArm")
+    near_hand.name = "NearHand"
+
+    for obj in (far_arm, near_arm, near_hand):
+        apply_object_transform(obj)
+
+    near_arm.rotation_mode = "XYZ"
+    near_hand.rotation_mode = "XYZ"
+    set_origin(near_arm, (0.245, 0.0, -0.295))
+    set_origin(near_hand, (0.415, 0.0, -0.425))
+    parent_keep_transform(near_hand, near_arm)
+    near_arm["rig_role"] = "near shoulder reach control"
+    near_hand["rig_role"] = "near wrist focus control"
+    return near_arm, near_hand
 
 
 def keyframe_transform(
@@ -92,12 +176,18 @@ def add_smooth_interpolation(obj: bpy.types.Object) -> None:
             point.handle_right_type = "AUTO_CLAMPED"
 
 
-def prepare_alien() -> tuple[bpy.types.Object, bpy.types.Object]:
+def prepare_alien() -> tuple[
+    bpy.types.Object,
+    bpy.types.Object,
+    bpy.types.Object,
+    bpy.types.Object,
+]:
     bpy.ops.wm.open_mainfile(filepath=str(ALIEN_BLEND))
     for obj in list(bpy.context.scene.objects):
         if obj.type in {"CAMERA", "LIGHT"}:
             bpy.data.objects.remove(obj, do_unlink=True)
 
+    near_arm, near_hand = prepare_arm_rig()
     alien_objects = list(bpy.context.scene.objects)
     alien_root = bpy.data.objects.new("ALIEN_PerformanceRoot", None)
     bpy.context.collection.objects.link(alien_root)
@@ -109,11 +199,12 @@ def prepare_alien() -> tuple[bpy.types.Object, bpy.types.Object]:
         "https://www.fab.com/listings/e659c1e0-d53c-4146-b877-a5496d0a7598"
     )
     alien_root["modifications"] = (
-        "Object-level rig, pose, animation, staging, and web optimization."
+        "Object-level shoulder/wrist rig, pose, animation, staging, and web optimization."
     )
 
     for obj in alien_objects:
-        parent_keep_transform(obj, alien_root)
+        if obj.parent is None:
+            parent_keep_transform(obj, alien_root)
         obj.name = f"ALIEN_{obj.name}"
 
     eye_mesh = bpy.data.objects.get("ALIEN_Sphere.001")
@@ -190,7 +281,38 @@ def prepare_alien() -> tuple[bpy.types.Object, bpy.types.Object]:
         keyframe_transform(eye_mesh, frame, scale=scale)
     name_action(eye_mesh, "ObserveTelescope_Blink")
     add_smooth_interpolation(eye_mesh)
-    return alien_root, eye_mesh
+
+    # The active arm now has an authored silhouette change: anticipate, reach
+    # toward the near focus control, make one small adjustment, hold, and settle.
+    # The first and last poses are identical for a clean browser loop.
+    for frame, rotation in (
+        (1, (0.0, 0.0, 0.0)),
+        (12, (math.radians(5.0), math.radians(3.0), math.radians(4.0))),
+        (34, (math.radians(-54.0), math.radians(-46.0), math.radians(-43.0))),
+        (48, (math.radians(-70.0), math.radians(-65.0), math.radians(-61.0))),
+        (62, (math.radians(-72.0), math.radians(-67.0), math.radians(-62.0))),
+        (78, (math.radians(-69.0), math.radians(-64.0), math.radians(-60.0))),
+        (94, (math.radians(-70.0), math.radians(-65.0), math.radians(-61.0))),
+        (108, (math.radians(-35.0), math.radians(-30.0), math.radians(-28.0))),
+        (120, (0.0, 0.0, 0.0)),
+    ):
+        keyframe_transform(near_arm, frame, rotation=rotation)
+    name_action(near_arm, "ObserveTelescope_Reach")
+    add_smooth_interpolation(near_arm)
+
+    for frame, rotation in (
+        (1, (0.0, 0.0, 0.0)),
+        (44, (0.0, 0.0, 0.0)),
+        (58, (math.radians(-8.0), math.radians(3.0), math.radians(-12.0))),
+        (72, (math.radians(7.0), math.radians(-2.0), math.radians(10.0))),
+        (86, (math.radians(-3.0), math.radians(1.0), math.radians(-5.0))),
+        (98, (0.0, 0.0, 0.0)),
+        (120, (0.0, 0.0, 0.0)),
+    ):
+        keyframe_transform(near_hand, frame, rotation=rotation)
+    name_action(near_hand, "ObserveTelescope_Focus")
+    add_smooth_interpolation(near_hand)
+    return alien_root, eye_mesh, near_arm, near_hand
 
 
 def prepare_telescope() -> bpy.types.Object:
@@ -207,7 +329,7 @@ def prepare_telescope() -> bpy.types.Object:
         "https://www.fab.com/listings/ad439e6a-e804-468b-93ac-f1b6d649a883"
     )
     telescope_root["modifications"] = (
-        "Repositioned, animated, staged, and web optimized."
+        "Repositioned, staged for character contact, and web optimized."
     )
 
     for obj in imported:
@@ -271,7 +393,7 @@ def configure_scene() -> None:
 
 def render_qa_frames() -> None:
     QA_DIR.mkdir(parents=True, exist_ok=True)
-    for frame in (1, 18, 34, 51, 58, 82, 102, 120):
+    for frame in (1, 12, 34, 48, 62, 78, 94, 120):
         bpy.context.scene.frame_set(frame)
         bpy.context.scene.render.filepath = str(QA_DIR / f"frame-{frame:03d}.png")
         bpy.ops.render.render(write_still=True)
@@ -304,7 +426,7 @@ def export_glb(roots: tuple[bpy.types.Object, ...]) -> None:
 
 
 def build() -> None:
-    alien_root, _ = prepare_alien()
+    alien_root, _, _, _ = prepare_alien()
     telescope_root = prepare_telescope()
     configure_scene()
     add_preview_stage()

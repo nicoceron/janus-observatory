@@ -1,7 +1,7 @@
 # Fab observer source intake
 
 The public story derivative at
-`apps/web/public/assets/models/janus-alien-observer-v2.glb` combines two user-selected Fab
+`apps/web/public/assets/models/janus-alien-observer-v3.glb` combines two user-selected Fab
 assets. Their exact contribution and downstream transformations are recorded in
 `data/assets/ledger.json`.
 
@@ -28,6 +28,7 @@ Extract the packages into the paths consumed by `build_fab_observer.py`, then ru
 /opt/homebrew/bin/blender -b --python assets/sources/fab/build_fab_observer.py
 ```
 
-The script creates the object-level performance rig, four-second observing loop, Blender QA
-frames, editable local derivative, and the web GLB. The admitted derivative checksum is recorded
-in the asset ledger after visual and glTF validation.
+The script separates the authored arm meshes, creates shoulder and wrist controls, and builds a
+four-second reach/focus/settle loop with body, blink, and antenna secondary motion. It also renders
+Blender QA frames, preserves an editable local derivative, and exports the web GLB. The admitted
+derivative checksum is recorded in the asset ledger after contact-sheet and glTF validation.

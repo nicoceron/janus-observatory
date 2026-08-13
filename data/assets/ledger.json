@@ -387,10 +387,10 @@
         "responsive scaling"
       ],
       "sourceChecksum": "sha256:b887ace9d23987347ce20310c08d2e04b4359948fcffeadbba018598f9a42ba1",
-      "derivativeChecksum": "sha256:1884007f6074ff70386b682a5cf68ecae5c2a72dfd5c9d1c8ae9ade6820a5a0d",
-      "derivativePublicPath": "/assets/models/janus-alien-observer-v2.glb",
+      "derivativeChecksum": "sha256:e1852446fadef9070320d49b2c648e266eac4d8df6e67ae01813295c00fd6ef8",
+      "derivativePublicPath": "/assets/models/janus-alien-observer-v3.glb",
       "transformations": [
-        "Imported the original Blender source into Blender 5.2, added an object-level performance rig, authored a four-second telescope-observation loop with body settling, blink, and antenna secondary motion, staged it against the admitted telescope, and exported the combined scene as binary glTF."
+        "Imported the original Blender source into Blender 5.2, separated its mirrored sleeve, cuff, and hand components, added object-level shoulder and wrist controls, authored a four-second reach/focus/settle loop with body, blink, and antenna secondary motion, staged it against the admitted telescope, and exported the combined scene as binary glTF."
       ],
       "notes": [
         "Interpretive fictional visualization; it is not a Project Janus research artifact or a proposed real instrument design.",
@@ -421,10 +421,10 @@
         "responsive scaling"
       ],
       "sourceChecksum": "sha256:57a20d0a8f6ca782ba8aee4595685b0ac66a4f06f91ae75aae7baa36db6bce4b",
-      "derivativeChecksum": "sha256:1884007f6074ff70386b682a5cf68ecae5c2a72dfd5c9d1c8ae9ade6820a5a0d",
-      "derivativePublicPath": "/assets/models/janus-alien-observer-v2.glb",
+      "derivativeChecksum": "sha256:e1852446fadef9070320d49b2c648e266eac4d8df6e67ae01813295c00fd6ef8",
+      "derivativePublicPath": "/assets/models/janus-alien-observer-v3.glb",
       "transformations": [
-        "Imported the original FBX and navy swatch texture into Blender 5.2, scaled and positioned the telescope to preserve tripod contact and align the eyepiece with the animated character, then exported it inside the combined binary glTF scene."
+        "Imported the original FBX and navy swatch texture into Blender 5.2, scaled and positioned the telescope to preserve tripod contact, align the eyepiece with the character, and provide the contact target for the reach/focus performance, then exported it inside the combined binary glTF scene."
       ],
       "notes": [
         "Interpretive observer prop; it is not a Project Janus research artifact, HWO design, LIFE design, or validated scientific instrument model.",

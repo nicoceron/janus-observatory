@@ -11,10 +11,11 @@ permission to inspect research material does not automatically authorize public 
 - Original package SHA-256 values are
   `b887ace9d23987347ce20310c08d2e04b4359948fcffeadbba018598f9a42ba1` (alien) and
   `57a20d0a8f6ca782ba8aee4595685b0ac66a4f06f91ae75aae7baa36db6bce4b` (telescope).
-- Janus Observatory adds an object-level performance rig, a four-second telescope-viewing loop,
-  blink and antenna secondary motion, scene staging, and web export. The 1.1 MB combined derivative
-  is `apps/web/public/assets/models/janus-alien-observer-v2.glb`, SHA-256
-  `1884007f6074ff70386b682a5cf68ecae5c2a72dfd5c9d1c8ae9ade6820a5a0d`.
+- Janus Observatory separates the source character's mirrored sleeve, cuff, and hand meshes and
+  adds object-level shoulder/wrist controls, a four-second reach/focus/settle performance, body
+  motion, blink and antenna secondary motion, scene staging, and web export. The 1.1 MB combined
+  derivative is `apps/web/public/assets/models/janus-alien-observer-v3.glb`, SHA-256
+  `e1852446fadef9070320d49b2c648e266eac4d8df6e67ae01813295c00fd6ef8`.
 - The downloaded packages, extracted files, and editable `.blend` remain ignored controlled inputs.
   The Fab telescope source is not redistributed as a standalone asset.
 

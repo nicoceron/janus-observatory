@@ -903,7 +903,7 @@ function InstrumentAdapter({ state }: { state: StoryVisualState }) {
   }
 }
 
-const fabObserverModelPath = '/assets/models/janus-alien-observer-v2.glb';
+const fabObserverModelPath = '/assets/models/janus-alien-observer-v3.glb';
 
 function AlienObserverAsset({
   state,
@@ -1555,8 +1555,8 @@ export function EarthStage({
       data-branch-layout="trunk-spine-stems"
       data-branch-animation="scroll-scrubbed"
       data-branch-progress={branchProgress.toFixed(3)}
-      data-observer-asset="fab-animated-v2"
-      data-observer-motion={reducedMotion ? 'reduced' : 'four-clip-loop'}
+      data-observer-asset="fab-animated-v3"
+      data-observer-motion={reducedMotion ? 'reduced' : 'six-clip-reach-loop'}
       data-world-lifecycle="persistent"
       ref={wrapper}
       style={{ '--scene-accent': profile?.accent ?? '#b8f15c' } as React.CSSProperties}
