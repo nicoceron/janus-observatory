@@ -1,0 +1,41 @@
+{
+  "name": "janus-observatory",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An interactive, evidence-backed atlas of possible technological civilizations.",
+  "packageManager": "pnpm@10.10.0",
+  "engines": {
+    "node": ">=24 <27",
+    "pnpm": ">=10.10.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @janus/web dev",
+    "build": "pnpm --filter @janus/domain typecheck && pnpm --filter @janus/agent typecheck && pnpm --filter @janus/web build",
+    "lint": "eslint apps packages",
+    "typecheck": "pnpm --filter @janus/domain typecheck && pnpm --filter @janus/agent typecheck && pnpm --filter @janus/web typecheck",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:e2e:install": "playwright install --with-deps chromium firefox webkit",
+    "test:python": "uv run --project pipeline --extra dev pytest pipeline/tests",
+    "lint:python": "uv run --project pipeline --extra dev ruff check pipeline",
+    "probe:ai": "tsx scripts/probe-ai-providers.ts",
+    "source:lock": "uv run --project pipeline janus-source-lock",
+    "source:validate": "tsx scripts/validate-source-manifest.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm lint:python && pnpm test:python && pnpm source:validate && pnpm build"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@janus/agent": "workspace:*",
+    "@janus/domain": "workspace:*",
+    "@playwright/test": "1.62.1",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.3.0",
+    "prettier": "3.9.6",
+    "tsx": "4.23.1",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10"
+  }
+}

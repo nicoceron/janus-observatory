@@ -1,0 +1,467 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "janus.technosignatures.planetary.tfsc-table-6",
+  "title": "Planetary technosignature magnitudes for all ten scenarios",
+  "contentOrigin": "transcribed",
+  "evidenceKind": "reported",
+  "source": {
+    "sourceId": "JANUS-PAPER-01",
+    "sourceVersion": "arXiv:2409.00067v3",
+    "locator": { "page": 14, "table": "Table 6" }
+  },
+  "sourceLicense": "CC BY 4.0",
+  "transcriptionMethod": "Manual transcription from the PDF table, checked against a rendered page and layout-preserving text extraction.",
+  "nullSemantics": "A null transcribes the table's dash: the technosignature has no reported magnitude for that body and scenario. Null must not be silently converted to numeric zero.",
+  "assumptions": [
+    "Relative quantities use Earth 2024 as the reference value.",
+    "Surface modification is a fraction of total planetary surface."
+  ],
+  "notes": [
+    "Mars industrial pollution in S5 and S6 includes artificial greenhouse gases for terraforming.",
+    "Venus industrial pollution in S5 and S6 indicates O2 production and depletion of other constituents for terraforming."
+  ],
+  "scenarios": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"],
+  "rows": [
+    {
+      "signatureId": "industrial_pollution",
+      "signatureLabel": "Industrial pollution",
+      "body": "Earth",
+      "unit": "abundance relative to Earth 2024",
+      "values": {
+        "S1": 79,
+        "S2": 21,
+        "S3": 3.4,
+        "S4": 0.038,
+        "S5": null,
+        "S6": 210,
+        "S7": 0.5,
+        "S8": 7.8,
+        "S9": null,
+        "S10": null
+      }
+    },
+    {
+      "signatureId": "industrial_pollution",
+      "signatureLabel": "Industrial pollution",
+      "body": "Moon",
+      "unit": "abundance relative to Earth 2024",
+      "values": {
+        "S1": 5.7,
+        "S2": 0.19,
+        "S3": 0.0002,
+        "S4": null,
+        "S5": null,
+        "S6": 17,
+        "S7": null,
+        "S8": 0.00006,
+        "S9": null,
+        "S10": 0.002
+      }
+    },
+    {
+      "signatureId": "industrial_pollution",
+      "signatureLabel": "Industrial pollution",
+      "body": "Mars",
+      "unit": "abundance relative to Earth 2024",
+      "values": {
+        "S1": 0.12,
+        "S2": 0.004,
+        "S3": 0.000004,
+        "S4": null,
+        "S5": 1000,
+        "S6": 1000,
+        "S7": null,
+        "S8": null,
+        "S9": null,
+        "S10": 0.015
+      },
+      "annotations": ["S5 and S6 include artificial greenhouse gases for terraforming Mars."]
+    },
+    {
+      "signatureId": "industrial_pollution",
+      "signatureLabel": "Industrial pollution",
+      "body": "Venus",
+      "unit": "abundance relative to Earth 2024",
+      "values": {
+        "S1": null,
+        "S2": null,
+        "S3": null,
+        "S4": null,
+        "S5": 0.5,
+        "S6": 0.5,
+        "S7": null,
+        "S8": null,
+        "S9": null,
+        "S10": 0.13
+      },
+      "annotations": [
+        "S5 and S6 indicate O2 production and depletion of other constituents for terraforming Venus."
+      ]
+    },
+
+    {
+      "signatureId": "agricultural_pollution",
+      "signatureLabel": "Agricultural pollution",
+      "body": "Earth",
+      "unit": "abundance relative to Earth 2024",
+      "values": {
+        "S1": null,
+        "S2": 15,
+        "S3": 1.2,
+        "S4": 0.29,
+        "S5": null,
+        "S6": null,
+        "S7": 0.52,
+        "S8": 3,
+        "S9": null,
+        "S10": null
+      }
+    },
+    {
+      "signatureId": "agricultural_pollution",
+      "signatureLabel": "Agricultural pollution",
+      "body": "Moon",
+      "unit": "abundance relative to Earth 2024",
+      "values": {
+        "S1": null,
+        "S2": null,
+        "S3": null,
+        "S4": null,
+        "S5": null,
+        "S6": null,
+        "S7": null,
+        "S8": null,
+        "S9": null,
+        "S10": null
+      }
+    },
+    {
+      "signatureId": "agricultural_pollution",
+      "signatureLabel": "Agricultural pollution",
+      "body": "Mars",
+      "unit": "abundance relative to Earth 2024",
+      "values": {
+        "S1": null,
+        "S2": null,
+        "S3": null,
+        "S4": null,
+        "S5": null,
+        "S6": null,
+        "S7": null,
+        "S8": null,
+        "S9": null,
+        "S10": null
+      }
+    },
+    {
+      "signatureId": "agricultural_pollution",
+      "signatureLabel": "Agricultural pollution",
+      "body": "Venus",
+      "unit": "abundance relative to Earth 2024",
+      "values": {
+        "S1": null,
+        "S2": null,
+        "S3": null,
+        "S4": null,
+        "S5": null,
+        "S6": null,
+        "S7": null,
+        "S8": null,
+        "S9": null,
+        "S10": null
+      }
+    },
+
+    {
+      "signatureId": "artificial_illumination",
+      "signatureLabel": "Artificial illumination",
+      "body": "Earth",
+      "unit": "intensity relative to Earth 2024",
+      "values": {
+        "S1": 160,
+        "S2": 30,
+        "S3": 5.5,
+        "S4": 0.025,
+        "S5": 450,
+        "S6": 0.4,
+        "S7": 0.0004,
+        "S8": 0.004,
+        "S9": null,
+        "S10": null
+      }
+    },
+    {
+      "signatureId": "artificial_illumination",
+      "signatureLabel": "Artificial illumination",
+      "body": "Moon",
+      "unit": "intensity relative to Earth 2024",
+      "values": {
+        "S1": 11,
+        "S2": 0.38,
+        "S3": 0.0004,
+        "S4": null,
+        "S5": 33,
+        "S6": 8.3,
+        "S7": null,
+        "S8": 1e-7,
+        "S9": null,
+        "S10": 0.00003
+      }
+    },
+    {
+      "signatureId": "artificial_illumination",
+      "signatureLabel": "Artificial illumination",
+      "body": "Mars",
+      "unit": "intensity relative to Earth 2024",
+      "values": {
+        "S1": 0.23,
+        "S2": 0.008,
+        "S3": 0.000008,
+        "S4": null,
+        "S5": 240,
+        "S6": 0.24,
+        "S7": null,
+        "S8": null,
+        "S9": null,
+        "S10": 0.0002
+      }
+    },
+    {
+      "signatureId": "artificial_illumination",
+      "signatureLabel": "Artificial illumination",
+      "body": "Venus",
+      "unit": "intensity relative to Earth 2024",
+      "values": {
+        "S1": null,
+        "S2": null,
+        "S3": null,
+        "S4": null,
+        "S5": null,
+        "S6": 0.02,
+        "S7": null,
+        "S8": null,
+        "S9": null,
+        "S10": null
+      }
+    },
+
+    {
+      "signatureId": "surface_modification",
+      "signatureLabel": "Surface modification",
+      "body": "Earth",
+      "unit": "fraction of planetary surface",
+      "values": {
+        "S1": 0.31,
+        "S2": 0.06,
+        "S3": 0.01,
+        "S4": 0.0006,
+        "S5": 0.9,
+        "S6": 0.8,
+        "S7": 0.001,
+        "S8": 0.03,
+        "S9": null,
+        "S10": null
+      }
+    },
+    {
+      "signatureId": "surface_modification",
+      "signatureLabel": "Surface modification",
+      "body": "Moon",
+      "unit": "fraction of planetary surface",
+      "values": {
+        "S1": 0.3,
+        "S2": 0.01,
+        "S3": 0.00001,
+        "S4": null,
+        "S5": 0.9,
+        "S6": 0.9,
+        "S7": null,
+        "S8": 0.000003,
+        "S9": null,
+        "S10": 0.88
+      }
+    },
+    {
+      "signatureId": "surface_modification",
+      "signatureLabel": "Surface modification",
+      "body": "Mars",
+      "unit": "fraction of planetary surface",
+      "values": {
+        "S1": 0.0009,
+        "S2": 0.00003,
+        "S3": 1e-7,
+        "S4": null,
+        "S5": 0.9,
+        "S6": 0.9,
+        "S7": null,
+        "S8": null,
+        "S9": 1,
+        "S10": 0.88
+      }
+    },
+    {
+      "signatureId": "surface_modification",
+      "signatureLabel": "Surface modification",
+      "body": "Venus",
+      "unit": "fraction of planetary surface",
+      "values": {
+        "S1": null,
+        "S2": null,
+        "S3": null,
+        "S4": null,
+        "S5": null,
+        "S6": 0.05,
+        "S7": null,
+        "S8": null,
+        "S9": 1,
+        "S10": null
+      }
+    },
+
+    {
+      "signatureId": "satellite_belt",
+      "signatureLabel": "Satellite belt",
+      "body": "Earth",
+      "unit": "density relative to Earth 2024",
+      "values": {
+        "S1": 1e6,
+        "S2": 1e6,
+        "S3": 1000,
+        "S4": 0.015,
+        "S5": 1000,
+        "S6": 10000,
+        "S7": 0.015,
+        "S8": 2,
+        "S9": 50,
+        "S10": 100
+      }
+    },
+    {
+      "signatureId": "satellite_belt",
+      "signatureLabel": "Satellite belt",
+      "body": "Moon",
+      "unit": "density relative to Earth 2024",
+      "values": {
+        "S1": 100000,
+        "S2": 10000,
+        "S3": 1,
+        "S4": null,
+        "S5": 100,
+        "S6": 10000,
+        "S7": null,
+        "S8": 0.001,
+        "S9": 5,
+        "S10": 10
+      }
+    },
+    {
+      "signatureId": "satellite_belt",
+      "signatureLabel": "Satellite belt",
+      "body": "Mars",
+      "unit": "density relative to Earth 2024",
+      "values": {
+        "S1": 10000,
+        "S2": 1000,
+        "S3": 1,
+        "S4": null,
+        "S5": 1000,
+        "S6": 50000,
+        "S7": null,
+        "S8": null,
+        "S9": 10,
+        "S10": 100
+      }
+    },
+    {
+      "signatureId": "satellite_belt",
+      "signatureLabel": "Satellite belt",
+      "body": "Venus",
+      "unit": "density relative to Earth 2024",
+      "values": {
+        "S1": 10,
+        "S2": null,
+        "S3": null,
+        "S4": null,
+        "S5": 50000,
+        "S6": 1000,
+        "S7": null,
+        "S8": null,
+        "S9": 10,
+        "S10": 100
+      }
+    },
+
+    {
+      "signatureId": "contaminated_aerosol",
+      "signatureLabel": "Contaminated aerosol",
+      "body": "Earth",
+      "unit": "density relative to Earth 2024",
+      "values": {
+        "S1": 1e6,
+        "S2": 1e6,
+        "S3": 1000,
+        "S4": null,
+        "S5": null,
+        "S6": 100,
+        "S7": null,
+        "S8": 0.4,
+        "S9": null,
+        "S10": null
+      }
+    },
+    {
+      "signatureId": "contaminated_aerosol",
+      "signatureLabel": "Contaminated aerosol",
+      "body": "Moon",
+      "unit": "density relative to Earth 2024",
+      "values": {
+        "S1": 100000,
+        "S2": 10000,
+        "S3": 1,
+        "S4": null,
+        "S5": null,
+        "S6": 100,
+        "S7": null,
+        "S8": 0.0002,
+        "S9": null,
+        "S10": null
+      }
+    },
+    {
+      "signatureId": "contaminated_aerosol",
+      "signatureLabel": "Contaminated aerosol",
+      "body": "Mars",
+      "unit": "density relative to Earth 2024",
+      "values": {
+        "S1": 10000,
+        "S2": 1000,
+        "S3": 1,
+        "S4": null,
+        "S5": null,
+        "S6": 500,
+        "S7": null,
+        "S8": null,
+        "S9": null,
+        "S10": null
+      }
+    },
+    {
+      "signatureId": "contaminated_aerosol",
+      "signatureLabel": "Contaminated aerosol",
+      "body": "Venus",
+      "unit": "density relative to Earth 2024",
+      "values": {
+        "S1": 10,
+        "S2": null,
+        "S3": null,
+        "S4": null,
+        "S5": null,
+        "S6": 10,
+        "S7": null,
+        "S8": null,
+        "S9": null,
+        "S10": null
+      }
+    }
+  ]
+}

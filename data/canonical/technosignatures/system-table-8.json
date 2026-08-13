@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "janus.technosignatures.system.tfsc-table-8",
+  "title": "System technosignatures by scenario",
+  "contentOrigin": "transcribed",
+  "evidenceKind": "reported",
+  "source": {
+    "sourceId": "JANUS-PAPER-01",
+    "sourceVersion": "arXiv:2409.00067v3",
+    "locator": { "page": 17, "table": "Table 8" }
+  },
+  "sourceLicense": "CC BY 4.0",
+  "transcriptionMethod": "Manual transcription of marked cells from the PDF table, checked against a rendered page and the paper's surrounding prose.",
+  "assumptions": [
+    "Membership means the source table marks the technosignature as present in that scenario; it does not establish detectability by a particular mission."
+  ],
+  "notes": [],
+  "scenarios": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"],
+  "rows": [
+    {
+      "signatureId": "radio_leakage",
+      "signatureLabel": "Radio leakage",
+      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S7", "S8", "S9", "S10"]
+    },
+    {
+      "signatureId": "optical_communication",
+      "signatureLabel": "Optical communication",
+      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S8", "S9", "S10"]
+    },
+    {
+      "signatureId": "planetary_defense_radar",
+      "signatureLabel": "Planetary defense radar",
+      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S9", "S10"]
+    },
+    {
+      "signatureId": "asteroid_mining",
+      "signatureLabel": "Asteroid mining",
+      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S9", "S10"]
+    },
+    {
+      "signatureId": "fusion_propulsion",
+      "signatureLabel": "Fusion propulsion",
+      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S9", "S10"]
+    },
+    {
+      "signatureId": "outer_planet_settlements",
+      "signatureLabel": "Outer planet settlements",
+      "presentIn": ["S1", "S3", "S5", "S9", "S10"]
+    },
+    {
+      "signatureId": "kuiper_belt_mining",
+      "signatureLabel": "Kuiper belt mining",
+      "presentIn": ["S5", "S6", "S9", "S10"]
+    },
+    {
+      "signatureId": "quantum_communication",
+      "signatureLabel": "Quantum communication",
+      "presentIn": ["S5", "S6", "S9", "S10"]
+    },
+    { "signatureId": "radio_beacon", "signatureLabel": "Radio beacon", "presentIn": ["S1", "S5"] },
+    { "signatureId": "optical_beacon", "signatureLabel": "Optical beacon", "presentIn": ["S1"] },
+    { "signatureId": "quantum_beacon", "signatureLabel": "Quantum beacon", "presentIn": ["S5"] },
+    {
+      "signatureId": "laser_propulsion",
+      "signatureLabel": "Laser propulsion",
+      "presentIn": ["S9"]
+    },
+    {
+      "signatureId": "gravitational_waves",
+      "signatureLabel": "Gravitational waves",
+      "presentIn": ["S9"]
+    },
+    { "signatureId": "dyson_sphere", "signatureLabel": "Dyson sphere", "presentIn": ["S9"] }
+  ]
+}

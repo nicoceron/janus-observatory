@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "janus.observability.apjl-figure-6",
+  "title": "Technosignature detectability with future missions",
+  "contentOrigin": "transcribed",
+  "evidenceKind": "reported",
+  "source": {
+    "sourceId": "JANUS-PAPER-03",
+    "sourceVersion": "arXiv:2511.20329v2",
+    "locator": { "page": 10, "figure": "Figure 6" }
+  },
+  "sourceLicense": "CC BY 4.0",
+  "transcriptionMethod": "Manual transcription from the rendered figure, with all labels preserved as categorical detections.",
+  "assumptions": [
+    "A blank figure cell is encoded as an empty detection list, not as proof that every imaginable instrument would fail.",
+    "The matrix summarizes the mission concepts and source assumptions in the paper; it is not a probability forecast."
+  ],
+  "notes": [
+    "The plural 'radio beacons' in S5 and singular 'radio beacon' in S1 are preserved from the source figure."
+  ],
+  "missions": [
+    { "id": "habitable_worlds_observatory", "label": "Habitable Worlds Observatory" },
+    { "id": "radio", "label": "Radio" },
+    { "id": "large_interferometer_for_exoplanets", "label": "Large Interferometer for Exoplanets" },
+    { "id": "solar_gravitational_lens", "label": "Solar Gravitational Lens" },
+    { "id": "deep_space_probes", "label": "Deep Space Probes" }
+  ],
+  "records": [
+    {
+      "scenarioId": "S1",
+      "detections": {
+        "habitable_worlds_observatory": ["CO2 + NO2", "Na emission"],
+        "radio": ["radio beacon"],
+        "large_interferometer_for_exoplanets": ["CO2 + CFC-11/12"],
+        "solar_gravitational_lens": ["large surface features (Earth)"],
+        "deep_space_probes": ["large surface features (Earth, Mars)"]
+      }
+    },
+    {
+      "scenarioId": "S2",
+      "detections": {
+        "habitable_worlds_observatory": ["CO2 + NO2"],
+        "radio": [],
+        "large_interferometer_for_exoplanets": ["CO2 + CFC-11/12", "N2O + CH4 + NH3"],
+        "solar_gravitational_lens": [],
+        "deep_space_probes": ["large surface features (Earth, Mars)"]
+      }
+    },
+    {
+      "scenarioId": "S3",
+      "detections": {
+        "habitable_worlds_observatory": ["CO2 + NO2"],
+        "radio": [],
+        "large_interferometer_for_exoplanets": ["CO2 + CFC-11/12"],
+        "solar_gravitational_lens": [],
+        "deep_space_probes": ["large surface features (Earth, Mars)"]
+      }
+    },
+    {
+      "scenarioId": "S4",
+      "detections": {
+        "habitable_worlds_observatory": ["CO2 + NO2"],
+        "radio": [],
+        "large_interferometer_for_exoplanets": [],
+        "solar_gravitational_lens": [],
+        "deep_space_probes": ["large surface features (Earth)"]
+      }
+    },
+    {
+      "scenarioId": "S5",
+      "detections": {
+        "habitable_worlds_observatory": ["Na emission"],
+        "radio": ["radio beacons"],
+        "large_interferometer_for_exoplanets": [],
+        "solar_gravitational_lens": ["large surface features (Earth, Mars)"],
+        "deep_space_probes": ["large surface features (Earth, Mars)"]
+      }
+    },
+    {
+      "scenarioId": "S6",
+      "detections": {
+        "habitable_worlds_observatory": ["CO2 + NO2"],
+        "radio": [],
+        "large_interferometer_for_exoplanets": ["CO2 + CFC-11/12", "CF4"],
+        "solar_gravitational_lens": ["large surface features (Earth, Mars)"],
+        "deep_space_probes": ["large surface features (Venus, Earth, Mars)"]
+      }
+    },
+    {
+      "scenarioId": "S7",
+      "detections": {
+        "habitable_worlds_observatory": ["CO2 + NO2"],
+        "radio": [],
+        "large_interferometer_for_exoplanets": [],
+        "solar_gravitational_lens": [],
+        "deep_space_probes": ["large surface features (Earth)"]
+      }
+    },
+    {
+      "scenarioId": "S8",
+      "detections": {
+        "habitable_worlds_observatory": ["CO2 + NO2"],
+        "radio": [],
+        "large_interferometer_for_exoplanets": ["CO2 + CFC-11/12", "N2O + CH4 + NH3"],
+        "solar_gravitational_lens": [],
+        "deep_space_probes": ["large surface features (Earth)"]
+      }
+    },
+    {
+      "scenarioId": "S9",
+      "detections": {
+        "habitable_worlds_observatory": [],
+        "radio": [],
+        "large_interferometer_for_exoplanets": [],
+        "solar_gravitational_lens": ["large surface features (Venus, Mars)"],
+        "deep_space_probes": ["large surface features (Venus, Mars)"]
+      }
+    },
+    {
+      "scenarioId": "S10",
+      "detections": {
+        "habitable_worlds_observatory": [],
+        "radio": [],
+        "large_interferometer_for_exoplanets": [],
+        "solar_gravitational_lens": ["large surface features (Earth)"],
+        "deep_space_probes": ["large surface features (Venus, Mars)"]
+      }
+    }
+  ]
+}

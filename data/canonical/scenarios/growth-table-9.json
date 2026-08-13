@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "janus.scenarios.growth.tfsc-table-9",
+  "title": "Population, annual energy use, and growth state after 1,000 years",
+  "contentOrigin": "transcribed",
+  "evidenceKind": "reported",
+  "source": {
+    "sourceId": "JANUS-PAPER-01",
+    "sourceVersion": "arXiv:2409.00067v3",
+    "locator": { "page": 18, "table": "Table 9" }
+  },
+  "sourceLicense": "CC BY 4.0",
+  "transcriptionMethod": "Manual transcription from the PDF table, checked against a rendered page and layout-preserving text extraction.",
+  "assumptions": [
+    "Table 9 does not print a unit beside the Energy use column. Its displayed magnitudes are annual joules: multiplying the stated 75 GJ per person per year assumption by population and converting gigajoules to joules reproduces the table values to its displayed precision.",
+    "A null annualGrowthRate preserves categorical Stable or Oscillatory entries; it does not mean a measured numeric zero."
+  ],
+  "notes": [],
+  "records": [
+    {
+      "scenarioId": "S1",
+      "population": 30000000000,
+      "annualEnergyUseJ": 2e21,
+      "growthState": "growing",
+      "annualGrowthRate": 0.0012
+    },
+    {
+      "scenarioId": "S2",
+      "population": 1e11,
+      "annualEnergyUseJ": 8e21,
+      "growthState": "growing",
+      "annualGrowthRate": 0.0026
+    },
+    {
+      "scenarioId": "S3",
+      "population": 1e10,
+      "annualEnergyUseJ": 8e20,
+      "growthState": "stable",
+      "annualGrowthRate": null
+    },
+    {
+      "scenarioId": "S4",
+      "population": 4e8,
+      "annualEnergyUseJ": 3e19,
+      "growthState": "stable",
+      "annualGrowthRate": null
+    },
+    {
+      "scenarioId": "S5",
+      "population": 4e10,
+      "annualEnergyUseJ": 3e21,
+      "growthState": "stable",
+      "annualGrowthRate": null
+    },
+    {
+      "scenarioId": "S6",
+      "population": 2e11,
+      "annualEnergyUseJ": 2e22,
+      "growthState": "growing",
+      "annualGrowthRate": 0.0035
+    },
+    {
+      "scenarioId": "S7",
+      "population": 4e9,
+      "annualEnergyUseJ": 3e20,
+      "growthState": "stable",
+      "annualGrowthRate": null
+    },
+    {
+      "scenarioId": "S8",
+      "population": 3e10,
+      "annualEnergyUseJ": 2e21,
+      "growthState": "oscillatory",
+      "annualGrowthRate": null
+    },
+    {
+      "scenarioId": "S9",
+      "population": 2e14,
+      "annualEnergyUseJ": 1e25,
+      "growthState": "growing",
+      "annualGrowthRate": 0.0098
+    },
+    {
+      "scenarioId": "S10",
+      "population": 3e10,
+      "annualEnergyUseJ": 2e21,
+      "growthState": "stable",
+      "annualGrowthRate": null
+    }
+  ]
+}

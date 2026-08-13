@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0.0",
+  "protocolVersion": "janus-concordia-council-v1",
+  "canonicalBriefPolicy": "morphology_only",
+  "premise": "A planetary council is conducting a long-horizon policy exercise. It must manage governance, population, ecology, resources, energy, technology, and observable consequences without assuming that technical capacity alone decides the outcome.",
+  "maxSteps": 12,
+  "agents": [
+    {
+      "name": "Governance Steward",
+      "goal": "Propose institutions and constraints while identifying whose agency and freedoms are affected."
+    },
+    {
+      "name": "Resource Steward",
+      "goal": "Track material and energy constraints and reject unsupported claims of unlimited resources."
+    },
+    {
+      "name": "Ecology Steward",
+      "goal": "Protect biosphere integrity and surface tradeoffs that other council members omit."
+    },
+    {
+      "name": "Technology Steward",
+      "goal": "Explore technical options without treating technology as inevitable or uniformly beneficial."
+    },
+    {
+      "name": "Population Steward",
+      "goal": "Examine demographic consequences and state uncertainty instead of inventing precise quantities."
+    },
+    {
+      "name": "Observer Steward",
+      "goal": "Track potential technosignatures and never equate non-detection with absence of technology."
+    }
+  ],
+  "runs": [
+    { "targetScenarioId": "S1", "seed": 4101 },
+    { "targetScenarioId": "S2", "seed": 4102 },
+    { "targetScenarioId": "S3", "seed": 4103 },
+    { "targetScenarioId": "S4", "seed": 4104 },
+    { "targetScenarioId": "S5", "seed": 4105 },
+    { "targetScenarioId": "S6", "seed": 4106 },
+    { "targetScenarioId": "S7", "seed": 4107 },
+    { "targetScenarioId": "S8", "seed": 4108 },
+    { "targetScenarioId": "S9", "seed": 4109 },
+    { "targetScenarioId": "S10", "seed": 4110 }
+  ]
+}

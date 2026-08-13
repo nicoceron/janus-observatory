@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "janus.atmosphere.venus.apjl-table-2",
+  "title": "Atmospheric Properties for Future Venus in Each of the 10 Scenarios",
+  "contentOrigin": "transcribed",
+  "evidenceKind": "reported",
+  "source": {
+    "sourceId": "JANUS-PAPER-03",
+    "sourceVersion": "arXiv:2511.20329v2",
+    "locator": { "page": 6, "table": "Table 2" }
+  },
+  "sourceLicense": "CC BY 4.0",
+  "transcriptionMethod": "Manual transcription from the PDF table, checked against a rendered page and layout-preserving text extraction.",
+  "nullSemantics": "A null transcribes the table's ellipsis: the property is not listed for that case and must not be interpreted as numeric zero.",
+  "assumptions": [
+    "The grouped column S1-S4, S7, S8 applies identically to all six listed scenarios.",
+    "The table values are canonical scenario inputs; any spectra generated from them are derived model products."
+  ],
+  "columns": [
+    { "id": "V0", "label": "Present-day Venus", "kind": "reference" },
+    { "id": "S1-S4_S7_S8", "label": "S1-S4, S7, S8", "kind": "scenario" },
+    { "id": "S5", "label": "S5", "kind": "scenario" },
+    { "id": "S6", "label": "S6", "kind": "scenario" },
+    { "id": "S9", "label": "S9", "kind": "scenario" },
+    { "id": "S10", "label": "S10", "kind": "scenario" }
+  ],
+  "rows": [
+    {
+      "id": "mean_temperature",
+      "label": "Mean Temperature",
+      "unit": "K",
+      "values": { "V0": 740, "S1-S4_S7_S8": 740, "S5": 475, "S6": 400, "S9": 300, "S10": 740 }
+    },
+    {
+      "id": "surface_pressure",
+      "label": "Surface Pressure",
+      "unit": "bar",
+      "values": { "V0": 96, "S1-S4_S7_S8": 96, "S5": 30, "S6": 30, "S9": 96, "S10": 96 }
+    },
+    {
+      "id": "co2",
+      "label": "CO2",
+      "unit": "%",
+      "values": { "V0": 96, "S1-S4_S7_S8": 96, "S5": 96, "S6": 96, "S9": 96, "S10": 96 }
+    },
+    {
+      "id": "n2",
+      "label": "N2",
+      "unit": "%",
+      "values": { "V0": 3, "S1-S4_S7_S8": 3, "S5": 3, "S6": 3, "S9": 3, "S10": 3 }
+    },
+    {
+      "id": "so2",
+      "label": "SO2",
+      "unit": "ppm",
+      "values": { "V0": 150, "S1-S4_S7_S8": 150, "S5": 75, "S6": 75, "S9": 150, "S10": 150 }
+    },
+    {
+      "id": "h2o",
+      "label": "H2O",
+      "unit": "ppm",
+      "values": { "V0": 50, "S1-S4_S7_S8": 50, "S5": 50, "S6": 50, "S9": 50, "S10": 50 }
+    },
+    {
+      "id": "o2",
+      "label": "O2",
+      "unit": "ppm",
+      "values": { "V0": null, "S1-S4_S7_S8": null, "S5": 300, "S6": 300, "S9": null, "S10": null }
+    },
+    {
+      "id": "nox",
+      "label": "NOx",
+      "unit": "ppb",
+      "values": { "V0": null, "S1-S4_S7_S8": null, "S5": null, "S6": null, "S9": null, "S10": 0.25 }
+    },
+    {
+      "id": "cfc_11",
+      "label": "CFC-11",
+      "unit": "ppb",
+      "values": { "V0": null, "S1-S4_S7_S8": null, "S5": null, "S6": null, "S9": null, "S10": 0.03 }
+    },
+    {
+      "id": "cfc_12",
+      "label": "CFC-12",
+      "unit": "ppb",
+      "values": { "V0": null, "S1-S4_S7_S8": null, "S5": null, "S6": null, "S9": null, "S10": 0.07 }
+    },
+    {
+      "id": "nf3",
+      "label": "NF3",
+      "unit": "ppt",
+      "values": { "V0": null, "S1-S4_S7_S8": null, "S5": null, "S6": null, "S9": null, "S10": 0.33 }
+    },
+    {
+      "id": "na_emission",
+      "label": "Na Emission",
+      "unit": "erg s^-1 cm^-2",
+      "values": {
+        "V0": null,
+        "S1-S4_S7_S8": null,
+        "S5": null,
+        "S6": 0.001,
+        "S9": null,
+        "S10": null
+      }
+    }
+  ],
+  "notes": [
+    "S5 and S6 involve ongoing terraforming by removing CO2 and SO2 while beginning to produce O2.",
+    "S6 and S9 use starshades to cool Venus.",
+    "S10 includes industrial floating cities that release atmospheric pollutants."
+  ]
+}

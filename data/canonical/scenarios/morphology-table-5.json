@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "janus.scenarios.morphology.tfsc-table-5",
+  "title": "Summary of final scenarios",
+  "contentOrigin": "transcribed",
+  "evidenceKind": "reported",
+  "source": {
+    "sourceId": "JANUS-PAPER-01",
+    "sourceVersion": "arXiv:2409.00067v3",
+    "locator": { "page": 8, "table": "Table 5" }
+  },
+  "sourceLicense": "CC BY 4.0",
+  "transcriptionMethod": "Manual transcription from the PDF table, checked against a rendered page and layout-preserving text extraction.",
+  "assumptions": [
+    "The table reports scenario construction inputs and labels, not probabilities or rankings."
+  ],
+  "notes": [],
+  "records": [
+    {
+      "scenarioId": "S1",
+      "globalFactor": "GF1",
+      "technologyCluster": 6,
+      "technologyFactors": ["TF5"],
+      "mythMetaphor": "Big Brother is Watching"
+    },
+    {
+      "scenarioId": "S2",
+      "globalFactor": "GF2",
+      "technologyCluster": 6,
+      "technologyFactors": ["TF5"],
+      "mythMetaphor": "Wild West"
+    },
+    {
+      "scenarioId": "S3",
+      "globalFactor": "GF3",
+      "technologyCluster": 6,
+      "technologyFactors": ["TF5"],
+      "mythMetaphor": "Golden Age"
+    },
+    {
+      "scenarioId": "S4",
+      "globalFactor": "GF2",
+      "technologyCluster": 5,
+      "technologyFactors": ["TF4"],
+      "mythMetaphor": "Living with the Land"
+    },
+    {
+      "scenarioId": "S5",
+      "globalFactor": "GF3",
+      "technologyCluster": 4,
+      "technologyFactors": ["TF2"],
+      "mythMetaphor": "Transhumanism"
+    },
+    {
+      "scenarioId": "S6",
+      "globalFactor": "GF2",
+      "technologyCluster": 4,
+      "technologyFactors": ["TF2"],
+      "mythMetaphor": "Sword of Damocles"
+    },
+    {
+      "scenarioId": "S7",
+      "globalFactor": "GF3",
+      "technologyCluster": 3,
+      "technologyFactors": ["TF1", "TF3"],
+      "mythMetaphor": "Restoration"
+    },
+    {
+      "scenarioId": "S8",
+      "globalFactor": "GF2",
+      "technologyCluster": 3,
+      "technologyFactors": ["TF1", "TF3"],
+      "mythMetaphor": "Ouroboros"
+    },
+    {
+      "scenarioId": "S9",
+      "globalFactor": "GF3",
+      "technologyCluster": 2,
+      "technologyFactors": ["TF8", "TF11"],
+      "mythMetaphor": "Deus Ex Machina"
+    },
+    {
+      "scenarioId": "S10",
+      "globalFactor": "GF3",
+      "technologyCluster": 1,
+      "technologyFactors": ["TF6", "TF7", "TF9", "TF10"],
+      "mythMetaphor": "Out of Eden"
+    }
+  ]
+}

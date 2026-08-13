@@ -1,0 +1,256 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "janus.collapse.model-and-reported-results.arxiv-v1",
+  "title": "Collapse-recovery model parameters and reported outcomes",
+  "contentOrigin": "transcribed",
+  "evidenceKind": "reported",
+  "source": {
+    "sourceId": "JANUS-PAPER-05",
+    "sourceVersion": "arXiv:2604.13774v1",
+    "locator": { "page": 7, "section": "Sections 3.2-4.1", "table": "Table 4" }
+  },
+  "sourceLicense": "CC BY 4.0",
+  "transcriptionMethod": "Parameters were transcribed from Table 4. Results include only values stated in prose or exactly defined by the paper; unreported chart-only values remain null pending digitization or author raw runs. Rendered pages 7 and 9-11 were visually checked.",
+  "assumptions": [
+    "The paper describes 200 independent Monte Carlo simulations per scenario over 1,000 yearly time steps.",
+    "The result values are reported ensemble summaries, not independently reproduced simulation outputs.",
+    "A null result means no exact or safely rounded prose value was transcribed; it is not numeric zero."
+  ],
+  "notes": [
+    "The paper's Code Availability statement on rendered page 20 links the author-hosted public repository https://github.com/celiablanco/technocycles. At audited commit 910770dbe9224a9f7b1e003fdc7c000c2d78a5c2, notebooks/figures.ipynb contains the simulation and figure code and initializes the main Monte Carlo generator with seed 12345; sensitivity batches use seed 54321.",
+    "The same commit contains notebooks/technosphere_summary.csv with aggregate results but no committed per-run trajectories. The repository declares no software or data license, so neither code nor CSV is ingested into canonical runtime data pending rights clarification.",
+    "This dataset therefore remains a transcription of the CC BY 4.0 paper; its result values have not been replaced by the unlicensed aggregate CSV.",
+    "Figure-only values are intentionally not guessed from bar heights."
+  ],
+  "simulation": { "windowYears": 1000, "timeStepYears": 1, "monteCarloRunsPerScenario": 200 },
+  "parameterDefinitions": [
+    {
+      "id": "r",
+      "label": "Technological growth rate",
+      "unit": "per year",
+      "definition": "Fixed linear annual increase in technological capacity."
+    },
+    {
+      "id": "R0",
+      "label": "Initial resource stock",
+      "unit": "model resource units",
+      "definition": "Resource stock available at the beginning of a run."
+    },
+    {
+      "id": "delta",
+      "label": "Resource depletion rate",
+      "unit": "model resource units per year",
+      "definition": "Constant annual decrease in available resource stock."
+    },
+    {
+      "id": "cf",
+      "label": "Collapse survival fraction",
+      "unit": "fraction",
+      "definition": "Fraction of technological capacity retained through a collapse event."
+    },
+    {
+      "id": "rd",
+      "label": "Recovery delay",
+      "unit": "years",
+      "definition": "Dormant period before growth and resource use resume after collapse."
+    },
+    {
+      "id": "rf",
+      "label": "Recovery fraction",
+      "unit": "fraction of R0",
+      "definition": "Fraction of original resource stock restored after the recovery delay."
+    },
+    {
+      "id": "h",
+      "label": "Existential hazard rate",
+      "unit": "per year",
+      "definition": "Fixed annual probability of an exogenous collapse-triggering event."
+    }
+  ],
+  "scenarios": [
+    {
+      "scenarioId": "S1",
+      "parameters": {
+        "r": 0.002,
+        "R0": 400,
+        "delta": 1.2,
+        "cf": 0.6,
+        "rd": 40,
+        "rf": 0.15,
+        "h": 0.003
+      },
+      "reportedResults": {
+        "fractionNeverCollapsed": 0,
+        "meanDutyCycle": null,
+        "meanTimeToFirstCollapseYears": null,
+        "meanCollapseCount": 10,
+        "precision": "approximate_text",
+        "summary": "Collapses in every run; first collapse occurs within 200 years on average and the scenario undergoes nearly 10 collapses."
+      }
+    },
+    {
+      "scenarioId": "S2",
+      "parameters": {
+        "r": 0.0026,
+        "R0": 700,
+        "delta": 1.5,
+        "cf": 0.3,
+        "rd": 70,
+        "rf": 0.1,
+        "h": 0.001
+      },
+      "reportedResults": {
+        "fractionNeverCollapsed": 0,
+        "meanDutyCycle": null,
+        "meanTimeToFirstCollapseYears": null,
+        "meanCollapseCount": null,
+        "precision": "figure_only",
+        "summary": "The source states that S2 collapses in every run; other outcome values are shown only in Figure 3."
+      }
+    },
+    {
+      "scenarioId": "S3",
+      "parameters": { "r": 0.0001, "R0": 2400, "delta": 0, "cf": 1, "rd": 0, "rf": 1, "h": 0 },
+      "reportedResults": {
+        "fractionNeverCollapsed": 1,
+        "meanDutyCycle": 1,
+        "meanTimeToFirstCollapseYears": 1000,
+        "meanCollapseCount": 0,
+        "precision": "exact_text",
+        "summary": "Uninterrupted activity and resource stability for the full simulation window."
+      }
+    },
+    {
+      "scenarioId": "S4",
+      "parameters": {
+        "r": 0.006,
+        "R0": 600,
+        "delta": 2.5,
+        "cf": 0.2,
+        "rd": 100,
+        "rf": 0.1,
+        "h": 0
+      },
+      "reportedResults": {
+        "fractionNeverCollapsed": 0,
+        "meanDutyCycle": 0.381,
+        "meanTimeToFirstCollapseYears": null,
+        "meanCollapseCount": 6.6,
+        "precision": "approximate_text",
+        "summary": "Collapses in every run and has the lowest reported mean duty cycle, with frequent deep collapses."
+      }
+    },
+    {
+      "scenarioId": "S5",
+      "parameters": {
+        "r": 0.0003,
+        "R0": 2500,
+        "delta": 0.1,
+        "cf": 0.9,
+        "rd": 20,
+        "rf": 0.8,
+        "h": 0.0005
+      },
+      "reportedResults": {
+        "fractionNeverCollapsed": 0.66,
+        "meanDutyCycle": 0.99,
+        "meanTimeToFirstCollapseYears": null,
+        "meanCollapseCount": null,
+        "precision": "approximate_text",
+        "summary": "Avoids collapse in roughly two-thirds of runs and maintains near-continuous activity."
+      }
+    },
+    {
+      "scenarioId": "S6",
+      "parameters": {
+        "r": 0.0018,
+        "R0": 1600,
+        "delta": 1,
+        "cf": 0.4,
+        "rd": 50,
+        "rf": 0.25,
+        "h": 0.005
+      },
+      "reportedResults": {
+        "fractionNeverCollapsed": 0,
+        "meanDutyCycle": null,
+        "meanTimeToFirstCollapseYears": null,
+        "meanCollapseCount": 4.5,
+        "precision": "approximate_text",
+        "summary": "Collapses in every run; first collapse occurs within 200 years on average and about 4.5 collapses occur."
+      }
+    },
+    {
+      "scenarioId": "S7",
+      "parameters": {
+        "r": 0.006,
+        "R0": 400,
+        "delta": 1.5,
+        "cf": 0.3,
+        "rd": 60,
+        "rf": 0.2,
+        "h": 0.001
+      },
+      "reportedResults": {
+        "fractionNeverCollapsed": 0,
+        "meanDutyCycle": 0.57,
+        "meanTimeToFirstCollapseYears": 223,
+        "meanCollapseCount": 7.5,
+        "precision": "approximate_text",
+        "summary": "Consistent rebuilding after early collapse, with moderate continuity and repeated recovery cycles."
+      }
+    },
+    {
+      "scenarioId": "S8",
+      "parameters": {
+        "r": 0.0015,
+        "R0": 800,
+        "delta": 1.3,
+        "cf": 0.6,
+        "rd": 70,
+        "rf": 0.35,
+        "h": 0
+      },
+      "reportedResults": {
+        "fractionNeverCollapsed": 0,
+        "meanDutyCycle": 0.87,
+        "meanTimeToFirstCollapseYears": null,
+        "meanCollapseCount": 2,
+        "precision": "approximate_text",
+        "summary": "Low-frequency, self-stabilizing oscillations with about two collapses and a high duty cycle."
+      }
+    },
+    {
+      "scenarioId": "S9",
+      "parameters": {
+        "r": 0.0011,
+        "R0": 900,
+        "delta": 1.3,
+        "cf": 0.5,
+        "rd": 70,
+        "rf": 0.35,
+        "h": 0
+      },
+      "reportedResults": {
+        "fractionNeverCollapsed": 0,
+        "meanDutyCycle": 0.91,
+        "meanTimeToFirstCollapseYears": 689,
+        "meanCollapseCount": 1.5,
+        "precision": "approximate_text",
+        "summary": "Collapses later than the other collapse-prone scenarios, with multiple interruptions but high continuity."
+      }
+    },
+    {
+      "scenarioId": "S10",
+      "parameters": { "r": 0.0002, "R0": 2700, "delta": 0, "cf": 1, "rd": 0, "rf": 1, "h": 0 },
+      "reportedResults": {
+        "fractionNeverCollapsed": 1,
+        "meanDutyCycle": 1,
+        "meanTimeToFirstCollapseYears": 1000,
+        "meanCollapseCount": 0,
+        "precision": "exact_text",
+        "summary": "Uninterrupted activity and resource stability for the full simulation window."
+      }
+    }
+  ]
+}

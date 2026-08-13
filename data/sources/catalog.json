@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "1.0.0",
+  "papers": [
+    {
+      "id": "janus.paper.scenario-modeling",
+      "title": "Projections of Earth's Technosphere: Scenario Modeling, Worldbuilding, and Overview of Remotely Detectable Technosignatures",
+      "version": "arXiv:2409.00067v3",
+      "creators": ["Jacob Haqq-Misra", "George Profitiliotis", "Ravi Kopparapu"],
+      "issued": "2025-05-22",
+      "kind": "paper",
+      "doi": "10.1016/j.techfore.2025.124194",
+      "arxivId": "2409.00067",
+      "canonicalUrl": "https://arxiv.org/abs/2409.00067v3",
+      "directFileUrl": "https://arxiv.org/pdf/2409.00067v3",
+      "filename": "janus-paper-01-scenario-modeling-v3.pdf",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "reusePolicy": "May store, extract, adapt, and redistribute with attribution and modification notice.",
+      "notes": ["Open arXiv version used as the preservation and extraction source."]
+    },
+    {
+      "id": "janus.paper.luminosity-mass",
+      "title": "Projections of Earth's Technosphere: Luminosity and Mass as Limits to Growth",
+      "version": "arXiv:2410.23420v4",
+      "creators": ["Jacob Haqq-Misra", "George Profitiliotis", "Clément Vidal"],
+      "issued": "2025-05-23",
+      "kind": "paper",
+      "doi": "10.1016/j.actaastro.2025.01.048",
+      "arxivId": "2410.23420",
+      "canonicalUrl": "https://arxiv.org/abs/2410.23420v4",
+      "directFileUrl": "https://arxiv.org/pdf/2410.23420v4",
+      "filename": "janus-paper-02-luminosity-mass-v4.pdf",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "reusePolicy": "May store, extract, adapt, and redistribute with attribution and modification notice.",
+      "notes": ["Open arXiv version used as the preservation and extraction source."]
+    },
+    {
+      "id": "janus.paper.observing-strategies",
+      "title": "Projections of Earth's Technosphere: Strategies for Observing Technosignatures on Terrestrial Exoplanets",
+      "version": "arXiv:2511.20329v2",
+      "creators": ["Jacob Haqq-Misra", "Ravi K. Kopparapu", "George Profitiliotis"],
+      "issued": "2025-12-08",
+      "kind": "paper",
+      "doi": "10.3847/2041-8213/ae23c6",
+      "arxivId": "2511.20329",
+      "canonicalUrl": "https://arxiv.org/abs/2511.20329v2",
+      "directFileUrl": "https://arxiv.org/pdf/2511.20329v2",
+      "filename": "janus-paper-03-observing-strategies-v2.pdf",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "reusePolicy": "May store, extract, adapt, and redistribute with attribution and modification notice.",
+      "notes": ["Open arXiv version used as the preservation and extraction source."]
+    },
+    {
+      "id": "janus.paper.governance-freedom",
+      "title": "Projections of Earth's Technosphere: Governance and Freedom in Space",
+      "version": "journal-pdf-2026-01-11",
+      "creators": ["Jacob Haqq-Misra", "George Profitiliotis"],
+      "issued": "2026",
+      "kind": "paper",
+      "doi": "10.18278/sesa.5.4.12",
+      "canonicalUrl": "https://sesa.scholasticahq.com/article/155236-projections-of-earth-s-technosphere-governance-and-freedom-in-space",
+      "directFileUrl": "https://sesa.scholasticahq.com/article/155236.pdf",
+      "filename": "janus-paper-04-governance-freedom.pdf",
+      "license": "CC BY-ND 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nd/4.0/",
+      "rightsStatus": "verified_open",
+      "reusePolicy": "May store and redistribute unchanged with attribution; do not distribute adaptations of the paper.",
+      "notes": [
+        "The issue is labeled 2025 while the journal citation uses 2026; both dates remain documented."
+      ]
+    },
+    {
+      "id": "janus.paper.collapse-recovery",
+      "title": "Projections of Earth's Technosphere: Civilization Collapse-Recovery Dynamics and Detectability",
+      "version": "arXiv:2604.13774v1",
+      "creators": ["Celia Blanco", "Jacob Haqq-Misra", "George Profitiliotis"],
+      "issued": "2026-04-15",
+      "kind": "preprint",
+      "doi": "10.48550/arXiv.2604.13774",
+      "arxivId": "2604.13774",
+      "canonicalUrl": "https://arxiv.org/abs/2604.13774v1",
+      "directFileUrl": "https://arxiv.org/pdf/2604.13774v1",
+      "filename": "janus-paper-05-collapse-recovery-v1.pdf",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "reusePolicy": "May store, extract, adapt, and redistribute with attribution and modification notice.",
+      "notes": ["Preprint listed by Project Janus as under review at Acta Astronautica."]
+    }
+  ],
+  "linkedResources": [
+    {
+      "id": "janus.code.technocycles",
+      "title": "Technological Civilization Collapse–Recovery Dynamics and Detectability code and manuscript",
+      "version": "git:910770dbe9224a9f7b1e003fdc7c000c2d78a5c2",
+      "creators": ["Celia Blanco", "Jacob Haqq-Misra"],
+      "issued": "2026-05-24",
+      "kind": "code",
+      "canonicalUrl": "https://github.com/celiablanco/technocycles/tree/910770dbe9224a9f7b1e003fdc7c000c2d78a5c2",
+      "license": null,
+      "rightsStatus": "metadata_missing",
+      "reusePolicy": "Link and cite only; do not copy, adapt, execute as a project dependency, or redistribute until the repository declares a license or the rights holder grants written permission.",
+      "notes": [
+        "The collapse–recovery paper links this author-hosted public repository in its Code Availability statement on rendered page 20.",
+        "At the pinned commit, the repository contains the simulation and figure notebook, generated figures, manuscript sources, and an aggregate summary CSV; it does not contain committed per-run trajectories.",
+        "GitHub reports no repository license, and the tree contains no LICENSE or COPYING file. Public readability is not a reuse license.",
+        "This link-only record is intentionally excluded from the locked local manifest pending rights clarification."
+      ]
+    },
+    {
+      "id": "janus.dataset.technocycles-summary",
+      "title": "Technosphere Monte Carlo aggregate summary",
+      "version": "git:910770dbe9224a9f7b1e003fdc7c000c2d78a5c2",
+      "creators": ["Celia Blanco", "Jacob Haqq-Misra"],
+      "issued": "2026-05-24",
+      "kind": "dataset",
+      "canonicalUrl": "https://github.com/celiablanco/technocycles/blob/910770dbe9224a9f7b1e003fdc7c000c2d78a5c2/notebooks/technosphere_summary.csv",
+      "directFileUrl": "https://raw.githubusercontent.com/celiablanco/technocycles/910770dbe9224a9f7b1e003fdc7c000c2d78a5c2/notebooks/technosphere_summary.csv",
+      "license": null,
+      "rightsStatus": "metadata_missing",
+      "reusePolicy": "Link and cite only; do not bundle, normalize into canonical runtime data, or redistribute until the dataset license is clarified.",
+      "upstreamChecksum": "git-blob-sha1:412bbd71112a486bc5ab5dce197e5ff23adb66dd",
+      "notes": [
+        "The committed 1,448-byte CSV reports aggregate metrics for all ten scenarios and is generated by notebooks/figures.ipynb according to the repository README.",
+        "A read-only audit of the commit-addressed bytes produced SHA-256 0fa4418687dc793e78d64472a0a6eb9d966d4e86b698a6c8c05bf5b0a9cbae1f.",
+        "No local copy is admitted and the existing paper-sourced canonical collapse metrics remain unchanged while rights are unresolved."
+      ]
+    }
+  ],
+  "zenodoCollection": {
+    "version": "zenodo-record-11174443-2025-09-30",
+    "creators": ["Jacob Haqq-Misra", "George Profitiliotis", "Ravi Kopparapu"],
+    "issued": "2025-05-22",
+    "kind": "scenario_pipeline",
+    "doi": "10.5281/zenodo.11174443",
+    "canonicalUrl": "https://zenodo.org/records/11174443",
+    "license": null,
+    "rightsStatus": "metadata_missing",
+    "reusePolicy": "Controlled research input; link and cite publicly, but do not bundle or substantially republish pending license clarification.",
+    "files": [
+      {
+        "scenario": "s01",
+        "title": "Big Brother Is Watching",
+        "upstreamFilename": "ScenarioS1_BigBrotherisWatching_.pdf",
+        "filename": "janus-pipeline-s01-big-brother.pdf",
+        "size": 113785,
+        "upstreamChecksum": "md5:b600262d5d3688bfd6b7052c5f75ecf0"
+      },
+      {
+        "scenario": "s02",
+        "title": "Wild West",
+        "upstreamFilename": "ScenarioS2_WildWest_.pdf",
+        "filename": "janus-pipeline-s02-wild-west.pdf",
+        "size": 108364,
+        "upstreamChecksum": "md5:f770925f7af50e0a9966125c8317bce7"
+      },
+      {
+        "scenario": "s03",
+        "title": "Golden Age",
+        "upstreamFilename": "ScenarioS3_GoldenAge_.pdf",
+        "filename": "janus-pipeline-s03-golden-age.pdf",
+        "size": 107771,
+        "upstreamChecksum": "md5:d3e3910376a16e764869fd6a384da754"
+      },
+      {
+        "scenario": "s04",
+        "title": "Living with the Land",
+        "upstreamFilename": "ScenarioS4_LivingwiththeLand_.pdf",
+        "filename": "janus-pipeline-s04-living-with-land.pdf",
+        "size": 100332,
+        "upstreamChecksum": "md5:b44396fc41af0baca2d51e99a1e4ccc6"
+      },
+      {
+        "scenario": "s05",
+        "title": "Transhumanism",
+        "upstreamFilename": "ScenarioS5_Transhumanism_.pdf",
+        "filename": "janus-pipeline-s05-transhumanism.pdf",
+        "size": 130480,
+        "upstreamChecksum": "md5:377de41286a3d2c92cc99e546034656e"
+      },
+      {
+        "scenario": "s06",
+        "title": "Sword of Damocles",
+        "upstreamFilename": "ScenarioS6_SwordofDamocles_.pdf",
+        "filename": "janus-pipeline-s06-sword-of-damocles.pdf",
+        "size": 116986,
+        "upstreamChecksum": "md5:54fe74fee81d59762c0a133e3eb8a95e"
+      },
+      {
+        "scenario": "s07",
+        "title": "Restoration",
+        "upstreamFilename": "ScenarioS7_Restoration_.pdf",
+        "filename": "janus-pipeline-s07-restoration.pdf",
+        "size": 102045,
+        "upstreamChecksum": "md5:8c987dcf1f9fe22b65f9ac6c8a00f074"
+      },
+      {
+        "scenario": "s08",
+        "title": "Ouroboros",
+        "upstreamFilename": "ScenarioS8_Ouroboros_.pdf",
+        "filename": "janus-pipeline-s08-ouroboros.pdf",
+        "size": 109801,
+        "upstreamChecksum": "md5:737c61ebe5c53095357a1b0b1aa74a75"
+      },
+      {
+        "scenario": "s09",
+        "title": "Deus Ex Machina",
+        "upstreamFilename": "ScenarioS9_DeusExMachina_.pdf",
+        "filename": "janus-pipeline-s09-deus-ex-machina.pdf",
+        "size": 126575,
+        "upstreamChecksum": "md5:74ed73ae6b06383a77465cb83eb2c079"
+      },
+      {
+        "scenario": "s10",
+        "title": "Out of Eden",
+        "upstreamFilename": "ScenarioS10_OutofEden_.pdf",
+        "filename": "janus-pipeline-s10-out-of-eden.pdf",
+        "size": 118464,
+        "upstreamChecksum": "md5:eaf0b619d1f72cc259d962d12636257c"
+      }
+    ]
+  }
+}

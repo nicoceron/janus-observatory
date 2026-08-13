@@ -1,0 +1,45 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "/tmp/janus-gate-present.png",
+    "/tmp/janus-gate-branches.png",
+    "/tmp/janus-gate-scenario.png",
+    "/tmp/janus-gate-alien.png",
+    "/tmp/janus-gate-ocular-hwo.png",
+    "/tmp/janus-gate-ocular-sgl.png",
+    "/tmp/janus-gate-system.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "janus-gate-present.png",
+      "to": "janus-gate-branches.png",
+      "mean_rgb_diff": 19.51913287037037
+    },
+    {
+      "from": "janus-gate-branches.png",
+      "to": "janus-gate-scenario.png",
+      "mean_rgb_diff": 14.003733564814814
+    },
+    {
+      "from": "janus-gate-scenario.png",
+      "to": "janus-gate-alien.png",
+      "mean_rgb_diff": 18.870897685185184
+    },
+    {
+      "from": "janus-gate-alien.png",
+      "to": "janus-gate-ocular-hwo.png",
+      "mean_rgb_diff": 24.73469236111111
+    },
+    {
+      "from": "janus-gate-ocular-hwo.png",
+      "to": "janus-gate-ocular-sgl.png",
+      "mean_rgb_diff": 12.065032638888889
+    },
+    {
+      "from": "janus-gate-ocular-sgl.png",
+      "to": "janus-gate-system.png",
+      "mean_rgb_diff": 20.888013194444444
+    }
+  ],
+  "warnings": []
+}
