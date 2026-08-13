@@ -106,6 +106,7 @@ test.describe('guided story', () => {
       await steps.nth(index).scrollIntoViewIfNeeded();
       await expect(stage).toHaveAttribute('data-scene-kind', kind);
       if (kind === 'observer') {
+        await expect(steps.nth(index)).toHaveAttribute('data-scroll-anchor', 'observer');
         await expect(stage).toHaveAttribute('data-observer-asset', 'fab-animated-v3');
         await expect(stage).toHaveAttribute('data-observer-motion', 'six-clip-scroll-scrub');
         await expect(stage).toHaveAttribute('data-observer-camera', 'shoulder-eyepiece-ocular');

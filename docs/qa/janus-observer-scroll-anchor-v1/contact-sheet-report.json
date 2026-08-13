@@ -1,0 +1,33 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "docs/qa/janus-observer-scroll-anchor-v1/01-anchor.png",
+    "docs/qa/janus-observer-scroll-anchor-v1/02-look.png",
+    "docs/qa/janus-observer-scroll-anchor-v1/03-follow.png",
+    "docs/qa/janus-observer-scroll-anchor-v1/04-iris.png",
+    "docs/qa/janus-observer-scroll-anchor-v1/05-ocular.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "01-anchor.png",
+      "to": "02-look.png",
+      "mean_rgb_diff": 0.8703107887202187
+    },
+    {
+      "from": "02-look.png",
+      "to": "03-follow.png",
+      "mean_rgb_diff": 23.702359433346007
+    },
+    {
+      "from": "03-follow.png",
+      "to": "04-iris.png",
+      "mean_rgb_diff": 27.505189778388758
+    },
+    {
+      "from": "04-iris.png",
+      "to": "05-ocular.png",
+      "mean_rgb_diff": 38.22420190379622
+    }
+  ],
+  "warnings": []
+}

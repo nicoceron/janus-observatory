@@ -173,7 +173,7 @@ export function StoryExperience() {
     activeIndex === 0 && branchProgress > 0.001 ? storySteps[1].visual : currentStep.visual;
   const opticalProgress =
     currentStep.visual.kind === 'observer' && !reducedMotion
-      ? Math.min(1, Math.max(0, (observerProgress - 0.72) / 0.28))
+      ? Math.min(1, Math.max(0, (observerProgress - 0.86) / 0.14))
       : 0;
 
   useEffect(() => {
@@ -243,11 +243,15 @@ export function StoryExperience() {
       const observerStep = stepRefs.current[observerStepIndex];
       if (observerStep) {
         const rect = observerStep.getBoundingClientRect();
-        // The shot begins when the observer card takes over half the viewport and
-        // reaches the eyepiece just before the next ocular chapter takes control.
-        const moveStart = window.innerHeight * 0.52;
-        const moveEnd = window.innerHeight * -0.38;
-        const progress = Math.min(1, Math.max(0, (moveStart - rect.top) / (moveStart - moveEnd)));
+        // This intentionally uses the tall observer article as a scroll runway.
+        // The viewport remains on the sticky stage while its full hidden distance
+        // scrubs the character performance and subsequent camera move.
+        const runwayStart = window.innerHeight * 0.1;
+        const runwayDistance = Math.max(
+          window.innerHeight,
+          rect.height - window.innerHeight * 0.96,
+        );
+        const progress = Math.min(1, Math.max(0, (runwayStart - rect.top) / runwayDistance));
         setObserverProgress((previous) =>
           Math.abs(previous - progress) > 0.001 ? progress : previous,
         );
@@ -407,6 +411,7 @@ export function StoryExperience() {
             <article
               aria-current={index === activeIndex ? 'step' : undefined}
               className={`storyStep storyStep-${step.cardSide ?? 'left'}`}
+              data-scroll-anchor={step.id === 'observer-turn' ? 'observer' : undefined}
               data-step-index={index}
               id={`story-step-${index + 1}`}
               key={step.id}

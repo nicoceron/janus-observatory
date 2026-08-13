@@ -947,7 +947,8 @@ function AlienObserverAsset({
     if (state.kind !== 'observer' || reducedMotion) return;
     // Scrub only through the reach and focus hold. The final quarter of the
     // authored loop lowers the arm, so it remains reserved for a future exit shot.
-    const playhead = observerProgress * 3.08;
+    const performanceProgress = progressBetween(observerProgress, 0.02, 0.44);
+    const playhead = performanceProgress * 3.08;
     names.forEach((name) => {
       const action = actions[name];
       if (!action) return;
@@ -1093,7 +1094,8 @@ function CameraRig({
       return;
     }
     if (state.kind === 'observer' && !reducedMotion) {
-      const progress = progressBetween(observerProgress, 0, 1);
+      // Let the alien complete most of the look/reach before the camera takes over.
+      const progress = progressBetween(observerProgress, 0.38, 1);
       observerCameraPath.getPoint(progress, camera.position);
       observerTargetPath.getPoint(progress, target.current);
       camera.lookAt(target.current);

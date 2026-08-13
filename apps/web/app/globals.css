@@ -999,6 +999,16 @@ h1 {
   align-items: flex-end;
   padding-bottom: 7svh;
 }
+.storyStep[data-scroll-anchor='observer'] {
+  align-items: flex-start;
+  min-height: 260svh;
+  padding-bottom: 18svh;
+  padding-top: 18svh;
+}
+.storyStep[data-scroll-anchor='observer'] .storyStepCard {
+  position: sticky;
+  top: 20svh;
+}
 .storyStepCard {
   backdrop-filter: blur(15px);
   background: rgba(4, 10, 8, 0.78);
@@ -2999,6 +3009,14 @@ footer p {
     max-width: 100%;
     padding: 22px;
   }
+  .storyStep[data-scroll-anchor='observer'] {
+    min-height: 280svh;
+    padding-bottom: 14svh;
+    padding-top: 14svh;
+  }
+  .storyStep[data-scroll-anchor='observer'] .storyStepCard {
+    top: 48svh;
+  }
   .storyStep h3 {
     font-size: clamp(1.65rem, 8vw, 2.25rem);
   }
@@ -3160,6 +3178,9 @@ footer p {
     max-width: 370px;
     overflow: auto;
     padding: 18px 22px;
+  }
+  .storyStep[data-scroll-anchor='observer'] .storyStepCard {
+    top: 52px;
   }
   .storyStepKicker {
     margin-bottom: 10px;
