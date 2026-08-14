@@ -3,7 +3,7 @@ import type { ObservingMissionId, ScenarioId } from '@janus/domain';
 import { allScenarioProfiles, getScenarioProfile, scientificNotation } from '../../lib/canonical';
 
 export type StoryVisualState = {
-  kind: 'present' | 'branches' | 'scenario' | 'observer' | 'ocular' | 'system';
+  kind: 'present' | 'branches' | 'scenario' | 'observer' | 'spectrum' | 'system';
   scenarioId?: ScenarioId;
   instrument?: ObservingMissionId;
   branchState?: 'budding' | 'all' | 'focus';
@@ -51,10 +51,11 @@ const scenarioSteps: StoryStep[] = allScenarioProfiles.map((profile, index) => (
 }));
 
 const s1 = getScenarioProfile('S1');
+const s2 = getScenarioProfile('S2');
 const s9 = getScenarioProfile('S9');
 const s1Hwo = s1.observations.find(({ id }) => id === 'habitable_worlds_observatory')!;
+const s2Life = s2.observations.find(({ id }) => id === 'large_interferometer_for_exoplanets')!;
 const s9Hwo = s9.observations.find(({ id }) => id === 'habitable_worlds_observatory')!;
-const s9Sgl = s9.observations.find(({ id }) => id === 'solar_gravitational_lens')!;
 
 export const storySteps: StoryStep[] = [
   {
@@ -110,15 +111,15 @@ export const storySteps: StoryStep[] = [
   {
     id: 'first-light',
     chapter: '04',
-    kicker: 'Ocular view · HWO · S1',
-    title: 'Put your eye to the instrument.',
-    body: `The HWO-class concept now fills the view. For S1, the published comparison lists ${s1Hwo.result.signatures.join(' and ')}. This is categorical evidence from the observing matrix—not a recovered raw spectrum.`,
+    kicker: 'Spectral readout · HWO · S1',
+    title: 'The observer disappears. The signal takes over.',
+    body: `The scene cuts to a reflected-light wavelength readout. For S1, the published comparison lists ${s1Hwo.result.signatures.join(' and ')}. The line shape is explanatory; the atmospheric values and categorical detections are reported.`,
     scenarioId: 'S1',
     sourceLabel: 'Observing paper · Figure 6',
     sourceHref: observingPaper,
     cardSide: 'left',
     visual: {
-      kind: 'ocular',
+      kind: 'spectrum',
       scenarioId: 'S1',
       instrument: 'habitable_worlds_observatory',
     },
@@ -134,7 +135,7 @@ export const storySteps: StoryStep[] = [
     sourceHref: observingPaper,
     cardSide: 'right',
     visual: {
-      kind: 'ocular',
+      kind: 'spectrum',
       scenarioId: 'S9',
       instrument: 'habitable_worlds_observatory',
     },
@@ -142,17 +143,17 @@ export const storySteps: StoryStep[] = [
   {
     id: 'change-instrument',
     chapter: '05',
-    kicker: 'Change method · Solar Gravitational Lens',
-    title: 'Move the instrument. Recover different evidence.',
-    body: `For S9, the Solar Gravitational Lens cell lists ${s9Sgl.result.signatures.join(', ')}. No single observing concept captures every future in the Janus set.`,
-    scenarioId: 'S9',
-    sourceLabel: 'Observing paper · Figure 6',
+    kicker: 'Change band · LIFE · S2',
+    title: 'Change wavelength. Reveal another chemistry.',
+    body: `The LIFE concept moves the readout to 4–18.5 μm. For S2, the published matrix lists ${s2Life.result.signatures.join(' and ')}. The labels come from the paper; the animated line remains an explanatory diagram pending a validated LIFEsim run.`,
+    scenarioId: 'S2',
+    sourceLabel: 'Observing paper · Figures 4 and 6',
     sourceHref: observingPaper,
     cardSide: 'left',
     visual: {
-      kind: 'ocular',
-      scenarioId: 'S9',
-      instrument: 'solar_gravitational_lens',
+      kind: 'spectrum',
+      scenarioId: 'S2',
+      instrument: 'large_interferometer_for_exoplanets',
     },
   },
   {

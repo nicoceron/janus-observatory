@@ -905,7 +905,7 @@ function InstrumentAdapter({ state }: { state: StoryVisualState }) {
   }
 }
 
-const fabObserverModelPath = '/assets/models/janus-alien-observer-v3.glb';
+const fabObserverModelPath = '/assets/models/janus-alien-observer-v4.glb';
 
 function AlienObserverAsset({
   state,
@@ -945,10 +945,12 @@ function AlienObserverAsset({
 
   useLayoutEffect(() => {
     if (state.kind !== 'observer' || reducedMotion) return;
-    // Scrub only through the reach and focus hold. The final quarter of the
-    // authored loop lowers the arm, so it remains reserved for a future exit shot.
-    const performanceProgress = progressBetween(observerProgress, 0.02, 0.44);
-    const playhead = performanceProgress * 3.08;
+    // Stop at the authored observing contact pose (roughly frame 44 at 30 fps).
+    // Deeper frames are valid inside the source loop, but pushing the performance
+    // further while the web camera dollies in makes the body appear to intersect
+    // the telescope silhouette.
+    const performanceProgress = progressBetween(observerProgress, 0.02, 0.56);
+    const playhead = performanceProgress * 1.47;
     names.forEach((name) => {
       const action = actions[name];
       if (!action) return;
@@ -977,38 +979,12 @@ function AlienAstronomer({
   reducedMotion: boolean;
   observerProgress: number;
 }) {
-  const accent = state.scenarioId ? getScenarioProfile(state.scenarioId).accent : '#b8f15c';
   return (
-    <group>
-      <mesh position={[0, -2.02, -0.4]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[12, 7]} />
-        <meshStandardMaterial color="#111a17" metalness={0.1} roughness={0.92} />
-      </mesh>
-      <mesh position={[0, 0.7, -3]}>
-        <planeGeometry args={[12, 6]} />
-        <meshStandardMaterial color="#08100e" roughness={1} />
-      </mesh>
-      {[-3.8, 0, 3.8].map((x) => (
-        <mesh key={x} position={[x, 0.2, -2.8]}>
-          <torusGeometry args={[1.45, 0.055, 10, 64, Math.PI]} />
-          <meshStandardMaterial color="#6a4a2f" emissive="#5d3218" emissiveIntensity={0.35} />
-        </mesh>
-      ))}
-
-      <AlienObserverAsset
-        observerProgress={observerProgress}
-        reducedMotion={reducedMotion}
-        state={state}
-      />
-      <Limb
-        color={accent}
-        emissive={accent}
-        end={[3.32, 0.62, -1.05]}
-        opacity={0.23}
-        radius={0.014}
-        start={[2.53, 0.42, 0.2]}
-      />
-    </group>
+    <AlienObserverAsset
+      observerProgress={observerProgress}
+      reducedMotion={reducedMotion}
+      state={state}
+    />
   );
 }
 
@@ -1054,10 +1030,10 @@ function CameraRig({
     return new CatmullRomCurve3(
       [
         new Vector3(0, portrait ? 0.12 : 0.08, portrait ? 12.8 : 8.5),
-        new Vector3(0.18, y + 0.22, portrait ? 9.4 : 6.35),
-        new Vector3(0.58, y + 0.42, portrait ? 5.2 : 3.55),
-        new Vector3(0.52, y + 0.58, portrait ? 2.2 : 1.72),
-        new Vector3(0.46, y + 0.78, portrait ? 1.55 : 1.15),
+        new Vector3(-0.08, y + 0.08, portrait ? 11.4 : 7.55),
+        new Vector3(-0.2, y + 0.18, portrait ? 10.1 : 6.65),
+        new Vector3(-0.34, y + 0.28, portrait ? 8.9 : 5.78),
+        new Vector3(-0.46, y + 0.34, portrait ? 8.1 : 5.16),
       ],
       false,
       'centripetal',
@@ -1068,10 +1044,10 @@ function CameraRig({
     return new CatmullRomCurve3(
       [
         new Vector3(0, 0, 0),
-        new Vector3(0.18, y + 0.16, 0.08),
-        new Vector3(0.28, y + 0.34, 0.18),
-        new Vector3(0.24, y + 0.38, 0.18),
-        new Vector3(0.2, y + 0.36, 0.18),
+        new Vector3(-0.08, y + 0.1, 0.05),
+        new Vector3(-0.2, y + 0.2, 0.08),
+        new Vector3(-0.34, y + 0.3, 0.1),
+        new Vector3(-0.42, y + 0.36, 0.12),
       ],
       false,
       'centripetal',
@@ -1094,8 +1070,10 @@ function CameraRig({
       return;
     }
     if (state.kind === 'observer' && !reducedMotion) {
-      // Let the alien complete most of the look/reach before the camera takes over.
-      const progress = progressBetween(observerProgress, 0.38, 1);
+      // Keep the camera outside the physical model. The final occlusion is a
+      // deliberate editorial cut into the DOM/SVG instrument scene, not a trip
+      // through impossible telescope geometry.
+      const progress = progressBetween(observerProgress, 0.48, 0.88);
       observerCameraPath.getPoint(progress, camera.position);
       observerTargetPath.getPoint(progress, target.current);
       camera.lookAt(target.current);
@@ -1110,7 +1088,7 @@ function CameraRig({
           ? [0, 0.12, 12.8]
           : state.kind === 'observer'
             ? [0, 0.35, 14.2]
-            : state.kind === 'ocular'
+            : state.kind === 'spectrum'
               ? [0, 0, 9.4]
               : state.kind === 'system'
                 ? [0, 0, 12]
@@ -1121,13 +1099,13 @@ function CameraRig({
           ? [0, 0.08, 8.5]
           : state.kind === 'observer'
             ? [0, 0.12, 8.2]
-            : state.kind === 'ocular'
+            : state.kind === 'spectrum'
               ? [0, 0, 6.6]
               : state.kind === 'system'
                 ? [0, 0, 8.8]
                 : [0, 0, 7.2];
     const lookTarget: Point3 =
-      state.kind === 'ocular'
+      state.kind === 'spectrum'
         ? [0, portrait ? 0.55 : 0, 0]
         : [0, state.kind === 'system' && portrait ? 0.7 : 0, 0];
     const timeline = gsap.timeline({
@@ -1175,8 +1153,6 @@ function Scene({
   const branchRailHeads = useRef<Array<Mesh | null>>([]);
   const branchStemHeads = useRef<Array<Mesh | null>>([]);
   const observer = useRef<Group>(null);
-  const ocularTunnel = useRef<Group>(null);
-  const gravitationalLens = useRef<Group>(null);
   const system = useRef<Group>(null);
   const worlds = useRef<Array<Group | null>>([]);
 
@@ -1264,7 +1240,7 @@ function Scene({
   useLayoutEffect(() => {
     const duration = reducedMotion
       ? 0
-      : state.kind === 'observer' || state.kind === 'ocular'
+      : state.kind === 'observer' || state.kind === 'spectrum'
         ? 1.6
         : 1.25;
     const timeline = gsap.timeline({
@@ -1345,9 +1321,9 @@ function Scene({
             : [3.45, 0.62, -1.12]
           : [base[0] * 1.4, -4.6 - (index % 2), -4.2];
         scale = active ? (portrait ? 0.28 : 0.39) : 0.001;
-      } else if (state.kind === 'ocular') {
-        target = active ? [0, portrait ? 0.55 : 0, 0.35] : [base[0] * 1.2, -5.4, -5];
-        scale = active ? (portrait ? 1.05 : 1.62) : 0.001;
+      } else if (state.kind === 'spectrum') {
+        target = [base[0] * 1.2, -5.4, -5];
+        scale = 0.001;
       } else if (state.kind === 'system') {
         target = active ? [0, portrait ? 0.7 : 0, 0.2] : [base[0], -5.6, -5];
         scale = active ? (portrait ? 0.6 : 0.78) : 0.001;
@@ -1368,49 +1344,18 @@ function Scene({
 
     if (observer.current) {
       const observing = state.kind === 'observer';
-      const passingThrough = state.kind === 'ocular';
+      const leavingFrame = state.kind === 'spectrum';
       const target = observing
         ? ([0, portrait ? 1.25 : 0, 0] as Point3)
-        : passingThrough
+        : leavingFrame
           ? ([-18, -7, 10] as Point3)
           : state.kind === 'system'
             ? ([-13, -4.5, 7] as Point3)
             : ([-7.5, -1.6, -4] as Point3);
-      const scale = observing ? (portrait ? 0.68 : 1) : passingThrough ? 0.001 : 0.08;
+      const scale = observing ? (portrait ? 0.68 : 1) : leavingFrame ? 0.001 : 0.08;
       timeline.to(observer.current.position, { x: target[0], y: target[1], z: target[2] }, at);
       timeline.to(observer.current.scale, { x: scale, y: scale, z: scale }, at);
-      timeline.to(observer.current.rotation, { x: 0, y: passingThrough ? -0.18 : 0, z: 0 }, at);
-    }
-
-    if (ocularTunnel.current) {
-      const ocular = state.kind === 'ocular';
-      const scale = ocular ? (portrait ? 0.82 : 1) : 0.001;
-      timeline.to(ocularTunnel.current.scale, { x: scale, y: scale, z: scale }, at);
-      timeline.to(
-        ocularTunnel.current.position,
-        {
-          x: 0,
-          y: portrait ? 0.55 : 0,
-          z: ocular ? 0 : 4.8,
-        },
-        at,
-      );
-      timeline.to(
-        ocularTunnel.current.rotation,
-        {
-          x: 0,
-          y: 0,
-          z: ocular ? Math.PI * 0.08 : -Math.PI * 0.2,
-        },
-        at,
-      );
-    }
-
-    if (gravitationalLens.current) {
-      const active = state.kind === 'ocular' && state.instrument === 'solar_gravitational_lens';
-      const scale = active ? 1 : 0.001;
-      timeline.to(gravitationalLens.current.scale, { x: scale, y: scale, z: scale }, at);
-      timeline.to(gravitationalLens.current.rotation, { z: active ? Math.PI * 0.22 : 0 }, at);
+      timeline.to(observer.current.rotation, { x: 0, y: leavingFrame ? -0.18 : 0, z: 0 }, at);
     }
 
     if (system.current) {
@@ -1556,7 +1501,7 @@ function Scene({
           <WorldPlanet
             detailLevel={
               profile.id === state.scenarioId
-                ? state.kind === 'ocular'
+                ? state.kind === 'spectrum'
                   ? 'none'
                   : state.kind === 'observer'
                     ? 'subtle'
@@ -1564,7 +1509,7 @@ function Scene({
                 : 'subtle'
             }
             profile={
-              profile.id === state.scenarioId && state.kind === 'ocular' ? undefined : profile
+              profile.id === state.scenarioId && state.kind === 'spectrum' ? undefined : profile
             }
             reducedMotion={reducedMotion}
             showLights={profile.id === state.scenarioId}
@@ -1578,27 +1523,6 @@ function Scene({
           reducedMotion={reducedMotion}
           state={state}
         />
-      </group>
-
-      <group ref={ocularTunnel} position={[0, portrait ? 0.55 : 0, 4.8]} scale={0.001}>
-        {[2.05, 2.32, 2.62].map((radius, index) => (
-          <mesh key={radius} position={[0, 0, index * -0.08]}>
-            <torusGeometry args={[radius, 0.014 - index * 0.002, 8, 128]} />
-            <meshBasicMaterial color="#d9efe2" opacity={0.18 - index * 0.035} transparent />
-          </mesh>
-        ))}
-        <group ref={gravitationalLens} scale={0.001}>
-          {[2.12, 2.42, 2.78].map((radius, index) => (
-            <mesh key={radius} rotation={[0, index * 0.08, index * 0.12]}>
-              <torusGeometry args={[radius, 0.018, 8, 128]} />
-              <meshBasicMaterial
-                color={index === 0 ? '#fff2b0' : '#a997ff'}
-                opacity={0.58 - index * 0.1}
-                transparent
-              />
-            </mesh>
-          ))}
-        </group>
       </group>
 
       <group ref={system} position={[0, 0, -4.5]} scale={0.001}>
@@ -1646,9 +1570,9 @@ export function EarthStage({
       data-branch-layout="trunk-spine-stems"
       data-branch-animation="scroll-scrubbed"
       data-branch-progress={branchProgress.toFixed(3)}
-      data-observer-asset="fab-animated-v3"
-      data-observer-motion={reducedMotion ? 'reduced' : 'six-clip-scroll-scrub'}
-      data-observer-camera="shoulder-eyepiece-ocular"
+      data-observer-asset="fab-animated-v4"
+      data-observer-motion={reducedMotion ? 'reduced' : 'seven-clip-scroll-scrub'}
+      data-observer-camera="alien-dolly-editorial-cut"
       data-observer-progress={observerProgress.toFixed(3)}
       data-world-lifecycle="persistent"
       ref={wrapper}

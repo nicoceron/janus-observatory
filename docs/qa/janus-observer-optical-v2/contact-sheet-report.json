@@ -1,0 +1,45 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "docs/qa/janus-observer-optical-v2/01-4.png",
+    "docs/qa/janus-observer-optical-v2/02-22.png",
+    "docs/qa/janus-observer-optical-v2/03-48.png",
+    "docs/qa/janus-observer-optical-v2/04-68.png",
+    "docs/qa/janus-observer-optical-v2/05-84.png",
+    "docs/qa/janus-observer-optical-v2/06-97.png",
+    "docs/qa/janus-observer-optical-v2/07-ocular.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "01-4.png",
+      "to": "02-22.png",
+      "mean_rgb_diff": 9.664186471193416
+    },
+    {
+      "from": "02-22.png",
+      "to": "03-48.png",
+      "mean_rgb_diff": 1.4944966563786009
+    },
+    {
+      "from": "03-48.png",
+      "to": "04-68.png",
+      "mean_rgb_diff": 19.99872839506173
+    },
+    {
+      "from": "04-68.png",
+      "to": "05-84.png",
+      "mean_rgb_diff": 28.204669238683127
+    },
+    {
+      "from": "05-84.png",
+      "to": "06-97.png",
+      "mean_rgb_diff": 30.083845421810697
+    },
+    {
+      "from": "06-97.png",
+      "to": "07-ocular.png",
+      "mean_rgb_diff": 32.13182098765432
+    }
+  ],
+  "warnings": []
+}

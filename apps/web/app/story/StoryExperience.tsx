@@ -117,7 +117,26 @@ function WorldLabels({
   );
 }
 
-function OcularOverlay({
+type SpectralFeature = {
+  atmosphereKey: string;
+  label: string;
+  x: number;
+  y: number;
+};
+
+const reflectedLightFeatures: SpectralFeature[] = [
+  { atmosphereKey: 'nox', label: 'NO₂ band', x: 252, y: 208 },
+  { atmosphereKey: 'co2', label: 'CO₂ bands', x: 720, y: 236 },
+  { atmosphereKey: 'ch4', label: 'CH₄ band', x: 846, y: 274 },
+];
+
+const midInfraredFeatures: SpectralFeature[] = [
+  { atmosphereKey: 'ch4', label: 'CH₄', x: 303, y: 235 },
+  { atmosphereKey: 'cfc_11', label: 'CFC-11/12', x: 517, y: 272 },
+  { atmosphereKey: 'co2', label: 'CO₂', x: 802, y: 224 },
+];
+
+function SpectralConsole({
   scenarioId,
   instrument,
   visible,
@@ -129,31 +148,161 @@ function OcularOverlay({
   const profile = getScenarioProfile(scenarioId);
   const observation = profile.observations.find(({ id }) => id === instrument)!;
   const hasSignatures = observation.result.signatures.length > 0;
+  const isMidInfrared = instrument === 'large_interferometer_for_exoplanets';
+  const features = isMidInfrared ? midInfraredFeatures : reflectedLightFeatures;
+  const ticks = isMidInfrared
+    ? [
+        ['4', 112],
+        ['8', 318],
+        ['12', 524],
+        ['16', 730],
+        ['18.5', 860],
+      ]
+    : [
+        ['0.2', 112],
+        ['0.6', 299],
+        ['1.0', 486],
+        ['1.4', 673],
+        ['1.8', 860],
+      ];
+  const trace = isMidInfrared
+    ? 'M112 286 C154 276 184 251 218 263 C254 277 270 304 303 235 C326 191 344 285 379 277 C420 267 453 288 487 276 C502 270 508 236 517 272 C537 314 562 268 596 258 C635 247 667 272 705 261 C745 250 771 188 802 224 C831 258 842 239 860 244'
+    : hasSignatures
+      ? 'M112 238 C153 226 180 231 218 220 C246 212 251 267 276 247 C309 219 350 232 386 218 C426 202 448 227 482 217 C527 204 562 213 601 205 C645 196 676 227 720 236 C757 242 792 211 820 222 C839 230 843 278 860 264'
+      : 'M112 235 C164 231 210 237 258 232 C307 228 352 235 402 231 C450 227 502 235 552 230 C605 226 654 234 704 231 C753 228 806 234 860 230';
+  const readoutKeys = isMidInfrared ? ['co2', 'cfc_11', 'cfc_12', 'ch4'] : ['co2', 'nox', 'ch4'];
+  const atmosphericReadouts = readoutKeys.map((key) => profile.atmosphere[key]).filter(Boolean);
 
   return (
-    <div className={`ocularOverlay ${visible ? 'storyOverlayVisible' : ''}`}>
-      <div className="ocularReticle" aria-hidden="true">
-        <i />
+    <section
+      aria-label={`${observation.label} spectral readout for ${scenarioId}`}
+      className={`spectralConsole ${visible ? 'storyOverlayVisible' : ''}`}
+    >
+      <div className="spectralChrome" aria-hidden="true">
         <i />
         <i />
         <i />
       </div>
-      <div className="ocularHeader">
-        <span>{observation.short}</span>
-        <span>{observation.mode}</span>
-        <span>Target · {scenarioId}</span>
+      <header className="spectralHeader">
+        <div>
+          <span>Instrument readout</span>
+          <strong>{observation.short}</strong>
+        </div>
+        <div>
+          <span>Observing mode</span>
+          <strong>{observation.mode}</strong>
+        </div>
+        <div>
+          <span>Target</span>
+          <strong>{scenarioId} · future Earth</strong>
+        </div>
+      </header>
+
+      <div className="spectralPlot">
+        <div className="spectralPlotTitle">
+          <div>
+            <span>{isMidInfrared ? 'Mid-infrared emission' : 'Reflected-light contrast'}</span>
+            <strong>Explanatory spectral shape</strong>
+          </div>
+          <small>Not a recovered raw PSG/LIFEsim curve</small>
+        </div>
+        <ul className="spectralFeatureLegend" aria-label="Annotated atmospheric features">
+          {features.map((feature) => {
+            const datum = profile.atmosphere[feature.atmosphereKey];
+            return datum && datum.value !== null ? (
+              <li key={feature.label}>{feature.label}</li>
+            ) : null;
+          })}
+        </ul>
+        <svg
+          aria-labelledby="spectral-plot-title spectral-plot-description"
+          role="img"
+          viewBox="0 0 960 390"
+        >
+          <title id="spectral-plot-title">{`${scenarioId} ${observation.short} explanatory spectrum`}</title>
+          <desc id="spectral-plot-description">
+            A qualitative wavelength diagram annotated with molecules listed in the Project Janus
+            atmosphere table. It is not a retrieved or measured spectrum.
+          </desc>
+          <defs>
+            <linearGradient id="spectral-trace-gradient" x1="0" x2="1">
+              <stop offset="0" stopColor="#55d5ce" />
+              <stop offset="0.52" stopColor={profile.accent} />
+              <stop offset="1" stopColor="#fff0a3" />
+            </linearGradient>
+            <filter id="spectral-glow" x="-20%" y="-50%" width="140%" height="200%">
+              <feGaussianBlur stdDeviation="7" />
+            </filter>
+          </defs>
+          <g className="spectralGrid">
+            {[112, 205, 299, 392, 486, 579, 673, 766, 860].map((x) => (
+              <line key={`x-${x}`} x1={x} x2={x} y1="76" y2="304" />
+            ))}
+            {[92, 145, 198, 251, 304].map((y) => (
+              <line key={`y-${y}`} x1="112" x2="860" y1={y} y2={y} />
+            ))}
+          </g>
+          <line className="spectralAxis" x1="112" x2="860" y1="304" y2="304" />
+          <line className="spectralAxis" x1="112" x2="112" y1="76" y2="304" />
+          <path className="spectralTraceGlow" d={trace} />
+          <path className="spectralTrace" d={trace} />
+          {features.map((feature) => {
+            const datum = profile.atmosphere[feature.atmosphereKey];
+            if (!datum || datum.value === null) return null;
+            return (
+              <g className="spectralFeature" key={feature.atmosphereKey}>
+                <line x1={feature.x} x2={feature.x} y1={feature.y - 48} y2={feature.y + 32} />
+                <circle cx={feature.x} cy={feature.y} r="4" />
+                <text x={feature.x + 9} y={feature.y - 55}>
+                  {feature.label}
+                </text>
+              </g>
+            );
+          })}
+          {ticks.map(([label, x]) => (
+            <g className="spectralTick" key={label}>
+              <line x1={x} x2={x} y1="304" y2="313" />
+              <text textAnchor="middle" x={x} y="335">
+                {label}
+              </text>
+            </g>
+          ))}
+          <text className="spectralAxisLabel" textAnchor="middle" x="486" y="370">
+            WAVELENGTH · μm
+          </text>
+          <text
+            className="spectralAxisLabel"
+            textAnchor="middle"
+            transform="rotate(-90 44 190)"
+            x="44"
+            y="190"
+          >
+            RELATIVE SIGNAL
+          </text>
+          <line className="spectralScanLine" x1="112" x2="112" y1="76" y2="304" />
+        </svg>
       </div>
-      <div
-        className="ocularEvidence"
-        aria-label={`Published ${observation.label} result for ${scenarioId}`}
-      >
-        <span>Listed evidence</span>
-        <strong>
-          {hasSignatures ? observation.result.signatures.join(' · ') : 'No signature listed'}
-        </strong>
-        {!hasSignatures && <small>Not detected by this method ≠ no technology</small>}
-      </div>
-    </div>
+
+      <aside className="spectralEvidence">
+        <div className="spectralVerdict">
+          <span>Published matrix result</span>
+          <strong>
+            {hasSignatures ? observation.result.signatures.join(' · ') : 'No signature listed'}
+          </strong>
+          {!hasSignatures && <small>Not detected by this method ≠ no technology</small>}
+        </div>
+        <dl aria-label={`${scenarioId} atmospheric inputs from Table 1`}>
+          {atmosphericReadouts.map((datum) => (
+            <div key={datum.label}>
+              <dt>{datum.label}</dt>
+              <dd>
+                {datum.value === null ? 'not listed' : datum.value} {datum.unit}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </aside>
+    </section>
   );
 }
 
@@ -173,7 +322,7 @@ export function StoryExperience() {
     activeIndex === 0 && branchProgress > 0.001 ? storySteps[1].visual : currentStep.visual;
   const opticalProgress =
     currentStep.visual.kind === 'observer' && !reducedMotion
-      ? Math.min(1, Math.max(0, (observerProgress - 0.86) / 0.14))
+      ? Math.min(1, Math.max(0, (observerProgress - 0.8) / 0.2))
       : 0;
 
   useEffect(() => {
@@ -275,7 +424,7 @@ export function StoryExperience() {
     return {
       instrument: currentStep.visual.instrument ?? 'habitable_worlds_observatory',
       scenarioId: currentStep.visual.scenarioId ?? 'S1',
-      visible: currentStep.visual.kind === 'ocular',
+      visible: currentStep.visual.kind === 'spectrum',
     };
   }, [currentStep]);
 
@@ -300,8 +449,8 @@ export function StoryExperience() {
         <p className="eyebrow">Guided story · all ten scenarios</p>
         <h2 id="story-title">Watch one Earth become ten possible worlds.</h2>
         <p>
-          Scroll to split the planet, travel across the Janus futures, then move behind an alien
-          astronomer and into the telescope itself.
+          Scroll to split the planet, travel across the Janus futures, then move toward an alien
+          astronomer and cut into the instrument readout.
         </p>
         <div className="storyConsent" role="group" aria-label="Story options">
           <a className="primaryButton" href="#story-scrolly">
@@ -382,7 +531,7 @@ export function StoryExperience() {
                 <MetricReadout scenarioId={currentStep.scenarioId ?? 'S1'} />
               </div>
 
-              <OcularOverlay
+              <SpectralConsole
                 instrument={activeObservation.instrument}
                 scenarioId={activeObservation.scenarioId}
                 visible={activeObservation.visible}

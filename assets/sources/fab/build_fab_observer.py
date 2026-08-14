@@ -22,9 +22,9 @@ ALIEN_BLEND = (
     ROOT / "assets/sources/fab/extracted/alien/source/Cute Alien Character.blend"
 )
 TELESCOPE_FBX = ROOT / "assets/sources/fab/extracted/telescope/source/TELESCOPE.fbx"
-SOURCE_BLEND = ROOT / "assets/sources/fab/janus-fab-observer-v3.blend"
-PUBLIC_GLB = ROOT / "apps/web/public/assets/models/janus-alien-observer-v3.glb"
-QA_DIR = ROOT / "docs/qa/janus-fab-observer-v3"
+SOURCE_BLEND = ROOT / "assets/sources/fab/janus-fab-observer-v4.blend"
+PUBLIC_GLB = ROOT / "apps/web/public/assets/models/janus-alien-observer-v4.glb"
+QA_DIR = ROOT / "docs/qa/janus-fab-observer-v4"
 
 START_FRAME = 1
 END_FRAME = 120
@@ -110,7 +110,7 @@ def set_origin(obj: bpy.types.Object, location: tuple[float, float, float]) -> N
     bpy.ops.object.origin_set(type="ORIGIN_CURSOR", center="MEDIAN")
 
 
-def prepare_arm_rig() -> tuple[bpy.types.Object, bpy.types.Object]:
+def prepare_arm_rig() -> tuple[bpy.types.Object, bpy.types.Object, bpy.types.Object]:
     """Build a light object rig from the source's mirrored sleeve/cuff/hand meshes."""
 
     far_sleeve, near_sleeve = separate_side_components("Cylinder")
@@ -126,14 +126,17 @@ def prepare_arm_rig() -> tuple[bpy.types.Object, bpy.types.Object]:
     for obj in (far_arm, near_arm, near_hand):
         apply_object_transform(obj)
 
+    far_arm.rotation_mode = "XYZ"
     near_arm.rotation_mode = "XYZ"
     near_hand.rotation_mode = "XYZ"
+    set_origin(far_arm, (-0.245, 0.0, -0.295))
     set_origin(near_arm, (0.245, 0.0, -0.295))
     set_origin(near_hand, (0.415, 0.0, -0.425))
     parent_keep_transform(near_hand, near_arm)
+    far_arm["rig_role"] = "far shoulder telescope brace control"
     near_arm["rig_role"] = "near shoulder reach control"
     near_hand["rig_role"] = "near wrist focus control"
-    return near_arm, near_hand
+    return far_arm, near_arm, near_hand
 
 
 def keyframe_transform(
@@ -187,7 +190,7 @@ def prepare_alien() -> tuple[
         if obj.type in {"CAMERA", "LIGHT"}:
             bpy.data.objects.remove(obj, do_unlink=True)
 
-    near_arm, near_hand = prepare_arm_rig()
+    far_arm, near_arm, near_hand = prepare_arm_rig()
     alien_objects = list(bpy.context.scene.objects)
     alien_root = bpy.data.objects.new("ALIEN_PerformanceRoot", None)
     bpy.context.collection.objects.link(alien_root)
@@ -211,29 +214,31 @@ def prepare_alien() -> tuple[
     if eye_mesh is None:
         raise RuntimeError("Expected the source character eye mesh to be present.")
 
-    # The source faces -Y. A 72-degree yaw presents a readable three-quarter profile
-    # while aligning the near eye with the eyepiece at the left of the telescope.
+    # The source faces -Y. The yaw moves from a readable three-quarter profile
+    # into a pronounced observing lean aligned with the telescope eyepiece.
     alien_root.scale = (1.26, 1.26, 1.26)
-    rest = (-1.08, 0.0, 1.17)
-    observe = (-0.98, 0.0, 1.165)
-    rest_rotation = (0.0, math.radians(1.0), math.radians(67.0))
-    observe_rotation = (math.radians(-1.2), math.radians(4.0), math.radians(73.0))
+    rest = (-1.12, 0.02, 1.19)
+    anticipate = (-1.18, 0.055, 1.225)
+    observe = (-0.86, -0.035, 1.105)
+    rest_rotation = (0.0, math.radians(1.0), math.radians(63.0))
+    observe_rotation = (math.radians(-5.5), math.radians(10.0), math.radians(82.0))
 
     for frame, location, rotation in (
         (1, rest, rest_rotation),
-        (18, (-1.035, 0.0, 1.17), (0.0, math.radians(2.2), math.radians(70.0))),
-        (34, observe, observe_rotation),
+        (12, anticipate, (math.radians(2.5), math.radians(-2.0), math.radians(58.0))),
+        (30, (-0.94, -0.02, 1.14), (math.radians(-3.5), math.radians(7.0), math.radians(76.0))),
+        (44, observe, observe_rotation),
         (
-            58,
-            (-0.975, -0.006, 1.18),
-            (math.radians(-1.0), math.radians(3.2), math.radians(73.4)),
+            62,
+            (-0.845, -0.045, 1.09),
+            (math.radians(-6.2), math.radians(11.0), math.radians(83.2)),
         ),
         (
             82,
-            (-0.985, 0.004, 1.162),
-            (math.radians(-1.35), math.radians(4.4), math.radians(72.6)),
+            (-0.87, -0.025, 1.11),
+            (math.radians(-4.8), math.radians(9.0), math.radians(81.0)),
         ),
-        (102, (-1.025, 0.0, 1.17), (0.0, math.radians(2.0), math.radians(70.0))),
+        (102, (-1.0, 0.0, 1.16), (math.radians(-1.0), math.radians(4.0), math.radians(70.0))),
         (120, rest, rest_rotation),
     ):
         keyframe_transform(alien_root, frame, location=location, rotation=rotation)
@@ -247,14 +252,16 @@ def prepare_alien() -> tuple[
         if antenna_part is None:
             continue
         base = tuple(antenna_part.rotation_euler)
+        direction = -1 if index == 0 else 1
         for frame, x_offset, y_offset in (
-            (1, -1.0, 0.0),
-            (18, 1.2, -0.8),
-            (34, -0.8, 0.9),
-            (58, 1.0, -0.5),
-            (82, -1.1, 0.6),
-            (102, 0.5, -0.4),
-            (120, -1.0, 0.0),
+            (1, -4.0 * direction, 0.0),
+            (12, 7.0 * direction, -4.0),
+            (30, -6.0 * direction, 5.0),
+            (44, 8.0 * direction, -5.0),
+            (62, -7.0 * direction, 4.0),
+            (82, 6.0 * direction, -3.0),
+            (102, -3.0 * direction, 2.0),
+            (120, -4.0 * direction, 0.0),
         ):
             keyframe_transform(
                 antenna_part,
@@ -285,14 +292,30 @@ def prepare_alien() -> tuple[
     # The active arm now has an authored silhouette change: anticipate, reach
     # toward the near focus control, make one small adjustment, hold, and settle.
     # The first and last poses are identical for a clean browser loop.
+    # The far arm visibly plants against the telescope while the near hand finds
+    # the focus control. Moving both silhouettes makes the action read at story scale.
     for frame, rotation in (
         (1, (0.0, 0.0, 0.0)),
-        (12, (math.radians(5.0), math.radians(3.0), math.radians(4.0))),
-        (34, (math.radians(-54.0), math.radians(-46.0), math.radians(-43.0))),
-        (48, (math.radians(-70.0), math.radians(-65.0), math.radians(-61.0))),
-        (62, (math.radians(-72.0), math.radians(-67.0), math.radians(-62.0))),
-        (78, (math.radians(-69.0), math.radians(-64.0), math.radians(-60.0))),
-        (94, (math.radians(-70.0), math.radians(-65.0), math.radians(-61.0))),
+        (12, (math.radians(-8.0), math.radians(5.0), math.radians(-10.0))),
+        (30, (math.radians(-35.0), math.radians(28.0), math.radians(-42.0))),
+        (44, (math.radians(-52.0), math.radians(38.0), math.radians(-58.0))),
+        (62, (math.radians(-56.0), math.radians(41.0), math.radians(-61.0))),
+        (82, (math.radians(-51.0), math.radians(37.0), math.radians(-57.0))),
+        (102, (math.radians(-24.0), math.radians(18.0), math.radians(-29.0))),
+        (120, (0.0, 0.0, 0.0)),
+    ):
+        keyframe_transform(far_arm, frame, rotation=rotation)
+    name_action(far_arm, "ObserveTelescope_Brace")
+    add_smooth_interpolation(far_arm)
+
+    for frame, rotation in (
+        (1, (0.0, 0.0, 0.0)),
+        (12, (math.radians(12.0), math.radians(8.0), math.radians(10.0))),
+        (30, (math.radians(-58.0), math.radians(-50.0), math.radians(-48.0))),
+        (44, (math.radians(-78.0), math.radians(-72.0), math.radians(-69.0))),
+        (62, (math.radians(-84.0), math.radians(-76.0), math.radians(-73.0))),
+        (78, (math.radians(-77.0), math.radians(-70.0), math.radians(-67.0))),
+        (94, (math.radians(-80.0), math.radians(-73.0), math.radians(-70.0))),
         (108, (math.radians(-35.0), math.radians(-30.0), math.radians(-28.0))),
         (120, (0.0, 0.0, 0.0)),
     ):
@@ -341,6 +364,28 @@ def prepare_telescope() -> bpy.types.Object:
     telescope_root.scale = (1.34, 1.34, 1.34)
     telescope_root.location = (0.25, 0.0, -0.02)
     telescope_root.rotation_euler = (0.0, 0.0, 0.0)
+
+    # Explicit optical-axis locators survive into glTF as named empty nodes.
+    # They make the browser camera handoff auditable instead of eyeballed.
+    for name, location, role in (
+        (
+            "TELESCOPE_OpticalEyepiece",
+            (-0.69, -0.026, 1.074),
+            "camera enters here and looks toward the objective",
+        ),
+        (
+            "TELESCOPE_OpticalObjective",
+            (1.02, -0.026, 1.46),
+            "forward optical-axis target",
+        ),
+    ):
+        locator = bpy.data.objects.new(name, None)
+        bpy.context.collection.objects.link(locator)
+        locator.empty_display_type = "CIRCLE"
+        locator.empty_display_size = 0.08
+        locator.location = location
+        locator["optical_role"] = role
+        parent_keep_transform(locator, telescope_root)
 
     return telescope_root
 

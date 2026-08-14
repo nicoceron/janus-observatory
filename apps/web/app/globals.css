@@ -376,6 +376,12 @@ h1 {
   position: relative;
   width: 100%;
 }
+.earthStage[data-scene-kind='observer'] {
+  background:
+    radial-gradient(circle at 54% 43%, rgba(80, 105, 148, 0.12), transparent 32%),
+    radial-gradient(circle at 18% 76%, rgba(69, 45, 116, 0.08), transparent 28%),
+    linear-gradient(180deg, #010205, #03050a 58%, #010204);
+}
 .earthStageLoader {
   align-items: center;
   color: var(--muted);
@@ -440,7 +446,7 @@ h1 {
 .earthStage[data-scene-kind='branches'] .fallbackEarth,
 .earthStage[data-scene-kind='scenario'] .fallbackEarth,
 .earthStage[data-scene-kind='observer'] .fallbackEarth,
-.earthStage[data-scene-kind='ocular'] .fallbackEarth,
+.earthStage[data-scene-kind='spectrum'] .fallbackEarth,
 .earthStage[data-scene-kind='system'] .fallbackEarth {
   display: none;
 }
@@ -649,26 +655,6 @@ h1 {
   top: 34%;
   width: clamp(72px, 10vw, 130px);
 }
-.earthStage[data-scene-kind='ocular'] .fallbackTargetEarth {
-  display: block;
-  height: min(41vw, 430px);
-  left: 50%;
-  top: 49%;
-  transform: translate(-50%, -50%);
-  width: min(41vw, 430px);
-}
-.earthStage[data-scene-kind='ocular'] .fallbackOcular {
-  border: min(18vw, 190px) solid rgba(0, 0, 0, 0.88);
-  border-radius: 50%;
-  box-shadow: inset 0 0 80px #000;
-  display: block;
-  height: min(76vw, 780px);
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(76vw, 780px);
-}
 .worldLabels {
   inset: 0;
   opacity: 0;
@@ -791,41 +777,328 @@ h1 {
   margin: 0;
   overflow-wrap: anywhere;
 }
-.ocularOverlay {
-  background: radial-gradient(
-    circle at center,
-    transparent 0 34%,
-    rgba(0, 0, 0, 0.45) 58%,
-    #010302 76%
-  );
-  border-radius: 50%;
-  height: min(84vw, 920px);
-  left: 50%;
+.spectralConsole {
+  background:
+    linear-gradient(rgba(80, 126, 110, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(80, 126, 110, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 48% 47%, rgba(20, 67, 57, 0.5), transparent 48%),
+    linear-gradient(135deg, #020707 0%, #06110f 48%, #020605 100%);
+  background-size:
+    44px 44px,
+    44px 44px,
+    auto,
+    auto;
+  display: grid;
+  gap: clamp(18px, 2vw, 34px);
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 26%);
+  grid-template-rows: auto minmax(0, 1fr);
+  inset: 0;
   opacity: 0;
+  padding: clamp(72px, 8vh, 104px) clamp(34px, 5vw, 82px) clamp(64px, 8vh, 90px);
   pointer-events: none;
   position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(1.08);
+  transform: scale(1.025);
   transition:
-    opacity 0.8s ease,
-    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
-    visibility 0s linear 1.1s;
+    opacity 0.7s ease,
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 1s;
   visibility: hidden;
-  width: min(84vw, 920px);
   z-index: 5;
 }
-.ocularOverlay.storyOverlayVisible {
+.spectralConsole.storyOverlayVisible {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: scale(1);
   transition-delay: 0s;
   visibility: visible;
+}
+.spectralChrome {
+  border: 1px solid rgba(169, 208, 190, 0.16);
+  inset: clamp(55px, 6vh, 76px) clamp(20px, 2.5vw, 42px) clamp(48px, 5vh, 64px);
+  position: absolute;
+}
+.spectralChrome::before,
+.spectralChrome::after {
+  background: var(--scene-accent);
+  content: '';
+  height: 1px;
+  position: absolute;
+  top: -1px;
+  width: min(16vw, 220px);
+}
+.spectralChrome::before {
+  left: 0;
+}
+.spectralChrome::after {
+  right: 0;
+}
+.spectralChrome i {
+  border-color: rgba(184, 241, 92, 0.48);
+  border-style: solid;
+  height: 16px;
+  position: absolute;
+  width: 16px;
+}
+.spectralChrome i:nth-child(1) {
+  border-width: 1px 0 0 1px;
+  left: 9px;
+  top: 9px;
+}
+.spectralChrome i:nth-child(2) {
+  border-width: 1px 1px 0 0;
+  right: 9px;
+  top: 9px;
+}
+.spectralChrome i:nth-child(3) {
+  border-width: 0 1px 1px 0;
+  bottom: 9px;
+  right: 9px;
+}
+.spectralHeader {
+  align-items: start;
+  display: grid;
+  gap: 18px;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  position: relative;
+  z-index: 1;
+}
+.spectralHeader div {
+  border-left: 1px solid rgba(184, 241, 92, 0.36);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-left: 13px;
+}
+.spectralHeader span,
+.spectralPlotTitle span,
+.spectralVerdict > span {
+  color: #8fa69a;
+  font-family: var(--font-mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.spectralHeader strong {
+  color: #e8f2ec;
+  font-family: var(--font-mono);
+  font-size: clamp(0.64rem, 0.9vw, 0.82rem);
+  font-weight: 500;
+  margin-top: 7px;
+  overflow-wrap: anywhere;
+}
+.spectralHeader div:first-child strong {
+  color: var(--scene-accent);
+}
+.spectralPlot {
+  align-self: stretch;
+  background: rgba(0, 7, 6, 0.68);
+  border: 1px solid rgba(169, 208, 190, 0.18);
+  box-shadow:
+    inset 0 0 70px rgba(0, 0, 0, 0.42),
+    0 28px 80px rgba(0, 0, 0, 0.22);
+  min-height: 0;
+  padding: clamp(16px, 2vw, 28px);
+  position: relative;
+  z-index: 1;
+}
+.spectralPlot::after {
+  background: linear-gradient(90deg, transparent, rgba(184, 241, 92, 0.07), transparent);
+  content: '';
+  inset: 0;
+  opacity: 0.7;
+  pointer-events: none;
+}
+.spectralPlotTitle {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+.spectralPlotTitle div {
+  display: flex;
+  flex-direction: column;
+}
+.spectralPlotTitle strong {
+  color: #f2f7f4;
+  font-size: clamp(0.82rem, 1.25vw, 1.18rem);
+  font-weight: 450;
+  margin-top: 7px;
+}
+.spectralPlotTitle small {
+  border: 1px solid rgba(255, 200, 137, 0.32);
+  color: #ffc889;
+  font-family: var(--font-mono);
+  font-size: 0.45rem;
+  letter-spacing: 0.04em;
+  padding: 6px 8px;
+  text-transform: uppercase;
+}
+.spectralFeatureLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: flex-end;
+  list-style: none;
+  margin: 12px 0 -18px auto;
+  max-width: 60%;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+.spectralFeatureLegend li {
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 38%, transparent);
+  color: #dce9e1;
+  font-family: var(--font-mono);
+  font-size: 0.45rem;
+  letter-spacing: 0.05em;
+  padding: 5px 7px;
+  text-transform: uppercase;
+}
+.spectralPlot svg {
+  display: block;
+  height: calc(100% - 50px);
+  min-height: 250px;
+  overflow: visible;
+  width: 100%;
+}
+.spectralGrid line {
+  stroke: rgba(169, 208, 190, 0.09);
+  stroke-width: 1;
+}
+.spectralAxis {
+  stroke: rgba(215, 233, 222, 0.48);
+  stroke-width: 1;
+}
+.spectralTrace,
+.spectralTraceGlow {
+  fill: none;
+  stroke: url(#spectral-trace-gradient);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.spectralTraceGlow {
+  filter: url(#spectral-glow);
+  opacity: 0.45;
+  stroke-width: 13;
+}
+.spectralTrace {
+  stroke-dasharray: 980;
+  stroke-dashoffset: 980;
+  stroke-width: 3;
+}
+.spectralConsole.storyOverlayVisible .spectralTrace {
+  animation: spectral-draw 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.12s forwards;
+}
+.spectralFeature line {
+  stroke: rgba(232, 244, 237, 0.48);
+  stroke-dasharray: 3 4;
+  stroke-width: 1;
+}
+.spectralFeature circle {
+  fill: #06110f;
+  stroke: var(--scene-accent);
+  stroke-width: 2;
+}
+.spectralFeature text,
+.spectralTick text,
+.spectralAxisLabel {
+  fill: #b7c8be;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.spectralFeature text {
+  fill: #e2eee7;
+  font-size: 12px;
+}
+.spectralTick line {
+  stroke: rgba(215, 233, 222, 0.48);
+}
+.spectralScanLine {
+  animation: spectral-scan 3.6s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px var(--scene-accent));
+  opacity: 0.7;
+  stroke: var(--scene-accent);
+  stroke-width: 1.5;
+}
+.spectralEvidence {
+  align-self: stretch;
+  background: rgba(4, 13, 11, 0.82);
+  border: 1px solid rgba(169, 208, 190, 0.18);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: clamp(18px, 2vw, 28px);
+  position: relative;
+  z-index: 1;
+}
+.spectralVerdict {
+  border-bottom: 1px solid rgba(169, 208, 190, 0.18);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+}
+.spectralVerdict strong {
+  color: #eef6f1;
+  font-size: clamp(0.78rem, 1.15vw, 1rem);
+  font-weight: 450;
+  line-height: 1.45;
+  margin-top: 10px;
+}
+.spectralVerdict small {
+  color: #ffc889;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  line-height: 1.45;
+  margin-top: 10px;
+}
+.spectralEvidence dl {
+  display: grid;
+  gap: 0;
+  margin: auto 0 0;
+}
+.spectralEvidence dl div {
+  align-items: baseline;
+  border-top: 1px solid rgba(169, 208, 190, 0.12);
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 11px 0;
+}
+.spectralEvidence dt,
+.spectralEvidence dd {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+}
+.spectralEvidence dt {
+  color: #8fa69a;
+}
+.spectralEvidence dd {
+  color: var(--scene-accent);
+  margin: 0;
+  text-align: right;
+}
+@keyframes spectral-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes spectral-scan {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(748px);
+  }
 }
 .opticalBridge {
   --optical-progress: 0;
   --optical-aperture: 48%;
   --optical-blackout: 0;
-  --optical-focus-x: 31%;
-  --optical-focus-y: 58%;
+  --optical-focus-x: 50%;
+  --optical-focus-y: 50%;
   background: #000;
   inset: 0;
   -webkit-mask-image: radial-gradient(
@@ -848,95 +1121,6 @@ h1 {
   inset: 0;
   opacity: var(--optical-blackout);
   position: absolute;
-}
-.ocularReticle {
-  border: 1px solid rgba(217, 239, 226, 0.42);
-  border-radius: 50%;
-  inset: 10%;
-  position: absolute;
-}
-.ocularReticle::before,
-.ocularReticle::after {
-  background: rgba(217, 239, 226, 0.28);
-  content: '';
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-.ocularReticle::before {
-  height: 1px;
-  width: 88%;
-}
-.ocularReticle::after {
-  height: 88%;
-  width: 1px;
-}
-.ocularReticle i {
-  border: 1px solid rgba(217, 239, 226, 0.48);
-  height: 8px;
-  position: absolute;
-  width: 8px;
-}
-.ocularReticle i:nth-child(1) {
-  left: 9%;
-  top: 50%;
-}
-.ocularReticle i:nth-child(2) {
-  right: 9%;
-  top: 50%;
-}
-.ocularReticle i:nth-child(3) {
-  left: 50%;
-  top: 9%;
-}
-.ocularReticle i:nth-child(4) {
-  bottom: 9%;
-  left: 50%;
-}
-.ocularHeader {
-  color: #a8bbb0;
-  display: flex;
-  font-family: var(--font-mono);
-  font-size: 0.55rem;
-  gap: 18px;
-  left: 16%;
-  letter-spacing: 0.08em;
-  position: absolute;
-  right: 16%;
-  text-transform: uppercase;
-  top: 16%;
-}
-.ocularHeader span:first-child {
-  color: var(--scene-accent);
-}
-.ocularHeader span:last-child {
-  margin-left: auto;
-}
-.ocularEvidence {
-  bottom: 16%;
-  display: flex;
-  flex-direction: column;
-  font-family: var(--font-mono);
-  left: 16%;
-  position: absolute;
-}
-.ocularEvidence span {
-  color: #9fb0a7;
-  font-size: 0.5rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.ocularEvidence strong {
-  color: #f1f7f3;
-  font-size: clamp(0.75rem, 1.2vw, 1.08rem);
-  font-weight: 500;
-  margin-top: 8px;
-}
-.ocularEvidence small {
-  color: #ffc889;
-  font-size: 0.52rem;
-  margin-top: 8px;
 }
 .storyProgress {
   display: flex;
@@ -2964,28 +3148,63 @@ footer p {
     font-size: 0.42rem;
     white-space: nowrap;
   }
-  .ocularOverlay {
-    height: 145vw;
-    max-height: 92svh;
-    width: 145vw;
+  .spectralConsole {
+    gap: 12px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    padding: 64px 18px 46px;
+  }
+  .spectralChrome {
+    inset: 52px 8px 36px;
+  }
+  .spectralHeader {
+    gap: 8px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .spectralHeader div:nth-child(2) {
+    display: none;
+  }
+  .spectralHeader span {
+    font-size: 0.4rem;
+  }
+  .spectralHeader strong {
+    font-size: 0.53rem;
+  }
+  .spectralPlot {
+    padding: 12px;
+  }
+  .spectralPlotTitle small {
+    font-size: 0.35rem;
+    padding: 4px 5px;
+  }
+  .spectralFeatureLegend {
+    margin-bottom: -22px;
+    max-width: 100%;
+  }
+  .spectralPlot svg {
+    min-height: 230px;
+  }
+  .spectralEvidence {
+    display: block;
+    padding: 12px 14px;
+  }
+  .spectralEvidence dl {
+    display: none;
+  }
+  .spectralVerdict {
+    border: 0;
+    padding: 0;
+  }
+  .spectralVerdict strong {
+    font-size: 0.68rem;
+    margin-top: 5px;
+  }
+  .spectralFeature text {
+    font-size: 10px;
   }
   .opticalBridge {
     --optical-focus-x: 50%;
     --optical-focus-y: 52%;
-  }
-  .ocularHeader {
-    font-size: 0.46rem;
-    left: 21%;
-    right: 21%;
-    top: 18%;
-  }
-  .ocularHeader span:nth-child(2) {
-    display: none;
-  }
-  .ocularEvidence {
-    bottom: 21%;
-    left: 21%;
-    max-width: 58%;
   }
   .storyProgress {
     right: 8px;

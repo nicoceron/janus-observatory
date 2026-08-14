@@ -1,0 +1,51 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "docs/qa/janus-fab-observer-v4/frame-001.png",
+    "docs/qa/janus-fab-observer-v4/frame-012.png",
+    "docs/qa/janus-fab-observer-v4/frame-034.png",
+    "docs/qa/janus-fab-observer-v4/frame-048.png",
+    "docs/qa/janus-fab-observer-v4/frame-062.png",
+    "docs/qa/janus-fab-observer-v4/frame-078.png",
+    "docs/qa/janus-fab-observer-v4/frame-094.png",
+    "docs/qa/janus-fab-observer-v4/frame-120.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "frame-001.png",
+      "to": "frame-012.png",
+      "mean_rgb_diff": 4.0128679591049385
+    },
+    {
+      "from": "frame-012.png",
+      "to": "frame-034.png",
+      "mean_rgb_diff": 9.650744598765433
+    },
+    {
+      "from": "frame-034.png",
+      "to": "frame-048.png",
+      "mean_rgb_diff": 3.38391975308642
+    },
+    {
+      "from": "frame-048.png",
+      "to": "frame-062.png",
+      "mean_rgb_diff": 1.2197048611111112
+    },
+    {
+      "from": "frame-062.png",
+      "to": "frame-078.png",
+      "mean_rgb_diff": 1.519435763888889
+    },
+    {
+      "from": "frame-078.png",
+      "to": "frame-094.png",
+      "mean_rgb_diff": 4.51216869212963
+    },
+    {
+      "from": "frame-094.png",
+      "to": "frame-120.png",
+      "mean_rgb_diff": 7.581503665123456
+    }
+  ],
+  "warnings": []
+}

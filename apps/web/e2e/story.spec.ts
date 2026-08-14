@@ -100,16 +100,24 @@ test.describe('guided story', () => {
       [1, 'branches'],
       [3, 'scenario'],
       [13, 'observer'],
-      [14, 'ocular'],
+      [14, 'spectrum'],
       [17, 'system'],
     ] as const) {
       await steps.nth(index).scrollIntoViewIfNeeded();
       await expect(stage).toHaveAttribute('data-scene-kind', kind);
       if (kind === 'observer') {
         await expect(steps.nth(index)).toHaveAttribute('data-scroll-anchor', 'observer');
-        await expect(stage).toHaveAttribute('data-observer-asset', 'fab-animated-v3');
-        await expect(stage).toHaveAttribute('data-observer-motion', 'six-clip-scroll-scrub');
-        await expect(stage).toHaveAttribute('data-observer-camera', 'shoulder-eyepiece-ocular');
+        await expect(stage).toHaveAttribute('data-observer-asset', 'fab-animated-v4');
+        await expect(stage).toHaveAttribute('data-observer-motion', 'seven-clip-scroll-scrub');
+        await expect(stage).toHaveAttribute('data-observer-camera', 'alien-dolly-editorial-cut');
+      }
+      if (kind === 'spectrum') {
+        await expect(
+          story.getByRole('region', {
+            name: 'Habitable Worlds Observatory spectral readout for S1',
+          }),
+        ).toHaveClass(/storyOverlayVisible/);
+        await expect(story.getByText('Not a recovered raw PSG/LIFEsim curve')).toBeVisible();
       }
       const sameCanvas = await page.evaluate(
         (element) =>

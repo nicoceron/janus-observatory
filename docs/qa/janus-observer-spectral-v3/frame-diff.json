@@ -1,0 +1,39 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "/tmp/janus-motion-qa/01-pose.png",
+    "/tmp/janus-motion-qa/02-reach.png",
+    "/tmp/janus-motion-qa/03-dolly.png",
+    "/tmp/janus-motion-qa/04-occlude.png",
+    "/tmp/janus-motion-qa/05-spectrum-s1.png",
+    "/tmp/janus-motion-qa/06-spectrum-life-s2.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "01-pose.png",
+      "to": "02-reach.png",
+      "mean_rgb_diff": 9.502203125
+    },
+    {
+      "from": "02-reach.png",
+      "to": "03-dolly.png",
+      "mean_rgb_diff": 9.611330208333333
+    },
+    {
+      "from": "03-dolly.png",
+      "to": "04-occlude.png",
+      "mean_rgb_diff": 13.815868333333334
+    },
+    {
+      "from": "04-occlude.png",
+      "to": "05-spectrum-s1.png",
+      "mean_rgb_diff": 7.193914791666667
+    },
+    {
+      "from": "05-spectrum-s1.png",
+      "to": "06-spectrum-life-s2.png",
+      "mean_rgb_diff": 5.9012956249999995
+    }
+  ],
+  "warnings": []
+}
