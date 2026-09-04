@@ -3,6 +3,45 @@
 This log records access claims separately from public reuse rights. Access to a private workspace or
 permission to inspect research material does not automatically authorize public redistribution.
 
+## 2026-08-30 — Complete asset-ledger publication contract
+
+- All 33 asset records now identify the source agency, an evidence-backed retrieval/review date,
+  and a maximum decoded raster size or explicit `null`. Dates were normalized to `YYYY-MM-DD` from
+  dates already recorded in source versions, generation records, decisions, or this log; no
+  unrecorded time of day was invented.
+- Link-only records explicitly contain no local source checksum, derivative checksum, public path,
+  or transformation history. `approved`, `link_only`, and `excluded` describe project admission
+  separately from the underlying license/rights status.
+- Each of the 24 public-derivative records retains original and derivative SHA-256 values plus a
+  human-readable history and machine-checkable applied/allowed transformation sets. Those records
+  cover 23 files because the two licensed sources in the combined observer GLB intentionally share
+  one derivative group and checksum.
+- Validation now decodes WebP/JPEG MIME and dimensions, validates GLB 2 headers and byte length,
+  checks exact responsive Earth tiers, rejects accidental duplicate public paths, and confirms that
+  every file below `apps/web/public/assets` is admitted.
+
+Interpretation: an `approved` rights record may still have no local derivative. A `link_only` record
+is discoverable and citable but cannot imply local custody or redistribution. See
+`docs/DECISION_006_ASSET_LEDGER_PUBLICATION_CONTRACT.md` for the full contract.
+
+## 2026-08-29 — Responsive Earth texture derivatives
+
+- The existing 4096 × 2048 Earth day, night, and packed bump/roughness/cloud JPEGs remain pinned to
+  Three.js commit `2431a09f46f34c560bc8e44b33be0e567723d5b9`. The Three.js example credits
+  Solar System Scope and identifies the textures as CC BY 4.0.
+- Janus Observatory generated 2048 × 1024 and 1024 × 512 WebP variants directly from those pinned
+  files with cwebp 1.6.0, method 6, sharp YUV conversion, and metadata removal. Day and night use
+  quality 88; the packed channel map uses quality 94. The exact commands, source checksums,
+  derivative checksums, modification notices, and public paths are recorded separately for all six
+  derivatives in `data/assets/ledger.json`.
+- The runtime treats day/night as sRGB and the packed map as non-color channel data. Low/mobile
+  devices receive the 1K set, the bounded medium tier receives 2K, and only a wide, explicitly
+  high-capacity desktop receives the retained 4K set.
+
+Interpretation: these are responsive presentation derivatives of admitted CC BY 4.0 textures, not
+new scientific datasets or NASA Black Marble products. The packed map remains a high-quality lossy
+derivative of an already-lossy JPEG and requires rendered visual QA for bump, roughness, and clouds.
+
 ## 2026-08-13 — Fab alien observer and telescope
 
 - The project owner selected “Cute Alien Character” by Ndevisuals from Fab under CC BY 4.0 and

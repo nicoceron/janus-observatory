@@ -1,5 +1,6 @@
 # JavaScript
 node_modules/
+.pnpm-store/
 .next/
 out/
 coverage/
@@ -37,6 +38,7 @@ assets/sources/fab/*.zip
 assets/sources/fab/*.blend
 assets/sources/fab/*.blend1
 assets/sources/fab/extracted/
+assets/sources/generated/scenarios/*.png
 docs/qa/fab-source-inspection/
 docs/qa/janus-fab-observer-v2/frame-*.png
 

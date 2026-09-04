@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "id": "janus.observability.apjl-figure-6",
   "title": "Technosignature detectability with future missions",
   "contentOrigin": "transcribed",
@@ -7,7 +7,10 @@
   "source": {
     "sourceId": "JANUS-PAPER-03",
     "sourceVersion": "arXiv:2511.20329v2",
-    "locator": { "page": 10, "figure": "Figure 6" }
+    "locator": {
+      "page": 10,
+      "figure": "Figure 6"
+    }
   },
   "sourceLicense": "CC BY 4.0",
   "transcriptionMethod": "Manual transcription from the rendered figure, with all labels preserved as categorical detections.",
@@ -16,14 +19,30 @@
     "The matrix summarizes the mission concepts and source assumptions in the paper; it is not a probability forecast."
   ],
   "notes": [
-    "The plural 'radio beacons' in S5 and singular 'radio beacon' in S1 are preserved from the source figure."
+    "The plural 'radio beacons' in S5 and singular 'radio beacon' in S1 are preserved from the source figure.",
+    "Every mission cell and every displayed mission assumption carries an exact field-level source locator."
   ],
   "missions": [
-    { "id": "habitable_worlds_observatory", "label": "Habitable Worlds Observatory" },
-    { "id": "radio", "label": "Radio" },
-    { "id": "large_interferometer_for_exoplanets", "label": "Large Interferometer for Exoplanets" },
-    { "id": "solar_gravitational_lens", "label": "Solar Gravitational Lens" },
-    { "id": "deep_space_probes", "label": "Deep Space Probes" }
+    {
+      "id": "habitable_worlds_observatory",
+      "label": "Habitable Worlds Observatory"
+    },
+    {
+      "id": "radio",
+      "label": "Radio"
+    },
+    {
+      "id": "large_interferometer_for_exoplanets",
+      "label": "Large Interferometer for Exoplanets"
+    },
+    {
+      "id": "solar_gravitational_lens",
+      "label": "Solar Gravitational Lens"
+    },
+    {
+      "id": "deep_space_probes",
+      "label": "Deep Space Probes"
+    }
   ],
   "records": [
     {
@@ -34,7 +53,87 @@
         "large_interferometer_for_exoplanets": ["CO2 + CFC-11/12"],
         "solar_gravitational_lens": ["large surface features (Earth)"],
         "deep_space_probes": ["large surface features (Earth, Mars)"]
-      }
+      },
+      "detectionProvenance": {
+        "habitable_worlds_observatory": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S1",
+              "column": "Habitable Worlds Observatory"
+            }
+          }
+        ],
+        "radio": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S1",
+              "column": "Radio"
+            }
+          }
+        ],
+        "large_interferometer_for_exoplanets": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S1",
+              "column": "Large Interferometer for Exoplanets"
+            }
+          }
+        ],
+        "solar_gravitational_lens": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S1",
+              "column": "Solar Gravitational Lens"
+            }
+          }
+        ],
+        "deep_space_probes": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S1",
+              "column": "Deep Space Probes"
+            }
+          }
+        ]
+      },
+      "scenarioProvenance": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "S1",
+            "column": "Scenario"
+          }
+        }
+      ]
     },
     {
       "scenarioId": "S2",
@@ -44,7 +143,87 @@
         "large_interferometer_for_exoplanets": ["CO2 + CFC-11/12", "N2O + CH4 + NH3"],
         "solar_gravitational_lens": [],
         "deep_space_probes": ["large surface features (Earth, Mars)"]
-      }
+      },
+      "detectionProvenance": {
+        "habitable_worlds_observatory": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S2",
+              "column": "Habitable Worlds Observatory"
+            }
+          }
+        ],
+        "radio": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S2",
+              "column": "Radio"
+            }
+          }
+        ],
+        "large_interferometer_for_exoplanets": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S2",
+              "column": "Large Interferometer for Exoplanets"
+            }
+          }
+        ],
+        "solar_gravitational_lens": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S2",
+              "column": "Solar Gravitational Lens"
+            }
+          }
+        ],
+        "deep_space_probes": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S2",
+              "column": "Deep Space Probes"
+            }
+          }
+        ]
+      },
+      "scenarioProvenance": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "S2",
+            "column": "Scenario"
+          }
+        }
+      ]
     },
     {
       "scenarioId": "S3",
@@ -54,7 +233,87 @@
         "large_interferometer_for_exoplanets": ["CO2 + CFC-11/12"],
         "solar_gravitational_lens": [],
         "deep_space_probes": ["large surface features (Earth, Mars)"]
-      }
+      },
+      "detectionProvenance": {
+        "habitable_worlds_observatory": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S3",
+              "column": "Habitable Worlds Observatory"
+            }
+          }
+        ],
+        "radio": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S3",
+              "column": "Radio"
+            }
+          }
+        ],
+        "large_interferometer_for_exoplanets": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S3",
+              "column": "Large Interferometer for Exoplanets"
+            }
+          }
+        ],
+        "solar_gravitational_lens": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S3",
+              "column": "Solar Gravitational Lens"
+            }
+          }
+        ],
+        "deep_space_probes": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S3",
+              "column": "Deep Space Probes"
+            }
+          }
+        ]
+      },
+      "scenarioProvenance": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "S3",
+            "column": "Scenario"
+          }
+        }
+      ]
     },
     {
       "scenarioId": "S4",
@@ -64,7 +323,87 @@
         "large_interferometer_for_exoplanets": [],
         "solar_gravitational_lens": [],
         "deep_space_probes": ["large surface features (Earth)"]
-      }
+      },
+      "detectionProvenance": {
+        "habitable_worlds_observatory": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S4",
+              "column": "Habitable Worlds Observatory"
+            }
+          }
+        ],
+        "radio": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S4",
+              "column": "Radio"
+            }
+          }
+        ],
+        "large_interferometer_for_exoplanets": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S4",
+              "column": "Large Interferometer for Exoplanets"
+            }
+          }
+        ],
+        "solar_gravitational_lens": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S4",
+              "column": "Solar Gravitational Lens"
+            }
+          }
+        ],
+        "deep_space_probes": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S4",
+              "column": "Deep Space Probes"
+            }
+          }
+        ]
+      },
+      "scenarioProvenance": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "S4",
+            "column": "Scenario"
+          }
+        }
+      ]
     },
     {
       "scenarioId": "S5",
@@ -74,7 +413,87 @@
         "large_interferometer_for_exoplanets": [],
         "solar_gravitational_lens": ["large surface features (Earth, Mars)"],
         "deep_space_probes": ["large surface features (Earth, Mars)"]
-      }
+      },
+      "detectionProvenance": {
+        "habitable_worlds_observatory": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S5",
+              "column": "Habitable Worlds Observatory"
+            }
+          }
+        ],
+        "radio": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S5",
+              "column": "Radio"
+            }
+          }
+        ],
+        "large_interferometer_for_exoplanets": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S5",
+              "column": "Large Interferometer for Exoplanets"
+            }
+          }
+        ],
+        "solar_gravitational_lens": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S5",
+              "column": "Solar Gravitational Lens"
+            }
+          }
+        ],
+        "deep_space_probes": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S5",
+              "column": "Deep Space Probes"
+            }
+          }
+        ]
+      },
+      "scenarioProvenance": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "S5",
+            "column": "Scenario"
+          }
+        }
+      ]
     },
     {
       "scenarioId": "S6",
@@ -84,7 +503,87 @@
         "large_interferometer_for_exoplanets": ["CO2 + CFC-11/12", "CF4"],
         "solar_gravitational_lens": ["large surface features (Earth, Mars)"],
         "deep_space_probes": ["large surface features (Venus, Earth, Mars)"]
-      }
+      },
+      "detectionProvenance": {
+        "habitable_worlds_observatory": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S6",
+              "column": "Habitable Worlds Observatory"
+            }
+          }
+        ],
+        "radio": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S6",
+              "column": "Radio"
+            }
+          }
+        ],
+        "large_interferometer_for_exoplanets": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S6",
+              "column": "Large Interferometer for Exoplanets"
+            }
+          }
+        ],
+        "solar_gravitational_lens": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S6",
+              "column": "Solar Gravitational Lens"
+            }
+          }
+        ],
+        "deep_space_probes": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S6",
+              "column": "Deep Space Probes"
+            }
+          }
+        ]
+      },
+      "scenarioProvenance": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "S6",
+            "column": "Scenario"
+          }
+        }
+      ]
     },
     {
       "scenarioId": "S7",
@@ -94,7 +593,87 @@
         "large_interferometer_for_exoplanets": [],
         "solar_gravitational_lens": [],
         "deep_space_probes": ["large surface features (Earth)"]
-      }
+      },
+      "detectionProvenance": {
+        "habitable_worlds_observatory": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S7",
+              "column": "Habitable Worlds Observatory"
+            }
+          }
+        ],
+        "radio": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S7",
+              "column": "Radio"
+            }
+          }
+        ],
+        "large_interferometer_for_exoplanets": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S7",
+              "column": "Large Interferometer for Exoplanets"
+            }
+          }
+        ],
+        "solar_gravitational_lens": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S7",
+              "column": "Solar Gravitational Lens"
+            }
+          }
+        ],
+        "deep_space_probes": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S7",
+              "column": "Deep Space Probes"
+            }
+          }
+        ]
+      },
+      "scenarioProvenance": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "S7",
+            "column": "Scenario"
+          }
+        }
+      ]
     },
     {
       "scenarioId": "S8",
@@ -104,7 +683,87 @@
         "large_interferometer_for_exoplanets": ["CO2 + CFC-11/12", "N2O + CH4 + NH3"],
         "solar_gravitational_lens": [],
         "deep_space_probes": ["large surface features (Earth)"]
-      }
+      },
+      "detectionProvenance": {
+        "habitable_worlds_observatory": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S8",
+              "column": "Habitable Worlds Observatory"
+            }
+          }
+        ],
+        "radio": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S8",
+              "column": "Radio"
+            }
+          }
+        ],
+        "large_interferometer_for_exoplanets": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S8",
+              "column": "Large Interferometer for Exoplanets"
+            }
+          }
+        ],
+        "solar_gravitational_lens": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S8",
+              "column": "Solar Gravitational Lens"
+            }
+          }
+        ],
+        "deep_space_probes": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S8",
+              "column": "Deep Space Probes"
+            }
+          }
+        ]
+      },
+      "scenarioProvenance": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "S8",
+            "column": "Scenario"
+          }
+        }
+      ]
     },
     {
       "scenarioId": "S9",
@@ -114,7 +773,87 @@
         "large_interferometer_for_exoplanets": [],
         "solar_gravitational_lens": ["large surface features (Venus, Mars)"],
         "deep_space_probes": ["large surface features (Venus, Mars)"]
-      }
+      },
+      "detectionProvenance": {
+        "habitable_worlds_observatory": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S9",
+              "column": "Habitable Worlds Observatory"
+            }
+          }
+        ],
+        "radio": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S9",
+              "column": "Radio"
+            }
+          }
+        ],
+        "large_interferometer_for_exoplanets": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S9",
+              "column": "Large Interferometer for Exoplanets"
+            }
+          }
+        ],
+        "solar_gravitational_lens": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S9",
+              "column": "Solar Gravitational Lens"
+            }
+          }
+        ],
+        "deep_space_probes": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S9",
+              "column": "Deep Space Probes"
+            }
+          }
+        ]
+      },
+      "scenarioProvenance": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "S9",
+            "column": "Scenario"
+          }
+        }
+      ]
     },
     {
       "scenarioId": "S10",
@@ -124,7 +863,621 @@
         "large_interferometer_for_exoplanets": [],
         "solar_gravitational_lens": ["large surface features (Earth)"],
         "deep_space_probes": ["large surface features (Venus, Mars)"]
+      },
+      "detectionProvenance": {
+        "habitable_worlds_observatory": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S10",
+              "column": "Habitable Worlds Observatory"
+            }
+          }
+        ],
+        "radio": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S10",
+              "column": "Radio"
+            }
+          }
+        ],
+        "large_interferometer_for_exoplanets": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S10",
+              "column": "Large Interferometer for Exoplanets"
+            }
+          }
+        ],
+        "solar_gravitational_lens": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S10",
+              "column": "Solar Gravitational Lens"
+            }
+          }
+        ],
+        "deep_space_probes": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 10,
+              "figure": "Figure 6",
+              "row": "S10",
+              "column": "Deep Space Probes"
+            }
+          }
+        ]
+      },
+      "scenarioProvenance": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "S10",
+            "column": "Scenario"
+          }
+        }
+      ]
+    }
+  ],
+  "missionAssumptions": {
+    "habitable_worlds_observatory": {
+      "distance": {
+        "captureStatus": "captured",
+        "value": "10 pc",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 4,
+              "section": "2.1 Observations of Earth",
+              "figure": "Figure 1",
+              "row": "Synthetic future-Earth spectra",
+              "column": "Target distance"
+            }
+          }
+        ]
+      },
+      "integrationTime": {
+        "captureStatus": "not_reported",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 4,
+              "section": "2.1 Observations of Earth",
+              "row": "HWO detectability estimate",
+              "column": "Integration time",
+              "quote": "remains to be calculated"
+            }
+          }
+        ],
+        "note": "The paper does not report an HWO integration time for its 6 m concept; the cited 400 hr example is for a different 15 m precursor concept."
+      },
+      "host": {
+        "captureStatus": "captured",
+        "value": "Future terrestrial-world scenario orbiting a G-dwarf host star in a Solar-System analogue",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 3,
+              "section": "2 Characterization by HWO",
+              "row": "Scenario target assumptions",
+              "column": "Host / architecture"
+            }
+          }
+        ],
+        "note": "The paper says this architecture is a scenario assumption, not a claim that such systems are likely to host life or technology."
+      },
+      "concept": {
+        "captureStatus": "captured",
+        "value": "6 m HWO concept using reflected-light observations at visible and near-infrared wavelengths",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 4,
+              "section": "2.1 Observations of Earth",
+              "row": "HWO-like telescope",
+              "column": "Instrument concept"
+            }
+          }
+        ]
+      }
+    },
+    "radio": {
+      "distance": {
+        "captureStatus": "captured",
+        "value": "10 pc",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "section": "3 Observations of Radio Emissions",
+              "figure": "Figure 3",
+              "row": "S1 or S5 radio beacon",
+              "column": "Distance"
+            }
+          }
+        ]
+      },
+      "integrationTime": {
+        "captureStatus": "captured",
+        "value": "50 ms at 10 Hz for a 10^11 W beacon; 8.5 minutes for a ~10^9 W Deep-Space-Network-like transmitter; more than one year for a Voyager-like transmitter",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "section": "3 Observations of Radio Emissions",
+              "figure": "Figure 3",
+              "row": "S1 or S5 radio beacon",
+              "column": "Total integration time"
+            }
+          }
+        ],
+        "note": "These are discrete transmitter-power examples, not a continuous Observatory control."
+      },
+      "host": {
+        "captureStatus": "captured",
+        "value": "Future terrestrial-world scenario orbiting a G-dwarf host star in a Solar-System analogue",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 3,
+              "section": "2 Characterization by HWO",
+              "row": "Scenario target assumptions",
+              "column": "Host / architecture"
+            }
+          }
+        ],
+        "note": "The paper says this architecture is a scenario assumption, not a claim that such systems are likely to host life or technology."
+      },
+      "concept": {
+        "captureStatus": "captured",
+        "value": "Square Kilometre Array-like receiver (SEFD 1.5 Jy, SNR 5) observing persistent omnidirectional 10 GHz beacons",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "section": "3 Observations of Radio Emissions",
+              "figure": "Figure 3",
+              "row": "Receiver and beacon assumptions",
+              "column": "Instrument concept"
+            }
+          }
+        ]
+      }
+    },
+    "large_interferometer_for_exoplanets": {
+      "distance": {
+        "captureStatus": "captured",
+        "value": "10 pc",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "section": "4 Characterization by the LIFE Mission",
+              "figure": "Figure 4",
+              "row": "Simulated Earth-like target",
+              "column": "Distance"
+            }
+          }
+        ]
+      },
+      "integrationTime": {
+        "captureStatus": "captured",
+        "value": "10 days",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "section": "4 Characterization by the LIFE Mission",
+              "figure": "Figure 4",
+              "row": "Simulated observations",
+              "column": "Integration period"
+            }
+          }
+        ]
+      },
+      "host": {
+        "captureStatus": "captured",
+        "value": "Future terrestrial-world scenario orbiting a G-dwarf host star in a Solar-System analogue",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 3,
+              "section": "2 Characterization by HWO",
+              "row": "Scenario target assumptions",
+              "column": "Host / architecture"
+            }
+          }
+        ],
+        "note": "The paper says this architecture is a scenario assumption, not a claim that such systems are likely to host life or technology."
+      },
+      "concept": {
+        "captureStatus": "captured",
+        "value": "Four 2 m apertures, wavelength range ~4–18.5 μm, spectral resolution 50, and three times local zodiacal dust density",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "section": "4 Characterization by the LIFE Mission",
+              "row": "LIFEsim configuration",
+              "column": "Instrument concept"
+            }
+          }
+        ]
+      }
+    },
+    "solar_gravitational_lens": {
+      "distance": {
+        "captureStatus": "captured",
+        "value": "10 pc",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 9,
+              "section": "5 Imaging with the Solar Gravitational Lens",
+              "figure": "Figure 5",
+              "row": "Earth-like exoplanet",
+              "column": "Distance"
+            }
+          }
+        ]
+      },
+      "integrationTime": {
+        "captureStatus": "captured",
+        "value": "3 days at 128 × 128 pixels; 0.5 year at 256 × 256 pixels; 33 years at 512 × 512 pixels",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 9,
+              "section": "5 Imaging with the Solar Gravitational Lens",
+              "figure": "Figure 5",
+              "row": "Earth-like exoplanet at 10 pc",
+              "column": "Observation time"
+            }
+          }
+        ],
+        "note": "The paper makes integration time resolution-dependent; no single synthetic slider value is implied."
+      },
+      "host": {
+        "captureStatus": "captured",
+        "value": "Future terrestrial-world scenario orbiting a G-dwarf host star in a Solar-System analogue",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 3,
+              "section": "2 Characterization by HWO",
+              "row": "Scenario target assumptions",
+              "column": "Host / architecture"
+            }
+          }
+        ],
+        "note": "The paper says this architecture is a scenario assumption, not a claim that such systems are likely to host life or technology."
+      },
+      "concept": {
+        "captureStatus": "captured",
+        "value": "1 m optical telescope using the Sun as a gravitational lens, with SNR 5 and a baseline near 1030 au for a 10 pc target",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 9,
+              "section": "5 Imaging with the Solar Gravitational Lens",
+              "figure": "Figure 5",
+              "row": "Equation 3 configuration",
+              "column": "Instrument concept"
+            }
+          }
+        ]
+      }
+    },
+    "deep_space_probes": {
+      "distance": {
+        "captureStatus": "not_reported",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 9,
+              "section": "6 Discussion",
+              "row": "Deep-space probe flyby",
+              "column": "Target distance"
+            }
+          }
+        ],
+        "note": "The paper discusses a conceptual exoplanet flyby but does not report a fixed probe-target distance."
+      },
+      "integrationTime": {
+        "captureStatus": "not_reported",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 9,
+              "section": "6 Discussion",
+              "row": "Deep-space probe flyby",
+              "column": "Integration time"
+            }
+          }
+        ],
+        "note": "The paper does not report an integration time for the conceptual flyby."
+      },
+      "host": {
+        "captureStatus": "captured",
+        "value": "Future terrestrial-world scenario orbiting a G-dwarf host star in a Solar-System analogue",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 3,
+              "section": "2 Characterization by HWO",
+              "row": "Scenario target assumptions",
+              "column": "Host / architecture"
+            }
+          }
+        ],
+        "note": "The paper says this architecture is a scenario assumption, not a claim that such systems are likely to host life or technology."
+      },
+      "concept": {
+        "captureStatus": "captured",
+        "value": "Conceptual exoplanet flyby capable of high-resolution surface imagery and potentially high-resolution atmospheric spectroscopy",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-03",
+            "sourceVersion": "arXiv:2511.20329v2",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 9,
+              "section": "6 Discussion",
+              "row": "Deep-space probe flyby",
+              "column": "Instrument concept"
+            }
+          }
+        ]
       }
     }
-  ]
+  },
+  "missionProvenance": {
+    "habitable_worlds_observatory": {
+      "id": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "Header",
+            "column": "Habitable Worlds Observatory"
+          }
+        }
+      ],
+      "label": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "Header",
+            "column": "Habitable Worlds Observatory"
+          }
+        }
+      ]
+    },
+    "radio": {
+      "id": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "Header",
+            "column": "Radio"
+          }
+        }
+      ],
+      "label": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "Header",
+            "column": "Radio"
+          }
+        }
+      ]
+    },
+    "large_interferometer_for_exoplanets": {
+      "id": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "Header",
+            "column": "Large Interferometer for Exoplanets"
+          }
+        }
+      ],
+      "label": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "Header",
+            "column": "Large Interferometer for Exoplanets"
+          }
+        }
+      ]
+    },
+    "solar_gravitational_lens": {
+      "id": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "Header",
+            "column": "Solar Gravitational Lens"
+          }
+        }
+      ],
+      "label": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "Header",
+            "column": "Solar Gravitational Lens"
+          }
+        }
+      ]
+    },
+    "deep_space_probes": {
+      "id": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "Header",
+            "column": "Deep Space Probes"
+          }
+        }
+      ],
+      "label": [
+        {
+          "sourceId": "JANUS-PAPER-03",
+          "sourceVersion": "arXiv:2511.20329v2",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 10,
+            "figure": "Figure 6",
+            "row": "Header",
+            "column": "Deep Space Probes"
+          }
+        }
+      ]
+    }
+  }
 }

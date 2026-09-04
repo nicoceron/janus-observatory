@@ -1,11 +1,18 @@
 import { z } from 'zod';
 
-import { SourceRefSchema } from './evidence';
+import { FieldSourceRefSchema, SourceRefSchema } from './evidence';
+
+const exactFieldRefs = z.array(FieldSourceRefSchema).min(1);
 
 const TableColumnSchema = z.object({
   id: z.string().min(1),
   label: z.string().min(1),
   kind: z.enum(['reference', 'scenario']),
+  fieldProvenance: z.object({
+    id: exactFieldRefs,
+    label: exactFieldRefs,
+    kind: exactFieldRefs,
+  }),
 });
 
 const NumericTableRowSchema = z.object({
@@ -13,6 +20,12 @@ const NumericTableRowSchema = z.object({
   label: z.string().min(1),
   unit: z.string().min(1),
   values: z.record(z.string(), z.number().finite().nullable()),
+  fieldProvenance: z.object({
+    id: exactFieldRefs,
+    label: exactFieldRefs,
+    unit: exactFieldRefs,
+    values: z.record(z.string(), exactFieldRefs),
+  }),
 });
 
 export const PublishedNumericTableSchema = z
@@ -47,6 +60,17 @@ export const PublishedNumericTableSchema = z
           code: 'custom',
           message: `Row ${row.id} must provide exactly one value or null for every column.`,
           path: ['rows', rowIndex, 'values'],
+        });
+      }
+      const provenanceKeys = Object.keys(row.fieldProvenance.values).sort();
+      if (
+        provenanceKeys.length !== expected.length ||
+        provenanceKeys.some((key, index) => key !== expected[index])
+      ) {
+        context.addIssue({
+          code: 'custom',
+          message: `Row ${row.id} must provide exact provenance for every column.`,
+          path: ['rows', rowIndex, 'fieldProvenance', 'values'],
         });
       }
     }

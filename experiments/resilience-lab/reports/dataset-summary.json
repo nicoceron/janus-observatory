@@ -1,0 +1,93 @@
+{
+  "topic": "level2_dataset",
+  "generatedAt": "2026-08-21T22:38:52+00:00",
+  "gitCommit": "d740da87f8d562005cf8a25e75bc391ac1fbc8f6",
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.5.2",
+    "scipy": "1.18.0",
+    "platform": "darwin",
+    "capturedAt": "2026-08-21T22:38:52+00:00",
+    "scikit-learn": "1.9.0"
+  },
+  "file": "data/generated/janus-resilience-level2-8192x8.csv.gz",
+  "sha256": "831e1172fdb9021658f44b7c2c60101a6a7b4e0792fc1ab460cb4615b43cb3cd",
+  "manifest": {
+    "datasetVersion": "jrl-dataset-1.0.0",
+    "simulatorVersion": "janus-resilience event-driven 0.1.0",
+    "windowYears": 1000,
+    "designPoints": 8192,
+    "replicatesPerPoint": 8,
+    "totalRuns": 65536,
+    "baseSeed": 20260821,
+    "sampling": "scipy.stats.qmc.Sobol, scrambled",
+    "designSpace": {
+      "r": [
+        0.0001,
+        0.006
+      ],
+      "R0": [
+        400.0,
+        2700.0
+      ],
+      "delta": [
+        0.1,
+        2.5
+      ],
+      "cf": [
+        0.2,
+        1.0
+      ],
+      "rd": [
+        0.0,
+        100.0
+      ],
+      "rf": [
+        0.1,
+        1.0
+      ],
+      "h": [
+        0.0,
+        0.005
+      ]
+    },
+    "columns": [
+      "run_id",
+      "point_id",
+      "replicate",
+      "seed",
+      "r",
+      "R0",
+      "delta",
+      "cf",
+      "rd",
+      "rf",
+      "h",
+      "duty_cycle",
+      "first_collapse_year",
+      "censored",
+      "cause_first",
+      "n_collapses",
+      "regime",
+      "duty_tier"
+    ]
+  },
+  "summary": {
+    "runs": 65536,
+    "meanDutyCycle": 0.868151,
+    "stdDutyCycle": 0.119629,
+    "meanCollapseCount": 2.9302,
+    "fractionNeverCollapsed": 0.11702,
+    "causeShares": {
+      "resource": 0.14993,
+      "hazard": 0.85007
+    },
+    "regimeCounts": {
+      "recurrent": 47492,
+      "single_collapse": 10375,
+      "stable": 7669
+    },
+    "perPointSeedNoiseStd": 0.052395,
+    "pointMeanDutyStd": 0.103859
+  }
+}

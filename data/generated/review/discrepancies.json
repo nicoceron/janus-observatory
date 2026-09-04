@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "dataVersion": "sha256:46a0e94a969301c49cfafe00463e5c7e9be5dce423ddcdeb21fe4ad0614d2046",
+  "releaseStatus": "candidate_pending_independent_review",
+  "reviewAttestationHash": null,
+  "discrepancies": [
+    {
+      "code": "PUBLISHED_GROWTH_RATE_DISCREPANCY",
+      "scenarioId": "S1",
+      "foundationalTable9AnnualGrowthRate": 0.0012,
+      "collapsePaperTable4GrowthParameter": 0.002,
+      "resolution": "Retained as separate reported values from separate publications; no silent reconciliation or preference was applied.",
+      "sourceIds": [
+        "JANUS-PAPER-01",
+        "JANUS-PAPER-05"
+      ]
+    },
+    {
+      "code": "PUBLISHED_GROWTH_RATE_DISCREPANCY",
+      "scenarioId": "S6",
+      "foundationalTable9AnnualGrowthRate": 0.0035,
+      "collapsePaperTable4GrowthParameter": 0.0018,
+      "resolution": "Retained as separate reported values from separate publications; no silent reconciliation or preference was applied.",
+      "sourceIds": [
+        "JANUS-PAPER-01",
+        "JANUS-PAPER-05"
+      ]
+    },
+    {
+      "code": "PUBLISHED_GROWTH_RATE_DISCREPANCY",
+      "scenarioId": "S9",
+      "foundationalTable9AnnualGrowthRate": 0.0098,
+      "collapsePaperTable4GrowthParameter": 0.0011,
+      "resolution": "Retained as separate reported values from separate publications; no silent reconciliation or preference was applied.",
+      "sourceIds": [
+        "JANUS-PAPER-01",
+        "JANUS-PAPER-05"
+      ]
+    }
+  ]
+}

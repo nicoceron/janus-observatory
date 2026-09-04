@@ -55,6 +55,7 @@ export type TextGenerationRequest = {
   input: string;
   maxOutputTokens?: number;
   reasoningEffort?: 'high' | 'max';
+  signal?: AbortSignal;
 };
 
 export type GenerationTelemetry = {
@@ -118,7 +119,9 @@ export class DeepSeekResponsesClient {
       method: 'POST',
       headers: this.#headers(),
       body: JSON.stringify(body),
-      signal: AbortSignal.timeout(this.#config.timeoutMs),
+      signal: request.signal
+        ? AbortSignal.any([request.signal, AbortSignal.timeout(this.#config.timeoutMs)])
+        : AbortSignal.timeout(this.#config.timeoutMs),
     });
 
     if (!response.ok) {

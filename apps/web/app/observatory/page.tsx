@@ -4,7 +4,18 @@ import { Suspense } from 'react';
 import { InnerPage } from '../components/InnerPage';
 import { ObservatoryExplorer } from './ObservatoryExplorer';
 
-export const metadata: Metadata = { title: 'Observatory' };
+export const metadata: Metadata = {
+  title: 'Observatory',
+  description:
+    'Compare what five observing concepts list across all ten Project Janus scenarios, with categorical evidence states, assumptions, source locators, and structured equivalents.',
+  alternates: { canonical: '/observatory' },
+  openGraph: {
+    title: 'Observatory · Janus Observatory',
+    description:
+      'Change the observing method, not the civilization: a source-backed categorical alien-observer console.',
+    url: '/observatory',
+  },
+};
 
 export default function ObservatoryPage() {
   return (

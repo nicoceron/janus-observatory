@@ -1,7 +1,11 @@
 # Decision 003 — Poster-first Spline hero animation
 
 Date: 2026-08-13
-Status: accepted
+Status: superseded for runtime animation by Decision 010 on 2026-08-31
+
+Decision 010 replaces the hosted preview iframe with a project-owned SVG/GSAP orbital layer. The
+CC0 source and project-owned poster derivative remain in the asset ledger and retain their credit;
+the application no longer requests or executes the Spline-hosted runtime.
 
 ## Decision
 

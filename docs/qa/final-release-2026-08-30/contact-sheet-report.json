@@ -1,0 +1,69 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "docs/qa/final-release-2026-08-30/01-present.png",
+    "docs/qa/final-release-2026-08-30/02-branches.png",
+    "docs/qa/final-release-2026-08-30/03-s1-world.png",
+    "docs/qa/final-release-2026-08-30/04-observer.png",
+    "docs/qa/final-release-2026-08-30/05-s1-hwo.png",
+    "docs/qa/final-release-2026-08-30/06-s9-hwo-blank.png",
+    "docs/qa/final-release-2026-08-30/07-s9-sgl.png",
+    "docs/qa/final-release-2026-08-30/08-matrix.png",
+    "docs/qa/final-release-2026-08-30/09-collapse.png",
+    "docs/qa/final-release-2026-08-30/10-handoff.png",
+    "docs/qa/final-release-2026-08-30/11-epilogue.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "01-present.png",
+      "to": "02-branches.png",
+      "mean_rgb_diff": 22.208027777777776
+    },
+    {
+      "from": "02-branches.png",
+      "to": "03-s1-world.png",
+      "mean_rgb_diff": 17.00139943415638
+    },
+    {
+      "from": "03-s1-world.png",
+      "to": "04-observer.png",
+      "mean_rgb_diff": 22.828161779835387
+    },
+    {
+      "from": "04-observer.png",
+      "to": "05-s1-hwo.png",
+      "mean_rgb_diff": 11.837915380658435
+    },
+    {
+      "from": "05-s1-hwo.png",
+      "to": "06-s9-hwo-blank.png",
+      "mean_rgb_diff": 12.67189531893004
+    },
+    {
+      "from": "06-s9-hwo-blank.png",
+      "to": "07-s9-sgl.png",
+      "mean_rgb_diff": 5.625914609053498
+    },
+    {
+      "from": "07-s9-sgl.png",
+      "to": "08-matrix.png",
+      "mean_rgb_diff": 16.56560339506173
+    },
+    {
+      "from": "08-matrix.png",
+      "to": "09-collapse.png",
+      "mean_rgb_diff": 13.450253600823045
+    },
+    {
+      "from": "09-collapse.png",
+      "to": "10-handoff.png",
+      "mean_rgb_diff": 12.45773482510288
+    },
+    {
+      "from": "10-handoff.png",
+      "to": "11-epilogue.png",
+      "mean_rgb_diff": 25.61624588477366
+    }
+  ],
+  "warnings": []
+}

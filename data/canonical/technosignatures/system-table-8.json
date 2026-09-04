@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "id": "janus.technosignatures.system.tfsc-table-8",
   "title": "System technosignatures by scenario",
   "contentOrigin": "transcribed",
@@ -7,69 +7,2330 @@
   "source": {
     "sourceId": "JANUS-PAPER-01",
     "sourceVersion": "arXiv:2409.00067v3",
-    "locator": { "page": 17, "table": "Table 8" }
+    "locator": {
+      "page": 17,
+      "table": "Table 8"
+    }
   },
   "sourceLicense": "CC BY 4.0",
   "transcriptionMethod": "Manual transcription of marked cells from the PDF table, checked against a rendered page and the paper's surrounding prose.",
   "assumptions": [
     "Membership means the source table marks the technosignature as present in that scenario; it does not establish detectability by a particular mission."
   ],
-  "notes": [],
+  "notes": [
+    "Every marked or blank scenario cell carries an exact Table 8 row/column locator; blank is not silently translated into a broader absence claim."
+  ],
   "scenarios": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"],
   "rows": [
     {
       "signatureId": "radio_leakage",
       "signatureLabel": "Radio leakage",
-      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S7", "S8", "S9", "S10"]
+      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S7", "S8", "S9", "S10"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Radio leakage",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Radio leakage",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio leakage",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio leakage",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio leakage",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio leakage",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio leakage",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio leakage",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio leakage",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio leakage",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio leakage",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio leakage",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "signatureId": "optical_communication",
       "signatureLabel": "Optical communication",
-      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S8", "S9", "S10"]
+      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S8", "S9", "S10"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Optical communication",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Optical communication",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical communication",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical communication",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical communication",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical communication",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical communication",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical communication",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical communication",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical communication",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical communication",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical communication",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "signatureId": "planetary_defense_radar",
       "signatureLabel": "Planetary defense radar",
-      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S9", "S10"]
+      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S9", "S10"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Planetary defense radar",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Planetary defense radar",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Planetary defense radar",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Planetary defense radar",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Planetary defense radar",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Planetary defense radar",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Planetary defense radar",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Planetary defense radar",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Planetary defense radar",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Planetary defense radar",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Planetary defense radar",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Planetary defense radar",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "signatureId": "asteroid_mining",
       "signatureLabel": "Asteroid mining",
-      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S9", "S10"]
+      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S9", "S10"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Asteroid mining",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Asteroid mining",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "signatureId": "fusion_propulsion",
       "signatureLabel": "Fusion propulsion",
-      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S9", "S10"]
+      "presentIn": ["S1", "S2", "S3", "S5", "S6", "S9", "S10"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Fusion propulsion",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Fusion propulsion",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Fusion propulsion",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Fusion propulsion",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Fusion propulsion",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Fusion propulsion",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Fusion propulsion",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Fusion propulsion",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Fusion propulsion",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Fusion propulsion",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Fusion propulsion",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Fusion propulsion",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "signatureId": "outer_planet_settlements",
       "signatureLabel": "Outer planet settlements",
-      "presentIn": ["S1", "S3", "S5", "S9", "S10"]
+      "presentIn": ["S1", "S3", "S5", "S9", "S10"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Outer planet settlements",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Outer planet settlements",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "signatureId": "kuiper_belt_mining",
       "signatureLabel": "Kuiper belt mining",
-      "presentIn": ["S5", "S6", "S9", "S10"]
+      "presentIn": ["S5", "S6", "S9", "S10"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Kuiper belt mining",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Kuiper belt mining",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "signatureId": "quantum_communication",
       "signatureLabel": "Quantum communication",
-      "presentIn": ["S5", "S6", "S9", "S10"]
+      "presentIn": ["S5", "S6", "S9", "S10"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Quantum communication",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Quantum communication",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum communication",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum communication",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum communication",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum communication",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum communication",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum communication",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum communication",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum communication",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum communication",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum communication",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
     },
-    { "signatureId": "radio_beacon", "signatureLabel": "Radio beacon", "presentIn": ["S1", "S5"] },
-    { "signatureId": "optical_beacon", "signatureLabel": "Optical beacon", "presentIn": ["S1"] },
-    { "signatureId": "quantum_beacon", "signatureLabel": "Quantum beacon", "presentIn": ["S5"] },
+    {
+      "signatureId": "radio_beacon",
+      "signatureLabel": "Radio beacon",
+      "presentIn": ["S1", "S5"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Radio beacon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Radio beacon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio beacon",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio beacon",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio beacon",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio beacon",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio beacon",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio beacon",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio beacon",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio beacon",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio beacon",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Radio beacon",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "signatureId": "optical_beacon",
+      "signatureLabel": "Optical beacon",
+      "presentIn": ["S1"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Optical beacon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Optical beacon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical beacon",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical beacon",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical beacon",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical beacon",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical beacon",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical beacon",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical beacon",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical beacon",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical beacon",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Optical beacon",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "signatureId": "quantum_beacon",
+      "signatureLabel": "Quantum beacon",
+      "presentIn": ["S5"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Quantum beacon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Quantum beacon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum beacon",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum beacon",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum beacon",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum beacon",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum beacon",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum beacon",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum beacon",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum beacon",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum beacon",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Quantum beacon",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
+    },
     {
       "signatureId": "laser_propulsion",
       "signatureLabel": "Laser propulsion",
-      "presentIn": ["S9"]
+      "presentIn": ["S9"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Laser propulsion",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Laser propulsion",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Laser propulsion",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Laser propulsion",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Laser propulsion",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Laser propulsion",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Laser propulsion",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Laser propulsion",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Laser propulsion",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Laser propulsion",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Laser propulsion",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Laser propulsion",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "signatureId": "gravitational_waves",
       "signatureLabel": "Gravitational waves",
-      "presentIn": ["S9"]
+      "presentIn": ["S9"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Gravitational waves",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Gravitational waves",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Gravitational waves",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Gravitational waves",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Gravitational waves",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Gravitational waves",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Gravitational waves",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Gravitational waves",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Gravitational waves",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Gravitational waves",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Gravitational waves",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Gravitational waves",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
     },
-    { "signatureId": "dyson_sphere", "signatureLabel": "Dyson sphere", "presentIn": ["S9"] }
+    {
+      "signatureId": "dyson_sphere",
+      "signatureLabel": "Dyson sphere",
+      "presentIn": ["S9"],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Dyson sphere",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 17,
+              "table": "Table 8",
+              "row": "Dyson sphere",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "presentIn": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Dyson sphere",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Dyson sphere",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Dyson sphere",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Dyson sphere",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Dyson sphere",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Dyson sphere",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Dyson sphere",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Dyson sphere",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Dyson sphere",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Dyson sphere",
+                "column": "S10"
+              }
+            }
+          ]
+        }
+      }
+    }
   ]
 }

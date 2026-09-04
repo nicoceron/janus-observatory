@@ -66,4 +66,11 @@ describe('canonical scientific datasets', () => {
     expect(s2?.reportedResults.meanDutyCycle).toBeNull();
     expect(parsed.simulation.monteCarloRunsPerScenario).toBe(200);
   });
+
+  it('rejects a collapse null that is mislabeled as captured', () => {
+    const broken = structuredClone(collapseModel);
+    broken.scenarios[1]!.resultCaptureStatus.meanDutyCycle = 'captured';
+
+    expect(CollapseModelDatasetSchema.safeParse(broken).success).toBe(false);
+  });
 });

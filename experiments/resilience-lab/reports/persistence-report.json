@@ -1,0 +1,256 @@
+{
+  "topic": "persistence",
+  "generatedAt": "2026-08-21T21:22:26+00:00",
+  "gitCommit": "d740da87f8d562005cf8a25e75bc391ac1fbc8f6",
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.5.2",
+    "scipy": "1.18.0",
+    "platform": "darwin",
+    "capturedAt": "2026-08-21T21:22:26+00:00",
+    "scikit-learn": "1.9.0"
+  },
+  "equation": "p_i = {Dc + min[Ti / Tspan, 1 - Dc]} * delta_i   (JANUS-PAPER-05 Eq. 7)",
+  "lifetimes": {
+    "no2": "~hours-days",
+    "cfc11": 55,
+    "cfc12": 140,
+    "cf4": 50000
+  },
+  "presenceFlagProvenance": {
+    "sourceId": "janus.observability.apjl-figure-6",
+    "evidenceKind": "derived"
+  },
+  "usingReimplementedDutyCycles": {
+    "evidenceKind": "reimplemented",
+    "rows": [
+      {
+        "scenarioId": "S1",
+        "dutyCycleUsed": 0.63243,
+        "dutyEvidenceKind": "reimplemented",
+        "no2": 0.63246,
+        "no2_status": "derived",
+        "cfc11": 0.68743,
+        "cfc11_status": "derived",
+        "cfc12": 0.77243,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S10",
+        "dutyCycleUsed": 1.0,
+        "dutyEvidenceKind": "reimplemented",
+        "no2": 0.0,
+        "no2_status": "derived",
+        "cfc11": 0.0,
+        "cfc11_status": "derived",
+        "cfc12": 0.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S2",
+        "dutyCycleUsed": 0.61014,
+        "dutyEvidenceKind": "reimplemented",
+        "no2": 0.61017,
+        "no2_status": "derived",
+        "cfc11": 0.66514,
+        "cfc11_status": "derived",
+        "cfc12": 0.75014,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S3",
+        "dutyCycleUsed": 1.0,
+        "dutyEvidenceKind": "reimplemented",
+        "no2": 1.0,
+        "no2_status": "derived",
+        "cfc11": 1.0,
+        "cfc11_status": "derived",
+        "cfc12": 1.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S4",
+        "dutyCycleUsed": 0.38153,
+        "dutyEvidenceKind": "reimplemented",
+        "no2": 0.38156,
+        "no2_status": "derived",
+        "cfc11": 0.0,
+        "cfc11_status": "derived",
+        "cfc12": 0.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S5",
+        "dutyCycleUsed": 0.99024,
+        "dutyEvidenceKind": "reimplemented",
+        "no2": 0.0,
+        "no2_status": "derived",
+        "cfc11": 0.0,
+        "cfc11_status": "derived",
+        "cfc12": 0.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S6",
+        "dutyCycleUsed": 0.7928,
+        "dutyEvidenceKind": "reimplemented",
+        "no2": 0.79283,
+        "no2_status": "derived",
+        "cfc11": 0.8478,
+        "cfc11_status": "derived",
+        "cfc12": 0.9328,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S7",
+        "dutyCycleUsed": 0.58037,
+        "dutyEvidenceKind": "reimplemented",
+        "no2": 0.5804,
+        "no2_status": "derived",
+        "cfc11": 0.0,
+        "cfc11_status": "derived",
+        "cfc12": 0.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S8",
+        "dutyCycleUsed": 0.87241,
+        "dutyEvidenceKind": "reimplemented",
+        "no2": 0.87244,
+        "no2_status": "derived",
+        "cfc11": 0.92741,
+        "cfc11_status": "derived",
+        "cfc12": 1.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S9",
+        "dutyCycleUsed": 0.91118,
+        "dutyEvidenceKind": "reimplemented",
+        "no2": 0.0,
+        "no2_status": "derived",
+        "cfc11": 0.0,
+        "cfc11_status": "derived",
+        "cfc12": 0.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      }
+    ]
+  },
+  "usingReportedDutyCycles": {
+    "evidenceKind": "reported",
+    "coverageNote": "only scenarios whose canonical record includes a numeric duty cycle",
+    "rows": [
+      {
+        "scenarioId": "S10",
+        "dutyCycleUsed": 1.0,
+        "dutyEvidenceKind": "reported",
+        "no2": 0.0,
+        "no2_status": "derived",
+        "cfc11": 0.0,
+        "cfc11_status": "derived",
+        "cfc12": 0.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S3",
+        "dutyCycleUsed": 1.0,
+        "dutyEvidenceKind": "reported",
+        "no2": 1.0,
+        "no2_status": "derived",
+        "cfc11": 1.0,
+        "cfc11_status": "derived",
+        "cfc12": 1.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S4",
+        "dutyCycleUsed": 0.381,
+        "dutyEvidenceKind": "reported",
+        "no2": 0.38103,
+        "no2_status": "derived",
+        "cfc11": 0.0,
+        "cfc11_status": "derived",
+        "cfc12": 0.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S5",
+        "dutyCycleUsed": 0.99,
+        "dutyEvidenceKind": "reported",
+        "no2": 0.0,
+        "no2_status": "derived",
+        "cfc11": 0.0,
+        "cfc11_status": "derived",
+        "cfc12": 0.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S7",
+        "dutyCycleUsed": 0.57,
+        "dutyEvidenceKind": "reported",
+        "no2": 0.57003,
+        "no2_status": "derived",
+        "cfc11": 0.0,
+        "cfc11_status": "derived",
+        "cfc12": 0.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S8",
+        "dutyCycleUsed": 0.87,
+        "dutyEvidenceKind": "reported",
+        "no2": 0.87003,
+        "no2_status": "derived",
+        "cfc11": 0.925,
+        "cfc11_status": "derived",
+        "cfc12": 1.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      },
+      {
+        "scenarioId": "S9",
+        "dutyCycleUsed": 0.91,
+        "dutyEvidenceKind": "reported",
+        "no2": 0.0,
+        "no2_status": "derived",
+        "cfc11": 0.0,
+        "cfc11_status": "derived",
+        "cfc12": 0.0,
+        "cfc12_status": "derived",
+        "cf4": null,
+        "cf4_status": "not_evaluated"
+      }
+    ]
+  }
+}

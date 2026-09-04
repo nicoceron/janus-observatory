@@ -1,0 +1,217 @@
+{
+  "topic": "global_sensitivity",
+  "generatedAt": "2026-08-21T20:45:06+00:00",
+  "gitCommit": "d740da87f8d562005cf8a25e75bc391ac1fbc8f6",
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.5.2",
+    "scipy": "1.18.0",
+    "platform": "darwin",
+    "capturedAt": "2026-08-21T20:45:06+00:00",
+    "scikit-learn": "1.9.0"
+  },
+  "method": "Saltelli-style Sobol first-order and total-order indices on independent uniform designs (replicated for Monte Carlo standard errors); Morris elementary effects in unit-cube coordinates",
+  "baseSamples": 1024,
+  "sobolReplicates": 4,
+  "designBounds": {
+    "r": [
+      0.0001,
+      0.006
+    ],
+    "R0": [
+      400.0,
+      2700.0
+    ],
+    "delta": [
+      0.1,
+      2.5
+    ],
+    "cf": [
+      0.2,
+      1.0
+    ],
+    "rd": [
+      0.0,
+      100.0
+    ],
+    "rf": [
+      0.1,
+      1.0
+    ],
+    "h": [
+      0.0,
+      0.005
+    ]
+  },
+  "sobol": {
+    "analytic_expected_duty_cycle": {
+      "r": {
+        "first_order": 0.0,
+        "first_order_se": 0.0,
+        "total_order": 0.0,
+        "total_order_se": 0.0
+      },
+      "R0": {
+        "first_order": 0.11712963760358826,
+        "first_order_se": 0.1400244941917893,
+        "total_order": 0.16697888893657928,
+        "total_order_se": 0.010771639927755327
+      },
+      "delta": {
+        "first_order": 0.12222693089765019,
+        "first_order_se": 0.13730653028357762,
+        "total_order": 0.13068449207639063,
+        "total_order_se": 0.0033188206262403696
+      },
+      "cf": {
+        "first_order": 0.0,
+        "first_order_se": 0.0,
+        "total_order": 0.0,
+        "total_order_se": 0.0
+      },
+      "rd": {
+        "first_order": 0.23236865949799707,
+        "first_order_se": 0.1021011452860676,
+        "total_order": 0.5013534832662021,
+        "total_order_se": 0.009873798774770721
+      },
+      "rf": {
+        "first_order": 0.07866517550940155,
+        "first_order_se": 0.05745332366489496,
+        "total_order": 0.10705392392999846,
+        "total_order_se": 0.010573277445453671
+      },
+      "h": {
+        "first_order": 0.16213861318946698,
+        "first_order_se": 0.18682833388995215,
+        "total_order": 0.28274446745996384,
+        "total_order_se": 0.019299280896817716
+      }
+    },
+    "analytic_expected_collapses": {
+      "r": {
+        "first_order": 0.0,
+        "first_order_se": 0.0,
+        "total_order": 0.0,
+        "total_order_se": 0.0
+      },
+      "R0": {
+        "first_order": 0.14532675122934527,
+        "first_order_se": 0.0329211255719393,
+        "total_order": 0.3435273708507967,
+        "total_order_se": 0.034795222866573196
+      },
+      "delta": {
+        "first_order": 0.09700938483313912,
+        "first_order_se": 0.027470629226331256,
+        "total_order": 0.2611273673990923,
+        "total_order_se": 0.014862757891307666
+      },
+      "cf": {
+        "first_order": 0.0,
+        "first_order_se": 0.0,
+        "total_order": 0.0,
+        "total_order_se": 0.0
+      },
+      "rd": {
+        "first_order": 0.038734832965403726,
+        "first_order_se": 0.013206594960628048,
+        "total_order": 0.11196896067494172,
+        "total_order_se": 0.014753204290695867
+      },
+      "rf": {
+        "first_order": 0.1324331561399771,
+        "first_order_se": 0.03203200576261098,
+        "total_order": 0.26203221995519543,
+        "total_order_se": 0.014747582927741705
+      },
+      "h": {
+        "first_order": 0.3855387337442725,
+        "first_order_se": 0.021454420767309527,
+        "total_order": 0.39341238565893477,
+        "total_order_se": 0.01705388297298214
+      }
+    },
+    "simulated_duty_cycle_crn": {
+      "r": {
+        "first_order": 0.0,
+        "first_order_se": 0.0,
+        "total_order": 0.0,
+        "total_order_se": 0.0
+      },
+      "R0": {
+        "first_order": 0.13584191226122977,
+        "first_order_se": 0.11518897299019613,
+        "total_order": 0.24980620147530264,
+        "total_order_se": 0.012228300677166756
+      },
+      "delta": {
+        "first_order": 0.12056919453521173,
+        "first_order_se": 0.14417204622411328,
+        "total_order": 0.21791949271443142,
+        "total_order_se": 0.0049651838566741316
+      },
+      "cf": {
+        "first_order": 0.0,
+        "first_order_se": 0.0,
+        "total_order": 0.0,
+        "total_order_se": 0.0
+      },
+      "rd": {
+        "first_order": 0.2509722379888883,
+        "first_order_se": 0.10647470595261796,
+        "total_order": 0.47073479221620657,
+        "total_order_se": 0.010497925130301749
+      },
+      "rf": {
+        "first_order": 0.09653437107668908,
+        "first_order_se": 0.07366974501205367,
+        "total_order": 0.1473403898822237,
+        "total_order_se": 0.009635871608816678
+      },
+      "h": {
+        "first_order": 0.10400470166630056,
+        "first_order_se": 0.08118976052774847,
+        "total_order": 0.35010592035517857,
+        "total_order_se": 0.01712682524106615
+      }
+    }
+  },
+  "morris_analytic_duty": {
+    "r": {
+      "mu": 0.0,
+      "mu_star": 0.0,
+      "sigma": 0.0
+    },
+    "R0": {
+      "mu": 0.07733989270473855,
+      "mu_star": 0.07733989270473855,
+      "sigma": 0.09663803486956503
+    },
+    "delta": {
+      "mu": -0.06382902752185142,
+      "mu_star": 0.06382902752185142,
+      "sigma": 0.07523355003724208
+    },
+    "cf": {
+      "mu": 0.0,
+      "mu_star": 0.0,
+      "sigma": 0.0
+    },
+    "rd": {
+      "mu": -0.19864226614719274,
+      "mu_star": 0.19864226614719274,
+      "sigma": 0.10952560461759882
+    },
+    "rf": {
+      "mu": 0.06215100994287086,
+      "mu_star": 0.06215100994287086,
+      "sigma": 0.09935051001282577
+    },
+    "h": {
+      "mu": -0.18683171192660158,
+      "mu_star": 0.18683171192660158,
+      "sigma": 0.10082734480370699
+    }
+  }
+}

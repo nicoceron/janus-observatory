@@ -1,0 +1,77 @@
+.motionPreference {
+  align-items: center;
+  backdrop-filter: blur(18px);
+  background: color-mix(in srgb, var(--night) 88%, transparent);
+  border: 1px solid var(--line);
+  bottom: max(14px, env(safe-area-inset-bottom));
+  color: var(--ink);
+  display: flex;
+  gap: 10px;
+  padding: 6px;
+  position: fixed;
+  right: max(14px, env(safe-area-inset-right));
+  z-index: 90;
+}
+
+.label {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.08em;
+  padding-left: 6px;
+  text-transform: uppercase;
+}
+
+.options {
+  display: flex;
+}
+
+.option {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.04em;
+  min-height: 32px;
+  padding: 7px 9px;
+  text-transform: uppercase;
+}
+
+.option[aria-pressed='true'] {
+  background: var(--acid);
+  color: var(--night);
+}
+
+.option:hover:not([aria-pressed='true']) {
+  color: var(--ink);
+}
+
+@media (max-width: 620px) {
+  .motionPreference {
+    left: max(10px, env(safe-area-inset-left));
+    right: max(10px, env(safe-area-inset-right));
+  }
+
+  .options {
+    flex: 1;
+  }
+
+  .option {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .motionPreference {
+    backdrop-filter: none;
+    background: var(--night);
+  }
+}
+
+@media print {
+  .motionPreference {
+    display: none;
+  }
+}

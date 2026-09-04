@@ -1,4 +1,4 @@
-import { scenarioIds } from '@janus/domain';
+import { scenarioIds } from '@janus/domain/scenario';
 import { describe, expect, it } from 'vitest';
 
 import { worldArtProfiles } from './world-art';

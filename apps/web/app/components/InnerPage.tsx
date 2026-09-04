@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 
+import styles from './InnerPage.module.css';
+
 type InnerPageProps = {
   eyebrow: string;
   title: string;
@@ -10,18 +12,18 @@ type InnerPageProps = {
 
 export function InnerPage({ eyebrow, title, lede, children }: InnerPageProps) {
   return (
-    <main className="innerPage" id="main">
-      <a className="skipLink" href="#content">
+    <main className={styles.page} id="main">
+      <a className={styles.skipLink} href="#content">
         Skip to content
       </a>
-      <nav className="innerNav" aria-label="Primary navigation">
-        <Link className="wordmark" href="/">
-          <span className="wordmarkMark" aria-hidden="true">
+      <nav className={styles.nav} aria-label="Primary navigation">
+        <Link aria-label="Janus Observatory" className={styles.wordmark} href="/">
+          <span className={styles.wordmarkMark} aria-hidden="true">
             J
           </span>
-          <span>Janus Observatory</span>
+          <span className={styles.wordmarkText}>Janus Observatory</span>
         </Link>
-        <div className="navLinks">
+        <div className={styles.navLinks}>
           <Link href="/#story">Story</Link>
           <Link href="/observatory">Observatory</Link>
           <Link href="/atlas">Atlas</Link>
@@ -29,17 +31,24 @@ export function InnerPage({ eyebrow, title, lede, children }: InnerPageProps) {
           <Link href="/methods">Methods</Link>
         </div>
       </nav>
-      <header className="innerHero">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1>{title}</h1>
-        <p>{lede}</p>
+      <header className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <p className={styles.eyebrow}>{eyebrow}</p>
+          <h1>{title}</h1>
+          <p className={styles.lede}>{lede}</p>
+        </div>
       </header>
-      <div className="innerContent" id="content">
+      <div className={styles.content} id="content">
         {children}
       </div>
-      <footer>
+      <footer className={styles.footer}>
         <p>Janus Observatory · first light</p>
-        <Link href="/">Return to story</Link>
+        <nav className={styles.footerLinks} aria-label="Utility navigation">
+          <Link href="/sources">Sources</Link>
+          <Link href="/accessibility">Accessibility</Link>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/">Return to story</Link>
+        </nav>
       </footer>
     </main>
   );

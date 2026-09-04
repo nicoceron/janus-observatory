@@ -40,12 +40,21 @@ describe('DeepSeek Responses adapter', () => {
       }),
     );
     const client = new DeepSeekResponsesClient(deepSeekConfig, mockFetch);
+    const controller = new AbortController();
 
-    const result = await client.createText({ instructions: 'Use sources.', input: 'Compare S4.' });
+    const result = await client.createText({
+      instructions: 'Use sources.',
+      input: 'Compare S4.',
+      signal: controller.signal,
+    });
 
     expect(result.text).toBe('Cited answer.');
     expect(JSON.stringify(result)).not.toContain('private chain of thought');
     expect(result.telemetry.reasoningTokens).toBe(6);
+    const forwardedSignal = mockFetch.mock.calls[0]?.[1]?.signal;
+    expect(forwardedSignal).toBeInstanceOf(AbortSignal);
+    controller.abort();
+    expect(forwardedSignal?.aborted).toBe(true);
   });
 
   it('redacts credential-shaped strings from provider errors', () => {
@@ -95,10 +104,12 @@ describe('runtime status', () => {
     const status = inspectAiRuntime({
       DEEPSEEK_API_KEY: 'test-deepseek-secret',
       VOYAGE_API_KEY: 'test-voyage-secret',
+      JANUS_RESEARCH_MAX_CONCURRENCY: '7',
     });
 
     expect(status.deepSeek.configured).toBe(true);
     expect(status.voyage.configured).toBe(true);
+    expect(status.research.maxConcurrency).toBe(7);
     expect(JSON.stringify(status)).not.toContain('secret');
   });
 });

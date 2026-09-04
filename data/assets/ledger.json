@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "1.0.0",
-  "reviewedAt": "2026-08-13T10:44:25-05:00",
+  "schemaVersion": "2.0.0",
+  "reviewedAt": "2026-08-30T05:03:39.600Z",
   "entries": [
     {
       "id": "janus.artifact.s3.2.3",
@@ -10,14 +10,18 @@
       "artifactId": "S3.2.3",
       "kind": "artifact",
       "sourceUrl": "https://futures.bmsis.org/artifacts",
+      "sourceAgency": "Project Janus, Blue Marble Space Institute of Science",
       "directFileUrls": [],
       "sourceVersion": "public-page-2026-08-12",
+      "retrievedAt": "2026-08-12",
       "license": null,
       "rightsStatus": "all_rights_reserved",
       "admissionStatus": "link_only",
       "requiredCreditText": "Created by Taylor Michaels. All rights reserved.",
       "aiAssistanceDisclosure": null,
       "allowedTransformations": [],
+      "appliedTransformations": [],
+      "maxDisplaySize": null,
       "notes": [
         "Do not download into the distributable asset tree or generate derivatives without permission."
       ]
@@ -30,14 +34,18 @@
       "artifactId": "S3.2.4",
       "kind": "artifact",
       "sourceUrl": "https://futures.bmsis.org/artifacts",
+      "sourceAgency": "Project Janus, Blue Marble Space Institute of Science",
       "directFileUrls": [],
       "sourceVersion": "public-page-2026-08-12",
+      "retrievedAt": "2026-08-12",
       "license": null,
       "rightsStatus": "all_rights_reserved",
       "admissionStatus": "link_only",
       "requiredCreditText": "Created by Taylor Michaels. All rights reserved.",
       "aiAssistanceDisclosure": null,
       "allowedTransformations": [],
+      "appliedTransformations": [],
+      "maxDisplaySize": null,
       "notes": [
         "Do not download into the distributable asset tree or generate derivatives without permission."
       ]
@@ -50,14 +58,18 @@
       "artifactId": "S4.2.1",
       "kind": "artifact",
       "sourceUrl": "https://futures.bmsis.org/artifacts",
+      "sourceAgency": "Project Janus, Blue Marble Space Institute of Science",
       "directFileUrls": [],
       "sourceVersion": "public-page-2026-08-12",
+      "retrievedAt": "2026-08-12",
       "license": null,
       "rightsStatus": "all_rights_reserved",
       "admissionStatus": "link_only",
       "requiredCreditText": "Created by Clara Mae Gonzales. All rights reserved.",
       "aiAssistanceDisclosure": null,
       "allowedTransformations": [],
+      "appliedTransformations": [],
+      "maxDisplaySize": null,
       "notes": [
         "Do not download into the distributable asset tree or generate derivatives without permission."
       ]
@@ -70,8 +82,10 @@
       "artifactId": "S5.1.1",
       "kind": "artifact",
       "sourceUrl": "https://futures.bmsis.org/artifacts",
+      "sourceAgency": "Project Janus, Blue Marble Space Institute of Science",
       "directFileUrls": ["https://drive.google.com/file/d/1GWbHG_usykmI-7vjI7VGZ-TbbiQpY8NU/view"],
       "sourceVersion": "public-page-2026-08-12",
+      "retrievedAt": "2026-08-12",
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "rightsStatus": "verified_open",
@@ -79,6 +93,8 @@
       "requiredCreditText": "Humanity and Cosmic Consciousness, created by Amy Welch, licensed CC BY 4.0.",
       "aiAssistanceDisclosure": null,
       "allowedTransformations": ["responsive rendering", "excerpting with attribution"],
+      "appliedTransformations": [],
+      "maxDisplaySize": null,
       "notes": []
     },
     {
@@ -89,14 +105,18 @@
       "artifactId": "S6.2.5",
       "kind": "artifact",
       "sourceUrl": "https://futures.bmsis.org/artifacts",
+      "sourceAgency": "Project Janus, Blue Marble Space Institute of Science",
       "directFileUrls": [],
       "sourceVersion": "public-page-2026-08-12",
+      "retrievedAt": "2026-08-12",
       "license": null,
       "rightsStatus": "all_rights_reserved",
       "admissionStatus": "link_only",
       "requiredCreditText": "Created by Snehal Gupta. All rights reserved.",
       "aiAssistanceDisclosure": null,
       "allowedTransformations": [],
+      "appliedTransformations": [],
+      "maxDisplaySize": null,
       "notes": [
         "The public artifact ID is S6.2.5 while the linked filename is shown as S2.6.5.pdf; preserve both as source metadata."
       ]
@@ -109,14 +129,18 @@
       "artifactId": "S7.1.3",
       "kind": "artifact",
       "sourceUrl": "https://futures.bmsis.org/artifacts",
+      "sourceAgency": "Project Janus, Blue Marble Space Institute of Science",
       "directFileUrls": ["https://drive.google.com/file/d/1l0y3ZcutsD-YRjiMSTzIxUx1FzkVeDk8/view"],
       "sourceVersion": "public-page-2026-08-12",
+      "retrievedAt": "2026-08-12",
       "license": null,
       "rightsStatus": "all_rights_reserved",
       "admissionStatus": "link_only",
       "requiredCreditText": "Water Zither of the Ba-i, created by CJ Baal. All rights reserved.",
       "aiAssistanceDisclosure": null,
       "allowedTransformations": [],
+      "appliedTransformations": [],
+      "maxDisplaySize": null,
       "notes": [
         "Do not embed or generate responsive derivatives without permission from the rights holder."
       ]
@@ -129,8 +153,10 @@
       "artifactId": "S8.2.2",
       "kind": "artifact",
       "sourceUrl": "https://futures.bmsis.org/artifacts",
+      "sourceAgency": "Project Janus, Blue Marble Space Institute of Science",
       "directFileUrls": [],
       "sourceVersion": "public-page-2026-08-12",
+      "retrievedAt": "2026-08-12",
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "rightsStatus": "verified_open",
@@ -142,6 +168,8 @@
         "format conversion",
         "uncropped thumbnail"
       ],
+      "appliedTransformations": [],
+      "maxDisplaySize": null,
       "notes": []
     },
     {
@@ -152,12 +180,14 @@
       "artifactId": "S9.1.2",
       "kind": "artifact",
       "sourceUrl": "https://futures.bmsis.org/artifacts",
+      "sourceAgency": "Project Janus, Blue Marble Space Institute of Science",
       "directFileUrls": [
         "https://drive.google.com/file/d/1X2CnC2sD266SJHwQlCRGgtG2cfsxf5fB/view",
         "https://drive.google.com/file/d/1z8nrr4-irj_X-eDjWDbpi6jnIGvfjkKu/view",
         "https://drive.google.com/file/d/19h124WLr9QASJmPJRTxZI6XoPPkzGNwg/view"
       ],
       "sourceVersion": "public-page-2026-08-12",
+      "retrievedAt": "2026-08-12",
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "rightsStatus": "verified_open",
@@ -169,6 +199,8 @@
         "format conversion",
         "uncropped thumbnail"
       ],
+      "appliedTransformations": [],
+      "maxDisplaySize": null,
       "notes": []
     },
     {
@@ -179,11 +211,13 @@
       "artifactId": null,
       "kind": "model",
       "sourceUrl": "https://app.spline.design/community/file/bf1c301a-7620-4b6b-8096-9391e209ce10",
+      "sourceAgency": "Spline Community",
       "directFileUrls": [
         "https://community-filepreview.spline.design/webp-90/bf1c301a-7620-4b6b-8096-9391e209ce10.webp",
         "https://app.spline.design/file/f5454200-ebd6-49c9-9e41-ea232c88cb61?view=preview"
       ],
       "sourceVersion": "Spline Community file bf1c301a-7620-4b6b-8096-9391e209ce10, reviewed 2026-08-13",
+      "retrievedAt": "2026-08-13",
       "license": "CC0 1.0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "rightsStatus": "verified_open",
@@ -197,9 +231,19 @@
         "responsive cropping",
         "AI-assisted detail restoration"
       ],
+      "appliedTransformations": [
+        "AI-assisted detail restoration",
+        "resizing",
+        "format conversion",
+        "image optimization"
+      ],
       "sourceChecksum": "sha256:70f6307c7b27a21ac52159a467ae924f0d57d5631dee62911357a85e57360a72",
       "derivativeChecksum": "sha256:fbdd27c280ec30de49dd523a397a24ca4ddd00706c7b3225aa1539715fafbd36",
       "derivativePublicPath": "/assets/hero/solar-system-basic-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 3200,
+        "heightPx": 1906
+      },
       "transformations": [
         "Enhanced the 1304 × 820 Spline Community preview with OpenAI image generation to restore detail while preserving the centered Solar System composition; generated intermediate checksum sha256:4abce3bd1bfd61c0b2800ae254f804276670f1fa762edc9b17b3f05ea21f8ede.",
         "Resampled the 1582 × 994 enhanced PNG to 3200 × 1906 with ImageMagick Lanczos filtering and a light unsharp pass.",
@@ -219,10 +263,12 @@
       "artifactId": null,
       "kind": "texture",
       "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "sourceAgency": "Three.js project / Solar System Scope",
       "directFileUrls": [
         "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_day_4096.jpg"
       ],
       "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9",
+      "retrievedAt": "2026-08-29",
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "rightsStatus": "verified_open",
@@ -230,15 +276,94 @@
       "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example.",
       "aiAssistanceDisclosure": null,
       "allowedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "appliedTransformations": [],
       "sourceChecksum": "sha256:cd7712d3e891425d9948ea5ac18d3bb1e7e834ea038188587897e689a7b35d0f",
       "derivativeChecksum": "sha256:cd7712d3e891425d9948ea5ac18d3bb1e7e834ea038188587897e689a7b35d0f",
       "derivativePublicPath": "/assets/planets/earth-day-4096.jpg",
+      "maxDisplaySize": {
+        "widthPx": 4096,
+        "heightPx": 2048
+      },
       "transformations": [
         "Copied the pinned Three.js example texture unchanged into the public asset tree."
       ],
       "notes": [
         "The official Three.js example credits Solar System Scope and states that the source textures were resized and merged.",
         "Solar System Scope publishes the texture pack under CC BY 4.0."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.earth-day-threejs.2k",
+      "title": "Earth day texture — Janus 2K WebP derivative",
+      "creator": "Solar System Scope; resized and merged by Three.js example contributors; optimized by Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "texture",
+      "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "sourceAgency": "Three.js project / Solar System Scope",
+      "directFileUrls": [
+        "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_day_4096.jpg"
+      ],
+      "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9; Janus derivative 2026-08-29",
+      "retrievedAt": "2026-08-29",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example. This 2K WebP derivative was resized and optimized by Janus Observatory.",
+      "aiAssistanceDisclosure": null,
+      "allowedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "appliedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "sourceChecksum": "sha256:cd7712d3e891425d9948ea5ac18d3bb1e7e834ea038188587897e689a7b35d0f",
+      "derivativeChecksum": "sha256:e77051375af9e286820ef99ad018d350be99fe240e7546a8be0d4547f066b537",
+      "derivativePublicPath": "/assets/planets/earth-day-2048.webp",
+      "maxDisplaySize": {
+        "widthPx": 2048,
+        "heightPx": 1024
+      },
+      "transformations": [
+        "Resized the pinned 4096 × 2048 JPEG source directly to 2048 × 1024 with cwebp 1.6.0 using -preset photo -q 88 -m 6 -sharp_yuv -resize 2048 1024 -metadata none."
+      ],
+      "notes": [
+        "Responsive medium-tier color texture; sampled as sRGB by the runtime.",
+        "This texture is presentation media, not canonical scientific data."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.earth-day-threejs.1k",
+      "title": "Earth day texture — Janus 1K WebP derivative",
+      "creator": "Solar System Scope; resized and merged by Three.js example contributors; optimized by Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "texture",
+      "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "sourceAgency": "Three.js project / Solar System Scope",
+      "directFileUrls": [
+        "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_day_4096.jpg"
+      ],
+      "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9; Janus derivative 2026-08-29",
+      "retrievedAt": "2026-08-29",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example. This 1K WebP derivative was resized and optimized by Janus Observatory.",
+      "aiAssistanceDisclosure": null,
+      "allowedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "appliedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "sourceChecksum": "sha256:cd7712d3e891425d9948ea5ac18d3bb1e7e834ea038188587897e689a7b35d0f",
+      "derivativeChecksum": "sha256:4e1a09a00d5eea003eae9f88c08e68d4d95193c7d6ea6152dcb12f00278c8aa9",
+      "derivativePublicPath": "/assets/planets/earth-day-1024.webp",
+      "maxDisplaySize": {
+        "widthPx": 1024,
+        "heightPx": 512
+      },
+      "transformations": [
+        "Resized the pinned 4096 × 2048 JPEG source directly to 1024 × 512 with cwebp 1.6.0 using -preset photo -q 88 -m 6 -sharp_yuv -resize 1024 512 -metadata none."
+      ],
+      "notes": [
+        "Responsive low/mobile-tier color texture; sampled as sRGB by the runtime.",
+        "This texture is presentation media, not canonical scientific data."
       ]
     },
     {
@@ -249,10 +374,12 @@
       "artifactId": null,
       "kind": "texture",
       "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "sourceAgency": "Three.js project / Solar System Scope",
       "directFileUrls": [
         "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_night_4096.jpg"
       ],
       "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9",
+      "retrievedAt": "2026-08-29",
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "rightsStatus": "verified_open",
@@ -260,15 +387,94 @@
       "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example.",
       "aiAssistanceDisclosure": null,
       "allowedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "appliedTransformations": [],
       "sourceChecksum": "sha256:17a868f79c7be40fa1f557e6114d7889d907f18f7a3fce51f33b0b830ef50242",
       "derivativeChecksum": "sha256:17a868f79c7be40fa1f557e6114d7889d907f18f7a3fce51f33b0b830ef50242",
       "derivativePublicPath": "/assets/planets/earth-night-4096.jpg",
+      "maxDisplaySize": {
+        "widthPx": 4096,
+        "heightPx": 2048
+      },
       "transformations": [
         "Copied the pinned Three.js example texture unchanged into the public asset tree."
       ],
       "notes": [
         "The official Three.js example credits Solar System Scope and states that the source textures were resized and merged.",
         "Solar System Scope publishes the texture pack under CC BY 4.0."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.earth-night-threejs.2k",
+      "title": "Earth night texture — Janus 2K WebP derivative",
+      "creator": "Solar System Scope; resized and merged by Three.js example contributors; optimized by Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "texture",
+      "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "sourceAgency": "Three.js project / Solar System Scope",
+      "directFileUrls": [
+        "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_night_4096.jpg"
+      ],
+      "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9; Janus derivative 2026-08-29",
+      "retrievedAt": "2026-08-29",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example. This 2K WebP derivative was resized and optimized by Janus Observatory.",
+      "aiAssistanceDisclosure": null,
+      "allowedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "appliedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "sourceChecksum": "sha256:17a868f79c7be40fa1f557e6114d7889d907f18f7a3fce51f33b0b830ef50242",
+      "derivativeChecksum": "sha256:effe3082a0bd7452132af46a5a5e9c5b01b673da61254e2ed519ed317c5b7c3e",
+      "derivativePublicPath": "/assets/planets/earth-night-2048.webp",
+      "maxDisplaySize": {
+        "widthPx": 2048,
+        "heightPx": 1024
+      },
+      "transformations": [
+        "Resized the pinned 4096 × 2048 JPEG source directly to 2048 × 1024 with cwebp 1.6.0 using -preset photo -q 88 -m 6 -sharp_yuv -resize 2048 1024 -metadata none."
+      ],
+      "notes": [
+        "Responsive medium-tier color texture; sampled as sRGB by the runtime.",
+        "This texture is presentation media, not canonical scientific data."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.earth-night-threejs.1k",
+      "title": "Earth night texture — Janus 1K WebP derivative",
+      "creator": "Solar System Scope; resized and merged by Three.js example contributors; optimized by Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "texture",
+      "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "sourceAgency": "Three.js project / Solar System Scope",
+      "directFileUrls": [
+        "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_night_4096.jpg"
+      ],
+      "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9; Janus derivative 2026-08-29",
+      "retrievedAt": "2026-08-29",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example. This 1K WebP derivative was resized and optimized by Janus Observatory.",
+      "aiAssistanceDisclosure": null,
+      "allowedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "appliedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "sourceChecksum": "sha256:17a868f79c7be40fa1f557e6114d7889d907f18f7a3fce51f33b0b830ef50242",
+      "derivativeChecksum": "sha256:7d2eabe41d77367751aa29455b0ed595ecd134a2e171632bf63888c2cce0ac19",
+      "derivativePublicPath": "/assets/planets/earth-night-1024.webp",
+      "maxDisplaySize": {
+        "widthPx": 1024,
+        "heightPx": 512
+      },
+      "transformations": [
+        "Resized the pinned 4096 × 2048 JPEG source directly to 1024 × 512 with cwebp 1.6.0 using -preset photo -q 88 -m 6 -sharp_yuv -resize 1024 512 -metadata none."
+      ],
+      "notes": [
+        "Responsive low/mobile-tier color texture; sampled as sRGB by the runtime.",
+        "This texture is presentation media, not canonical scientific data."
       ]
     },
     {
@@ -279,10 +485,12 @@
       "artifactId": null,
       "kind": "texture",
       "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "sourceAgency": "Three.js project / Solar System Scope",
       "directFileUrls": [
         "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_bump_roughness_clouds_4096.jpg"
       ],
       "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9",
+      "retrievedAt": "2026-08-29",
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "rightsStatus": "verified_open",
@@ -290,15 +498,94 @@
       "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example.",
       "aiAssistanceDisclosure": null,
       "allowedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "appliedTransformations": [],
       "sourceChecksum": "sha256:0796f4211c209d1afe9e26a06a283cdc21434430a780a25457b2417568a8591e",
       "derivativeChecksum": "sha256:0796f4211c209d1afe9e26a06a283cdc21434430a780a25457b2417568a8591e",
       "derivativePublicPath": "/assets/planets/earth-bump-roughness-clouds-4096.jpg",
+      "maxDisplaySize": {
+        "widthPx": 4096,
+        "heightPx": 2048
+      },
       "transformations": [
         "Copied the pinned Three.js example texture unchanged into the public asset tree."
       ],
       "notes": [
         "The combined map supplies bump, roughness, and clouds channels to the TSL node material.",
         "Solar System Scope publishes the texture pack under CC BY 4.0."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.earth-bump-clouds-threejs.2k",
+      "title": "Earth bump, roughness, and clouds texture — Janus 2K WebP derivative",
+      "creator": "Solar System Scope; resized and merged by Three.js example contributors; optimized by Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "texture",
+      "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "sourceAgency": "Three.js project / Solar System Scope",
+      "directFileUrls": [
+        "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_bump_roughness_clouds_4096.jpg"
+      ],
+      "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9; Janus derivative 2026-08-29",
+      "retrievedAt": "2026-08-29",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example. This 2K packed-map WebP derivative was resized and optimized by Janus Observatory.",
+      "aiAssistanceDisclosure": null,
+      "allowedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "appliedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "sourceChecksum": "sha256:0796f4211c209d1afe9e26a06a283cdc21434430a780a25457b2417568a8591e",
+      "derivativeChecksum": "sha256:71ef4138a23d71790738bc7346c4c2cd0fd6392f6ab566c5e38933d1497d89c2",
+      "derivativePublicPath": "/assets/planets/earth-bump-roughness-clouds-2048.webp",
+      "maxDisplaySize": {
+        "widthPx": 2048,
+        "heightPx": 1024
+      },
+      "transformations": [
+        "Resized the pinned 4096 × 2048 JPEG packed-channel source directly to 2048 × 1024 with cwebp 1.6.0 using -preset photo -q 94 -m 6 -sharp_yuv -resize 2048 1024 -metadata none."
+      ],
+      "notes": [
+        "Responsive medium-tier packed texture; red, green, and blue continue to supply bump, roughness, and clouds without sRGB conversion.",
+        "The WebP is a high-quality lossy derivative of an already-lossy JPEG source; runtime visual QA covers the three channel-driven effects."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.earth-bump-clouds-threejs.1k",
+      "title": "Earth bump, roughness, and clouds texture — Janus 1K WebP derivative",
+      "creator": "Solar System Scope; resized and merged by Three.js example contributors; optimized by Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "texture",
+      "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "sourceAgency": "Three.js project / Solar System Scope",
+      "directFileUrls": [
+        "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_bump_roughness_clouds_4096.jpg"
+      ],
+      "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9; Janus derivative 2026-08-29",
+      "retrievedAt": "2026-08-29",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example. This 1K packed-map WebP derivative was resized and optimized by Janus Observatory.",
+      "aiAssistanceDisclosure": null,
+      "allowedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "appliedTransformations": ["resizing", "format conversion", "texture optimization"],
+      "sourceChecksum": "sha256:0796f4211c209d1afe9e26a06a283cdc21434430a780a25457b2417568a8591e",
+      "derivativeChecksum": "sha256:9ff1b7e26e74ba70be3b35720273b47e65fa6cd528649069b76e737e9d3cb3ea",
+      "derivativePublicPath": "/assets/planets/earth-bump-roughness-clouds-1024.webp",
+      "maxDisplaySize": {
+        "widthPx": 1024,
+        "heightPx": 512
+      },
+      "transformations": [
+        "Resized the pinned 4096 × 2048 JPEG packed-channel source directly to 1024 × 512 with cwebp 1.6.0 using -preset photo -q 94 -m 6 -sharp_yuv -resize 1024 512 -metadata none."
+      ],
+      "notes": [
+        "Responsive low/mobile-tier packed texture; red, green, and blue continue to supply bump, roughness, and clouds without sRGB conversion.",
+        "The WebP is a high-quality lossy derivative of an already-lossy JPEG source; runtime visual QA covers the three channel-driven effects."
       ]
     },
     {
@@ -309,10 +596,12 @@
       "artifactId": null,
       "kind": "texture",
       "sourceUrl": "https://github.com/nasa/NASA-3D-Resources/tree/11ebb4ee043715aefbba6aeec8a61746fad67fa7/Images%20and%20Textures/Earth%20(A)",
+      "sourceAgency": "NASA 3D Resources",
       "directFileUrls": [
         "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/Images%20and%20Textures/Earth%20(A)/Earth%20(A).jpg"
       ],
       "sourceVersion": "NASA-3D-Resources@11ebb4ee043715aefbba6aeec8a61746fad67fa7",
+      "retrievedAt": "2026-08-12",
       "license": "NASA Images and Media Usage Guidelines",
       "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "rightsStatus": "nasa_reuse_guidelines",
@@ -325,9 +614,14 @@
         "texture optimization",
         "color-preserving mipmaps"
       ],
+      "appliedTransformations": ["format conversion", "texture optimization"],
       "sourceChecksum": "sha256:5e18afce2860f02a215c09954fff5d3d1ca140cafa26c368d24d7636dd6705a7",
       "derivativeChecksum": "sha256:46dd2948107cbc6fb337d0767f1a257c02b04425d214eeaf0337435c28e9e2eb",
       "derivativePublicPath": "/assets/planets/earth-day-1440.webp",
+      "maxDisplaySize": {
+        "widthPx": 1440,
+        "heightPx": 720
+      },
       "transformations": [
         "Converted JPEG source to WebP with cwebp 1.6.0 at quality 86, method 6, with metadata removed; dimensions preserved at 1440 × 720."
       ],
@@ -344,8 +638,10 @@
       "artifactId": null,
       "kind": "texture",
       "sourceUrl": "https://earthobservatory.nasa.gov/features/NightLights",
+      "sourceAgency": "NASA Earth Observatory",
       "directFileUrls": [],
       "sourceVersion": "earth-observatory-page-2026-08-12",
+      "retrievedAt": "2026-08-12",
       "license": "NASA Images and Media Usage Guidelines",
       "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "rightsStatus": "nasa_reuse_guidelines",
@@ -358,8 +654,462 @@
         "texture optimization",
         "luminance masking"
       ],
+      "appliedTransformations": [],
+      "maxDisplaySize": null,
       "notes": [
         "Do not use NASA insignia or imply endorsement; retain data-product attribution shown on the source page."
+      ]
+    },
+    {
+      "id": "janus.generated.world.s1.v1",
+      "title": "S1 scenario portrait — Big Brother is Watching",
+      "creator": "Janus Observatory; generated with OpenAI image generation",
+      "scenarioId": "S1",
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://openai.com/index/image-generation-api/",
+      "sourceAgency": "OpenAI image generation / Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "OpenAI image generation output created 2026-08-13",
+      "retrievedAt": "2026-08-13",
+      "license": "Project-generated original asset",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "S1 scenario portrait generated for Janus Observatory with OpenAI image generation.",
+      "aiAssistanceDisclosure": "Model-generated interpretive concept art. It is not a Project Janus research product, telescope observation, or scientific data.",
+      "allowedTransformations": [
+        "resizing",
+        "format conversion",
+        "image optimization",
+        "responsive cropping",
+        "color grading"
+      ],
+      "appliedTransformations": ["format conversion", "image optimization"],
+      "sourceChecksum": "sha256:cabb058f1f563225a86c51761762bce0d8c34157783030e76571a6696f7ba2f7",
+      "derivativeChecksum": "sha256:8f6224ebefd0524ccdb5751b80d032ac81a32a7f477c946216a01689d3c178bd",
+      "derivativePublicPath": "/assets/scenarios/s1-world-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 1672,
+        "heightPx": 941
+      },
+      "transformations": [
+        "Generated as a distinct 1672 × 941 cinematic future-Earth portrait from a scenario-specific art direction prompt informed by the canonical Janus scenario record.",
+        "Converted from PNG to WebP with cwebp 1.6.0 at quality 88, method 6, with metadata removed."
+      ],
+      "notes": [
+        "Interpretive/model_generated visual only. No atmospheric, population, energy, governance, technology, or detectability values are encoded in the image.",
+        "All scientific values and observation results rendered beside this portrait come from canonical data with source references."
+      ]
+    },
+    {
+      "id": "janus.generated.world.s2.v1",
+      "title": "S2 scenario portrait — Wild West",
+      "creator": "Janus Observatory; generated with OpenAI image generation",
+      "scenarioId": "S2",
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://openai.com/index/image-generation-api/",
+      "sourceAgency": "OpenAI image generation / Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "OpenAI image generation output created 2026-08-13",
+      "retrievedAt": "2026-08-13",
+      "license": "Project-generated original asset",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "S2 scenario portrait generated for Janus Observatory with OpenAI image generation.",
+      "aiAssistanceDisclosure": "Model-generated interpretive concept art. It is not a Project Janus research product, telescope observation, or scientific data.",
+      "allowedTransformations": [
+        "resizing",
+        "format conversion",
+        "image optimization",
+        "responsive cropping",
+        "color grading"
+      ],
+      "appliedTransformations": ["format conversion", "image optimization"],
+      "sourceChecksum": "sha256:655d2b4bfda93a5087212d33a5dd8aaf32b26a443ff03869124eba12382c909a",
+      "derivativeChecksum": "sha256:0770356ad32673b3210f0d0a4a5c75d6608691697f54ef203c9bab842b7dfeee",
+      "derivativePublicPath": "/assets/scenarios/s2-world-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 1672,
+        "heightPx": 941
+      },
+      "transformations": [
+        "Generated as a distinct 1672 × 941 cinematic future-Earth portrait from a scenario-specific art direction prompt informed by the canonical Janus scenario record.",
+        "Converted from PNG to WebP with cwebp 1.6.0 at quality 88, method 6, with metadata removed."
+      ],
+      "notes": [
+        "Interpretive/model_generated visual only. No atmospheric, population, energy, governance, technology, or detectability values are encoded in the image.",
+        "All scientific values and observation results rendered beside this portrait come from canonical data with source references."
+      ]
+    },
+    {
+      "id": "janus.generated.world.s3.v1",
+      "title": "S3 scenario portrait — Golden Age",
+      "creator": "Janus Observatory; generated with OpenAI image generation",
+      "scenarioId": "S3",
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://openai.com/index/image-generation-api/",
+      "sourceAgency": "OpenAI image generation / Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "OpenAI image generation output created 2026-08-13",
+      "retrievedAt": "2026-08-13",
+      "license": "Project-generated original asset",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "S3 scenario portrait generated for Janus Observatory with OpenAI image generation.",
+      "aiAssistanceDisclosure": "Model-generated interpretive concept art. It is not a Project Janus research product, telescope observation, or scientific data.",
+      "allowedTransformations": [
+        "resizing",
+        "format conversion",
+        "image optimization",
+        "responsive cropping",
+        "color grading"
+      ],
+      "appliedTransformations": ["format conversion", "image optimization"],
+      "sourceChecksum": "sha256:453433557e46dc618c0b3e04d372c3a52710e20d576c05750fb0d50ee107dbf5",
+      "derivativeChecksum": "sha256:2bc1eab2b347a30910ac84bb451c8a94398220e666fe2c55149eab934b66e1bc",
+      "derivativePublicPath": "/assets/scenarios/s3-world-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 1672,
+        "heightPx": 941
+      },
+      "transformations": [
+        "Generated as a distinct 1672 × 941 cinematic future-Earth portrait from a scenario-specific art direction prompt informed by the canonical Janus scenario record.",
+        "Converted from PNG to WebP with cwebp 1.6.0 at quality 88, method 6, with metadata removed."
+      ],
+      "notes": [
+        "Interpretive/model_generated visual only. No atmospheric, population, energy, governance, technology, or detectability values are encoded in the image.",
+        "All scientific values and observation results rendered beside this portrait come from canonical data with source references."
+      ]
+    },
+    {
+      "id": "janus.generated.world.s4.v1",
+      "title": "S4 scenario portrait — Living with the Land",
+      "creator": "Janus Observatory; generated with OpenAI image generation",
+      "scenarioId": "S4",
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://openai.com/index/image-generation-api/",
+      "sourceAgency": "OpenAI image generation / Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "OpenAI image generation output created 2026-08-13",
+      "retrievedAt": "2026-08-13",
+      "license": "Project-generated original asset",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "S4 scenario portrait generated for Janus Observatory with OpenAI image generation.",
+      "aiAssistanceDisclosure": "Model-generated interpretive concept art. It is not a Project Janus research product, telescope observation, or scientific data.",
+      "allowedTransformations": [
+        "resizing",
+        "format conversion",
+        "image optimization",
+        "responsive cropping",
+        "color grading"
+      ],
+      "appliedTransformations": ["format conversion", "image optimization"],
+      "sourceChecksum": "sha256:f649b1ba8b6c949c7f4562714e8d3340ebc7b6f55b41b00e0910e08877c3e064",
+      "derivativeChecksum": "sha256:9b458252a0622bd2b35d0f14128c60e6a337fc55c28447a56ad33acacfe7951f",
+      "derivativePublicPath": "/assets/scenarios/s4-world-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 1672,
+        "heightPx": 941
+      },
+      "transformations": [
+        "Generated as a distinct 1672 × 941 cinematic future-Earth portrait from a scenario-specific art direction prompt informed by the canonical Janus scenario record.",
+        "Converted from PNG to WebP with cwebp 1.6.0 at quality 88, method 6, with metadata removed."
+      ],
+      "notes": [
+        "Interpretive/model_generated visual only. No atmospheric, population, energy, governance, technology, or detectability values are encoded in the image.",
+        "All scientific values and observation results rendered beside this portrait come from canonical data with source references."
+      ]
+    },
+    {
+      "id": "janus.generated.world.s5.v1",
+      "title": "S5 scenario portrait — Transhumanism",
+      "creator": "Janus Observatory; generated with OpenAI image generation",
+      "scenarioId": "S5",
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://openai.com/index/image-generation-api/",
+      "sourceAgency": "OpenAI image generation / Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "OpenAI image generation output created 2026-08-13",
+      "retrievedAt": "2026-08-13",
+      "license": "Project-generated original asset",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "S5 scenario portrait generated for Janus Observatory with OpenAI image generation.",
+      "aiAssistanceDisclosure": "Model-generated interpretive concept art. It is not a Project Janus research product, telescope observation, or scientific data.",
+      "allowedTransformations": [
+        "resizing",
+        "format conversion",
+        "image optimization",
+        "responsive cropping",
+        "color grading"
+      ],
+      "appliedTransformations": ["format conversion", "image optimization"],
+      "sourceChecksum": "sha256:6b27ec7aa94da7c1db2259c4f3c745652591afc631ac75ade87c61f53edb17bf",
+      "derivativeChecksum": "sha256:722cec8c3ea3672f60d62ec9ee6c13c4e3ba308a85e8991df2b4cb54c540443b",
+      "derivativePublicPath": "/assets/scenarios/s5-world-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 1672,
+        "heightPx": 941
+      },
+      "transformations": [
+        "Generated as a distinct 1672 × 941 cinematic future-Earth portrait from a scenario-specific art direction prompt informed by the canonical Janus scenario record.",
+        "Converted from PNG to WebP with cwebp 1.6.0 at quality 88, method 6, with metadata removed."
+      ],
+      "notes": [
+        "Interpretive/model_generated visual only. No atmospheric, population, energy, governance, technology, or detectability values are encoded in the image.",
+        "All scientific values and observation results rendered beside this portrait come from canonical data with source references."
+      ]
+    },
+    {
+      "id": "janus.generated.world.s6.v1",
+      "title": "S6 scenario portrait — Sword of Damocles",
+      "creator": "Janus Observatory; generated with OpenAI image generation",
+      "scenarioId": "S6",
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://openai.com/index/image-generation-api/",
+      "sourceAgency": "OpenAI image generation / Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "OpenAI image generation output created 2026-08-13",
+      "retrievedAt": "2026-08-13",
+      "license": "Project-generated original asset",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "S6 scenario portrait generated for Janus Observatory with OpenAI image generation.",
+      "aiAssistanceDisclosure": "Model-generated interpretive concept art. It is not a Project Janus research product, telescope observation, or scientific data.",
+      "allowedTransformations": [
+        "resizing",
+        "format conversion",
+        "image optimization",
+        "responsive cropping",
+        "color grading"
+      ],
+      "appliedTransformations": ["format conversion", "image optimization"],
+      "sourceChecksum": "sha256:183c49240f8c671c871391550777b5c0e8cda7e3699be499989fe4b2161f152b",
+      "derivativeChecksum": "sha256:43eed64faf89d0ead2546016c29b8d6dcadbe07812aac3c8fca28720e267364b",
+      "derivativePublicPath": "/assets/scenarios/s6-world-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 1672,
+        "heightPx": 941
+      },
+      "transformations": [
+        "Generated as a distinct 1672 × 941 cinematic future-Earth portrait from a scenario-specific art direction prompt informed by the canonical Janus scenario record.",
+        "Converted from PNG to WebP with cwebp 1.6.0 at quality 88, method 6, with metadata removed."
+      ],
+      "notes": [
+        "Interpretive/model_generated visual only. No atmospheric, population, energy, governance, technology, or detectability values are encoded in the image.",
+        "All scientific values and observation results rendered beside this portrait come from canonical data with source references."
+      ]
+    },
+    {
+      "id": "janus.generated.world.s7.v1",
+      "title": "S7 scenario portrait — Restoration",
+      "creator": "Janus Observatory; generated with OpenAI image generation",
+      "scenarioId": "S7",
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://openai.com/index/image-generation-api/",
+      "sourceAgency": "OpenAI image generation / Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "OpenAI image generation output created 2026-08-13",
+      "retrievedAt": "2026-08-13",
+      "license": "Project-generated original asset",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "S7 scenario portrait generated for Janus Observatory with OpenAI image generation.",
+      "aiAssistanceDisclosure": "Model-generated interpretive concept art. It is not a Project Janus research product, telescope observation, or scientific data.",
+      "allowedTransformations": [
+        "resizing",
+        "format conversion",
+        "image optimization",
+        "responsive cropping",
+        "color grading"
+      ],
+      "appliedTransformations": ["format conversion", "image optimization"],
+      "sourceChecksum": "sha256:009a01cfeaed32b93695c1fe1a1a913f17718ee676d1af5acd5220fc04819cd0",
+      "derivativeChecksum": "sha256:12d9df7613546337035fedb6c08c535178fd0804ddd37a0862405e6087883e8c",
+      "derivativePublicPath": "/assets/scenarios/s7-world-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 1672,
+        "heightPx": 941
+      },
+      "transformations": [
+        "Generated as a distinct 1672 × 941 cinematic future-Earth portrait from a scenario-specific art direction prompt informed by the canonical Janus scenario record.",
+        "Converted from PNG to WebP with cwebp 1.6.0 at quality 88, method 6, with metadata removed."
+      ],
+      "notes": [
+        "Interpretive/model_generated visual only. No atmospheric, population, energy, governance, technology, or detectability values are encoded in the image.",
+        "All scientific values and observation results rendered beside this portrait come from canonical data with source references."
+      ]
+    },
+    {
+      "id": "janus.generated.world.s8.v1",
+      "title": "S8 scenario portrait — Ouroboros",
+      "creator": "Janus Observatory; generated with OpenAI image generation",
+      "scenarioId": "S8",
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://openai.com/index/image-generation-api/",
+      "sourceAgency": "OpenAI image generation / Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "OpenAI image generation output created 2026-08-13",
+      "retrievedAt": "2026-08-13",
+      "license": "Project-generated original asset",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "S8 scenario portrait generated for Janus Observatory with OpenAI image generation.",
+      "aiAssistanceDisclosure": "Model-generated interpretive concept art. It is not a Project Janus research product, telescope observation, or scientific data.",
+      "allowedTransformations": [
+        "resizing",
+        "format conversion",
+        "image optimization",
+        "responsive cropping",
+        "color grading"
+      ],
+      "appliedTransformations": ["format conversion", "image optimization"],
+      "sourceChecksum": "sha256:462d3ef274b3c9687d3e213a0bd0f47c36ed55a27c9f532a594f105e904eeb4c",
+      "derivativeChecksum": "sha256:1b782734a3dd3a7e024de1b015cb7776803bcc7cdf20583fbac1f7a0780907d8",
+      "derivativePublicPath": "/assets/scenarios/s8-world-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 1672,
+        "heightPx": 941
+      },
+      "transformations": [
+        "Generated as a distinct 1672 × 941 cinematic future-Earth portrait from a scenario-specific art direction prompt informed by the canonical Janus scenario record.",
+        "Converted from PNG to WebP with cwebp 1.6.0 at quality 88, method 6, with metadata removed."
+      ],
+      "notes": [
+        "Interpretive/model_generated visual only. No atmospheric, population, energy, governance, technology, or detectability values are encoded in the image.",
+        "All scientific values and observation results rendered beside this portrait come from canonical data with source references."
+      ]
+    },
+    {
+      "id": "janus.generated.world.s9.v1",
+      "title": "S9 scenario portrait — Deus Ex Machina",
+      "creator": "Janus Observatory; generated with OpenAI image generation",
+      "scenarioId": "S9",
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://openai.com/index/image-generation-api/",
+      "sourceAgency": "OpenAI image generation / Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "OpenAI image generation output created 2026-08-13",
+      "retrievedAt": "2026-08-13",
+      "license": "Project-generated original asset",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "S9 scenario portrait generated for Janus Observatory with OpenAI image generation.",
+      "aiAssistanceDisclosure": "Model-generated interpretive concept art. It is not a Project Janus research product, telescope observation, or scientific data.",
+      "allowedTransformations": [
+        "resizing",
+        "format conversion",
+        "image optimization",
+        "responsive cropping",
+        "color grading"
+      ],
+      "appliedTransformations": ["format conversion", "image optimization"],
+      "sourceChecksum": "sha256:d7861383517b629d38461e2a090657979b093aa8dde599ea9c35c0820833fb0a",
+      "derivativeChecksum": "sha256:05df559588027339764876956de02f8c35e552b778c8ecc3254e4ed23d063e3e",
+      "derivativePublicPath": "/assets/scenarios/s9-world-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 1672,
+        "heightPx": 941
+      },
+      "transformations": [
+        "Generated as a distinct 1672 × 941 cinematic future-Earth portrait from a scenario-specific art direction prompt informed by the canonical Janus scenario record.",
+        "Converted from PNG to WebP with cwebp 1.6.0 at quality 88, method 6, with metadata removed."
+      ],
+      "notes": [
+        "Interpretive/model_generated visual only. No atmospheric, population, energy, governance, technology, or detectability values are encoded in the image.",
+        "All scientific values and observation results rendered beside this portrait come from canonical data with source references."
+      ]
+    },
+    {
+      "id": "janus.generated.world.s10.v1",
+      "title": "S10 scenario portrait — Out of Eden",
+      "creator": "Janus Observatory; generated with OpenAI image generation",
+      "scenarioId": "S10",
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://openai.com/index/image-generation-api/",
+      "sourceAgency": "OpenAI image generation / Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "OpenAI image generation output created 2026-08-13",
+      "retrievedAt": "2026-08-13",
+      "license": "Project-generated original asset",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "S10 scenario portrait generated for Janus Observatory with OpenAI image generation.",
+      "aiAssistanceDisclosure": "Model-generated interpretive concept art. It is not a Project Janus research product, telescope observation, or scientific data.",
+      "allowedTransformations": [
+        "resizing",
+        "format conversion",
+        "image optimization",
+        "responsive cropping",
+        "color grading"
+      ],
+      "appliedTransformations": ["format conversion", "image optimization"],
+      "sourceChecksum": "sha256:330b491263f73b0c8a3990bb64a86b3bfea074c4adb333ec3b4fa15f5294abb8",
+      "derivativeChecksum": "sha256:3de49566fa17e73f3fa3df6e3f339159a43d5f9c17215b52f53b5ff4ff62a5b7",
+      "derivativePublicPath": "/assets/scenarios/s10-world-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 1672,
+        "heightPx": 941
+      },
+      "transformations": [
+        "Generated as a distinct 1672 × 941 cinematic future-Earth portrait from a scenario-specific art direction prompt informed by the canonical Janus scenario record.",
+        "Converted from PNG to WebP with cwebp 1.6.0 at quality 88, method 6, with metadata removed."
+      ],
+      "notes": [
+        "Interpretive/model_generated visual only. No atmospheric, population, energy, governance, technology, or detectability values are encoded in the image.",
+        "All scientific values and observation results rendered beside this portrait come from canonical data with source references."
+      ]
+    },
+    {
+      "id": "janus.generated.observer.poster.v1",
+      "title": "Janus alien-observer telescope poster",
+      "creator": "Janus Observatory; generated with OpenAI image generation",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://openai.com/index/image-generation-api/",
+      "sourceAgency": "OpenAI image generation / Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "OpenAI image generation output created 2026-08-29",
+      "retrievedAt": "2026-08-29",
+      "license": "Project-generated original asset",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Alien-observer telescope poster generated for Janus Observatory with OpenAI image generation.",
+      "aiAssistanceDisclosure": "Model-generated interpretive concept art. It is not a Project Janus research product, real telescope observation, instrument design, or scientific data.",
+      "allowedTransformations": [
+        "resizing",
+        "format conversion",
+        "image optimization",
+        "responsive cropping",
+        "color grading",
+        "DOM overlay compositing"
+      ],
+      "appliedTransformations": ["format conversion", "image optimization"],
+      "sourceChecksum": "sha256:c8e5f217c5798dffc844190335c460b96efe0487da8faf2a6e2dd7ef43f6a02a",
+      "derivativeChecksum": "sha256:04d01bbbe9d9ecf09049dae136d3c47559915faa4fa7ef2140026bb5caa844cd",
+      "derivativePublicPath": "/assets/observer/janus-observer-poster-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 1672,
+        "heightPx": 941
+      },
+      "transformations": [
+        "Generated as an original 1672 × 941 cinematic observer scene using the approved scrollytelling concept only as a composition and mood reference.",
+        "Converted from PNG to WebP with cwebp 1.6.0 at quality 88, method 6, with metadata removed."
+      ],
+      "notes": [
+        "Interpretive/model_generated poster and WebGL fallback only; the observer, telescope, room, Earth framing, and star field do not encode scientific values.",
+        "All instrument results, reticles, labels, assumptions, citations, and epistemic states remain editable DOM/SVG derived from canonical data."
       ]
     },
     {
@@ -370,8 +1120,10 @@
       "artifactId": null,
       "kind": "model",
       "sourceUrl": "https://www.fab.com/listings/e659c1e0-d53c-4146-b877-a5496d0a7598",
+      "sourceAgency": "Fab",
       "directFileUrls": [],
       "sourceVersion": "Fab listing and Blender source package reviewed 2026-08-13",
+      "retrievedAt": "2026-08-13",
       "license": "Creative Commons Attribution 4.0 International",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "rightsStatus": "verified_open",
@@ -386,9 +1138,12 @@
         "material tuning",
         "responsive scaling"
       ],
+      "appliedTransformations": ["rigging", "posing", "animation", "web optimization"],
       "sourceChecksum": "sha256:b887ace9d23987347ce20310c08d2e04b4359948fcffeadbba018598f9a42ba1",
       "derivativeChecksum": "sha256:4eff902d4a81bd124674a1f25c164a7326dbf9cc97e6f33801d2279d280c2527",
       "derivativePublicPath": "/assets/models/janus-alien-observer-v4.glb",
+      "sharedDerivativeGroup": "janus-alien-observer-v4",
+      "maxDisplaySize": null,
       "transformations": [
         "Imported the original Blender source into Blender 5.2, separated its mirrored sleeve, cuff, and hand components, added object-level controls to both shoulders and the near wrist, authored a four-second anticipate/lean/reach/focus/settle performance with pronounced body, blink, and antenna secondary motion, staged it against the admitted telescope, and exported the combined scene as binary glTF."
       ],
@@ -405,8 +1160,10 @@
       "artifactId": null,
       "kind": "model",
       "sourceUrl": "https://www.fab.com/listings/ad439e6a-e804-468b-93ac-f1b6d649a883",
+      "sourceAgency": "Fab",
       "directFileUrls": [],
       "sourceVersion": "Fab listing and FBX source package reviewed 2026-08-13",
+      "retrievedAt": "2026-08-13",
       "license": "Fab Standard License",
       "licenseUrl": "https://www.fab.com/eula",
       "rightsStatus": "permission_granted",
@@ -420,9 +1177,16 @@
         "material tuning",
         "responsive scaling"
       ],
+      "appliedTransformations": [
+        "incorporation into the Janus Observatory project",
+        "posing and staging",
+        "web optimization"
+      ],
       "sourceChecksum": "sha256:57a20d0a8f6ca782ba8aee4595685b0ac66a4f06f91ae75aae7baa36db6bce4b",
       "derivativeChecksum": "sha256:4eff902d4a81bd124674a1f25c164a7326dbf9cc97e6f33801d2279d280c2527",
       "derivativePublicPath": "/assets/models/janus-alien-observer-v4.glb",
+      "sharedDerivativeGroup": "janus-alien-observer-v4",
+      "maxDisplaySize": null,
       "transformations": [
         "Imported the original FBX and navy swatch texture into Blender 5.2, scaled and positioned the telescope to preserve tripod contact, aligned the eyepiece with the character, added named eyepiece/objective optical-axis locators for the browser camera handoff, and exported it inside the combined binary glTF scene."
       ],

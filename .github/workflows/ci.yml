@@ -4,14 +4,18 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 6 * * 1'
 
 permissions:
   contents: read
 
 jobs:
   verify:
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -31,4 +35,48 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - run: uv sync --project pipeline --extra dev --locked
+      - run: uv sync --project experiments/resilience-lab --extra dev --locked
       - run: pnpm check
+
+  browser-smoke:
+    if: github.event_name != 'schedule'
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.10.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium firefox webkit
+      - name: Cross-browser, mobile, keyboard, and axe gates
+        run: pnpm test:e2e
+
+  provider-canary:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.10.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Probe configured providers
+        if: ${{ secrets.DEEPSEEK_API_KEY != '' && secrets.VOYAGE_API_KEY != '' }}
+        run: pnpm probe:ai
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          VOYAGE_API_KEY: ${{ secrets.VOYAGE_API_KEY }}
+          JANUS_LLM_MODEL: deepseek-v4-flash
+          VOYAGE_EMBEDDING_MODEL: voyage-4-lite
+          VOYAGE_EMBEDDING_DIMENSIONS: '1024'

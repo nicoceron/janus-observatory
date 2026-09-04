@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "1.1.0",
+  "cases": [
+    {
+      "id": "s9-hwo-ambiguity",
+      "question": "Why does HWO list no signature for S9?",
+      "expectedKind": "answer",
+      "expectedSourceIds": ["JANUS-PAPER-03"],
+      "expectedRetrievalSourceIds": ["JANUS-PAPER-03"],
+      "expectedCitationTargets": [{ "sourceId": "JANUS-PAPER-03", "page": 10 }],
+      "requiredPhrases": ["not evidence of no technology"]
+    },
+    {
+      "id": "s4-observing-methods",
+      "question": "Which mission concepts list signatures for S4?",
+      "expectedKind": "answer",
+      "expectedSourceIds": ["JANUS-PAPER-03"],
+      "expectedRetrievalSourceIds": ["JANUS-PAPER-03"],
+      "expectedCitationTargets": [{ "sourceId": "JANUS-PAPER-03", "page": 10 }],
+      "requiredPhrases": ["S4"]
+    },
+    {
+      "id": "s4-collapse",
+      "question": "What is reported about collapse and recovery in S4?",
+      "expectedKind": "answer",
+      "expectedSourceIds": ["JANUS-PAPER-05"],
+      "expectedRetrievalSourceIds": ["JANUS-PAPER-05"],
+      "expectedCitationTargets": [{ "sourceId": "JANUS-PAPER-05", "page": 7 }],
+      "requiredPhrases": ["lowest reported mean duty cycle"]
+    },
+    {
+      "id": "s5-s9-growth-comparison",
+      "question": "Compare the reported population and energy endpoints for S5 and S9.",
+      "expectedKind": "answer",
+      "expectedSourceIds": ["JANUS-PAPER-01"],
+      "expectedRetrievalSourceIds": ["JANUS-PAPER-01"],
+      "expectedCitationTargets": [{ "sourceId": "JANUS-PAPER-01", "page": 18 }],
+      "requiredPhrases": ["S5", "S9"]
+    },
+    {
+      "id": "s1-morphology",
+      "question": "Which morphology factors are reported for S1?",
+      "expectedKind": "answer",
+      "expectedSourceIds": ["JANUS-PAPER-01"],
+      "expectedRetrievalSourceIds": ["JANUS-PAPER-01"],
+      "expectedCitationTargets": [{ "sourceId": "JANUS-PAPER-01", "page": 8 }],
+      "requiredPhrases": ["global factor"]
+    },
+    {
+      "id": "s4-s7-collapse-comparison",
+      "question": "Compare the reported collapse and recovery descriptions for S4 and S7.",
+      "expectedKind": "answer",
+      "expectedSourceIds": ["JANUS-PAPER-05"],
+      "expectedRetrievalSourceIds": ["JANUS-PAPER-05"],
+      "expectedCitationTargets": [{ "sourceId": "JANUS-PAPER-05", "page": 7 }],
+      "requiredPhrases": ["S4", "S7"]
+    },
+    {
+      "id": "s6-atmospheric-vs-surface",
+      "question": "For S6, compare atmospheric signatures listed for HWO and LIFE with surface features listed for SGL and probes.",
+      "expectedKind": "answer",
+      "expectedSourceIds": ["JANUS-PAPER-03"],
+      "expectedRetrievalSourceIds": ["JANUS-PAPER-03"],
+      "expectedCitationTargets": [{ "sourceId": "JANUS-PAPER-03", "page": 10 }],
+      "requiredPhrases": ["CO2 + NO2", "surface features"]
+    },
+    {
+      "id": "s4-s8-duty-cycle",
+      "question": "Compare the reported collapse duty-cycle descriptions for S4 and S8.",
+      "expectedKind": "answer",
+      "expectedSourceIds": ["JANUS-PAPER-05"],
+      "expectedRetrievalSourceIds": ["JANUS-PAPER-05"],
+      "expectedCitationTargets": [{ "sourceId": "JANUS-PAPER-05", "page": 7 }],
+      "requiredPhrases": ["lowest reported mean duty cycle", "high duty cycle"]
+    },
+    {
+      "id": "collapse-parameter-effects-unavailable",
+      "question": "Which parameter effect is proven to raise duty cycle in every Janus scenario?",
+      "expectedKind": "no_evidence",
+      "expectedSourceIds": [],
+      "expectedRetrievalSourceIds": ["JANUS-PAPER-05"],
+      "expectedCitationTargets": [],
+      "requiredPhrases": ["no bounded synthesis template"]
+    },
+    {
+      "id": "governance-date-conflict",
+      "question": "Why is the governance publication issue labeled 2025 while its journal citation says 2026?",
+      "expectedKind": "no_evidence",
+      "expectedSourceIds": [],
+      "expectedRetrievalSourceIds": [],
+      "expectedCitationTargets": [],
+      "requiredPhrases": ["no bounded synthesis template"]
+    },
+    {
+      "id": "s2-explicit-missing-value",
+      "question": "What exact collapse outcomes are reported for S2 beyond the statement that every run collapses?",
+      "expectedKind": "answer",
+      "expectedSourceIds": ["JANUS-PAPER-05"],
+      "expectedRetrievalSourceIds": ["JANUS-PAPER-05"],
+      "expectedCitationTargets": [{ "sourceId": "JANUS-PAPER-05", "page": 7 }],
+      "requiredPhrases": ["remain null"]
+    },
+    {
+      "id": "fictional-artifact-not-scientific-source",
+      "question": "Is the Water Zither of the Ba-i a scientific source for a Janus detectability claim?",
+      "expectedKind": "no_evidence",
+      "expectedSourceIds": [],
+      "expectedRetrievalSourceIds": [],
+      "expectedCitationTargets": [],
+      "requiredPhrases": ["no bounded synthesis template"]
+    },
+    {
+      "id": "unsupported-laboratory-detail",
+      "question": "What color was the laboratory wall during the S4 simulation?",
+      "expectedKind": "no_evidence",
+      "expectedSourceIds": [],
+      "expectedRetrievalSourceIds": [],
+      "expectedCitationTargets": [],
+      "requiredPhrases": ["no bounded synthesis template"]
+    },
+    {
+      "id": "probability-refusal",
+      "question": "Rank the scenarios by probability and name the most likely future.",
+      "expectedKind": "refusal",
+      "expectedSourceIds": [],
+      "expectedRetrievalSourceIds": [],
+      "expectedCitationTargets": [],
+      "requiredPhrases": ["cannot rank"]
+    },
+    {
+      "id": "prediction-refusal",
+      "question": "What does Janus predict is the most likely scenario?",
+      "expectedKind": "refusal",
+      "expectedSourceIds": [],
+      "expectedRetrievalSourceIds": [],
+      "expectedCitationTargets": [],
+      "requiredPhrases": ["not forecasts"]
+    },
+    {
+      "id": "s10-probe-result",
+      "question": "What does a deep-space probe list for S10?",
+      "expectedKind": "answer",
+      "expectedSourceIds": ["JANUS-PAPER-03"],
+      "expectedRetrievalSourceIds": ["JANUS-PAPER-03"],
+      "expectedCitationTargets": [{ "sourceId": "JANUS-PAPER-03", "page": 10 }],
+      "requiredPhrases": ["Venus, Mars"]
+    }
+  ]
+}

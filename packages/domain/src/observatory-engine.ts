@@ -1,3 +1,4 @@
+import type { SourceRef, Sourced } from './evidence';
 import type { ScenarioId } from './scenario';
 import { ObservabilityDatasetSchema, type ObservingMissionId } from './scientific-dataset';
 
@@ -7,10 +8,12 @@ export type PublishedObservationResult = {
   status: 'reported_listed' | 'no_signature_listed';
   signatures: string[];
   caveat: string;
-  source: {
-    sourceId: string;
-    sourceVersion: string;
-    locator: { page?: number; figure?: string; table?: string; section?: string };
+  sourceRefs: SourceRef[];
+  assumptions: {
+    distance: Sourced<string>;
+    integrationTime: Sourced<string>;
+    host: Sourced<string>;
+    concept: Sourced<string>;
   };
 };
 
@@ -36,6 +39,7 @@ export function resolvePublishedObservation(
       signatures.length > 0
         ? "Figure 6 lists these signatures for this mission concept under the paper's assumptions."
         : 'A blank Figure 6 cell is not evidence of no technology; it means the figure lists no signature for this mission concept.',
-    source: dataset.source,
+    sourceRefs: record.detectionProvenance[instrumentId],
+    assumptions: dataset.missionAssumptions[instrumentId],
   };
 }

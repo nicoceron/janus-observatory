@@ -1,0 +1,2956 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>janus.collapse.model-and-reported-results.arxiv-v1</title><style>body {
+  margin: 0;
+  background: #0b0f14;
+  color: #e9eef5;
+  font: 15px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+main { max-width: 1180px; margin: auto; padding: 32px; }
+.warning { border: 2px solid #ffb454; background: #261b0d; padding: 18px; }
+.approved { border: 2px solid #78d6a5; background: #10271d; padding: 18px; }
+a { color: #8dd9ff; }
+article { border-top: 1px solid #33404d; margin-top: 28px; padding-top: 24px; }
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+}
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #111923;
+  border: 1px solid #33404d;
+  padding: 16px;
+  max-height: 72vh;
+  overflow: auto;
+}
+code { color: #ffcf87; }
+.meta { color: #a8b5c3; }
+@media(max-width: 800px) { .grid { grid-template-columns: 1fr; } }</style></head><body data-review-status="candidate_not_reviewed"><main><p><a href="index.html">← Review index</a></p><section class="warning"><strong>CANDIDATE — NOT REVIEWED</strong><p>This deterministic page is a comparison aid, not a sign-off. Independent review is pending; machine checks do not establish scientific approval.</p></section><h1>janus.collapse.model-and-reported-results.arxiv-v1</h1><p class="meta">Canonical path: data/canonical/collapse/model-and-reported-results.json<br>Data version: sha256:46a0e94a969301c49cfafe00463e5c7e9be5dce423ddcdeb21fe4ad0614d2046<br>Normalized payload: sha256:840d3d87485a837cfdd67a0fec19cd48693613197eb79b23588209c9c225c22e</p><div class="grid"><section><h2>Source excerpts</h2><article><h3>JANUS-PAPER-05@arXiv:2604.13774v1 · page 3 · sha256:67e0eaf4fa298ab5a943d6245a11e8b1fb57d45eb2b5cb115d13c7e5f2f4f8fb</h3><pre>3 Model Description
+A recently proposed framework outlines ten plausible futures for Earth-originating civilization 1000
+years from now, structured around variations in governance type, resource regime, and systemic
+resilience [Haqq-Misra et al., 2025a]. These scenarios are grounded in Earth’s present-day sociotech-
+nical conditions and extrapolated using techniques from futures studies, including PEST analysis
+(Political, Economic, Social, Technological), cross-consistency assessment, and structured scenario
+worldbuilding. Building on this qualitative scenario set, we implement a hybrid deterministic-
+stochastic simulation to represent the temporal dynamics of growth, collapse, and recovery.
+3.1 Simulation framework
+The simulation spans a fixed period of 1000 years, discretized into yearly time steps. At each step, a
+civilization is characterized by its technological capacity,T(t), and its available resource stock,R(t).
+Technological capacity increases linearly each year according to a fixed growth rater, which we take
+directly from the values reported in Haqq-Misra et al. [2025a], Table 9. Simultaneously, the available
+resource stock is depleted at a constant rateδ. If the resource level falls to zero (i.e.,R(t)&lt;0), or
+if an existential risk event occurs (represented as a probabilistic hazard drawn at each time step)
+the civilization undergoes a collapse. Collapse represents a systemic breakdown in infrastructure,
+coordination, and technological continuity. It leads to a sharp reduction in technological capacity,
+determined by a collapse factorc f , which defines the proportion of technology that survives the
+event. This loss can be interpreted as the result of disruptions to power grids, communication
+networks, knowledge retention, or the abandonment of complex systems.
+Following collapse, the system enters a dormant recovery period of durationr d. During this
+phase, the society is unable to grow or consume resources, reflecting a temporary halt in techno-
+logical and economic activity. This delay allows time for institutional reorganization, population
+stabilization, or environmental recovery. Once the recovery period concludes, the resource stock
+is partially replenished to a fractionr f of its original valueR 0. This recovery fraction represents
+retained infrastructure, stored reserves, or ecological regeneration. A full recovery (r f ≈1) implies
+robust contingency planning and strong institutional memory, while lower values indicate more
+severe losses and diminished rebuilding capacity. This cycle of growth, collapse, dormancy, and
+recovery can repeat multiple times during the simulation window, depending on the fragility of the
+system, the frequency of stochastic hazards, and the depletion rate of resources.
+Formally, let the initial conditions beT 0 = 1, andR 0 ∈R + , and define the indicator function
+asχ(t)∈ {0,1}, withχ(t) = 1 if the system is active (not collapsed or recovering) at timet, and
+χ(t) = 0 otherwise. The update rules for each time step are given by
+Tt+1 =χ t (Tt +r) + (1−χ t)T t,
+Rt+1 =χ t (Rt −δ) + (1−χ t)R t. (1)
+We include both a deterministic and a stochastic trigger for collapse to reflect two distinct
+failure modes: internal depletion and external shocks. Collapse is deterministically triggered when
+the resource stock is fully depleted (i.e.,R(t)≤0). It may also be triggered by a stochastic
+existential hazard, which we model as a Bernoulli process. At each time stept, a uniform deviate
+U(t)∼U(0,1) is drawn. IfU(t)&lt; h, whereh∈[0,1] is the hazard rate specific to the scenario,
+then a collapse is triggered independently of resource levels.
+3</pre></article><article><h3>JANUS-PAPER-05@arXiv:2604.13774v1 · page 7 · sha256:a540db9eddc2fd4fe3ea81e84a570320374b9841b6db8548e67f057843aa7fa2</h3><pre>Table 3: Interpreting resource pressure fromR 0 andδ
+Resource PressureR 0 δScenarios
+High≤1000 1.0–2.5 S1, S2, S4, S7, S8, S9
+Moderate 400–1600 0.5–1.0 S6
+Low≥1200 0.0–0.5 S3, S5, S10
+the long-term behavior of each scenario. Each scenario’s baseline values (Table 4) are perturbed
+using probabilistic variation to capture plausible uncertainty (Table 5). Initial resource stock (R 0)
+and depletion rate (δ) are sampled from normal distributions with modest standard deviations
+to represent uncertainty in ecological baselines and consumption patterns. Collapse depth (c f )
+and recovery fraction (r f ) are sampled using triangular distributions centered on scenario-specific
+values, allowing outcomes to concentrate near expected levels while still capturing asymmetries in
+resilience and recovery capacity. Recovery delay (r d) is sampled from a normal distribution with
+a standard deviation of±10 years, reflecting variability in rebuilding pace across different societal
+structures.
+The existential hazard rate (h) is held fixed for each scenario because it encodes an assumed
+background level of external risk (such as AI misalignment, interstellar conflict, or catastrophic
+environmental feedbacks) rather than internal system dynamics. Unlike other parameters whose
+variability arises from structural or operational uncertainty,hreflects a narrative-level judgment
+about a civilization’s exposure to exogenous threats. Scenarios characterized by unstable geopoliti-
+cal contexts, risky technological dependencies, or unresolved existential challenges (e.g., S1, S6, S7)
+are assigned higher hazard rates to reflect this vulnerability, while S5 carries a small residual risk
+due to high systemic complexity. In contrast, scenarios with societal stability, low-impact lifestyles,
+or resilient infrastructure (e.g., S3, S4, S8, S9, S10) are assigned zero or near-zero hazard rates.
+Keepinghfixed rather than sampling it probabilistically allows for clearer attribution of collapse
+outcomes to either endogenous fragility or exogenous shocks, rather than conflating the two.
+Table 4: Final parameter values for each scenario
+Scenarior R 0 δ c f rd rf h
+S1 0.0020 400 1.2 0.6 40 0.15 0.003
+S2 0.0026 700 1.5 0.3 70 0.10 0.001
+S3 0.0001 2400 0.0 1.0 0 1.0 0.0
+S4 0.0060 600 2.5 0.2 100 0.10 0.0
+S5 0.0003 2500 0.1 0.9 20 0.80 0.0005
+S6 0.0018 1600 1.0 0.4 50 0.25 0.005
+S7 0.0060 400 1.5 0.3 60 0.20 0.001
+S8 0.0015 800 1.3 0.6 70 0.35 0.0
+S9 0.0011 900 1.3 0.5 70 0.35 0.0
+S10 0.0002 2700 0.0 1.0 0 1.0 0.0
+7</pre></article><article><h3>JANUS-PAPER-05@arXiv:2604.13774v1 · page 8 · sha256:72ca34b5e1131dd21af6819030a8e1c4864d25f32da50fcb1e79ffb2ba5a44c8</h3><pre>Table 5: Parameter uncertainty assumptions for Monte Carlo sampling
+Parameter Distribution Uncertainty
+R0 Normal±5% of mean
+δNormal±5% of mean
+cf Triangular±5% of mode
+rd Normal±10 years
+rf Triangular±5% of mode
+3.3 Metrics
+We define four metrics to reflect different aspects of technospheric persistence and collapse dynamics
+across Monte Carlo simulations. These metrics are designed to capture the onset, frequency, and
+continuity of civilization-level activity, with a focus on their implications for detectability.
+The first metric,T c, is the mean time to first collapse across replicates. It serves as a proxy for
+system fragility: scenarios with low values ofT c tend to break down early, while those with higher
+values demonstrate greater initial stability. When a simulation run does not experience collapse
+within the 1000-year window, the full timespan is used. The second metric,f nc, denotes the
+fraction of runs that avoid collapse entirely. This value reflects the overall robustness of a scenario
+and helps differentiate consistently stable futures from those vulnerable to systemic failure. We
+also measureD c, the average duty cycle, defined as the fraction of time a civilization remains
+active, that is, maintaining nonzero resource levels and thus potentially emitting technosignatures.
+This definition assumes that minimal resource availability is a prerequisite for detectable activity.
+Scenarios with highD c maintain persistent activity, while those with lowDc may cycle through long
+dormant periods or experience early termination. Finally,N c, the mean number of collapse-recovery
+cycles, captures whether a scenario tends to exhibit singular collapse events or undergo repeated
+disruptions over time. Together, these metrics provide a compact but informative summary of each
+scenario’s trajectory, enabling comparisons across sociotechnical regimes and offering insight into
+the reliability and intermittency of technosignature emission.
+4 Results
+4.1 Monte Carlo Outcomes and Temporal Profiles
+We ran 200 independent simulations for each scenario, introducing probabilistic variation in model
+parameters as described in Section 3. Figure 1 shows the resulting trajectories of global technology
+T(t) and available resourcesR(t), averaged across runs. These profiles reveal the distinct collapse
+and recovery dynamics that characterize each scenario. As expected, Golden Age (S3) and Out of
+Eden (S10) show uninterrupted growth and resource stability throughout the 1000-year window,
+consistent with their post-scarcity narratives and reflected in perfect duty cycles ( Dc = 1.0) and
+no collapse events ( N c = 0). In stark contrast, scenarios such as Big Brother (S1) and Sword of
+Damocles (S6) suffer early collapses ( T c &lt;210) and high collapse frequency ( N c ≈4.5 for S6 and
+nearly 10 for S1), leading to sharp contractions in technological capacity and prolonged periods of
+inactivity. Deus Ex Machina (S9), although collapsing later ( T c ≈689), also experiences multiple
+interruptions and never recovers full continuity, with only modest duty cycle (Dc ≈0.91) and about
+8</pre></article><article><h3>JANUS-PAPER-05@arXiv:2604.13774v1 · page 9 · sha256:e3079fcb69a5472f638fc8a2945d65c14e685213520c3b8f05121b76aeb1cede</h3><pre>1.5 collapse events on average.
+Figure 1: Temporal dynamics of simulated civilizations across ten scenarios. (A) Mean trajectories
+of global technologyT(t) with±1 standard deviation shaded. (B) Mean resource levelsR(t) with
+±1 standard deviation shaded.
+More complex dynamics emerge in intermediate cases. Transhumanism (S5) avoids collapse in
+roughly two-thirds of runs and achieves a near-continuous duty cycle (Dc ≈0.99), albeit with slower
+growth and occasional extinction. Living with the Land (S4), in contrast, undergoes frequent and
+deep collapses (N c ≈6.6), producing the lowest sustained activity among all non-terminal scenarios
+(Dc ≈0.38) despite a steep initial growth phase. Restoration (S7), designed as a post-collapse
+recovery regime, displays consistent rebuilding behavior: early collapses ( T c ≈223), followed by
+approximately 7.5 recovery cycles and moderate continuity (Dc ≈0.57). Ouroboros (S8) exhibits a
+distinct pattern of low-frequency, self-stabilizing oscillations: it collapses only twice on average, yet
+maintains robust technological levels and a high duty cycle ( Dc ≈0.87), reflecting a regime that
+cycles gracefully without exhausting resources or triggering runaway collapse.
+Because the S8 narrative implies repeated collapse–recovery cycles, we ask whether those oscilla-
+tions are always transient or can be sustained; we probe this with a sweep overr f andδ(Figure 2).
+Panel A shows deterministic technology trajectories for varyingr f while holding all other S8 pa-
+rameters at their baseline values. For low recovery fractions (r f ≤0.15), the system undergoes
+rapid, repeated collapse–recovery cycles (3 cycles within the 1000-year window), as the diminished
+resource base after each recovery is quickly exhausted. At intermediate values (0.20≤r f ≤0.50),
+9</pre></article><article><h3>JANUS-PAPER-05@arXiv:2604.13774v1 · page 10 · sha256:7380e737440e1b56c291d44c9211cacb1ea11930b1b04a8b9be376f21c1897be</h3><pre>the system sustains two collapse–recovery cycles with longer growth phases between collapses. At
+higher recovery fractions (r f = 0.60), the first collapse is delayed significantly, and only a single
+cycle occurs within the simulation window. Panel B maps the number of collapse cycles across the
+(rf , δ) parameter space, revealing a clear regime boundary: high depletion rates combined with low
+recovery fractions produce the most frequent oscillations (up to 8 cycles), while low depletion and
+high recovery fractions suppress collapse entirely. The baseline S8 parameters (marked with a star)
+sit near the boundary between 2- and 3-cycle regimes, suggesting that modest shifts in resource
+recovery capacity could qualitatively alter the civilization’s long-term trajectory. These results
+confirm that S8’s oscillatory behavior is not universally stable and it depends sensitively on the
+balance between resource depletion and post-collapse recovery, with some parameter combinations
+producing sustained cycling and others leading to dampened or terminal collapse.
+Figure 2: Parameter sensitivity of S8 (Ouroboros) oscillatory dynamics. (A) Deterministic tech-
+nology trajectoriesT(t) for varying recovery fractionr f , with all other parameters held at baseline
+values. The number of collapse–recovery cycles within the 1000-year window is indicated in the
+legend. (B) Number of collapse–recovery cycles as a function of recovery fractionr f and depletion
+rateδ. The star marks the baseline S8 parameter combination.
+Figure 3 summarizes the outcomes of these simulations using the four metrics described above
+(T c,f nc, Dc, N c). The scenarios divide into two distinct groups. S3, S5, and S10 survive the
+full 1000-year window in most or all runs (f nc ≥0.66; Figure 3A), maintaining continuous or
+near-continuous technological activity ( Dc ≥0.99; Figure 3B). In contrast, the remaining seven
+scenarios collapse in every run, with S1 and S6 breaking down within the first 200 years on av-
+erage (Figure 3C). Among the collapse-prone scenarios, the duty cycle spans a wide range—from
+0.381 for S4 to 0.91 for S9—reflecting very different recovery capacities despite universal collapse.
+The most cyclical scenarios are S1 and S7, which undergo roughly 10 and 7.5 collapse–recovery
+cycles respectively (Figure 3D), while S8 cycles only about twice, consistent with its low-frequency
+oscillatory regime.
+10</pre></article><article><h3>JANUS-PAPER-05@arXiv:2604.13774v1 · page 11 · sha256:b91def564ecc4c270cd4a17b30e8224465410149903691d521017121376a2b56</h3><pre>Figure 3: Distributions of key collapse and recovery metrics across scenarios (200 runs each). (A)
+Fraction of simulations that never experienced collapsef nc. (B) Mean duty cycle Dc, defined as the
+fraction of time the technosphere remains active. (C) Mean time to first collapse T c with standard
+deviation bars. (D) Mean number of collapse events N c.
+5 Implications for Earth’s Future
+A key insight from our modeling is that the parameters governing recovery (the recovery fraction
+rf and the recovery delayr d) are not fixed properties of a civilization but can be deliberately engi-
+neered. Investments in civilizational continuity infrastructure directly map onto these parameters:
+a higherr f corresponds to greater preservation of knowledge, technology, and resources through
+collapse events, while a lowerr d corresponds to faster institutional and technological rebuilding.
+Together, improvements in these parameters increase the duty cycleD c and thus, increase the
+fraction of time civilization remains functional and productive.
+The concept of ”recovery kits” (curated repositories of essential knowledge designed to accel-
+erate post-collapse rebuilding) represents one practical approach to raisingr f . Dartnell [2014] has
+explored in detail the minimum knowledge base required to reconstruct industrial civilization from
+scratch, spanning agriculture, materials science, medicine, power generation, and communication.
+Such recovery kits, whether physical or digital, function as a form of civilizational insurance: they
+ensure that the knowledge accumulated over centuries of development is not lost when institutional
+continuity is broken. Ongoing efforts in biological resource preservation serve as real-world examples
+of resilience infrastructure in action. The Svalbard Global Seed Vault, which now holds over one
+million seed samples from nearly every country on Earth [Asdal and Guarino, 2020], preserves agri-
+cultural biodiversity against civilizational disruption, ensuring that post-collapse societies retain
+access to the genetic resources needed to rebuild food systems. More recently, Colossal Biosciences
+has established a BioVault in Dubai dedicated to preserving broader biodiversity through cryop-
+reservation of cellular material from threatened species [Colossal Biosciences]. In the language of
+11</pre></article></section><section><h2>Normalized payload</h2><pre>{
+  &quot;schemaVersion&quot;: &quot;1.1.0&quot;,
+  &quot;id&quot;: &quot;janus.collapse.model-and-reported-results.arxiv-v1&quot;,
+  &quot;title&quot;: &quot;Collapse-recovery model parameters and reported outcomes&quot;,
+  &quot;contentOrigin&quot;: &quot;transcribed&quot;,
+  &quot;evidenceKind&quot;: &quot;reported&quot;,
+  &quot;source&quot;: {
+    &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+    &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+    &quot;locator&quot;: {
+      &quot;page&quot;: 7,
+      &quot;section&quot;: &quot;Sections 3.2-4.1&quot;,
+      &quot;table&quot;: &quot;Table 4&quot;
+    }
+  },
+  &quot;sourceLicense&quot;: &quot;CC BY 4.0&quot;,
+  &quot;transcriptionMethod&quot;: &quot;Parameters were transcribed from Table 4. Results include only values stated in prose or exactly defined by the paper; unreported chart-only values remain null pending digitization or author raw runs. Rendered pages 7 and 9-11 were visually checked.&quot;,
+  &quot;assumptions&quot;: [
+    &quot;The paper describes 200 independent Monte Carlo simulations per scenario over 1,000 yearly time steps.&quot;,
+    &quot;The result values are reported ensemble summaries, not independently reproduced simulation outputs.&quot;,
+    &quot;A null result means no exact or safely rounded prose value was transcribed; it is not numeric zero.&quot;
+  ],
+  &quot;notes&quot;: [
+    &quot;The paper&#x27;s Code Availability statement on rendered page 20 links the author-hosted public repository https://github.com/celiablanco/technocycles. At audited commit 910770dbe9224a9f7b1e003fdc7c000c2d78a5c2, notebooks/figures.ipynb contains the simulation and figure code and initializes the main Monte Carlo generator with seed 12345; sensitivity batches use seed 54321.&quot;,
+    &quot;The same commit contains notebooks/technosphere_summary.csv with aggregate results but no committed per-run trajectories. The repository declares no software or data license, so neither code nor CSV is ingested into canonical runtime data pending rights clarification.&quot;,
+    &quot;This dataset therefore remains a transcription of the CC BY 4.0 paper; its result values have not been replaced by the unlicensed aggregate CSV.&quot;,
+    &quot;Figure-only values are intentionally not guessed from bar heights.&quot;,
+    &quot;Every simulation setting, parameter definition, scenario parameter, and reported-result field carries an exact source locator. Null figure-only outcomes carry resultCaptureStatus not_transcribed.&quot;
+  ],
+  &quot;simulation&quot;: {
+    &quot;windowYears&quot;: 1000,
+    &quot;timeStepYears&quot;: 1,
+    &quot;monteCarloRunsPerScenario&quot;: 200
+  },
+  &quot;parameterDefinitions&quot;: [
+    {
+      &quot;id&quot;: &quot;r&quot;,
+      &quot;label&quot;: &quot;Technological growth rate&quot;,
+      &quot;unit&quot;: &quot;per year&quot;,
+      &quot;definition&quot;: &quot;Fixed linear annual increase in technological capacity.&quot;,
+      &quot;fieldProvenance&quot;: {
+        &quot;id&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;r&quot;,
+              &quot;column&quot;: &quot;Symbol&quot;
+            }
+          }
+        ],
+        &quot;label&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;r&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ],
+        &quot;unit&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;r&quot;,
+              &quot;column&quot;: &quot;Unit&quot;
+            }
+          }
+        ],
+        &quot;definition&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;r&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ]
+      }
+    },
+    {
+      &quot;id&quot;: &quot;R0&quot;,
+      &quot;label&quot;: &quot;Initial resource stock&quot;,
+      &quot;unit&quot;: &quot;model resource units&quot;,
+      &quot;definition&quot;: &quot;Resource stock available at the beginning of a run.&quot;,
+      &quot;fieldProvenance&quot;: {
+        &quot;id&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;R0&quot;,
+              &quot;column&quot;: &quot;Symbol&quot;
+            }
+          }
+        ],
+        &quot;label&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;R0&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ],
+        &quot;unit&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;R0&quot;,
+              &quot;column&quot;: &quot;Unit&quot;
+            }
+          }
+        ],
+        &quot;definition&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;R0&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ]
+      }
+    },
+    {
+      &quot;id&quot;: &quot;delta&quot;,
+      &quot;label&quot;: &quot;Resource depletion rate&quot;,
+      &quot;unit&quot;: &quot;model resource units per year&quot;,
+      &quot;definition&quot;: &quot;Constant annual decrease in available resource stock.&quot;,
+      &quot;fieldProvenance&quot;: {
+        &quot;id&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;delta&quot;,
+              &quot;column&quot;: &quot;Symbol&quot;
+            }
+          }
+        ],
+        &quot;label&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;delta&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ],
+        &quot;unit&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;delta&quot;,
+              &quot;column&quot;: &quot;Unit&quot;
+            }
+          }
+        ],
+        &quot;definition&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;delta&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ]
+      }
+    },
+    {
+      &quot;id&quot;: &quot;cf&quot;,
+      &quot;label&quot;: &quot;Collapse survival fraction&quot;,
+      &quot;unit&quot;: &quot;fraction&quot;,
+      &quot;definition&quot;: &quot;Fraction of technological capacity retained through a collapse event.&quot;,
+      &quot;fieldProvenance&quot;: {
+        &quot;id&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;cf&quot;,
+              &quot;column&quot;: &quot;Symbol&quot;
+            }
+          }
+        ],
+        &quot;label&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;cf&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ],
+        &quot;unit&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;cf&quot;,
+              &quot;column&quot;: &quot;Unit&quot;
+            }
+          }
+        ],
+        &quot;definition&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;cf&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ]
+      }
+    },
+    {
+      &quot;id&quot;: &quot;rd&quot;,
+      &quot;label&quot;: &quot;Recovery delay&quot;,
+      &quot;unit&quot;: &quot;years&quot;,
+      &quot;definition&quot;: &quot;Dormant period before growth and resource use resume after collapse.&quot;,
+      &quot;fieldProvenance&quot;: {
+        &quot;id&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;rd&quot;,
+              &quot;column&quot;: &quot;Symbol&quot;
+            }
+          }
+        ],
+        &quot;label&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;rd&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ],
+        &quot;unit&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;rd&quot;,
+              &quot;column&quot;: &quot;Unit&quot;
+            }
+          }
+        ],
+        &quot;definition&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;rd&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ]
+      }
+    },
+    {
+      &quot;id&quot;: &quot;rf&quot;,
+      &quot;label&quot;: &quot;Recovery fraction&quot;,
+      &quot;unit&quot;: &quot;fraction of R0&quot;,
+      &quot;definition&quot;: &quot;Fraction of original resource stock restored after the recovery delay.&quot;,
+      &quot;fieldProvenance&quot;: {
+        &quot;id&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;rf&quot;,
+              &quot;column&quot;: &quot;Symbol&quot;
+            }
+          }
+        ],
+        &quot;label&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;rf&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ],
+        &quot;unit&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;rf&quot;,
+              &quot;column&quot;: &quot;Unit&quot;
+            }
+          }
+        ],
+        &quot;definition&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;rf&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ]
+      }
+    },
+    {
+      &quot;id&quot;: &quot;h&quot;,
+      &quot;label&quot;: &quot;Existential hazard rate&quot;,
+      &quot;unit&quot;: &quot;per year&quot;,
+      &quot;definition&quot;: &quot;Fixed annual probability of an exogenous collapse-triggering event.&quot;,
+      &quot;fieldProvenance&quot;: {
+        &quot;id&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;h&quot;,
+              &quot;column&quot;: &quot;Symbol&quot;
+            }
+          }
+        ],
+        &quot;label&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;h&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ],
+        &quot;unit&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;h&quot;,
+              &quot;column&quot;: &quot;Unit&quot;
+            }
+          }
+        ],
+        &quot;definition&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 3,
+              &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+              &quot;row&quot;: &quot;h&quot;,
+              &quot;column&quot;: &quot;Definition&quot;
+            }
+          }
+        ]
+      }
+    }
+  ],
+  &quot;scenarios&quot;: [
+    {
+      &quot;scenarioId&quot;: &quot;S1&quot;,
+      &quot;parameters&quot;: {
+        &quot;r&quot;: 0.002,
+        &quot;R0&quot;: 400,
+        &quot;delta&quot;: 1.2,
+        &quot;cf&quot;: 0.6,
+        &quot;rd&quot;: 40,
+        &quot;rf&quot;: 0.15,
+        &quot;h&quot;: 0.003
+      },
+      &quot;reportedResults&quot;: {
+        &quot;fractionNeverCollapsed&quot;: 0,
+        &quot;meanDutyCycle&quot;: null,
+        &quot;meanTimeToFirstCollapseYears&quot;: null,
+        &quot;meanCollapseCount&quot;: 10,
+        &quot;precision&quot;: &quot;approximate_text&quot;,
+        &quot;summary&quot;: &quot;Collapses in every run; first collapse occurs within 200 years on average and the scenario undergoes nearly 10 collapses.&quot;
+      },
+      &quot;fieldProvenance&quot;: {
+        &quot;scenarioId&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 7,
+              &quot;table&quot;: &quot;Table 4&quot;,
+              &quot;row&quot;: &quot;S1&quot;,
+              &quot;column&quot;: &quot;Scenario&quot;
+            }
+          }
+        ],
+        &quot;parameters&quot;: {
+          &quot;r&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;r&quot;
+              }
+            }
+          ],
+          &quot;R0&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;R0&quot;
+              }
+            }
+          ],
+          &quot;delta&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;delta&quot;
+              }
+            }
+          ],
+          &quot;cf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;cf&quot;
+              }
+            }
+          ],
+          &quot;rd&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;rd&quot;
+              }
+            }
+          ],
+          &quot;rf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;rf&quot;
+              }
+            }
+          ],
+          &quot;h&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;h&quot;
+              }
+            }
+          ]
+        },
+        &quot;reportedResults&quot;: {
+          &quot;fractionNeverCollapsed&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;Fraction never collapsed (fnc)&quot;
+              }
+            }
+          ],
+          &quot;meanDutyCycle&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;reported&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 11,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;Mean duty cycle (Dc)&quot;
+              },
+              &quot;note&quot;: &quot;No exact prose value was transcribed; the value remains null rather than being guessed from Figure 3.&quot;
+            }
+          ],
+          &quot;meanTimeToFirstCollapseYears&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;reported&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 11,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;Mean time to first collapse (Tc)&quot;
+              },
+              &quot;note&quot;: &quot;No exact prose value was transcribed; the value remains null rather than being guessed from Figure 3.&quot;
+            }
+          ],
+          &quot;meanCollapseCount&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;Mean collapse count (Nc)&quot;
+              }
+            }
+          ],
+          &quot;precision&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;editorial&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;Precision classification&quot;
+              },
+              &quot;note&quot;: &quot;Classification records whether the normalized result comes from exact prose, approximate prose, or figure-only evidence.&quot;
+            }
+          ],
+          &quot;summary&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S1&quot;,
+                &quot;column&quot;: &quot;Reported outcome summary&quot;
+              }
+            }
+          ]
+        }
+      },
+      &quot;resultCaptureStatus&quot;: {
+        &quot;fractionNeverCollapsed&quot;: &quot;captured&quot;,
+        &quot;meanDutyCycle&quot;: &quot;not_transcribed&quot;,
+        &quot;meanTimeToFirstCollapseYears&quot;: &quot;not_transcribed&quot;,
+        &quot;meanCollapseCount&quot;: &quot;captured&quot;,
+        &quot;precision&quot;: &quot;captured&quot;,
+        &quot;summary&quot;: &quot;captured&quot;
+      }
+    },
+    {
+      &quot;scenarioId&quot;: &quot;S2&quot;,
+      &quot;parameters&quot;: {
+        &quot;r&quot;: 0.0026,
+        &quot;R0&quot;: 700,
+        &quot;delta&quot;: 1.5,
+        &quot;cf&quot;: 0.3,
+        &quot;rd&quot;: 70,
+        &quot;rf&quot;: 0.1,
+        &quot;h&quot;: 0.001
+      },
+      &quot;reportedResults&quot;: {
+        &quot;fractionNeverCollapsed&quot;: 0,
+        &quot;meanDutyCycle&quot;: null,
+        &quot;meanTimeToFirstCollapseYears&quot;: null,
+        &quot;meanCollapseCount&quot;: null,
+        &quot;precision&quot;: &quot;figure_only&quot;,
+        &quot;summary&quot;: &quot;The source states that S2 collapses in every run; other outcome values are shown only in Figure 3.&quot;
+      },
+      &quot;fieldProvenance&quot;: {
+        &quot;scenarioId&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 7,
+              &quot;table&quot;: &quot;Table 4&quot;,
+              &quot;row&quot;: &quot;S2&quot;,
+              &quot;column&quot;: &quot;Scenario&quot;
+            }
+          }
+        ],
+        &quot;parameters&quot;: {
+          &quot;r&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;r&quot;
+              }
+            }
+          ],
+          &quot;R0&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;R0&quot;
+              }
+            }
+          ],
+          &quot;delta&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;delta&quot;
+              }
+            }
+          ],
+          &quot;cf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;cf&quot;
+              }
+            }
+          ],
+          &quot;rd&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;rd&quot;
+              }
+            }
+          ],
+          &quot;rf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;rf&quot;
+              }
+            }
+          ],
+          &quot;h&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;h&quot;
+              }
+            }
+          ]
+        },
+        &quot;reportedResults&quot;: {
+          &quot;fractionNeverCollapsed&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 10,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;Fraction never collapsed (fnc)&quot;
+              }
+            }
+          ],
+          &quot;meanDutyCycle&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;reported&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 11,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;Mean duty cycle (Dc)&quot;
+              },
+              &quot;note&quot;: &quot;No exact prose value was transcribed; the value remains null rather than being guessed from Figure 3.&quot;
+            }
+          ],
+          &quot;meanTimeToFirstCollapseYears&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;reported&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 11,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;Mean time to first collapse (Tc)&quot;
+              },
+              &quot;note&quot;: &quot;No exact prose value was transcribed; the value remains null rather than being guessed from Figure 3.&quot;
+            }
+          ],
+          &quot;meanCollapseCount&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;reported&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 11,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;Mean collapse count (Nc)&quot;
+              },
+              &quot;note&quot;: &quot;No exact prose value was transcribed; the value remains null rather than being guessed from Figure 3.&quot;
+            }
+          ],
+          &quot;precision&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;editorial&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 10,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;Precision classification&quot;
+              },
+              &quot;note&quot;: &quot;Classification records whether the normalized result comes from exact prose, approximate prose, or figure-only evidence.&quot;
+            }
+          ],
+          &quot;summary&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 10,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S2&quot;,
+                &quot;column&quot;: &quot;Reported outcome summary&quot;
+              }
+            }
+          ]
+        }
+      },
+      &quot;resultCaptureStatus&quot;: {
+        &quot;fractionNeverCollapsed&quot;: &quot;captured&quot;,
+        &quot;meanDutyCycle&quot;: &quot;not_transcribed&quot;,
+        &quot;meanTimeToFirstCollapseYears&quot;: &quot;not_transcribed&quot;,
+        &quot;meanCollapseCount&quot;: &quot;not_transcribed&quot;,
+        &quot;precision&quot;: &quot;captured&quot;,
+        &quot;summary&quot;: &quot;captured&quot;
+      }
+    },
+    {
+      &quot;scenarioId&quot;: &quot;S3&quot;,
+      &quot;parameters&quot;: {
+        &quot;r&quot;: 0.0001,
+        &quot;R0&quot;: 2400,
+        &quot;delta&quot;: 0,
+        &quot;cf&quot;: 1,
+        &quot;rd&quot;: 0,
+        &quot;rf&quot;: 1,
+        &quot;h&quot;: 0
+      },
+      &quot;reportedResults&quot;: {
+        &quot;fractionNeverCollapsed&quot;: 1,
+        &quot;meanDutyCycle&quot;: 1,
+        &quot;meanTimeToFirstCollapseYears&quot;: 1000,
+        &quot;meanCollapseCount&quot;: 0,
+        &quot;precision&quot;: &quot;exact_text&quot;,
+        &quot;summary&quot;: &quot;Uninterrupted activity and resource stability for the full simulation window.&quot;
+      },
+      &quot;fieldProvenance&quot;: {
+        &quot;scenarioId&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 7,
+              &quot;table&quot;: &quot;Table 4&quot;,
+              &quot;row&quot;: &quot;S3&quot;,
+              &quot;column&quot;: &quot;Scenario&quot;
+            }
+          }
+        ],
+        &quot;parameters&quot;: {
+          &quot;r&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;r&quot;
+              }
+            }
+          ],
+          &quot;R0&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;R0&quot;
+              }
+            }
+          ],
+          &quot;delta&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;delta&quot;
+              }
+            }
+          ],
+          &quot;cf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;cf&quot;
+              }
+            }
+          ],
+          &quot;rd&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;rd&quot;
+              }
+            }
+          ],
+          &quot;rf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;rf&quot;
+              }
+            }
+          ],
+          &quot;h&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;h&quot;
+              }
+            }
+          ]
+        },
+        &quot;reportedResults&quot;: {
+          &quot;fractionNeverCollapsed&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;Fraction never collapsed (fnc)&quot;
+              }
+            }
+          ],
+          &quot;meanDutyCycle&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;Mean duty cycle (Dc)&quot;
+              }
+            }
+          ],
+          &quot;meanTimeToFirstCollapseYears&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;Mean time to first collapse (Tc)&quot;
+              }
+            }
+          ],
+          &quot;meanCollapseCount&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;Mean collapse count (Nc)&quot;
+              }
+            }
+          ],
+          &quot;precision&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;editorial&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;Precision classification&quot;
+              },
+              &quot;note&quot;: &quot;Classification records whether the normalized result comes from exact prose, approximate prose, or figure-only evidence.&quot;
+            }
+          ],
+          &quot;summary&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S3&quot;,
+                &quot;column&quot;: &quot;Reported outcome summary&quot;
+              }
+            }
+          ]
+        }
+      },
+      &quot;resultCaptureStatus&quot;: {
+        &quot;fractionNeverCollapsed&quot;: &quot;captured&quot;,
+        &quot;meanDutyCycle&quot;: &quot;captured&quot;,
+        &quot;meanTimeToFirstCollapseYears&quot;: &quot;captured&quot;,
+        &quot;meanCollapseCount&quot;: &quot;captured&quot;,
+        &quot;precision&quot;: &quot;captured&quot;,
+        &quot;summary&quot;: &quot;captured&quot;
+      }
+    },
+    {
+      &quot;scenarioId&quot;: &quot;S4&quot;,
+      &quot;parameters&quot;: {
+        &quot;r&quot;: 0.006,
+        &quot;R0&quot;: 600,
+        &quot;delta&quot;: 2.5,
+        &quot;cf&quot;: 0.2,
+        &quot;rd&quot;: 100,
+        &quot;rf&quot;: 0.1,
+        &quot;h&quot;: 0
+      },
+      &quot;reportedResults&quot;: {
+        &quot;fractionNeverCollapsed&quot;: 0,
+        &quot;meanDutyCycle&quot;: 0.381,
+        &quot;meanTimeToFirstCollapseYears&quot;: null,
+        &quot;meanCollapseCount&quot;: 6.6,
+        &quot;precision&quot;: &quot;approximate_text&quot;,
+        &quot;summary&quot;: &quot;Collapses in every run and has the lowest reported mean duty cycle, with frequent deep collapses.&quot;
+      },
+      &quot;fieldProvenance&quot;: {
+        &quot;scenarioId&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 7,
+              &quot;table&quot;: &quot;Table 4&quot;,
+              &quot;row&quot;: &quot;S4&quot;,
+              &quot;column&quot;: &quot;Scenario&quot;
+            }
+          }
+        ],
+        &quot;parameters&quot;: {
+          &quot;r&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;r&quot;
+              }
+            }
+          ],
+          &quot;R0&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;R0&quot;
+              }
+            }
+          ],
+          &quot;delta&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;delta&quot;
+              }
+            }
+          ],
+          &quot;cf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;cf&quot;
+              }
+            }
+          ],
+          &quot;rd&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;rd&quot;
+              }
+            }
+          ],
+          &quot;rf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;rf&quot;
+              }
+            }
+          ],
+          &quot;h&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;h&quot;
+              }
+            }
+          ]
+        },
+        &quot;reportedResults&quot;: {
+          &quot;fractionNeverCollapsed&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;Fraction never collapsed (fnc)&quot;
+              }
+            }
+          ],
+          &quot;meanDutyCycle&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;Mean duty cycle (Dc)&quot;
+              }
+            }
+          ],
+          &quot;meanTimeToFirstCollapseYears&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;reported&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 11,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;Mean time to first collapse (Tc)&quot;
+              },
+              &quot;note&quot;: &quot;No exact prose value was transcribed; the value remains null rather than being guessed from Figure 3.&quot;
+            }
+          ],
+          &quot;meanCollapseCount&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;Mean collapse count (Nc)&quot;
+              }
+            }
+          ],
+          &quot;precision&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;editorial&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;Precision classification&quot;
+              },
+              &quot;note&quot;: &quot;Classification records whether the normalized result comes from exact prose, approximate prose, or figure-only evidence.&quot;
+            }
+          ],
+          &quot;summary&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S4&quot;,
+                &quot;column&quot;: &quot;Reported outcome summary&quot;
+              }
+            }
+          ]
+        }
+      },
+      &quot;resultCaptureStatus&quot;: {
+        &quot;fractionNeverCollapsed&quot;: &quot;captured&quot;,
+        &quot;meanDutyCycle&quot;: &quot;captured&quot;,
+        &quot;meanTimeToFirstCollapseYears&quot;: &quot;not_transcribed&quot;,
+        &quot;meanCollapseCount&quot;: &quot;captured&quot;,
+        &quot;precision&quot;: &quot;captured&quot;,
+        &quot;summary&quot;: &quot;captured&quot;
+      }
+    },
+    {
+      &quot;scenarioId&quot;: &quot;S5&quot;,
+      &quot;parameters&quot;: {
+        &quot;r&quot;: 0.0003,
+        &quot;R0&quot;: 2500,
+        &quot;delta&quot;: 0.1,
+        &quot;cf&quot;: 0.9,
+        &quot;rd&quot;: 20,
+        &quot;rf&quot;: 0.8,
+        &quot;h&quot;: 0.0005
+      },
+      &quot;reportedResults&quot;: {
+        &quot;fractionNeverCollapsed&quot;: 0.66,
+        &quot;meanDutyCycle&quot;: 0.99,
+        &quot;meanTimeToFirstCollapseYears&quot;: null,
+        &quot;meanCollapseCount&quot;: null,
+        &quot;precision&quot;: &quot;approximate_text&quot;,
+        &quot;summary&quot;: &quot;Avoids collapse in roughly two-thirds of runs and maintains near-continuous activity.&quot;
+      },
+      &quot;fieldProvenance&quot;: {
+        &quot;scenarioId&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 7,
+              &quot;table&quot;: &quot;Table 4&quot;,
+              &quot;row&quot;: &quot;S5&quot;,
+              &quot;column&quot;: &quot;Scenario&quot;
+            }
+          }
+        ],
+        &quot;parameters&quot;: {
+          &quot;r&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;r&quot;
+              }
+            }
+          ],
+          &quot;R0&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;R0&quot;
+              }
+            }
+          ],
+          &quot;delta&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;delta&quot;
+              }
+            }
+          ],
+          &quot;cf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;cf&quot;
+              }
+            }
+          ],
+          &quot;rd&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;rd&quot;
+              }
+            }
+          ],
+          &quot;rf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;rf&quot;
+              }
+            }
+          ],
+          &quot;h&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;h&quot;
+              }
+            }
+          ]
+        },
+        &quot;reportedResults&quot;: {
+          &quot;fractionNeverCollapsed&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;Fraction never collapsed (fnc)&quot;
+              }
+            }
+          ],
+          &quot;meanDutyCycle&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;Mean duty cycle (Dc)&quot;
+              }
+            }
+          ],
+          &quot;meanTimeToFirstCollapseYears&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;reported&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 11,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;Mean time to first collapse (Tc)&quot;
+              },
+              &quot;note&quot;: &quot;No exact prose value was transcribed; the value remains null rather than being guessed from Figure 3.&quot;
+            }
+          ],
+          &quot;meanCollapseCount&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;reported&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 11,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;Mean collapse count (Nc)&quot;
+              },
+              &quot;note&quot;: &quot;No exact prose value was transcribed; the value remains null rather than being guessed from Figure 3.&quot;
+            }
+          ],
+          &quot;precision&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;editorial&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;Precision classification&quot;
+              },
+              &quot;note&quot;: &quot;Classification records whether the normalized result comes from exact prose, approximate prose, or figure-only evidence.&quot;
+            }
+          ],
+          &quot;summary&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S5&quot;,
+                &quot;column&quot;: &quot;Reported outcome summary&quot;
+              }
+            }
+          ]
+        }
+      },
+      &quot;resultCaptureStatus&quot;: {
+        &quot;fractionNeverCollapsed&quot;: &quot;captured&quot;,
+        &quot;meanDutyCycle&quot;: &quot;captured&quot;,
+        &quot;meanTimeToFirstCollapseYears&quot;: &quot;not_transcribed&quot;,
+        &quot;meanCollapseCount&quot;: &quot;not_transcribed&quot;,
+        &quot;precision&quot;: &quot;captured&quot;,
+        &quot;summary&quot;: &quot;captured&quot;
+      }
+    },
+    {
+      &quot;scenarioId&quot;: &quot;S6&quot;,
+      &quot;parameters&quot;: {
+        &quot;r&quot;: 0.0018,
+        &quot;R0&quot;: 1600,
+        &quot;delta&quot;: 1,
+        &quot;cf&quot;: 0.4,
+        &quot;rd&quot;: 50,
+        &quot;rf&quot;: 0.25,
+        &quot;h&quot;: 0.005
+      },
+      &quot;reportedResults&quot;: {
+        &quot;fractionNeverCollapsed&quot;: 0,
+        &quot;meanDutyCycle&quot;: null,
+        &quot;meanTimeToFirstCollapseYears&quot;: null,
+        &quot;meanCollapseCount&quot;: 4.5,
+        &quot;precision&quot;: &quot;approximate_text&quot;,
+        &quot;summary&quot;: &quot;Collapses in every run; first collapse occurs within 200 years on average and about 4.5 collapses occur.&quot;
+      },
+      &quot;fieldProvenance&quot;: {
+        &quot;scenarioId&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 7,
+              &quot;table&quot;: &quot;Table 4&quot;,
+              &quot;row&quot;: &quot;S6&quot;,
+              &quot;column&quot;: &quot;Scenario&quot;
+            }
+          }
+        ],
+        &quot;parameters&quot;: {
+          &quot;r&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;r&quot;
+              }
+            }
+          ],
+          &quot;R0&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;R0&quot;
+              }
+            }
+          ],
+          &quot;delta&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;delta&quot;
+              }
+            }
+          ],
+          &quot;cf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;cf&quot;
+              }
+            }
+          ],
+          &quot;rd&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;rd&quot;
+              }
+            }
+          ],
+          &quot;rf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;rf&quot;
+              }
+            }
+          ],
+          &quot;h&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;h&quot;
+              }
+            }
+          ]
+        },
+        &quot;reportedResults&quot;: {
+          &quot;fractionNeverCollapsed&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;Fraction never collapsed (fnc)&quot;
+              }
+            }
+          ],
+          &quot;meanDutyCycle&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;reported&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 11,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;Mean duty cycle (Dc)&quot;
+              },
+              &quot;note&quot;: &quot;No exact prose value was transcribed; the value remains null rather than being guessed from Figure 3.&quot;
+            }
+          ],
+          &quot;meanTimeToFirstCollapseYears&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;reported&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 11,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;Mean time to first collapse (Tc)&quot;
+              },
+              &quot;note&quot;: &quot;No exact prose value was transcribed; the value remains null rather than being guessed from Figure 3.&quot;
+            }
+          ],
+          &quot;meanCollapseCount&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;Mean collapse count (Nc)&quot;
+              }
+            }
+          ],
+          &quot;precision&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;editorial&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;Precision classification&quot;
+              },
+              &quot;note&quot;: &quot;Classification records whether the normalized result comes from exact prose, approximate prose, or figure-only evidence.&quot;
+            }
+          ],
+          &quot;summary&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S6&quot;,
+                &quot;column&quot;: &quot;Reported outcome summary&quot;
+              }
+            }
+          ]
+        }
+      },
+      &quot;resultCaptureStatus&quot;: {
+        &quot;fractionNeverCollapsed&quot;: &quot;captured&quot;,
+        &quot;meanDutyCycle&quot;: &quot;not_transcribed&quot;,
+        &quot;meanTimeToFirstCollapseYears&quot;: &quot;not_transcribed&quot;,
+        &quot;meanCollapseCount&quot;: &quot;captured&quot;,
+        &quot;precision&quot;: &quot;captured&quot;,
+        &quot;summary&quot;: &quot;captured&quot;
+      }
+    },
+    {
+      &quot;scenarioId&quot;: &quot;S7&quot;,
+      &quot;parameters&quot;: {
+        &quot;r&quot;: 0.006,
+        &quot;R0&quot;: 400,
+        &quot;delta&quot;: 1.5,
+        &quot;cf&quot;: 0.3,
+        &quot;rd&quot;: 60,
+        &quot;rf&quot;: 0.2,
+        &quot;h&quot;: 0.001
+      },
+      &quot;reportedResults&quot;: {
+        &quot;fractionNeverCollapsed&quot;: 0,
+        &quot;meanDutyCycle&quot;: 0.57,
+        &quot;meanTimeToFirstCollapseYears&quot;: 223,
+        &quot;meanCollapseCount&quot;: 7.5,
+        &quot;precision&quot;: &quot;approximate_text&quot;,
+        &quot;summary&quot;: &quot;Consistent rebuilding after early collapse, with moderate continuity and repeated recovery cycles.&quot;
+      },
+      &quot;fieldProvenance&quot;: {
+        &quot;scenarioId&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 7,
+              &quot;table&quot;: &quot;Table 4&quot;,
+              &quot;row&quot;: &quot;S7&quot;,
+              &quot;column&quot;: &quot;Scenario&quot;
+            }
+          }
+        ],
+        &quot;parameters&quot;: {
+          &quot;r&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;r&quot;
+              }
+            }
+          ],
+          &quot;R0&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;R0&quot;
+              }
+            }
+          ],
+          &quot;delta&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;delta&quot;
+              }
+            }
+          ],
+          &quot;cf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;cf&quot;
+              }
+            }
+          ],
+          &quot;rd&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;rd&quot;
+              }
+            }
+          ],
+          &quot;rf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;rf&quot;
+              }
+            }
+          ],
+          &quot;h&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;h&quot;
+              }
+            }
+          ]
+        },
+        &quot;reportedResults&quot;: {
+          &quot;fractionNeverCollapsed&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;Fraction never collapsed (fnc)&quot;
+              }
+            }
+          ],
+          &quot;meanDutyCycle&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;Mean duty cycle (Dc)&quot;
+              }
+            }
+          ],
+          &quot;meanTimeToFirstCollapseYears&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;Mean time to first collapse (Tc)&quot;
+              }
+            }
+          ],
+          &quot;meanCollapseCount&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;Mean collapse count (Nc)&quot;
+              }
+            }
+          ],
+          &quot;precision&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;editorial&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;Precision classification&quot;
+              },
+              &quot;note&quot;: &quot;Classification records whether the normalized result comes from exact prose, approximate prose, or figure-only evidence.&quot;
+            }
+          ],
+          &quot;summary&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S7&quot;,
+                &quot;column&quot;: &quot;Reported outcome summary&quot;
+              }
+            }
+          ]
+        }
+      },
+      &quot;resultCaptureStatus&quot;: {
+        &quot;fractionNeverCollapsed&quot;: &quot;captured&quot;,
+        &quot;meanDutyCycle&quot;: &quot;captured&quot;,
+        &quot;meanTimeToFirstCollapseYears&quot;: &quot;captured&quot;,
+        &quot;meanCollapseCount&quot;: &quot;captured&quot;,
+        &quot;precision&quot;: &quot;captured&quot;,
+        &quot;summary&quot;: &quot;captured&quot;
+      }
+    },
+    {
+      &quot;scenarioId&quot;: &quot;S8&quot;,
+      &quot;parameters&quot;: {
+        &quot;r&quot;: 0.0015,
+        &quot;R0&quot;: 800,
+        &quot;delta&quot;: 1.3,
+        &quot;cf&quot;: 0.6,
+        &quot;rd&quot;: 70,
+        &quot;rf&quot;: 0.35,
+        &quot;h&quot;: 0
+      },
+      &quot;reportedResults&quot;: {
+        &quot;fractionNeverCollapsed&quot;: 0,
+        &quot;meanDutyCycle&quot;: 0.87,
+        &quot;meanTimeToFirstCollapseYears&quot;: null,
+        &quot;meanCollapseCount&quot;: 2,
+        &quot;precision&quot;: &quot;approximate_text&quot;,
+        &quot;summary&quot;: &quot;Low-frequency, self-stabilizing oscillations with about two collapses and a high duty cycle.&quot;
+      },
+      &quot;fieldProvenance&quot;: {
+        &quot;scenarioId&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 7,
+              &quot;table&quot;: &quot;Table 4&quot;,
+              &quot;row&quot;: &quot;S8&quot;,
+              &quot;column&quot;: &quot;Scenario&quot;
+            }
+          }
+        ],
+        &quot;parameters&quot;: {
+          &quot;r&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;r&quot;
+              }
+            }
+          ],
+          &quot;R0&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;R0&quot;
+              }
+            }
+          ],
+          &quot;delta&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;delta&quot;
+              }
+            }
+          ],
+          &quot;cf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;cf&quot;
+              }
+            }
+          ],
+          &quot;rd&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;rd&quot;
+              }
+            }
+          ],
+          &quot;rf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;rf&quot;
+              }
+            }
+          ],
+          &quot;h&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;h&quot;
+              }
+            }
+          ]
+        },
+        &quot;reportedResults&quot;: {
+          &quot;fractionNeverCollapsed&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;Fraction never collapsed (fnc)&quot;
+              }
+            }
+          ],
+          &quot;meanDutyCycle&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;Mean duty cycle (Dc)&quot;
+              }
+            }
+          ],
+          &quot;meanTimeToFirstCollapseYears&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;reported&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 11,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;Mean time to first collapse (Tc)&quot;
+              },
+              &quot;note&quot;: &quot;No exact prose value was transcribed; the value remains null rather than being guessed from Figure 3.&quot;
+            }
+          ],
+          &quot;meanCollapseCount&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;Mean collapse count (Nc)&quot;
+              }
+            }
+          ],
+          &quot;precision&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;editorial&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;Precision classification&quot;
+              },
+              &quot;note&quot;: &quot;Classification records whether the normalized result comes from exact prose, approximate prose, or figure-only evidence.&quot;
+            }
+          ],
+          &quot;summary&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 9,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S8&quot;,
+                &quot;column&quot;: &quot;Reported outcome summary&quot;
+              }
+            }
+          ]
+        }
+      },
+      &quot;resultCaptureStatus&quot;: {
+        &quot;fractionNeverCollapsed&quot;: &quot;captured&quot;,
+        &quot;meanDutyCycle&quot;: &quot;captured&quot;,
+        &quot;meanTimeToFirstCollapseYears&quot;: &quot;not_transcribed&quot;,
+        &quot;meanCollapseCount&quot;: &quot;captured&quot;,
+        &quot;precision&quot;: &quot;captured&quot;,
+        &quot;summary&quot;: &quot;captured&quot;
+      }
+    },
+    {
+      &quot;scenarioId&quot;: &quot;S9&quot;,
+      &quot;parameters&quot;: {
+        &quot;r&quot;: 0.0011,
+        &quot;R0&quot;: 900,
+        &quot;delta&quot;: 1.3,
+        &quot;cf&quot;: 0.5,
+        &quot;rd&quot;: 70,
+        &quot;rf&quot;: 0.35,
+        &quot;h&quot;: 0
+      },
+      &quot;reportedResults&quot;: {
+        &quot;fractionNeverCollapsed&quot;: 0,
+        &quot;meanDutyCycle&quot;: 0.91,
+        &quot;meanTimeToFirstCollapseYears&quot;: 689,
+        &quot;meanCollapseCount&quot;: 1.5,
+        &quot;precision&quot;: &quot;approximate_text&quot;,
+        &quot;summary&quot;: &quot;Collapses later than the other collapse-prone scenarios, with multiple interruptions but high continuity.&quot;
+      },
+      &quot;fieldProvenance&quot;: {
+        &quot;scenarioId&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 7,
+              &quot;table&quot;: &quot;Table 4&quot;,
+              &quot;row&quot;: &quot;S9&quot;,
+              &quot;column&quot;: &quot;Scenario&quot;
+            }
+          }
+        ],
+        &quot;parameters&quot;: {
+          &quot;r&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;r&quot;
+              }
+            }
+          ],
+          &quot;R0&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;R0&quot;
+              }
+            }
+          ],
+          &quot;delta&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;delta&quot;
+              }
+            }
+          ],
+          &quot;cf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;cf&quot;
+              }
+            }
+          ],
+          &quot;rd&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;rd&quot;
+              }
+            }
+          ],
+          &quot;rf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;rf&quot;
+              }
+            }
+          ],
+          &quot;h&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;h&quot;
+              }
+            }
+          ]
+        },
+        &quot;reportedResults&quot;: {
+          &quot;fractionNeverCollapsed&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;Fraction never collapsed (fnc)&quot;
+              }
+            }
+          ],
+          &quot;meanDutyCycle&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;Mean duty cycle (Dc)&quot;
+              }
+            }
+          ],
+          &quot;meanTimeToFirstCollapseYears&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;Mean time to first collapse (Tc)&quot;
+              }
+            }
+          ],
+          &quot;meanCollapseCount&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;Mean collapse count (Nc)&quot;
+              }
+            }
+          ],
+          &quot;precision&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;editorial&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;Precision classification&quot;
+              },
+              &quot;note&quot;: &quot;Classification records whether the normalized result comes from exact prose, approximate prose, or figure-only evidence.&quot;
+            }
+          ],
+          &quot;summary&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S9&quot;,
+                &quot;column&quot;: &quot;Reported outcome summary&quot;
+              }
+            }
+          ]
+        }
+      },
+      &quot;resultCaptureStatus&quot;: {
+        &quot;fractionNeverCollapsed&quot;: &quot;captured&quot;,
+        &quot;meanDutyCycle&quot;: &quot;captured&quot;,
+        &quot;meanTimeToFirstCollapseYears&quot;: &quot;captured&quot;,
+        &quot;meanCollapseCount&quot;: &quot;captured&quot;,
+        &quot;precision&quot;: &quot;captured&quot;,
+        &quot;summary&quot;: &quot;captured&quot;
+      }
+    },
+    {
+      &quot;scenarioId&quot;: &quot;S10&quot;,
+      &quot;parameters&quot;: {
+        &quot;r&quot;: 0.0002,
+        &quot;R0&quot;: 2700,
+        &quot;delta&quot;: 0,
+        &quot;cf&quot;: 1,
+        &quot;rd&quot;: 0,
+        &quot;rf&quot;: 1,
+        &quot;h&quot;: 0
+      },
+      &quot;reportedResults&quot;: {
+        &quot;fractionNeverCollapsed&quot;: 1,
+        &quot;meanDutyCycle&quot;: 1,
+        &quot;meanTimeToFirstCollapseYears&quot;: 1000,
+        &quot;meanCollapseCount&quot;: 0,
+        &quot;precision&quot;: &quot;exact_text&quot;,
+        &quot;summary&quot;: &quot;Uninterrupted activity and resource stability for the full simulation window.&quot;
+      },
+      &quot;fieldProvenance&quot;: {
+        &quot;scenarioId&quot;: [
+          {
+            &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+            &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+            &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+            &quot;locator&quot;: {
+              &quot;page&quot;: 7,
+              &quot;table&quot;: &quot;Table 4&quot;,
+              &quot;row&quot;: &quot;S10&quot;,
+              &quot;column&quot;: &quot;Scenario&quot;
+            }
+          }
+        ],
+        &quot;parameters&quot;: {
+          &quot;r&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;r&quot;
+              }
+            }
+          ],
+          &quot;R0&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;R0&quot;
+              }
+            }
+          ],
+          &quot;delta&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;delta&quot;
+              }
+            }
+          ],
+          &quot;cf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;cf&quot;
+              }
+            }
+          ],
+          &quot;rd&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;rd&quot;
+              }
+            }
+          ],
+          &quot;rf&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;rf&quot;
+              }
+            }
+          ],
+          &quot;h&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 7,
+                &quot;table&quot;: &quot;Table 4&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;h&quot;
+              }
+            }
+          ]
+        },
+        &quot;reportedResults&quot;: {
+          &quot;fractionNeverCollapsed&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;Fraction never collapsed (fnc)&quot;
+              }
+            }
+          ],
+          &quot;meanDutyCycle&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;Mean duty cycle (Dc)&quot;
+              }
+            }
+          ],
+          &quot;meanTimeToFirstCollapseYears&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;Mean time to first collapse (Tc)&quot;
+              }
+            }
+          ],
+          &quot;meanCollapseCount&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;Mean collapse count (Nc)&quot;
+              }
+            }
+          ],
+          &quot;precision&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;editorial&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;Precision classification&quot;
+              },
+              &quot;note&quot;: &quot;Classification records whether the normalized result comes from exact prose, approximate prose, or figure-only evidence.&quot;
+            }
+          ],
+          &quot;summary&quot;: [
+            {
+              &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+              &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+              &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+              &quot;locator&quot;: {
+                &quot;page&quot;: 8,
+                &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+                &quot;figure&quot;: &quot;Figure 3&quot;,
+                &quot;row&quot;: &quot;S10&quot;,
+                &quot;column&quot;: &quot;Reported outcome summary&quot;
+              }
+            }
+          ]
+        }
+      },
+      &quot;resultCaptureStatus&quot;: {
+        &quot;fractionNeverCollapsed&quot;: &quot;captured&quot;,
+        &quot;meanDutyCycle&quot;: &quot;captured&quot;,
+        &quot;meanTimeToFirstCollapseYears&quot;: &quot;captured&quot;,
+        &quot;meanCollapseCount&quot;: &quot;captured&quot;,
+        &quot;precision&quot;: &quot;captured&quot;,
+        &quot;summary&quot;: &quot;captured&quot;
+      }
+    }
+  ],
+  &quot;simulationProvenance&quot;: {
+    &quot;windowYears&quot;: [
+      {
+        &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+        &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+        &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+        &quot;locator&quot;: {
+          &quot;page&quot;: 3,
+          &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+          &quot;row&quot;: &quot;Simulation window&quot;,
+          &quot;column&quot;: &quot;Duration&quot;
+        }
+      }
+    ],
+    &quot;timeStepYears&quot;: [
+      {
+        &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+        &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+        &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+        &quot;locator&quot;: {
+          &quot;page&quot;: 3,
+          &quot;section&quot;: &quot;3.1 Simulation framework&quot;,
+          &quot;row&quot;: &quot;Simulation window&quot;,
+          &quot;column&quot;: &quot;Time step&quot;
+        }
+      }
+    ],
+    &quot;monteCarloRunsPerScenario&quot;: [
+      {
+        &quot;sourceId&quot;: &quot;JANUS-PAPER-05&quot;,
+        &quot;sourceVersion&quot;: &quot;arXiv:2604.13774v1&quot;,
+        &quot;evidenceKind&quot;: &quot;transcribed&quot;,
+        &quot;locator&quot;: {
+          &quot;page&quot;: 8,
+          &quot;section&quot;: &quot;4.1 Monte Carlo Outcomes and Temporal Profiles&quot;,
+          &quot;row&quot;: &quot;Monte Carlo ensemble&quot;,
+          &quot;column&quot;: &quot;Runs per scenario&quot;
+        }
+      }
+    ]
+  }
+}</pre></section></div></main></body></html>

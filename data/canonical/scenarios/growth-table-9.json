@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "id": "janus.scenarios.growth.tfsc-table-9",
   "title": "Population, annual energy use, and growth state after 1,000 years",
   "contentOrigin": "transcribed",
@@ -7,7 +7,10 @@
   "source": {
     "sourceId": "JANUS-PAPER-01",
     "sourceVersion": "arXiv:2409.00067v3",
-    "locator": { "page": 18, "table": "Table 9" }
+    "locator": {
+      "page": 18,
+      "table": "Table 9"
+    }
   },
   "sourceLicense": "CC BY 4.0",
   "transcriptionMethod": "Manual transcription from the PDF table, checked against a rendered page and layout-preserving text extraction.",
@@ -15,77 +18,765 @@
     "Table 9 does not print a unit beside the Energy use column. Its displayed magnitudes are annual joules: multiplying the stated 75 GJ per person per year assumption by population and converting gigajoules to joules reproduces the table values to its displayed precision.",
     "A null annualGrowthRate preserves categorical Stable or Oscillatory entries; it does not mean a measured numeric zero."
   ],
-  "notes": [],
+  "notes": [
+    "Every trajectory scalar and categorical endpoint carries an exact Table 9 row/column locator."
+  ],
   "records": [
     {
       "scenarioId": "S1",
       "population": 30000000000,
       "annualEnergyUseJ": 2e21,
       "growthState": "growing",
-      "annualGrowthRate": 0.0012
+      "annualGrowthRate": 0.0012,
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S1",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "population": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S1",
+              "column": "Population"
+            }
+          }
+        ],
+        "annualEnergyUseJ": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S1",
+              "column": "Energy use"
+            }
+          }
+        ],
+        "growthState": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S1",
+              "column": "Growth rate"
+            },
+            "note": "Stable and Oscillatory are categorical source entries, not numeric zero."
+          }
+        ],
+        "annualGrowthRate": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S1",
+              "column": "Growth rate"
+            }
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S2",
-      "population": 1e11,
+      "population": 100000000000,
       "annualEnergyUseJ": 8e21,
       "growthState": "growing",
-      "annualGrowthRate": 0.0026
+      "annualGrowthRate": 0.0026,
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S2",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "population": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S2",
+              "column": "Population"
+            }
+          }
+        ],
+        "annualEnergyUseJ": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S2",
+              "column": "Energy use"
+            }
+          }
+        ],
+        "growthState": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S2",
+              "column": "Growth rate"
+            },
+            "note": "Stable and Oscillatory are categorical source entries, not numeric zero."
+          }
+        ],
+        "annualGrowthRate": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S2",
+              "column": "Growth rate"
+            }
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S3",
-      "population": 1e10,
-      "annualEnergyUseJ": 8e20,
+      "population": 10000000000,
+      "annualEnergyUseJ": 800000000000000000000,
       "growthState": "stable",
-      "annualGrowthRate": null
+      "annualGrowthRate": null,
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S3",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "population": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S3",
+              "column": "Population"
+            }
+          }
+        ],
+        "annualEnergyUseJ": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S3",
+              "column": "Energy use"
+            }
+          }
+        ],
+        "growthState": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S3",
+              "column": "Growth rate"
+            },
+            "note": "Stable and Oscillatory are categorical source entries, not numeric zero."
+          }
+        ],
+        "annualGrowthRate": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S3",
+              "column": "Growth rate"
+            },
+            "note": "The source cell is categorical; null preserves the absence of a printed numeric rate."
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S4",
-      "population": 4e8,
-      "annualEnergyUseJ": 3e19,
+      "population": 400000000,
+      "annualEnergyUseJ": 30000000000000000000,
       "growthState": "stable",
-      "annualGrowthRate": null
+      "annualGrowthRate": null,
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S4",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "population": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S4",
+              "column": "Population"
+            }
+          }
+        ],
+        "annualEnergyUseJ": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S4",
+              "column": "Energy use"
+            }
+          }
+        ],
+        "growthState": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S4",
+              "column": "Growth rate"
+            },
+            "note": "Stable and Oscillatory are categorical source entries, not numeric zero."
+          }
+        ],
+        "annualGrowthRate": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S4",
+              "column": "Growth rate"
+            },
+            "note": "The source cell is categorical; null preserves the absence of a printed numeric rate."
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S5",
-      "population": 4e10,
+      "population": 40000000000,
       "annualEnergyUseJ": 3e21,
       "growthState": "stable",
-      "annualGrowthRate": null
+      "annualGrowthRate": null,
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S5",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "population": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S5",
+              "column": "Population"
+            }
+          }
+        ],
+        "annualEnergyUseJ": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S5",
+              "column": "Energy use"
+            }
+          }
+        ],
+        "growthState": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S5",
+              "column": "Growth rate"
+            },
+            "note": "Stable and Oscillatory are categorical source entries, not numeric zero."
+          }
+        ],
+        "annualGrowthRate": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S5",
+              "column": "Growth rate"
+            },
+            "note": "The source cell is categorical; null preserves the absence of a printed numeric rate."
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S6",
-      "population": 2e11,
+      "population": 200000000000,
       "annualEnergyUseJ": 2e22,
       "growthState": "growing",
-      "annualGrowthRate": 0.0035
+      "annualGrowthRate": 0.0035,
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S6",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "population": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S6",
+              "column": "Population"
+            }
+          }
+        ],
+        "annualEnergyUseJ": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S6",
+              "column": "Energy use"
+            }
+          }
+        ],
+        "growthState": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S6",
+              "column": "Growth rate"
+            },
+            "note": "Stable and Oscillatory are categorical source entries, not numeric zero."
+          }
+        ],
+        "annualGrowthRate": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S6",
+              "column": "Growth rate"
+            }
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S7",
-      "population": 4e9,
-      "annualEnergyUseJ": 3e20,
+      "population": 4000000000,
+      "annualEnergyUseJ": 300000000000000000000,
       "growthState": "stable",
-      "annualGrowthRate": null
+      "annualGrowthRate": null,
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S7",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "population": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S7",
+              "column": "Population"
+            }
+          }
+        ],
+        "annualEnergyUseJ": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S7",
+              "column": "Energy use"
+            }
+          }
+        ],
+        "growthState": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S7",
+              "column": "Growth rate"
+            },
+            "note": "Stable and Oscillatory are categorical source entries, not numeric zero."
+          }
+        ],
+        "annualGrowthRate": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S7",
+              "column": "Growth rate"
+            },
+            "note": "The source cell is categorical; null preserves the absence of a printed numeric rate."
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S8",
-      "population": 3e10,
+      "population": 30000000000,
       "annualEnergyUseJ": 2e21,
       "growthState": "oscillatory",
-      "annualGrowthRate": null
+      "annualGrowthRate": null,
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S8",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "population": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S8",
+              "column": "Population"
+            }
+          }
+        ],
+        "annualEnergyUseJ": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S8",
+              "column": "Energy use"
+            }
+          }
+        ],
+        "growthState": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S8",
+              "column": "Growth rate"
+            },
+            "note": "Stable and Oscillatory are categorical source entries, not numeric zero."
+          }
+        ],
+        "annualGrowthRate": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S8",
+              "column": "Growth rate"
+            },
+            "note": "The source cell is categorical; null preserves the absence of a printed numeric rate."
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S9",
-      "population": 2e14,
+      "population": 200000000000000,
       "annualEnergyUseJ": 1e25,
       "growthState": "growing",
-      "annualGrowthRate": 0.0098
+      "annualGrowthRate": 0.0098,
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S9",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "population": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S9",
+              "column": "Population"
+            }
+          }
+        ],
+        "annualEnergyUseJ": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S9",
+              "column": "Energy use"
+            }
+          }
+        ],
+        "growthState": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S9",
+              "column": "Growth rate"
+            },
+            "note": "Stable and Oscillatory are categorical source entries, not numeric zero."
+          }
+        ],
+        "annualGrowthRate": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S9",
+              "column": "Growth rate"
+            }
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S10",
-      "population": 3e10,
+      "population": 30000000000,
       "annualEnergyUseJ": 2e21,
       "growthState": "stable",
-      "annualGrowthRate": null
+      "annualGrowthRate": null,
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S10",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "population": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S10",
+              "column": "Population"
+            }
+          }
+        ],
+        "annualEnergyUseJ": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S10",
+              "column": "Energy use"
+            }
+          }
+        ],
+        "growthState": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S10",
+              "column": "Growth rate"
+            },
+            "note": "Stable and Oscillatory are categorical source entries, not numeric zero."
+          }
+        ],
+        "annualGrowthRate": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 18,
+              "table": "Table 9",
+              "row": "S10",
+              "column": "Growth rate"
+            },
+            "note": "The source cell is categorical; null preserves the absence of a printed numeric rate."
+          }
+        ]
+      }
     }
   ]
 }

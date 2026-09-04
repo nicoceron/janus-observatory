@@ -1,194 +1,167 @@
 'use client';
 
+import { max, scaleLog } from 'd3';
+import type { SourceRef, Sourced } from '@janus/domain';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { useMemo, useState, type CSSProperties } from 'react';
-import { max, scaleLinear, scaleLog } from 'd3';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useMemo, type CSSProperties } from 'react';
 
-import { allScenarioProfiles, scientificNotation } from '../../lib/canonical';
+import {
+  allScenarioProfiles,
+  scientificNotation,
+  sourceRefHref,
+  sourceRefLabel,
+  sourcedDisplay,
+} from '../../lib/canonical-core';
+import styles from './atlas.module.css';
 
 type ScenarioId = (typeof allScenarioProfiles)[number]['id'];
+type LensKey = 'population' | 'energy' | 'observability' | 'system';
+type NumericLensKey = Extract<LensKey, 'population' | 'energy'>;
 
 const maxComparisons = 3;
 
-type MetricKey = 'population' | 'energy' | 'detectability' | 'system';
-
-const metricCopy: Record<
-  MetricKey,
-  { button: string; label: string; note: string; scale: 'log' | 'linear' }
-> = {
+const lensCopy: Record<LensKey, { button: string; label: string; note: string }> = {
   population: {
     button: 'Population',
     label: 'Population after 1,000 years',
     note: 'Reported total across all bodies. Logarithmic visual scale.',
-    scale: 'log',
   },
   energy: {
     button: 'Annual energy',
     label: 'Annual energy use',
     note: 'Reported joules per year across all bodies. Logarithmic visual scale.',
-    scale: 'log',
   },
-  detectability: {
-    button: 'Detectability',
-    label: 'Mission concepts with a listed signature',
-    note: 'Count of filled Figure 6 cells. It is not a technology score or detection probability.',
-    scale: 'linear',
+  observability: {
+    button: 'Observing matrix',
+    label: 'Five mission cells, kept separate',
+    note: 'Every Figure 6 cell is shown independently. A blank cell remains “no signature listed,” not a lower score and not evidence of no technology.',
   },
   system: {
-    button: 'System reach',
+    button: 'System signatures',
     label: 'Listed system technosignature categories',
-    note: 'Count of categories present in Table 8. It is not a distance or capability score.',
-    scale: 'linear',
+    note: 'Category labels are reproduced from Table 8. They are not collapsed into a capability or reach score.',
   },
 };
 
-function metricValue(metric: MetricKey, profile: (typeof allScenarioProfiles)[number]) {
-  switch (metric) {
-    case 'population':
-      return profile.growth.population;
-    case 'energy':
-      return profile.growth.annualEnergyUseJ;
-    case 'detectability':
-      return profile.observations.filter(({ result }) => result.signatures.length > 0).length;
-    case 'system':
-      return profile.system.length;
+function normalizeLensKey(value: string | null): LensKey {
+  if (value === 'detectability') return 'observability';
+  if (value !== null && Object.prototype.hasOwnProperty.call(lensCopy, value)) {
+    return value as LensKey;
   }
+  return 'population';
 }
 
-function metricDisplay(metric: MetricKey, value: number) {
-  if (metric === 'population') return scientificNotation(value);
-  if (metric === 'energy') return `${scientificNotation(value)} J / year`;
-  if (metric === 'detectability') return `${value} / 5 mission cells`;
-  return `${value} categories`;
+function numericLensValue(lens: NumericLensKey, profile: (typeof allScenarioProfiles)[number]) {
+  return lens === 'population' ? profile.growth.population : profile.growth.annualEnergyUseJ;
 }
 
-function MetricExplorer() {
-  const [metric, setMetric] = useState<MetricKey>('population');
-  const rows = useMemo(
-    () => allScenarioProfiles.map((profile) => ({ profile, value: metricValue(metric, profile) })),
-    [metric],
-  );
-  const maximum = max(rows, ({ value }) => value) ?? 1;
-  const minimum = Math.min(...rows.map(({ value }) => value).filter((value) => value > 0));
-  const widthScale =
-    metricCopy[metric].scale === 'log'
-      ? scaleLog().domain([minimum, maximum]).range([12, 100])
-      : scaleLinear().domain([0, maximum]).range([0, 100]);
+function numericLensDisplay(lens: NumericLensKey, value: number) {
+  return lens === 'population'
+    ? scientificNotation(value)
+    : `${scientificNotation(value)} J / year`;
+}
 
+function categoricalLensDisplay(
+  lens: Exclude<LensKey, NumericLensKey>,
+  profile: (typeof allScenarioProfiles)[number],
+) {
+  if (lens === 'observability') {
+    return profile.observations
+      .map(
+        ({ result, short }) =>
+          `${short}: ${
+            result.signatures.length > 0
+              ? result.signatures.join(', ')
+              : 'no signature listed in Figure 6'
+          }`,
+      )
+      .join('; ');
+  }
   return (
-    <section className="metricExplorer" aria-labelledby="metric-explorer-title">
-      <header>
-        <p className="eyebrow">Analytical lens · all ten scenarios</p>
-        <h2 id="metric-explorer-title">Compare the possibility space</h2>
-        <p>
-          Switch one sourced dimension at a time. The view deliberately refuses to calculate an
-          overall civilization rank.
-        </p>
-      </header>
-      <div className="metricControls" role="group" aria-label="Comparison metric">
-        {(Object.keys(metricCopy) as MetricKey[]).map((key) => (
-          <button
-            aria-pressed={metric === key}
-            key={key}
-            onClick={() => setMetric(key)}
-            type="button"
-          >
-            {metricCopy[key].button}
-          </button>
-        ))}
-      </div>
-      <div
-        className="metricChart"
-        role="group"
-        aria-labelledby="metric-chart-title metric-chart-note"
-      >
-        <div className="metricChartHeading">
-          <h3 id="metric-chart-title">{metricCopy[metric].label}</h3>
-          <p id="metric-chart-note">{metricCopy[metric].note}</p>
-        </div>
-        <ol>
-          {rows.map(({ profile, value }) => (
-            <li key={profile.id}>
-              <Link href={`/atlas/${profile.id.toLowerCase()}`}>
-                <span className="metricScenarioId">{profile.id}</span>
-                <span className="metricScenarioName">{profile.morphology.mythMetaphor}</span>
-              </Link>
-              <span className="metricBarTrack" aria-hidden="true">
-                <span
-                  className="metricBar"
-                  style={
-                    {
-                      '--metric-accent': profile.accent,
-                      width: `${widthScale(Math.max(value, minimum))}%`,
-                    } as CSSProperties
-                  }
-                />
-              </span>
-              <strong>{metricDisplay(metric, value)}</strong>
-            </li>
-          ))}
-        </ol>
-      </div>
-      <details className="metricDataTable">
-        <summary>Open structured metric table</summary>
-        <div
-          aria-label={`${metricCopy[metric].label} structured table; scroll horizontally if needed`}
-          className="comparisonScroller"
-          tabIndex={0}
-        >
-          <table>
-            <caption>{metricCopy[metric].label} for all scenarios</caption>
-            <thead>
-              <tr>
-                <th scope="col">Scenario</th>
-                <th scope="col">Value</th>
-                <th scope="col">Scale note</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map(({ profile, value }) => (
-                <tr key={profile.id}>
-                  <th scope="row">
-                    {profile.id} · {profile.morphology.mythMetaphor}
-                  </th>
-                  <td>{metricDisplay(metric, value)}</td>
-                  <td>{metricCopy[metric].note}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </details>
-    </section>
+    profile.system.map(({ label }) => label).join('; ') || 'No system signature listed in Table 8'
   );
+}
+
+function lensSourceRefs(lens: LensKey, profile: (typeof allScenarioProfiles)[number]): SourceRef[] {
+  switch (lens) {
+    case 'population':
+      return profile.growth.fieldProvenance.population;
+    case 'energy':
+      return profile.growth.fieldProvenance.annualEnergyUseJ;
+    case 'observability':
+      return profile.observations.flatMap(({ result }) => result.sourceRefs);
+    case 'system':
+      return profile.systemCellProvenance;
+  }
 }
 
 function validScenarioIds(value: string | null): ScenarioId[] {
   if (!value) return ['S1', 'S4', 'S9'];
   const known = new Set(allScenarioProfiles.map(({ id }) => id));
-  return value
-    .split(',')
-    .filter((id): id is ScenarioId => known.has(id as ScenarioId))
-    .slice(0, maxComparisons);
+  const unique = new Set(
+    value.split(',').filter((id): id is ScenarioId => known.has(id as ScenarioId)),
+  );
+  return [...unique].slice(0, maxComparisons);
 }
 
-function replaceCompareQuery(ids: ScenarioId[]) {
-  const url = new URL(window.location.href);
-  if (ids.length > 0) url.searchParams.set('compare', ids.join(','));
-  else url.searchParams.delete('compare');
-  window.history.replaceState({}, '', url);
+function sourceLink(dataset: string, label: string) {
+  return (
+    <a className={styles.fieldSource} href={`/sources#${dataset}`}>
+      {label} <span aria-hidden="true">↗</span>
+    </a>
+  );
+}
+
+function ExactLocator({ sourceRefs }: { sourceRefs: SourceRef[] }) {
+  const first = sourceRefs[0];
+  if (!first) return <span>Missing locator</span>;
+  return (
+    <a className={styles.fieldSource} href={sourceRefHref(first)} rel="noreferrer" target="_blank">
+      {sourceRefLabel(first)}
+      {sourceRefs.length > 1 ? ` +${sourceRefs.length - 1} source rows` : ''}{' '}
+      <span aria-hidden="true">↗</span>
+    </a>
+  );
+}
+
+function SourcedCell({ field }: { field: Sourced<unknown> }) {
+  return (
+    <>
+      <span>{sourcedDisplay(field)}</span>
+      <ExactLocator sourceRefs={field.sourceRefs} />
+    </>
+  );
+}
+
+function ProvenancedCell({ value, sourceRefs }: { value: string; sourceRefs: SourceRef[] }) {
+  return (
+    <>
+      <span>{value}</span>
+      <ExactLocator sourceRefs={sourceRefs} />
+    </>
+  );
 }
 
 export function AtlasExplorer() {
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [selectedIds, setSelectedIds] = useState<ScenarioId[]>(() =>
-    validScenarioIds(searchParams.get('compare')),
-  );
+  const selectedIds = validScenarioIds(searchParams.get('compare'));
+  const lens = normalizeLensKey(searchParams.get('lens'));
   const selected = useMemo(
     () => selectedIds.map((id) => allScenarioProfiles.find((profile) => profile.id === id)!),
     [selectedIds],
   );
+
+  function replaceParams(updates: Record<string, string | undefined>) {
+    const next = new URLSearchParams(searchParams.toString());
+    for (const [name, value] of Object.entries(updates)) {
+      if (value) next.set(name, value);
+      else next.delete(name);
+    }
+    router.replace(`${pathname}?${next.toString()}`, { scroll: false });
+  }
 
   function toggleScenario(id: ScenarioId) {
     const next = selectedIds.includes(id)
@@ -196,51 +169,88 @@ export function AtlasExplorer() {
       : selectedIds.length < maxComparisons
         ? [...selectedIds, id]
         : selectedIds;
-    setSelectedIds(next);
-    replaceCompareQuery(next);
+    replaceParams({ compare: next.length > 0 ? next.join(',') : undefined });
   }
+
+  const numericLens: NumericLensKey = lens === 'energy' ? 'energy' : 'population';
+  const numericRows = allScenarioProfiles.map((profile) => ({
+    profile,
+    value: numericLensValue(numericLens, profile),
+  }));
+  const maximum = max(numericRows, ({ value }) => value) ?? 1;
+  const minimum = Math.min(...numericRows.map(({ value }) => value).filter((value) => value > 0));
+  const widthScale = scaleLog().domain([minimum, maximum]).range([8, 100]);
 
   return (
     <>
-      <section className="atlasPicker" aria-labelledby="atlas-picker-title">
-        <div className="atlasPickerIntro">
-          <p className="eyebrow">Comparison workspace</p>
-          <h2 id="atlas-picker-title">Select up to three scenarios.</h2>
-          <p>
-            Fields stay separate; the Atlas does not collapse technology, resilience, or
-            detectability into a score.
-          </p>
-          <span aria-live="polite">
-            {selectedIds.length} of {maxComparisons} selected
-          </span>
-        </div>
-        <div className="atlasScenarioGrid">
-          {allScenarioProfiles.map((profile) => {
-            const selected = selectedIds.includes(profile.id);
-            const disabled = !selected && selectedIds.length >= maxComparisons;
+      <section className={styles.indexSection} aria-labelledby="atlas-picker-title">
+        <header className={styles.sectionHeader}>
+          <p>Scenario index · Table 5 + Table 9</p>
+          <h2 id="atlas-picker-title">Select up to three futures.</h2>
+          <div className={styles.headerAside}>
+            <p>
+              This is an editorial index, not a deck of scores. Scenario order follows S1–S10;
+              trajectory labels reproduce the reported 1,000-year endpoint state.
+            </p>
+            <span aria-live="polite">
+              {selectedIds.length} of {maxComparisons} selected
+            </span>
+          </div>
+        </header>
+
+        <div className={styles.scenarioIndex}>
+          <div className={styles.indexLabels} aria-hidden="true">
+            <span>Scenario</span>
+            <span>Reported endpoint</span>
+            <span>Construction</span>
+            <span>Compare / record</span>
+          </div>
+          {allScenarioProfiles.map((profile, index) => {
+            const isSelected = selectedIds.includes(profile.id);
+            const disabled = !isSelected && selectedIds.length >= maxComparisons;
             return (
               <article
-                className={selected ? 'atlasScenario atlasScenarioSelected' : 'atlasScenario'}
+                className={
+                  isSelected ? `${styles.scenarioRow} ${styles.selectedRow}` : styles.scenarioRow
+                }
                 key={profile.id}
                 style={{ '--scenario-accent': profile.accent } as CSSProperties}
               >
-                <div>
-                  <span>{profile.id}</span>
-                  <span>{profile.morphology.globalFactor}</span>
+                <div className={styles.scenarioIdentity}>
+                  <span className={styles.rowNumber}>{String(index + 1).padStart(2, '0')}</span>
+                  <div
+                    aria-hidden="true"
+                    className={styles.scenarioPortrait}
+                    style={{
+                      backgroundImage: `url('/assets/scenarios/${profile.id.toLowerCase()}-world-v1.webp')`,
+                    }}
+                  />
+                  <div>
+                    <span>{profile.id}</span>
+                    <h3>{profile.morphology.mythMetaphor}</h3>
+                  </div>
                 </div>
-                <h3>{profile.morphology.mythMetaphor}</h3>
-                <p>
-                  Cluster {profile.morphology.technologyCluster} ·{' '}
-                  {profile.growth.growthState.replace('_', ' ')}
-                </p>
-                <div className="atlasScenarioActions">
+                <div className={styles.scenarioTrajectory}>
+                  <strong>{profile.growth.growthState.replace('_', ' ')}</strong>
+                  <span>{scientificNotation(profile.growth.population)} people</span>
+                </div>
+                <div className={styles.scenarioConstruction}>
+                  <strong>{profile.morphology.globalFactor}</strong>
+                  <span>
+                    Cluster {profile.morphology.technologyCluster} ·{' '}
+                    {profile.morphology.technologyFactors.join(', ')}
+                  </span>
+                </div>
+                <div className={styles.scenarioActions}>
                   <button
-                    aria-pressed={selected}
+                    aria-pressed={isSelected}
+                    data-telemetry-event="comparison_update"
+                    data-telemetry-value={profile.id}
                     disabled={disabled}
                     onClick={() => toggleScenario(profile.id)}
                     type="button"
                   >
-                    {selected ? 'Remove' : disabled ? 'Three selected' : 'Compare'}
+                    {isSelected ? 'Remove' : disabled ? 'Three selected' : 'Compare'}
                   </button>
                   <Link href={`/atlas/${profile.id.toLowerCase()}`}>Open record</Link>
                 </div>
@@ -250,22 +260,148 @@ export function AtlasExplorer() {
         </div>
       </section>
 
-      <MetricExplorer />
+      <section className={styles.metricSection} aria-labelledby="metric-explorer-title">
+        <header className={styles.sectionHeader}>
+          <p>Analytical lens · shareable view</p>
+          <h2 id="metric-explorer-title">One dimension at a time.</h2>
+          <div className={styles.headerAside}>
+            <p>
+              The lens keeps source dimensions separate. It deliberately refuses to calculate an
+              overall civilization, resilience, risk, or detectability rank.
+            </p>
+          </div>
+        </header>
+        <div className={styles.metricControls} role="group" aria-label="Comparison lens">
+          {(Object.keys(lensCopy) as LensKey[]).map((key) => (
+            <button
+              aria-pressed={lens === key}
+              key={key}
+              onClick={() => replaceParams({ lens: key })}
+              type="button"
+            >
+              {lensCopy[key].button}
+            </button>
+          ))}
+        </div>
+        <div className={styles.metricChart} aria-labelledby="metric-chart-title metric-chart-note">
+          <div className={styles.metricChartHeading}>
+            <h3 id="metric-chart-title">{lensCopy[lens].label}</h3>
+            <p id="metric-chart-note">{lensCopy[lens].note}</p>
+          </div>
+          {lens === 'population' || lens === 'energy' ? (
+            <ol>
+              {numericRows.map(({ profile, value }) => (
+                <li key={profile.id}>
+                  <Link href={`/atlas/${profile.id.toLowerCase()}`}>
+                    <span>{profile.id}</span>
+                    <strong>{profile.morphology.mythMetaphor}</strong>
+                  </Link>
+                  <span className={styles.barTrack} aria-hidden="true">
+                    <span
+                      className={styles.bar}
+                      style={
+                        {
+                          '--metric-accent': profile.accent,
+                          width: `${widthScale(value)}%`,
+                        } as CSSProperties
+                      }
+                    />
+                  </span>
+                  <span className={styles.metricValue}>{numericLensDisplay(lens, value)}</span>
+                </li>
+              ))}
+            </ol>
+          ) : lens === 'observability' ? (
+            <ol className={styles.categoricalRows}>
+              {allScenarioProfiles.map((profile) => (
+                <li key={profile.id}>
+                  <Link href={`/atlas/${profile.id.toLowerCase()}`}>
+                    <span>{profile.id}</span>
+                    <strong>{profile.morphology.mythMetaphor}</strong>
+                  </Link>
+                  <div className={styles.missionCells}>
+                    {profile.observations.map(({ id, result, short }) => (
+                      <div className={styles.missionCell} data-state={result.status} key={id}>
+                        <strong>{short}</strong>
+                        <span>
+                          {result.signatures.length > 0
+                            ? result.signatures.join(' · ')
+                            : 'No signature listed'}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <ol className={styles.categoricalRows}>
+              {allScenarioProfiles.map((profile) => (
+                <li key={profile.id}>
+                  <Link href={`/atlas/${profile.id.toLowerCase()}`}>
+                    <span>{profile.id}</span>
+                    <strong>{profile.morphology.mythMetaphor}</strong>
+                  </Link>
+                  <div className={styles.systemTags}>
+                    {profile.system.length > 0 ? (
+                      profile.system.map(({ id, label }) => <span key={id}>{label}</span>)
+                    ) : (
+                      <span>No system signature listed in Table 8</span>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          )}
+        </div>
+        <details className={styles.metricDataTable}>
+          <summary>Open structured lens table</summary>
+          <div className={styles.tableScroller} tabIndex={0}>
+            <table>
+              <caption>{lensCopy[lens].label} for all scenarios</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Scenario</th>
+                  <th scope="col">Source field(s)</th>
+                  <th scope="col">Interpretation note</th>
+                  <th scope="col">Exact locator</th>
+                </tr>
+              </thead>
+              <tbody>
+                {allScenarioProfiles.map((profile) => {
+                  const value =
+                    lens === 'population' || lens === 'energy'
+                      ? numericLensDisplay(lens, numericLensValue(lens, profile))
+                      : categoricalLensDisplay(lens, profile);
+                  return (
+                    <tr key={profile.id}>
+                      <th scope="row">
+                        {profile.id} · {profile.morphology.mythMetaphor}
+                      </th>
+                      <td>{value}</td>
+                      <td>{lensCopy[lens].note}</td>
+                      <td>
+                        <ExactLocator sourceRefs={lensSourceRefs(lens, profile)} />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </section>
 
-      <section className="comparison" aria-labelledby="comparison-title">
-        <header>
-          <p className="eyebrow">Aligned canonical fields</p>
+      <section className={styles.comparisonSection} aria-labelledby="comparison-title">
+        <header className={styles.sectionHeader}>
+          <p>Aligned canonical fields</p>
           <h2 id="comparison-title">Side-by-side, without a rank.</h2>
         </header>
         {selected.length === 0 ? (
-          <p className="emptyComparison">Select at least one scenario to open the comparison.</p>
+          <p className={styles.emptyComparison}>Select at least one scenario in the index.</p>
         ) : (
-          <div
-            aria-label="Selected scenario comparison; scroll horizontally if needed"
-            className="comparisonScroller"
-            tabIndex={0}
-          >
-            <table className="comparisonTable">
+          <div className={styles.tableScroller} tabIndex={0}>
+            <table className={styles.comparisonTable}>
               <caption>Canonical comparison for {selectedIds.join(', ')}</caption>
               <thead>
                 <tr>
@@ -280,85 +416,166 @@ export function AtlasExplorer() {
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">Global factor</th>
-                  {selected.map((profile) => (
-                    <td key={profile.id}>{profile.morphology.globalFactor}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row">Technology cluster</th>
-                  {selected.map((profile) => (
-                    <td key={profile.id}>{profile.morphology.technologyCluster}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row">Technology factors</th>
-                  {selected.map((profile) => (
-                    <td key={profile.id}>{profile.morphology.technologyFactors.join(', ')}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row">Population</th>
-                  {selected.map((profile) => (
-                    <td key={profile.id}>{scientificNotation(profile.growth.population)}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row">Annual energy use</th>
+                  <th scope="row">{sourceLink('dataset-morphology-table-5', 'Global factor')}</th>
                   {selected.map((profile) => (
                     <td key={profile.id}>
-                      {scientificNotation(profile.growth.annualEnergyUseJ)} J / year
+                      <ProvenancedCell
+                        sourceRefs={profile.morphology.fieldProvenance.globalFactor}
+                        value={profile.morphology.globalFactor}
+                      />
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <th scope="row">Growth state</th>
-                  {selected.map((profile) => (
-                    <td key={profile.id}>{profile.growth.growthState}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row">CO₂</th>
+                  <th scope="row">
+                    {sourceLink('dataset-morphology-table-5', 'Technology cluster')}
+                  </th>
                   {selected.map((profile) => (
                     <td key={profile.id}>
-                      {profile.atmosphere.co2?.value ?? 'Published ellipsis'} ppm
+                      <ProvenancedCell
+                        sourceRefs={profile.morphology.fieldProvenance.technologyCluster}
+                        value={String(profile.morphology.technologyCluster)}
+                      />
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <th scope="row">Listed system signatures</th>
+                  <th scope="row">
+                    {sourceLink('dataset-morphology-table-5', 'Technology factors')}
+                  </th>
                   {selected.map((profile) => (
                     <td key={profile.id}>
-                      {profile.system.map(({ label }) => label).join(', ') ||
-                        'None listed in Table 8'}
+                      <ProvenancedCell
+                        sourceRefs={profile.morphology.fieldProvenance.technologyFactors}
+                        value={profile.morphology.technologyFactors.join(', ')}
+                      />
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <th scope="row">Mission cells with signatures</th>
+                  <th scope="row">Canonical summary</th>
                   {selected.map((profile) => (
                     <td key={profile.id}>
-                      {
-                        profile.observations.filter(({ result }) => result.signatures.length > 0)
-                          .length
-                      }{' '}
-                      / 5
+                      <SourcedCell field={profile.morphology.canonicalSummary} />
+                    </td>
+                  ))}
+                </tr>
+                {(
+                  [
+                    ['Economy', 'economy'],
+                    ['Politics', 'politics'],
+                    ['Society', 'society'],
+                    ['Technosphere / biosphere relation', 'technosphere'],
+                    ['Biosphere distribution', 'biosphere'],
+                    ['Spatial distribution', 'spatialDistribution'],
+                    ['Development', 'development'],
+                    ['Connectivity / highest order', 'connectivity'],
+                    ['Smallest scale', 'smallestScale'],
+                  ] as const
+                ).map(([label, field]) => (
+                  <tr key={field}>
+                    <th scope="row">{label}</th>
+                    {selected.map((profile) => (
+                      <td key={profile.id}>
+                        <SourcedCell field={profile.morphology[field]} />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+                <tr>
+                  <th scope="row">{sourceLink('dataset-growth-table-9', 'Population')}</th>
+                  {selected.map((profile) => (
+                    <td key={profile.id}>
+                      <ProvenancedCell
+                        sourceRefs={profile.growth.fieldProvenance.population}
+                        value={scientificNotation(profile.growth.population)}
+                      />
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <th scope="row">Reported collapse summary</th>
+                  <th scope="row">{sourceLink('dataset-growth-table-9', 'Annual energy use')}</th>
                   {selected.map((profile) => (
-                    <td key={profile.id}>{profile.collapse.reportedResults.summary}</td>
+                    <td key={profile.id}>
+                      <ProvenancedCell
+                        sourceRefs={profile.growth.fieldProvenance.annualEnergyUseJ}
+                        value={`${scientificNotation(profile.growth.annualEnergyUseJ)} J / year`}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th scope="row">{sourceLink('dataset-growth-table-9', 'Growth state')}</th>
+                  {selected.map((profile) => (
+                    <td key={profile.id}>
+                      <ProvenancedCell
+                        sourceRefs={profile.growth.fieldProvenance.growthState}
+                        value={profile.growth.growthState}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th scope="row">{sourceLink('dataset-atmosphere-table-1', 'CO₂')}</th>
+                  {selected.map((profile) => (
+                    <td key={profile.id}>
+                      <ProvenancedCell
+                        sourceRefs={profile.atmosphere.co2?.sourceRefs ?? []}
+                        value={
+                          profile.atmosphere.co2?.value === null
+                            ? 'Published ellipsis'
+                            : String(profile.atmosphere.co2?.value) + ' ppm'
+                        }
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th scope="row">{sourceLink('dataset-system-table-8', 'System signatures')}</th>
+                  {selected.map((profile) => (
+                    <td key={profile.id}>
+                      <ProvenancedCell
+                        sourceRefs={profile.systemCellProvenance}
+                        value={
+                          profile.system.map(({ label }) => label).join(', ') ||
+                          'None listed in Table 8'
+                        }
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th scope="row">
+                    {sourceLink('dataset-observability-figure-6', 'Mission cells')}
+                  </th>
+                  {selected.map((profile) => (
+                    <td key={profile.id}>
+                      <ProvenancedCell
+                        sourceRefs={profile.observations.flatMap(({ result }) => result.sourceRefs)}
+                        value={categoricalLensDisplay('observability', profile)}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th scope="row">{sourceLink('dataset-collapse-table-4', 'Collapse outcome')}</th>
+                  {selected.map((profile) => (
+                    <td key={profile.id}>
+                      <ProvenancedCell
+                        sourceRefs={profile.collapse.fieldProvenance.reportedResults.summary}
+                        value={profile.collapse.reportedResults.summary}
+                      />
+                    </td>
                   ))}
                 </tr>
               </tbody>
             </table>
           </div>
         )}
-        <p className="comparisonNote">
-          “Published ellipsis,” numeric zero, and “none listed” remain distinct. Detection counts
-          summarize filled matrix cells for navigation only; they are not scenario scores.
+        <p className={styles.comparisonNote}>
+          “Published ellipsis,” numeric zero, “none listed,” and “not evaluated” remain distinct.
+          Mission cells and system categories remain separate source fields; they are never reduced
+          to scenario scores.
         </p>
       </section>
     </>

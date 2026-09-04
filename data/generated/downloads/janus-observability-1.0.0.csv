@@ -1,0 +1,51 @@
+scenarioId,missionId,status,signatures,sourceId,sourceVersion,page,figure,row,column
+S1,habitable_worlds_observatory,reported_listed,CO2 + NO2|Na emission,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S1,Habitable Worlds Observatory
+S1,radio,reported_listed,radio beacon,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S1,Radio
+S1,large_interferometer_for_exoplanets,reported_listed,CO2 + CFC-11/12,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S1,Large Interferometer for Exoplanets
+S1,solar_gravitational_lens,reported_listed,large surface features (Earth),JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S1,Solar Gravitational Lens
+S1,deep_space_probes,reported_listed,"large surface features (Earth, Mars)",JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S1,Deep Space Probes
+S2,habitable_worlds_observatory,reported_listed,CO2 + NO2,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S2,Habitable Worlds Observatory
+S2,radio,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S2,Radio
+S2,large_interferometer_for_exoplanets,reported_listed,CO2 + CFC-11/12|N2O + CH4 + NH3,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S2,Large Interferometer for Exoplanets
+S2,solar_gravitational_lens,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S2,Solar Gravitational Lens
+S2,deep_space_probes,reported_listed,"large surface features (Earth, Mars)",JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S2,Deep Space Probes
+S3,habitable_worlds_observatory,reported_listed,CO2 + NO2,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S3,Habitable Worlds Observatory
+S3,radio,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S3,Radio
+S3,large_interferometer_for_exoplanets,reported_listed,CO2 + CFC-11/12,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S3,Large Interferometer for Exoplanets
+S3,solar_gravitational_lens,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S3,Solar Gravitational Lens
+S3,deep_space_probes,reported_listed,"large surface features (Earth, Mars)",JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S3,Deep Space Probes
+S4,habitable_worlds_observatory,reported_listed,CO2 + NO2,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S4,Habitable Worlds Observatory
+S4,radio,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S4,Radio
+S4,large_interferometer_for_exoplanets,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S4,Large Interferometer for Exoplanets
+S4,solar_gravitational_lens,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S4,Solar Gravitational Lens
+S4,deep_space_probes,reported_listed,large surface features (Earth),JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S4,Deep Space Probes
+S5,habitable_worlds_observatory,reported_listed,Na emission,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S5,Habitable Worlds Observatory
+S5,radio,reported_listed,radio beacons,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S5,Radio
+S5,large_interferometer_for_exoplanets,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S5,Large Interferometer for Exoplanets
+S5,solar_gravitational_lens,reported_listed,"large surface features (Earth, Mars)",JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S5,Solar Gravitational Lens
+S5,deep_space_probes,reported_listed,"large surface features (Earth, Mars)",JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S5,Deep Space Probes
+S6,habitable_worlds_observatory,reported_listed,CO2 + NO2,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S6,Habitable Worlds Observatory
+S6,radio,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S6,Radio
+S6,large_interferometer_for_exoplanets,reported_listed,CO2 + CFC-11/12|CF4,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S6,Large Interferometer for Exoplanets
+S6,solar_gravitational_lens,reported_listed,"large surface features (Earth, Mars)",JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S6,Solar Gravitational Lens
+S6,deep_space_probes,reported_listed,"large surface features (Venus, Earth, Mars)",JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S6,Deep Space Probes
+S7,habitable_worlds_observatory,reported_listed,CO2 + NO2,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S7,Habitable Worlds Observatory
+S7,radio,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S7,Radio
+S7,large_interferometer_for_exoplanets,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S7,Large Interferometer for Exoplanets
+S7,solar_gravitational_lens,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S7,Solar Gravitational Lens
+S7,deep_space_probes,reported_listed,large surface features (Earth),JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S7,Deep Space Probes
+S8,habitable_worlds_observatory,reported_listed,CO2 + NO2,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S8,Habitable Worlds Observatory
+S8,radio,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S8,Radio
+S8,large_interferometer_for_exoplanets,reported_listed,CO2 + CFC-11/12|N2O + CH4 + NH3,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S8,Large Interferometer for Exoplanets
+S8,solar_gravitational_lens,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S8,Solar Gravitational Lens
+S8,deep_space_probes,reported_listed,large surface features (Earth),JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S8,Deep Space Probes
+S9,habitable_worlds_observatory,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S9,Habitable Worlds Observatory
+S9,radio,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S9,Radio
+S9,large_interferometer_for_exoplanets,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S9,Large Interferometer for Exoplanets
+S9,solar_gravitational_lens,reported_listed,"large surface features (Venus, Mars)",JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S9,Solar Gravitational Lens
+S9,deep_space_probes,reported_listed,"large surface features (Venus, Mars)",JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S9,Deep Space Probes
+S10,habitable_worlds_observatory,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S10,Habitable Worlds Observatory
+S10,radio,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S10,Radio
+S10,large_interferometer_for_exoplanets,no_signature_listed,,JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S10,Large Interferometer for Exoplanets
+S10,solar_gravitational_lens,reported_listed,large surface features (Earth),JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S10,Solar Gravitational Lens
+S10,deep_space_probes,reported_listed,"large surface features (Venus, Mars)",JANUS-PAPER-03,arXiv:2511.20329v2,10,Figure 6,S10,Deep Space Probes

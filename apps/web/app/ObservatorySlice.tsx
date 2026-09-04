@@ -1,9 +1,8 @@
 'use client';
 
-import type { ObservingMissionId } from '@janus/domain';
-import { observingMissionIds } from '@janus/domain';
-import dynamic from 'next/dynamic';
-import { useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { observingMissionIds, type ObservingMissionId } from '@janus/domain/scientific-dataset';
+import Image from 'next/image';
+import { useMemo, useState, type CSSProperties } from 'react';
 
 import {
   earthAtmosphere,
@@ -11,12 +10,7 @@ import {
   instrumentCopy,
   scientificNotation,
   verticalSliceProfiles,
-} from '../lib/canonical';
-
-const EarthStage = dynamic(() => import('./story/EarthStage').then((module) => module.EarthStage), {
-  ssr: false,
-  loading: () => <div className="observatorySceneLoading">Acquiring target…</div>,
-});
+} from '../lib/canonical-core';
 
 type SliceScenarioId = 'S1' | 'S4' | 'S9';
 
@@ -29,7 +23,7 @@ const scenarioInterpretation: Record<
   S1: {
     archetype: 'Centralized growth',
     body: 'Strong Earth signals with additional Mars surface features',
-    note: 'Editorial shorthand from reviewed table values.',
+    note: 'Editorial shorthand from versioned table values.',
   },
   S4: {
     archetype: 'Low-technology stability',
@@ -49,15 +43,6 @@ export function ObservatorySlice() {
     'habitable_worlds_observatory',
   );
   const [showData, setShowData] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => setReducedMotion(query.matches);
-    update();
-    query.addEventListener('change', update);
-    return () => query.removeEventListener('change', update);
-  }, []);
 
   const profile = useMemo(() => getScenarioProfile(scenarioId), [scenarioId]);
   const instrument = instrumentCopy[instrumentId];
@@ -139,15 +124,19 @@ export function ObservatorySlice() {
             <span>Scenario · {scenarioId}</span>
           </div>
           <div className="systemView">
-            <EarthStage
-              className="observatoryEarthStage"
-              reducedMotion={reducedMotion}
-              state={{ kind: 'observer', scenarioId, instrument: instrumentId }}
+            <Image
+              alt=""
+              aria-hidden="true"
+              className="observatoryPoster"
+              fill
+              priority={false}
+              sizes="(max-width: 860px) 100vw, 50vw"
+              src="/assets/observer/janus-observer-poster-v1.webp"
             />
             <span className="scanLine" aria-hidden="true" />
             <span className="srOnly">
-              Interpretive 3D view of the selected observer pointed toward {scenarioId}. The
-              structured result below is the authoritative categorical evidence.
+              Interpretive observer view pointed toward {scenarioId}. The structured result below is
+              the authoritative categorical evidence.
             </span>
           </div>
           <div className="resultPanel">
@@ -184,6 +173,8 @@ export function ObservatorySlice() {
               <button
                 aria-pressed={instrumentId === id}
                 className="instrumentChoice"
+                data-telemetry-event="instrument_select"
+                data-telemetry-value={id}
                 key={id}
                 onClick={() => setInstrumentId(id)}
                 type="button"

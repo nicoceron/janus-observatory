@@ -1,0 +1,47 @@
+name: Deterministic visual regression
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  visual-regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    # Playwright 1.62.1 on Ubuntu 24.04 (Noble), pinned to the linux/amd64 manifest.
+    container:
+      image: mcr.microsoft.com/playwright:v1.62.1-noble@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac
+      options: --ipc=host
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.10.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Compare deterministic 2D and WebGL states
+        run: pnpm exec playwright test --config=playwright.visual.config.ts
+
+      - name: Preserve visual diffs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-regression-diffs
+          path: |
+            playwright-report/visual-regression
+            test-results/visual-regression
+          if-no-files-found: ignore
+          retention-days: 14

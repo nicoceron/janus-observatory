@@ -1,10 +1,18 @@
-import { scenarioIds } from '@janus/domain';
+import { scenarioIds } from '@janus/domain/scenario';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { ObservatorySlice } from './ObservatorySlice';
-import { HeroSplineLayer } from './components/HeroSplineLayer';
+import { HeroSplineBoundary } from './components/HeroSplineBoundary';
 import { StoryExperience } from './story/StoryExperience';
+import { siteDescription } from '../lib/site';
+
+export const metadata: Metadata = {
+  title: 'Ten Futures, One System',
+  description: siteDescription,
+  alternates: { canonical: '/' },
+};
 
 const principles = [
   ['01', 'Possibilities', 'Ten self-consistent scenarios; no probability rank or forecast.'],
@@ -50,7 +58,7 @@ export default function Home() {
             sizes="(max-width: 880px) 100vw, 68vw"
             src="/assets/hero/solar-system-basic-v1.webp"
           />
-          <HeroSplineLayer />
+          <HeroSplineBoundary />
         </div>
 
         <div className="heroCopy">

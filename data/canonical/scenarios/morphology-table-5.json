@@ -1,90 +1,2928 @@
 {
-  "schemaVersion": "1.0.0",
-  "id": "janus.scenarios.morphology.tfsc-table-5",
-  "title": "Summary of final scenarios",
+  "schemaVersion": "1.1.0",
+  "id": "janus.scenarios.morphology.tfsc-tables-2-4-5",
+  "title": "Scenario summaries and complete morphology dimensions",
   "contentOrigin": "transcribed",
   "evidenceKind": "reported",
   "source": {
     "sourceId": "JANUS-PAPER-01",
     "sourceVersion": "arXiv:2409.00067v3",
-    "locator": { "page": 8, "table": "Table 5" }
+    "locator": {
+      "page": 8,
+      "table": "Table 5"
+    }
   },
   "sourceLicense": "CC BY 4.0",
-  "transcriptionMethod": "Manual transcription from the PDF table, checked against a rendered page and layout-preserving text extraction.",
+  "transcriptionMethod": "Manual transcription from Tables 2, 4, and 5 and Section 3.2.1, checked against rendered pages and layout-preserving text extraction. Every expanded field carries its own exact locator.",
   "assumptions": [
-    "The table reports scenario construction inputs and labels, not probabilities or rankings."
+    "The records report scenario-construction dimensions and source summaries, not probabilities or rankings.",
+    "Technology clusters containing multiple Table 4 rows preserve every distinct categorical value rather than choosing one row.",
+    "Figure 6 biosphere distributions remain not_transcribed until a separate graphical-transcription review is completed."
   ],
-  "notes": [],
+  "notes": [
+    "The compact Table 5 construction fields remain for backwards-compatible story state; fieldProvenance and expanded morphology fields provide exact field-level locators."
+  ],
   "records": [
     {
       "scenarioId": "S1",
       "globalFactor": "GF1",
       "technologyCluster": 6,
       "technologyFactors": ["TF5"],
-      "mythMetaphor": "Big Brother is Watching"
+      "mythMetaphor": "Big Brother is Watching",
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S1",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "globalFactor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S1",
+              "column": "Global factors"
+            }
+          }
+        ],
+        "technologyCluster": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S1",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "technologyFactors": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S1",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "mythMetaphor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S1",
+              "column": "Myth/Metaphor"
+            }
+          }
+        ]
+      },
+      "canonicalSummary": {
+        "captureStatus": "captured",
+        "value": "An autocratic ruler enforces strict resource allocation in a civilization strained by scarcity. The biosphere declines as the technosphere expands outward, Earth becomes a highly monitored urban landscape, and elites live in space settlements.",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 11,
+              "section": "3.2.1 Narrative summaries",
+              "row": "S1",
+              "column": "Narrative summary"
+            }
+          }
+        ]
+      },
+      "economy": {
+        "captureStatus": "captured",
+        "value": "Scarcity",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF1",
+              "column": "Economy"
+            }
+          }
+        ]
+      },
+      "politics": {
+        "captureStatus": "captured",
+        "value": "Rule by one",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF1",
+              "column": "Politics"
+            }
+          }
+        ]
+      },
+      "society": {
+        "captureStatus": "captured",
+        "value": "Hierarchical",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF1",
+              "column": "Society"
+            }
+          }
+        ]
+      },
+      "technosphere": {
+        "captureStatus": "captured",
+        "value": ["Some common elements with the biosphere; neither set is equal"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Relationship"
+            }
+          }
+        ]
+      },
+      "biosphere": {
+        "captureStatus": "not_transcribed",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 11,
+              "section": "3.2.2 Graphical summary",
+              "figure": "Figure 6",
+              "row": "S1",
+              "column": "Biosphere distribution"
+            }
+          }
+        ],
+        "note": "The source reports this distribution graphically; no separate categorical biosphere value has completed transcription review."
+      },
+      "spatialDistribution": {
+        "captureStatus": "captured",
+        "value": ["Unipolar"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Distribution"
+            }
+          }
+        ]
+      },
+      "development": {
+        "captureStatus": "captured",
+        "value": ["Evolved and emergent"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Development"
+            }
+          }
+        ]
+      },
+      "connectivity": {
+        "captureStatus": "captured",
+        "value": ["Second-order"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Order"
+            }
+          }
+        ]
+      },
+      "smallestScale": {
+        "captureStatus": "captured",
+        "value": ["1 nm to 1 μm"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Scale"
+            }
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S2",
       "globalFactor": "GF2",
       "technologyCluster": 6,
       "technologyFactors": ["TF5"],
-      "mythMetaphor": "Wild West"
+      "mythMetaphor": "Wild West",
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S2",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "globalFactor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S2",
+              "column": "Global factors"
+            }
+          }
+        ],
+        "technologyCluster": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S2",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "technologyFactors": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S2",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "mythMetaphor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S2",
+              "column": "Myth/Metaphor"
+            }
+          }
+        ]
+      },
+      "canonicalSummary": {
+        "captureStatus": "captured",
+        "value": "Competition for scarce resources is entrenched. The technosphere and biosphere remain in fragile dependency amid climate stress, inequality, and unrest, while cities on the Moon and Mars support industry and tourism.",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 11,
+              "section": "3.2.1 Narrative summaries",
+              "row": "S2",
+              "column": "Narrative summary"
+            }
+          }
+        ]
+      },
+      "economy": {
+        "captureStatus": "captured",
+        "value": "Scarcity",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF2",
+              "column": "Economy"
+            }
+          }
+        ]
+      },
+      "politics": {
+        "captureStatus": "captured",
+        "value": "Rule by few",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF2",
+              "column": "Politics"
+            }
+          }
+        ]
+      },
+      "society": {
+        "captureStatus": "captured",
+        "value": "Hierarchical",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF2",
+              "column": "Society"
+            }
+          }
+        ]
+      },
+      "technosphere": {
+        "captureStatus": "captured",
+        "value": ["Some common elements with the biosphere; neither set is equal"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Relationship"
+            }
+          }
+        ]
+      },
+      "biosphere": {
+        "captureStatus": "not_transcribed",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 11,
+              "section": "3.2.2 Graphical summary",
+              "figure": "Figure 6",
+              "row": "S2",
+              "column": "Biosphere distribution"
+            }
+          }
+        ],
+        "note": "The source reports this distribution graphically; no separate categorical biosphere value has completed transcription review."
+      },
+      "spatialDistribution": {
+        "captureStatus": "captured",
+        "value": ["Unipolar"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Distribution"
+            }
+          }
+        ]
+      },
+      "development": {
+        "captureStatus": "captured",
+        "value": ["Evolved and emergent"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Development"
+            }
+          }
+        ]
+      },
+      "connectivity": {
+        "captureStatus": "captured",
+        "value": ["Second-order"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Order"
+            }
+          }
+        ]
+      },
+      "smallestScale": {
+        "captureStatus": "captured",
+        "value": ["1 nm to 1 μm"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Scale"
+            }
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S3",
       "globalFactor": "GF3",
       "technologyCluster": 6,
       "technologyFactors": ["TF5"],
-      "mythMetaphor": "Golden Age"
+      "mythMetaphor": "Golden Age",
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S3",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "globalFactor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S3",
+              "column": "Global factors"
+            }
+          }
+        ],
+        "technologyCluster": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S3",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "technologyFactors": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S3",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "mythMetaphor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S3",
+              "column": "Myth/Metaphor"
+            }
+          }
+        ]
+      },
+      "canonicalSummary": {
+        "captureStatus": "captured",
+        "value": "Sociopolitical and technological changes enable a post-scarcity economy with abundant vital resources. Power is decentralized, Earth remains civilization's hub, and small settlements reach the Moon, Mars, and outer Solar System.",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 11,
+              "section": "3.2.1 Narrative summaries",
+              "row": "S3",
+              "column": "Narrative summary"
+            }
+          }
+        ]
+      },
+      "economy": {
+        "captureStatus": "captured",
+        "value": "Non-scarcity",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Economy"
+            }
+          }
+        ]
+      },
+      "politics": {
+        "captureStatus": "captured",
+        "value": "Rule by all",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Politics"
+            }
+          }
+        ]
+      },
+      "society": {
+        "captureStatus": "captured",
+        "value": "Distributed",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Society"
+            }
+          }
+        ]
+      },
+      "technosphere": {
+        "captureStatus": "captured",
+        "value": ["Some common elements with the biosphere; neither set is equal"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Relationship"
+            }
+          }
+        ]
+      },
+      "biosphere": {
+        "captureStatus": "not_transcribed",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 11,
+              "section": "3.2.2 Graphical summary",
+              "figure": "Figure 6",
+              "row": "S3",
+              "column": "Biosphere distribution"
+            }
+          }
+        ],
+        "note": "The source reports this distribution graphically; no separate categorical biosphere value has completed transcription review."
+      },
+      "spatialDistribution": {
+        "captureStatus": "captured",
+        "value": ["Unipolar"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Distribution"
+            }
+          }
+        ]
+      },
+      "development": {
+        "captureStatus": "captured",
+        "value": ["Evolved and emergent"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Development"
+            }
+          }
+        ]
+      },
+      "connectivity": {
+        "captureStatus": "captured",
+        "value": ["Second-order"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Order"
+            }
+          }
+        ]
+      },
+      "smallestScale": {
+        "captureStatus": "captured",
+        "value": ["1 nm to 1 μm"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF5",
+              "column": "Scale"
+            }
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S4",
       "globalFactor": "GF2",
       "technologyCluster": 5,
       "technologyFactors": ["TF4"],
-      "mythMetaphor": "Living with the Land"
+      "mythMetaphor": "Living with the Land",
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S4",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "globalFactor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S4",
+              "column": "Global factors"
+            }
+          }
+        ],
+        "technologyCluster": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S4",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "technologyFactors": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S4",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "mythMetaphor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S4",
+              "column": "Myth/Metaphor"
+            }
+          }
+        ]
+      },
+      "canonicalSummary": {
+        "captureStatus": "captured",
+        "value": "After the peak of high technology, people live by subsistence, simple tools, and artisanal crafts. Rituals and oral traditions reinforce belonging to the biosphere, while settlements migrate with seasonal and planetary cycles.",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 11,
+              "section": "3.2.1 Narrative summaries",
+              "row": "S4",
+              "column": "Narrative summary"
+            }
+          }
+        ]
+      },
+      "economy": {
+        "captureStatus": "captured",
+        "value": "Scarcity",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF2",
+              "column": "Economy"
+            }
+          }
+        ]
+      },
+      "politics": {
+        "captureStatus": "captured",
+        "value": "Rule by few",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF2",
+              "column": "Politics"
+            }
+          }
+        ]
+      },
+      "society": {
+        "captureStatus": "captured",
+        "value": "Hierarchical",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF2",
+              "column": "Society"
+            }
+          }
+        ]
+      },
+      "technosphere": {
+        "captureStatus": "captured",
+        "value": ["Some common elements with the biosphere; neither set is equal"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF4",
+              "column": "Relationship"
+            }
+          }
+        ]
+      },
+      "biosphere": {
+        "captureStatus": "not_transcribed",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 11,
+              "section": "3.2.2 Graphical summary",
+              "figure": "Figure 6",
+              "row": "S4",
+              "column": "Biosphere distribution"
+            }
+          }
+        ],
+        "note": "The source reports this distribution graphically; no separate categorical biosphere value has completed transcription review."
+      },
+      "spatialDistribution": {
+        "captureStatus": "captured",
+        "value": ["Unipolar"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF4",
+              "column": "Distribution"
+            }
+          }
+        ]
+      },
+      "development": {
+        "captureStatus": "captured",
+        "value": ["Evolved and emergent"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF4",
+              "column": "Development"
+            }
+          }
+        ]
+      },
+      "connectivity": {
+        "captureStatus": "captured",
+        "value": ["First-order"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF4",
+              "column": "Order"
+            }
+          }
+        ]
+      },
+      "smallestScale": {
+        "captureStatus": "captured",
+        "value": ["1 nm to 1 μm"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF4",
+              "column": "Scale"
+            }
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S5",
       "globalFactor": "GF3",
       "technologyCluster": 4,
       "technologyFactors": ["TF2"],
-      "mythMetaphor": "Transhumanism"
+      "mythMetaphor": "Transhumanism",
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S5",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "globalFactor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S5",
+              "column": "Global factors"
+            }
+          }
+        ],
+        "technologyCluster": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S5",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "technologyFactors": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S5",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "mythMetaphor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S5",
+              "column": "Myth/Metaphor"
+            }
+          }
+        ]
+      },
+      "canonicalSummary": {
+        "captureStatus": "captured",
+        "value": "Breakthrough technologies remove resource scarcity on Earth and Mars. The biosphere is reengineered, Mars is terraformed, and biosynthetic enhancement accompanies renewed space exploration.",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 11,
+              "section": "3.2.1 Narrative summaries",
+              "row": "S5",
+              "column": "Narrative summary"
+            }
+          }
+        ]
+      },
+      "economy": {
+        "captureStatus": "captured",
+        "value": "Non-scarcity",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Economy"
+            }
+          }
+        ]
+      },
+      "politics": {
+        "captureStatus": "captured",
+        "value": "Rule by all",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Politics"
+            }
+          }
+        ]
+      },
+      "society": {
+        "captureStatus": "captured",
+        "value": "Distributed",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Society"
+            }
+          }
+        ]
+      },
+      "technosphere": {
+        "captureStatus": "captured",
+        "value": ["The biosphere is a proper subset of the technosphere"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF2",
+              "column": "Relationship"
+            }
+          }
+        ]
+      },
+      "biosphere": {
+        "captureStatus": "not_transcribed",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 11,
+              "section": "3.2.2 Graphical summary",
+              "figure": "Figure 6",
+              "row": "S5",
+              "column": "Biosphere distribution"
+            }
+          }
+        ],
+        "note": "The source reports this distribution graphically; no separate categorical biosphere value has completed transcription review."
+      },
+      "spatialDistribution": {
+        "captureStatus": "captured",
+        "value": ["Bipolar"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF2",
+              "column": "Distribution"
+            }
+          }
+        ]
+      },
+      "development": {
+        "captureStatus": "captured",
+        "value": ["Designed and directed"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF2",
+              "column": "Development"
+            }
+          }
+        ]
+      },
+      "connectivity": {
+        "captureStatus": "captured",
+        "value": ["Second-order"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF2",
+              "column": "Order"
+            }
+          }
+        ]
+      },
+      "smallestScale": {
+        "captureStatus": "captured",
+        "value": ["1 nm to 1 μm"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF2",
+              "column": "Scale"
+            }
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S6",
       "globalFactor": "GF2",
       "technologyCluster": 4,
       "technologyFactors": ["TF2"],
-      "mythMetaphor": "Sword of Damocles"
+      "mythMetaphor": "Sword of Damocles",
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S6",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "globalFactor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S6",
+              "column": "Global factors"
+            }
+          }
+        ],
+        "technologyCluster": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S6",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "technologyFactors": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S6",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "mythMetaphor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S6",
+              "column": "Myth/Metaphor"
+            }
+          }
+        ]
+      },
+      "canonicalSummary": {
+        "captureStatus": "captured",
+        "value": "Nanoscale engineering regulates biological processes inside a technosphere that has transformed Mars and begun work on Venus. The system faces existential risk from fragile, precisely calibrated life support managed by laboring populations.",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 11,
+              "section": "3.2.1 Narrative summaries",
+              "row": "S6",
+              "column": "Narrative summary"
+            }
+          }
+        ]
+      },
+      "economy": {
+        "captureStatus": "captured",
+        "value": "Scarcity",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF2",
+              "column": "Economy"
+            }
+          }
+        ]
+      },
+      "politics": {
+        "captureStatus": "captured",
+        "value": "Rule by few",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF2",
+              "column": "Politics"
+            }
+          }
+        ]
+      },
+      "society": {
+        "captureStatus": "captured",
+        "value": "Hierarchical",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF2",
+              "column": "Society"
+            }
+          }
+        ]
+      },
+      "technosphere": {
+        "captureStatus": "captured",
+        "value": ["The biosphere is a proper subset of the technosphere"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF2",
+              "column": "Relationship"
+            }
+          }
+        ]
+      },
+      "biosphere": {
+        "captureStatus": "not_transcribed",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 11,
+              "section": "3.2.2 Graphical summary",
+              "figure": "Figure 6",
+              "row": "S6",
+              "column": "Biosphere distribution"
+            }
+          }
+        ],
+        "note": "The source reports this distribution graphically; no separate categorical biosphere value has completed transcription review."
+      },
+      "spatialDistribution": {
+        "captureStatus": "captured",
+        "value": ["Bipolar"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF2",
+              "column": "Distribution"
+            }
+          }
+        ]
+      },
+      "development": {
+        "captureStatus": "captured",
+        "value": ["Designed and directed"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF2",
+              "column": "Development"
+            }
+          }
+        ]
+      },
+      "connectivity": {
+        "captureStatus": "captured",
+        "value": ["Second-order"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF2",
+              "column": "Order"
+            }
+          }
+        ]
+      },
+      "smallestScale": {
+        "captureStatus": "captured",
+        "value": ["1 nm to 1 μm"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF2",
+              "column": "Scale"
+            }
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S7",
       "globalFactor": "GF3",
       "technologyCluster": 3,
       "technologyFactors": ["TF1", "TF3"],
-      "mythMetaphor": "Restoration"
+      "mythMetaphor": "Restoration",
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S7",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "globalFactor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S7",
+              "column": "Global factors"
+            }
+          }
+        ],
+        "technologyCluster": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S7",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "technologyFactors": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S7",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "mythMetaphor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S7",
+              "column": "Myth/Metaphor"
+            }
+          }
+        ]
+      },
+      "canonicalSummary": {
+        "captureStatus": "captured",
+        "value": "Collapse and the loss of advanced technologies catalyze alignment with nature. Simple technologies are integrated with planetary cycles, production is local, and knowledge moves through regional networks.",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 11,
+              "section": "3.2.1 Narrative summaries",
+              "row": "S7",
+              "column": "Narrative summary"
+            }
+          }
+        ]
+      },
+      "economy": {
+        "captureStatus": "captured",
+        "value": "Non-scarcity",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Economy"
+            }
+          }
+        ]
+      },
+      "politics": {
+        "captureStatus": "captured",
+        "value": "Rule by all",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Politics"
+            }
+          }
+        ]
+      },
+      "society": {
+        "captureStatus": "captured",
+        "value": "Distributed",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Society"
+            }
+          }
+        ]
+      },
+      "technosphere": {
+        "captureStatus": "captured",
+        "value": [
+          "The biosphere and technosphere are equivalent sets",
+          "The technosphere is a proper subset of the biosphere"
+        ],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF1",
+              "column": "Relationship"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF3",
+              "column": "Relationship"
+            }
+          }
+        ],
+        "note": "The assigned cluster contains multiple Table 4 alternatives; all technosphere values are retained."
+      },
+      "biosphere": {
+        "captureStatus": "not_transcribed",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 11,
+              "section": "3.2.2 Graphical summary",
+              "figure": "Figure 6",
+              "row": "S7",
+              "column": "Biosphere distribution"
+            }
+          }
+        ],
+        "note": "The source reports this distribution graphically; no separate categorical biosphere value has completed transcription review."
+      },
+      "spatialDistribution": {
+        "captureStatus": "captured",
+        "value": ["Unipolar"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF1",
+              "column": "Distribution"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF3",
+              "column": "Distribution"
+            }
+          }
+        ]
+      },
+      "development": {
+        "captureStatus": "captured",
+        "value": ["Evolved and emergent"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF1",
+              "column": "Development"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF3",
+              "column": "Development"
+            }
+          }
+        ]
+      },
+      "connectivity": {
+        "captureStatus": "captured",
+        "value": ["First-order"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF1",
+              "column": "Order"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF3",
+              "column": "Order"
+            }
+          }
+        ]
+      },
+      "smallestScale": {
+        "captureStatus": "captured",
+        "value": ["1 nm to 1 μm"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF1",
+              "column": "Scale"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF3",
+              "column": "Scale"
+            }
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S8",
       "globalFactor": "GF2",
       "technologyCluster": 3,
       "technologyFactors": ["TF1", "TF3"],
-      "mythMetaphor": "Ouroboros"
+      "mythMetaphor": "Ouroboros",
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S8",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "globalFactor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S8",
+              "column": "Global factors"
+            }
+          }
+        ],
+        "technologyCluster": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S8",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "technologyFactors": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S8",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "mythMetaphor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S8",
+              "column": "Myth/Metaphor"
+            }
+          }
+        ]
+      },
+      "canonicalSummary": {
+        "captureStatus": "captured",
+        "value": "Oligarchs take power after an AI catastrophe and extract value while anticipating another collapse. Specialized tools advance as systems knowledge degrades; elites shelter underground and on the Moon while the wider population waits for stability.",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 11,
+              "section": "3.2.1 Narrative summaries",
+              "row": "S8",
+              "column": "Narrative summary"
+            }
+          }
+        ]
+      },
+      "economy": {
+        "captureStatus": "captured",
+        "value": "Scarcity",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF2",
+              "column": "Economy"
+            }
+          }
+        ]
+      },
+      "politics": {
+        "captureStatus": "captured",
+        "value": "Rule by few",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF2",
+              "column": "Politics"
+            }
+          }
+        ]
+      },
+      "society": {
+        "captureStatus": "captured",
+        "value": "Hierarchical",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF2",
+              "column": "Society"
+            }
+          }
+        ]
+      },
+      "technosphere": {
+        "captureStatus": "captured",
+        "value": [
+          "The biosphere and technosphere are equivalent sets",
+          "The technosphere is a proper subset of the biosphere"
+        ],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF1",
+              "column": "Relationship"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF3",
+              "column": "Relationship"
+            }
+          }
+        ],
+        "note": "The assigned cluster contains multiple Table 4 alternatives; all technosphere values are retained."
+      },
+      "biosphere": {
+        "captureStatus": "not_transcribed",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 11,
+              "section": "3.2.2 Graphical summary",
+              "figure": "Figure 6",
+              "row": "S8",
+              "column": "Biosphere distribution"
+            }
+          }
+        ],
+        "note": "The source reports this distribution graphically; no separate categorical biosphere value has completed transcription review."
+      },
+      "spatialDistribution": {
+        "captureStatus": "captured",
+        "value": ["Unipolar"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF1",
+              "column": "Distribution"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF3",
+              "column": "Distribution"
+            }
+          }
+        ]
+      },
+      "development": {
+        "captureStatus": "captured",
+        "value": ["Evolved and emergent"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF1",
+              "column": "Development"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF3",
+              "column": "Development"
+            }
+          }
+        ]
+      },
+      "connectivity": {
+        "captureStatus": "captured",
+        "value": ["First-order"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF1",
+              "column": "Order"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF3",
+              "column": "Order"
+            }
+          }
+        ]
+      },
+      "smallestScale": {
+        "captureStatus": "captured",
+        "value": ["1 nm to 1 μm"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF1",
+              "column": "Scale"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF3",
+              "column": "Scale"
+            }
+          }
+        ]
+      }
     },
     {
       "scenarioId": "S9",
       "globalFactor": "GF3",
       "technologyCluster": 2,
       "technologyFactors": ["TF8", "TF11"],
-      "mythMetaphor": "Deus Ex Machina"
+      "mythMetaphor": "Deus Ex Machina",
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S9",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "globalFactor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S9",
+              "column": "Global factors"
+            }
+          }
+        ],
+        "technologyCluster": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S9",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "technologyFactors": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S9",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "mythMetaphor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S9",
+              "column": "Myth/Metaphor"
+            }
+          }
+        ]
+      },
+      "canonicalSummary": {
+        "captureStatus": "captured",
+        "value": "A nonbiological posthuman civilization emerges as sentient AI, leaves Earth, builds megastructures across the Solar System, and explores beyond. Net-zero technological gifts remain on Earth to support a post-scarcity human economy.",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 11,
+              "section": "3.2.1 Narrative summaries",
+              "row": "S9",
+              "column": "Narrative summary"
+            }
+          }
+        ]
+      },
+      "economy": {
+        "captureStatus": "captured",
+        "value": "Non-scarcity",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Economy"
+            }
+          }
+        ]
+      },
+      "politics": {
+        "captureStatus": "captured",
+        "value": "Rule by all",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Politics"
+            }
+          }
+        ]
+      },
+      "society": {
+        "captureStatus": "captured",
+        "value": "Distributed",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Society"
+            }
+          }
+        ]
+      },
+      "technosphere": {
+        "captureStatus": "captured",
+        "value": ["The biosphere and technosphere have no common elements"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF8",
+              "column": "Relationship"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF11",
+              "column": "Relationship"
+            }
+          }
+        ]
+      },
+      "biosphere": {
+        "captureStatus": "not_transcribed",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 11,
+              "section": "3.2.2 Graphical summary",
+              "figure": "Figure 6",
+              "row": "S9",
+              "column": "Biosphere distribution"
+            }
+          }
+        ],
+        "note": "The source reports this distribution graphically; no separate categorical biosphere value has completed transcription review."
+      },
+      "spatialDistribution": {
+        "captureStatus": "captured",
+        "value": ["Non-polar"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF8",
+              "column": "Distribution"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF11",
+              "column": "Distribution"
+            }
+          }
+        ]
+      },
+      "development": {
+        "captureStatus": "captured",
+        "value": ["Designed and directed"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF8",
+              "column": "Development"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF11",
+              "column": "Development"
+            }
+          }
+        ]
+      },
+      "connectivity": {
+        "captureStatus": "captured",
+        "value": ["Third-order"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF8",
+              "column": "Order"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF11",
+              "column": "Order"
+            }
+          }
+        ]
+      },
+      "smallestScale": {
+        "captureStatus": "captured",
+        "value": ["Less than 1 nm", "1 nm to 1 μm"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF8",
+              "column": "Scale"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF11",
+              "column": "Scale"
+            }
+          }
+        ],
+        "note": "The assigned cluster contains multiple Table 4 alternatives; all smallestScale values are retained."
+      }
     },
     {
       "scenarioId": "S10",
       "globalFactor": "GF3",
       "technologyCluster": 1,
       "technologyFactors": ["TF6", "TF7", "TF9", "TF10"],
-      "mythMetaphor": "Out of Eden"
+      "mythMetaphor": "Out of Eden",
+      "fieldProvenance": {
+        "scenarioId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S10",
+              "column": "Scenario"
+            }
+          }
+        ],
+        "globalFactor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S10",
+              "column": "Global factors"
+            }
+          }
+        ],
+        "technologyCluster": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S10",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "technologyFactors": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S10",
+              "column": "Technology factors"
+            }
+          }
+        ],
+        "mythMetaphor": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 8,
+              "table": "Table 5",
+              "row": "S10",
+              "column": "Myth/Metaphor"
+            }
+          }
+        ]
+      },
+      "canonicalSummary": {
+        "captureStatus": "captured",
+        "value": "A post-scarcity commonwealth originates on Earth before a schism separates technological proponents and opponents. Earth is restored under growth limits while autonomous systems expand through orbital and deep space.",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 11,
+              "section": "3.2.1 Narrative summaries",
+              "row": "S10",
+              "column": "Narrative summary"
+            }
+          }
+        ]
+      },
+      "economy": {
+        "captureStatus": "captured",
+        "value": "Non-scarcity",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Economy"
+            }
+          }
+        ]
+      },
+      "politics": {
+        "captureStatus": "captured",
+        "value": "Rule by all",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Politics"
+            }
+          }
+        ]
+      },
+      "society": {
+        "captureStatus": "captured",
+        "value": "Distributed",
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 5,
+              "table": "Table 2",
+              "row": "GF3",
+              "column": "Society"
+            }
+          }
+        ]
+      },
+      "technosphere": {
+        "captureStatus": "captured",
+        "value": ["The biosphere and technosphere have no common elements"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF6",
+              "column": "Relationship"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF7",
+              "column": "Relationship"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF9",
+              "column": "Relationship"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF10",
+              "column": "Relationship"
+            }
+          }
+        ]
+      },
+      "biosphere": {
+        "captureStatus": "not_transcribed",
+        "value": null,
+        "evidenceKind": "reported",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "reported",
+            "locator": {
+              "page": 11,
+              "section": "3.2.2 Graphical summary",
+              "figure": "Figure 6",
+              "row": "S10",
+              "column": "Biosphere distribution"
+            }
+          }
+        ],
+        "note": "The source reports this distribution graphically; no separate categorical biosphere value has completed transcription review."
+      },
+      "spatialDistribution": {
+        "captureStatus": "captured",
+        "value": ["Bipolar", "Multipolar"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF6",
+              "column": "Distribution"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF7",
+              "column": "Distribution"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF9",
+              "column": "Distribution"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF10",
+              "column": "Distribution"
+            }
+          }
+        ],
+        "note": "The assigned cluster contains multiple Table 4 alternatives; all spatialDistribution values are retained."
+      },
+      "development": {
+        "captureStatus": "captured",
+        "value": ["Designed and directed"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF6",
+              "column": "Development"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF7",
+              "column": "Development"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF9",
+              "column": "Development"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF10",
+              "column": "Development"
+            }
+          }
+        ]
+      },
+      "connectivity": {
+        "captureStatus": "captured",
+        "value": ["Second-order", "Third-order"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF6",
+              "column": "Order"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF7",
+              "column": "Order"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF9",
+              "column": "Order"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF10",
+              "column": "Order"
+            }
+          }
+        ],
+        "note": "The assigned cluster contains multiple Table 4 alternatives; all connectivity values are retained."
+      },
+      "smallestScale": {
+        "captureStatus": "captured",
+        "value": ["1 nm to 1 μm"],
+        "evidenceKind": "transcribed",
+        "sourceRefs": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF6",
+              "column": "Scale"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF7",
+              "column": "Scale"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF9",
+              "column": "Scale"
+            }
+          },
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 7,
+              "table": "Table 4",
+              "row": "TF10",
+              "column": "Scale"
+            }
+          }
+        ]
+      }
     }
   ]
 }

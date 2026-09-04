@@ -1,108 +1,161 @@
 import type { Metadata } from 'next';
+import { AssetLedgerSchema } from '@janus/domain/asset';
 
-import sourceCatalog from '../../../../data/sources/catalog.json';
 import assetLedger from '../../../../data/assets/ledger.json';
+import sourceCatalog from '../../../../data/sources/catalog.json';
+import styles from '../components/InformationPages.module.css';
 import { InnerPage } from '../components/InnerPage';
+import { canonicalDatasetEntries } from './dataset-entries';
+import { SourceLedger, type LedgerEntry } from './SourceLedger';
 
-export const metadata: Metadata = { title: 'Sources' };
+export const metadata: Metadata = {
+  title: 'Sources',
+  description:
+    'Searchable scholarly, canonical-data, linked-resource, artifact-rights, and production-asset ledger for Janus Observatory.',
+  alternates: { canonical: '/sources' },
+  openGraph: {
+    title: 'Sources · Janus Observatory',
+    description:
+      'Exact versions, locators, reuse policies, checksums, credits, and rights boundaries behind Janus Observatory.',
+    url: '/sources',
+  },
+};
+
+const paperSourceIds = [
+  'JANUS-PAPER-01',
+  'JANUS-PAPER-02',
+  'JANUS-PAPER-03',
+  'JANUS-PAPER-04',
+  'JANUS-PAPER-05',
+] as const;
+const parsedAssetLedger = AssetLedgerSchema.parse(assetLedger);
+
+const paperEntries: LedgerEntry[] = sourceCatalog.papers.map((paper, index) => ({
+  id: `source-${paperSourceIds[index]}`,
+  title: paper.title,
+  subtitle: paper.creators.join(', '),
+  kind: 'paper',
+  version: paper.version,
+  rights: paper.license,
+  licenseHref: paper.licenseUrl,
+  use: paper.reusePolicy,
+  locator: `${paperSourceIds[index]} · ${paper.doi}`,
+  href: paper.canonicalUrl,
+  telemetryId: paperSourceIds[index],
+}));
+
+const linkedEntries: LedgerEntry[] = sourceCatalog.linkedResources.map((resource) => ({
+  id: `linked-${resource.id}`,
+  title: resource.title,
+  subtitle: resource.creators.join(', '),
+  kind: 'linked resource',
+  version: resource.version,
+  rights: resource.license ?? resource.rightsStatus,
+  use: resource.reusePolicy,
+  locator: resource.id,
+  href: resource.canonicalUrl,
+  telemetryId: resource.id === 'janus.code.technocycles' ? 'JANUS-CODE-01' : 'JANUS-DATA-02',
+}));
+
+const zenodoEntry: LedgerEntry = {
+  id: 'linked-JANUS-DATA-01',
+  title: 'Project Janus worldbuilding pipelines',
+  subtitle: `${sourceCatalog.zenodoCollection.files.length} scenario PDFs · Zenodo record 11174443`,
+  kind: 'linked resource',
+  version: sourceCatalog.zenodoCollection.version,
+  rights: sourceCatalog.zenodoCollection.rightsStatus,
+  use: sourceCatalog.zenodoCollection.reusePolicy,
+  locator: 'JANUS-DATA-01 · license metadata blank',
+  href: sourceCatalog.zenodoCollection.canonicalUrl,
+  telemetryId: 'JANUS-DATA-01',
+};
+
+const assetEntries: LedgerEntry[] = parsedAssetLedger.entries.map((asset) => ({
+  id: `asset-${asset.id}`,
+  title: asset.title,
+  subtitle: `${asset.creator}${asset.scenarioId ? ` · ${asset.scenarioId}` : ''}`,
+  kind: asset.kind === 'artifact' ? 'artifact' : 'asset',
+  version: asset.sourceVersion,
+  rights: asset.license ?? asset.rightsStatus,
+  licenseHref: asset.licenseUrl,
+  use: asset.requiredCreditText,
+  locator: asset.derivativePublicPath
+    ? `Public derivative ${asset.derivativePublicPath} · ${asset.derivativeChecksum ?? 'checksum pending'}`
+    : asset.admissionStatus === 'link_only'
+      ? 'Link only · no local source or derivative checksum'
+      : `${asset.admissionStatus.replaceAll('_', ' ')} · no public derivative bundled`,
+  href: asset.directFileUrls[0] ?? asset.sourceUrl,
+  telemetryId: asset.id,
+  sourceAgency: asset.sourceAgency,
+  retrievedAt: asset.retrievedAt,
+  displaySize: asset.maxDisplaySize
+    ? `${asset.maxDisplaySize.widthPx} × ${asset.maxDisplaySize.heightPx} px`
+    : undefined,
+  modifications: asset.transformations,
+}));
+
+const ledgerEntries = [
+  ...paperEntries,
+  ...canonicalDatasetEntries,
+  ...linkedEntries,
+  zenodoEntry,
+  ...assetEntries,
+];
 
 export default function SourcesPage() {
   return (
     <InnerPage
       eyebrow="Source ledger · evidence cutoff 2026-08-12"
-      lede="The scholarly records currently admitted to the canonical scientific pipeline."
+      lede="Search every scholarly record, exact canonical-data locator, link-only resource, creative artifact, and admitted production asset."
       title="Every claim has an address."
     >
-      <section className="proseSection">
-        <h2>Core scholarly sources</h2>
-        <div className="sourceCards">
-          {sourceCatalog.papers.map((paper) => (
-            <article className="sourceCard" key={paper.id}>
-              <span>{paper.version}</span>
-              <h3>{paper.title}</h3>
-              <p>{paper.creators.join(', ')}</p>
-              <dl>
-                <div>
-                  <dt>Evidence ID</dt>
-                  <dd>{paper.id}</dd>
-                </div>
-                <div>
-                  <dt>Rights</dt>
-                  <dd>{paper.license}</dd>
-                </div>
-                <div>
-                  <dt>Use</dt>
-                  <dd>{paper.reusePolicy}</dd>
-                </div>
-              </dl>
-              <a href={paper.canonicalUrl} rel="noreferrer" target="_blank">
-                Open canonical record ↗
-              </a>
-            </article>
-          ))}
+      <section className={styles.section}>
+        <h2>Rights before rendering</h2>
+        <div className={styles.sectionBody}>
+          <p>
+            Zenodo record 11174443 contains all ten worldbuilding pipelines. Its license metadata is
+            blank in the audited record. The site may link and cite it, but does not bundle or
+            substantially reproduce those PDFs until reuse rights are clarified. The public
+            technocycles repository and aggregate CSV follow the same link-only rule while their
+            license remains undeclared.
+          </p>
         </div>
       </section>
 
-      <section className="proseSection">
-        <h2>Scenario worldbuilding PDFs</h2>
-        <p>
-          Zenodo record 11174443 contains all ten worldbuilding pipelines. Its license metadata is
-          blank in the audited record. The site may link and cite it, but does not bundle or
-          substantially reproduce those PDFs until reuse rights are clarified.
-        </p>
-        <a
-          className="inlineAction"
-          href={sourceCatalog.zenodoCollection.canonicalUrl}
-          rel="noreferrer"
-          target="_blank"
-        >
-          Open Zenodo record ↗
-        </a>
+      <section className={styles.section}>
+        <h2>Credits and interpretation</h2>
+        <div className={styles.sectionBody}>
+          <p>
+            The hero uses an AI-enhanced poster derived from Caner Sevince&apos;s CC0 Spline scene,
+            “Solar System – Basic,” beneath an original local SVG/GSAP orbital layer. The live
+            Spline runtime is not embedded. The persistent spatial globe uses Solar System Scope
+            Earth textures, licensed CC BY 4.0 and pinned through the Three.js WebGPU TSL Earth
+            example; Janus Observatory supplies the documented responsive derivatives. A separate
+            NASA 3D Resources Earth derivative appears only as the static/deferred poster path, with
+            NASA credit and no endorsement implied. Scenario surfaces and orbital structures are
+            original interpretive geometry. The animated observer combines Ndevisuals&apos; “Cute
+            Alien Character” under CC BY 4.0 with Usman Ahmed Gill&apos;s “Telescope” under the Fab
+            Standard License. Janus Observatory adds the Blender performance rig, telescope-viewing
+            animation, staging, and web optimization. Ten original, model-generated scenario
+            portraits provide the observing sequence&apos;s cinematic world imagery. They are
+            explicitly interpretive and do not encode scientific values. Atmospheric fingerprints
+            and instrument results beside them are rendered from the canonical Table 1 and
+            structured Figure 6 transcriptions—never from screenshots or digitized plot pixels. The
+            fictional observer scene and scenario portraits are not NASA mission renders or Project
+            Janus research artifacts.
+          </p>
+          <p>
+            The newer observer poster is also model-generated interpretive concept art. Its alien,
+            telescope, room, and Earth framing do not encode scientific values; all results,
+            reticles, labels, assumptions, and citations remain DOM-rendered from canonical data.
+          </p>
+        </div>
       </section>
 
-      <section className="proseSection">
-        <h2>Credits and agency assets</h2>
-        <p>
-          The hero progressively enhances an AI-enhanced poster with Caner Sevince&apos;s animated
-          CC0 Spline scene, “Solar System – Basic.” The spatial globe uses an optimized derivative
-          of the admitted NASA Earth texture. Scenario surfaces and orbital structures are original
-          interpretive geometry. The animated observer combines Ndevisuals&apos; “Cute Alien
-          Character” under CC BY 4.0 with Usman Ahmed Gill&apos;s “Telescope” under the Fab Standard
-          License. Janus Observatory adds the Blender performance rig, telescope-viewing animation,
-          staging, and web optimization. It is not a NASA mission render or a Project Janus research
-          artifact.
-        </p>
-        <div className="sourceCards">
-          {assetLedger.entries
-            .filter(({ derivativePublicPath }) => Boolean(derivativePublicPath))
-            .map((asset) => (
-              <article className="sourceCard" key={asset.id}>
-                <span>{asset.sourceVersion}</span>
-                <h3>{asset.title}</h3>
-                <p>{asset.requiredCreditText}</p>
-                <dl>
-                  <div>
-                    <dt>Rights</dt>
-                    <dd>{asset.license}</dd>
-                  </div>
-                  <div>
-                    <dt>Source hash</dt>
-                    <dd>{asset.sourceChecksum}</dd>
-                  </div>
-                  <div>
-                    <dt>Derivative</dt>
-                    <dd>{asset.derivativePublicPath}</dd>
-                  </div>
-                  <div>
-                    <dt>Transform</dt>
-                    <dd>{(asset.transformations ?? []).join(' ')}</dd>
-                  </div>
-                </dl>
-                <a href={asset.sourceUrl} rel="noreferrer" target="_blank">
-                  Open source record ↗
-                </a>
-              </article>
-            ))}
+      <section className={styles.section} aria-labelledby="ledger-title">
+        <h2 id="ledger-title">Search the admitted ledger</h2>
+        <div className={styles.sectionBody}>
+          <SourceLedger entries={ledgerEntries} />
         </div>
       </section>
     </InnerPage>

@@ -1,0 +1,124 @@
+.shell {
+  align-items: flex-start;
+  background:
+    radial-gradient(circle at 78% 24%, rgba(139, 196, 165, 0.12), transparent 28rem), #07100e;
+  color: #edf3ef;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  justify-content: space-between;
+  margin: 0;
+  min-height: 100svh;
+  padding: clamp(24px, 6vw, 88px);
+  padding-bottom: max(clamp(96px, 8vw, 124px), calc(env(safe-area-inset-bottom) + 88px));
+}
+
+.eyebrow {
+  color: #b8f15c;
+  font-family: monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.message {
+  margin-block: auto;
+  max-width: 760px;
+}
+
+.code {
+  color: rgba(237, 243, 239, 0.15);
+  font-size: clamp(5rem, 22vw, 16rem);
+  font-weight: 500;
+  letter-spacing: -0.09em;
+  line-height: 0.75;
+  margin: 0 0 48px;
+}
+
+.title {
+  font-size: clamp(2.2rem, 6vw, 5.4rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+  margin: 0;
+}
+
+.copy {
+  color: #aab8af;
+  font-size: clamp(1rem, 1.7vw, 1.2rem);
+  line-height: 1.7;
+  margin: 28px 0 0;
+  max-width: 590px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 38px;
+}
+
+.action {
+  background: #b8f15c;
+  border: 1px solid #b8f15c;
+  color: #07100e;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  min-height: 44px;
+  padding: 14px 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.actionSecondary {
+  background: transparent;
+  color: #edf3ef;
+}
+
+.loadingMark {
+  animation: loadingSweep 1.5s ease-in-out infinite alternate;
+  background: #b8f15c;
+  height: 2px;
+  margin-top: 26px;
+  transform-origin: left;
+  width: min(320px, 72vw);
+}
+
+@keyframes loadingSweep {
+  from {
+    opacity: 0.35;
+    transform: scaleX(0.12);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html:not([data-motion='full'])) .loadingMark {
+    animation: none;
+    opacity: 0.8;
+  }
+}
+
+:global(html[data-motion='reduced']) .loadingMark {
+  animation: none;
+  opacity: 0.8;
+}
+
+@media (max-width: 640px) {
+  .shell {
+    gap: 32px;
+    padding-bottom: max(112px, calc(env(safe-area-inset-bottom) + 96px));
+  }
+
+  .message {
+    width: 100%;
+  }
+}

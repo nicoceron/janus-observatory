@@ -3,6 +3,10 @@ import { z } from 'zod';
 export const SourceManifestEntrySchema = z
   .object({
     id: z.string().regex(/^[a-z0-9][a-z0-9._-]+$/),
+    citationId: z
+      .string()
+      .regex(/^[A-Z0-9][A-Z0-9._-]+$/)
+      .optional(),
     title: z.string().min(1),
     version: z.string().min(1),
     creators: z.array(z.string().min(1)).min(1),
@@ -34,10 +38,50 @@ export const SourceManifestEntrySchema = z
 
 export type SourceManifestEntry = z.infer<typeof SourceManifestEntrySchema>;
 
-export const SourceManifestSchema = z.object({
-  schemaVersion: z.string().min(1),
-  generatedAt: z.string().datetime({ offset: true }),
-  entries: z.array(SourceManifestEntrySchema).min(1),
-});
+export const SourceManifestSchema = z
+  .object({
+    schemaVersion: z.string().min(1),
+    generatedAt: z.string().datetime({ offset: true }),
+    entries: z.array(SourceManifestEntrySchema).min(1),
+  })
+  .superRefine(({ entries }, context) => {
+    const identifiers = new Map<string, number>();
+    entries.forEach((entry, index) => {
+      for (const identifier of [entry.id, entry.citationId].filter((value): value is string =>
+        Boolean(value),
+      )) {
+        const previous = identifiers.get(identifier);
+        if (previous !== undefined) {
+          context.addIssue({
+            code: 'custom',
+            message: `Source identifier ${identifier} is reused by entries ${previous} and ${index}.`,
+            path: ['entries', index, entry.id === identifier ? 'id' : 'citationId'],
+          });
+        } else {
+          identifiers.set(identifier, index);
+        }
+      }
+    });
+  });
 
 export type SourceManifest = z.infer<typeof SourceManifestSchema>;
+
+export function matchingSourceManifestEntries(
+  manifest: SourceManifest,
+  sourceId: string,
+  sourceVersion: string,
+): SourceManifestEntry[] {
+  return manifest.entries.filter(
+    (entry) =>
+      (entry.id === sourceId || entry.citationId === sourceId) && entry.version === sourceVersion,
+  );
+}
+
+export function resolveSourceManifestEntry(
+  manifest: SourceManifest,
+  sourceId: string,
+  sourceVersion: string,
+): SourceManifestEntry | undefined {
+  const matches = matchingSourceManifestEntries(manifest, sourceId, sourceVersion);
+  return matches.length === 1 ? matches[0] : undefined;
+}

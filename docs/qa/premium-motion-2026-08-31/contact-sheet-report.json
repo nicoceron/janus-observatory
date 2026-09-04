@@ -1,0 +1,99 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "docs/qa/premium-motion-2026-08-31/01-hero-settle.png",
+    "docs/qa/premium-motion-2026-08-31/02-hero-parallax.png",
+    "docs/qa/premium-motion-2026-08-31/03-branch-early.png",
+    "docs/qa/premium-motion-2026-08-31/04-branch-mid.png",
+    "docs/qa/premium-motion-2026-08-31/05-branch-late.png",
+    "docs/qa/premium-motion-2026-08-31/06-branch-settle.png",
+    "docs/qa/premium-motion-2026-08-31/07-branch-all.png",
+    "docs/qa/premium-motion-2026-08-31/08-branch-reverse.png",
+    "docs/qa/premium-motion-2026-08-31/09-world-handoff-early.png",
+    "docs/qa/premium-motion-2026-08-31/10-world-handoff-mid.png",
+    "docs/qa/premium-motion-2026-08-31/11-world-handoff-settle.png",
+    "docs/qa/premium-motion-2026-08-31/12-observer-establish.png",
+    "docs/qa/premium-motion-2026-08-31/13-observer-focus.png",
+    "docs/qa/premium-motion-2026-08-31/14-observer-follow-through.png",
+    "docs/qa/premium-motion-2026-08-31/15-observer-settle.png",
+    "docs/qa/premium-motion-2026-08-31/16-reduced-motion.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "01-hero-settle.png",
+      "to": "02-hero-parallax.png",
+      "mean_rgb_diff": 19.21764146090535
+    },
+    {
+      "from": "02-hero-parallax.png",
+      "to": "03-branch-early.png",
+      "mean_rgb_diff": 29.0151383744856
+    },
+    {
+      "from": "03-branch-early.png",
+      "to": "04-branch-mid.png",
+      "mean_rgb_diff": 20.845755915637863
+    },
+    {
+      "from": "04-branch-mid.png",
+      "to": "05-branch-late.png",
+      "mean_rgb_diff": 7.386929526748972
+    },
+    {
+      "from": "05-branch-late.png",
+      "to": "06-branch-settle.png",
+      "mean_rgb_diff": 8.630609567901233
+    },
+    {
+      "from": "06-branch-settle.png",
+      "to": "07-branch-all.png",
+      "mean_rgb_diff": 9.195000771604938
+    },
+    {
+      "from": "07-branch-all.png",
+      "to": "08-branch-reverse.png",
+      "mean_rgb_diff": 13.236277263374484
+    },
+    {
+      "from": "08-branch-reverse.png",
+      "to": "09-world-handoff-early.png",
+      "mean_rgb_diff": 12.439720164609055
+    },
+    {
+      "from": "09-world-handoff-early.png",
+      "to": "10-world-handoff-mid.png",
+      "mean_rgb_diff": 8.600017489711934
+    },
+    {
+      "from": "10-world-handoff-mid.png",
+      "to": "11-world-handoff-settle.png",
+      "mean_rgb_diff": 16.44115200617284
+    },
+    {
+      "from": "11-world-handoff-settle.png",
+      "to": "12-observer-establish.png",
+      "mean_rgb_diff": 26.868481995884775
+    },
+    {
+      "from": "12-observer-establish.png",
+      "to": "13-observer-focus.png",
+      "mean_rgb_diff": 2.9416923868312757
+    },
+    {
+      "from": "13-observer-focus.png",
+      "to": "14-observer-follow-through.png",
+      "mean_rgb_diff": 0.10867283950617283
+    },
+    {
+      "from": "14-observer-follow-through.png",
+      "to": "15-observer-settle.png",
+      "mean_rgb_diff": 3.467391975308642
+    },
+    {
+      "from": "15-observer-settle.png",
+      "to": "16-reduced-motion.png",
+      "mean_rgb_diff": 26.104568415637857
+    }
+  ],
+  "warnings": []
+}

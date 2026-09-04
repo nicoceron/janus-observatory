@@ -1,0 +1,326 @@
+{
+  "topic": "survival",
+  "generatedAt": "2026-08-21T23:54:01+00:00",
+  "gitCommit": "d740da87f8d562005cf8a25e75bc391ac1fbc8f6",
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.5.2",
+    "scipy": "1.18.0",
+    "platform": "darwin",
+    "capturedAt": "2026-08-21T23:54:01+00:00",
+    "scikit-learn": "1.9.0"
+  },
+  "note": "Kaplan-Meier and Aalen-Johansen estimates treat never-collapsed runs as right-censored at year 1000, unlike the paper-style truncated mean shown for contrast.",
+  "scenarios": [
+    {
+      "scenarioId": "S1",
+      "runs": 20000,
+      "kaplanMeierMedianYears": 233.0,
+      "restrictedMeanCollapseFreeYears": 212.19,
+      "cumulativeIncidenceAtYears": {
+        "100": {
+          "resource": 0.0,
+          "hazard": 0.25625,
+          "total": 0.25625
+        },
+        "250": {
+          "resource": 0.0,
+          "hazard": 0.52585,
+          "total": 0.52585
+        },
+        "500": {
+          "resource": 0.37085,
+          "hazard": 0.62915,
+          "total": 1.0
+        },
+        "1000": {
+          "resource": 0.37085,
+          "hazard": 0.62915,
+          "total": 1.0
+        }
+      },
+      "nelsonAalenFinal": 10.20019,
+      "naiveMeanFirstCollapse": 212.19,
+      "censoredFraction": 0.0
+    },
+    {
+      "scenarioId": "S2",
+      "runs": 20000,
+      "kaplanMeierMedianYears": 442.0,
+      "restrictedMeanCollapseFreeYears": 373.97,
+      "cumulativeIncidenceAtYears": {
+        "100": {
+          "resource": 0.0,
+          "hazard": 0.0944,
+          "total": 0.0944
+        },
+        "250": {
+          "resource": 0.0,
+          "hazard": 0.21895,
+          "total": 0.21895
+        },
+        "500": {
+          "resource": 0.52855,
+          "hazard": 0.3727,
+          "total": 0.90125
+        },
+        "1000": {
+          "resource": 0.6251,
+          "hazard": 0.3749,
+          "total": 1.0
+        }
+      },
+      "nelsonAalenFinal": 10.13853,
+      "naiveMeanFirstCollapse": 373.97,
+      "censoredFraction": 0.0
+    },
+    {
+      "scenarioId": "S3",
+      "runs": 20000,
+      "kaplanMeierMedianYears": null,
+      "restrictedMeanCollapseFreeYears": 1000.0,
+      "cumulativeIncidenceAtYears": {
+        "100": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        },
+        "250": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        },
+        "500": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        },
+        "1000": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        }
+      },
+      "nelsonAalenFinal": 0.0,
+      "naiveMeanFirstCollapse": 1000.0,
+      "censoredFraction": 1.0
+    },
+    {
+      "scenarioId": "S4",
+      "runs": 20000,
+      "kaplanMeierMedianYears": 241.0,
+      "restrictedMeanCollapseFreeYears": 241.05,
+      "cumulativeIncidenceAtYears": {
+        "100": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        },
+        "250": {
+          "resource": 0.72245,
+          "hazard": 0.0,
+          "total": 0.72245
+        },
+        "500": {
+          "resource": 1.0,
+          "hazard": 0.0,
+          "total": 1.0
+        },
+        "1000": {
+          "resource": 1.0,
+          "hazard": 0.0,
+          "total": 1.0
+        }
+      },
+      "nelsonAalenFinal": 10.06632,
+      "naiveMeanFirstCollapse": 241.05,
+      "censoredFraction": 0.0
+    },
+    {
+      "scenarioId": "S5",
+      "runs": 20000,
+      "kaplanMeierMedianYears": 428.0,
+      "restrictedMeanCollapseFreeYears": 455.25,
+      "cumulativeIncidenceAtYears": {
+        "100": {
+          "resource": 0.0,
+          "hazard": 0.12245,
+          "total": 0.12245
+        },
+        "250": {
+          "resource": 0.0,
+          "hazard": 0.30594,
+          "total": 0.30594
+        },
+        "500": {
+          "resource": 0.0,
+          "hazard": 0.56823,
+          "total": 0.56823
+        },
+        "1000": {
+          "resource": 0.0,
+          "hazard": 1.0,
+          "total": 1.0
+        }
+      },
+      "nelsonAalenFinal": 7.64843,
+      "naiveMeanFirstCollapse": 782.24,
+      "censoredFraction": 0.60025
+    },
+    {
+      "scenarioId": "S6",
+      "runs": 20000,
+      "kaplanMeierMedianYears": 138.0,
+      "restrictedMeanCollapseFreeYears": 193.8,
+      "cumulativeIncidenceAtYears": {
+        "100": {
+          "resource": 0.0,
+          "hazard": 0.3932,
+          "total": 0.3932
+        },
+        "250": {
+          "resource": 0.0,
+          "hazard": 0.71989,
+          "total": 0.71989
+        },
+        "500": {
+          "resource": 0.0,
+          "hazard": 0.92377,
+          "total": 0.92377
+        },
+        "1000": {
+          "resource": 0.0,
+          "hazard": 1.0,
+          "total": 1.0
+        }
+      },
+      "nelsonAalenFinal": 10.33752,
+      "naiveMeanFirstCollapse": 199.44,
+      "censoredFraction": 0.007
+    },
+    {
+      "scenarioId": "S7",
+      "runs": 20000,
+      "kaplanMeierMedianYears": 260.0,
+      "restrictedMeanCollapseFreeYears": 235.4,
+      "cumulativeIncidenceAtYears": {
+        "100": {
+          "resource": 0.0,
+          "hazard": 0.09245,
+          "total": 0.09245
+        },
+        "250": {
+          "resource": 0.1434,
+          "hazard": 0.21815,
+          "total": 0.36155
+        },
+        "500": {
+          "resource": 0.76745,
+          "hazard": 0.23255,
+          "total": 1.0
+        },
+        "1000": {
+          "resource": 0.76745,
+          "hazard": 0.23255,
+          "total": 1.0
+        }
+      },
+      "nelsonAalenFinal": 10.1028,
+      "naiveMeanFirstCollapse": 235.4,
+      "censoredFraction": 0.0
+    },
+    {
+      "scenarioId": "S8",
+      "runs": 20000,
+      "kaplanMeierMedianYears": 616.0,
+      "restrictedMeanCollapseFreeYears": 617.28,
+      "cumulativeIncidenceAtYears": {
+        "100": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        },
+        "250": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        },
+        "500": {
+          "resource": 0.0011,
+          "hazard": 0.0,
+          "total": 0.0011
+        },
+        "1000": {
+          "resource": 1.0,
+          "hazard": 0.0,
+          "total": 1.0
+        }
+      },
+      "nelsonAalenFinal": 10.30184,
+      "naiveMeanFirstCollapse": 617.28,
+      "censoredFraction": 0.0
+    },
+    {
+      "scenarioId": "S9",
+      "runs": 20000,
+      "kaplanMeierMedianYears": 693.0,
+      "restrictedMeanCollapseFreeYears": 694.38,
+      "cumulativeIncidenceAtYears": {
+        "100": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        },
+        "250": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        },
+        "500": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        },
+        "1000": {
+          "resource": 1.0,
+          "hazard": 0.0,
+          "total": 1.0
+        }
+      },
+      "nelsonAalenFinal": 10.32272,
+      "naiveMeanFirstCollapse": 694.38,
+      "censoredFraction": 0.0
+    },
+    {
+      "scenarioId": "S10",
+      "runs": 20000,
+      "kaplanMeierMedianYears": null,
+      "restrictedMeanCollapseFreeYears": 1000.0,
+      "cumulativeIncidenceAtYears": {
+        "100": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        },
+        "250": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        },
+        "500": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        },
+        "1000": {
+          "resource": 0.0,
+          "hazard": 0.0,
+          "total": 0.0
+        }
+      },
+      "nelsonAalenFinal": 0.0,
+      "naiveMeanFirstCollapse": 1000.0,
+      "censoredFraction": 1.0
+    }
+  ]
+}

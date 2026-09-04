@@ -1,7 +1,7 @@
 # Decision 002 — Web asset derivative provenance fields
 
 Date: 2026-08-12
-Status: accepted
+Status: accepted; extended and made mandatory for public derivatives by Decision 006
 
 ## Decision
 

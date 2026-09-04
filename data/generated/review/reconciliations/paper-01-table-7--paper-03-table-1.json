@@ -1,0 +1,294 @@
+{
+  "schemaVersion": "1.0.0",
+  "dataVersion": "sha256:46a0e94a969301c49cfafe00463e5c7e9be5dce423ddcdeb21fe4ad0614d2046",
+  "reconciliationId": "janus.reconciliation.paper-01-table-7.paper-03-table-1",
+  "releaseStatus": "candidate_not_reviewed",
+  "relation": "exact_value_equivalence_for_overlap",
+  "canonicalDatasetId": "janus.atmosphere.earth.apjl-table-1",
+  "canonicalPath": "data/canonical/atmosphere/earth-apjl-table-1.json",
+  "foundationalSource": {
+    "sourceId": "JANUS-PAPER-01",
+    "sourceVersion": "arXiv:2409.00067v3",
+    "resolvedManifestId": "janus.paper.scenario-modeling",
+    "sourceFileSha256": "ca90cb33d38524c932378da3d0a0b4cfa4a165505071e8cc13513649afad0d12",
+    "locator": {
+      "page": 15,
+      "table": "Table 7"
+    },
+    "sourcePageTextHash": "sha256:3ee20919c9d6c4dae7f639b9c342b34325ff9fa0b818a5a11fab289ee76a381b"
+  },
+  "consolidatedSource": {
+    "sourceId": "JANUS-PAPER-03",
+    "sourceVersion": "arXiv:2511.20329v2",
+    "resolvedManifestId": "janus.paper.observing-strategies",
+    "sourceFileSha256": "106ea02c12cd6d9e6d2ead5dcbcc5f988f03526f56efb71d640359dd435674a7",
+    "locator": {
+      "page": 4,
+      "table": "Table 1"
+    },
+    "sourcePageTextHash": "sha256:f96ce69da3de4a3e8c55c0bf3a40a35d1918e4a5b7a8c51283b1621528fad060"
+  },
+  "overlap": {
+    "columns": [
+      "R0",
+      "R1",
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S7",
+      "S8",
+      "S9",
+      "S10"
+    ],
+    "rows": [
+      {
+        "canonicalRowId": "co2",
+        "foundationalRowLabel": "CO2 (ppm)",
+        "unit": "ppm",
+        "columns": [
+          "R0",
+          "R1",
+          "S1",
+          "S2",
+          "S3",
+          "S4",
+          "S5",
+          "S6",
+          "S7",
+          "S8",
+          "S9",
+          "S10"
+        ],
+        "cellCount": 12,
+        "status": "exact_match",
+        "foundationalValuesHash": "sha256:f837e308e66c0b060faafda4cff71835a7d7d9c7b2485e972b9abdeae97cbd0d",
+        "consolidatedValuesHash": "sha256:f837e308e66c0b060faafda4cff71835a7d7d9c7b2485e972b9abdeae97cbd0d"
+      },
+      {
+        "canonicalRowId": "ch4",
+        "foundationalRowLabel": "CH4 (ppm)",
+        "unit": "ppm",
+        "columns": [
+          "R0",
+          "R1",
+          "S1",
+          "S2",
+          "S3",
+          "S4",
+          "S5",
+          "S6",
+          "S7",
+          "S8",
+          "S9",
+          "S10"
+        ],
+        "cellCount": 12,
+        "status": "exact_match",
+        "foundationalValuesHash": "sha256:4f25cafc022af9d4a72622a99bc1190cd1010ca90fc677764221497f3df08ce2",
+        "consolidatedValuesHash": "sha256:4f25cafc022af9d4a72622a99bc1190cd1010ca90fc677764221497f3df08ce2"
+      },
+      {
+        "canonicalRowId": "nox",
+        "foundationalRowLabel": "NOx (ppb)",
+        "unit": "ppb",
+        "columns": [
+          "R0",
+          "R1",
+          "S1",
+          "S2",
+          "S3",
+          "S4",
+          "S5",
+          "S6",
+          "S7",
+          "S8",
+          "S9",
+          "S10"
+        ],
+        "cellCount": 12,
+        "status": "exact_match",
+        "foundationalValuesHash": "sha256:26bd7eaafc025d635536d2b08a0ab7624c92cc148d58f1edc9f8c2650067257e",
+        "consolidatedValuesHash": "sha256:26bd7eaafc025d635536d2b08a0ab7624c92cc148d58f1edc9f8c2650067257e"
+      },
+      {
+        "canonicalRowId": "n2o",
+        "foundationalRowLabel": "N2O (ppb)",
+        "unit": "ppb",
+        "columns": [
+          "R0",
+          "R1",
+          "S1",
+          "S2",
+          "S3",
+          "S4",
+          "S5",
+          "S6",
+          "S7",
+          "S8",
+          "S9",
+          "S10"
+        ],
+        "cellCount": 12,
+        "status": "exact_match",
+        "foundationalValuesHash": "sha256:7b032d067886553c37c21878ce2dbed53a1a85d37633077c81b536e61c65d735",
+        "consolidatedValuesHash": "sha256:7b032d067886553c37c21878ce2dbed53a1a85d37633077c81b536e61c65d735"
+      },
+      {
+        "canonicalRowId": "nh3",
+        "foundationalRowLabel": "NH3 (ppb)",
+        "unit": "ppb",
+        "columns": [
+          "R0",
+          "R1",
+          "S1",
+          "S2",
+          "S3",
+          "S4",
+          "S5",
+          "S6",
+          "S7",
+          "S8",
+          "S9",
+          "S10"
+        ],
+        "cellCount": 12,
+        "status": "exact_match",
+        "foundationalValuesHash": "sha256:352ba5ee8692f9464029848cbec573bb30e069e5c29f5f27dfba32cb62d0d7fd",
+        "consolidatedValuesHash": "sha256:352ba5ee8692f9464029848cbec573bb30e069e5c29f5f27dfba32cb62d0d7fd"
+      },
+      {
+        "canonicalRowId": "cfc_11",
+        "foundationalRowLabel": "CFC-11 (ppb)",
+        "unit": "ppb",
+        "columns": [
+          "R0",
+          "R1",
+          "S1",
+          "S2",
+          "S3",
+          "S4",
+          "S5",
+          "S6",
+          "S7",
+          "S8",
+          "S9",
+          "S10"
+        ],
+        "cellCount": 12,
+        "status": "exact_match",
+        "foundationalValuesHash": "sha256:d2c91f3323e1f3bee092acb91d761b8e8156ec0537459e608778ac203245802e",
+        "consolidatedValuesHash": "sha256:d2c91f3323e1f3bee092acb91d761b8e8156ec0537459e608778ac203245802e"
+      },
+      {
+        "canonicalRowId": "cfc_12",
+        "foundationalRowLabel": "CFC-12 (ppb)",
+        "unit": "ppb",
+        "columns": [
+          "R0",
+          "R1",
+          "S1",
+          "S2",
+          "S3",
+          "S4",
+          "S5",
+          "S6",
+          "S7",
+          "S8",
+          "S9",
+          "S10"
+        ],
+        "cellCount": 12,
+        "status": "exact_match",
+        "foundationalValuesHash": "sha256:223b77a85b97a59b1d69d6a8ff834be0700311d141cbf2585d79d90942626c2b",
+        "consolidatedValuesHash": "sha256:223b77a85b97a59b1d69d6a8ff834be0700311d141cbf2585d79d90942626c2b"
+      },
+      {
+        "canonicalRowId": "cf4",
+        "foundationalRowLabel": "CF4 (ppt)",
+        "unit": "ppt",
+        "columns": [
+          "R0",
+          "R1",
+          "S1",
+          "S2",
+          "S3",
+          "S4",
+          "S5",
+          "S6",
+          "S7",
+          "S8",
+          "S9",
+          "S10"
+        ],
+        "cellCount": 12,
+        "status": "exact_match",
+        "foundationalValuesHash": "sha256:960247c593832f0f85a27a2def2bc5fdbceb273e2851b151cb7b601d840c682f",
+        "consolidatedValuesHash": "sha256:960247c593832f0f85a27a2def2bc5fdbceb273e2851b151cb7b601d840c682f"
+      },
+      {
+        "canonicalRowId": "sf6",
+        "foundationalRowLabel": "SF6 (ppt)",
+        "unit": "ppt",
+        "columns": [
+          "R0",
+          "R1",
+          "S1",
+          "S2",
+          "S3",
+          "S4",
+          "S5",
+          "S6",
+          "S7",
+          "S8",
+          "S9",
+          "S10"
+        ],
+        "cellCount": 12,
+        "status": "exact_match",
+        "foundationalValuesHash": "sha256:9b778aabaee62c9c75c9f6d5d86d167ad6d3839514b6974d0d2a5dc3f065ddbf",
+        "consolidatedValuesHash": "sha256:9b778aabaee62c9c75c9f6d5d86d167ad6d3839514b6974d0d2a5dc3f065ddbf"
+      },
+      {
+        "canonicalRowId": "nf3",
+        "foundationalRowLabel": "NF3 (ppt)",
+        "unit": "ppt",
+        "columns": [
+          "R0",
+          "R1",
+          "S1",
+          "S2",
+          "S3",
+          "S4",
+          "S5",
+          "S6",
+          "S7",
+          "S8",
+          "S9",
+          "S10"
+        ],
+        "cellCount": 12,
+        "status": "exact_match",
+        "foundationalValuesHash": "sha256:18057f335b71ba38f3f4081dcb625401c4e44d5e8541d864b13a3692582f5e5f",
+        "consolidatedValuesHash": "sha256:18057f335b71ba38f3f4081dcb625401c4e44d5e8541d864b13a3692582f5e5f"
+      }
+    ],
+    "rowCount": 10,
+    "columnCount": 12,
+    "cellCount": 120,
+    "excludedConsolidatedRowIds": [
+      "laser_emission_1_064_um",
+      "mean_temperature",
+      "na_emission",
+      "so2_stratospheric"
+    ],
+    "foundationalOverlapHash": "sha256:13459d6b4bca01297634d721abbb87609b9457be5a04b22ea3d1679a5d916228",
+    "consolidatedOverlapHash": "sha256:13459d6b4bca01297634d721abbb87609b9457be5a04b22ea3d1679a5d916228",
+    "status": "exact_match"
+  },
+  "canonicalDecision": "APJL Table 1 remains the single canonical Earth-atmosphere table because it exactly reproduces the Table 7 overlap and adds later observing inputs; this record does not duplicate the canonical values.",
+  "independentHumanReview": "pending",
+  "reconciliationPayloadHash": "sha256:d37190c7d508a38b86052a871fdc2e9afc95ed272c4ef154d5d3fb371cae43d7"
+}

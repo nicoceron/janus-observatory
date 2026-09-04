@@ -4,7 +4,15 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./asset": "./src/asset.ts",
+    "./evidence": "./src/evidence.ts",
+    "./observatory-engine": "./src/observatory-engine.ts",
+    "./published-table": "./src/published-table.ts",
+    "./runtime-release": "./src/runtime-release.ts",
+    "./scenario": "./src/scenario.ts",
+    "./scientific-dataset": "./src/scientific-dataset.ts",
+    "./source-manifest": "./src/source-manifest.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

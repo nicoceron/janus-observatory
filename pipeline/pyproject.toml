@@ -12,6 +12,9 @@ dependencies = [
 
 [project.scripts]
 janus-source-lock = "janus_pipeline.source_lock:main"
+janus-source-fetch = "janus_pipeline.source_fetch:main"
+janus-generate = "janus_pipeline.generate:main"
+janus-reproduce-check = "janus_pipeline.reproduce:main"
 
 [project.optional-dependencies]
 dev = [

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "id": "janus.technosignatures.planetary.tfsc-table-6",
   "title": "Planetary technosignature magnitudes for all ten scenarios",
   "contentOrigin": "transcribed",
@@ -7,7 +7,10 @@
   "source": {
     "sourceId": "JANUS-PAPER-01",
     "sourceVersion": "arXiv:2409.00067v3",
-    "locator": { "page": 14, "table": "Table 6" }
+    "locator": {
+      "page": 14,
+      "table": "Table 6"
+    }
   },
   "sourceLicense": "CC BY 4.0",
   "transcriptionMethod": "Manual transcription from the PDF table, checked against a rendered page and layout-preserving text extraction.",
@@ -18,7 +21,8 @@
   ],
   "notes": [
     "Mars industrial pollution in S5 and S6 includes artificial greenhouse gases for terraforming.",
-    "Venus industrial pollution in S5 and S6 indicates O2 production and depletion of other constituents for terraforming."
+    "Venus industrial pollution in S5 and S6 indicates O2 production and depletion of other constituents for terraforming.",
+    "Every row descriptor, annotation field, and scenario magnitude/null carries an exact Table 6 row/column locator."
   ],
   "scenarios": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"],
   "rows": [
@@ -38,6 +42,205 @@
         "S8": 7.8,
         "S9": null,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Earth",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Earth",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Earth",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Earth",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Earth",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Earth",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Earth",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Earth",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Earth",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Earth",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Earth",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Earth",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Earth",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Earth",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Earth",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -56,6 +259,205 @@
         "S8": 0.00006,
         "S9": null,
         "S10": 0.002
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Moon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Moon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Moon",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Moon",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Moon",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -75,7 +477,206 @@
         "S9": null,
         "S10": 0.015
       },
-      "annotations": ["S5 and S6 include artificial greenhouse gases for terraforming Mars."]
+      "annotations": ["S5 and S6 include artificial greenhouse gases for terraforming Mars."],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Mars",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Mars",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Mars",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Mars",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Mars",
+              "column": "Table note"
+            }
+          }
+        ]
+      }
     },
     {
       "signatureId": "industrial_pollution",
@@ -96,9 +697,207 @@
       },
       "annotations": [
         "S5 and S6 indicate O2 production and depletion of other constituents for terraforming Venus."
-      ]
+      ],
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Venus",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Venus",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Venus",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Venus",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Industrial pollution — Venus",
+              "column": "Table note"
+            }
+          }
+        ]
+      }
     },
-
     {
       "signatureId": "agricultural_pollution",
       "signatureLabel": "Agricultural pollution",
@@ -115,6 +914,205 @@
         "S8": 3,
         "S9": null,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Earth",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Earth",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Earth",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Earth",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Earth",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Earth",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Earth",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Earth",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Earth",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Earth",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Earth",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Earth",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Earth",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Earth",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Earth",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -133,6 +1131,205 @@
         "S8": null,
         "S9": null,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Moon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Moon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Moon",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Moon",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Moon",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Moon",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Moon",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Moon",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Moon",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Moon",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Moon",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Moon",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Moon",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Moon",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Moon",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -151,6 +1348,205 @@
         "S8": null,
         "S9": null,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Mars",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Mars",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Mars",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Mars",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Mars",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Mars",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Mars",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Mars",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Mars",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Mars",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Mars",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Mars",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Mars",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Mars",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Mars",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -169,9 +1565,207 @@
         "S8": null,
         "S9": null,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Venus",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Venus",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Venus",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Venus",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Venus",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Venus",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Venus",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Venus",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Venus",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Venus",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Venus",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Venus",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Venus",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Agricultural pollution — Venus",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Agricultural pollution — Venus",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
-
     {
       "signatureId": "artificial_illumination",
       "signatureLabel": "Artificial illumination",
@@ -188,6 +1782,205 @@
         "S8": 0.004,
         "S9": null,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Earth",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Earth",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Earth",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Earth",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Earth",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Earth",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Earth",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Earth",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Earth",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Earth",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Earth",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Earth",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Earth",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Earth",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Earth",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -206,6 +1999,205 @@
         "S8": 1e-7,
         "S9": null,
         "S10": 0.00003
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Moon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Moon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Moon",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Moon",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Moon",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -224,6 +2216,205 @@
         "S8": null,
         "S9": null,
         "S10": 0.0002
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Mars",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Mars",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Mars",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Mars",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Mars",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -242,9 +2433,207 @@
         "S8": null,
         "S9": null,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Venus",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Venus",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Venus",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Venus",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Venus",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Venus",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Venus",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Venus",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Venus",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Venus",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Venus",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Venus",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Venus",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Venus",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Artificial illumination — Venus",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
-
     {
       "signatureId": "surface_modification",
       "signatureLabel": "Surface modification",
@@ -261,6 +2650,205 @@
         "S8": 0.03,
         "S9": null,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Earth",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Earth",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Earth",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Earth",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Earth",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Earth",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Earth",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Earth",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Earth",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Earth",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Earth",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Earth",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Earth",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Earth",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Earth",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -279,6 +2867,205 @@
         "S8": 0.000003,
         "S9": null,
         "S10": 0.88
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Moon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Moon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Moon",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Moon",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Moon",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -297,6 +3084,205 @@
         "S8": null,
         "S9": 1,
         "S10": 0.88
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Mars",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Mars",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Mars",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Mars",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Mars",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -315,17 +3301,215 @@
         "S8": null,
         "S9": 1,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Venus",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Venus",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Venus",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Venus",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Venus",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Venus",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Venus",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Venus",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Venus",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Venus",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Venus",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Venus",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Venus",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Venus",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Surface modification — Venus",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
-
     {
       "signatureId": "satellite_belt",
       "signatureLabel": "Satellite belt",
       "body": "Earth",
       "unit": "density relative to Earth 2024",
       "values": {
-        "S1": 1e6,
-        "S2": 1e6,
+        "S1": 1000000,
+        "S2": 1000000,
         "S3": 1000,
         "S4": 0.015,
         "S5": 1000,
@@ -334,6 +3518,205 @@
         "S8": 2,
         "S9": 50,
         "S10": 100
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Earth",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Earth",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Earth",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Earth",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Earth",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Earth",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Earth",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Earth",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Earth",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Earth",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Earth",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Earth",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Earth",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Earth",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Earth",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -352,6 +3735,205 @@
         "S8": 0.001,
         "S9": 5,
         "S10": 10
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Moon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Moon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Moon",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Moon",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Moon",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -370,6 +3952,205 @@
         "S8": null,
         "S9": 10,
         "S10": 100
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Mars",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Mars",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Mars",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Mars",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Mars",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -388,17 +4169,215 @@
         "S8": null,
         "S9": 10,
         "S10": 100
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Venus",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Venus",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Venus",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Venus",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Satellite belt — Venus",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
-
     {
       "signatureId": "contaminated_aerosol",
       "signatureLabel": "Contaminated aerosol",
       "body": "Earth",
       "unit": "density relative to Earth 2024",
       "values": {
-        "S1": 1e6,
-        "S2": 1e6,
+        "S1": 1000000,
+        "S2": 1000000,
         "S3": 1000,
         "S4": null,
         "S5": null,
@@ -407,6 +4386,205 @@
         "S8": 0.4,
         "S9": null,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Earth",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Earth",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Earth",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Earth",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Earth",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Earth",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Earth",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Earth",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Earth",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Earth",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Earth",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Earth",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Earth",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Earth",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Earth",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -425,6 +4603,205 @@
         "S8": 0.0002,
         "S9": null,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Moon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Moon",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Moon",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Moon",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Moon",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -443,6 +4820,205 @@
         "S8": null,
         "S9": null,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Mars",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Mars",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Mars",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Mars",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Mars",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     },
     {
@@ -461,6 +5037,205 @@
         "S8": null,
         "S9": null,
         "S10": null
+      },
+      "fieldProvenance": {
+        "signatureId": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Venus",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "signatureLabel": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Venus",
+              "column": "Technosignature"
+            }
+          }
+        ],
+        "body": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Venus",
+              "column": "Planetary body"
+            }
+          }
+        ],
+        "unit": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Venus",
+              "column": "Unit"
+            }
+          }
+        ],
+        "values": {
+          "S1": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Venus",
+                "column": "S1"
+              }
+            }
+          ],
+          "S2": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Venus",
+                "column": "S2"
+              }
+            }
+          ],
+          "S3": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Venus",
+                "column": "S3"
+              }
+            }
+          ],
+          "S4": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Venus",
+                "column": "S4"
+              }
+            }
+          ],
+          "S5": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Venus",
+                "column": "S5"
+              }
+            }
+          ],
+          "S6": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Venus",
+                "column": "S6"
+              }
+            }
+          ],
+          "S7": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Venus",
+                "column": "S7"
+              }
+            }
+          ],
+          "S8": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Venus",
+                "column": "S8"
+              }
+            }
+          ],
+          "S9": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Venus",
+                "column": "S9"
+              }
+            }
+          ],
+          "S10": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "evidenceKind": "transcribed",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Venus",
+                "column": "S10"
+              }
+            }
+          ]
+        },
+        "annotations": [
+          {
+            "sourceId": "JANUS-PAPER-01",
+            "sourceVersion": "arXiv:2409.00067v3",
+            "evidenceKind": "transcribed",
+            "locator": {
+              "page": 14,
+              "table": "Table 6",
+              "row": "Contaminated aerosol — Venus",
+              "column": "Table note"
+            }
+          }
+        ]
       }
     }
   ]

@@ -30,4 +30,18 @@ describe('published observatory engine', () => {
     expect(result.status).toBe('reported_listed');
     expect(result.signatures).toEqual(['large surface features (Venus, Mars)']);
   });
+
+  it('returns exact row and column provenance plus explicit mission assumptions', () => {
+    const result = resolvePublishedObservation(observability, 'S9', 'habitable_worlds_observatory');
+
+    expect(result.sourceRefs[0]?.locator).toMatchObject({
+      page: 10,
+      figure: 'Figure 6',
+      row: 'S9',
+      column: 'Habitable Worlds Observatory',
+    });
+    expect(result.assumptions.distance.value).toBe('10 pc');
+    expect(result.assumptions.integrationTime.captureStatus).toBe('not_reported');
+    expect(result.assumptions.integrationTime.value).toBeNull();
+  });
 });

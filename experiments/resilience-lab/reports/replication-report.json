@@ -1,0 +1,768 @@
+{
+  "experiment": "janus-resilience-lab replication",
+  "overallVerdict": "pass",
+  "ensembleSizes": {
+    "paperComparableBatch": 200,
+    "large": 20000
+  },
+  "seeds": {
+    "paperComparableBatch": 12345,
+    "largeEnsembleRule": "PAPER_SEED + scenario_number * 101",
+    "largeEnsembleByScenario": {
+      "S1": 12446,
+      "S2": 12547,
+      "S3": 12648,
+      "S4": 12749,
+      "S5": 12850,
+      "S6": 12951,
+      "S7": 13052,
+      "S8": 13153,
+      "S9": 13254,
+      "S10": 13355
+    }
+  },
+  "toleranceRationale": "Approximate-text targets tolerate Monte Carlo noise plus yearly-step semantic ambiguity; exact-text targets must match to numerical precision.",
+  "scenarios": [
+    {
+      "scenarioId": "S1",
+      "parameters": {
+        "scenarioId": "S1",
+        "r": 0.002,
+        "R0": 400.0,
+        "delta": 1.2,
+        "cf": 0.6,
+        "rd": 40,
+        "rf": 0.15,
+        "h": 0.003
+      },
+      "largeEnsemble": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.63128,
+        "mean_time_to_first_collapse": 210.49635,
+        "mean_collapse_count": 9.7255
+      },
+      "paperSeedBatch200": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.62882,
+        "mean_time_to_first_collapse": 203.6,
+        "mean_collapse_count": 9.69
+      },
+      "analyticEnsembleExpectation": {
+        "mean_expected_duty_cycle": 0.63139,
+        "mean_expected_collapses": 9.71831,
+        "mean_prob_never_collapsed": 0.0,
+        "paper_style_mean_first_collapse": 211.03804
+      },
+      "comparisons": [
+        {
+          "metric": "fraction_never_collapsed",
+          "ours": 0.0,
+          "reported": 0,
+          "absDiff": 0.0,
+          "tolerance": 0.08,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_duty_cycle",
+          "ours": 0.6312843,
+          "reported": null,
+          "verdict": "not_validated"
+        },
+        {
+          "metric": "mean_time_to_first_collapse",
+          "ours": 210.49635,
+          "reported": null,
+          "verdict": "not_validated"
+        },
+        {
+          "metric": "mean_collapse_count",
+          "ours": 9.7255,
+          "reported": 10,
+          "absDiff": 0.2745,
+          "tolerance": 1.2,
+          "verdict": "pass"
+        }
+      ],
+      "worstVerdict": "pass"
+    },
+    {
+      "scenarioId": "S2",
+      "parameters": {
+        "scenarioId": "S2",
+        "r": 0.0026,
+        "R0": 700.0,
+        "delta": 1.5,
+        "cf": 0.3,
+        "rd": 70,
+        "rf": 0.1,
+        "h": 0.001
+      },
+      "largeEnsemble": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.61048,
+        "mean_time_to_first_collapse": 374.0239,
+        "mean_collapse_count": 5.9469
+      },
+      "paperSeedBatch200": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.60926,
+        "mean_time_to_first_collapse": 373.65,
+        "mean_collapse_count": 5.905
+      },
+      "analyticEnsembleExpectation": {
+        "mean_expected_duty_cycle": 0.61022,
+        "mean_expected_collapses": 5.95255,
+        "mean_prob_never_collapsed": 0.0,
+        "paper_style_mean_first_collapse": 373.61472
+      },
+      "comparisons": [
+        {
+          "metric": "fraction_never_collapsed",
+          "ours": 0.0,
+          "reported": 0,
+          "absDiff": 0.0,
+          "tolerance": 0.08,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_duty_cycle",
+          "ours": 0.61048225,
+          "reported": null,
+          "verdict": "not_validated"
+        },
+        {
+          "metric": "mean_time_to_first_collapse",
+          "ours": 374.0239,
+          "reported": null,
+          "verdict": "not_validated"
+        },
+        {
+          "metric": "mean_collapse_count",
+          "ours": 5.9469,
+          "reported": null,
+          "verdict": "not_validated"
+        }
+      ],
+      "worstVerdict": "pass"
+    },
+    {
+      "scenarioId": "S3",
+      "parameters": {
+        "scenarioId": "S3",
+        "r": 0.0001,
+        "R0": 2400.0,
+        "delta": 0.0,
+        "cf": 1.0,
+        "rd": 0,
+        "rf": 1.0,
+        "h": 0.0
+      },
+      "largeEnsemble": {
+        "fraction_never_collapsed": 1.0,
+        "mean_duty_cycle": 1.0,
+        "mean_time_to_first_collapse": 1000.0,
+        "mean_collapse_count": 0.0
+      },
+      "paperSeedBatch200": {
+        "fraction_never_collapsed": 1.0,
+        "mean_duty_cycle": 1.0,
+        "mean_time_to_first_collapse": 1000.0,
+        "mean_collapse_count": 0.0
+      },
+      "analyticEnsembleExpectation": {
+        "mean_expected_duty_cycle": 1.0,
+        "mean_expected_collapses": 0.0,
+        "mean_prob_never_collapsed": 1.0,
+        "paper_style_mean_first_collapse": 1000.0
+      },
+      "comparisons": [
+        {
+          "metric": "fraction_never_collapsed",
+          "ours": 1.0,
+          "reported": 1,
+          "absDiff": 0.0,
+          "tolerance": 0.0,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_duty_cycle",
+          "ours": 1.0,
+          "reported": 1,
+          "absDiff": 0.0,
+          "tolerance": 0.0,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_time_to_first_collapse",
+          "ours": 1000.0,
+          "reported": 1000,
+          "absDiff": 0.0,
+          "tolerance": 0.0,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_collapse_count",
+          "ours": 0.0,
+          "reported": 0,
+          "absDiff": 0.0,
+          "tolerance": 1.2,
+          "verdict": "pass"
+        }
+      ],
+      "worstVerdict": "pass"
+    },
+    {
+      "scenarioId": "S4",
+      "parameters": {
+        "scenarioId": "S4",
+        "r": 0.006,
+        "R0": 600.0,
+        "delta": 2.5,
+        "cf": 0.2,
+        "rd": 100,
+        "rf": 0.1,
+        "h": 0.0
+      },
+      "largeEnsemble": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.38167,
+        "mean_time_to_first_collapse": 241.1889,
+        "mean_collapse_count": 6.6346
+      },
+      "paperSeedBatch200": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.38175,
+        "mean_time_to_first_collapse": 241.74,
+        "mean_collapse_count": 6.585
+      },
+      "analyticEnsembleExpectation": {
+        "mean_expected_duty_cycle": 0.38167,
+        "mean_expected_collapses": 6.6346,
+        "mean_prob_never_collapsed": 0.0,
+        "paper_style_mean_first_collapse": 241.1889
+      },
+      "comparisons": [
+        {
+          "metric": "fraction_never_collapsed",
+          "ours": 0.0,
+          "reported": 0,
+          "absDiff": 0.0,
+          "tolerance": 0.08,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_duty_cycle",
+          "ours": 0.3817,
+          "reported": 0.381,
+          "absDiff": 0.0007,
+          "tolerance": 0.05,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_time_to_first_collapse",
+          "ours": 241.1889,
+          "reported": null,
+          "verdict": "not_validated"
+        },
+        {
+          "metric": "mean_collapse_count",
+          "ours": 6.6346,
+          "reported": 6.6,
+          "absDiff": 0.0346,
+          "tolerance": 1.2,
+          "verdict": "pass"
+        }
+      ],
+      "worstVerdict": "pass"
+    },
+    {
+      "scenarioId": "S5",
+      "parameters": {
+        "scenarioId": "S5",
+        "r": 0.0003,
+        "R0": 2500.0,
+        "delta": 0.1,
+        "cf": 0.9,
+        "rd": 20,
+        "rf": 0.8,
+        "h": 0.0005
+      },
+      "largeEnsemble": {
+        "fraction_never_collapsed": 0.6069,
+        "mean_duty_cycle": 0.99016,
+        "mean_time_to_first_collapse": 788.2861,
+        "mean_collapse_count": 0.49725
+      },
+      "paperSeedBatch200": {
+        "fraction_never_collapsed": 0.565,
+        "mean_duty_cycle": 0.98952,
+        "mean_time_to_first_collapse": 784.82,
+        "mean_collapse_count": 0.545
+      },
+      "analyticEnsembleExpectation": {
+        "mean_expected_duty_cycle": 0.99024,
+        "mean_expected_collapses": 0.49512,
+        "mean_prob_never_collapsed": 0.60645,
+        "paper_style_mean_first_collapse": 787.09035
+      },
+      "comparisons": [
+        {
+          "metric": "fraction_never_collapsed",
+          "ours": 0.6069,
+          "reported": 0.66,
+          "absDiff": 0.0531,
+          "tolerance": 0.08,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_duty_cycle",
+          "ours": 0.9902,
+          "reported": 0.99,
+          "absDiff": 0.0002,
+          "tolerance": 0.05,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_time_to_first_collapse",
+          "ours": 788.2861,
+          "reported": null,
+          "verdict": "not_validated"
+        },
+        {
+          "metric": "mean_collapse_count",
+          "ours": 0.49725,
+          "reported": null,
+          "verdict": "not_validated"
+        }
+      ],
+      "worstVerdict": "pass"
+    },
+    {
+      "scenarioId": "S6",
+      "parameters": {
+        "scenarioId": "S6",
+        "r": 0.0018,
+        "R0": 1600.0,
+        "delta": 1.0,
+        "cf": 0.4,
+        "rd": 50,
+        "rf": 0.25,
+        "h": 0.005
+      },
+      "largeEnsemble": {
+        "fraction_never_collapsed": 0.0073,
+        "mean_duty_cycle": 0.79359,
+        "mean_time_to_first_collapse": 200.5717,
+        "mean_collapse_count": 4.26415
+      },
+      "paperSeedBatch200": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.79458,
+        "mean_time_to_first_collapse": 189.88,
+        "mean_collapse_count": 4.25
+      },
+      "analyticEnsembleExpectation": {
+        "mean_expected_duty_cycle": 0.79329,
+        "mean_expected_collapses": 4.27598,
+        "mean_prob_never_collapsed": 0.00665,
+        "paper_style_mean_first_collapse": 198.66921
+      },
+      "comparisons": [
+        {
+          "metric": "fraction_never_collapsed",
+          "ours": 0.0073,
+          "reported": 0,
+          "absDiff": 0.0073,
+          "tolerance": 0.08,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_duty_cycle",
+          "ours": 0.7935919,
+          "reported": null,
+          "verdict": "not_validated"
+        },
+        {
+          "metric": "mean_time_to_first_collapse",
+          "ours": 200.5717,
+          "reported": null,
+          "verdict": "not_validated"
+        },
+        {
+          "metric": "mean_collapse_count",
+          "ours": 4.2641,
+          "reported": 4.5,
+          "absDiff": 0.2359,
+          "tolerance": 1.125,
+          "verdict": "pass"
+        }
+      ],
+      "worstVerdict": "pass"
+    },
+    {
+      "scenarioId": "S7",
+      "parameters": {
+        "scenarioId": "S7",
+        "r": 0.006,
+        "R0": 400.0,
+        "delta": 1.5,
+        "cf": 0.3,
+        "rd": 60,
+        "rf": 0.2,
+        "h": 0.001
+      },
+      "largeEnsemble": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.58038,
+        "mean_time_to_first_collapse": 234.9023,
+        "mean_collapse_count": 7.37235
+      },
+      "paperSeedBatch200": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.58117,
+        "mean_time_to_first_collapse": 237.175,
+        "mean_collapse_count": 7.295
+      },
+      "analyticEnsembleExpectation": {
+        "mean_expected_duty_cycle": 0.58046,
+        "mean_expected_collapses": 7.37337,
+        "mean_prob_never_collapsed": 0.0,
+        "paper_style_mean_first_collapse": 234.91092
+      },
+      "comparisons": [
+        {
+          "metric": "fraction_never_collapsed",
+          "ours": 0.0,
+          "reported": 0,
+          "absDiff": 0.0,
+          "tolerance": 0.08,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_duty_cycle",
+          "ours": 0.5804,
+          "reported": 0.57,
+          "absDiff": 0.0104,
+          "tolerance": 0.05,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_time_to_first_collapse",
+          "ours": 234.9023,
+          "reported": 223,
+          "absDiff": 11.9023,
+          "tolerance": 45.0,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_collapse_count",
+          "ours": 7.3723,
+          "reported": 7.5,
+          "absDiff": 0.1277,
+          "tolerance": 1.2,
+          "verdict": "pass"
+        }
+      ],
+      "worstVerdict": "pass"
+    },
+    {
+      "scenarioId": "S8",
+      "parameters": {
+        "scenarioId": "S8",
+        "r": 0.0015,
+        "R0": 800.0,
+        "delta": 1.3,
+        "cf": 0.6,
+        "rd": 70,
+        "rf": 0.35,
+        "h": 0.0
+      },
+      "largeEnsemble": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.87255,
+        "mean_time_to_first_collapse": 617.8142,
+        "mean_collapse_count": 1.94465
+      },
+      "paperSeedBatch200": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.87344,
+        "mean_time_to_first_collapse": 619.07,
+        "mean_collapse_count": 1.945
+      },
+      "analyticEnsembleExpectation": {
+        "mean_expected_duty_cycle": 0.87255,
+        "mean_expected_collapses": 1.94465,
+        "mean_prob_never_collapsed": 0.0,
+        "paper_style_mean_first_collapse": 617.8142
+      },
+      "comparisons": [
+        {
+          "metric": "fraction_never_collapsed",
+          "ours": 0.0,
+          "reported": 0,
+          "absDiff": 0.0,
+          "tolerance": 0.08,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_duty_cycle",
+          "ours": 0.8726,
+          "reported": 0.87,
+          "absDiff": 0.0026,
+          "tolerance": 0.05,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_time_to_first_collapse",
+          "ours": 617.8142,
+          "reported": null,
+          "verdict": "not_validated"
+        },
+        {
+          "metric": "mean_collapse_count",
+          "ours": 1.9446,
+          "reported": 2,
+          "absDiff": 0.0554,
+          "tolerance": 0.5,
+          "verdict": "pass"
+        }
+      ],
+      "worstVerdict": "pass"
+    },
+    {
+      "scenarioId": "S9",
+      "parameters": {
+        "scenarioId": "S9",
+        "r": 0.0011,
+        "R0": 900.0,
+        "delta": 1.3,
+        "cf": 0.5,
+        "rd": 70,
+        "rf": 0.35,
+        "h": 0.0
+      },
+      "largeEnsemble": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.9112,
+        "mean_time_to_first_collapse": 694.4534,
+        "mean_collapse_count": 1.467
+      },
+      "paperSeedBatch200": {
+        "fraction_never_collapsed": 0.0,
+        "mean_duty_cycle": 0.911,
+        "mean_time_to_first_collapse": 696.39,
+        "mean_collapse_count": 1.48
+      },
+      "analyticEnsembleExpectation": {
+        "mean_expected_duty_cycle": 0.9112,
+        "mean_expected_collapses": 1.467,
+        "mean_prob_never_collapsed": 0.0,
+        "paper_style_mean_first_collapse": 694.4534
+      },
+      "comparisons": [
+        {
+          "metric": "fraction_never_collapsed",
+          "ours": 0.0,
+          "reported": 0,
+          "absDiff": 0.0,
+          "tolerance": 0.08,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_duty_cycle",
+          "ours": 0.9112,
+          "reported": 0.91,
+          "absDiff": 0.0012,
+          "tolerance": 0.05,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_time_to_first_collapse",
+          "ours": 694.4534,
+          "reported": 689,
+          "absDiff": 5.4534,
+          "tolerance": 45.0,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_collapse_count",
+          "ours": 1.467,
+          "reported": 1.5,
+          "absDiff": 0.033,
+          "tolerance": 0.375,
+          "verdict": "pass"
+        }
+      ],
+      "worstVerdict": "pass"
+    },
+    {
+      "scenarioId": "S10",
+      "parameters": {
+        "scenarioId": "S10",
+        "r": 0.0002,
+        "R0": 2700.0,
+        "delta": 0.0,
+        "cf": 1.0,
+        "rd": 0,
+        "rf": 1.0,
+        "h": 0.0
+      },
+      "largeEnsemble": {
+        "fraction_never_collapsed": 1.0,
+        "mean_duty_cycle": 1.0,
+        "mean_time_to_first_collapse": 1000.0,
+        "mean_collapse_count": 0.0
+      },
+      "paperSeedBatch200": {
+        "fraction_never_collapsed": 1.0,
+        "mean_duty_cycle": 1.0,
+        "mean_time_to_first_collapse": 1000.0,
+        "mean_collapse_count": 0.0
+      },
+      "analyticEnsembleExpectation": {
+        "mean_expected_duty_cycle": 1.0,
+        "mean_expected_collapses": 0.0,
+        "mean_prob_never_collapsed": 1.0,
+        "paper_style_mean_first_collapse": 1000.0
+      },
+      "comparisons": [
+        {
+          "metric": "fraction_never_collapsed",
+          "ours": 1.0,
+          "reported": 1,
+          "absDiff": 0.0,
+          "tolerance": 0.0,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_duty_cycle",
+          "ours": 1.0,
+          "reported": 1,
+          "absDiff": 0.0,
+          "tolerance": 0.0,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_time_to_first_collapse",
+          "ours": 1000.0,
+          "reported": 1000,
+          "absDiff": 0.0,
+          "tolerance": 0.0,
+          "verdict": "pass"
+        },
+        {
+          "metric": "mean_collapse_count",
+          "ours": 0.0,
+          "reported": 0,
+          "absDiff": 0.0,
+          "tolerance": 1.2,
+          "verdict": "pass"
+        }
+      ],
+      "worstVerdict": "pass"
+    }
+  ],
+  "canonicalStatus": "noncanonical",
+  "evidenceKind": "reimplemented",
+  "authorCodeUsed": false,
+  "canonicalSource": {
+    "sourceId": "JANUS-PAPER-05",
+    "sourceVersion": "arXiv:2604.13774v1",
+    "locator": {
+      "page": 7,
+      "section": "Sections 3.2-4.1",
+      "table": "Table 4"
+    },
+    "license": "CC BY 4.0"
+  },
+  "implementation": {
+    "algorithm": "sha256-file-manifest-v1",
+    "treeHash": "sha256:c6b3d91af93048d701d4d6223b87b7c295390396e3ea2e65b89634b2a158c93d",
+    "canonicalInputHash": "sha256:b24feb50e1015ca65ddca909523c761b4af5b5886b23c02d49283a838f0fdcda",
+    "files": [
+      {
+        "path": "ADR-0001.md",
+        "sha256": "73d2a331975a70435625889528ec1c0b20045f0b0bd0ff975726f686942e338a"
+      },
+      {
+        "path": "pyproject.toml",
+        "sha256": "12da97879595aed9ab1b919d106fc08487097c9d25ac6eff8c590b8e73771a70"
+      },
+      {
+        "path": "src/janus_resilience/__init__.py",
+        "sha256": "61201fdc337ec896203afb0baef593947524559d9c8fd432ccdf5b8790d631e5"
+      },
+      {
+        "path": "src/janus_resilience/analytics.py",
+        "sha256": "44dc0f3054775e812e2e53319a9f28f3bda553d767911ce65b100a7827744da1"
+      },
+      {
+        "path": "src/janus_resilience/cli.py",
+        "sha256": "348ab9474d1de34f27f6ec5c144117aee39b43861cb2241371501f4a06ce719c"
+      },
+      {
+        "path": "src/janus_resilience/dataset.py",
+        "sha256": "dc19c979ce36279eb9d47235ea977008aa7d415bc1fcc0332099370c3eb56b5c"
+      },
+      {
+        "path": "src/janus_resilience/event_sim.py",
+        "sha256": "b76b1cb7f43fc603e7ab03d3cfdbd37baf7078c204201206e0fc5cd6607f53e9"
+      },
+      {
+        "path": "src/janus_resilience/params.py",
+        "sha256": "ea5283aff238ff96d31a563c6ee47fe1fbf006971d84fd6dad6a7e6e33a067f8"
+      },
+      {
+        "path": "src/janus_resilience/persistence.py",
+        "sha256": "cf27baf9491e835b9073898a10fc9dcce65d77e92d3adbdc49e8281e7297bf03"
+      },
+      {
+        "path": "src/janus_resilience/plots.py",
+        "sha256": "303d22a77381f09f2f43652a9fc78d98c55dacc3b05bfa183730b37116ca56e1"
+      },
+      {
+        "path": "src/janus_resilience/provenance.py",
+        "sha256": "5d562b05741a1b0f9b6bb5c6c55215696e409fe539bd016d9cedf91f57e68f3a"
+      },
+      {
+        "path": "src/janus_resilience/reference_sim.py",
+        "sha256": "9c55e9e052704a84b3776d711a5f341ed7402e1669d6f96c3f40252703bd9eb8"
+      },
+      {
+        "path": "src/janus_resilience/report.py",
+        "sha256": "047356fc5f5b53ce0d7a78c761dc516bd049b689aa42e66a1debf980775c8008"
+      },
+      {
+        "path": "src/janus_resilience/sensitivity.py",
+        "sha256": "45ab29f24f67181fd40f25f1d754c866c0d0690eaee4ce5e5595e1101231ca4c"
+      },
+      {
+        "path": "src/janus_resilience/surrogate.py",
+        "sha256": "76e1a53063b1bfdcb1bbe10a82191c6e9d4f144cdfe9c5223c5d667a4c399a2d"
+      },
+      {
+        "path": "src/janus_resilience/survival.py",
+        "sha256": "edd241880d1f61e90c4fd1b71cffb8519ceb5056eaa0077d3040b7c2c15bc36d"
+      },
+      {
+        "path": "src/janus_resilience/validation.py",
+        "sha256": "14d81b0548f3694ac3d39aefd34ca33f8bc322ec354a6efb29fe791ac5dd2f83"
+      },
+      {
+        "path": "uv.lock",
+        "sha256": "651d795089cadab82e668c5877f1cc2cdcf69d76b1e59392ec36248cdb0f43c4"
+      }
+    ]
+  },
+  "topic": "replication",
+  "generatedAt": "2026-08-30T06:05:48+00:00",
+  "gitCommit": "d740da87f8d562005cf8a25e75bc391ac1fbc8f6",
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.5.2",
+    "scipy": "1.18.0",
+    "platform": "darwin",
+    "capturedAt": "2026-08-30T06:05:48+00:00",
+    "scikit-learn": "1.9.0"
+  }
+}

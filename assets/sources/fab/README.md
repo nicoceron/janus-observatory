@@ -1,7 +1,7 @@
 # Fab observer source intake
 
 The public story derivative at
-`apps/web/public/assets/models/janus-alien-observer-v3.glb` combines two user-selected Fab
+`apps/web/public/assets/models/janus-alien-observer-v4.glb` combines two user-selected Fab
 assets. Their exact contribution and downstream transformations are recorded in
 `data/assets/ledger.json`.
 

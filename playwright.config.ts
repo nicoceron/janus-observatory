@@ -20,10 +20,15 @@ export default defineConfig({
     video: 'retain-on-failure',
   },
   webServer: {
-    command: 'pnpm --filter @janus/web dev --hostname 127.0.0.1 --port 3100',
+    command:
+      'pnpm --filter @janus/web build && pnpm --filter @janus/web start --hostname 127.0.0.1 --port 3100',
+    env: {
+      JANUS_ENABLE_HTTPS_UPGRADE: 'false',
+      NEXT_TELEMETRY_DISABLED: '1',
+    },
     url: baseURL,
-    reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
+    reuseExistingServer: false,
+    timeout: 240_000,
   },
   projects: [
     {
@@ -41,6 +46,10 @@ export default defineConfig({
     {
       name: 'mobile-chromium',
       use: { ...devices['Pixel 7'] },
+    },
+    {
+      name: 'mobile-webkit',
+      use: { ...devices['iPhone 15'] },
     },
   ],
 });

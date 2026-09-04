@@ -4,22 +4,34 @@ import Link from 'next/link';
 import experiment from '../../../../../experiments/concordia/configs/experiment-matrix.json';
 import { InnerPage } from '../../components/InnerPage';
 
-export const metadata: Metadata = { title: 'Concordia experiment' };
+export const metadata: Metadata = {
+  title: 'Concordia deliberation experiment',
+  description:
+    'A bounded policy-council deliberation appendix—not a scientific simulation or forecast—that compares model-generated summaries with withheld Project Janus records.',
+  alternates: { canonical: '/research/concordia' },
+  openGraph: {
+    title: 'Concordia deliberation experiment · Janus Observatory',
+    description:
+      'An optional bounded-deliberation appendix with withheld targets, deterministic comparison, and explicit model-generated labels.',
+    url: '/research/concordia',
+  },
+};
 
 export default function ConcordiaExperimentPage() {
   return (
     <InnerPage
-      eyebrow="Research appendix · optional multi-agent experiment"
-      lede="A bounded, reproducible way to test agent-generated endpoints against—never instead of—the authored Janus scenario space."
-      title="Can agents reproduce any Janus dynamics?"
+      eyebrow="Research appendix · bounded multi-agent deliberation"
+      lede="This compares a bounded policy-council transcript with withheld Janus endpoints. It is not a physical, social, or scientific simulation, and it is not a forecast."
+      title="How does a bounded agent council compare with Janus endpoints?"
     >
       <section className="proseSection">
-        <h2>Experiment, not forecast</h2>
+        <h2>Deliberation only—not simulation or forecast</h2>
         <p>
-          The experiment runs one seeded policy-council job for each Janus scenario. Agents receive
-          only the source-backed Table 5 morphology context. Table 9 population, energy, and growth
-          endpoints stay hidden until a deterministic comparison step. A match would not validate
-          the model or assign probability to a scenario.
+          The roles exchange arguments in a bounded council. They do not execute a causal world
+          model, evolve physical state, or reproduce civilization dynamics. Each job receives only
+          the source-backed Table 5 morphology context; Table 9 population, energy, and growth
+          endpoints stay hidden until a deterministic comparison step. Any resemblance is a
+          model-generated comparison result—not model validation, a probability, or a Janus fact.
         </p>
       </section>
 
@@ -37,7 +49,7 @@ export default function ConcordiaExperimentPage() {
       </section>
 
       <section className="proseSection">
-        <h2>Ten reproducible jobs</h2>
+        <h2>Ten seeded job specifications</h2>
         <div className="concordiaRunGrid" aria-label="Concordia experiment seeds">
           {experiment.runs.map((run) => (
             <div key={run.targetScenarioId}>
@@ -47,9 +59,10 @@ export default function ConcordiaExperimentPage() {
           ))}
         </div>
         <p>
-          Each run is capped at {experiment.maxSteps} steps. Raw transcripts, model identity, source
-          allowlist, protocol version, seed, prompt hash, and transcript hash are written to ignored
-          local artifacts for audit.
+          Each job is capped at {experiment.maxSteps} council steps. The seed fixes local ordering,
+          but a remote language model may still produce different text. Raw transcripts, model
+          identity, source allowlist, protocol version, seed, prompt hash, and transcript hash are
+          written to ignored local artifacts for audit.
         </p>
       </section>
 
@@ -67,9 +80,10 @@ export default function ConcordiaExperimentPage() {
       </section>
 
       <aside className="pageNotice">
-        The pinned gdm-concordia 2.4.0 execution path has been exercised with a mocked
-        OpenAI-compatible provider. A paid live model run is intentionally not bundled as a
-        scientific result.
+        Deliberation boundary: this appendix has no deterministic physical transition model and
+        cannot simulate or forecast a civilization. The pinned gdm-concordia 2.4.0 path has only
+        been exercised with a mocked OpenAI-compatible provider; no paid live-model output is
+        bundled as scientific evidence.
       </aside>
 
       <Link className="inlineAction" href="/research">

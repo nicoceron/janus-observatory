@@ -4,6 +4,7 @@
   "entries": [
     {
       "id": "janus.paper.scenario-modeling",
+      "citationId": "JANUS-PAPER-01",
       "title": "Projections of Earth's Technosphere: Scenario Modeling, Worldbuilding, and Overview of Remotely Detectable Technosignatures",
       "version": "arXiv:2409.00067v3",
       "creators": ["Jacob Haqq-Misra", "George Profitiliotis", "Ravi Kopparapu"],
@@ -27,6 +28,7 @@
     },
     {
       "id": "janus.paper.luminosity-mass",
+      "citationId": "JANUS-PAPER-02",
       "title": "Projections of Earth's Technosphere: Luminosity and Mass as Limits to Growth",
       "version": "arXiv:2410.23420v4",
       "creators": ["Jacob Haqq-Misra", "George Profitiliotis", "Clément Vidal"],
@@ -50,6 +52,7 @@
     },
     {
       "id": "janus.paper.observing-strategies",
+      "citationId": "JANUS-PAPER-03",
       "title": "Projections of Earth's Technosphere: Strategies for Observing Technosignatures on Terrestrial Exoplanets",
       "version": "arXiv:2511.20329v2",
       "creators": ["Jacob Haqq-Misra", "Ravi K. Kopparapu", "George Profitiliotis"],
@@ -73,6 +76,7 @@
     },
     {
       "id": "janus.paper.governance-freedom",
+      "citationId": "JANUS-PAPER-04",
       "title": "Projections of Earth's Technosphere: Governance and Freedom in Space",
       "version": "journal-pdf-2026-01-11",
       "creators": ["Jacob Haqq-Misra", "George Profitiliotis"],
@@ -97,6 +101,7 @@
     },
     {
       "id": "janus.paper.collapse-recovery",
+      "citationId": "JANUS-PAPER-05",
       "title": "Projections of Earth's Technosphere: Civilization Collapse-Recovery Dynamics and Detectability",
       "version": "arXiv:2604.13774v1",
       "creators": ["Celia Blanco", "Jacob Haqq-Misra", "George Profitiliotis"],

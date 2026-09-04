@@ -1,0 +1,36 @@
+name: Source reproducibility
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '43 7 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-source-lock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.10.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.5.24'
+          enable-cache: true
+
+      - run: pnpm install --frozen-lockfile
+      - run: uv sync --project pipeline --extra dev --locked
+      - run: uv sync --project experiments/resilience-lab --locked
+      - name: Fetch locked inputs and reproduce generated data exactly
+        run: pnpm source:reproduce:strict
