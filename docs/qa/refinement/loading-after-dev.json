@@ -1,0 +1,464 @@
+{
+  "baseUrl": "http://localhost:3000/",
+  "scope": "Cold browser contexts; local network; unthrottled Apple Metal. Not physical-phone or field CWV.",
+  "results": [
+    {
+      "width": 1440,
+      "articleMs": 623,
+      "spatialMs": 1301,
+      "observerMs": 989,
+      "errors": [],
+      "resources": [
+        {
+          "name": "/_next/static/media/99e609270109b47d-s.p.40sczeszzbjw1.woff2",
+          "duration": 8,
+          "bytes": 10352
+        },
+        {
+          "name": "/_next/static/media/a343f882a40d2cc9-s.p.1sj6eobyi31rd.woff2",
+          "duration": 8,
+          "bytes": 24876
+        },
+        {
+          "name": "/_next/static/media/effe91970fc4db64-s.p.0oace-s_gkfks.woff2",
+          "duration": 8,
+          "bytes": 10360
+        },
+        {
+          "name": "/assets/planets/earth-portrait-v1.webp",
+          "duration": 8,
+          "bytes": 110498
+        },
+        {
+          "name": "/_next/image",
+          "duration": 9,
+          "bytes": 30794
+        },
+        {
+          "name": "/_next/static/chunks/apps_web_app_story_1llxeip._.css",
+          "duration": 9,
+          "bytes": 4915
+        },
+        {
+          "name": "/_next/static/chunks/apps_web_app_status_module_09i-5oi.css",
+          "duration": 9,
+          "bytes": 1332
+        },
+        {
+          "name": "/_next/static/chunks/%5Broot-of-the-server%5D__09owbry._.css",
+          "duration": 12,
+          "bytes": 27785
+        },
+        {
+          "name": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0linzpd._.js",
+          "duration": 10,
+          "bytes": 894
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_compiled_react-server-dom-turbopack_0dyneok._.js",
+          "duration": 15,
+          "bytes": 32883
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_compiled_02x0dxb._.js",
+          "duration": 15,
+          "bytes": 27675
+        },
+        {
+          "name": "/_next/static/chunks/apps_web_1anvha4._.js",
+          "duration": 20,
+          "bytes": 1078
+        },
+        {
+          "name": "/_next/static/chunks/0vvp_%40swc_helpers_cjs_0vb02wp._.js",
+          "duration": 20,
+          "bytes": 1057
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_0tdy0of._.js",
+          "duration": 21,
+          "bytes": 34101
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_compiled_next-devtools_index_13wjcir.js",
+          "duration": 33,
+          "bytes": 249573
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_compiled_react-dom_0skop0q._.js",
+          "duration": 33,
+          "bytes": 185734
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_client_1x1ortp._.js",
+          "duration": 38,
+          "bytes": 197468
+        },
+        {
+          "name": "/_next/static/chunks/apps_web_219uq1s._.js",
+          "duration": 24,
+          "bytes": 842
+        },
+        {
+          "name": "/_next/static/chunks/turbopack-apps_web_1g2v3ab._.js",
+          "duration": 25,
+          "bytes": 26531
+        },
+        {
+          "name": "/_next/static/chunks/_1mhco2f._.js",
+          "duration": 27,
+          "bytes": 11272
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_0rjq9kt._.js",
+          "duration": 28,
+          "bytes": 15411
+        },
+        {
+          "name": "/_next/static/chunks/_1axiis-._.js",
+          "duration": 29,
+          "bytes": 10998
+        },
+        {
+          "name": "/_next/static/chunks/_0sa80gv._.js",
+          "duration": 30,
+          "bytes": 885
+        },
+        {
+          "name": "/_next/static/chunks/apps_web_app_1-9cyk4._.js",
+          "duration": 35,
+          "bytes": 1989
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_1xxvai2._.js",
+          "duration": 36,
+          "bytes": 39648
+        },
+        {
+          "name": "/_next/static/chunks/_03i_ccq._.js",
+          "duration": 38,
+          "bytes": 60251
+        },
+        {
+          "name": "/_next/static/chunks/1a7c_zod_v4_0_p_dem._.js",
+          "duration": 42,
+          "bytes": 103128
+        },
+        {
+          "name": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsay._.js",
+          "duration": 2,
+          "bytes": 4187
+        },
+        {
+          "name": "/_next/static/chunks/apps_web_app_components_HeroSplineLayer_tsx_03lej_q._.js",
+          "duration": 2,
+          "bytes": 4162
+        },
+        {
+          "name": "/_next/static/chunks/_0pyhkjs._.js",
+          "duration": 6,
+          "bytes": 31091
+        },
+        {
+          "name": "/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+          "duration": 31,
+          "bytes": 290471
+        },
+        {
+          "name": "/_next/static/chunks/0hqc_three_build_three_module_1dkmpyc.js",
+          "duration": 4,
+          "bytes": 4947
+        },
+        {
+          "name": "/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+          "duration": 17,
+          "bytes": 132644
+        },
+        {
+          "name": "/_next/static/chunks/0hqc_three_examples_jsm_utils_SkeletonUtils_1p0lui5.js",
+          "duration": 3,
+          "bytes": 3486
+        },
+        {
+          "name": "/_next/static/chunks/1rvs_%40react-three_fiber_dist_1aghc1-._.js",
+          "duration": 19,
+          "bytes": 156950
+        },
+        {
+          "name": "/_next/static/chunks/07_-_three-stdlib_0rz5n7e._.js",
+          "duration": 10,
+          "bytes": 36369
+        },
+        {
+          "name": "/_next/static/chunks/06zz_gsap_1_v-lh7._.js",
+          "duration": 12,
+          "bytes": 69922
+        },
+        {
+          "name": "/_next/static/chunks/node_modules__pnpm_07pd3d2._.js",
+          "duration": 9,
+          "bytes": 11221
+        },
+        {
+          "name": "/_next/static/chunks/06zz_gsap_15zm3lx._.js",
+          "duration": 7,
+          "bytes": 70201
+        },
+        {
+          "name": "/assets/planets/earth-day-2048.webp",
+          "duration": 3,
+          "bytes": 206312
+        },
+        {
+          "name": "/assets/planets/earth-night-2048.webp",
+          "duration": 3,
+          "bytes": 105486
+        },
+        {
+          "name": "/assets/planets/earth-bump-roughness-clouds-2048.webp",
+          "duration": 3,
+          "bytes": 603916
+        },
+        {
+          "name": "/assets/observer/janus-cinematic-observer-v2.webp",
+          "duration": 2,
+          "bytes": 23280
+        },
+        {
+          "name": "/assets/models/janus-observatory-v2.glb",
+          "duration": 17,
+          "bytes": 499161
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "articleMs": 558,
+      "spatialMs": 1210,
+      "observerMs": 417,
+      "errors": [],
+      "resources": [
+        {
+          "name": "/_next/static/media/99e609270109b47d-s.p.40sczeszzbjw1.woff2",
+          "duration": 4,
+          "bytes": 10352
+        },
+        {
+          "name": "/_next/static/media/effe91970fc4db64-s.p.0oace-s_gkfks.woff2",
+          "duration": 4,
+          "bytes": 10360
+        },
+        {
+          "name": "/_next/static/media/a343f882a40d2cc9-s.p.1sj6eobyi31rd.woff2",
+          "duration": 3,
+          "bytes": 24876
+        },
+        {
+          "name": "/assets/planets/earth-portrait-v1.webp",
+          "duration": 7,
+          "bytes": 110498
+        },
+        {
+          "name": "/_next/static/chunks/apps_web_app_status_module_09i-5oi.css",
+          "duration": 6,
+          "bytes": 1332
+        },
+        {
+          "name": "/_next/static/chunks/apps_web_app_story_1llxeip._.css",
+          "duration": 6,
+          "bytes": 4915
+        },
+        {
+          "name": "/_next/image",
+          "duration": 7,
+          "bytes": 9752
+        },
+        {
+          "name": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0linzpd._.js",
+          "duration": 6,
+          "bytes": 894
+        },
+        {
+          "name": "/_next/static/chunks/%5Broot-of-the-server%5D__09owbry._.css",
+          "duration": 10,
+          "bytes": 27785
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_compiled_02x0dxb._.js",
+          "duration": 12,
+          "bytes": 27675
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_compiled_react-server-dom-turbopack_0dyneok._.js",
+          "duration": 13,
+          "bytes": 32883
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_compiled_react-dom_0skop0q._.js",
+          "duration": 36,
+          "bytes": 185734
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_compiled_next-devtools_index_13wjcir.js",
+          "duration": 38,
+          "bytes": 249573
+        },
+        {
+          "name": "/_next/static/chunks/0vvp_%40swc_helpers_cjs_0vb02wp._.js",
+          "duration": 16,
+          "bytes": 1057
+        },
+        {
+          "name": "/_next/static/chunks/apps_web_1anvha4._.js",
+          "duration": 16,
+          "bytes": 1078
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_0tdy0of._.js",
+          "duration": 18,
+          "bytes": 34101
+        },
+        {
+          "name": "/_next/static/chunks/apps_web_219uq1s._.js",
+          "duration": 20,
+          "bytes": 842
+        },
+        {
+          "name": "/_next/static/chunks/turbopack-apps_web_1g2v3ab._.js",
+          "duration": 22,
+          "bytes": 26531
+        },
+        {
+          "name": "/_next/static/chunks/_1mhco2f._.js",
+          "duration": 23,
+          "bytes": 11272
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_0rjq9kt._.js",
+          "duration": 24,
+          "bytes": 15411
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_dist_client_1x1ortp._.js",
+          "duration": 37,
+          "bytes": 197468
+        },
+        {
+          "name": "/_next/static/chunks/_1axiis-._.js",
+          "duration": 26,
+          "bytes": 10998
+        },
+        {
+          "name": "/_next/static/chunks/_0sa80gv._.js",
+          "duration": 26,
+          "bytes": 885
+        },
+        {
+          "name": "/_next/static/chunks/20xk_next_1xxvai2._.js",
+          "duration": 31,
+          "bytes": 39648
+        },
+        {
+          "name": "/_next/static/chunks/apps_web_app_1-9cyk4._.js",
+          "duration": 34,
+          "bytes": 1989
+        },
+        {
+          "name": "/_next/static/chunks/_03i_ccq._.js",
+          "duration": 36,
+          "bytes": 60251
+        },
+        {
+          "name": "/_next/static/chunks/1a7c_zod_v4_0_p_dem._.js",
+          "duration": 42,
+          "bytes": 103128
+        },
+        {
+          "name": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsay._.js",
+          "duration": 2,
+          "bytes": 4187
+        },
+        {
+          "name": "/_next/static/chunks/apps_web_app_components_HeroSplineLayer_tsx_03lej_q._.js",
+          "duration": 2,
+          "bytes": 4162
+        },
+        {
+          "name": "/_next/static/chunks/_0pyhkjs._.js",
+          "duration": 12,
+          "bytes": 31091
+        },
+        {
+          "name": "/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+          "duration": 42,
+          "bytes": 290471
+        },
+        {
+          "name": "/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+          "duration": 26,
+          "bytes": 132644
+        },
+        {
+          "name": "/_next/static/chunks/0hqc_three_examples_jsm_utils_SkeletonUtils_1p0lui5.js",
+          "duration": 4,
+          "bytes": 3486
+        },
+        {
+          "name": "/_next/static/chunks/0hqc_three_build_three_module_1dkmpyc.js",
+          "duration": 7,
+          "bytes": 4947
+        },
+        {
+          "name": "/_next/static/chunks/06zz_gsap_1_v-lh7._.js",
+          "duration": 19,
+          "bytes": 69922
+        },
+        {
+          "name": "/_next/static/chunks/1rvs_%40react-three_fiber_dist_1aghc1-._.js",
+          "duration": 28,
+          "bytes": 156950
+        },
+        {
+          "name": "/_next/static/chunks/07_-_three-stdlib_0rz5n7e._.js",
+          "duration": 18,
+          "bytes": 36369
+        },
+        {
+          "name": "/_next/static/chunks/node_modules__pnpm_07pd3d2._.js",
+          "duration": 17,
+          "bytes": 11221
+        },
+        {
+          "name": "/_next/static/chunks/06zz_gsap_15zm3lx._.js",
+          "duration": 16,
+          "bytes": 70201
+        },
+        {
+          "name": "/assets/planets/earth-day-1024.webp",
+          "duration": 3,
+          "bytes": 61510
+        },
+        {
+          "name": "/assets/planets/earth-night-1024.webp",
+          "duration": 3,
+          "bytes": 28680
+        },
+        {
+          "name": "/assets/planets/earth-bump-roughness-clouds-1024.webp",
+          "duration": 3,
+          "bytes": 191408
+        },
+        {
+          "name": "/assets/observer/janus-cinematic-observer-portrait-v2.webp",
+          "duration": 2,
+          "bytes": 17768
+        },
+        {
+          "name": "/assets/models/janus-observatory-v2.glb",
+          "duration": 16,
+          "bytes": 499161
+        }
+      ]
+    }
+  ]
+}

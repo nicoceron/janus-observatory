@@ -1,0 +1,39 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "docs/qa/refinement/observer/observer-001.png",
+    "docs/qa/refinement/observer/observer-045.png",
+    "docs/qa/refinement/observer/observer-082.png",
+    "docs/qa/refinement/observer/observer-120.png",
+    "docs/qa/refinement/observer/observer-150.png",
+    "docs/qa/refinement/observer/observer-180.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "observer-001.png",
+      "to": "observer-045.png",
+      "mean_rgb_diff": 3.0072218750000004
+    },
+    {
+      "from": "observer-045.png",
+      "to": "observer-082.png",
+      "mean_rgb_diff": 18.17235972222222
+    },
+    {
+      "from": "observer-082.png",
+      "to": "observer-120.png",
+      "mean_rgb_diff": 28.357563541666668
+    },
+    {
+      "from": "observer-120.png",
+      "to": "observer-150.png",
+      "mean_rgb_diff": 45.85177013888889
+    },
+    {
+      "from": "observer-150.png",
+      "to": "observer-180.png",
+      "mean_rgb_diff": 31.207381249999997
+    }
+  ],
+  "warnings": ["High frame-to-frame visual jump: 45.85"]
+}

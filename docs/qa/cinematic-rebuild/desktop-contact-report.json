@@ -1,0 +1,189 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "docs/qa/cinematic-rebuild/browser/desktop-01.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-02.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-03.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-04.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-05.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-06.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-07.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-08.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-09.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-10.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-11.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-12.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-13.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-14.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-15.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-16.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-17.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-18.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-19.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-20.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-21.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-22.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-23.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-24.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-25.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-26.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-27.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-28.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-29.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-30.png",
+    "docs/qa/cinematic-rebuild/browser/desktop-31.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "desktop-01.png",
+      "to": "desktop-02.png",
+      "mean_rgb_diff": 10.665803755144033
+    },
+    {
+      "from": "desktop-02.png",
+      "to": "desktop-03.png",
+      "mean_rgb_diff": 2.2688960905349798
+    },
+    {
+      "from": "desktop-03.png",
+      "to": "desktop-04.png",
+      "mean_rgb_diff": 11.106006172839505
+    },
+    {
+      "from": "desktop-04.png",
+      "to": "desktop-05.png",
+      "mean_rgb_diff": 2.2149158950617283
+    },
+    {
+      "from": "desktop-05.png",
+      "to": "desktop-06.png",
+      "mean_rgb_diff": 10.483065843621398
+    },
+    {
+      "from": "desktop-06.png",
+      "to": "desktop-07.png",
+      "mean_rgb_diff": 9.159030092592593
+    },
+    {
+      "from": "desktop-07.png",
+      "to": "desktop-08.png",
+      "mean_rgb_diff": 1.4617337962962962
+    },
+    {
+      "from": "desktop-08.png",
+      "to": "desktop-09.png",
+      "mean_rgb_diff": 1.6286183127572016
+    },
+    {
+      "from": "desktop-09.png",
+      "to": "desktop-10.png",
+      "mean_rgb_diff": 3.439846965020576
+    },
+    {
+      "from": "desktop-10.png",
+      "to": "desktop-11.png",
+      "mean_rgb_diff": 2.9961553497942384
+    },
+    {
+      "from": "desktop-11.png",
+      "to": "desktop-12.png",
+      "mean_rgb_diff": 1.3788325617283952
+    },
+    {
+      "from": "desktop-12.png",
+      "to": "desktop-13.png",
+      "mean_rgb_diff": 1.4527232510288066
+    },
+    {
+      "from": "desktop-13.png",
+      "to": "desktop-14.png",
+      "mean_rgb_diff": 15.090897890946502
+    },
+    {
+      "from": "desktop-14.png",
+      "to": "desktop-15.png",
+      "mean_rgb_diff": 14.637881430041153
+    },
+    {
+      "from": "desktop-15.png",
+      "to": "desktop-16.png",
+      "mean_rgb_diff": 3.804543724279835
+    },
+    {
+      "from": "desktop-16.png",
+      "to": "desktop-17.png",
+      "mean_rgb_diff": 1.7565241769547324
+    },
+    {
+      "from": "desktop-17.png",
+      "to": "desktop-18.png",
+      "mean_rgb_diff": 2.6403698559670783
+    },
+    {
+      "from": "desktop-18.png",
+      "to": "desktop-19.png",
+      "mean_rgb_diff": 0.5527880658436214
+    },
+    {
+      "from": "desktop-19.png",
+      "to": "desktop-20.png",
+      "mean_rgb_diff": 3.4123765432098767
+    },
+    {
+      "from": "desktop-20.png",
+      "to": "desktop-21.png",
+      "mean_rgb_diff": 1.492448559670782
+    },
+    {
+      "from": "desktop-21.png",
+      "to": "desktop-22.png",
+      "mean_rgb_diff": 1.3264817386831276
+    },
+    {
+      "from": "desktop-22.png",
+      "to": "desktop-23.png",
+      "mean_rgb_diff": 0.6544758230452675
+    },
+    {
+      "from": "desktop-23.png",
+      "to": "desktop-24.png",
+      "mean_rgb_diff": 1.395934156378601
+    },
+    {
+      "from": "desktop-24.png",
+      "to": "desktop-25.png",
+      "mean_rgb_diff": 1.5725871913580247
+    },
+    {
+      "from": "desktop-25.png",
+      "to": "desktop-26.png",
+      "mean_rgb_diff": 1.5997245370370372
+    },
+    {
+      "from": "desktop-26.png",
+      "to": "desktop-27.png",
+      "mean_rgb_diff": 12.349360339506172
+    },
+    {
+      "from": "desktop-27.png",
+      "to": "desktop-28.png",
+      "mean_rgb_diff": 11.725599794238683
+    },
+    {
+      "from": "desktop-28.png",
+      "to": "desktop-29.png",
+      "mean_rgb_diff": 10.954879372427984
+    },
+    {
+      "from": "desktop-29.png",
+      "to": "desktop-30.png",
+      "mean_rgb_diff": 10.25836702674897
+    },
+    {
+      "from": "desktop-30.png",
+      "to": "desktop-31.png",
+      "mean_rgb_diff": 10.932437757201646
+    }
+  ],
+  "warnings": []
+}

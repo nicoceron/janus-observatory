@@ -9,3 +9,10 @@ data/generated/
 
 # The resilience lab is a separately validated experiment with its own formatting/toolchain.
 experiments/resilience-lab/
+
+# Authored/generated review artifacts; their generators preserve deterministic layout.
+assets/sources/janus-cinematic/shot-metadata.json
+assets/sources/janus-cinematic/shot-metadata-v2.json
+docs/qa/cinematic-rebuild/*-report.json
+docs/qa/cinematic-rebuild/browser/
+media/cinematic-review/public/review/

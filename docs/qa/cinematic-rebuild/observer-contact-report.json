@@ -1,0 +1,39 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "docs/qa/cinematic-rebuild/observer/observer-001.png",
+    "docs/qa/cinematic-rebuild/observer/observer-045.png",
+    "docs/qa/cinematic-rebuild/observer/observer-082.png",
+    "docs/qa/cinematic-rebuild/observer/observer-120.png",
+    "docs/qa/cinematic-rebuild/observer/observer-150.png",
+    "docs/qa/cinematic-rebuild/observer/observer-180.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "observer-001.png",
+      "to": "observer-045.png",
+      "mean_rgb_diff": 1.2611489583333333
+    },
+    {
+      "from": "observer-045.png",
+      "to": "observer-082.png",
+      "mean_rgb_diff": 3.820119444444444
+    },
+    {
+      "from": "observer-082.png",
+      "to": "observer-120.png",
+      "mean_rgb_diff": 12.679375694444445
+    },
+    {
+      "from": "observer-120.png",
+      "to": "observer-150.png",
+      "mean_rgb_diff": 22.160546180555556
+    },
+    {
+      "from": "observer-150.png",
+      "to": "observer-180.png",
+      "mean_rgb_diff": 21.114788541666666
+    }
+  ],
+  "warnings": []
+}

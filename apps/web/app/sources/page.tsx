@@ -131,18 +131,18 @@ export default function SourcesPage() {
             Spline runtime is not embedded. The persistent spatial globe uses Solar System Scope
             Earth textures, licensed CC BY 4.0 and pinned through the Three.js WebGPU TSL Earth
             example; Janus Observatory supplies the documented responsive derivatives. A separate
-            NASA 3D Resources Earth derivative appears only as the static/deferred poster path, with
-            NASA credit and no endorsement implied. Scenario surfaces and orbital structures are
-            original interpretive geometry. The animated observer combines Ndevisuals&apos; “Cute
-            Alien Character” under CC BY 4.0 with Usman Ahmed Gill&apos;s “Telescope” under the Fab
-            Standard License. Janus Observatory adds the Blender performance rig, telescope-viewing
-            animation, staging, and web optimization. Ten original, model-generated scenario
-            portraits provide the observing sequence&apos;s cinematic world imagery. They are
-            explicitly interpretive and do not encode scientific values. Atmospheric fingerprints
-            and instrument results beside them are rendered from the canonical Table 1 and
-            structured Figure 6 transcriptions—never from screenshots or digitized plot pixels. The
-            fictional observer scene and scenario portraits are not NASA mission renders or Project
-            Janus research artifacts.
+            Blender-rendered Earth poster uses the same admitted maps. The current observer,
+            telescope, architecture, and stellar cutaway are original Blender-authored fictional
+            geometry, with code assistance from OpenAI Codex. Moon, Mars, and Venus reference maps
+            are by Solar System Scope / INOVE, CC BY 4.0, based on NASA imagery and elevation data;
+            Janus downsampled and converted them to WebP. The provider notes enhanced colors and
+            fictional infill in unmapped regions. These maps are not future surfaces or instrument
+            images. Older character, telescope, and generated-portrait assets retain their separate
+            credits in the ledger but do not replace the current story renderer. Atmospheric
+            fingerprints and instrument results beside them are rendered from the canonical Table 1
+            and structured Figure 6 transcriptions—never from screenshots or digitized plot pixels.
+            The fictional observer scene and scenario portraits are not NASA mission renders or
+            Project Janus research artifacts.
           </p>
           <p>
             The newer observer poster is also model-generated interpretive concept art. Its alien,

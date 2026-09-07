@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "reviewedAt": "2026-08-30T05:03:39.600Z",
+  "reviewedAt": "2026-09-05T05:00:00Z",
   "entries": [
     {
       "id": "janus.artifact.s3.2.3",
@@ -1193,6 +1193,499 @@
       "notes": [
         "Interpretive observer prop; it is not a Project Janus research artifact, HWO design, LIFE design, or validated scientific instrument model.",
         "The source telescope is incorporated into the combined Janus Observatory scene and is not offered as a standalone asset."
+      ]
+    },
+    {
+      "creator": "Janus Observatory; authored with Blender and OpenAI Codex",
+      "scenarioId": null,
+      "artifactId": null,
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "Original cinematic scene v1, Blender 5.2.1 LTS, 2026-09-04",
+      "retrievedAt": "2026-09-04",
+      "license": "Project-authored original asset, created at the user's request",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Fictional observer, telescope, and architecture authored for Janus Observatory with Blender; code-assisted by OpenAI Codex.",
+      "aiAssistanceDisclosure": "AI-assisted procedural modeling, rigging, material authoring, camera choreography, and export code. Fictional interpretation, not research data, a real extraterrestrial, or a validated scientific instrument.",
+      "allowedTransformations": [
+        "rigging",
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "web optimization",
+        "format conversion",
+        "image optimization",
+        "responsive rendering"
+      ],
+      "appliedTransformations": ["rigging", "animation", "material tuning", "web optimization"],
+      "maxDisplaySize": null,
+      "notes": [
+        "The source contains no third-party character, telescope, or architecture meshes.",
+        "Scientific content remains canonical DOM data; the staging encodes no probabilities, geographic evidence, instrument measurements, or exact physical scale.",
+        "Final tailoring pass widens shoulder continuity, smooths garment curvature, and reduces cranial ridge amplitude; animation/contact/camera tracks remain jointly authored."
+      ],
+      "id": "janus.original.observatory.v1",
+      "title": "Original Janus observer and observatory rig",
+      "kind": "model",
+      "sourceChecksum": "sha256:98f845939862a25867af4007613e03f3de7eea7144351b1069471b8c0ae9673a",
+      "derivativeChecksum": "sha256:2608107cca653bf0ce9db138095d832e56bae8dccfe37d6bf77caca86eac2386",
+      "derivativePublicPath": "/assets/models/janus-observatory-v1.glb",
+      "transformations": [
+        "Authored original scene and ten-bone rig with deterministic build_observatory.py; exported a six-second 30 fps glTF scene action. The render-only Earth is excluded from this GLB.",
+        "Uncompressed export sha256:be3648c4c7d662a8b28db9a728e46d7ec0d3e1c6c366a704224fa9306ee84e5c. Rebuilt tangents with glTF-Transform 4.5.0 MikkTSpace; Meshopt encoded using 16-bit positions and 12-bit normals/weights. No geometry simplification."
+      ]
+    },
+    {
+      "creator": "Janus Observatory; authored with Blender and OpenAI Codex",
+      "scenarioId": null,
+      "artifactId": null,
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "Original cinematic scene v1, Blender 5.2.1 LTS, 2026-09-04",
+      "retrievedAt": "2026-09-04",
+      "license": "Project-original scene; included Earth texture licensed CC BY 4.0",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Fictional observer, telescope, and architecture authored for Janus Observatory with Blender; code-assisted by OpenAI Codex. Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example.",
+      "aiAssistanceDisclosure": "AI-assisted procedural modeling, rigging, material authoring, camera choreography, and export code. Fictional interpretation, not research data, a real extraterrestrial, or a validated scientific instrument.",
+      "allowedTransformations": [
+        "rigging",
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "web optimization",
+        "format conversion",
+        "image optimization",
+        "responsive rendering"
+      ],
+      "appliedTransformations": ["responsive rendering", "format conversion", "image optimization"],
+      "maxDisplaySize": {
+        "widthPx": 1200,
+        "heightPx": 800
+      },
+      "notes": [
+        "The source contains no third-party character, telescope, or architecture meshes.",
+        "Scientific content remains canonical DOM data; the staging encodes no probabilities, geographic evidence, instrument measurements, or exact physical scale.",
+        "Earth source URL https://threejs.org/examples/webgpu_tsl_earth.html; three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9. CC BY 4.0 credit remains required for the texture in this composite."
+      ],
+      "id": "janus.original.observatory-desktop.poster.v1",
+      "title": "Janus authored observer desktop fallback",
+      "kind": "image",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sourceChecksum": "sha256:9449dcfe33a1a12dec4ec9e0d66e7fd9b11fc5fefb79ce390f78ae2b14257778",
+      "derivativeChecksum": "sha256:78fe4cc629350d9bf5312e25727eab3325b5f05392f60e63eab46ca6dfa93545",
+      "derivativePublicPath": "/assets/observer/janus-cinematic-observer-v1.webp",
+      "transformations": [
+        "Rendered the original fictional Blender scene with its authored camera; render-only Earth uses admitted solarsystemscope.texture.earth-day-threejs (sha256:cd7712d3e891425d9948ea5ac18d3bb1e7e834ea038188587897e689a7b35d0f).",
+        "Converted retained PNG to WebP using cwebp quality 86 method 6."
+      ]
+    },
+    {
+      "creator": "Janus Observatory; authored with Blender and OpenAI Codex",
+      "scenarioId": null,
+      "artifactId": null,
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "Original cinematic scene v1, Blender 5.2.1 LTS, 2026-09-04",
+      "retrievedAt": "2026-09-04",
+      "license": "Project-original scene; included Earth texture licensed CC BY 4.0",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Fictional observer, telescope, and architecture authored for Janus Observatory with Blender; code-assisted by OpenAI Codex. Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example.",
+      "aiAssistanceDisclosure": "AI-assisted procedural modeling, rigging, material authoring, camera choreography, and export code. Fictional interpretation, not research data, a real extraterrestrial, or a validated scientific instrument.",
+      "allowedTransformations": [
+        "rigging",
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "web optimization",
+        "format conversion",
+        "image optimization",
+        "responsive rendering"
+      ],
+      "appliedTransformations": ["responsive rendering", "format conversion", "image optimization"],
+      "maxDisplaySize": {
+        "widthPx": 600,
+        "heightPx": 900
+      },
+      "notes": [
+        "The source contains no third-party character, telescope, or architecture meshes.",
+        "Scientific content remains canonical DOM data; the staging encodes no probabilities, geographic evidence, instrument measurements, or exact physical scale.",
+        "Earth source URL https://threejs.org/examples/webgpu_tsl_earth.html; three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9. CC BY 4.0 credit remains required for the texture in this composite."
+      ],
+      "id": "janus.original.observatory-portrait.poster.v1",
+      "title": "Janus authored observer portrait fallback",
+      "kind": "image",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sourceChecksum": "sha256:bd404cf6d35238f922c6c86dba831c718ca4938d47d478c0a3f1c2ac0ac3961c",
+      "derivativeChecksum": "sha256:40f42fc35c5e0c9b14b2f9474d9aa7654e38249aad87c169fb88748fec21db08",
+      "derivativePublicPath": "/assets/observer/janus-cinematic-observer-portrait-v1.webp",
+      "transformations": [
+        "Rendered the original fictional Blender scene with its authored camera; render-only Earth uses admitted solarsystemscope.texture.earth-day-threejs (sha256:cd7712d3e891425d9948ea5ac18d3bb1e7e834ea038188587897e689a7b35d0f).",
+        "Converted retained PNG to WebP using cwebp quality 86 method 6."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.earth-cinematic-poster.v1",
+      "title": "Earth globe — authored transparent fallback render",
+      "creator": "Solar System Scope; resized and merged by Three.js example contributors",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://threejs.org/examples/webgpu_tsl_earth.html",
+      "sourceAgency": "Three.js project / Solar System Scope",
+      "directFileUrls": [
+        "https://raw.githubusercontent.com/mrdoob/three.js/2431a09f46f34c560bc8e44b33be0e567723d5b9/examples/textures/planets/earth_day_4096.jpg"
+      ],
+      "sourceVersion": "three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9",
+      "retrievedAt": "2026-09-04",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example.",
+      "aiAssistanceDisclosure": "OpenAI Codex assisted the Blender render script. Geographic source textures are not AI-generated.",
+      "allowedTransformations": [
+        "responsive rendering",
+        "format conversion",
+        "image optimization",
+        "material tuning"
+      ],
+      "appliedTransformations": [
+        "responsive rendering",
+        "format conversion",
+        "image optimization",
+        "material tuning"
+      ],
+      "sourceChecksum": "sha256:cd7712d3e891425d9948ea5ac18d3bb1e7e834ea038188587897e689a7b35d0f",
+      "derivativeChecksum": "sha256:206db5ac5163083b8fa8a8a5fe998035017295ce24b6116b9f5e03b9c5562f48",
+      "derivativePublicPath": "/assets/planets/earth-portrait-v1.webp",
+      "maxDisplaySize": {
+        "widthPx": 1200,
+        "heightPx": 1200
+      },
+      "transformations": [
+        "Rendered the admitted day texture and the separately admitted bump/roughness/clouds map onto a sphere in Blender 5.2.1 LTS using build_earth_poster.py. Combined map sha256:0796f4211c209d1afe9e26a06a283cdc21434430a780a25457b2417568a8591e.",
+        "Original transparent PNG sha256:10f4ddc71fe83d1056db3f1d00e0af8536822fc5c92c37ee92682c77a67a8b50 retained beside the build script. Converted with cwebp quality 86 method 6."
+      ],
+      "notes": [
+        "Same CC BY 4.0 texture attribution as the runtime globe. Illustrative present-day Earth, not a future-world map or synthetic measurement."
+      ]
+    },
+    {
+      "creator": "Janus Observatory; authored with Blender and OpenAI Codex",
+      "scenarioId": "S9",
+      "artifactId": null,
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "Original cinematic scene v1, Blender 5.2.1 LTS, 2026-09-04",
+      "retrievedAt": "2026-09-04",
+      "license": "Project-authored original asset, created at the user's request",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Original fictional stellar cutaway authored for Janus Observatory with Blender; code-assisted by OpenAI Codex.",
+      "aiAssistanceDisclosure": "AI-assisted procedural modeling, rigging, material authoring, camera choreography, and export code. Fictional interpretation, not research data, a real extraterrestrial, or a validated scientific instrument.",
+      "allowedTransformations": [
+        "rigging",
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "web optimization",
+        "format conversion",
+        "image optimization",
+        "responsive rendering"
+      ],
+      "appliedTransformations": ["material tuning", "web optimization"],
+      "maxDisplaySize": null,
+      "notes": [
+        "Only present in scenario staging when the canonical Table 7 field dyson_sphere is listed. Never shown as an ocular/instrument measurement.",
+        "The design is original fiction, not engineering documentation or a claim about detectability."
+      ],
+      "id": "janus.original.s9-system-cutaway.v1",
+      "title": "S9 illustrative stellar structure cutaway",
+      "kind": "model",
+      "sourceChecksum": "sha256:2f8b293a7a15ecdbaa084fd28ef8cb1051e03c6374f8506a5afb60431506b886",
+      "derivativeChecksum": "sha256:b1fc031c6dd23532467f6fc4de32f1af5c6c146c833c893ce242f19c29f4ed75",
+      "derivativePublicPath": "/assets/models/s9-system-cutaway-v1.glb",
+      "transformations": [
+        "Authored curved, machined collector panels with build_system.py. Geometry is an editorial cutaway around a star, explicitly separate from Earth; no panel count or scale is scientific data.",
+        "Exported raw GLB sha256:d1b7fff82187c721138680cbd2d79b50efe58694eb7027211d9926bc12570413 and Meshopt compressed with glTF-Transform 4.5.0 and 16-bit positions."
+      ]
+    },
+    {
+      "creator": "Janus Observatory; authored with Blender and OpenAI Codex",
+      "scenarioId": null,
+      "artifactId": null,
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "Original cinematic scene v2, Blender 5.2.1 LTS, 2026-09-05",
+      "retrievedAt": "2026-09-05",
+      "license": "Project-authored original asset, created at the user's request",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Fictional observer, telescope, and architecture authored for Janus Observatory with Blender; code-assisted by OpenAI Codex.",
+      "aiAssistanceDisclosure": "AI-assisted procedural modeling, rigging, material authoring, camera choreography, and export code. Fictional interpretation, not research data, a real extraterrestrial, or a validated scientific instrument.",
+      "allowedTransformations": [
+        "rigging",
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "web optimization",
+        "format conversion",
+        "image optimization",
+        "responsive rendering"
+      ],
+      "appliedTransformations": ["rigging", "animation", "material tuning", "web optimization"],
+      "maxDisplaySize": null,
+      "notes": [
+        "The source contains no third-party character, telescope, or architecture meshes.",
+        "Scientific content remains canonical DOM data; the staging encodes no probabilities, geographic evidence, instrument measurements, or exact physical scale.",
+        "Final tailoring pass widens shoulder continuity, smooths garment curvature, and reduces cranial ridge amplitude; animation/contact/camera tracks remain jointly authored."
+      ],
+      "id": "janus.original.observatory.v2",
+      "title": "Original Janus observer and observatory rig — face-first revision",
+      "kind": "model",
+      "sourceChecksum": "sha256:8408414028b64c3c175d36f3abd0a396fd4f1ef93f340da961da38648cccb293",
+      "derivativeChecksum": "sha256:e12c5307756bf561f755b411e0397805f97d6da8ea85b3076ba2463973f55c2c",
+      "derivativePublicPath": "/assets/models/janus-observatory-v2.glb",
+      "transformations": [
+        "Authored v2 using assets/sources/janus-cinematic/build_observatory.py; large slanted eyes, integrated tapered cranium, lean limbs and four digits; face-first camera and reduced garment topology.",
+        "Blender 5.2.1 glTF export; glTF-Transform 4.5.0 tangents then meshopt --quantize-position 16. Source Blend and intermediate exports retained."
+      ]
+    },
+    {
+      "creator": "Janus Observatory; authored with Blender and OpenAI Codex",
+      "scenarioId": null,
+      "artifactId": null,
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "Original cinematic scene v2, Blender 5.2.1 LTS, 2026-09-05",
+      "retrievedAt": "2026-09-05",
+      "license": "Project-original scene; included Earth texture licensed CC BY 4.0",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Fictional observer, telescope, and architecture authored for Janus Observatory with Blender; code-assisted by OpenAI Codex. Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example.",
+      "aiAssistanceDisclosure": "AI-assisted procedural modeling, rigging, material authoring, camera choreography, and export code. Fictional interpretation, not research data, a real extraterrestrial, or a validated scientific instrument.",
+      "allowedTransformations": [
+        "rigging",
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "web optimization",
+        "format conversion",
+        "image optimization",
+        "responsive rendering"
+      ],
+      "appliedTransformations": ["responsive rendering", "format conversion", "image optimization"],
+      "maxDisplaySize": {
+        "widthPx": 1200,
+        "heightPx": 800
+      },
+      "notes": [
+        "The source contains no third-party character, telescope, or architecture meshes.",
+        "Scientific content remains canonical DOM data; the staging encodes no probabilities, geographic evidence, instrument measurements, or exact physical scale.",
+        "Earth source URL https://threejs.org/examples/webgpu_tsl_earth.html; three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9. CC BY 4.0 credit remains required for the texture in this composite."
+      ],
+      "id": "janus.original.observatory-desktop.poster.v2",
+      "title": "Janus authored observer desktop fallback — face-first revision",
+      "kind": "image",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sourceChecksum": "sha256:5746184675e201895007968f1b91f4f0cb9150c51830d6b90c55d2b99db0cef3",
+      "derivativeChecksum": "sha256:ed0772d58f25f1b89140eaadac60ef3202e15c7fbfc8324b31c0735b21899575",
+      "derivativePublicPath": "/assets/observer/janus-cinematic-observer-v2.webp",
+      "transformations": [
+        "Rendered the original fictional v2 Blender scene; render-only Earth retains the admitted Solar System Scope CC BY 4.0 texture. Original PNG retained under docs/qa/refinement/observer.",
+        "Converted to WebP with cwebp -q 86 -m 6."
+      ]
+    },
+    {
+      "creator": "Janus Observatory; authored with Blender and OpenAI Codex",
+      "scenarioId": null,
+      "artifactId": null,
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory",
+      "directFileUrls": [],
+      "sourceVersion": "Original cinematic scene v2, Blender 5.2.1 LTS, 2026-09-05",
+      "retrievedAt": "2026-09-05",
+      "license": "Project-original scene; included Earth texture licensed CC BY 4.0",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Fictional observer, telescope, and architecture authored for Janus Observatory with Blender; code-assisted by OpenAI Codex. Earth textures from Solar System Scope, licensed CC BY 4.0; resized and merged for the Three.js WebGPU TSL Earth example.",
+      "aiAssistanceDisclosure": "AI-assisted procedural modeling, rigging, material authoring, camera choreography, and export code. Fictional interpretation, not research data, a real extraterrestrial, or a validated scientific instrument.",
+      "allowedTransformations": [
+        "rigging",
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "web optimization",
+        "format conversion",
+        "image optimization",
+        "responsive rendering"
+      ],
+      "appliedTransformations": ["responsive rendering", "format conversion", "image optimization"],
+      "maxDisplaySize": {
+        "widthPx": 600,
+        "heightPx": 900
+      },
+      "notes": [
+        "The source contains no third-party character, telescope, or architecture meshes.",
+        "Scientific content remains canonical DOM data; the staging encodes no probabilities, geographic evidence, instrument measurements, or exact physical scale.",
+        "Earth source URL https://threejs.org/examples/webgpu_tsl_earth.html; three.js@2431a09f46f34c560bc8e44b33be0e567723d5b9. CC BY 4.0 credit remains required for the texture in this composite."
+      ],
+      "id": "janus.original.observatory-portrait.poster.v2",
+      "title": "Janus authored observer portrait fallback — face-first revision",
+      "kind": "image",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sourceChecksum": "sha256:44fce4e6b58626f7a8762e5674f896f12f66980e6c3a441e7cccd670135cb3ad",
+      "derivativeChecksum": "sha256:5a9c149c016c80acd0aca34c4835733ac84f470a78cc449cfa7165b7f7a6874e",
+      "derivativePublicPath": "/assets/observer/janus-cinematic-observer-portrait-v2.webp",
+      "transformations": [
+        "Rendered the original fictional v2 Blender scene; render-only Earth retains the admitted Solar System Scope CC BY 4.0 texture. Original PNG retained under docs/qa/refinement/observer.",
+        "Converted to WebP with cwebp -q 86 -m 6."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.mars-context.v1",
+      "title": "Mars — present-day illustrative context map",
+      "creator": "Solar System Scope / INOVE",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://www.solarsystemscope.com/textures/",
+      "sourceAgency": "Solar System Scope; based on NASA imagery and elevation data",
+      "directFileUrls": ["https://www.solarsystemscope.com/textures/download/2k_mars.jpg"],
+      "sourceVersion": "Solar System Scope 2k pack, retrieved 2026-09-05; version pinned by source checksum",
+      "retrievedAt": "2026-09-05",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Planetary maps: Solar System Scope / INOVE, CC BY 4.0, based on NASA imagery and elevation data. Downsampled and converted to WebP by Janus Observatory. No agency endorsement.",
+      "aiAssistanceDisclosure": "Code-assisted asset preparation only; planetary reference image is not AI-generated.",
+      "allowedTransformations": [
+        "responsive rendering",
+        "format conversion",
+        "image optimization",
+        "material tuning"
+      ],
+      "appliedTransformations": [
+        "responsive rendering",
+        "format conversion",
+        "image optimization",
+        "material tuning"
+      ],
+      "sourceChecksum": "sha256:2d187f3e77a98eaa8cea5f4cc722f633c122ef170b9e94ace6b5fb6cbc3f8e01",
+      "derivativeChecksum": "sha256:94a6ecff079b74ecdca44ca96f9547645576c58561488a1711d27ecac55949e8",
+      "derivativePublicPath": "/assets/planets/mars-context-1024.webp",
+      "maxDisplaySize": {
+        "widthPx": 1024,
+        "heightPx": 512
+      },
+      "transformations": [
+        "Downsampled the retained 2048×1024 JPEG to 1024×512 WebP using cwebp -q 84 -m 6 -resize 1024 512."
+      ],
+      "notes": [
+        "Illustrative current planetary map, not a predicted future surface or instrument image. Source documentation states unmapped regions may contain fictional terrain and colors are enhanced.",
+        "Shown only as off-world context for positive canonical planetary signatures; relative size and spacing are editorial."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.moon-context.v1",
+      "title": "Moon — present-day illustrative context map",
+      "creator": "Solar System Scope / INOVE",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://www.solarsystemscope.com/textures/",
+      "sourceAgency": "Solar System Scope; based on NASA imagery and elevation data",
+      "directFileUrls": ["https://www.solarsystemscope.com/textures/download/2k_moon.jpg"],
+      "sourceVersion": "Solar System Scope 2k pack, retrieved 2026-09-05; version pinned by source checksum",
+      "retrievedAt": "2026-09-05",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Planetary maps: Solar System Scope / INOVE, CC BY 4.0, based on NASA imagery and elevation data. Downsampled and converted to WebP by Janus Observatory. No agency endorsement.",
+      "aiAssistanceDisclosure": "Code-assisted asset preparation only; planetary reference image is not AI-generated.",
+      "allowedTransformations": [
+        "responsive rendering",
+        "format conversion",
+        "image optimization",
+        "material tuning"
+      ],
+      "appliedTransformations": [
+        "responsive rendering",
+        "format conversion",
+        "image optimization",
+        "material tuning"
+      ],
+      "sourceChecksum": "sha256:2764ba6535ea0481a062846ee033cc7a909dae05b31a8fd13f3e98f3a7fd92bd",
+      "derivativeChecksum": "sha256:1d48aca4d0b34733a13b2a96f156e05c05314529b198681642910c91920af1e5",
+      "derivativePublicPath": "/assets/planets/moon-context-1024.webp",
+      "maxDisplaySize": {
+        "widthPx": 1024,
+        "heightPx": 512
+      },
+      "transformations": [
+        "Downsampled the retained 2048×1024 JPEG to 1024×512 WebP using cwebp -q 84 -m 6 -resize 1024 512."
+      ],
+      "notes": [
+        "Illustrative current planetary map, not a predicted future surface or instrument image. Source documentation states unmapped regions may contain fictional terrain and colors are enhanced.",
+        "Shown only as off-world context for positive canonical planetary signatures; relative size and spacing are editorial."
+      ]
+    },
+    {
+      "id": "solarsystemscope.texture.venus-context.v1",
+      "title": "Venus — present-day illustrative context map",
+      "creator": "Solar System Scope / INOVE",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://www.solarsystemscope.com/textures/",
+      "sourceAgency": "Solar System Scope; based on NASA imagery and elevation data",
+      "directFileUrls": [
+        "https://www.solarsystemscope.com/textures/download/2k_venus_atmosphere.jpg"
+      ],
+      "sourceVersion": "Solar System Scope 2k pack, retrieved 2026-09-05; version pinned by source checksum",
+      "retrievedAt": "2026-09-05",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsStatus": "verified_open",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Planetary maps: Solar System Scope / INOVE, CC BY 4.0, based on NASA imagery and elevation data. Downsampled and converted to WebP by Janus Observatory. No agency endorsement.",
+      "aiAssistanceDisclosure": "Code-assisted asset preparation only; planetary reference image is not AI-generated.",
+      "allowedTransformations": [
+        "responsive rendering",
+        "format conversion",
+        "image optimization",
+        "material tuning"
+      ],
+      "appliedTransformations": [
+        "responsive rendering",
+        "format conversion",
+        "image optimization",
+        "material tuning"
+      ],
+      "sourceChecksum": "sha256:225012ad4911730605c4e189ca2a3bf674fce50cc48aab4102b936b47d6991ac",
+      "derivativeChecksum": "sha256:170489c7c184e641ac1721657e18f6aa4b593dacee747f7a74fcfa88e35c0a6d",
+      "derivativePublicPath": "/assets/planets/venus-context-1024.webp",
+      "maxDisplaySize": {
+        "widthPx": 1024,
+        "heightPx": 512
+      },
+      "transformations": [
+        "Downsampled the retained 2048×1024 JPEG to 1024×512 WebP using cwebp -q 84 -m 6 -resize 1024 512."
+      ],
+      "notes": [
+        "Illustrative current planetary map, not a predicted future surface or instrument image. Source documentation states unmapped regions may contain fictional terrain and colors are enhanced.",
+        "Shown only as off-world context for positive canonical planetary signatures; relative size and spacing are editorial."
       ]
     }
   ]

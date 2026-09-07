@@ -40,8 +40,10 @@ an alien observer's point of view to demonstrate that the evidence depends on th
 
 - Native document scrolling owns movement; the story does not intercept wheel or touch input.
 - A `100svh` sticky visual remains pinned while roughly `90svh` narration steps pass through it.
-- The step with the largest viewport intersection owns the active state. Fast scroll and backscroll
-  must restore complete named states.
+- The step containing the reading line owns the active state; gaps resolve to the nearest edge.
+  [Decision 011](DECISION_011_CINEMATIC_SCENE_AUTHORING.md) supersedes the original largest-intersection
+  heuristic so the taller observer shot cannot lose ownership to a shorter neighbor. Fast scroll
+  and backscroll must restore complete named states.
 - React owns steps, labels, metrics, citations, keyboard navigation, and fallbacks.
 - R3F/Three.js owns planets, camera, observatory, alien, telescope, and spatial interpolation.
 - GSAP is the sole tweening system.

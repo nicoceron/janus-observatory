@@ -1,5 +1,5 @@
 import type { SourceRef, Sourced } from '@janus/domain/evidence';
-import { resolvePublishedObservation } from '@janus/domain/observatory-engine';
+import { createPublishedObservationResolver } from '@janus/domain/observatory-engine';
 import { PublishedNumericTableSchema } from '@janus/domain/published-table';
 import type { ScenarioId } from '@janus/domain/scenario';
 import {
@@ -117,7 +117,9 @@ export function sourcedDisplay(field: Sourced<unknown>): string {
   return String(field.display ?? field.value);
 }
 
-export function getScenarioProfile(scenarioId: ScenarioId) {
+const resolveObservation = createPublishedObservationResolver(observabilityJson);
+
+function buildScenarioProfile(scenarioId: ScenarioId) {
   const morphology = requireRecord(morphologyDataset.records, scenarioId);
   const growth = requireRecord(growthDataset.records, scenarioId);
   const collapse = requireRecord(collapseDataset.scenarios, scenarioId);
@@ -154,7 +156,7 @@ export function getScenarioProfile(scenarioId: ScenarioId) {
   const observations = observabilityDataset.missions.map((mission) => ({
     ...mission,
     ...instrumentCopy[mission.id],
-    result: resolvePublishedObservation(observabilityJson, scenarioId, mission.id),
+    result: resolveObservation(scenarioId, mission.id),
   }));
 
   return {
@@ -171,7 +173,18 @@ export function getScenarioProfile(scenarioId: ScenarioId) {
   };
 }
 
-export type ScenarioProfile = ReturnType<typeof getScenarioProfile>;
+export type ScenarioProfile = ReturnType<typeof buildScenarioProfile>;
+const profileCache = new Map<ScenarioId, ScenarioProfile>();
+
+/** Generated data is release-pinned; scrolling must not parse it again. */
+export function getScenarioProfile(scenarioId: ScenarioId): ScenarioProfile {
+  let profile = profileCache.get(scenarioId);
+  if (!profile) {
+    profile = buildScenarioProfile(scenarioId);
+    profileCache.set(scenarioId, profile);
+  }
+  return profile;
+}
 
 export const allScenarioProfiles = morphologyDataset.records.map(({ scenarioId }) =>
   getScenarioProfile(scenarioId),

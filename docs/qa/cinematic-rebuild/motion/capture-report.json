@@ -1,0 +1,282 @@
+{
+  "baseUrl": "http://127.0.0.1:3100",
+  "frames": [
+    {
+      "description": "Local hero orbital field after its authored settle.",
+      "file": "01-hero-settle.png",
+      "state": {
+        "activeStep": "one-earth",
+        "branchProgress": "",
+        "motionPhase": "settled",
+        "observerProgress": null,
+        "renderState": null,
+        "sceneHandoff": "initial-to-present",
+        "scrollDirection": "idle",
+        "transitionDirection": "jump"
+      }
+    },
+    {
+      "description": "Hero after passive native-scroll parallax.",
+      "file": "02-hero-parallax.png",
+      "state": {
+        "activeStep": "one-earth",
+        "branchProgress": "",
+        "motionPhase": "settled",
+        "observerProgress": null,
+        "renderState": null,
+        "sceneHandoff": "initial-to-present",
+        "scrollDirection": "forward",
+        "transitionDirection": "jump"
+      }
+    },
+    {
+      "description": "Branch trunk begins before the families arrive.",
+      "file": "03-branch-early.png",
+      "state": {
+        "activeStep": "one-earth",
+        "branchProgress": "0.017",
+        "motionPhase": "settling",
+        "observerProgress": "0.000",
+        "renderState": "ready",
+        "sceneHandoff": "present-to-branches",
+        "scrollDirection": "forward",
+        "transitionDirection": "jump"
+      }
+    },
+    {
+      "description": "Family paths separate at mid-draw.",
+      "file": "04-branch-mid.png",
+      "state": {
+        "activeStep": "possibility-families",
+        "branchProgress": "0.294",
+        "motionPhase": "settling",
+        "observerProgress": "0.000",
+        "renderState": "ready",
+        "sceneHandoff": "present-to-branches",
+        "scrollDirection": "forward",
+        "transitionDirection": "forward"
+      }
+    },
+    {
+      "description": "Scenario limbs and worlds arrive with stagger.",
+      "file": "05-branch-late.png",
+      "state": {
+        "activeStep": "possibility-families",
+        "branchProgress": "0.806",
+        "motionPhase": "settling",
+        "observerProgress": "0.000",
+        "renderState": "ready",
+        "sceneHandoff": "present-to-branches",
+        "scrollDirection": "forward",
+        "transitionDirection": "forward"
+      }
+    },
+    {
+      "description": "Complete branch target state.",
+      "file": "06-branch-settle.png",
+      "state": {
+        "activeStep": "possibility-families",
+        "branchProgress": "1.000",
+        "motionPhase": "settled",
+        "observerProgress": "0.000",
+        "renderState": "ready",
+        "sceneHandoff": "present-to-branches",
+        "scrollDirection": "forward",
+        "transitionDirection": "forward"
+      }
+    },
+    {
+      "description": "All ten worlds in their complete authored branch state.",
+      "file": "07-branch-all.png",
+      "state": {
+        "activeStep": "all-scenarios",
+        "branchProgress": "1.000",
+        "motionPhase": "settling",
+        "observerProgress": "0.000",
+        "renderState": "ready",
+        "sceneHandoff": "present-to-branches",
+        "scrollDirection": "forward",
+        "transitionDirection": "forward"
+      }
+    },
+    {
+      "description": "Reverse scroll redraws toward the same deterministic state.",
+      "file": "08-branch-reverse.png",
+      "state": {
+        "activeStep": "possibility-families",
+        "branchProgress": "0.596",
+        "motionPhase": "settling",
+        "observerProgress": "0.000",
+        "renderState": "ready",
+        "sceneHandoff": "present-to-branches",
+        "scrollDirection": "backward",
+        "transitionDirection": "backward"
+      }
+    },
+    {
+      "description": "Selected world handoff while native chapter travel settles.",
+      "file": "09-world-handoff-early.png",
+      "state": {
+        "activeStep": "scenario-s1",
+        "branchProgress": "1.000",
+        "motionPhase": "settled",
+        "observerProgress": "0.000",
+        "renderState": "ready",
+        "sceneHandoff": "branches-to-scenario",
+        "scrollDirection": "forward",
+        "transitionDirection": "forward"
+      }
+    },
+    {
+      "description": "Selected world handoff during eased travel.",
+      "file": "10-world-handoff-mid.png",
+      "state": {
+        "activeStep": "scenario-s1",
+        "branchProgress": "1.000",
+        "motionPhase": "settled",
+        "observerProgress": "0.000",
+        "renderState": "ready",
+        "sceneHandoff": "branches-to-scenario",
+        "scrollDirection": "forward",
+        "transitionDirection": "forward"
+      }
+    },
+    {
+      "description": "Selected world in its complete target state.",
+      "file": "11-world-handoff-settle.png",
+      "state": {
+        "activeStep": "scenario-s1",
+        "branchProgress": "1.000",
+        "motionPhase": "settled",
+        "observerProgress": "0.000",
+        "renderState": "ready",
+        "sceneHandoff": "branches-to-scenario",
+        "scrollDirection": "forward",
+        "transitionDirection": "forward"
+      }
+    },
+    {
+      "description": "Observer silhouette and camera establish first.",
+      "file": "12-observer-establish.png",
+      "state": {
+        "activeStep": "observer-turn",
+        "branchProgress": "1.000",
+        "motionPhase": "settled",
+        "observerProgress": "0.152",
+        "renderState": "ready",
+        "sceneHandoff": "scenario-to-observer",
+        "scrollDirection": "forward",
+        "transitionDirection": "forward"
+      }
+    },
+    {
+      "description": "Observer focus and reach enter after camera establishment.",
+      "file": "13-observer-focus.png",
+      "state": {
+        "activeStep": "observer-turn",
+        "branchProgress": "1.000",
+        "motionPhase": "settled",
+        "observerProgress": "0.315",
+        "renderState": "ready",
+        "sceneHandoff": "scenario-to-observer",
+        "scrollDirection": "forward",
+        "transitionDirection": "forward"
+      }
+    },
+    {
+      "description": "Authored focus settles before the optical-axis camera move.",
+      "file": "14-observer-follow-through.png",
+      "state": {
+        "activeStep": "observer-turn",
+        "branchProgress": "1.000",
+        "motionPhase": "settled",
+        "observerProgress": "0.641",
+        "renderState": "ready",
+        "sceneHandoff": "scenario-to-observer",
+        "scrollDirection": "forward",
+        "transitionDirection": "forward"
+      }
+    },
+    {
+      "description": "Observer sequence converges on its complete state.",
+      "file": "15-observer-settle.png",
+      "state": {
+        "activeStep": "observer-turn",
+        "branchProgress": "1.000",
+        "motionPhase": "settled",
+        "observerProgress": "0.859",
+        "renderState": "ready",
+        "sceneHandoff": "scenario-to-observer",
+        "scrollDirection": "forward",
+        "transitionDirection": "forward"
+      }
+    },
+    {
+      "description": "Canonical S9 system signature staged separately from Earth; hypothetical geometry.",
+      "file": "17-system-context.png",
+      "state": {
+        "activeStep": "scenario-s9",
+        "branchProgress": "1.000",
+        "motionPhase": "settled",
+        "observerProgress": "0.000",
+        "renderState": "ready",
+        "sceneHandoff": "observer-to-scenario",
+        "scrollDirection": "backward",
+        "transitionDirection": "backward"
+      }
+    },
+    {
+      "description": "Reduced motion resolves directly to the same complete S1 target state.",
+      "file": "16-reduced-motion.png",
+      "state": {
+        "activeStep": "scenario-s1",
+        "branchProgress": "1.000",
+        "motionPhase": "settled",
+        "observerProgress": "0.000",
+        "renderState": "ready",
+        "sceneHandoff": "present-to-scenario",
+        "scrollDirection": "idle",
+        "transitionDirection": "forward"
+      }
+    },
+    {
+      "description": "Portrait observer after native forward/reverse scrub.",
+      "file": "18-portrait-observer.png",
+      "state": {
+        "activeStep": "observer-turn",
+        "branchProgress": "1.000",
+        "motionPhase": "settled",
+        "observerProgress": "0.000",
+        "renderState": "ready",
+        "sceneHandoff": "present-to-observer",
+        "scrollDirection": "backward",
+        "transitionDirection": "forward"
+      }
+    }
+  ],
+  "issues": [],
+  "frameCadence": [
+    {
+      "viewport": "1440x900, DPR 1",
+      "samples": 37,
+      "p50Ms": 200.10000000000582,
+      "p95Ms": 316.79999999999563,
+      "p99Ms": 324.90000000000146,
+      "longestMs": 324.90000000000146,
+      "meanCadenceHz": 5.991805800715779,
+      "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+      "scope": "Unthrottled headless Chromium requestAnimationFrame cadence during six-second native forward/reverse scroll after asset warm-up. Not GPU presentation timing or physical mobile-device certification."
+    },
+    {
+      "viewport": "390x844, DPR 1, touch emulation",
+      "samples": 25,
+      "p50Ms": 125.10000000000218,
+      "p95Ms": 358.40000000000146,
+      "p99Ms": 2833.300000000001,
+      "longestMs": 2833.300000000001,
+      "meanCadenceHz": 4.087171187077999,
+      "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+      "scope": "Unthrottled headless Chromium requestAnimationFrame cadence during six-second native forward/reverse scroll after asset warm-up. Not GPU presentation timing or physical mobile-device certification."
+    }
+  ]
+}

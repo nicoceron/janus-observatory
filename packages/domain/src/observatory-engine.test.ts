@@ -1,11 +1,24 @@
 import { describe, expect, it } from 'vitest';
 
 import observability from '../../../data/canonical/observability/figure-6.json';
-import { resolvePublishedObservation } from './observatory-engine';
+import {
+  createPublishedObservationResolver,
+  resolvePublishedObservation,
+} from './observatory-engine';
 import { observingMissionIds } from './scientific-dataset';
 import { scenarioIds } from './scenario';
 
 describe('published observatory engine', () => {
+  it('validates once without changing any of the fifty canonical results', () => {
+    const resolve = createPublishedObservationResolver(observability);
+    for (const scenario of scenarioIds)
+      for (const mission of observingMissionIds) {
+        expect(resolve(scenario, mission)).toEqual(
+          resolvePublishedObservation(observability, scenario, mission),
+        );
+      }
+    expect(() => createPublishedObservationResolver({ records: [] })).toThrow();
+  });
   it('resolves every scenario and mission pair without inventing a result', () => {
     for (const scenarioId of scenarioIds) {
       for (const instrumentId of observingMissionIds) {

@@ -1,0 +1,519 @@
+{
+  "baseUrl": "http://127.0.0.1:3100",
+  "scope": "Cold browser contexts; local network; unthrottled Apple Metal. Not physical-phone or field CWV.",
+  "results": [
+    {
+      "width": 1440,
+      "articleMs": 179,
+      "spatialMs": 1192,
+      "observerMs": 126,
+      "errors": [],
+      "resources": [
+        {
+          "name": "/_next/static/media/99e609270109b47d-s.p.40sczeszzbjw1.woff2",
+          "duration": 4,
+          "bytes": 10352
+        },
+        {
+          "name": "/_next/static/media/a343f882a40d2cc9-s.p.1sj6eobyi31rd.woff2",
+          "duration": 7,
+          "bytes": 24876
+        },
+        {
+          "name": "/assets/planets/earth-portrait-v1.webp",
+          "duration": 7,
+          "bytes": 110498
+        },
+        {
+          "name": "/_next/static/media/effe91970fc4db64-s.p.0oace-s_gkfks.woff2",
+          "duration": 7,
+          "bytes": 10360
+        },
+        {
+          "name": "/_next/static/chunks/2og141og20x9b.css",
+          "duration": 18,
+          "bytes": 9759
+        },
+        {
+          "name": "/_next/image",
+          "duration": 32,
+          "bytes": 31000
+        },
+        {
+          "name": "/_next/static/chunks/288havgsgofmx.css",
+          "duration": 18,
+          "bytes": 1185
+        },
+        {
+          "name": "/_next/static/chunks/3_1iw1r0dwd1f.css",
+          "duration": 19,
+          "bytes": 24514
+        },
+        {
+          "name": "/_next/static/chunks/35dqe6xc1sx-z.js",
+          "duration": 19,
+          "bytes": 2309
+        },
+        {
+          "name": "/_next/static/chunks/38sn2j4m3b52q.js",
+          "duration": 20,
+          "bytes": 8888
+        },
+        {
+          "name": "/_next/static/chunks/3-c76cvpd6e81.js",
+          "duration": 21,
+          "bytes": 3963
+        },
+        {
+          "name": "/_next/static/chunks/37_4qgig1hdqe.js",
+          "duration": 21,
+          "bytes": 5374
+        },
+        {
+          "name": "/_next/static/chunks/turbopack-321_rn46il3mo.js",
+          "duration": 20,
+          "bytes": 4589
+        },
+        {
+          "name": "/_next/static/chunks/1616vv5x0aijc.js",
+          "duration": 22,
+          "bytes": 4377
+        },
+        {
+          "name": "/_next/static/chunks/38_qd0hqdm35w.js",
+          "duration": 23,
+          "bytes": 42554
+        },
+        {
+          "name": "/_next/static/chunks/003wxdo-fn2-m.js",
+          "duration": 24,
+          "bytes": 9235
+        },
+        {
+          "name": "/_next/static/chunks/1x80bvjs1qy_f.js",
+          "duration": 26,
+          "bytes": 73510
+        },
+        {
+          "name": "/_next/static/chunks/0pb96r1bveevm.js",
+          "duration": 30,
+          "bytes": 86892
+        },
+        {
+          "name": "/_next/static/chunks/3x49uafz63uis.js",
+          "duration": 25,
+          "bytes": 974
+        },
+        {
+          "name": "/_next/static/chunks/23svz8h987-uo.js",
+          "duration": 25,
+          "bytes": 16873
+        },
+        {
+          "name": "/observatory",
+          "duration": 11,
+          "bytes": 677
+        },
+        {
+          "name": "/research",
+          "duration": 12,
+          "bytes": 674
+        },
+        {
+          "name": "/atlas",
+          "duration": 12,
+          "bytes": 683
+        },
+        {
+          "name": "/methods",
+          "duration": 12,
+          "bytes": 675
+        },
+        {
+          "name": "/_next/static/chunks/0g7bh5utlfw6a.js",
+          "duration": 6,
+          "bytes": 2273
+        },
+        {
+          "name": "/_next/static/chunks/05vg5zztn7soy.css",
+          "duration": 2,
+          "bytes": 5176
+        },
+        {
+          "name": "/observatory",
+          "duration": 3,
+          "bytes": 3227
+        },
+        {
+          "name": "/research",
+          "duration": 3,
+          "bytes": 4756
+        },
+        {
+          "name": "/_next/static/chunks/263gg2bn0_ioi.css",
+          "duration": 3,
+          "bytes": 4215
+        },
+        {
+          "name": "/atlas",
+          "duration": 3,
+          "bytes": 5462
+        },
+        {
+          "name": "/methods",
+          "duration": 3,
+          "bytes": 5443
+        },
+        {
+          "name": "/_next/static/chunks/2vyhwme3srumu.js",
+          "duration": 2,
+          "bytes": 3887
+        },
+        {
+          "name": "/_next/static/chunks/1999c_6gtd33h.js",
+          "duration": 3,
+          "bytes": 7648
+        },
+        {
+          "name": "/_next/static/chunks/2k6tw8qrhj9pl.js",
+          "duration": 4,
+          "bytes": 17103
+        },
+        {
+          "name": "/_next/static/chunks/2jk68ynytt6uk.js",
+          "duration": 3,
+          "bytes": 5684
+        },
+        {
+          "name": "/_next/static/chunks/0qykmkalal7b4.js",
+          "duration": 3,
+          "bytes": 8223
+        },
+        {
+          "name": "/_next/static/chunks/41hjw4kg9rvtl.js",
+          "duration": 2,
+          "bytes": 1059
+        },
+        {
+          "name": "/_next/static/chunks/42rpt0hhr6qle.js",
+          "duration": 4,
+          "bytes": 27812
+        },
+        {
+          "name": "/_next/static/chunks/1n71x671sbqwj.js",
+          "duration": 20,
+          "bytes": 273546
+        },
+        {
+          "name": "/sources",
+          "duration": 6,
+          "bytes": 674
+        },
+        {
+          "name": "/accessibility",
+          "duration": 6,
+          "bytes": 678
+        },
+        {
+          "name": "/accessibility",
+          "duration": 2,
+          "bytes": 4318
+        },
+        {
+          "name": "/sources",
+          "duration": 2,
+          "bytes": 13394
+        },
+        {
+          "name": "/_next/static/chunks/1__j_f2ddcfrd.js",
+          "duration": 1,
+          "bytes": 5211
+        },
+        {
+          "name": "/assets/planets/earth-night-2048.webp",
+          "duration": 2,
+          "bytes": 105486
+        },
+        {
+          "name": "/assets/planets/earth-day-2048.webp",
+          "duration": 2,
+          "bytes": 206312
+        },
+        {
+          "name": "/assets/planets/earth-bump-roughness-clouds-2048.webp",
+          "duration": 3,
+          "bytes": 603916
+        },
+        {
+          "name": "/assets/observer/janus-cinematic-observer-v2.webp",
+          "duration": 2,
+          "bytes": 22724
+        },
+        {
+          "name": "/assets/models/janus-observatory-v2.glb",
+          "duration": 16,
+          "bytes": 505438
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "articleMs": 90,
+      "spatialMs": 836,
+      "observerMs": 118,
+      "errors": [],
+      "resources": [
+        {
+          "name": "/_next/static/media/99e609270109b47d-s.p.40sczeszzbjw1.woff2",
+          "duration": 3,
+          "bytes": 10352
+        },
+        {
+          "name": "/_next/static/media/a343f882a40d2cc9-s.p.1sj6eobyi31rd.woff2",
+          "duration": 5,
+          "bytes": 24876
+        },
+        {
+          "name": "/_next/static/media/effe91970fc4db64-s.p.0oace-s_gkfks.woff2",
+          "duration": 5,
+          "bytes": 10360
+        },
+        {
+          "name": "/_next/image",
+          "duration": 6,
+          "bytes": 9985
+        },
+        {
+          "name": "/assets/planets/earth-portrait-v1.webp",
+          "duration": 5,
+          "bytes": 110498
+        },
+        {
+          "name": "/_next/static/chunks/2og141og20x9b.css",
+          "duration": 4,
+          "bytes": 9759
+        },
+        {
+          "name": "/_next/static/chunks/288havgsgofmx.css",
+          "duration": 4,
+          "bytes": 1185
+        },
+        {
+          "name": "/_next/static/chunks/3_1iw1r0dwd1f.css",
+          "duration": 6,
+          "bytes": 24514
+        },
+        {
+          "name": "/_next/static/chunks/35dqe6xc1sx-z.js",
+          "duration": 6,
+          "bytes": 2309
+        },
+        {
+          "name": "/_next/static/chunks/38sn2j4m3b52q.js",
+          "duration": 6,
+          "bytes": 8888
+        },
+        {
+          "name": "/_next/static/chunks/3-c76cvpd6e81.js",
+          "duration": 7,
+          "bytes": 3963
+        },
+        {
+          "name": "/_next/static/chunks/1616vv5x0aijc.js",
+          "duration": 8,
+          "bytes": 4377
+        },
+        {
+          "name": "/_next/static/chunks/turbopack-321_rn46il3mo.js",
+          "duration": 8,
+          "bytes": 4589
+        },
+        {
+          "name": "/_next/static/chunks/37_4qgig1hdqe.js",
+          "duration": 8,
+          "bytes": 5374
+        },
+        {
+          "name": "/_next/static/chunks/38_qd0hqdm35w.js",
+          "duration": 10,
+          "bytes": 42554
+        },
+        {
+          "name": "/_next/static/chunks/003wxdo-fn2-m.js",
+          "duration": 10,
+          "bytes": 9235
+        },
+        {
+          "name": "/_next/static/chunks/1x80bvjs1qy_f.js",
+          "duration": 12,
+          "bytes": 73510
+        },
+        {
+          "name": "/_next/static/chunks/3x49uafz63uis.js",
+          "duration": 9,
+          "bytes": 974
+        },
+        {
+          "name": "/_next/static/chunks/23svz8h987-uo.js",
+          "duration": 10,
+          "bytes": 16873
+        },
+        {
+          "name": "/_next/static/chunks/0pb96r1bveevm.js",
+          "duration": 15,
+          "bytes": 86892
+        },
+        {
+          "name": "/observatory",
+          "duration": 2,
+          "bytes": 677
+        },
+        {
+          "name": "/methods",
+          "duration": 2,
+          "bytes": 675
+        },
+        {
+          "name": "/_next/static/chunks/0g7bh5utlfw6a.js",
+          "duration": 1,
+          "bytes": 2273
+        },
+        {
+          "name": "/_next/static/chunks/05vg5zztn7soy.css",
+          "duration": 1,
+          "bytes": 5176
+        },
+        {
+          "name": "/observatory",
+          "duration": 1,
+          "bytes": 3227
+        },
+        {
+          "name": "/methods",
+          "duration": 1,
+          "bytes": 5443
+        },
+        {
+          "name": "/_next/static/chunks/2vyhwme3srumu.js",
+          "duration": 1,
+          "bytes": 3887
+        },
+        {
+          "name": "/_next/static/chunks/1999c_6gtd33h.js",
+          "duration": 1,
+          "bytes": 7648
+        },
+        {
+          "name": "/_next/static/chunks/2k6tw8qrhj9pl.js",
+          "duration": 2,
+          "bytes": 17103
+        },
+        {
+          "name": "/_next/static/chunks/41hjw4kg9rvtl.js",
+          "duration": 1,
+          "bytes": 1059
+        },
+        {
+          "name": "/_next/static/chunks/42rpt0hhr6qle.js",
+          "duration": 3,
+          "bytes": 27812
+        },
+        {
+          "name": "/_next/static/chunks/1n71x671sbqwj.js",
+          "duration": 20,
+          "bytes": 273546
+        },
+        {
+          "name": "/atlas",
+          "duration": 3,
+          "bytes": 683
+        },
+        {
+          "name": "/atlas",
+          "duration": 3,
+          "bytes": 683
+        },
+        {
+          "name": "/sources",
+          "duration": 3,
+          "bytes": 674
+        },
+        {
+          "name": "/research",
+          "duration": 3,
+          "bytes": 674
+        },
+        {
+          "name": "/_next/static/chunks/263gg2bn0_ioi.css",
+          "duration": 3,
+          "bytes": 4215
+        },
+        {
+          "name": "/accessibility",
+          "duration": 3,
+          "bytes": 678
+        },
+        {
+          "name": "/atlas",
+          "duration": 3,
+          "bytes": 5462
+        },
+        {
+          "name": "/sources",
+          "duration": 3,
+          "bytes": 13394
+        },
+        {
+          "name": "/research",
+          "duration": 3,
+          "bytes": 4756
+        },
+        {
+          "name": "/accessibility",
+          "duration": 2,
+          "bytes": 4318
+        },
+        {
+          "name": "/_next/static/chunks/0qykmkalal7b4.js",
+          "duration": 3,
+          "bytes": 8223
+        },
+        {
+          "name": "/_next/static/chunks/2jk68ynytt6uk.js",
+          "duration": 2,
+          "bytes": 5684
+        },
+        {
+          "name": "/_next/static/chunks/1__j_f2ddcfrd.js",
+          "duration": 2,
+          "bytes": 5211
+        },
+        {
+          "name": "/assets/planets/earth-day-1024.webp",
+          "duration": 2,
+          "bytes": 61510
+        },
+        {
+          "name": "/assets/planets/earth-night-1024.webp",
+          "duration": 1,
+          "bytes": 28680
+        },
+        {
+          "name": "/assets/planets/earth-bump-roughness-clouds-1024.webp",
+          "duration": 2,
+          "bytes": 191408
+        },
+        {
+          "name": "/assets/observer/janus-cinematic-observer-portrait-v2.webp",
+          "duration": 1,
+          "bytes": 17466
+        },
+        {
+          "name": "/assets/models/janus-observatory-v2.glb",
+          "duration": 17,
+          "bytes": 505438
+        }
+      ]
+    }
+  ]
+}

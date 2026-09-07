@@ -5,6 +5,7 @@ import { chromium, type Page } from '@playwright/test';
 
 const baseUrl = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:3000';
 const outputRoot = resolve(process.argv[2] ?? 'docs/qa/premium-motion-2026-08-31');
+const hardwareGpu = process.env.JANUS_QA_HARDWARE_GPU === '1';
 
 type FrameRecord = {
   description: string;
@@ -28,6 +29,71 @@ type RuntimeIssue = {
 
 const frames: FrameRecord[] = [];
 const issues: RuntimeIssue[] = [];
+const frameCadence: unknown[] = [];
+
+async function sampleObserverCadence(page: Page, viewport: string) {
+  await positionStep(page, 13, 0.1);
+  await page.waitForTimeout(1400);
+  // A documented string expression keeps tsx's injected __name helper out of
+  // Playwright's isolated browser context. No production page globals are patched.
+  const { times, states } = await page.evaluate<{ times: number[]; states: string[] }>(`
+      new Promise((resolve) => {
+        const element = document.querySelector('#story-step-14');
+        const bounds = element.getBoundingClientRect();
+        const start = scrollY + bounds.top - innerHeight * 0.1;
+        const travel = bounds.height - innerHeight * 0.96;
+        const times = [];
+        const states = new Set();
+        let first = 0,
+          previous = 0;
+        const frame = (now) => {
+          states.add(document.querySelector('.storyStage')?.getAttribute('data-active-step'));
+          if (!first) first = previous = now;
+          else times.push(now - previous);
+          previous = now;
+          const t = Math.min(1, (now - first) / 6000);
+          scrollTo({
+            top: start + (travel * (1 - Math.cos(t * Math.PI * 2))) / 2,
+            behavior: 'instant',
+          });
+          if (t < 1) requestAnimationFrame(frame);
+          else resolve({times, states: [...states]});
+        };
+        requestAnimationFrame(frame);
+      })
+  `);
+  if (states.some((state) => state !== 'observer-turn')) {
+    issues.push({
+      kind: 'pageerror',
+      detail: `Cadence sample left the observer: ${states.join(', ')}`,
+    });
+  }
+  const sorted = times.toSorted((a, b) => a - b);
+  const percentile = (p: number) =>
+    sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * p))];
+  frameCadence.push({
+    viewport,
+    samples: times.length,
+    activeStates: states,
+    p50Ms: percentile(0.5),
+    p95Ms: percentile(0.95),
+    p99Ms: percentile(0.99),
+    longestMs: sorted.at(-1),
+    meanCadenceHz: (1000 * times.length) / times.reduce((a, b) => a + b, 0),
+    browser: await page.evaluate(() => navigator.userAgent),
+    graphics: await page.evaluate(() => {
+      const gl = document.createElement('canvas').getContext('webgl2');
+      const info = gl?.getExtension('WEBGL_debug_renderer_info');
+      return {
+        webglDriver: gl && info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : 'unavailable',
+        stage: document.querySelector('.earthStage')?.getAttribute('data-render-state'),
+      };
+    }),
+    hardwareGpuRequested: hardwareGpu,
+    scope:
+      'Unthrottled headless Chromium requestAnimationFrame cadence during six-second native forward/reverse scroll after asset warm-up. Not GPU presentation timing or physical mobile-device certification.',
+  });
+}
 
 async function waitForPaint(page: Page, delay = 70) {
   await page.evaluate(
@@ -66,10 +132,7 @@ async function positionStep(page: Page, index: number, topViewportRatio: number)
   await step.evaluate((element, ratio) => {
     const target =
       window.scrollY + element.getBoundingClientRect().top - window.innerHeight * Number(ratio);
-    const previousScrollBehavior = document.documentElement.style.scrollBehavior;
-    document.documentElement.style.scrollBehavior = 'auto';
-    window.scrollTo(0, Math.max(0, target));
-    document.documentElement.style.scrollBehavior = previousScrollBehavior;
+    window.scrollTo({ left: 0, top: Math.max(0, target), behavior: 'instant' });
   }, topViewportRatio);
 }
 
@@ -92,6 +155,10 @@ function observeRuntime(page: Page) {
 
 async function startStory(page: Page) {
   await page.getByRole('button', { exact: true, name: 'Start story' }).click();
+  await page.locator('.earthStage[data-spatial-consent]').waitFor();
+  if ((await page.locator('.earthStage').getAttribute('data-spatial-consent')) === 'required') {
+    await page.getByRole('button', { name: 'Open interactive view' }).click();
+  }
   await page.waitForFunction(
     () => {
       const state = document.querySelector('.earthStage')?.getAttribute('data-render-state');
@@ -103,7 +170,15 @@ async function startStory(page: Page) {
 }
 
 await mkdir(outputRoot, { recursive: true });
-const browser = await chromium.launch({ headless: true });
+// Chromium documents --enable-gpu as the opt-in that disables forced software
+// rendering in headless mode. Keep the software receipt separate for comparison.
+// https://chromium.googlesource.com/chromium/src/+/HEAD/docs/gpu/using-gpu-hardware-in-headless-chrome.md
+const browser = await chromium.launch({
+  headless: true,
+  args: hardwareGpu
+    ? ['--enable-gpu', ...(process.platform === 'darwin' ? ['--use-angle=metal'] : [])]
+    : [],
+});
 
 try {
   const page = await browser.newPage({ viewport: { height: 900, width: 1440 } });
@@ -184,6 +259,7 @@ try {
     1_650,
   );
 
+  await page.getByLabel('Choose story chapter').click();
   await page.getByRole('button', { exact: true, name: 'Chapter 03: Observer' }).click();
   await page.waitForFunction(
     () =>
@@ -194,7 +270,11 @@ try {
   for (const [suffix, ratio, description] of [
     ['12-observer-establish.png', -0.18, 'Observer silhouette and camera establish first.'],
     ['13-observer-focus.png', -0.48, 'Observer focus and reach enter after camera establishment.'],
-    ['14-observer-follow-through.png', -1.08, 'Observer antenna and hand follow-through.'],
+    [
+      '14-observer-follow-through.png',
+      -1.08,
+      'Authored focus settles before the optical-axis camera move.',
+    ],
     ['15-observer-settle.png', -1.48, 'Observer sequence converges on its complete state.'],
   ] as const) {
     await positionStep(page, 13, ratio);
@@ -203,7 +283,19 @@ try {
         document.querySelector('.storyStage')?.getAttribute('data-active-step') === 'observer-turn',
     );
     await capture(page, suffix, description, 95);
+    if (frames.at(-1)?.state.activeStep !== 'observer-turn') {
+      throw new Error(`Observer frame ${suffix} captured outside its authored chapter.`);
+    }
   }
+
+  await sampleObserverCadence(page, '1440x900, DPR 1');
+  await positionStep(page, 5, 0.2);
+  await capture(
+    page,
+    '17-system-context.png',
+    'Canonical S9 system signature staged separately from Earth; hypothetical geometry.',
+    1400,
+  );
 
   const externalSplineRequests = await page.evaluate(() =>
     performance
@@ -223,6 +315,7 @@ try {
   await reducedPage.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
   await reducedPage.evaluate(() => document.fonts.ready);
   await startStory(reducedPage);
+  await reducedPage.getByLabel('Choose story chapter').click();
   await reducedPage.getByRole('button', { exact: true, name: 'Chapter 02: Worlds' }).click();
   await reducedPage.waitForFunction(
     () => document.querySelector('.storyStage')?.getAttribute('data-active-step') === 'scenario-s1',
@@ -234,13 +327,31 @@ try {
     0,
   );
   await reducedPage.close();
+
+  const mobilePage = await browser.newPage({
+    viewport: { width: 390, height: 844 },
+    deviceScaleFactor: 1,
+    hasTouch: true,
+    isMobile: true,
+  });
+  observeRuntime(mobilePage);
+  await mobilePage.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
+  await startStory(mobilePage);
+  await sampleObserverCadence(mobilePage, '390x844, DPR 1, touch emulation');
+  await capture(
+    mobilePage,
+    '18-portrait-observer.png',
+    'Portrait observer after native forward/reverse scrub.',
+    500,
+  );
+  await mobilePage.close();
 } finally {
   await browser.close();
 }
 
 await writeFile(
   resolve(outputRoot, 'capture-report.json'),
-  `${JSON.stringify({ baseUrl, frames, issues }, null, 2)}\n`,
+  `${JSON.stringify({ baseUrl, frames, issues, frameCadence }, null, 2)}\n`,
 );
 
 if (issues.length > 0) {

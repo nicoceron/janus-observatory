@@ -5,7 +5,7 @@ const storySessionKey = 'janus-guided-story-v3';
 const legacyStorySessionKey = 'janus-guided-story-v2';
 const earthRuntimeTexturePattern =
   /\/assets\/planets\/earth-(?:day|night|bump-roughness-clouds)-(?:1024|2048|4096)\.(?:webp|jpg)$/;
-const observerModelPath = '/assets/models/janus-alien-observer-v4.glb';
+const observerModelPath = '/assets/models/janus-observatory-v2.glb';
 const scenarioPortraitPattern = /\/assets\/scenarios\/s(?:10|[1-9])-world-v1\.webp$/;
 
 async function openOptionalSpatialView(story: Locator) {
@@ -49,7 +49,7 @@ test.describe('guided story', () => {
       'href',
       '/atlas',
     );
-    await expect(story.getByText('Core article and 2D scene ready now')).toBeVisible();
+    await expect(story.getByText('Article and 2D scene ready')).toBeVisible();
     await expect(story.getByLabel('Story chapters').getByRole('article')).toHaveCount(31);
     await expect(story.locator('.storySticky')).toBeVisible();
 
@@ -67,7 +67,7 @@ test.describe('guided story', () => {
     });
     await expect(story.locator('.earthStage')).toHaveAttribute(
       'data-branch-layout',
-      'trunk-spine-stems',
+      'spatial-families',
     );
     await expect(story.locator('.earthStage')).toHaveAttribute(
       'data-branch-animation',
@@ -115,6 +115,7 @@ test.describe('guided story', () => {
     await expect(story).toHaveAttribute('data-transition-kind', 'step');
 
     await page.keyboard.press('ArrowDown');
+    await story.getByLabel('Choose story chapter').click();
     await story
       .getByRole('navigation', { name: 'Story progress' })
       .getByRole('button', { name: /06.*Cycles/ })
@@ -218,9 +219,7 @@ test.describe('guided story', () => {
     ).toHaveAttribute('aria-checked', 'true');
   });
 
-  test('keeps one 3D world mounted from Earth through the system handoff', async ({
-    page,
-  }, testInfo) => {
+  test('keeps one 3D world mounted from Earth through the system handoff', async ({ page }) => {
     test.setTimeout(60_000);
     const pageErrors: string[] = [];
     page.on('pageerror', (error) => pageErrors.push(error.message));
@@ -237,8 +236,7 @@ test.describe('guided story', () => {
 
     await story.getByRole('button', { name: 'Start story', exact: true }).click();
     const posterFirst = await openOptionalSpatialView(story);
-    if (testInfo.project.name.startsWith('mobile-')) expect(posterFirst).toBe(true);
-    if (testInfo.project.name === 'chromium') expect(posterFirst).toBe(false);
+    expect(posterFirst).toBe(false); // Start itself grants spatial intent on every tier.
     await expect(stage).toHaveAttribute('data-world-lifecycle', 'persistent', { timeout: 20_000 });
     await expect(stage).toHaveAttribute('data-render-loop', 'demand');
     await expect(canvas).toHaveCount(1, { timeout: 20_000 });
@@ -282,12 +280,14 @@ test.describe('guided story', () => {
       }
       if (kind === 'observer') {
         await expect(steps.nth(index)).toHaveAttribute('data-scroll-anchor', 'observer');
+        await expect(stage).toHaveAttribute('data-observer-asset', 'janus-observatory-v2');
+        await expect(stage).toHaveAttribute('data-observer-motion', 'skeletal-authored-scroll');
         await expect(stage).toHaveAttribute(
-          'data-observer-asset',
-          'janus-observer-poster-v1+fab-progressive',
+          'data-observer-camera',
+          'blender-authored-optical-axis',
         );
-        await expect(stage).toHaveAttribute('data-observer-motion', 'seven-clip-scroll-scrub');
-        await expect(stage).toHaveAttribute('data-observer-camera', 'alien-dolly-editorial-cut');
+        await expect(stage.locator('.earthCanvas')).toHaveCSS('opacity', '1');
+        await expect(stage.locator('.observerPoster')).toHaveCount(0);
         const hwo = story.locator('[role="radio"][data-instrument="habitable_worlds_observatory"]');
         const radio = story.locator('[role="radio"][data-instrument="radio"]');
         await hwo.focus();
@@ -303,9 +303,12 @@ test.describe('guided story', () => {
           }),
         ).toHaveClass(/storyOverlayVisible/);
         await expect(story.getByText('Alien ocular · target S1')).toBeVisible();
-        await expect(story.locator('.ocularWorldFrame')).toHaveCount(10);
-        await expect(story.locator('.ocularWorldFrame img')).toHaveCount(10);
-        await expect(story.locator('.ocularWorldFrame[data-scenario-id="S1"]')).toBeVisible();
+        await expect(story.locator('.ocularWorldFrame')).toHaveCount(0);
+        await expect(story.locator('.ocularObservation')).toHaveCSS(
+          'background-color',
+          'rgba(0, 0, 0, 0)',
+        );
+        await expect(stage.locator('canvas')).toHaveCount(1);
         await expect(story.locator('.observationBridge')).toHaveCount(0);
       }
       if (kind === 'matrix') {
@@ -391,7 +394,7 @@ test.describe('guided story', () => {
       expected.texture,
     );
     const posterFirst = await openOptionalSpatialView(story);
-    expect(posterFirst).toBe(mobile);
+    expect(posterFirst).toBe(false);
     await expect(stage).toHaveAttribute('data-render-state', 'ready', { timeout: 30_000 });
     await expect.poll(() => new Set(requestedEarthTextures).size).toBe(3);
     expect(requestedEarthTextures.every((path) => path.endsWith(expected.suffix))).toBe(true);
@@ -433,18 +436,18 @@ test.describe('guided story', () => {
     const steps = story.getByLabel('Story chapters').getByRole('article');
     await steps.nth(12).scrollIntoViewIfNeeded();
     await expect(stage).toHaveAttribute('data-scene-kind', 'scenario');
-    expect(requestedObserverModels).toEqual([]);
+    // S10 is adjacent to the observer; stage its small asset before the chapter boundary.
+    await expect.poll(() => new Set(requestedObserverModels).size).toBe(1);
     expect(requestedScenarioPortraits).toEqual([]);
 
     await steps.nth(13).scrollIntoViewIfNeeded();
     await expect(stage).toHaveAttribute('data-scene-kind', 'observer');
     await expect.poll(() => new Set(requestedObserverModels).size).toBe(1);
-    await expect.poll(() => new Set(requestedScenarioPortraits).size).toBe(1);
-    expect(requestedScenarioPortraits[0]).toBe('/assets/scenarios/s1-world-v1.webp');
+    expect(requestedScenarioPortraits).toEqual([]);
 
     await steps.nth(14).scrollIntoViewIfNeeded();
     await expect(stage).toHaveAttribute('data-scene-kind', 'ocular');
-    await expect.poll(() => new Set(requestedScenarioPortraits).size).toBe(10);
+    expect(requestedScenarioPortraits).toEqual([]);
   });
 
   test('reserves 4K Earth textures for an explicitly high-capacity display', async ({
@@ -486,7 +489,7 @@ test.describe('guided story', () => {
     expect(requestedEarthTextures.every((path) => path.endsWith('-4096.jpg'))).toBe(true);
   });
 
-  test('keeps low-tier reduced-motion devices poster-first until explicit opt-in', async ({
+  test('keeps passive low-tier reduced-motion scrolling poster-first until explicit opt-in', async ({
     page,
   }, testInfo) => {
     test.skip(
@@ -516,7 +519,7 @@ test.describe('guided story', () => {
     await page.goto('/');
 
     const story = page.getByRole('region', { name: storyName });
-    await story.getByRole('button', { name: 'Start story', exact: true }).click();
+    await story.locator('#story-step-2').scrollIntoViewIfNeeded();
     const stage = story.locator('.earthStage');
     await expect(stage).toHaveAttribute('data-earth-device-tier', 'low');
     await expect(stage).toHaveAttribute('data-observer-motion', 'reduced');
@@ -537,7 +540,11 @@ test.describe('guided story', () => {
     await expect(stage.locator('canvas')).toHaveCount(0);
     expect(requestedEarthTextures).toEqual([]);
     expect(requestedObserverModels).toEqual([]);
-    await expect.poll(() => new Set(requestedScenarioPortraits).size).toBe(1);
+    expect(requestedScenarioPortraits).toEqual([]);
+    await expect(stage.locator('.observerPoster img')).toHaveAttribute(
+      'src',
+      '/assets/observer/janus-cinematic-observer-v2.webp',
+    );
 
     await story.getByRole('button', { name: 'Open interactive view' }).click();
     await expect(stage).toHaveAttribute('data-spatial-consent', 'granted');
@@ -546,7 +553,7 @@ test.describe('guided story', () => {
     await expect(stage.locator('canvas')).toHaveCount(1);
     await expect.poll(() => new Set(requestedEarthTextures).size).toBe(3);
     await expect.poll(() => new Set(requestedObserverModels).size).toBe(1);
-    expect(new Set(requestedScenarioPortraits).size).toBe(1);
+    expect(requestedScenarioPortraits).toEqual([]);
     await expect(stage).toHaveAttribute('data-observer-motion', 'reduced');
   });
 

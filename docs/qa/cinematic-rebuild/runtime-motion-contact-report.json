@@ -1,0 +1,111 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "docs/qa/cinematic-rebuild/motion-hardware/01-hero-settle.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/02-hero-parallax.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/03-branch-early.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/04-branch-mid.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/05-branch-late.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/06-branch-settle.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/07-branch-all.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/08-branch-reverse.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/09-world-handoff-early.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/10-world-handoff-mid.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/11-world-handoff-settle.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/12-observer-establish.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/13-observer-focus.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/14-observer-follow-through.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/15-observer-settle.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/16-reduced-motion.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/17-system-context.png",
+    "docs/qa/cinematic-rebuild/motion-hardware/18-portrait-observer.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "01-hero-settle.png",
+      "to": "02-hero-parallax.png",
+      "mean_rgb_diff": 19.30444547325103
+    },
+    {
+      "from": "02-hero-parallax.png",
+      "to": "03-branch-early.png",
+      "mean_rgb_diff": 17.52164326131687
+    },
+    {
+      "from": "03-branch-early.png",
+      "to": "04-branch-mid.png",
+      "mean_rgb_diff": 6.231991255144034
+    },
+    {
+      "from": "04-branch-mid.png",
+      "to": "05-branch-late.png",
+      "mean_rgb_diff": 4.3508858024691355
+    },
+    {
+      "from": "05-branch-late.png",
+      "to": "06-branch-settle.png",
+      "mean_rgb_diff": 6.969008487654321
+    },
+    {
+      "from": "06-branch-settle.png",
+      "to": "07-branch-all.png",
+      "mean_rgb_diff": 5.147325874485596
+    },
+    {
+      "from": "07-branch-all.png",
+      "to": "08-branch-reverse.png",
+      "mean_rgb_diff": 5.611700102880659
+    },
+    {
+      "from": "08-branch-reverse.png",
+      "to": "09-world-handoff-early.png",
+      "mean_rgb_diff": 5.370482253086419
+    },
+    {
+      "from": "09-world-handoff-early.png",
+      "to": "10-world-handoff-mid.png",
+      "mean_rgb_diff": 4.845184927983539
+    },
+    {
+      "from": "10-world-handoff-mid.png",
+      "to": "11-world-handoff-settle.png",
+      "mean_rgb_diff": 5.6356908436214
+    },
+    {
+      "from": "11-world-handoff-settle.png",
+      "to": "12-observer-establish.png",
+      "mean_rgb_diff": 15.075472479423867
+    },
+    {
+      "from": "12-observer-establish.png",
+      "to": "13-observer-focus.png",
+      "mean_rgb_diff": 1.4295704732510288
+    },
+    {
+      "from": "13-observer-focus.png",
+      "to": "14-observer-follow-through.png",
+      "mean_rgb_diff": 7.210683899176954
+    },
+    {
+      "from": "14-observer-follow-through.png",
+      "to": "15-observer-settle.png",
+      "mean_rgb_diff": 11.734186985596708
+    },
+    {
+      "from": "15-observer-settle.png",
+      "to": "16-reduced-motion.png",
+      "mean_rgb_diff": 16.387102109053497
+    },
+    {
+      "from": "16-reduced-motion.png",
+      "to": "17-system-context.png",
+      "mean_rgb_diff": 11.212870113168725
+    },
+    {
+      "from": "17-system-context.png",
+      "to": "18-portrait-observer.png",
+      "mean_rgb_diff": 17.047802469135803
+    }
+  ],
+  "warnings": []
+}

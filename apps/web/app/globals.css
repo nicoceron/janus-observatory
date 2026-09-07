@@ -3635,10 +3635,6 @@ footer p {
   width: 1px;
 }
 
-.earthStage[data-scene-kind='observer'] .earthCanvas {
-  opacity: 0;
-}
-
 .earthStage[data-scene-kind='ocular'] .fallbackEarth,
 .earthStage[data-scene-kind='matrix'] .fallbackEarth,
 .earthStage[data-scene-kind='collapse'] .fallbackEarth,

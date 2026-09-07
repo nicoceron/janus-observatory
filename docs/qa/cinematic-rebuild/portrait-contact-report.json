@@ -1,0 +1,189 @@
+{
+  "schema": "animation_contact_sheet_report.v1",
+  "frames": [
+    "docs/qa/cinematic-rebuild/browser/portrait-01.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-02.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-03.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-04.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-05.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-06.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-07.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-08.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-09.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-10.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-11.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-12.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-13.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-14.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-15.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-16.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-17.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-18.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-19.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-20.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-21.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-22.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-23.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-24.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-25.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-26.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-27.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-28.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-29.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-30.png",
+    "docs/qa/cinematic-rebuild/browser/portrait-31.png"
+  ],
+  "frame_diff": [
+    {
+      "from": "portrait-01.png",
+      "to": "portrait-02.png",
+      "mean_rgb_diff": 14.118918864179529
+    },
+    {
+      "from": "portrait-02.png",
+      "to": "portrait-03.png",
+      "mean_rgb_diff": 6.048107303439057
+    },
+    {
+      "from": "portrait-03.png",
+      "to": "portrait-04.png",
+      "mean_rgb_diff": 17.112695953335763
+    },
+    {
+      "from": "portrait-04.png",
+      "to": "portrait-05.png",
+      "mean_rgb_diff": 7.455973791874267
+    },
+    {
+      "from": "portrait-05.png",
+      "to": "portrait-06.png",
+      "mean_rgb_diff": 14.213238749139222
+    },
+    {
+      "from": "portrait-06.png",
+      "to": "portrait-07.png",
+      "mean_rgb_diff": 13.909176894721918
+    },
+    {
+      "from": "portrait-07.png",
+      "to": "portrait-08.png",
+      "mean_rgb_diff": 5.090107141410459
+    },
+    {
+      "from": "portrait-08.png",
+      "to": "portrait-09.png",
+      "mean_rgb_diff": 4.453942358326245
+    },
+    {
+      "from": "portrait-09.png",
+      "to": "portrait-10.png",
+      "mean_rgb_diff": 6.870066229189452
+    },
+    {
+      "from": "portrait-10.png",
+      "to": "portrait-11.png",
+      "mean_rgb_diff": 6.687753676023818
+    },
+    {
+      "from": "portrait-11.png",
+      "to": "portrait-12.png",
+      "mean_rgb_diff": 6.23202900311905
+    },
+    {
+      "from": "portrait-12.png",
+      "to": "portrait-13.png",
+      "mean_rgb_diff": 6.36044071778669
+    },
+    {
+      "from": "portrait-13.png",
+      "to": "portrait-14.png",
+      "mean_rgb_diff": 18.384910074128083
+    },
+    {
+      "from": "portrait-14.png",
+      "to": "portrait-15.png",
+      "mean_rgb_diff": 17.94593713290396
+    },
+    {
+      "from": "portrait-15.png",
+      "to": "portrait-16.png",
+      "mean_rgb_diff": 8.591300076963584
+    },
+    {
+      "from": "portrait-16.png",
+      "to": "portrait-17.png",
+      "mean_rgb_diff": 5.613280268967473
+    },
+    {
+      "from": "portrait-17.png",
+      "to": "portrait-18.png",
+      "mean_rgb_diff": 7.460006278608174
+    },
+    {
+      "from": "portrait-18.png",
+      "to": "portrait-19.png",
+      "mean_rgb_diff": 3.9870944221655122
+    },
+    {
+      "from": "portrait-19.png",
+      "to": "portrait-20.png",
+      "mean_rgb_diff": 7.03670049013651
+    },
+    {
+      "from": "portrait-20.png",
+      "to": "portrait-21.png",
+      "mean_rgb_diff": 7.937816462105562
+    },
+    {
+      "from": "portrait-21.png",
+      "to": "portrait-22.png",
+      "mean_rgb_diff": 7.430331753554502
+    },
+    {
+      "from": "portrait-22.png",
+      "to": "portrait-23.png",
+      "mean_rgb_diff": 4.385558188520274
+    },
+    {
+      "from": "portrait-23.png",
+      "to": "portrait-24.png",
+      "mean_rgb_diff": 5.146265240815004
+    },
+    {
+      "from": "portrait-24.png",
+      "to": "portrait-25.png",
+      "mean_rgb_diff": 3.666680844168996
+    },
+    {
+      "from": "portrait-25.png",
+      "to": "portrait-26.png",
+      "mean_rgb_diff": 7.6967179082107995
+    },
+    {
+      "from": "portrait-26.png",
+      "to": "portrait-27.png",
+      "mean_rgb_diff": 18.608765747154376
+    },
+    {
+      "from": "portrait-27.png",
+      "to": "portrait-28.png",
+      "mean_rgb_diff": 17.732500911410867
+    },
+    {
+      "from": "portrait-28.png",
+      "to": "portrait-29.png",
+      "mean_rgb_diff": 14.85027544861668
+    },
+    {
+      "from": "portrait-29.png",
+      "to": "portrait-30.png",
+      "mean_rgb_diff": 17.75801737756714
+    },
+    {
+      "from": "portrait-30.png",
+      "to": "portrait-31.png",
+      "mean_rgb_diff": 18.708856888240774
+    }
+  ],
+  "warnings": []
+}

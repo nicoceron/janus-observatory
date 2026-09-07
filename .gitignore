@@ -44,3 +44,10 @@ docs/qa/janus-fab-observer-v2/frame-*.png
 
 # Repo-local Codex home (auth.json, sessions, logs) - separate account for this repo
 .codex/
+
+# Recoverable Blender autosave and intermediate review frames stay local.
+assets/sources/janus-cinematic/*.blend1
+media/cinematic-review/public/review/
+docs/qa/cinematic-rebuild/browser/
+docs/qa/cinematic-rebuild/debug-*.png
+docs/qa/cinematic-rebuild/observer/motion/

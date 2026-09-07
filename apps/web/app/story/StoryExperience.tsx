@@ -19,13 +19,29 @@ import {
   allScenarioProfiles,
   getScenarioProfile,
   scientificNotation,
+  sourcedDisplay,
 } from '../../lib/canonical-core';
 import { buildObserverStory, type StoryVisualState } from './story-content';
 import { initialStoryState, storyReducer, type StoryMode } from './story-state';
+import { readingLineOwner } from './reading-line';
+import { ChapterNavigator } from './ChapterNavigator';
+import { getOffworldContext } from './offworld-context';
+import styles from './cinematic.module.css';
 
 const EarthStage = dynamic(() => import('./EarthStage').then((module) => module.EarthStage), {
   ssr: false,
-  loading: () => <div className="earthStageLoader">Preparing the spatial stage…</div>,
+  loading: () => (
+    <div className="earthStageLoader">
+      <LocalStoryImage
+        src="/assets/planets/earth-portrait-v1.webp"
+        width={1200}
+        height={1200}
+        sizes="(max-width: 760px) 68vw, 50vw"
+        priority
+      />
+      <span>Opening interactive view…</span>
+    </div>
+  ),
 });
 
 const storySessionKey = 'janus-guided-story-v3';
@@ -52,41 +68,15 @@ function smoothUnit(value: number) {
   return bounded * bounded * (3 - 2 * bounded);
 }
 
-function stepScrollProgress(rect: DOMRect, viewportHeight: number) {
-  const entryLine = viewportHeight * 0.82;
-  const exitLine = viewportHeight * 0.18;
-  const travel = Math.max(1, rect.height + entryLine - exitLine);
-  return clampUnit((entryLine - rect.top) / travel);
-}
-
-function stepAtReadingLine(elements: HTMLElement[], ratios: number[], fallbackIndex: number) {
-  const readingLine = window.innerHeight * 0.52;
-  let bestIndex = fallbackIndex;
-  let bestDistance = Number.POSITIVE_INFINITY;
-
-  elements.forEach((element) => {
-    const index = Number(element.dataset.stepIndex);
-    if (!Number.isInteger(index) || ratios[index] <= 0) return;
-    const rect = element.getBoundingClientRect();
-    if (rect.top <= readingLine && rect.bottom >= readingLine) {
-      const distance = Math.abs((rect.top + rect.bottom) / 2 - readingLine);
-      if (distance < bestDistance) {
-        bestDistance = distance;
-        bestIndex = index;
-      }
-      return;
-    }
-    const distance = Math.min(
-      Math.abs(rect.top - readingLine),
-      Math.abs(rect.bottom - readingLine),
-    );
-    if (distance < bestDistance) {
-      bestDistance = distance;
-      bestIndex = index;
-    }
-  });
-
-  return bestIndex;
+function stepAtReadingLine(elements: HTMLElement[], fallbackIndex: number) {
+  return readingLineOwner(
+    elements.map((element) => {
+      const { top, bottom } = element.getBoundingClientRect();
+      return { index: Number(element.dataset.stepIndex), top, bottom };
+    }),
+    window.innerHeight * 0.52,
+    fallbackIndex,
+  );
 }
 
 function stepHasReadingLine(element: HTMLElement) {
@@ -139,49 +129,6 @@ const worldLabelPositions: Record<ScenarioId, { left: string; top: string }> = {
   S8: { left: '74%', top: '59%' },
   S9: { left: '82%', top: '45%' },
   S10: { left: '89%', top: '31%' },
-};
-
-const scenarioPortraits: Record<ScenarioId, { src: string; description: string }> = {
-  S1: {
-    src: '/assets/scenarios/s1-world-v1.webp',
-    description: 'an amber, densely illuminated industrial future Earth',
-  },
-  S2: {
-    src: '/assets/scenarios/s2-world-v1.webp',
-    description: 'a warm, crowded world of decentralized settlement clusters',
-  },
-  S3: {
-    src: '/assets/scenarios/s3-world-v1.webp',
-    description: 'a clear, temperate world with balanced clean infrastructure',
-  },
-  S4: {
-    src: '/assets/scenarios/s4-world-v1.webp',
-    description: 'a deeply rewilded world with sparse bioregional settlement',
-  },
-  S5: {
-    src: '/assets/scenarios/s5-world-v1.webp',
-    description: 'a pristine world ringed by precise posthuman orbital structures',
-  },
-  S6: {
-    src: '/assets/scenarios/s6-world-v1.webp',
-    description: 'a hot industrial world under heavy atmospheric engineering',
-  },
-  S7: {
-    src: '/assets/scenarios/s7-world-v1.webp',
-    description: 'a restored temperate world of forests, wetlands, and quiet settlements',
-  },
-  S8: {
-    src: '/assets/scenarios/s8-world-v1.webp',
-    description: 'a patchwork world marked by alternating damage and recovery',
-  },
-  S9: {
-    src: '/assets/scenarios/s9-world-v1.webp',
-    description: 'a dark pristine Earth with machine civilization concentrated off-world',
-  },
-  S10: {
-    src: '/assets/scenarios/s10-world-v1.webp',
-    description: 'a quiet home world left behind by departing off-world civilizations',
-  },
 };
 
 const atmosphereKeys = [
@@ -300,15 +247,7 @@ function MetricReadout({ scenarioId }: { scenarioId: ScenarioId }) {
   );
 }
 
-function WorldLabels({
-  activeScenario,
-  budding,
-  visible,
-}: {
-  activeScenario: ScenarioId | null;
-  budding: boolean;
-  visible: boolean;
-}) {
+function WorldLabels({ budding, visible }: { budding: boolean; visible: boolean }) {
   if (budding) {
     return (
       <div
@@ -336,40 +275,21 @@ function WorldLabels({
   return (
     <div
       aria-label="All ten Janus scenario worlds. Their spatial separation does not encode probability."
-      className={
-        activeScenario
-          ? `worldLabels worldLabelsFocused ${visible ? 'storyOverlayVisible' : ''}`
-          : `worldLabels ${visible ? 'storyOverlayVisible' : ''}`
-      }
+      className={`worldLabels ${visible ? 'storyOverlayVisible' : ''}`}
       role="group"
     >
       {allScenarioProfiles.map((profile, index) => (
         <span
-          className={activeScenario === profile.id ? 'worldLabel worldLabelActive' : 'worldLabel'}
+          className="worldLabel"
+          data-world-label={profile.id}
           key={profile.id}
           style={
             {
               '--label-accent': profile.accent,
-              '--label-left': activeScenario
-                ? activeScenario === profile.id
-                  ? '31%'
-                  : `${80 + (index % 2) * 6}%`
-                : `${7 + index * 6}%`,
-              '--label-mobile-left': activeScenario
-                ? activeScenario === profile.id
-                  ? '31%'
-                  : `${80 + (index % 2) * 6}%`
-                : worldLabelPositions[profile.id].left,
-              '--label-top': activeScenario
-                ? activeScenario === profile.id
-                  ? '51%'
-                  : `${17 + index * 6.7}%`
-                : worldLabelPositions[profile.id].top,
-              '--label-mobile-top': activeScenario
-                ? activeScenario === profile.id
-                  ? '51%'
-                  : `${17 + index * 6.7}%`
-                : worldLabelPositions[profile.id].top,
+              '--label-left': `${7 + index * 6}%`,
+              '--label-mobile-left': worldLabelPositions[profile.id].left,
+              '--label-top': worldLabelPositions[profile.id].top,
+              '--label-mobile-top': worldLabelPositions[profile.id].top,
             } as CSSProperties
           }
         >
@@ -403,8 +323,6 @@ function OcularObservation({
 
   useEffect(() => {
     if (!deckRef.current) return;
-    const frames = Array.from(deckRef.current.querySelectorAll<HTMLElement>('.ocularWorldFrame'));
-    const activePosition = allScenarioProfiles.findIndex(({ id }) => id === scenarioId);
     const editorialLayers = Array.from(
       deckRef.current.querySelectorAll<HTMLElement>(
         '.ocularEvidence > div, .ocularVerdict, .ocularHeader',
@@ -412,13 +330,6 @@ function OcularObservation({
     );
 
     if (!gsapRuntime) {
-      frames.forEach((frame, index) => {
-        const active = frame.dataset.scenarioId === scenarioId && visible;
-        frame.style.opacity = active ? '1' : '0';
-        frame.style.transform = `translateX(${active ? 0 : index < activePosition ? -3 : 3}%) scale(${active ? 1 : 1.08})`;
-        frame.style.visibility = active ? 'visible' : 'hidden';
-        frame.style.zIndex = active ? '2' : '1';
-      });
       editorialLayers.forEach((layer) => {
         layer.style.opacity = visible ? '1' : '0';
         layer.style.transform = 'translateY(0)';
@@ -428,19 +339,6 @@ function OcularObservation({
     }
 
     const gsap = gsapRuntime;
-    gsap.killTweensOf(frames);
-    frames.forEach((frame, index) => {
-      const active = frame.dataset.scenarioId === scenarioId && visible;
-      const target = {
-        autoAlpha: active ? 1 : 0,
-        scale: active ? 1 : 1.08,
-        xPercent: active ? 0 : index < activePosition ? -3 : 3,
-        zIndex: active ? 2 : 1,
-      };
-      if (reducedMotion) gsap.set(frame, target);
-      else gsap.to(frame, { ...target, duration: active ? 1.05 : 0.55, ease: 'power3.out' });
-    });
-
     if (reducedMotion || !visible) {
       gsap.set(editorialLayers, { autoAlpha: visible ? 1 : 0, y: 0 });
       return;
@@ -469,21 +367,6 @@ function OcularObservation({
       ref={deckRef}
       style={{ '--observation-accent': profile.accent } as CSSProperties}
     >
-      <div className="ocularWorldFrames" aria-hidden="true">
-        {allScenarioProfiles.map((candidate) => (
-          <div className="ocularWorldFrame" data-scenario-id={candidate.id} key={candidate.id}>
-            <LocalStoryImage
-              alt=""
-              height={941}
-              priority={candidate.id === 'S1'}
-              sizes="(max-width: 760px) 100vw, 68vw"
-              src={scenarioPortraits[candidate.id].src}
-              width={1672}
-            />
-          </div>
-        ))}
-      </div>
-
       <div className="ocularHardware" aria-hidden="true">
         <i />
         <i />
@@ -497,7 +380,7 @@ function OcularObservation({
           <strong>{profile.morphology.mythMetaphor}</strong>
         </div>
         <p>
-          Portrait: interpretive / model-generated
+          World: interpretive staging
           <br />
           Values: reported or transcribed
         </p>
@@ -540,9 +423,9 @@ function OcularObservation({
 
       <div className="srOnly">
         <p>
-          Interpretive portrait of {scenarioId}: {scenarioPortraits[scenarioId].description}. The
-          image is not an observation. The following values are reported scenario atmosphere and
-          emission inputs transcribed from Table 1, not digitized spectral samples.
+          Interpretive view of {scenarioId}. The world is not a simulated observation. The following
+          values are reported scenario atmosphere and emission inputs transcribed from Table 1, not
+          digitized spectral samples.
         </p>
         <ul>
           {atmosphereKeys.map((key) => {
@@ -613,16 +496,6 @@ function ObservationBridge({
       data-active={progress > 0.001 ? 'true' : 'false'}
       ref={bridgeRef}
     >
-      <div className="observationBridgeEarth">
-        <LocalStoryImage
-          alt=""
-          height={941}
-          priority
-          sizes="(max-width: 760px) 76vw, 32vw"
-          src="/assets/scenarios/s1-world-v1.webp"
-          width={1672}
-        />
-      </div>
       <div className="observationBridgeReticle">
         <i />
         <i />
@@ -851,15 +724,18 @@ function DeferredEarthStage({
       data-scene-kind={state.kind}
       data-world-lifecycle="deferred-until-story-intent"
     >
-      <LocalStoryImage
-        alt=""
-        height={720}
-        priority
-        sizes="(max-width: 760px) 100vw, 68vw"
-        src="/assets/planets/earth-day-1440.webp"
-        width={1440}
-      />
-      <span />
+      <div className="stageFallback" aria-hidden="true">
+        <span className="fallbackEarth">
+          <LocalStoryImage
+            alt=""
+            height={1200}
+            priority
+            sizes="(max-width: 760px) 90vw, 52vw"
+            src="/assets/planets/earth-portrait-v1.webp"
+            width={1200}
+          />
+        </span>
+      </div>
     </div>
   );
 }
@@ -869,6 +745,7 @@ export function StoryExperience() {
   const [branchProgress, setBranchProgress] = useState(0);
   const [observerProgress, setObserverProgress] = useState(0);
   const [stageRequested, setStageRequested] = useState(false);
+  const [interactiveIntent, setInteractiveIntent] = useState(false);
   const [stageReadiness, setStageReadiness] = useState<'core' | 'fallback' | 'poster' | 'spatial'>(
     'core',
   );
@@ -887,7 +764,7 @@ export function StoryExperience() {
           if (!chapters.has(step.chapter)) chapters.set(step.chapter, index);
           return chapters;
         }, new Map<string, number>()),
-      ).map(([chapter, firstIndex]) => ({ chapter, firstIndex })),
+      ).map(([chapter, firstIndex]) => ({ chapter, firstIndex, label: chapterLabels[chapter] })),
     [storySteps],
   );
   const navigationTargetRef = useRef<number | null>(null);
@@ -897,10 +774,6 @@ export function StoryExperience() {
   const activeIndexRef = useRef(storyState.activeIndex);
   const previousActiveIndexRef = useRef(storyState.activeIndex);
   const previousVisualKindRef = useRef<StoryVisualState['kind'] | null>(null);
-  const transitionRef = useRef<{
-    direction: StoryStateDirection;
-    kind: TransitionKind;
-  }>({ direction: 'jump', kind: 'initial' });
   const previousScrollYRef = useRef(0);
   const readingMode = storyState.mode === 'reading';
   const reducedMotion = readingMode || preferenceReducedMotion;
@@ -929,7 +802,6 @@ export function StoryExperience() {
     root.dataset.scrollDirection = 'idle';
     root.dataset.transitionDirection = 'jump';
     root.dataset.transitionKind = 'initial';
-    root.style.setProperty('--story-step-center', '0');
   }, []);
 
   useEffect(() => {
@@ -939,7 +811,6 @@ export function StoryExperience() {
     const direction: StoryStateDirection =
       distance === 0 ? 'jump' : activeIndex > previousIndex ? 'forward' : 'backward';
     const kind: TransitionKind = distance === 0 ? 'initial' : distance === 1 ? 'step' : 'jump';
-    transitionRef.current = { direction, kind };
 
     if (storyRootRef.current) {
       storyRootRef.current.dataset.transitionDirection = direction;
@@ -1015,23 +886,13 @@ export function StoryExperience() {
           const index = Number((entry.target as HTMLElement).dataset.stepIndex);
           if (Number.isInteger(index)) ratiosRef.current[index] = entry.intersectionRatio;
         });
-        if (storyState.started && ratiosRef.current.some((ratio) => ratio > 0)) {
+        if (
+          ratiosRef.current.some((ratio, index) => ratio > 0 && (storyState.started || index > 0))
+        ) {
           setStageRequested(true);
         }
-        const navigationTarget = navigationTargetRef.current;
-        if (navigationTarget !== null) {
-          const target = stepRefs.current[navigationTarget];
-          if (target && stepHasReadingLine(target)) {
-            navigationTargetRef.current = null;
-            if (navigationUnlockTimerRef.current !== null) {
-              window.clearTimeout(navigationUnlockTimerRef.current);
-              navigationUnlockTimerRef.current = null;
-            }
-            dispatch({ type: 'activate', index: navigationTarget });
-          }
-          return;
-        }
-        const nextIndex = stepAtReadingLine(elements, ratiosRef.current, activeIndexRef.current);
+        if (navigationTargetRef.current !== null) return;
+        const nextIndex = stepAtReadingLine(elements, activeIndexRef.current);
         if (ratiosRef.current[nextIndex] > 0) dispatch({ type: 'activate', index: nextIndex });
       },
       {
@@ -1040,8 +901,48 @@ export function StoryExperience() {
       },
     );
 
+    // Intersection thresholds alone cannot resolve ownership throughout a tall sticky shot,
+    // or after browser scroll restoration. Measure the actual layout once per scroll frame.
+    let frame = 0;
+    const reconcile = () => {
+      frame = 0;
+      if (navigationTargetRef.current !== null) return;
+      const nextIndex = stepAtReadingLine(elements, activeIndexRef.current);
+      if (nextIndex > 0) setStageRequested(true);
+      if (nextIndex !== activeIndexRef.current) {
+        activeIndexRef.current = nextIndex;
+        dispatch({ type: 'activate', index: nextIndex });
+      }
+    };
+    const requestReconcile = () => {
+      if (!frame) frame = requestAnimationFrame(reconcile);
+    };
+    // Reaching the reading line is not the end of a native smooth scroll. Keep
+    // the chosen target through deceleration, including rapid keyboard reversals.
+    const finishNavigation = () => {
+      const index = navigationTargetRef.current;
+      const target = index === null ? null : stepRefs.current[index];
+      if (!target || !stepHasReadingLine(target)) return;
+      navigationTargetRef.current = null;
+      if (navigationUnlockTimerRef.current !== null) {
+        window.clearTimeout(navigationUnlockTimerRef.current);
+        navigationUnlockTimerRef.current = null;
+      }
+    };
     elements.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
+    requestReconcile();
+    window.addEventListener('scroll', requestReconcile, { passive: true });
+    window.addEventListener('resize', requestReconcile);
+    window.addEventListener('pageshow', requestReconcile);
+    document.addEventListener('scrollend', finishNavigation);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', requestReconcile);
+      window.removeEventListener('resize', requestReconcile);
+      window.removeEventListener('pageshow', requestReconcile);
+      document.removeEventListener('scrollend', finishNavigation);
+    };
   }, [readingMode, storyState.started, storySteps]);
 
   useEffect(() => {
@@ -1049,7 +950,6 @@ export function StoryExperience() {
       const frame = window.requestAnimationFrame(() => {
         setBranchProgress(readingMode ? 0 : activeIndex > 0 ? 1 : 0);
         setObserverProgress(activeIndex > observerStepIndex ? 1 : 0);
-        storyRootRef.current?.style.setProperty('--story-step-center', '0');
         if (storyRootRef.current) storyRootRef.current.dataset.scrollDirection = 'idle';
       });
       return () => window.cancelAnimationFrame(frame);
@@ -1060,13 +960,6 @@ export function StoryExperience() {
       animationFrame = 0;
       const viewportHeight = window.innerHeight;
       const root = storyRootRef.current;
-      const activeStep = stepRefs.current[activeIndexRef.current];
-      if (activeStep) {
-        const progress = stepScrollProgress(activeStep.getBoundingClientRect(), viewportHeight);
-        const centeredProgress = progress * 2 - 1;
-        root?.style.setProperty('--story-step-center', centeredProgress.toFixed(4));
-      }
-
       const scrollY = window.scrollY;
       const delta = scrollY - previousScrollYRef.current;
       if (root) {
@@ -1123,81 +1016,8 @@ export function StoryExperience() {
     };
   }, [activeIndex, observerStepIndex, preferenceReducedMotion, readingMode]);
 
-  useEffect(() => {
-    const root = storyRootRef.current;
-    const stage = storyStageRef.current;
-    if (!root || !stage || !gsapRuntime) return;
-
-    const activeStep = stepRefs.current[activeIndex];
-    const card = activeStep?.querySelector<HTMLElement>('.storyStepCard');
-    const cardLayers = card
-      ? Array.from(card.children).filter((node): node is HTMLElement => node instanceof HTMLElement)
-      : [];
-    const chromeLayers = [
-      ...stage.querySelectorAll<HTMLElement>('.stageMeta > span, .stageSource > span'),
-    ];
-    const animatedLayers = [...cardLayers, ...chromeLayers];
-    const gsap = gsapRuntime;
-
-    gsap.killTweensOf(animatedLayers);
-    if (reducedMotion || readingMode) {
-      gsap.set(animatedLayers, { clearProps: 'opacity,transform' });
-      root.dataset.motionPhase = 'settled';
-      return;
-    }
-
-    const { direction, kind } = transitionRef.current;
-    const directionSign = direction === 'backward' ? -1 : direction === 'forward' ? 1 : 0;
-    const isJump = kind === 'jump';
-    root.dataset.motionPhase = 'settling';
-
-    const context = gsap.context(() => {
-      const timeline = gsap.timeline({
-        defaults: { overwrite: 'auto' },
-        onComplete: () => {
-          root.dataset.motionPhase = 'settled';
-        },
-      });
-      if (cardLayers.length > 0) {
-        timeline.fromTo(
-          cardLayers,
-          {
-            opacity: isJump ? 0.72 : 0.24,
-            y: directionSign * (isJump ? 6 : 16),
-          },
-          {
-            clearProps: 'opacity,transform',
-            duration: isJump ? 0.28 : 0.64,
-            ease: 'power3.out',
-            opacity: 1,
-            stagger: isJump ? 0 : 0.045,
-            y: 0,
-          },
-          0,
-        );
-      }
-      if (chromeLayers.length > 0) {
-        timeline.fromTo(
-          chromeLayers,
-          { opacity: 0.42, y: directionSign * 7 },
-          {
-            clearProps: 'opacity,transform',
-            duration: isJump ? 0.24 : 0.48,
-            ease: 'power2.out',
-            opacity: 1,
-            stagger: 0.025,
-            y: 0,
-          },
-          0.04,
-        );
-      }
-    }, root);
-
-    return () => {
-      context.revert();
-      root.dataset.motionPhase = 'settled';
-    };
-  }, [activeIndex, gsapRuntime, readingMode, reducedMotion, stageVisual.kind]);
+  // Prose follows native document flow. Only the spatial scene and optical bridge
+  // tween; revisiting a paragraph never replays an entrance or makes it unreadable.
 
   const activeObservation = useMemo(
     () => ({
@@ -1220,10 +1040,14 @@ export function StoryExperience() {
     dispatch({ type: 'selectObserver', selectedObserver });
   }, []);
 
-  function moveTo(index: number) {
+  function moveTo(index: number, immediate = false) {
     const nextIndex = Math.min(Math.max(index, 0), storySteps.length - 1);
     const target = stepRefs.current[nextIndex];
     setStageRequested(true);
+    setInteractiveIntent(true);
+    // Abort an earlier native scroll before replacing its destination, even if
+    // the new destination happens to match the current in-flight position.
+    window.scrollTo({ top: window.scrollY, behavior: 'instant' });
     navigationTargetRef.current = readingMode ? null : nextIndex;
     if (navigationUnlockTimerRef.current !== null) {
       window.clearTimeout(navigationUnlockTimerRef.current);
@@ -1241,7 +1065,11 @@ export function StoryExperience() {
     dispatch({ type: 'activate', index: nextIndex });
     target?.focus({ preventScroll: true });
     target?.scrollIntoView({
-      behavior: reducedMotion ? 'auto' : 'smooth',
+      // Long chapter jumps settle directly; only adjacent steps use native easing.
+      behavior:
+        immediate || reducedMotion || Math.abs(nextIndex - activeIndex) !== 1
+          ? 'instant'
+          : 'smooth',
       block: target.dataset.scrollAnchor === 'observer' ? 'start' : 'center',
     });
   }
@@ -1264,28 +1092,27 @@ export function StoryExperience() {
 
   return (
     <section
-      className={readingMode ? 'story story-reading' : 'story story-guided'}
+      className={`${styles.cinematic} ${readingMode ? 'story story-reading' : 'story story-guided'}`}
       data-story-motion={reducedMotion ? 'reduced' : undefined}
       id="story"
       aria-labelledby="story-title"
       ref={storyRootRef}
     >
       <header className="storyIntro">
-        <p className="eyebrow">Guided story · chapters 0–7 + epilogue</p>
+        <p className="eyebrow">A journey through ten futures</p>
         <h2 id="story-title">Watch one Earth become ten possible worlds.</h2>
         <p>
-          Scroll through one continuous Earth-to-observer journey, or read the same sourced article
-          without animation. The story never captures wheel or touch input.
+          Scroll at your pace. Choose a chapter, or read the complete sourced story without
+          animation.
         </p>
         <p className="storyReadiness" aria-live="polite">
-          <span aria-hidden="true" />
           {stageReadiness === 'spatial'
             ? 'Spatial stage ready'
             : stageReadiness === 'poster'
-              ? 'Complete poster and DOM story ready · interactive view optional'
+              ? 'Poster ready · interactive view optional'
               : stageReadiness === 'fallback'
                 ? 'Complete 2D fallback ready · spatial layer initializing'
-                : 'Core article and 2D scene ready now'}
+                : 'Article and 2D scene ready'}
         </p>
         <div className="storyConsent" role="group" aria-label="Story options">
           <button className="primaryButton" onClick={() => startStory(0)} type="button">
@@ -1325,24 +1152,48 @@ export function StoryExperience() {
         id="story-scrolly"
         onKeyDown={(event) => {
           if (event.defaultPrevented) return;
+          if (
+            (event.target as HTMLElement).closest(
+              'button, a, input, select, textarea, summary, [role="radio"]',
+            )
+          )
+            return;
           if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
             event.preventDefault();
-            moveTo(activeIndex + 1);
+            moveTo(activeIndex + 1, true);
           }
           if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
             event.preventDefault();
-            moveTo(activeIndex - 1);
+            moveTo(activeIndex - 1, true);
           }
         }}
       >
+        {!readingMode && (
+          <div className="storyNavigationLayer">
+            <ChapterNavigator
+              chapters={storyChapters}
+              chapter={currentStep.chapter}
+              activeIndex={activeIndex}
+              stepCount={storySteps.length}
+              reducedMotion={reducedMotion}
+              onMove={moveTo}
+            />
+          </div>
+        )}
         {!readingMode && (
           <div
             className="storySticky"
             style={stageRecoveryActive ? { pointerEvents: 'none', zIndex: 4 } : undefined}
           >
-            <div className="storyStage" data-active-step={currentStep.id} ref={storyStageRef}>
+            <div
+              className="storyStage"
+              data-active-step={currentStep.id}
+              data-scene-kind={stageVisual.kind}
+              ref={storyStageRef}
+            >
               {stageRequested ? (
                 <EarthStage
+                  interactiveIntent={interactiveIntent}
                   branchProgress={branchProgress}
                   observerProgress={observerProgress}
                   onReady={handleStageReady}
@@ -1365,7 +1216,7 @@ export function StoryExperience() {
               <ObserverInstrumentSelector
                 instrument={selectedInstrument}
                 onChange={selectObserver}
-                visible={stageVisual.kind === 'observer'}
+                visible={stageVisual.kind === 'observer' && observerProgress < 0.8}
               />
 
               {activeObservation.visible && (
@@ -1378,22 +1229,20 @@ export function StoryExperience() {
                 />
               )}
 
-              <div className="stageMeta">
-                <span>Chapter {currentStep.chapter}</span>
-                <span>
-                  {String(activeIndex + 1).padStart(2, '0')} / {storySteps.length}
-                </span>
-                <span>{reducedMotion ? 'Motion reduced' : stageVisual.kind}</span>
-              </div>
-
               <WorldLabels
-                activeScenario={stageVisual.kind === 'scenario' ? stageVisual.scenarioId : null}
                 budding={stageVisual.kind === 'branches' && stageVisual.branchState === 'budding'}
-                visible={
-                  stageVisual.kind === 'scenario' ||
-                  (stageVisual.kind === 'branches' && branchProgress > 0.72)
-                }
+                visible={stageVisual.kind === 'branches' && branchProgress > 0.72}
               />
+              <svg
+                className="storyBranchConnections"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                {allScenarioProfiles.map(({ id }) => (
+                  <path key={id} data-world-path={id} vectorEffect="non-scaling-stroke" />
+                ))}
+              </svg>
 
               <div
                 className={`storyMetricsLayer ${stageVisual.showMetrics ? 'storyOverlayVisible' : ''}`}
@@ -1409,22 +1258,6 @@ export function StoryExperience() {
               />
 
               <EpiloguePanel visible={stageVisual.kind === 'epilogue'} />
-
-              <nav className="storyChapterProgress" aria-label="Story progress">
-                {storyChapters.map(({ chapter, firstIndex }) => (
-                  <button
-                    aria-current={currentStep.chapter === chapter ? 'step' : undefined}
-                    aria-label={`Chapter ${chapter}: ${chapterLabels[chapter]}`}
-                    key={chapter}
-                    onClick={() => moveTo(firstIndex)}
-                    title={`Chapter ${chapter}: ${chapterLabels[chapter]}`}
-                    type="button"
-                  >
-                    <span>{chapter}</span>
-                    <small>{chapterLabels[chapter]}</small>
-                  </button>
-                ))}
-              </nav>
 
               <div className="stageSource">
                 <span>Project Janus scenarios are possibilities, not forecasts.</span>
@@ -1466,7 +1299,41 @@ export function StoryExperience() {
                   {step.chapter} · {step.kicker}
                 </p>
                 <h3>{step.title}</h3>
-                <p>{step.body}</p>
+                {step.visual.kind === 'scenario' && step.visual.scenarioId && !readingMode ? (
+                  <>
+                    <p className="scenarioSynopsis">
+                      {sourcedDisplay(
+                        getScenarioProfile(step.visual.scenarioId).morphology.canonicalSummary,
+                      )}
+                    </p>
+                    <p className="offworldCaption">
+                      <span>Beyond Earth</span>
+                      {getOffworldContext(getScenarioProfile(step.visual.scenarioId)).stellar && (
+                        <>
+                          Stellar cutaway:{' '}
+                          {
+                            getOffworldContext(getScenarioProfile(step.visual.scenarioId)).stellar
+                              ?.label
+                          }
+                          .{' '}
+                        </>
+                      )}
+                      {getOffworldContext(getScenarioProfile(step.visual.scenarioId)).bodies.length
+                        ? `${getOffworldContext(getScenarioProfile(step.visual.scenarioId))
+                            .bodies.map(({ body }) => body)
+                            .join(
+                              ' · ',
+                            )}. Reference maps, not predicted surfaces. Size and spacing are illustrative.`
+                        : 'Earth-focused. No positive off-world planetary signature is tabulated; this is not an instrument non-detection.'}
+                    </p>
+                    <details className="scenarioEvidence">
+                      <summary>Published values & five observing methods</summary>
+                      <p>{step.body}</p>
+                    </details>
+                  </>
+                ) : (
+                  <p>{step.body}</p>
+                )}
                 {step.id === 'possibility-families' && (
                   <ul className="storyFamilySummary">
                     {familyDefinitions.map((family) => (
