@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "reviewedAt": "2026-09-05T05:00:00Z",
+  "reviewedAt": "2026-09-07T20:30:00Z",
   "entries": [
     {
       "id": "janus.artifact.s3.2.3",
@@ -1687,6 +1687,173 @@
         "Illustrative current planetary map, not a predicted future surface or instrument image. Source documentation states unmapped regions may contain fictional terrain and colors are enhanced.",
         "Shown only as off-world context for positive canonical planetary signatures; relative size and spacing are editorial."
       ]
+    },
+    {
+      "id": "janus.low-poly.worlds.v4",
+      "title": "Scenario-specific low-poly worlds and sourced companion systems",
+      "creator": "Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "model",
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory original procedural artwork",
+      "directFileUrls": [],
+      "sourceVersion": "scenario-identities-v4-2026-09-08",
+      "retrievedAt": "2026-09-08",
+      "license": "Original project artwork commissioned for incorporation into Janus Observatory",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
+      "aiAssistanceDisclosure": "OpenAI Codex authored the original low-poly geometry and animation code. This artwork is not a Project Janus scientific artifact or measured model.",
+      "allowedTransformations": [
+        "animation",
+        "material tuning",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "appliedTransformations": [
+        "animation",
+        "material tuning",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "sourceChecksum": "sha256:7db2c791cd0a89b25b9a22bb4a9428e4ba50dfa725ffc959b237bb2f7bf0b9eb",
+      "maxDisplaySize": null,
+      "transformations": [
+        "Original faceted geometry, matte materials and articulated motion rendered directly in Three.js; static landmarks merged into one colored mesh per world. No downloadable model derivative."
+      ],
+      "notes": [
+        "Source checksum covers the concatenated UTF-8 files, in this order: apps/web/app/voyage/worlds.ts, apps/web/app/voyage/Planet.tsx, apps/web/app/voyage/terrain.ts, apps/web/app/voyage/WorldStructures.tsx, apps/web/app/voyage/sculpture.ts, apps/web/app/voyage/PlanetDetails.ts, apps/web/app/voyage/planet-surface.ts, apps/web/app/voyage/WorldBiomes.ts, apps/web/app/voyage/WorldActivity.tsx, apps/web/app/voyage/Space.tsx, apps/web/app/voyage/ScenarioObjects.ts, apps/web/app/voyage/ScenarioBiomes.ts, apps/web/app/voyage/SystemGeometry.ts, apps/web/app/voyage/WorldSystem.tsx.",
+        "Original code-native art. No photographic surface maps. Geography, architecture, anatomy, proportions and motion are artistic inventions, never measured data. Telescope camera and hands share the same stage coordinates; the eyepiece is an editorial illustration, not an optical simulation.",
+        "Detail v2 refines the approved low-poly v1 artwork (prior source checksum sha256:bb9f1566b29b08dc32105654b73ed97347cb43ce0479e99736a2ee0cc972c466). Surface-following roads and rivers, settlements, machinery, vegetation, shell insets, sail ribs and station panels are authored artistic details. Terrain projection occurs once during construction; every world retains one merged static landmark mesh. Original v1 visual evidence is retained in docs/qa/low-poly/.",
+        "Reference-inspired raised coasts, inhabited biomes and a few moving craft. The user-supplied dennis_tm-BVqoF4TzJ1Y-unsplash.jpg is visual guidance only; no reference pixels or textures are bundled. Replaces prior source checksum sha256:5531a4b75adec963803f1cb3a8916e6e12ce5a8424becc6591b03949c6794db0. Earlier evidence is retained in docs/qa/low-poly-detail/.",
+        "Scenario-identity pass replaces sha256:c25d4afa23a5f41448a8f0b9769af0b4963e73a339ee13a6e5a267146a37f892. Distinct architectural families, irregular landscape placement, varied craft, and original Moon/Mars/Venus/system vignettes follow the narrative direction read in arXiv:2409.00067v3 and the ten link-only pipelines. Only positive reviewed Tables 6 and 8 cells select the depicted footprint. Geometry, counts, sizes, spacing and designs are interpretive. No source artwork, PDF or reference image is reproduced. Previous evidence remains in docs/qa/living-worlds/."
+      ]
+    },
+    {
+      "id": "janus.low-poly.observer.v2",
+      "title": "The curious low-poly alien astronomer",
+      "creator": "Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "model",
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory original procedural artwork",
+      "directFileUrls": [],
+      "sourceVersion": "curious-astronomer-v2-2026-09-07",
+      "retrievedAt": "2026-09-07",
+      "license": "Original project artwork commissioned for incorporation into Janus Observatory",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
+      "aiAssistanceDisclosure": "OpenAI Codex authored the original low-poly geometry and animation code. This artwork is not a Project Janus scientific artifact or measured model.",
+      "allowedTransformations": [
+        "animation",
+        "material tuning",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "appliedTransformations": [
+        "animation",
+        "material tuning",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "sourceChecksum": "sha256:6a5327935f1048ed037ec324d6501933de0fb05a21824cac54ee8591d5afdcaf",
+      "maxDisplaySize": null,
+      "transformations": [
+        "Original faceted character geometry, matte materials and an authored 18-second AnimationClip rendered directly in Three.js. A two-segment rig preserves limb lengths and shared telescope contact. No downloadable model derivative."
+      ],
+      "notes": [
+        "Source checksum covers the concatenated UTF-8 files, in this order: apps/web/app/voyage/ObserverLife.tsx, apps/web/app/voyage/observer-animation.ts.",
+        "Original code-native art. No photographic surface maps. Geography, architecture, anatomy, proportions and motion are artistic inventions, never measured data. Telescope camera and hands share the same stage coordinates; the eyepiece is an editorial illustration, not an optical simulation.",
+        "Original 18-second Three.js AnimationClip with fixed-length articulated limbs, planted feet, shared telescope contact, gesture clearance and a deterministic reduced-motion pose. Replaces prior source checksum sha256:35837decebc38a1e68042b6ed2a4af76800e25d99bb6d33d9c8a79b63070664f. Earlier evidence is retained in docs/qa/low-poly-detail/."
+      ]
+    },
+    {
+      "id": "janus.low-poly.telescope.v1",
+      "title": "Low-poly telescope and enterable eyepiece",
+      "creator": "Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "model",
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory original procedural artwork",
+      "directFileUrls": [],
+      "sourceVersion": "low-poly-v1-2026-09-07",
+      "retrievedAt": "2026-09-07",
+      "license": "Original project artwork commissioned for incorporation into Janus Observatory",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
+      "aiAssistanceDisclosure": "OpenAI Codex authored the original low-poly geometry and animation code. This artwork is not a Project Janus scientific artifact or measured model.",
+      "allowedTransformations": [
+        "animation",
+        "material tuning",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "appliedTransformations": [
+        "animation",
+        "material tuning",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "sourceChecksum": "sha256:2ba1543795bac3cb0cf1adb039a0a47a701b94fea9a25c922c927ca9f14c06c0",
+      "maxDisplaySize": null,
+      "transformations": [
+        "Original faceted geometry, matte materials and articulated motion rendered directly in Three.js; static landmarks merged into one colored mesh per world. No downloadable model derivative."
+      ],
+      "notes": [
+        "Source checksum covers the concatenated UTF-8 files, in this order: apps/web/app/voyage/Telescope.tsx.",
+        "Original code-native art. No photographic surface maps. Geography, architecture, anatomy, proportions and motion are artistic inventions, never measured data. Telescope camera and hands share the same stage coordinates; the eyepiece is an editorial illustration, not an optical simulation."
+      ]
+    },
+    {
+      "id": "janus.low-poly.origin-poster.v3",
+      "title": "Low-poly origin world fallback",
+      "creator": "Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "image",
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory original procedural artwork",
+      "directFileUrls": [],
+      "sourceVersion": "living-worlds-v3-2026-09-07",
+      "retrievedAt": "2026-09-07",
+      "license": "Original project artwork commissioned for incorporation into Janus Observatory",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
+      "aiAssistanceDisclosure": "Rendered from original low-poly Three.js geometry authored by OpenAI Codex. Not a scientific or measured image.",
+      "allowedTransformations": [
+        "posing and staging",
+        "responsive cropping",
+        "format conversion",
+        "image optimization"
+      ],
+      "appliedTransformations": [
+        "posing and staging",
+        "responsive cropping",
+        "format conversion",
+        "image optimization"
+      ],
+      "sourceChecksum": "sha256:b96aca548217cb57b1b55460e640d6c1129c58e57f75dd4c6f096e9d4a0d9abe",
+      "maxDisplaySize": {
+        "widthPx": 870,
+        "heightPx": 900
+      },
+      "transformations": [
+        "Rendered the original low-poly Three.js origin world in Chromium at 1440 x 900 with reduced motion using scripts/capture-world-form-qa.ts. Retained unmodified canvas PNG in docs/qa/living-worlds/forms/origin-poster-source.png.",
+        "Cropped PNG to rectangle (570, 0, 1440, 900) and encoded 870 x 900 WebP using Pillow, quality 88, method 6."
+      ],
+      "notes": [
+        "Fallback for loading, unavailable WebGL, and reading mode. Entirely generated terrain; no Earth imagery. Geographic shapes and scale are editorial.",
+        "Replaces the v1 poster after original terrain detail was added. Prior source checksum sha256:b9b004c40a2c9a13250940c27f02828e9a60ac86c484e546f675fbe08bd16fb7; prior derivative checksum sha256:f9aac85b136a6803148f298b2835a107001eedf65daa5ab6a39409dcb96d3449. The v1 source render remains in docs/qa/low-poly/forms/origin-poster-source.png.",
+        "Replaces the v2 poster after reference-inspired raised coasts, biomes and new framing. Prior source checksum sha256:e7be6a9681f01e4960455d66571b2a35e4cf6a0cdebb76bf11806b0da0b24fee; prior derivative checksum sha256:9f6222b10c6f7c6b6fb9f9f193c2c48a48fadc207825ac53861a2d9c237156f2. The v2 source render remains in docs/qa/low-poly-detail/forms/origin-poster-source.png."
+      ],
+      "derivativeChecksum": "sha256:0e56a85774146f41ab5f262ec2e45c69bb976ea49b063ffb93e31e965ac577d6",
+      "derivativePublicPath": "/assets/planets/low-poly-origin-v3.webp"
     }
   ]
 }

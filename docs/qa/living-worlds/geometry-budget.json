@@ -1,0 +1,137 @@
+{
+  "scope": "Static original art geometry; moving craft are separate small meshes",
+  "worlds": [
+    {
+      "id": "Earth",
+      "mobile": false,
+      "landmarkTriangles": 5400,
+      "terrainTriangles": 1688
+    },
+    {
+      "id": "S1",
+      "mobile": false,
+      "landmarkTriangles": 18244,
+      "terrainTriangles": 1548
+    },
+    {
+      "id": "S2",
+      "mobile": false,
+      "landmarkTriangles": 11228,
+      "terrainTriangles": 1460
+    },
+    {
+      "id": "S3",
+      "mobile": false,
+      "landmarkTriangles": 9618,
+      "terrainTriangles": 1720
+    },
+    {
+      "id": "S4",
+      "mobile": false,
+      "landmarkTriangles": 6722,
+      "terrainTriangles": 1676
+    },
+    {
+      "id": "S5",
+      "mobile": false,
+      "landmarkTriangles": 11284,
+      "terrainTriangles": 1600
+    },
+    {
+      "id": "S6",
+      "mobile": false,
+      "landmarkTriangles": 11608,
+      "terrainTriangles": 1396
+    },
+    {
+      "id": "S7",
+      "mobile": false,
+      "landmarkTriangles": 7552,
+      "terrainTriangles": 1668
+    },
+    {
+      "id": "S8",
+      "mobile": false,
+      "landmarkTriangles": 6328,
+      "terrainTriangles": 1624
+    },
+    {
+      "id": "S9",
+      "mobile": false,
+      "landmarkTriangles": 7394,
+      "terrainTriangles": 1712
+    },
+    {
+      "id": "S10",
+      "mobile": false,
+      "landmarkTriangles": 6518,
+      "terrainTriangles": 1640
+    },
+    {
+      "id": "Earth",
+      "mobile": true,
+      "landmarkTriangles": 4424,
+      "terrainTriangles": 1012
+    },
+    {
+      "id": "S1",
+      "mobile": true,
+      "landmarkTriangles": 15484,
+      "terrainTriangles": 928
+    },
+    {
+      "id": "S2",
+      "mobile": true,
+      "landmarkTriangles": 9024,
+      "terrainTriangles": 860
+    },
+    {
+      "id": "S3",
+      "mobile": true,
+      "landmarkTriangles": 7862,
+      "terrainTriangles": 1060
+    },
+    {
+      "id": "S4",
+      "mobile": true,
+      "landmarkTriangles": 4758,
+      "terrainTriangles": 1028
+    },
+    {
+      "id": "S5",
+      "mobile": true,
+      "landmarkTriangles": 8564,
+      "terrainTriangles": 948
+    },
+    {
+      "id": "S6",
+      "mobile": true,
+      "landmarkTriangles": 9568,
+      "terrainTriangles": 800
+    },
+    {
+      "id": "S7",
+      "mobile": true,
+      "landmarkTriangles": 6536,
+      "terrainTriangles": 1016
+    },
+    {
+      "id": "S8",
+      "mobile": true,
+      "landmarkTriangles": 5528,
+      "terrainTriangles": 976
+    },
+    {
+      "id": "S9",
+      "mobile": true,
+      "landmarkTriangles": 6082,
+      "terrainTriangles": 1032
+    },
+    {
+      "id": "S10",
+      "mobile": true,
+      "landmarkTriangles": 5634,
+      "terrainTriangles": 964
+    }
+  ]
+}

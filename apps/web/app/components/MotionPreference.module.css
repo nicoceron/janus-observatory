@@ -1,9 +1,9 @@
 .motionPreference {
   align-items: center;
-  backdrop-filter: blur(18px);
-  background: color-mix(in srgb, var(--night) 88%, transparent);
-  border: 1px solid var(--line);
-  bottom: max(14px, env(safe-area-inset-bottom));
+  backdrop-filter: none;
+  background: #080c10;
+  border: 0;
+  bottom: max(7px, env(safe-area-inset-bottom));
   color: var(--ink);
   display: flex;
   gap: 10px;
@@ -32,7 +32,7 @@
   color: var(--muted);
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.54rem;
+  font-size: 0.49rem;
   letter-spacing: 0.04em;
   min-height: 32px;
   padding: 7px 9px;
@@ -40,15 +40,15 @@
 }
 
 .option[aria-pressed='true'] {
-  background: var(--acid);
-  color: var(--night);
+  background: #cbdcba24;
+  color: #d2e3bd;
 }
 
 .option:hover:not([aria-pressed='true']) {
   color: var(--ink);
 }
 
-@media (max-width: 620px) {
+@media (max-width: 760px) {
   .motionPreference {
     left: max(10px, env(safe-area-inset-left));
     right: max(10px, env(safe-area-inset-right));

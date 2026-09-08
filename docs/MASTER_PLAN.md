@@ -1,6 +1,8 @@
 # Janus Observatory - Master Product, Data, Architecture, and Execution Plan
 
 Status: implementation-ready plan
+
+Current scenario-specific world/system identities: [Decision 016](DECISION_016_SCENARIO_IDENTITIES.md), with the evidence in [scenario identities QA](qa/scenario-identities/REPORT.md). Reference-inspired low-poly art and character performance: [Decision 015](DECISION_015_LIVING_WORLDS.md), refining the rebuilt planet and observer models from [Decision 014](DECISION_014_LOW_POLY.md). Current story frontend: [Decision 013](DECISION_013_FIRST_LIGHT.md) supersedes the detailed Spline, WebGPU/TSL and former camera choreography below, following the user-authorized fresh frontend rebuild on 2026-09-07. Scientific, source, rights, accessibility and performance requirements remain in force.
 Version: 1.0
 Evidence cutoff: 2026-08-12
 Repository state at audit: empty Git repository, no commits, code, data, assets, or configuration

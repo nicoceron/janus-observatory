@@ -1,0 +1,10 @@
+{
+  "image": "mcr.microsoft.com/playwright:v1.62.1-noble@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac",
+  "readingBaselineUpdate": "1 passed; rendered baseline inspected",
+  "finalComparisonCompleted": false,
+  "environmentFailure": "Docker Desktop API stats returned HTTP 500; ps and inspect each timed out after 8 seconds. The final comparison produced no test result.",
+  "cleanup": {
+    "result": "Docker stop timed out after 8 seconds",
+    "hostClient": "Terminated the stalled test client after SIGINT did not complete; container stop could not be confirmed while Docker API was unresponsive."
+  }
+}

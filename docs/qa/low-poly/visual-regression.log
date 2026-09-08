@@ -1,0 +1,38 @@
+
+Running 4 tests using 1 worker
+
+/out/first-light-earth.png is re-generated, writing actual.
+  ✓  1 [chromium-swiftshader-linux] › tests/visual-regression.spec.ts:59:5 › First light preserves the reduced-motion composition (8.2s)
+  ✓  2 [chromium-swiftshader-linux] › tests/visual-regression.spec.ts:68:5 › The complete story remains legible as an article (3.6s)
+  ✓  3 [chromium-swiftshader-linux] › tests/visual-regression.spec.ts:76:5 › Observatory preserves all fourteen independently scaled atmosphere rows (3.9s)
+  ✓  4 [chromium-swiftshader-linux] › tests/visual-regression.spec.ts:94:5 › Atlas keeps all five categorical mission cells separate for every scenario (3.2s)
+
+  4 passed (21.0s)
+npm notice
+npm notice New major version of npm available! 11.16.0 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice
+
+Running 4 tests using 1 worker
+
+  ✓  1 [chromium-swiftshader-linux] › tests/visual-regression.spec.ts:59:5 › First light preserves the reduced-motion composition (5.9s)
+  ✓  2 [chromium-swiftshader-linux] › tests/visual-regression.spec.ts:68:5 › The complete story remains legible as an article (3.5s)
+  ✓  3 [chromium-swiftshader-linux] › tests/visual-regression.spec.ts:76:5 › Observatory preserves all fourteen independently scaled atmosphere rows (3.4s)
+  ✓  4 [chromium-swiftshader-linux] › tests/visual-regression.spec.ts:94:5 › Atlas keeps all five categorical mission cells separate for every scenario (3.2s)
+
+  4 passed (17.5s)
+
+Running 4 tests using 1 worker
+
+  ✓  1 [chromium-swiftshader-linux] › tests/visual-regression.spec.ts:59:5 › First light preserves the reduced-motion composition (6.0s)
+  ✓  2 [chromium-swiftshader-linux] › tests/visual-regression.spec.ts:68:5 › The complete story remains legible as an article (3.8s)
+  ✓  3 [chromium-swiftshader-linux] › tests/visual-regression.spec.ts:76:5 › Observatory preserves all fourteen independently scaled atmosphere rows (3.8s)
+  ✓  4 [chromium-swiftshader-linux] › tests/visual-regression.spec.ts:94:5 › Atlas keeps all five categorical mission cells separate for every scenario (3.9s)
+
+  4 passed (19.4s)
+npm notice
+npm notice New major version of npm available! 11.16.0 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice

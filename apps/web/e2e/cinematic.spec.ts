@@ -1,202 +1,184 @@
-import { mkdir, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
 import { expect, test } from '@playwright/test';
+import { mkdir } from 'node:fs/promises';
+import { allScenarioProfiles } from '../lib/canonical-core';
+import { systemPortrait } from '../lib/system-portrait';
 
-const output = resolve('docs/qa/cinematic-rebuild/browser');
-
-test('chapter menu preserves position and previous/next settle on adjacent steps', async ({
-  page,
-}) => {
-  await page.goto('/');
-  await page.getByRole('button', { name: 'Start story', exact: true }).click();
-  const summary = page.getByLabel('Choose story chapter');
-  await summary.click();
-  await page.getByRole('button', { name: 'Chapter 03: Observer', exact: true }).click();
-  const stage = page.locator('.storyStage');
-  await expect(stage).toHaveAttribute('data-active-step', 'observer-turn');
-  await page.waitForTimeout(2000);
-  const position = await page.evaluate(() => scrollY);
-  await summary.click();
-  await expect(page.getByRole('button', { name: /^Chapter / })).toHaveCount(9);
-  await expect(stage).toHaveAttribute('data-active-step', 'observer-turn');
-  expect(Math.abs((await page.evaluate(() => scrollY)) - position)).toBeLessThan(2);
-  await page.keyboard.press('Escape');
-  await expect(summary).toBeFocused();
-  await expect(
-    page.getByRole('button', { name: 'Chapter 03: Observer', exact: true }),
-  ).toBeHidden();
-  await summary.click();
-  await page.getByRole('button', { name: 'Chapter 02: Worlds', exact: true }).click();
-  await expect(page.locator('#story-step-4')).toHaveAttribute('aria-current', 'step');
-  await page.getByRole('button', { name: 'Next story step', exact: true }).click();
-  await expect(page.locator('#story-step-5')).toHaveAttribute('aria-current', 'step');
-  await page.getByRole('button', { name: 'Previous story step', exact: true }).click();
-  await expect(page.locator('#story-step-4')).toHaveAttribute('aria-current', 'step');
-});
-
-for (const [name, width, height] of [
-  ['desktop', 1440, 900],
-  ['portrait', 390, 844],
-] as const) {
-  test(`${name}: all 31 complete visual states, reverse scrub, and reload`, async ({
-    page,
-  }, info) => {
-    test.skip(
-      info.project.name !== 'chromium',
-      'The two explicit frame sizes share one deterministic capture run.',
-    );
-    test.setTimeout(300_000);
-    await mkdir(output, { recursive: true });
-    await page.setViewportSize({ width, height });
-    const errors: string[] = [];
-    page.on('pageerror', (error) => errors.push(error.message));
-    const assets: { path: string; bytes: number }[] = [];
-    page.on('response', async (response) => {
-      if (new URL(response.url()).pathname.startsWith('/assets/')) {
-        const bytes = Number(response.headers()['content-length'] ?? 0);
-        assets.push({ path: new URL(response.url()).pathname, bytes });
-      }
-    });
-    await page.goto('/');
-    await page.getByRole('button', { name: 'Start story', exact: true }).click();
-    const optional = page.getByRole('button', { name: 'Open interactive view' });
-    await expect(page.locator('.earthStage')).toHaveAttribute(
-      'data-spatial-consent',
-      /^(required|granted)$/,
-    );
-    if ((await page.locator('.earthStage').getAttribute('data-spatial-consent')) === 'required')
-      await optional.click();
-    await expect(page.locator('.earthStage')).toHaveAttribute('data-render-state', 'ready', {
-      timeout: 40_000,
-    });
-    const steps = page.locator('.storyStep');
-    await expect(steps).toHaveCount(31);
-    const captures = [];
-    for (let index = 0; index < 31; index++) {
-      await steps.nth(index).evaluate((element) =>
-        element.scrollIntoView({
-          behavior: 'instant',
-          block: element.getAttribute('data-scroll-anchor') === 'observer' ? 'start' : 'center',
-        }),
-      );
-      await expect(steps.nth(index)).toHaveAttribute('aria-current', 'step');
-      await page.waitForTimeout(1350);
-      await expect(page.locator('.story')).toHaveAttribute('data-motion-phase', 'settled');
-      const stageBox = await page.locator('.storyStage').boundingBox();
-      expect(stageBox?.x).toBe(0);
-      expect(stageBox?.width).toBe(width);
-      const id = await steps.nth(index).getAttribute('data-telemetry-chapter');
-      await expect(page.locator('.storyStage')).toHaveAttribute('data-active-step', id!);
-      await page.screenshot({
-        path: resolve(output, `${name}-${String(index + 1).padStart(2, '0')}.png`),
-      });
-      captures.push({
-        index,
-        id,
-        scene: await page.locator('.earthStage').getAttribute('data-scene-kind'),
-        stageBox,
-      });
-      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
-        true,
-      );
-    }
-    for (const progress of [0, 0.25, 0.5, 0.75, 0.95, 0.75, 0.5, 0.25, 0]) {
-      await steps.nth(13).evaluate((element, progress) => {
-        const bounds = element.getBoundingClientRect();
-        scrollTo({
-          top:
-            scrollY +
-            bounds.top -
-            innerHeight * 0.1 +
-            progress * (bounds.height - innerHeight * 0.96),
-          behavior: 'instant',
-        });
-      }, progress);
-      await expect(page.locator('.storyStage')).toHaveAttribute(
-        'data-active-step',
-        'observer-turn',
-      );
-      await page.waitForTimeout(500);
-      await expect(page.locator('.earthCanvas')).toHaveCSS('opacity', '1');
-      await page.screenshot({
-        path: resolve(output, `${name}-observer-${String(progress).replace('.', '-')}.png`),
-      });
-    }
-    // Restoration must reconcile from current geometry, not stale intersection ratios.
-    await page.reload();
-    await expect(page.locator('.storyStage')).toHaveAttribute('data-active-step', 'observer-turn');
-    await page.getByRole('button', { name: 'Read without animation', exact: true }).click();
-    const paragraph = page.locator('#story-step-1 .storyStepCard > p:not(.storyStepKicker)');
-    const normalSize = await paragraph.evaluate((element) =>
-      Number.parseFloat(getComputedStyle(element).fontSize),
-    );
-    await page.evaluate(() => {
-      document.documentElement.style.fontSize = '200%';
-    });
-    expect(
-      await paragraph.evaluate((element) => Number.parseFloat(getComputedStyle(element).fontSize)),
-    ).toBeCloseTo(normalSize * 2, 1);
-    const overflowingText = await page
-      .locator('.storyStepCard, .storyStepCard p, .storyCitation')
-      .evaluateAll((elements) =>
-        elements
-          .filter((element) => {
-            const rect = element.getBoundingClientRect();
-            return rect.width > 0 && (rect.left < -1 || rect.right > innerWidth + 1);
-          })
-          .map((element) => element.className),
-      );
-    expect(overflowingText).toEqual([]);
-    await page.locator('#story-step-1').scrollIntoViewIfNeeded();
-    await page.screenshot({ path: resolve(output, `${name}-read-200.png`) });
-    expect(errors).toEqual([]);
-    await writeFile(
-      resolve(output, `${name}-receipt.json`),
-      JSON.stringify(
-        {
-          viewport: { width, height },
-          captures,
-          errors,
-          assets,
-          capturedAt: new Date().toISOString(),
-        },
-        null,
-        2,
-      ),
-    );
-  });
+async function indexJump(page: import('@playwright/test').Page, label: string, id: string) {
+  await page.getByRole('button', { name: 'Index +', exact: true }).click();
+  await page
+    .getByRole('navigation', { name: 'Story index' })
+    .getByRole('button', { name: label })
+    .click();
+  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', id);
 }
 
-test('the long observer owns its reading line on slow forward and backward scroll', async ({
+test('one canvas survives every world, reverse jumps, and the observer', async ({
   page,
-}, info) => {
+}, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  const errors: string[] = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  page.on('request', (request) => {
+    if (/earth-(day|night|bump|portrait)/.test(request.url()))
+      errors.push('The new story requested an old Earth image: ' + request.url());
+  });
   await page.goto('/');
-  await page.getByRole('button', { name: 'Start story', exact: true }).click();
-  await page.getByLabel('Choose story chapter').click();
-  await page.getByRole('button', { name: 'Chapter 03: Observer', exact: true }).click();
-  const observer = page.locator('#story-step-14');
-  await expect(observer).toHaveAttribute('aria-current', 'step');
-  for (const delta of [80, 100, -90, -80]) {
-    if (info.project.name === 'mobile-webkit') {
-      await page.evaluate((delta) => scrollBy({ top: delta, behavior: 'instant' }), delta);
-    } else await page.mouse.wheel(0, delta);
-    await expect(page.locator('.storyStage')).toHaveAttribute('data-active-step', 'observer-turn');
+  await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
+    timeout: 30000,
+  });
+  const canvas = await page.locator('canvas').elementHandle();
+  for (const [index, id] of [
+    [2, 's1'],
+    [5, 's4'],
+    [10, 's9'],
+    [11, 's10'],
+    [2, 's1'],
+    [12, 'observer'],
+    [13, 'invisible'],
+  ] as const) {
+    const label =
+      id === 'observer'
+        ? 'The other side'
+        : id === 'invisible'
+          ? 'Hidden in plain sight'
+          : id.toUpperCase();
+    await indexJump(page, `${String(index).padStart(2, '0')} ${label} ↗`, id);
+    await expect(page.locator('canvas')).toHaveAttribute('data-scene', `${index}.000`);
+    expect(await canvas?.evaluate((el) => el === document.querySelector('canvas'))).toBe(true);
   }
-  // Method controls clear the optical approach and return on backscroll.
-  for (const progress of [0.95, 0]) {
-    await observer.evaluate((element, progress) => {
-      const bounds = element.getBoundingClientRect();
-      scrollTo({
-        top:
-          scrollY +
-          bounds.top -
-          innerHeight * 0.1 +
-          progress * (bounds.height - innerHeight * 0.96),
-        behavior: 'instant',
-      });
-    }, progress);
-    const controls = page.getByRole('region', { name: 'Choose an observing method' });
-    if (progress > 0.8) await expect(controls).toBeHidden();
-    else await expect(controls).toBeVisible();
+  expect(errors).toEqual([]);
+  if (testInfo.project.name === 'chromium')
+    await page.screenshot({ path: 'docs/qa/first-light/eyepiece.png' });
+});
+
+test('the telescope can be entered, exited, and reversed during travel', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Full', exact: true }).click();
+  await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
+    timeout: 30000,
+  });
+  await indexJump(page, '12 The other side ↗', 'observer');
+  const enter = page.getByRole('link', { name: 'Look through the telescope', exact: true });
+  await enter.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'eyepiece');
+  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 'invisible');
+  await page.getByRole('link', { name: 'Step back from the eyepiece', exact: true }).click();
+  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 'observer');
+  await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'exterior');
+  await enter.click();
+  await indexJump(page, '12 The other side ↗', 'observer');
+  await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'exterior');
+  await page.getByRole('button', { name: 'Reduced', exact: true }).click();
+  await enter.click();
+  await expect(page.locator('canvas')).toHaveAttribute('data-scene', '13.000');
+  await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'eyepiece');
+  await page.getByRole('button', { name: 'Previous chapter', exact: true }).click();
+  await expect(page.locator('canvas')).toHaveAttribute('data-scene', '12.000');
+  await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'exterior');
+});
+
+test('observer continues moving while scroll stays still and reduced motion freezes it', async ({
+  page,
+}, testInfo) => {
+  test.skip(
+    testInfo.project.name !== 'chromium',
+    'One GPU motion capture is sufficient; navigation and fallback run on all engines.',
+  );
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Full', exact: true }).click();
+  await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
+    timeout: 30000,
+  });
+  await indexJump(page, '12 The other side ↗', 'observer');
+  const y = await page.evaluate(() => scrollY);
+  const first = await page.locator('canvas').screenshot();
+  await page.waitForTimeout(1300);
+  const second = await page.locator('canvas').screenshot();
+  expect(first.equals(second)).toBe(false);
+  expect(await page.evaluate(() => scrollY)).toBe(y);
+  await page.getByRole('button', { name: 'Reduced', exact: true }).click();
+  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-mode', 'reduced');
+  await page.waitForTimeout(200);
+  const still = await page.locator('canvas').screenshot();
+  await page.waitForTimeout(350);
+  expect(still.equals(await page.locator('canvas').screenshot())).toBe(true);
+});
+
+test('desktop and mobile compositions have no page overflow and retain readable profiles', async ({
+  page,
+}, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
+    timeout: 30000,
+  });
+  await mkdir('docs/qa/first-light', { recursive: true });
+  const entries: [string, string][] = [
+    ['first-light', '00 First light ↗'],
+    ['possibilities', '01 Ten possible worlds ↗'],
+    ...Array.from({ length: 10 }, (_, i): [string, string] => [
+      `s${i + 1}`,
+      `${String(i + 2).padStart(2, '0')} S${i + 1} ↗`,
+    ]),
+    ['observer', '12 The other side ↗'],
+    ['invisible', '13 Hidden in plain sight ↗'],
+    ['signals', '14 Ways of seeing ↗'],
+    ['endurance', '15 Civilizations breathe ↗'],
+  ];
+  for (const [id, label] of entries) {
+    await indexJump(page, label, id);
+    if (/^s\d+$/.test(id)) {
+      await expect(page.locator('canvas')).toHaveAttribute(
+        'data-scene',
+        `${Number(id.slice(1)) + 1}.000`,
+      );
+      const portrait = systemPortrait(allScenarioProfiles[Number(id.slice(1)) - 1]).art;
+      await expect
+        .poll(() =>
+          page
+            .locator('[data-system-label]')
+            .evaluateAll(
+              (els) => els.filter((el) => Number(getComputedStyle(el).opacity) > 0.99).length,
+            ),
+        )
+        .toBe(portrait.bodies.length + portrait.features.length);
+      const layout = await page.evaluate((world) => {
+        const visible = [...document.querySelectorAll<HTMLElement>('[data-system-label]')].filter(
+          (el) => Number(getComputedStyle(el).opacity) > 0.99,
+        );
+        const index = document.querySelector(`[data-world="${world}"] [class*="worldIndex"]`)!;
+        return {
+          width: innerWidth,
+          height: innerHeight,
+          copyTop: index.getBoundingClientRect().top,
+          labels: visible.map((el) => ({
+            id: el.dataset.systemLabel!,
+            rect: el.getBoundingClientRect().toJSON() as {
+              left: number;
+              right: number;
+              top: number;
+              bottom: number;
+            },
+          })),
+        };
+      }, id.toUpperCase());
+      for (const item of layout.labels) {
+        expect(item.id.startsWith(id.toUpperCase() + ':'), item.id).toBe(true);
+        expect(item.rect.left, item.id).toBeGreaterThanOrEqual(0);
+        expect(item.rect.right, item.id).toBeLessThanOrEqual(layout.width);
+        expect(item.rect.top, item.id).toBeGreaterThanOrEqual(76);
+        expect(item.rect.bottom, item.id).toBeLessThan(layout.height - 70);
+        if (layout.width <= 760)
+          expect(item.rect.bottom, item.id).toBeLessThan(layout.copyTop - 15);
+      }
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    if (testInfo.project.name === 'chromium' || testInfo.project.name === 'mobile-chromium') {
+      await page.screenshot({ path: `docs/qa/first-light/${testInfo.project.name}-${id}.png` });
+    }
   }
 });

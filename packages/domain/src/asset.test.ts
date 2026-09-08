@@ -10,7 +10,7 @@ describe('asset rights ledger', () => {
       ({ rightsStatus }) => rightsStatus === 'all_rights_reserved',
     );
 
-    expect(parsed.entries).toHaveLength(44);
+    expect(parsed.entries).toHaveLength(48);
     expect(reserved).toHaveLength(5);
     expect(reserved.every(({ admissionStatus }) => admissionStatus === 'link_only')).toBe(true);
   });

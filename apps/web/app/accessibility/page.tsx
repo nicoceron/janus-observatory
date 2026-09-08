@@ -27,12 +27,21 @@ export default function AccessibilityPage() {
         <h2>Story controls</h2>
         <div className={styles.sectionBody}>
           <ul>
-            <li>Use “Read as article” to render all prose and source tables in document order.</li>
             <li>
-              While the guided story is active, arrow keys move between complete story states.
+              Use “Read without animation” to read the complete story and source tables in document
+              order.
             </li>
-            <li>“Skip story” moves directly to the categorical Observatory.</li>
-            <li>“Restart” returns to the playback choice without reloading the page.</li>
+            <li>
+              When a story section has focus, Arrow Up/Down or Page Up/Down moves between chapters.
+              Previous and Next buttons offer the same navigation. Escape closes the Index.
+            </li>
+            <li>
+              “Skip story” opens the Atlas. The Index opens direct navigation to every chapter.
+            </li>
+            <li>
+              The Index’s “First light” returns to the beginning; Resume restores the last chapter
+              in this session.
+            </li>
           </ul>
         </div>
       </section>

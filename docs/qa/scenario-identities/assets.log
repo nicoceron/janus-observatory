@@ -1,0 +1,5 @@
+
+> janus-observatory@0.1.0 assets:validate /Users/ceron/Developer/Projects/janus-observatory
+> tsx scripts/validate-assets.ts
+
+Validated 48 rights records, 36 derivative records across 35 public files, decoded media dimensions/MIME, responsive tiers, and complete /public/assets coverage.

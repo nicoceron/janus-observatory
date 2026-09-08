@@ -1,0 +1,6 @@
+
+> janus-observatory@0.1.0 data:validate /Users/ceron/Developer/Projects/janus-observatory
+> tsx scripts/validate-canonical-data.ts
+
+warning PUBLISHED_GROWTH_RATE_DISCREPANCY: The collapse paper Table 4 growth-rate parameter differs from the foundational paper Table 9 annual growth rate for the listed scenarios. Both published values remain separate; neither is silently reconciled.
+Validated 8 canonical datasets, 10 scenarios, 5 missions, 1361 exact field provenance records, 120 reconciled cross-paper cells, and 27 generated files.

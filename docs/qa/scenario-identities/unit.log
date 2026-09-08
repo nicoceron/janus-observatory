@@ -1,0 +1,14 @@
+
+> janus-observatory@0.1.0 test /Users/ceron/Developer/Projects/janus-observatory
+> vitest run
+
+
+ RUN  v4.1.10 /Users/ceron/Developer/Projects/janus-observatory
+
+Validated local links across 66 route files and 196 citation chunks.
+
+ Test Files  27 passed (27)
+      Tests  103 passed (103)
+   Start at  23:59:05
+   Duration  1.89s (transform 3.51s, setup 0ms, import 6.25s, tests 4.00s, environment 1ms)
+

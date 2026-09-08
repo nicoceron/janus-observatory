@@ -1,0 +1,67 @@
+
+> janus-observatory@0.1.0 build /Users/ceron/Developer/Projects/janus-observatory
+> pnpm --filter @janus/domain typecheck && pnpm --filter @janus/agent typecheck && pnpm --filter @janus/web build
+
+
+> @janus/domain@0.1.0 typecheck /Users/ceron/Developer/Projects/janus-observatory/packages/domain
+> tsc --noEmit
+
+
+> @janus/agent@0.1.0 typecheck /Users/ceron/Developer/Projects/janus-observatory/packages/agent
+> tsc --noEmit
+
+
+> @janus/web@0.1.0 build /Users/ceron/Developer/Projects/janus-observatory/apps/web
+> next build
+
+▲ Next.js 16.3.0 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 42ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 670ms
+  Running TypeScript ...
+  Finished TypeScript in 1216ms ...
+  Collecting page data using 13 workers ...
+  Generating static pages using 13 workers (0/28) ...
+  Generating static pages using 13 workers (7/28) 
+  Generating static pages using 13 workers (14/28) 
+  Generating static pages using 13 workers (21/28) 
+✓ Generating static pages using 13 workers (28/28) in 343ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /accessibility
+├ ƒ /api/downloads/independent-validation
+├ ƒ /api/health
+├ ƒ /api/health/agent
+├ ƒ /api/research
+├ ƒ /api/telemetry
+├ ○ /atlas
+├   /atlas/[scenario]
+│ ├ ● /atlas/s1
+│ ├ ● /atlas/s2
+│ ├ ● /atlas/s3
+│ └ ● [+7 more paths]
+├ ƒ /atlas/data
+├ ○ /icon.svg
+├ ○ /manifest.webmanifest
+├ ○ /methods
+├ ○ /observatory
+├ ○ /opengraph-image
+├ ○ /privacy
+├ ○ /research
+├ ○ /research/concordia
+├ ○ /research/resilience
+├ ○ /robots.txt
+├ ○ /sitemap.xml
+├ ○ /sources
+└ ○ /twitter-image
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

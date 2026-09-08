@@ -1,8 +1,24 @@
 # Janus Observatory implementation evidence ledger
 
-Audit date: 2026-08-31
+Latest frontend audit: 2026-09-08. Earlier subsystem evidence below retains its original dates.
 
 Canonical data version: `sha256:46a0e94a969301c49cfafe00463e5c7e9be5dce423ddcdeb21fe4ad0614d2046`
+
+## Current homepage: First light
+
+The homepage has been replaced on `codex/janus-first-light` with a new 17-chapter story, ten
+original faceted miniature worlds with distinct landmark systems and detailed miniature settlements,
+raised coastlines, inhabited landscapes, terrain routes, machinery and moving orbital structures,
+an articulated low-poly alien astronomer with a complete observing and discovery performance,
+a physical telescope, an enterable eyepiece, and new sourced data charts. The
+homepage loads no photographic planetary maps. The former `app/story` renderer and Spline hero are removed. See
+[Decision 013](DECISION_013_FIRST_LIGHT.md), [Decision 014](DECISION_014_LOW_POLY.md),
+[Decision 015](DECISION_015_LIVING_WORLDS.md), [Decision 016](DECISION_016_SCENARIO_IDENTITIES.md), and the
+[current verification report](qa/scenario-identities/REPORT.md). Scenario-specific object families
+and irregular clusters now distinguish local cultures; original companion bodies and system
+activity follow positive published Tables 6 and 8 cells. The [previous living-world pass](qa/living-worlds/REPORT.md) remains available. The accepted initial low-poly direction is
+retained in [its earlier report](qa/low-poly/REPORT.md). Older descriptions of the homepage below
+are historical; the scientific data and deeper research surfaces retain their existing authority.
 
 ## Outcome
 
