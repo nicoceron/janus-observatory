@@ -61,6 +61,8 @@ jobs:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      PROVIDERS_CONFIGURED: ${{ secrets.DEEPSEEK_API_KEY != '' && secrets.VOYAGE_API_KEY != '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -72,7 +74,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - name: Probe configured providers
-        if: ${{ secrets.DEEPSEEK_API_KEY != '' && secrets.VOYAGE_API_KEY != '' }}
+        if: env.PROVIDERS_CONFIGURED == 'true'
         run: pnpm probe:ai
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
