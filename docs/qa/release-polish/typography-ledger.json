@@ -1,0 +1,38 @@
+[
+  {
+    "family": "Chakra Petch",
+    "admissionStatus": "approved",
+    "license": "SIL Open Font License 1.1",
+    "sourceUrl": "https://github.com/google/fonts/tree/main/ofl/chakrapetch",
+    "licenseUrl": "https://github.com/google/fonts/blob/main/ofl/chakrapetch/OFL.txt",
+    "licensePublicPath": "/licenses/chakra-petch-OFL.txt",
+    "licenseChecksum": "sha256:13831d02389d917d22fcfa6c79f98f8acbf61d230add0e73a4d4dc5f3bfb9e56",
+    "retrievedAt": "2026-09-14",
+    "usage": "Self-hosted through next/font/google, latin subset, font-display swap. No glyph edits.",
+    "sourceVersion": "Google Fonts distribution retrieved 2026-09-14; exact build files recorded in font-build.json"
+  },
+  {
+    "family": "Space Grotesk",
+    "admissionStatus": "approved",
+    "license": "SIL Open Font License 1.1",
+    "sourceUrl": "https://github.com/google/fonts/tree/main/ofl/spacegrotesk",
+    "licenseUrl": "https://github.com/google/fonts/blob/main/ofl/spacegrotesk/OFL.txt",
+    "licensePublicPath": "/licenses/space-grotesk-OFL.txt",
+    "licenseChecksum": "sha256:564ce565c371c5e5bbf286006565a7c9aa55a9f56e7ca58d56e05d649dd61a72",
+    "retrievedAt": "2026-09-14",
+    "usage": "Self-hosted through next/font/google, latin subset, font-display swap. No glyph edits.",
+    "sourceVersion": "Google Fonts distribution retrieved 2026-09-14; exact build files recorded in font-build.json"
+  },
+  {
+    "family": "IBM Plex Mono",
+    "admissionStatus": "approved",
+    "license": "SIL Open Font License 1.1",
+    "sourceUrl": "https://github.com/google/fonts/tree/main/ofl/ibmplexmono",
+    "licenseUrl": "https://github.com/google/fonts/blob/main/ofl/ibmplexmono/OFL.txt",
+    "licensePublicPath": "/licenses/ibm-plex-mono-OFL.txt",
+    "licenseChecksum": "sha256:7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+    "retrievedAt": "2026-09-14",
+    "usage": "Self-hosted through next/font/google, latin subset, font-display swap. No glyph edits.",
+    "sourceVersion": "Google Fonts distribution retrieved 2026-09-14; exact build files recorded in font-build.json"
+  }
+]

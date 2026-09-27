@@ -1,0 +1,128 @@
+[
+  {
+    "world": "Earth",
+    "mobile": false,
+    "a": "regional-plane",
+    "b": "research-skiff",
+    "minimum": 0.5327165909984407,
+    "radii": 0.3749760077978602,
+    "clear": true
+  },
+  {
+    "world": "Earth",
+    "mobile": false,
+    "a": "regional-plane",
+    "b": "cutter",
+    "minimum": 0.5316806226768097,
+    "radii": 0.4391034967844435,
+    "clear": true
+  },
+  {
+    "world": "Earth",
+    "mobile": false,
+    "a": "research-skiff",
+    "b": "cutter",
+    "minimum": 1.428260853247053,
+    "radii": 0.42969945853835045,
+    "clear": true
+  },
+  {
+    "world": "Earth",
+    "mobile": true,
+    "a": "regional-plane",
+    "b": "research-skiff",
+    "minimum": 0.48019930211111306,
+    "radii": 0.3749760077978602,
+    "clear": true
+  },
+  {
+    "world": "Earth",
+    "mobile": true,
+    "a": "regional-plane",
+    "b": "cutter",
+    "minimum": 0.5294544740626903,
+    "radii": 0.4391034967844435,
+    "clear": true
+  },
+  {
+    "world": "Earth",
+    "mobile": true,
+    "a": "research-skiff",
+    "b": "cutter",
+    "minimum": 1.4275332494499033,
+    "radii": 0.42969945853835045,
+    "clear": true
+  },
+  {
+    "world": "S1",
+    "mobile": false,
+    "a": "city-car",
+    "b": "survey-drone",
+    "minimum": 0.5341886329659215,
+    "radii": 0.28676490936917043,
+    "clear": true
+  },
+  {
+    "world": "S1",
+    "mobile": true,
+    "a": "city-car",
+    "b": "survey-drone",
+    "minimum": 0.5352359171477563,
+    "radii": 0.28676490936917043,
+    "clear": true
+  },
+  {
+    "world": "S3",
+    "mobile": false,
+    "a": "ferry",
+    "b": "regional-plane",
+    "minimum": 0.6106576309299672,
+    "radii": 0.37177919502696877,
+    "clear": true
+  },
+  {
+    "world": "S3",
+    "mobile": true,
+    "a": "ferry",
+    "b": "regional-plane",
+    "minimum": 0.6235394212878607,
+    "radii": 0.37177919502696877,
+    "clear": true
+  },
+  {
+    "world": "S4",
+    "mobile": false,
+    "a": "canoe",
+    "b": "deer",
+    "minimum": 0.7713205810433168,
+    "radii": 0.4291079813486504,
+    "clear": true
+  },
+  {
+    "world": "S4",
+    "mobile": true,
+    "a": "canoe",
+    "b": "deer",
+    "minimum": 0.7705944516365273,
+    "radii": 0.4291079813486504,
+    "clear": true
+  },
+  {
+    "world": "S7",
+    "mobile": false,
+    "a": "cargo-cycle",
+    "b": "cutter",
+    "minimum": 1.2973294695774085,
+    "radii": 0.48084124676248485,
+    "clear": true
+  },
+  {
+    "world": "S7",
+    "mobile": true,
+    "a": "cargo-cycle",
+    "b": "cutter",
+    "minimum": 1.212045230791739,
+    "radii": 0.48084124676248485,
+    "clear": true
+  }
+]

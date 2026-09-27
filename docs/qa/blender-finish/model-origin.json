@@ -1,0 +1,57 @@
+{
+  "world": "origin",
+  "blender": "5.2.1 LTS",
+  "source": "assets/blender/origin.blend",
+  "sourceSha256": "b94540bdb4b31955154e112e855e09bfaaa32f8ffa6481a3b6ab8e317b511371",
+  "exports": [
+    {
+      "path": "apps/web/public/assets/blender/v1/origin/earth.glb",
+      "bytes": 764616,
+      "sha256": "9cb7b59e107a03c09c144c8535d9032c2e498b646312e0090751cfab7d1be7ad",
+      "triangles": 25356,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Activity_regional-plane_stops",
+        "Activity_research-skiff_stops",
+        "Activity_cutter_stops",
+        "Life_aircraft_regional-plane_body",
+        "Life_aircraft_regional-plane_extra0",
+        "Life_vessel_research-skiff_body",
+        "Life_vessel_cutter_body",
+        "Cloud_0",
+        "Cloud_1",
+        "Cloud_2",
+        "Cloud_3",
+        "Cloud_4"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/origin/earth-mobile.glb",
+      "bytes": 689332,
+      "sha256": "f1741609f25d8942c8dbd8e397c217585a61d8ce3c595531943ae4526041f91d",
+      "triangles": 23308,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Activity_regional-plane_stops",
+        "Activity_research-skiff_stops",
+        "Activity_cutter_stops",
+        "Life_aircraft_regional-plane_body",
+        "Life_aircraft_regional-plane_extra0",
+        "Life_vessel_research-skiff_body",
+        "Life_vessel_cutter_body",
+        "Cloud_0",
+        "Cloud_1",
+        "Cloud_2",
+        "Cloud_3",
+        "Cloud_4"
+      ]
+    }
+  ],
+  "scenes": [
+    "ORIGIN \u2022 Earth"
+  ],
+  "interpretive": true,
+  "animations": "Editable 40-second route and articulation previews; web motion stays in R3F."
+}

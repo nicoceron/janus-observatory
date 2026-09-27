@@ -1,0 +1,26 @@
+{
+  "world": "s5",
+  "images": [
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-Earth-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-Earth-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-Earth-rear.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-Mars-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-Mars-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-Mars-rear.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-Moon-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-Moon-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-Moon-rear.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-Venus-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-Venus-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-Venus-rear.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-asteroids-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-asteroids-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-asteroids-rear.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-kuiper-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-kuiper-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-kuiper-rear.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-outer-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-outer-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s5-outer-rear.png"
+  ]
+}

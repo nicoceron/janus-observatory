@@ -1,7 +1,7 @@
 import type { SourceRef, Sourced } from '@janus/domain/evidence';
 import { scenarioIds, type ScenarioId } from '@janus/domain/scenario';
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import Link from '../../components/AppLink';
 import { notFound } from 'next/navigation';
 
 import assetLedger from '../../../../../data/assets/ledger.json';
@@ -12,6 +12,7 @@ import {
   sourceRefLabel,
   sourcedDisplay,
 } from '../../../lib/canonical';
+import { WorldPortrait } from '../../components/WorldPortrait';
 import { InnerPage } from '../../components/InnerPage';
 import styles from '../atlas.module.css';
 
@@ -87,7 +88,10 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
   return (
     <InnerPage
       eyebrow={`Atlas record · ${profile.id}`}
-      lede={`A source-preserving record of ${profile.morphology.mythMetaphor}. Reported/transcribed fields, reported collapse outcomes, independent reimplementation outputs, and interpretive artwork remain visibly distinct.`}
+      lede={
+        profile.morphology.canonicalSummary.value ??
+        `Explore ${profile.id} and its source-linked scenario data.`
+      }
       title={profile.morphology.mythMetaphor}
     >
       <nav className={styles.recordNav} aria-label="Scenario records">
@@ -103,23 +107,7 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
       </nav>
 
       <section className={styles.recordHero} aria-label={`${profile.id} canonical overview`}>
-        <div
-          aria-label={`Interpretive, model-generated portrait for scenario ${profile.id}`}
-          aria-describedby="record-portrait-description"
-          className={styles.recordPortrait}
-          role="img"
-          style={{
-            backgroundImage: `url('/assets/scenarios/${profile.id.toLowerCase()}-world-v1.webp')`,
-          }}
-        >
-          <span className={styles.recordPortraitLabel}>
-            interpretive · model_generated scenario portrait
-          </span>
-          <span className="srOnly" id="record-portrait-description">
-            Interpretive, model-generated portrait for scenario {profile.id}. It does not encode
-            canonical scientific values.
-          </span>
-        </div>
+        <WorldPortrait world={Number(profile.id.slice(1)) - 1} />
         <dl className={styles.recordLedger}>
           <div>
             <dt>Scenario</dt>

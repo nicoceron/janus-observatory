@@ -1,0 +1,44 @@
+{
+  "status": "failed",
+  "base": "http://127.0.0.1:3000",
+  "profiles": ["desktop"],
+  "storyPortraits": 0,
+  "images": [
+    {
+      "file": "desktop-origin-story-Earth.png",
+      "profile": "desktop",
+      "world": 0,
+      "selection": "Earth",
+      "kind": "story"
+    }
+  ],
+  "motionFrames": [],
+  "stillChecks": [],
+  "assetStates": [
+    {
+      "profile": "desktop",
+      "world": 0,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/origin/earth.glb",
+      "count": 1,
+      "bytes": 969288,
+      "parts": 25
+    }
+  ],
+  "requests": [
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3000/assets/blender/v1/origin/earth.glb",
+      "status": 200,
+      "bodyBytes": 175190,
+      "transferredBytes": 176142
+    }
+  ],
+  "failedRequests": [],
+  "downloadedBytes": 175190,
+  "peakSettledLibraries": 1,
+  "peakSettledDecodedBytes": 969288,
+  "errors": [],
+  "failure": "Error: desktop S0 Earth must stop under reduced/paused motion\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n    at captureRawStack (/Users/ceron/Developer/Projects/janus-observatory/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core/lib/coreBundle.js:9681:17)\n    at callMatcherAsStep (/Users/ceron/Developer/Projects/janus-observatory/node_modules/.pnpm/playwright@1.62.1/node_modules/playwright/lib/matchers/expect.js:13310:57)\n    at Object.toBe (/Users/ceron/Developer/Projects/janus-observatory/node_modules/.pnpm/playwright@1.62.1/node_modules/playwright/lib/matchers/expect.js:13300:23)\n    at still (/Users/ceron/Developer/Projects/janus-observatory/scripts/capture-blender-worlds.ts:184:5)\n    at async <anonymous> (/Users/ceron/Developer/Projects/janus-observatory/scripts/capture-blender-worlds.ts:238:5)",
+  "scope": "Serial local browser QA: Blender readiness and named part gates, sourced story portraits and companion studies, desktop Earth objects, articulated motion, exact reduced/paused canvas identity. Memory figures estimate decoded GLB buffers/textures, not total process memory."
+}

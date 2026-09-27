@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import ledger from '../../../data/assets/ledger.json';
 import { AssetLedgerEntrySchema, AssetLedgerSchema } from './asset';
+import { scenarioIds } from './scenario';
 
 describe('asset rights ledger', () => {
   it('admits only assets with compatible rights', () => {
@@ -10,9 +11,57 @@ describe('asset rights ledger', () => {
       ({ rightsStatus }) => rightsStatus === 'all_rights_reserved',
     );
 
-    expect(parsed.entries).toHaveLength(48);
+    expect(parsed.entries.filter(({ id }) => !id.startsWith('janus.blender.v1.'))).toHaveLength(48);
+    expect(parsed.entries).toHaveLength(107);
     expect(reserved).toHaveLength(5);
     expect(reserved.every(({ admissionStatus }) => admissionStatus === 'link_only')).toBe(true);
+  });
+
+  it('admits 59 traceable Blender derivatives from the origin and every canonical scenario', () => {
+    const parsed = AssetLedgerSchema.parse(ledger);
+    const blender = parsed.entries.filter(({ id }) => id.startsWith('janus.blender.v1.'));
+    const families = ['origin', ...scenarioIds.map((id) => id.toLowerCase())];
+
+    expect(blender).toHaveLength(59);
+    expect(new Set(blender.map(({ id }) => id.split('.')[3]))).toEqual(new Set(families));
+    expect(new Set(blender.map(({ derivativePublicPath }) => derivativePublicPath)).size).toBe(59);
+    expect(new Set(blender.map(({ sourceChecksum }) => sourceChecksum)).size).toBe(11);
+    for (const family of families) {
+      const derivatives = blender.filter(({ id }) => id.startsWith(`janus.blender.v1.${family}.`));
+      const sourceChecksums = new Set(derivatives.map(({ sourceChecksum }) => sourceChecksum));
+      expect(sourceChecksums.size, family).toBe(1);
+      for (const tier of ['earth', 'earth-mobile'])
+        expect(
+          derivatives.some(
+            ({ derivativePublicPath }) =>
+              derivativePublicPath === `/assets/blender/v1/${family}/${tier}.glb`,
+          ),
+        ).toBe(true);
+      for (const derivative of derivatives) {
+        expect(derivative).toMatchObject({
+          kind: 'model',
+          scenarioId: family === 'origin' ? null : family.toUpperCase(),
+          rightsStatus: 'permission_granted',
+          admissionStatus: 'approved',
+          maxDisplaySize: null,
+        });
+        expect(derivative.sourceChecksum).toMatch(/^sha256:[a-f0-9]{64}$/);
+        expect(derivative.derivativeChecksum).toMatch(/^sha256:[a-f0-9]{64}$/);
+        expect(derivative.derivativePublicPath).toMatch(
+          new RegExp(`^/assets/blender/v1/${family}/[^/]+\\.glb$`),
+        );
+        expect(derivative.aiAssistanceDisclosure).toContain('interpretive artwork');
+        expect(derivative.aiAssistanceDisclosure).toContain(
+          'not Project Janus scientific artifacts or measured models',
+        );
+        expect(derivative.requiredCreditText).toContain('Fictional and interpretive');
+        expect(
+          derivative.transformations.some((step) =>
+            step.includes(`assets/blender/${family}.blend`),
+          ),
+        ).toBe(true);
+      }
+    }
   });
 
   it('records the complete source, retrieval, display, and publication contract', () => {

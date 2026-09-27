@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "1.0.0",
+  "attempts": [
+    {
+      "world": "s7",
+      "phase": "review",
+      "startedAt": "2026-09-20T06:56:27.904770+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+        "modules": {
+          "tmp/traffic-correction/render-landings.py": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+          "tmp/traffic-correction/review-guard.py": "sha256:a0e23203a7bb9d769ca1a95d99e47304de8e6d6f107c67f4662667b2158c0596"
+        },
+        "seeds": {
+          "s7.json": "sha256:5de87af0593ed1899cdfa0ae95a85a3cfc5e99ca055b162dce8c1303401708dd"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/tmp/traffic-correction/render-landings.py",
+        "--",
+        "--world",
+        "s7",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/traffic-correction/render-resources/review-s7.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1078034432,
+      "observedProcessIds": [33997],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2935488512,
+        "inactiveBytes": 6911311872,
+        "purgeableBytes": 134234112,
+        "freePlusInactiveBytes": 9846800384,
+        "launchAvailableBytes": 9981034496,
+        "capturedAt": "2026-09-20T06:56:27.933764+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 33997,
+      "processGroupId": 33997,
+      "requiredOutputs": {
+        "docs/qa/traffic-correction/landings/s7-cutter-from.png": "sha256:a703bde797e63beefb5b56261211989ad01e854d43734f2f8cf175d2b401d5f9",
+        "docs/qa/traffic-correction/landings/s7-cutter-to.png": "sha256:efa7720a7b5ff81b93f4682e9c7ecb46c88d13fbe82557db6e02e97719c8cfae"
+      },
+      "elapsedSeconds": 8.068,
+      "endedAt": "2026-09-20T06:56:35.972862+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2815344640,
+        "inactiveBytes": 6744702976,
+        "purgeableBytes": 22691840,
+        "freePlusInactiveBytes": 9560047616,
+        "launchAvailableBytes": 9582739456,
+        "capturedAt": "2026-09-20T06:56:35.976362+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    },
+    {
+      "world": "s7",
+      "phase": "review",
+      "startedAt": "2026-09-20T07:08:14.242151+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+        "modules": {
+          "tmp/traffic-correction/render-landings.py": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+          "tmp/traffic-correction/review-guard.py": "sha256:a0e23203a7bb9d769ca1a95d99e47304de8e6d6f107c67f4662667b2158c0596"
+        },
+        "seeds": {
+          "s7.json": "sha256:5de87af0593ed1899cdfa0ae95a85a3cfc5e99ca055b162dce8c1303401708dd"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/tmp/traffic-correction/render-landings.py",
+        "--",
+        "--world",
+        "s7",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/traffic-correction/render-resources/review-s7.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1076609024,
+      "observedProcessIds": [35379],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 3212951552,
+        "inactiveBytes": 7978041344,
+        "purgeableBytes": 39567360,
+        "freePlusInactiveBytes": 11190992896,
+        "launchAvailableBytes": 11230560256,
+        "capturedAt": "2026-09-20T07:08:14.269001+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 35379,
+      "processGroupId": 35379,
+      "requiredOutputs": {
+        "docs/qa/traffic-correction/landings/s7-cutter-from.png": "sha256:7700572a79fc391594666e476b106065356ba88a563f65cf6965f45383e729b9",
+        "docs/qa/traffic-correction/landings/s7-cutter-to.png": "sha256:787f124db469921523ddf9ab65a4cb128f2a5c4a5d65ecdb4b8402239d1f8c38"
+      },
+      "elapsedSeconds": 8.058,
+      "endedAt": "2026-09-20T07:08:22.300146+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 3114860544,
+        "inactiveBytes": 8020246528,
+        "purgeableBytes": 43876352,
+        "freePlusInactiveBytes": 11135107072,
+        "launchAvailableBytes": 11178983424,
+        "capturedAt": "2026-09-20T07:08:22.303440+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    }
+  ]
+}

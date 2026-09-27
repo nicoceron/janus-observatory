@@ -1,5 +1,9 @@
 import * as THREE from 'three';
 import { Sculpture, type Vec } from './sculpture';
+import { finishObject } from './ObjectFinish';
+import { vehicle } from './LifeModels';
+import { curveTube, membrane } from './modeling';
+import { mechanismGeometry, mechanismPosition } from './Mechanisms';
 
 const ivory = '#ecdfbf',
   ink = '#304754',
@@ -85,7 +89,13 @@ function supports(s: Sculpture, m: THREE.Matrix4, y: number, w: number, d: numbe
 }
 
 /** Original constructed objects; variants change their geometry, not just their color. */
-export function scenarioObject(s: Sculpture, m: THREE.Matrix4, kind: ObjectKind, variant = 0) {
+export function scenarioObject(
+  s: Sculpture,
+  m: THREE.Matrix4,
+  kind: ObjectKind,
+  variant = 0,
+  movingParts = true,
+) {
   const v = variant % 3;
   switch (kind) {
     case 'checkpoint': {
@@ -125,29 +135,9 @@ export function scenarioObject(s: Sculpture, m: THREE.Matrix4, kind: ObjectKind,
       break;
     }
     case 'hauler': {
-      s.box([0.14, 0.065, 0.24], '#b27741', [0, 0.075, 0], m);
-      s.box([0.13, 0.065, 0.09], '#e4ba73', [0, 0.13, -0.08], m);
-      s.box([0.095, 0.036, 0.008], '#42616a', [0, 0.144, -0.129], m);
-      s.add(
-        new THREE.CylinderGeometry(0.105, 0.067, 0.105, 4, 1, true),
-        '#d8a169',
-        [0, 0.15, 0.06],
-        [0, Math.PI / 4, 0],
-        [1, 0.7, 1.3],
-        m,
-      );
-      for (const x of [-0.088, 0.088])
-        for (const z of [-0.075, 0.08]) {
-          s.add(
-            new THREE.CylinderGeometry(0.045, 0.045, 0.032, 7),
-            ink,
-            [x, 0.045, z],
-            [0, 0, Math.PI / 2],
-            [1, 1, 1],
-            m,
-          );
-          s.ico(0.018, brass, [x * 1.15, 0.045, z], [0.4, 1, 1], m);
-        }
+      const model = new Sculpture();
+      vehicle(model, 'haul-truck');
+      s.add(model.finish(), null, undefined, undefined, undefined, m);
       break;
     }
     case 'derrick': {
@@ -273,21 +263,41 @@ export function scenarioObject(s: Sculpture, m: THREE.Matrix4, kind: ObjectKind,
       break;
     }
     case 'bio-arch': {
-      const pts = [
-        new THREE.Vector2(0.045, 0),
-        new THREE.Vector2(0.055, 0.06),
-        new THREE.Vector2(0.09, 0.18),
-        new THREE.Vector2(0.14, 0.24),
-      ];
-      s.add(
-        new THREE.LatheGeometry(pts, 7, 0, Math.PI * 1.6),
-        '#8ec6b1',
-        [0, 0, 0],
-        [0, -0.4, 0.12],
-        [1, 1, 1],
-        m,
-      );
-      for (const x of [-0.065, 0.065]) s.ico(0.035, '#d9b1be', [x, 0.235, 0.08], [1, 1.3, 1], m);
+      // Braided living ribs leave an open passage beneath a leaf canopy.
+      s.cylinder(0.11, 0.125, 0.015, '#719c8d', [0, 0.01, 0], m, 10);
+      for (let i = 0; i < 4; i++) {
+        const a = (i * Math.PI) / 2;
+        curveTube(
+          s,
+          [
+            [Math.cos(a) * 0.1, 0.01, Math.sin(a) * 0.1],
+            [Math.cos(a + 0.12) * 0.083, 0.1, Math.sin(a + 0.12) * 0.083],
+            [Math.cos(a + 0.22) * 0.055, 0.2, Math.sin(a + 0.22) * 0.055],
+            [0, 0.25, 0],
+          ],
+          0.009,
+          i % 2 ? '#d6deb1' : '#8dc4ae',
+          m,
+        );
+        s.add(
+          membrane(
+            [
+              [0, 0.015, 0.025],
+              [0.042, 0.047, 0.066],
+              [0.111, 0.015, 0.063],
+              [0.154, -0.023, 0.004],
+            ],
+            0,
+            0.012,
+          ),
+          i % 2 ? '#a4cfb4' : '#dfbfc5',
+          [0, 0.236, 0],
+          [0, a, 0],
+          undefined,
+          m,
+        );
+      }
+      s.ico(0.025, '#efc6ca', [0, 0.26, 0], [0.6, 1.4, 0.6], m, 1);
       break;
     }
     case 'synthesis': {
@@ -300,19 +310,25 @@ export function scenarioObject(s: Sculpture, m: THREE.Matrix4, kind: ObjectKind,
       break;
     }
     case 'petal-house': {
-      s.cylinder(0.085, 0.095, 0.08, ivory, [0, 0.045, 0], m, 7);
-      for (let i = 0; i < 5; i++) {
-        const a = (i * Math.PI * 2) / 5;
+      s.cylinder(0.087, 0.102, 0.095, ivory, [0, 0.045, 0], m, 10);
+      for (let i = 0; i < 6; i++)
         s.add(
-          new THREE.OctahedronGeometry(0.093),
-          i % 2 ? '#bc9ead' : '#e2c9b6',
-          [Math.cos(a) * 0.048, 0.14, Math.sin(a) * 0.048],
-          [Math.sin(a) * 0.45, 0, Math.cos(a) * -0.45],
-          [0.8, 1.4, 0.55],
+          membrane(
+            [
+              [0, 0.006, 0.1],
+              [0.033, 0.068, 0.12],
+              [0.095, 0.084, 0.06],
+              [0.133, 0.025, 0.043],
+            ],
+            0,
+            0.018,
+          ),
+          i % 2 ? '#bca4b8' : '#d9c6b7',
+          [0, 0.07, 0],
+          [0, (i * Math.PI) / 3, 0],
+          undefined,
           m,
         );
-      }
-      s.ico(0.024, '#759b95', [0, 0.065, 0.095], [1, 1.3, 0.3], m);
       break;
     }
     case 'reactor': {
@@ -365,24 +381,15 @@ export function scenarioObject(s: Sculpture, m: THREE.Matrix4, kind: ObjectKind,
     case 'watermill': {
       s.box([0.16, 0.13, 0.14], '#c5b18a', [0, 0.065, 0], m);
       roof(s, 0.2, 0.075, 0.19, [0, 0.13, 0], m, '#738d72');
-      ring(s, 0.09, 0.015, [0.14, 0.093, 0], m, [0, Math.PI / 2, 0], wood);
-      for (let i = 0; i < 8; i++) {
-        const a = (i * Math.PI) / 4;
-        s.bar(
-          [0.14, 0.093, 0],
-          [0.14, 0.093 + Math.sin(a) * 0.08, Math.cos(a) * 0.08],
-          0.008,
-          brass,
+      if (movingParts)
+        s.add(
+          mechanismGeometry('watermill'),
+          null,
+          mechanismPosition('watermill'),
+          undefined,
+          undefined,
           m,
         );
-        s.box(
-          [0.055, 0.03, 0.03],
-          wood,
-          [0.14, 0.093 + Math.sin(a) * 0.09, Math.cos(a) * 0.09],
-          m,
-          [a, 0, 0],
-        );
-      }
       windows(s, m, 0.11, 0.085, 0.076, 2);
       break;
     }
@@ -408,23 +415,15 @@ export function scenarioObject(s: Sculpture, m: THREE.Matrix4, kind: ObjectKind,
     case 'windmill': {
       s.cylinder(0.035, 0.072, 0.23, '#c2ae85', [0, 0.115, 0], m, 6);
       s.cone(0.065, 0.07, '#76946e', [0, 0.265, 0], m, 6);
-      for (let i = 0; i < 4; i++) {
-        const a = (i * Math.PI) / 2 + 0.22;
-        s.bar(
-          [0, 0.23, 0.074],
-          [Math.cos(a) * 0.17, 0.23 + Math.sin(a) * 0.17, 0.074],
-          0.007,
-          wood,
+      if (movingParts)
+        s.add(
+          mechanismGeometry('windmill'),
+          null,
+          mechanismPosition('windmill'),
+          undefined,
+          undefined,
           m,
         );
-        s.box(
-          [0.1, 0.031, 0.01],
-          '#ddcea5',
-          [Math.cos(a) * 0.125, 0.23 + Math.sin(a) * 0.125, 0.075],
-          m,
-          [0, 0, a],
-        );
-      }
       break;
     }
     case 'bunker': {
@@ -498,4 +497,5 @@ export function scenarioObject(s: Sculpture, m: THREE.Matrix4, kind: ObjectKind,
       break;
     }
   }
+  finishObject(s, m, kind, v);
 }

@@ -1,0 +1,1640 @@
+[
+  {
+    "id": "S1",
+    "summary": {
+      "captureStatus": "captured",
+      "value": "An autocratic ruler enforces strict resource allocation in a civilization strained by scarcity. The biosphere declines as the technosphere expands outward, Earth becomes a highly monitored urban landscape, and elites live in space settlements.",
+      "evidenceKind": "transcribed",
+      "sourceRefs": [
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "locator": {
+            "page": 11,
+            "section": "3.2.1 Narrative summaries",
+            "row": "S1",
+            "column": "Narrative summary"
+          },
+          "evidenceKind": "transcribed"
+        }
+      ]
+    },
+    "portrait": {
+      "locations": [
+        {
+          "body": "Moon",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "body": "Mars",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "body": "Venus",
+          "activity": "orbital",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Venus",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "extended": [
+        {
+          "feature": "asteroids",
+          "label": "Asteroid mining",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "feature": "outer",
+          "label": "Outer planet settlements",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S1"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "art": {
+        "bodies": [
+          {
+            "body": "Moon",
+            "activity": "surface"
+          },
+          {
+            "body": "Mars",
+            "activity": "surface"
+          },
+          {
+            "body": "Venus",
+            "activity": "orbital"
+          }
+        ],
+        "features": ["asteroids", "outer"]
+      }
+    }
+  },
+  {
+    "id": "S2",
+    "summary": {
+      "captureStatus": "captured",
+      "value": "Competition for scarce resources is entrenched. The technosphere and biosphere remain in fragile dependency amid climate stress, inequality, and unrest, while cities on the Moon and Mars support industry and tourism.",
+      "evidenceKind": "transcribed",
+      "sourceRefs": [
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "locator": {
+            "page": 11,
+            "section": "3.2.1 Narrative summaries",
+            "row": "S2",
+            "column": "Narrative summary"
+          },
+          "evidenceKind": "transcribed"
+        }
+      ]
+    },
+    "portrait": {
+      "locations": [
+        {
+          "body": "Moon",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S2"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S2"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S2"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S2"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S2"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "body": "Mars",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S2"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S2"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S2"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S2"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S2"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "extended": [
+        {
+          "feature": "asteroids",
+          "label": "Asteroid mining",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S2"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "art": {
+        "bodies": [
+          {
+            "body": "Moon",
+            "activity": "surface"
+          },
+          {
+            "body": "Mars",
+            "activity": "surface"
+          }
+        ],
+        "features": ["asteroids"]
+      }
+    }
+  },
+  {
+    "id": "S3",
+    "summary": {
+      "captureStatus": "captured",
+      "value": "Sociopolitical and technological changes enable a post-scarcity economy with abundant vital resources. Power is decentralized, Earth remains civilization's hub, and small settlements reach the Moon, Mars, and outer Solar System.",
+      "evidenceKind": "transcribed",
+      "sourceRefs": [
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "locator": {
+            "page": 11,
+            "section": "3.2.1 Narrative summaries",
+            "row": "S3",
+            "column": "Narrative summary"
+          },
+          "evidenceKind": "transcribed"
+        }
+      ]
+    },
+    "portrait": {
+      "locations": [
+        {
+          "body": "Moon",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S3"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S3"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S3"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S3"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S3"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "body": "Mars",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S3"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S3"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S3"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S3"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S3"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "extended": [
+        {
+          "feature": "asteroids",
+          "label": "Asteroid mining",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S3"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "feature": "outer",
+          "label": "Outer planet settlements",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S3"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "art": {
+        "bodies": [
+          {
+            "body": "Moon",
+            "activity": "surface"
+          },
+          {
+            "body": "Mars",
+            "activity": "surface"
+          }
+        ],
+        "features": ["asteroids", "outer"]
+      }
+    }
+  },
+  {
+    "id": "S4",
+    "summary": {
+      "captureStatus": "captured",
+      "value": "After the peak of high technology, people live by subsistence, simple tools, and artisanal crafts. Rituals and oral traditions reinforce belonging to the biosphere, while settlements migrate with seasonal and planetary cycles.",
+      "evidenceKind": "transcribed",
+      "sourceRefs": [
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "locator": {
+            "page": 11,
+            "section": "3.2.1 Narrative summaries",
+            "row": "S4",
+            "column": "Narrative summary"
+          },
+          "evidenceKind": "transcribed"
+        }
+      ]
+    },
+    "portrait": {
+      "locations": [],
+      "extended": [],
+      "art": {
+        "bodies": [],
+        "features": []
+      }
+    }
+  },
+  {
+    "id": "S5",
+    "summary": {
+      "captureStatus": "captured",
+      "value": "Breakthrough technologies remove resource scarcity on Earth and Mars. The biosphere is reengineered, Mars is terraformed, and biosynthetic enhancement accompanies renewed space exploration.",
+      "evidenceKind": "transcribed",
+      "sourceRefs": [
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "locator": {
+            "page": 11,
+            "section": "3.2.1 Narrative summaries",
+            "row": "S5",
+            "column": "Narrative summary"
+          },
+          "evidenceKind": "transcribed"
+        }
+      ]
+    },
+    "portrait": {
+      "locations": [
+        {
+          "body": "Moon",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S5"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S5"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S5"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "body": "Mars",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S5"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S5"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S5"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S5"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "body": "Venus",
+          "activity": "atmosphere",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S5"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S5"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "extended": [
+        {
+          "feature": "asteroids",
+          "label": "Asteroid mining",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S5"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "feature": "outer",
+          "label": "Outer planet settlements",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S5"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "feature": "kuiper",
+          "label": "Kuiper belt mining",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S5"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "art": {
+        "bodies": [
+          {
+            "body": "Moon",
+            "activity": "surface"
+          },
+          {
+            "body": "Mars",
+            "activity": "surface"
+          },
+          {
+            "body": "Venus",
+            "activity": "atmosphere"
+          }
+        ],
+        "features": ["asteroids", "outer", "kuiper"]
+      }
+    }
+  },
+  {
+    "id": "S6",
+    "summary": {
+      "captureStatus": "captured",
+      "value": "Nanoscale engineering regulates biological processes inside a technosphere that has transformed Mars and begun work on Venus. The system faces existential risk from fragile, precisely calibrated life support managed by laboring populations.",
+      "evidenceKind": "transcribed",
+      "sourceRefs": [
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "locator": {
+            "page": 11,
+            "section": "3.2.1 Narrative summaries",
+            "row": "S6",
+            "column": "Narrative summary"
+          },
+          "evidenceKind": "transcribed"
+        }
+      ]
+    },
+    "portrait": {
+      "locations": [
+        {
+          "body": "Moon",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "body": "Mars",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Mars",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "body": "Venus",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Venus",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Venus",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Venus",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "extended": [
+        {
+          "feature": "asteroids",
+          "label": "Asteroid mining",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "feature": "kuiper",
+          "label": "Kuiper belt mining",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S6"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "art": {
+        "bodies": [
+          {
+            "body": "Moon",
+            "activity": "surface"
+          },
+          {
+            "body": "Mars",
+            "activity": "surface"
+          },
+          {
+            "body": "Venus",
+            "activity": "surface"
+          }
+        ],
+        "features": ["asteroids", "kuiper"]
+      }
+    }
+  },
+  {
+    "id": "S7",
+    "summary": {
+      "captureStatus": "captured",
+      "value": "Collapse and the loss of advanced technologies catalyze alignment with nature. Simple technologies are integrated with planetary cycles, production is local, and knowledge moves through regional networks.",
+      "evidenceKind": "transcribed",
+      "sourceRefs": [
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "locator": {
+            "page": 11,
+            "section": "3.2.1 Narrative summaries",
+            "row": "S7",
+            "column": "Narrative summary"
+          },
+          "evidenceKind": "transcribed"
+        }
+      ]
+    },
+    "portrait": {
+      "locations": [],
+      "extended": [],
+      "art": {
+        "bodies": [],
+        "features": []
+      }
+    }
+  },
+  {
+    "id": "S8",
+    "summary": {
+      "captureStatus": "captured",
+      "value": "Oligarchs take power after an AI catastrophe and extract value while anticipating another collapse. Specialized tools advance as systems knowledge degrades; elites shelter underground and on the Moon while the wider population waits for stability.",
+      "evidenceKind": "transcribed",
+      "sourceRefs": [
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "locator": {
+            "page": 11,
+            "section": "3.2.1 Narrative summaries",
+            "row": "S8",
+            "column": "Narrative summary"
+          },
+          "evidenceKind": "transcribed"
+        }
+      ]
+    },
+    "portrait": {
+      "locations": [
+        {
+          "body": "Moon",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S8"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S8"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S8"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S8"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Contaminated aerosol — Moon",
+                "column": "S8"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "extended": [],
+      "art": {
+        "bodies": [
+          {
+            "body": "Moon",
+            "activity": "surface"
+          }
+        ],
+        "features": []
+      }
+    }
+  },
+  {
+    "id": "S9",
+    "summary": {
+      "captureStatus": "captured",
+      "value": "A nonbiological posthuman civilization emerges as sentient AI, leaves Earth, builds megastructures across the Solar System, and explores beyond. Net-zero technological gifts remain on Earth to support a post-scarcity human economy.",
+      "evidenceKind": "transcribed",
+      "sourceRefs": [
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "locator": {
+            "page": 11,
+            "section": "3.2.1 Narrative summaries",
+            "row": "S9",
+            "column": "Narrative summary"
+          },
+          "evidenceKind": "transcribed"
+        }
+      ]
+    },
+    "portrait": {
+      "locations": [
+        {
+          "body": "Moon",
+          "activity": "orbital",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S9"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "body": "Mars",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S9"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S9"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "body": "Venus",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Venus",
+                "column": "S9"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S9"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "extended": [
+        {
+          "feature": "asteroids",
+          "label": "Asteroid mining",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S9"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "feature": "outer",
+          "label": "Outer planet settlements",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S9"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "feature": "kuiper",
+          "label": "Kuiper belt mining",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S9"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "feature": "solar",
+          "label": "Dyson sphere",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Dyson sphere",
+                "column": "S9"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "art": {
+        "bodies": [
+          {
+            "body": "Moon",
+            "activity": "orbital"
+          },
+          {
+            "body": "Mars",
+            "activity": "surface"
+          },
+          {
+            "body": "Venus",
+            "activity": "surface"
+          }
+        ],
+        "features": ["asteroids", "outer", "kuiper", "solar"]
+      }
+    }
+  },
+  {
+    "id": "S10",
+    "summary": {
+      "captureStatus": "captured",
+      "value": "A post-scarcity commonwealth originates on Earth before a schism separates technological proponents and opponents. Earth is restored under growth limits while autonomous systems expand through orbital and deep space.",
+      "evidenceKind": "transcribed",
+      "sourceRefs": [
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "locator": {
+            "page": 11,
+            "section": "3.2.1 Narrative summaries",
+            "row": "S10",
+            "column": "Narrative summary"
+          },
+          "evidenceKind": "transcribed"
+        }
+      ]
+    },
+    "portrait": {
+      "locations": [
+        {
+          "body": "Moon",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Moon",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Moon",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Moon",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Moon",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "body": "Mars",
+          "activity": "surface",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Mars",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Artificial illumination — Mars",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Surface modification — Mars",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Mars",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "body": "Venus",
+          "activity": "atmosphere",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Industrial pollution — Venus",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            },
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 14,
+                "table": "Table 6",
+                "row": "Satellite belt — Venus",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "extended": [
+        {
+          "feature": "asteroids",
+          "label": "Asteroid mining",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Asteroid mining",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "feature": "outer",
+          "label": "Outer planet settlements",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Outer planet settlements",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        },
+        {
+          "feature": "kuiper",
+          "label": "Kuiper belt mining",
+          "sourceRefs": [
+            {
+              "sourceId": "JANUS-PAPER-01",
+              "sourceVersion": "arXiv:2409.00067v3",
+              "locator": {
+                "page": 17,
+                "table": "Table 8",
+                "row": "Kuiper belt mining",
+                "column": "S10"
+              },
+              "evidenceKind": "transcribed"
+            }
+          ]
+        }
+      ],
+      "art": {
+        "bodies": [
+          {
+            "body": "Moon",
+            "activity": "surface"
+          },
+          {
+            "body": "Mars",
+            "activity": "surface"
+          },
+          {
+            "body": "Venus",
+            "activity": "atmosphere"
+          }
+        ],
+        "features": ["asteroids", "outer", "kuiper"]
+      }
+    }
+  }
+]

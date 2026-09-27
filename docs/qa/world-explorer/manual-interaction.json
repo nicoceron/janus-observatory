@@ -1,0 +1,31 @@
+{
+  "browser": "Codex in-app browser, existing tab 6",
+  "url": "http://127.0.0.1:3200/",
+  "viewport": [1050, 1146],
+  "checks": [
+    {
+      "action": "Click surface car at (296,666) in S1 Earth",
+      "result": "Electric city car detail opened"
+    },
+    {
+      "action": "Select Luna, then click its 3D base at (307,521)",
+      "result": "Lunar settlement detail opened"
+    },
+    {
+      "action": "Drag settlement from (290,560) to (455,515)",
+      "result": "Model orientation changed without navigation or passive pointer wobble"
+    },
+    {
+      "action": "Review /atlas/s1 in the existing in-app browser",
+      "result": "Scenario detail and source fields remain available"
+    },
+    {
+      "action": "Review /observatory in the existing in-app browser",
+      "result": "Scenario selector, 14 atmosphere rows and 5 independent mission channels remain available"
+    },
+    {
+      "action": "Reload the final production build, select Full motion, open S7 and select Sailing cutter, then zoom in",
+      "result": "Detailed model remains fully framed, no browser errors; explorer left open as the deliverable"
+    }
+  ]
+}

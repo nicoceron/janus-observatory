@@ -1,6 +1,8 @@
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 
+import { readDeploymentArtifact } from '../../../../lib/deployment-artifact';
+
 import generatedManifest from '../../../../../../data/generated/manifest.json';
 
 export const dynamic = 'force-dynamic';
@@ -12,7 +14,9 @@ const validationPath = new URL(
 );
 
 export async function GET() {
-  const body = await readFile(validationPath);
+  const body = await readDeploymentArtifact('collapse/independent-validation.json', () =>
+    readFile(validationPath),
+  );
   const digest = createHash('sha256').update(body).digest('hex');
   const declared = generatedManifest.files.find(
     ({ path }) => path === 'collapse/independent-validation.json',

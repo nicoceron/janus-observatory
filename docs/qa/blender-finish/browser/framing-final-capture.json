@@ -1,0 +1,1621 @@
+{
+  "status": "passed",
+  "base": "http://127.0.0.1:3200",
+  "profiles": ["desktop"],
+  "storyPortraits": 10,
+  "images": [
+    {
+      "file": "framing-final-desktop-origin-story-Earth.png",
+      "profile": "desktop",
+      "world": 0,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "framing-final-desktop-s1-story-Earth.png",
+      "profile": "desktop",
+      "world": 1,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "framing-final-desktop-s1-object-landmark-checkpoint.png",
+      "profile": "desktop",
+      "world": 1,
+      "selection": "landmark:checkpoint",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s1-object-landmark-tenement.png",
+      "profile": "desktop",
+      "world": 1,
+      "selection": "landmark:tenement",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s1-object-landmark-watchtower.png",
+      "profile": "desktop",
+      "world": 1,
+      "selection": "landmark:watchtower",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s1-object-landmark-depot.png",
+      "profile": "desktop",
+      "world": 1,
+      "selection": "landmark:depot",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s1-object-vehicle-city-car.png",
+      "profile": "desktop",
+      "world": 1,
+      "selection": "vehicle:city-car",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s1-object-aircraft-survey-drone.png",
+      "profile": "desktop",
+      "world": 1,
+      "selection": "aircraft:survey-drone",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s2-story-Earth.png",
+      "profile": "desktop",
+      "world": 2,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "framing-final-desktop-s2-object-landmark-hauler.png",
+      "profile": "desktop",
+      "world": 2,
+      "selection": "landmark:hauler",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s2-object-landmark-derrick.png",
+      "profile": "desktop",
+      "world": 2,
+      "selection": "landmark:derrick",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s2-object-landmark-conveyor.png",
+      "profile": "desktop",
+      "world": 2,
+      "selection": "landmark:conveyor",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s2-object-landmark-reservoir.png",
+      "profile": "desktop",
+      "world": 2,
+      "selection": "landmark:reservoir",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s2-object-vehicle-haul-truck.png",
+      "profile": "desktop",
+      "world": 2,
+      "selection": "vehicle:haul-truck",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s3-story-Earth.png",
+      "profile": "desktop",
+      "world": 3,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "framing-final-desktop-s3-object-landmark-courtyard.png",
+      "profile": "desktop",
+      "world": 3,
+      "selection": "landmark:courtyard",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s3-object-landmark-pavilion.png",
+      "profile": "desktop",
+      "world": 3,
+      "selection": "landmark:pavilion",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s3-object-landmark-terrace.png",
+      "profile": "desktop",
+      "world": 3,
+      "selection": "landmark:terrace",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s3-object-landmark-glasshouse.png",
+      "profile": "desktop",
+      "world": 3,
+      "selection": "landmark:glasshouse",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s3-object-vessel-ferry.png",
+      "profile": "desktop",
+      "world": 3,
+      "selection": "vessel:ferry",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s3-object-aircraft-regional-plane.png",
+      "profile": "desktop",
+      "world": 3,
+      "selection": "aircraft:regional-plane",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s4-story-Earth.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "framing-final-desktop-s4-object-landmark-camp.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:camp",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s4-object-landmark-rack.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:rack",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s4-object-landmark-store.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:store",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s4-object-landmark-totem.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:totem",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s4-object-vessel-canoe.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "vessel:canoe",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s4-object-animal-deer.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "animal:deer",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s5-story-Earth.png",
+      "profile": "desktop",
+      "world": 5,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "framing-final-desktop-s5-object-landmark-growth-pod.png",
+      "profile": "desktop",
+      "world": 5,
+      "selection": "landmark:growth-pod",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s5-object-landmark-bio-arch.png",
+      "profile": "desktop",
+      "world": 5,
+      "selection": "landmark:bio-arch",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s5-object-landmark-synthesis.png",
+      "profile": "desktop",
+      "world": 5,
+      "selection": "landmark:synthesis",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s5-object-landmark-petal-house.png",
+      "profile": "desktop",
+      "world": 5,
+      "selection": "landmark:petal-house",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s5-object-animal-bio-ray.png",
+      "profile": "desktop",
+      "world": 5,
+      "selection": "animal:bio-ray",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s6-story-Earth.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "framing-final-desktop-s6-object-landmark-reactor.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:reactor",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s6-object-landmark-radiator.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:radiator",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s6-object-landmark-manifold.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:manifold",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s6-object-landmark-control.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:control",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s6-object-machine-maintenance-walker.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "machine:maintenance-walker",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s7-story-Earth.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "framing-final-desktop-s7-object-landmark-watermill.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:watermill",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s7-object-landmark-workshop.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:workshop",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s7-object-landmark-seed-bank.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:seed-bank",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s7-object-landmark-windmill.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:windmill",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s7-object-vehicle-cargo-cycle.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "vehicle:cargo-cycle",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s7-object-vessel-cutter.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "vessel:cutter",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s8-story-Earth.png",
+      "profile": "desktop",
+      "world": 8,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "framing-final-desktop-s8-object-landmark-bunker.png",
+      "profile": "desktop",
+      "world": 8,
+      "selection": "landmark:bunker",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s8-object-landmark-salvage.png",
+      "profile": "desktop",
+      "world": 8,
+      "selection": "landmark:salvage",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s8-object-landmark-broken-dish.png",
+      "profile": "desktop",
+      "world": 8,
+      "selection": "landmark:broken-dish",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s8-object-landmark-pylon.png",
+      "profile": "desktop",
+      "world": 8,
+      "selection": "landmark:pylon",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s8-object-machine-salvage-crane.png",
+      "profile": "desktop",
+      "world": 8,
+      "selection": "machine:salvage-crane",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s9-story-Earth.png",
+      "profile": "desktop",
+      "world": 9,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "framing-final-desktop-s9-object-landmark-gift.png",
+      "profile": "desktop",
+      "world": 9,
+      "selection": "landmark:gift",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s10-story-Earth.png",
+      "profile": "desktop",
+      "world": 10,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "framing-final-desktop-s10-object-landmark-canopy.png",
+      "profile": "desktop",
+      "world": 10,
+      "selection": "landmark:canopy",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s10-object-landmark-windmill.png",
+      "profile": "desktop",
+      "world": 10,
+      "selection": "landmark:windmill",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s10-object-landmark-store.png",
+      "profile": "desktop",
+      "world": 10,
+      "selection": "landmark:store",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s10-object-vessel-sail-barge.png",
+      "profile": "desktop",
+      "world": 10,
+      "selection": "vessel:sail-barge",
+      "kind": "object"
+    },
+    {
+      "file": "framing-final-desktop-s10-object-orbital-habitat.png",
+      "profile": "desktop",
+      "world": 10,
+      "selection": "orbital-habitat",
+      "kind": "object"
+    }
+  ],
+  "motionFrames": [],
+  "stillChecks": [
+    {
+      "profile": "desktop",
+      "world": 0,
+      "selection": "Earth",
+      "sha256": "db85128b148f4a9246b09627a811bfb2b801c5e8ccdda7280eb451825cb1bbf7"
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "Earth",
+      "sha256": "9c633c469facac39d61b17bed04a9222afa98f19ccff79a9c2cbf8408ff36dbe"
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "landmark:checkpoint",
+      "sha256": "13b595246c0229198f3f70929bfa67054161d95cf325a661d8091bbaf65ee25b"
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "landmark:tenement",
+      "sha256": "56ff2c662396c9cb13048b3e23b4ff3b2ebc1e90254744844535636cafd515c1"
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "landmark:watchtower",
+      "sha256": "802ddedcfc0ac66c041380e464f4cca698f8ea3aa78e4e29ac66d7b469d60e12"
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "landmark:depot",
+      "sha256": "0a509bc625d65d0913a8d60549d726e45edc2c6f19405252423e9e84c96e381a"
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "vehicle:city-car",
+      "sha256": "59c5a02b8e995fd9447ce46b27a5c7b6d85085aff3b0c48ea704c8c24b7d79d2"
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "aircraft:survey-drone",
+      "sha256": "6a397faa7d18e0fcd6f102c1a21ac95a320fffcd5beb9eafb9d719a21a77ba5e"
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "Earth",
+      "sha256": "78d6071129c6fdee5e3062cde9c5d6a7bfad1d9e76212a9fb9993eb119ad7df1"
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "landmark:hauler",
+      "sha256": "8be49ec889e96e8be7ed2b7d22e67f49468b298b573ec2564e0f3774955c5aa6"
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "landmark:derrick",
+      "sha256": "18f7ca6e6ac0e642289c8b6e33e4a2a8fff8a5412658c115589cdf2c68f22eb7"
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "landmark:conveyor",
+      "sha256": "e4ed8e9f7802538e76f024ed26592a902ce16dfd9b3d732aba69a311bca3217e"
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "landmark:reservoir",
+      "sha256": "6101ef5e3973143415bd126c90dd32bf8fa09b2bd2f39e7457c0ddcd9580e14e"
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "vehicle:haul-truck",
+      "sha256": "9a9f40ea5fe428c8dd091d0d54b8a2f596fac02e6983e5ec68861902f5a35b77"
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "Earth",
+      "sha256": "6f779b50b0de8fa09deb843d29904957a67c19f5109f4817fecc04e30c6f75c6"
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "landmark:courtyard",
+      "sha256": "9faba2dcec68cf33bcf6cc45fa7be25dd67f058a7e14608f2687d71bedec5f55"
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "landmark:pavilion",
+      "sha256": "a72fe2495fd7a4e218728cc59717a51db23da72c15210840cdf29dd9214aae6c"
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "landmark:terrace",
+      "sha256": "e61ccb86ac3b965a9ed035a204a8036cc7f5bc5211240753a9d777e8a07390bd"
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "landmark:glasshouse",
+      "sha256": "61a4e386b4c5df00a796d40abf6640e3c2fdc208ca88a299882634c0bfa4be67"
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "vessel:ferry",
+      "sha256": "01035b646bac3686a35dc0593125e26635d7a4ddbe8f13dd84691a2fe03952e3"
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "aircraft:regional-plane",
+      "sha256": "d8734ce4a4be04bc75ee5fe13b6219a9eefd9175cadf405ca7d6ce9d27a66fec"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "sha256": "4c32f3abfe591dfa6e92d025aebdd05dcbdae8f995f617bbe47ce87917b58804"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:camp",
+      "sha256": "b0c0c674cf7eefa0ca79013f6bc4bc22ad6e95a9f04e1880e7e931ef10fa3d39"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:rack",
+      "sha256": "8622f838d9c602d4a2455123613e03779c5b9a04a7cec7a55d9f6dc5b58d4602"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:store",
+      "sha256": "0d5b253acad76d3fad733f85c09eb03e390429a7439c504caf0902d387141f77"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:totem",
+      "sha256": "065470870e127098e5e45249607e531a17a2c79c750ead6aa0ba510ac321c7ac"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "vessel:canoe",
+      "sha256": "581a0f9f5d60ea9d2d2eba038459d8670b3d7285a42a5dbcc58cd62e7110757d"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "animal:deer",
+      "sha256": "56411d50fd3e2ad2e16b3e4aa34dde0cf0d4ad0b2700433e2ba45d0a9404554b"
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "Earth",
+      "sha256": "f6d856f2aa7b9b9c8ec0e682f6a5b9f7a5b6ee97775dbfd93edbcf1d9e8a13cc"
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "landmark:growth-pod",
+      "sha256": "e26fec9fee2caf8d2b51d94e3e931947f142febcf4097cf9d08f131f98b0bdf3"
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "landmark:bio-arch",
+      "sha256": "1e473890505a04c453ca034a671c9231dc2fc0827ca706ebc9439722184edd52"
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "landmark:synthesis",
+      "sha256": "1d0291b5754a707d07452b68c4b13c529ef7e65845505926dc3145429538264f"
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "landmark:petal-house",
+      "sha256": "bfe9ce4bb575e09561d59cb64b32eef0d78bb995316807c59ea720501cb66d3d"
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "animal:bio-ray",
+      "sha256": "082d5b17ef2e10a1196fb2b485fb6484fd1b701953f165f92cf7738bc0a64adf"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "sha256": "ef83be3cec84c19bfdafdfc9de4e687cb410e608d297199b7f83a1db12d7b35b"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:reactor",
+      "sha256": "73a3b4f6ef6d264de9167d6cd6d140b8ff808a55223512b35bcb4895a4004cd6"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:radiator",
+      "sha256": "85f89a34577a3e8999b999478f640ac9a00cc462f15a8050e8ee1c298fea95cd"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:manifold",
+      "sha256": "2cbf636e862031908dfe8233e301ddbf6cd91b4df66d397b65d8445d3f4359b6"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:control",
+      "sha256": "d637d3cbdee35a8f885c4cb588309ee8fe35dff3feac51091c44f60391fdda88"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "machine:maintenance-walker",
+      "sha256": "cd2147e0ea80b1ddb9ca562e3b21ff36ac1be075944bad7f84f020799233857e"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "sha256": "d1e2c856591e975f158f3ac8031325f19b0473ef6dbf9267304bff0e03cf3450"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:watermill",
+      "sha256": "1606fdeaf62084c84c011822aea500bf20b4f50c2f4316ef0a6ac1a9ee78cf7f"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:workshop",
+      "sha256": "f1c68643f8f6936bb403cd151228219c941a544da23e6d2b80c32b7e03b526da"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:seed-bank",
+      "sha256": "017662ecb4a74e66d97b541fcbd26224d8d07a21214822cd07a399425c6cd5c7"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:windmill",
+      "sha256": "7b55555fbdbe6b9da15e01da0876751fde72b80d69342e9404cf7ff063c1f3fd"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "vehicle:cargo-cycle",
+      "sha256": "6205fa6fbe79474639c9f636942cc1c2676fea895caedc770d33675be895da6b"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "vessel:cutter",
+      "sha256": "05b24991b97f13c77f3b3752db1e8e5f2d505ed566d5ee973497c2c102fc2ad2"
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "Earth",
+      "sha256": "96c77c1c32f28c1a446dd14f17e0057cfeb34215b21ff084ba52b15fbf5ae823"
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "landmark:bunker",
+      "sha256": "9376443ea4b1681006a571404518a10655e6c1842a16c4c98ab42cf70e23ba33"
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "landmark:salvage",
+      "sha256": "177cb91171cec1cc3a1816140427bb1493fc3bf196af1e30d89dad6eca9f041f"
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "landmark:broken-dish",
+      "sha256": "35774616c3a5c9e6fc72b1950e387ee0b52361a7189d84a1224d16b6f1bfdbbd"
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "landmark:pylon",
+      "sha256": "fe0b848eda590cc00ddaedb1427a1fb4f4121fe32850dd12b9ca9df769b44240"
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "machine:salvage-crane",
+      "sha256": "a17639b986a90a9e70a0ae0355aaae9da0fcbacc45f71b6d2dfc33575074c49c"
+    },
+    {
+      "profile": "desktop",
+      "world": 9,
+      "selection": "Earth",
+      "sha256": "5457b68a222a0c56ce8c36f5e43492cb98e940a1b04aa2d4a846f91b01984902"
+    },
+    {
+      "profile": "desktop",
+      "world": 9,
+      "selection": "landmark:gift",
+      "sha256": "8e6b4c4686c3812bb19b24729c1a65ef820aa0f482286addb22c15fa56527723"
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "Earth",
+      "sha256": "8999ad0eaeeadd177c0c4c0402bd04a02132ca8db0ce365910c19aad31b8d673"
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "landmark:canopy",
+      "sha256": "2ac72d6acc0344f6939fde7f007210f6ba6471f712a62063365a2904c8e80513"
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "landmark:windmill",
+      "sha256": "872f5acccb5b0b62d8dd23810cb602066ec692dd05e2b721c0964d7d72ff117a"
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "landmark:store",
+      "sha256": "c9860d3cccfc62b4770bd546dc128639b7d45d3f57c793e11fbaf9904a714563"
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "vessel:sail-barge",
+      "sha256": "4c105bf84e5a94a5da1cb5cd9360d24bc109186d6c8b8c000aa28331d745117c"
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "orbital-habitat",
+      "sha256": "0d9c840c992897a8987486f866787416b82bffcdfe9f1d7d23803fa98b4b4684"
+    }
+  ],
+  "assetStates": [
+    {
+      "profile": "desktop",
+      "world": 0,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/origin/earth.glb",
+      "count": 1,
+      "bytes": 1023408,
+      "parts": 25
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s1/earth.glb",
+      "count": 2,
+      "bytes": 2434662,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s1/earth.glb",
+      "count": 2,
+      "bytes": 2434662,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s1/earth.glb",
+      "count": 2,
+      "bytes": 2434662,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s1/earth.glb",
+      "count": 2,
+      "bytes": 2434662,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s1/earth.glb",
+      "count": 2,
+      "bytes": 2434662,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s1/earth.glb",
+      "count": 2,
+      "bytes": 2434662,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s1/earth.glb",
+      "count": 2,
+      "bytes": 2434662,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s1/earth.glb",
+      "count": 2,
+      "bytes": 2434662,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 1,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s1/earth.glb",
+      "count": 2,
+      "bytes": 2434662,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s2/earth.glb",
+      "count": 2,
+      "bytes": 3020286,
+      "parts": 58
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s2/earth.glb",
+      "count": 2,
+      "bytes": 3020286,
+      "parts": 58
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s2/earth.glb",
+      "count": 2,
+      "bytes": 3020286,
+      "parts": 58
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s2/earth.glb",
+      "count": 2,
+      "bytes": 3020286,
+      "parts": 58
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s2/earth.glb",
+      "count": 2,
+      "bytes": 3020286,
+      "parts": 58
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s2/earth.glb",
+      "count": 2,
+      "bytes": 3020286,
+      "parts": 58
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s2/earth.glb",
+      "count": 2,
+      "bytes": 3020286,
+      "parts": 58
+    },
+    {
+      "profile": "desktop",
+      "world": 2,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s2/earth.glb",
+      "count": 2,
+      "bytes": 3020286,
+      "parts": 58
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s3/earth.glb",
+      "count": 2,
+      "bytes": 3706284,
+      "parts": 68
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s3/earth.glb",
+      "count": 2,
+      "bytes": 3706284,
+      "parts": 68
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s3/earth.glb",
+      "count": 2,
+      "bytes": 3706284,
+      "parts": 68
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s3/earth.glb",
+      "count": 2,
+      "bytes": 3706284,
+      "parts": 68
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s3/earth.glb",
+      "count": 2,
+      "bytes": 3706284,
+      "parts": 68
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s3/earth.glb",
+      "count": 2,
+      "bytes": 3706284,
+      "parts": 68
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s3/earth.glb",
+      "count": 2,
+      "bytes": 3706284,
+      "parts": 68
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s3/earth.glb",
+      "count": 2,
+      "bytes": 3706284,
+      "parts": 68
+    },
+    {
+      "profile": "desktop",
+      "world": 3,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s3/earth.glb",
+      "count": 2,
+      "bytes": 3706284,
+      "parts": 68
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 3262650,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 3262650,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 3262650,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 3262650,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 3262650,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 3262650,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 3262650,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 3262650,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 3262650,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s5/earth.glb",
+      "count": 2,
+      "bytes": 3836286,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s5/earth.glb",
+      "count": 2,
+      "bytes": 3836286,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s5/earth.glb",
+      "count": 2,
+      "bytes": 3836286,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s5/earth.glb",
+      "count": 2,
+      "bytes": 3836286,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s5/earth.glb",
+      "count": 2,
+      "bytes": 3836286,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s5/earth.glb",
+      "count": 2,
+      "bytes": 3836286,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s5/earth.glb",
+      "count": 2,
+      "bytes": 3836286,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 5,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s5/earth.glb",
+      "count": 2,
+      "bytes": 3836286,
+      "parts": 66
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 4588140,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 4588140,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 4588140,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 4588140,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 4588140,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 4588140,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 4588140,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 4588140,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 3407604,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 3407604,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 3407604,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 3407604,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 3407604,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 3407604,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 3407604,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 3407604,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 3407604,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s8/earth.glb",
+      "count": 2,
+      "bytes": 2317200,
+      "parts": 51
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s8/earth.glb",
+      "count": 2,
+      "bytes": 2317200,
+      "parts": 51
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s8/earth.glb",
+      "count": 2,
+      "bytes": 2317200,
+      "parts": 51
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s8/earth.glb",
+      "count": 2,
+      "bytes": 2317200,
+      "parts": 51
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s8/earth.glb",
+      "count": 2,
+      "bytes": 2317200,
+      "parts": 51
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s8/earth.glb",
+      "count": 2,
+      "bytes": 2317200,
+      "parts": 51
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s8/earth.glb",
+      "count": 2,
+      "bytes": 2317200,
+      "parts": 51
+    },
+    {
+      "profile": "desktop",
+      "world": 8,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s8/earth.glb",
+      "count": 2,
+      "bytes": 2317200,
+      "parts": 51
+    },
+    {
+      "profile": "desktop",
+      "world": 9,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s9/earth.glb",
+      "count": 2,
+      "bytes": 1829820,
+      "parts": 36
+    },
+    {
+      "profile": "desktop",
+      "world": 9,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s9/earth.glb",
+      "count": 2,
+      "bytes": 1829820,
+      "parts": 36
+    },
+    {
+      "profile": "desktop",
+      "world": 9,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s9/earth.glb",
+      "count": 2,
+      "bytes": 1829820,
+      "parts": 36
+    },
+    {
+      "profile": "desktop",
+      "world": 9,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s9/earth.glb",
+      "count": 2,
+      "bytes": 1829820,
+      "parts": 36
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s10/earth.glb",
+      "count": 2,
+      "bytes": 2760672,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s10/earth.glb",
+      "count": 2,
+      "bytes": 2760672,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s10/earth.glb",
+      "count": 2,
+      "bytes": 2760672,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s10/earth.glb",
+      "count": 2,
+      "bytes": 2760672,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s10/earth.glb",
+      "count": 2,
+      "bytes": 2760672,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s10/earth.glb",
+      "count": 2,
+      "bytes": 2760672,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s10/earth.glb",
+      "count": 2,
+      "bytes": 2760672,
+      "parts": 69
+    },
+    {
+      "profile": "desktop",
+      "world": 10,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s10/earth.glb",
+      "count": 2,
+      "bytes": 2760672,
+      "parts": 69
+    }
+  ],
+  "requests": [
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/origin/earth.glb",
+      "status": 200,
+      "bodyBytes": 186226,
+      "transferredBytes": 187155
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s1/earth.glb",
+      "status": 200,
+      "bodyBytes": 246463,
+      "transferredBytes": 247392
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s2/earth.glb",
+      "status": 200,
+      "bodyBytes": 293512,
+      "transferredBytes": 294441
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s3/earth.glb",
+      "status": 200,
+      "bodyBytes": 339013,
+      "transferredBytes": 339942
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s4/earth.glb",
+      "status": 200,
+      "bodyBytes": 236053,
+      "transferredBytes": 236982
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s5/earth.glb",
+      "status": 200,
+      "bodyBytes": 466755,
+      "transferredBytes": 467684
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/earth.glb",
+      "status": 200,
+      "bodyBytes": 303537,
+      "transferredBytes": 304466
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s7/earth.glb",
+      "status": 200,
+      "bodyBytes": 291211,
+      "transferredBytes": 292140
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s8/earth.glb",
+      "status": 200,
+      "bodyBytes": 188553,
+      "transferredBytes": 189482
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s9/earth.glb",
+      "status": 200,
+      "bodyBytes": 212763,
+      "transferredBytes": 213692
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s10/earth.glb",
+      "status": 200,
+      "bodyBytes": 320323,
+      "transferredBytes": 321252
+    }
+  ],
+  "failedRequests": [],
+  "downloadedBytes": 3084409,
+  "peakSettledLibraries": 2,
+  "peakSettledDecodedBytes": 4588140,
+  "errors": [],
+  "failure": null,
+  "scope": "Serial local browser QA: Blender readiness and named part gates, sourced story portraits and companion studies, desktop Earth objects, articulated motion, exact reduced/paused canvas identity. Memory figures estimate decoded GLB buffers/textures, not total process memory."
+}

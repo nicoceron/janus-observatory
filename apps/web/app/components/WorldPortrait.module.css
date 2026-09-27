@@ -1,0 +1,15 @@
+.portrait {
+  position: relative;
+  width: 100%;
+  height: clamp(320px, 40vw, 560px);
+  background: radial-gradient(ellipse at 50% 50%, #1d3e4b50, transparent 68%);
+}
+.portrait canvas {
+  touch-action: pan-y;
+}
+.fallback {
+  position: absolute;
+  inset: 35% 12% auto;
+  color: #b1c2ca;
+  line-height: 1.8;
+}

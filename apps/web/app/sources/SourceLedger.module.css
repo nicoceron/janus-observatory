@@ -1,6 +1,6 @@
 .controls {
   align-items: end;
-  border-bottom: 1px solid rgba(16, 32, 25, 0.2);
+  border-bottom: 1px solid rgba(186, 212, 227, 0.2);
   display: grid;
   gap: 24px;
   grid-template-columns: minmax(260px, 1fr) auto;
@@ -8,11 +8,11 @@
 }
 
 .searchLabel {
-  color: #365d49;
+  color: #afc2cc;
   display: flex;
   flex-direction: column;
   font-family: var(--font-mono);
-  font-size: 0.52rem;
+  font-size: 0.75rem;
   gap: 10px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -21,9 +21,9 @@
 .searchLabel input {
   background: transparent;
   border: 0;
-  border-bottom: 1px solid rgba(16, 32, 25, 0.35);
+  border-bottom: 1px solid rgba(186, 212, 227, 0.35);
   border-radius: 0;
-  color: #102019;
+  color: #dce5eb;
   font-family: var(--font-body);
   font-size: clamp(1.4rem, 3vw, 2.6rem);
   letter-spacing: -0.04em;
@@ -40,11 +40,11 @@
 
 .filters button {
   background: transparent;
-  border: 1px solid rgba(16, 32, 25, 0.2);
-  color: #315541;
+  border: 1px solid rgba(186, 212, 227, 0.2);
+  color: #afc2cc;
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   padding: 11px 13px;
   text-transform: uppercase;
 }
@@ -55,22 +55,22 @@
 }
 
 .resultCount {
-  color: #65776e;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.5rem;
+  font-size: 0.75rem;
   margin: 17px 0 0;
   text-transform: uppercase;
 }
 
 .ledger {
-  border-bottom: 1px solid rgba(16, 32, 25, 0.18);
+  border-bottom: 1px solid rgba(186, 212, 227, 0.18);
   list-style: none;
   margin: 34px 0 0;
   padding: 0;
 }
 
 .entry {
-  border-top: 1px solid rgba(16, 32, 25, 0.18);
+  border-top: 1px solid rgba(186, 212, 227, 0.18);
   display: grid;
   gap: 20px;
   grid-template-columns: 58px minmax(310px, 1fr) minmax(160px, 0.42fr) minmax(210px, 0.58fr) auto;
@@ -91,8 +91,8 @@
 }
 
 .index {
-  color: #4f6258;
-  font-size: 0.47rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
 }
 
 .entryIdentity {
@@ -100,9 +100,9 @@
 }
 
 .kind {
-  color: #38604c;
+  color: #afc2cc;
   display: block;
-  font-size: 0.48rem;
+  font-size: 0.75rem;
   margin-bottom: 10px;
 }
 
@@ -115,8 +115,8 @@
 }
 
 .entryIdentity p {
-  color: #596d62;
-  font-size: 0.7rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
   line-height: 1.55;
   margin: 9px 0 0;
 }
@@ -126,7 +126,7 @@
 }
 
 .entryMeta div {
-  border-top: 1px solid rgba(16, 32, 25, 0.12);
+  border-top: 1px solid rgba(186, 212, 227, 0.12);
   padding: 7px 0;
 }
 
@@ -136,13 +136,13 @@
 }
 
 .entryMeta dt {
-  color: #4f6258;
-  font-size: 0.42rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
 }
 
 .entryMeta dd {
-  color: #314e40;
-  font-size: 0.47rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
   line-height: 1.45;
   margin: 5px 0 0;
   overflow-wrap: anywhere;
@@ -161,8 +161,8 @@
 }
 
 .locator {
-  color: #53685d;
-  font-size: 0.48rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
   line-height: 1.55;
   margin: 0;
   overflow-wrap: anywhere;
@@ -174,17 +174,17 @@
 }
 
 .provenance details {
-  border-top: 1px solid rgba(16, 32, 25, 0.12);
-  color: #53685d;
+  border-top: 1px solid rgba(186, 212, 227, 0.12);
+  color: #afc2cc;
   margin-top: 12px;
   padding-top: 9px;
 }
 
 .provenance summary {
-  color: #365d49;
+  color: #afc2cc;
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.45rem;
+  font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -201,9 +201,9 @@
 }
 
 .provenance details dt {
-  color: #53685d;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.42rem;
+  font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -211,8 +211,8 @@
 .provenance details dd,
 .provenance details li,
 .provenance details p {
-  color: #42594e;
-  font-size: 0.66rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
@@ -231,16 +231,16 @@
 }
 
 .entry > a {
-  background: #e9efe9;
-  color: #17482f;
-  font-size: 0.58rem;
+  background: #0d1721;
+  color: #afc2cc;
+  font-size: 0.75rem;
   height: fit-content;
   white-space: nowrap;
 }
 
 .empty {
-  border-bottom: 1px solid rgba(16, 32, 25, 0.18);
-  color: #566a5f;
+  border-bottom: 1px solid rgba(186, 212, 227, 0.18);
+  color: #afc2cc;
   line-height: 1.7;
   padding: 46px 0;
 }

@@ -1,0 +1,61 @@
+{
+  "world": "s8",
+  "blender": "5.2.1 LTS",
+  "source": "assets/blender/s8.blend",
+  "sourceSha256": "d22f6a6dbc4b9c51c63827d2dfcb6820d7a865846219c8996555e0e032e52c85",
+  "exports": [
+    {
+      "path": "apps/web/public/assets/blender/v1/s8/earth.glb",
+      "bytes": 388448,
+      "sha256": "808b52be56c01dccfd601840fea2b4c45b7fac8be85807f22d1057b6f75ceab3",
+      "triangles": 12848,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_bunker",
+        "Landmark_salvage",
+        "Landmark_broken-dish",
+        "Landmark_pylon",
+        "Activity_salvage-crane_road",
+        "Life_machine_salvage-crane_body",
+        "Life_machine_salvage-crane_extra0",
+        "Life_machine_salvage-crane_extra1",
+        "Study_lunar-base"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s8/earth-mobile.glb",
+      "bytes": 332484,
+      "sha256": "ecc81502e792faa9fc7311c26e70f4c4535794a15a99e5b14326f0f4461dbd1b",
+      "triangles": 11326,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_bunker",
+        "Landmark_salvage",
+        "Landmark_broken-dish",
+        "Landmark_pylon",
+        "Activity_salvage-crane_road",
+        "Life_machine_salvage-crane_body",
+        "Life_machine_salvage-crane_extra0",
+        "Life_machine_salvage-crane_extra1",
+        "Study_lunar-base"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s8/Moon.glb",
+      "bytes": 220812,
+      "sha256": "0999cbccb7cfe546ad6c2bc20893b96d93be7c54c72439c93439cbfcfbc9a255",
+      "triangles": 9296,
+      "parts": [
+        "S8_Moon"
+      ]
+    }
+  ],
+  "scenes": [
+    "S8 \u2022 Earth",
+    "S8 \u2022 Moon"
+  ],
+  "interpretive": true,
+  "animations": "Editable 40-second route and articulation previews; web motion stays in R3F."
+}

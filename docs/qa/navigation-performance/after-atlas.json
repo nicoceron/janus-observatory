@@ -1,0 +1,281 @@
+{
+  "frames": {
+    "count": 283,
+    "p50": 16.600000000000364,
+    "p95": 17.399999999999636
+  },
+  "hot": [
+    {
+      "ms": 4143.496,
+      "functionName": "(program)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 18.474,
+      "functionName": "needsUpdate",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 1487,
+      "columnNumber": 24
+    },
+    {
+      "ms": 7.553,
+      "functionName": "loop",
+      "scriptId": "210",
+      "url": "http://localhost:3000/_next/static/chunks/1pzi_%40react-three_fiber_dist_1u92-zo._.js",
+      "lineNumber": 15420,
+      "columnNumber": 13
+    },
+    {
+      "ms": 5.847,
+      "functionName": "setup",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 1410,
+      "columnNumber": 18
+    },
+    {
+      "ms": 5.058,
+      "functionName": "setProgram",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 12146,
+      "columnNumber": 27
+    },
+    {
+      "ms": 3.78,
+      "functionName": "update",
+      "scriptId": "210",
+      "url": "http://localhost:3000/_next/static/chunks/1pzi_%40react-three_fiber_dist_1u92-zo._.js",
+      "lineNumber": 15394,
+      "columnNumber": 15
+    },
+    {
+      "ms": 2.522,
+      "functionName": "WebGLRenderer.renderBufferDirect",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 11490,
+      "columnNumber": 42
+    },
+    {
+      "ms": 2.514,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 2.513,
+      "functionName": "WorldClouds.useFrame",
+      "scriptId": "205",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_07ac538._.js",
+      "lineNumber": 7837,
+      "columnNumber": 32
+    },
+    {
+      "ms": 2.51,
+      "functionName": "setMaterial",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 6959,
+      "columnNumber": 24
+    },
+    {
+      "ms": 1.309,
+      "functionName": "drawElements",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 1.28,
+      "functionName": "requestAnimationFrame",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 1.273,
+      "functionName": "refreshMaterialUniforms",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 9663,
+      "columnNumber": 36
+    },
+    {
+      "ms": 1.269,
+      "functionName": "copyArray",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 3752,
+      "columnNumber": 18
+    },
+    {
+      "ms": 1.267,
+      "functionName": "projectObject",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 11854,
+      "columnNumber": 30
+    },
+    {
+      "ms": 1.266,
+      "functionName": "setFromRotationMatrix",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 9257,
+      "columnNumber": 26
+    },
+    {
+      "ms": 1.264,
+      "functionName": "update",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 158,
+      "columnNumber": 19
+    },
+    {
+      "ms": 1.26,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 33289,
+      "columnNumber": 21
+    },
+    {
+      "ms": 1.259,
+      "functionName": "update",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 3426,
+      "columnNumber": 19
+    },
+    {
+      "ms": 1.259,
+      "functionName": "multiplyMatrices",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 8586,
+      "columnNumber": 21
+    },
+    {
+      "ms": 1.258,
+      "functionName": "update",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 3426,
+      "columnNumber": 19
+    },
+    {
+      "ms": 1.258,
+      "functionName": "WebGLRenderer.render",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 11737,
+      "columnNumber": 28
+    },
+    {
+      "ms": 1.257,
+      "functionName": "convert",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 5935,
+      "columnNumber": 25
+    },
+    {
+      "ms": 1.257,
+      "functionName": "setFromEuler",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 4191,
+      "columnNumber": 17
+    },
+    {
+      "ms": 1.256,
+      "functionName": "push.REVISION",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 60,
+      "columnNumber": 4
+    },
+    {
+      "ms": 1.256,
+      "functionName": "setFromRotationMatrix",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 9257,
+      "columnNumber": 26
+    },
+    {
+      "ms": 1.256,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 1.255,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 1.255,
+      "functionName": "BlenderLibrary.useFrame",
+      "scriptId": "205",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_07ac538._.js",
+      "lineNumber": 361,
+      "columnNumber": 55
+    },
+    {
+      "ms": 1.255,
+      "functionName": "arraysEqual",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 3745,
+      "columnNumber": 20
+    },
+    {
+      "ms": 1.254,
+      "functionName": "getNormalMatrix",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 5747,
+      "columnNumber": 20
+    },
+    {
+      "ms": 1.253,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 1.251,
+      "functionName": "setIndex",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 3249,
+      "columnNumber": 21
+    },
+    {
+      "ms": 0.079,
+      "functionName": "uniform3f",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    }
+  ]
+}

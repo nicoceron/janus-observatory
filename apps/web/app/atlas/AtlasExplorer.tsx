@@ -2,7 +2,7 @@
 
 import { max, scaleLog } from 'd3';
 import type { SourceRef, Sourced } from '@janus/domain';
-import Link from 'next/link';
+import Link from '../components/AppLink';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useMemo, type CSSProperties } from 'react';
 
@@ -218,13 +218,6 @@ export function AtlasExplorer() {
               >
                 <div className={styles.scenarioIdentity}>
                   <span className={styles.rowNumber}>{String(index + 1).padStart(2, '0')}</span>
-                  <div
-                    aria-hidden="true"
-                    className={styles.scenarioPortrait}
-                    style={{
-                      backgroundImage: `url('/assets/scenarios/${profile.id.toLowerCase()}-world-v1.webp')`,
-                    }}
-                  />
                   <div>
                     <span>{profile.id}</span>
                     <h3>{profile.morphology.mythMetaphor}</h3>

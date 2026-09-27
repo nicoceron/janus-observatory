@@ -1,0 +1,1446 @@
+{
+  "frames": [
+    {
+      "world": "origin",
+      "selection": "Earth",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/origin-Earth-front.png",
+      "imageSha256": "c7706ee6af9ac8dc165221720d72b0d97bac9c396ac2d02ec568a3112a263334",
+      "asset": "apps/web/public/assets/blender/v1/origin/earth.glb",
+      "assetSha256": "9fd32fcf3cae3cec830b5ccba01a427addd64f155c63bf7b66c32a154116a10a",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "origin",
+      "selection": "Earth",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/origin-Earth-quarter.png",
+      "imageSha256": "a3d580468ef8dba6c128eb015255f35b4faa76a2ab310f17ab77a076976cbb6f",
+      "asset": "apps/web/public/assets/blender/v1/origin/earth.glb",
+      "assetSha256": "9fd32fcf3cae3cec830b5ccba01a427addd64f155c63bf7b66c32a154116a10a",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "origin",
+      "selection": "Earth",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/origin-Earth-rear.png",
+      "imageSha256": "daaac9baeeed968e59a7e4b58c4694e8eb98f4250eda637cf8aa20026040b50e",
+      "asset": "apps/web/public/assets/blender/v1/origin/earth.glb",
+      "assetSha256": "9fd32fcf3cae3cec830b5ccba01a427addd64f155c63bf7b66c32a154116a10a",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "Earth",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s1-Earth-front.png",
+      "imageSha256": "cacdfc166bba9fc33d46d38c7f9b74d97c21bd2f304af0fe146524d5438f913a",
+      "asset": "apps/web/public/assets/blender/v1/s1/earth.glb",
+      "assetSha256": "e49c17859e37e9883fb8191f61a56db4b94e973230e31a2b8b8645c6a2adb71e",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "Earth",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s1-Earth-quarter.png",
+      "imageSha256": "fea3ade0d2ce91a12e28c7114a3a37a2ea273dc10c1b58896e1dfb8ed5d3e0d0",
+      "asset": "apps/web/public/assets/blender/v1/s1/earth.glb",
+      "assetSha256": "e49c17859e37e9883fb8191f61a56db4b94e973230e31a2b8b8645c6a2adb71e",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "Earth",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s1-Earth-rear.png",
+      "imageSha256": "f6575a400e96d2ef4f0d669f01555f5c9b4abc2bdb337c5c16066db52b254aa0",
+      "asset": "apps/web/public/assets/blender/v1/s1/earth.glb",
+      "assetSha256": "e49c17859e37e9883fb8191f61a56db4b94e973230e31a2b8b8645c6a2adb71e",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "Moon",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s1-Moon-front.png",
+      "imageSha256": "edc97b58522b18c757048500c027563c615c1800c9228cdc5425fb970ca4ba8c",
+      "asset": "apps/web/public/assets/blender/v1/s1/Moon.glb",
+      "assetSha256": "ed7c89276923f2a59f603b15ca93df83bc3e736e4ec499325331a512e79b7344",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "Moon",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s1-Moon-quarter.png",
+      "imageSha256": "946001bcf6d67ea9b9d2ea048dd767e15ae874ad3fb628f652ad33c0ab842502",
+      "asset": "apps/web/public/assets/blender/v1/s1/Moon.glb",
+      "assetSha256": "ed7c89276923f2a59f603b15ca93df83bc3e736e4ec499325331a512e79b7344",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "Moon",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s1-Moon-rear.png",
+      "imageSha256": "3e94ccafe0aed5deb5dcbf36532fc4dbb0459e70b1b3c8565c64ba1a5441e297",
+      "asset": "apps/web/public/assets/blender/v1/s1/Moon.glb",
+      "assetSha256": "ed7c89276923f2a59f603b15ca93df83bc3e736e4ec499325331a512e79b7344",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "Mars",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s1-Mars-front.png",
+      "imageSha256": "8685a86a390a2daef0aab83d4ff932e7ee7ee2388d8b6adda342b3ba344a8ea3",
+      "asset": "apps/web/public/assets/blender/v1/s1/Mars.glb",
+      "assetSha256": "6dc24dfda6859f7c0f6ba3d51f4330be964c5c0ef1e72e515a66e987a25950b4",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "Mars",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s1-Mars-quarter.png",
+      "imageSha256": "d824c6299eed361eaeb56239169ec00ae11bbd8d67214beca3d49cd7e22295c4",
+      "asset": "apps/web/public/assets/blender/v1/s1/Mars.glb",
+      "assetSha256": "6dc24dfda6859f7c0f6ba3d51f4330be964c5c0ef1e72e515a66e987a25950b4",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "Mars",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s1-Mars-rear.png",
+      "imageSha256": "55d75108d655b84ac037c50c126bd4b8cad0bde5e91c3606b078ae06086c842c",
+      "asset": "apps/web/public/assets/blender/v1/s1/Mars.glb",
+      "assetSha256": "6dc24dfda6859f7c0f6ba3d51f4330be964c5c0ef1e72e515a66e987a25950b4",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "Venus",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s1-Venus-front.png",
+      "imageSha256": "ebaa9849ec389101375d4ed9303e4e78431ee2f1a14f3c25c57eea3e647883d6",
+      "asset": "apps/web/public/assets/blender/v1/s1/Venus.glb",
+      "assetSha256": "8e46e4d8f004c6837edac058411dda13e799c34e1ecee3fee65e270e094ffd30",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s1",
+      "selection": "Venus",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s1-Venus-quarter.png",
+      "imageSha256": "0e6f615e971dc981acb833b11cb82e01232a81ca945f5eb115c76ac450d6d63a",
+      "asset": "apps/web/public/assets/blender/v1/s1/Venus.glb",
+      "assetSha256": "8e46e4d8f004c6837edac058411dda13e799c34e1ecee3fee65e270e094ffd30",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s1",
+      "selection": "Venus",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s1-Venus-rear.png",
+      "imageSha256": "25fbe3212b47808363051cd7fdd14e2ce036bc7341aacd602474b4ffcfe1fd61",
+      "asset": "apps/web/public/assets/blender/v1/s1/Venus.glb",
+      "assetSha256": "8e46e4d8f004c6837edac058411dda13e799c34e1ecee3fee65e270e094ffd30",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s1",
+      "selection": "asteroids",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s1-asteroids-front.png",
+      "imageSha256": "535944f509e2222c263f6ba532fdda763840a77fe3643ee0ee334254c7b7211c",
+      "asset": "apps/web/public/assets/blender/v1/s1/asteroids.glb",
+      "assetSha256": "367796326a5f56bb265ebf2d4bb1ab0947b5c9a7c4a2a22c0a260387a8d45a55",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "asteroids",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s1-asteroids-quarter.png",
+      "imageSha256": "3290d74f397474d2b5dc73a8f8f76d110bd85389e17f9bc48ce2c2b3a2e46962",
+      "asset": "apps/web/public/assets/blender/v1/s1/asteroids.glb",
+      "assetSha256": "367796326a5f56bb265ebf2d4bb1ab0947b5c9a7c4a2a22c0a260387a8d45a55",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "asteroids",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s1-asteroids-rear.png",
+      "imageSha256": "d9604e370d437bc72e9812adff85db8b7c3ebfe169981060e79d939884618a15",
+      "asset": "apps/web/public/assets/blender/v1/s1/asteroids.glb",
+      "assetSha256": "367796326a5f56bb265ebf2d4bb1ab0947b5c9a7c4a2a22c0a260387a8d45a55",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s1",
+      "selection": "outer",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s1-outer-front.png",
+      "imageSha256": "4ebc0f85838f649ad0da2a2bfcec6eefa3e41f04e37a3a76fa39e20d347215f9",
+      "asset": "apps/web/public/assets/blender/v1/s1/outer.glb",
+      "assetSha256": "147fa6e8e3316abe8615a6f80a9cc410a6f01a187d604867e2d15656d60c012b",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s1",
+      "selection": "outer",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s1-outer-quarter.png",
+      "imageSha256": "7cdb4aae1c0b23ceb5453a2b086096faf813add90c1ad38bbe8315de35b376c5",
+      "asset": "apps/web/public/assets/blender/v1/s1/outer.glb",
+      "assetSha256": "147fa6e8e3316abe8615a6f80a9cc410a6f01a187d604867e2d15656d60c012b",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s1",
+      "selection": "outer",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s1-outer-rear.png",
+      "imageSha256": "d7a8218844e00ebb8662cd2e6cf2892c8f4178a447a6103c23cc6dcc4af77f32",
+      "asset": "apps/web/public/assets/blender/v1/s1/outer.glb",
+      "assetSha256": "147fa6e8e3316abe8615a6f80a9cc410a6f01a187d604867e2d15656d60c012b",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s10",
+      "selection": "Earth",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s10-Earth-front.png",
+      "imageSha256": "d1388ddece6c09d374e5b3034ed6fc985212cb7784b1be4fcc50b1593fde4bf5",
+      "asset": "apps/web/public/assets/blender/v1/s10/earth.glb",
+      "assetSha256": "36f46116d1ba6d96d2db5f5c99eccec01c58eeb5285ec549c4bf9c5cca3034f4",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s10",
+      "selection": "Earth",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s10-Earth-quarter.png",
+      "imageSha256": "26a53b5a1a905482f2ffe5e37f952288c7076c8dee5db095334786a17fc4cd83",
+      "asset": "apps/web/public/assets/blender/v1/s10/earth.glb",
+      "assetSha256": "36f46116d1ba6d96d2db5f5c99eccec01c58eeb5285ec549c4bf9c5cca3034f4",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s10",
+      "selection": "Earth",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s10-Earth-rear.png",
+      "imageSha256": "afc61c1882d5e8d731096e935332d20e8896baad61125d2ca1914e0e14d90c04",
+      "asset": "apps/web/public/assets/blender/v1/s10/earth.glb",
+      "assetSha256": "36f46116d1ba6d96d2db5f5c99eccec01c58eeb5285ec549c4bf9c5cca3034f4",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s10",
+      "selection": "Moon",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s10-Moon-front.png",
+      "imageSha256": "9ebe61bea4f85b77824acad728ea88fcece5d2041f6e62a90a31203948f65942",
+      "asset": "apps/web/public/assets/blender/v1/s10/Moon.glb",
+      "assetSha256": "8ad56b5bff0ea82da31b51673a02b05706d0be15a529e6b01068b3d6c1510f1e",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s10",
+      "selection": "Moon",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s10-Moon-quarter.png",
+      "imageSha256": "572a741bc43ce0db723a597a7dd589b907063ec969c80b2c7eeab64e3d0abe48",
+      "asset": "apps/web/public/assets/blender/v1/s10/Moon.glb",
+      "assetSha256": "8ad56b5bff0ea82da31b51673a02b05706d0be15a529e6b01068b3d6c1510f1e",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s10",
+      "selection": "Moon",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s10-Moon-rear.png",
+      "imageSha256": "157006b2054273575784997f91566fc5eaa5a10fb7daf96b29bfeaa327f830d9",
+      "asset": "apps/web/public/assets/blender/v1/s10/Moon.glb",
+      "assetSha256": "8ad56b5bff0ea82da31b51673a02b05706d0be15a529e6b01068b3d6c1510f1e",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s10",
+      "selection": "Mars",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s10-Mars-front.png",
+      "imageSha256": "438841feec167a2ce566018b6a5f2c09a9ca179a78032507f0545f9bfe18d225",
+      "asset": "apps/web/public/assets/blender/v1/s10/Mars.glb",
+      "assetSha256": "cc5f76cf392006ef0229758ab9a6ddd5fb39af09623e45bd81891766b9cd0246",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s10",
+      "selection": "Mars",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s10-Mars-quarter.png",
+      "imageSha256": "901f2db1d16e7a8195ae8b8b2b5abd2e83bbb8cdf9e0978ca8dda6a39f65b426",
+      "asset": "apps/web/public/assets/blender/v1/s10/Mars.glb",
+      "assetSha256": "cc5f76cf392006ef0229758ab9a6ddd5fb39af09623e45bd81891766b9cd0246",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s10",
+      "selection": "Mars",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s10-Mars-rear.png",
+      "imageSha256": "a2be9b58f027bb0ccd916c6e20de74a8b6763cb1f1087b92a3839fedd7805c87",
+      "asset": "apps/web/public/assets/blender/v1/s10/Mars.glb",
+      "assetSha256": "cc5f76cf392006ef0229758ab9a6ddd5fb39af09623e45bd81891766b9cd0246",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s10",
+      "selection": "Venus",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s10-Venus-front.png",
+      "imageSha256": "6e4a1f153a56fb6e32e920936ef0c65e152edb2560d3074be5182686317d54f6",
+      "asset": "apps/web/public/assets/blender/v1/s10/Venus.glb",
+      "assetSha256": "9d5064f3fa837612a474235669196e50034998c95e86776c68d58d938f292880",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s10",
+      "selection": "Venus",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s10-Venus-quarter.png",
+      "imageSha256": "8af21140912032ffa483f0be2096c829b40e64c5d6856a25c3ff17894e92b9e0",
+      "asset": "apps/web/public/assets/blender/v1/s10/Venus.glb",
+      "assetSha256": "9d5064f3fa837612a474235669196e50034998c95e86776c68d58d938f292880",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s10",
+      "selection": "Venus",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s10-Venus-rear.png",
+      "imageSha256": "c49e3840cc1c217699f6132100ec98be5fbaa9e72981a4090834621683efdccc",
+      "asset": "apps/web/public/assets/blender/v1/s10/Venus.glb",
+      "assetSha256": "9d5064f3fa837612a474235669196e50034998c95e86776c68d58d938f292880",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s10",
+      "selection": "asteroids",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s10-asteroids-front.png",
+      "imageSha256": "edce74c3fa521dde5e09e004025baecc70a625a69e34fd79b3ad31906832a670",
+      "asset": "apps/web/public/assets/blender/v1/s10/asteroids.glb",
+      "assetSha256": "7bdd6c2231d220722ad954955c05007ef280c576cf283baec318bd5437eeac90",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s10",
+      "selection": "asteroids",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s10-asteroids-quarter.png",
+      "imageSha256": "6caec552cbc4e855d2ccbf4f2c19df9245ff80b0cb953e003d8a12479d8444e6",
+      "asset": "apps/web/public/assets/blender/v1/s10/asteroids.glb",
+      "assetSha256": "7bdd6c2231d220722ad954955c05007ef280c576cf283baec318bd5437eeac90",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s10",
+      "selection": "asteroids",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s10-asteroids-rear.png",
+      "imageSha256": "85662c40448a88c228f512a433c2d80252ac0ea9367dca8bcdfb6c53dde76054",
+      "asset": "apps/web/public/assets/blender/v1/s10/asteroids.glb",
+      "assetSha256": "7bdd6c2231d220722ad954955c05007ef280c576cf283baec318bd5437eeac90",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s10",
+      "selection": "outer",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s10-outer-front.png",
+      "imageSha256": "a7170adb11a5cb801c1e2e3342793cdcb217aed408a8f1d037ddb527acbd527e",
+      "asset": "apps/web/public/assets/blender/v1/s10/outer.glb",
+      "assetSha256": "e722850c30e4c3b6323349a9964c1bbaec7d1890461a6aab324ba919395b9ff5",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s10",
+      "selection": "outer",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s10-outer-quarter.png",
+      "imageSha256": "a4720fd17e8c3f47b3ca263456d4f1db05b0b52a459f37f44403d3c9efddf48b",
+      "asset": "apps/web/public/assets/blender/v1/s10/outer.glb",
+      "assetSha256": "e722850c30e4c3b6323349a9964c1bbaec7d1890461a6aab324ba919395b9ff5",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s10",
+      "selection": "outer",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s10-outer-rear.png",
+      "imageSha256": "4516e3519bd9ab15e237c71e99c6337f211cbeb1e64a9f84a3f6fed7d1493a29",
+      "asset": "apps/web/public/assets/blender/v1/s10/outer.glb",
+      "assetSha256": "e722850c30e4c3b6323349a9964c1bbaec7d1890461a6aab324ba919395b9ff5",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s10",
+      "selection": "kuiper",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s10-kuiper-front.png",
+      "imageSha256": "8925fd785c77398a4149e52293263816de42619eea8128053bfa2ae2a78d4c58",
+      "asset": "apps/web/public/assets/blender/v1/s10/kuiper.glb",
+      "assetSha256": "b5825cb820ec52419a87ca2b853a4182a676cf09985bea460f2516904da1a43b",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s10",
+      "selection": "kuiper",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s10-kuiper-quarter.png",
+      "imageSha256": "1e7318620ffb63b9e3242f1a696e7e203cdd17ca4f64843e389c0b50137a4ad4",
+      "asset": "apps/web/public/assets/blender/v1/s10/kuiper.glb",
+      "assetSha256": "b5825cb820ec52419a87ca2b853a4182a676cf09985bea460f2516904da1a43b",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s10",
+      "selection": "kuiper",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s10-kuiper-rear.png",
+      "imageSha256": "9c2ce8b59b43a9c76e725345daa81fda739e80d9ba64715a48c8671a31840cfc",
+      "asset": "apps/web/public/assets/blender/v1/s10/kuiper.glb",
+      "assetSha256": "b5825cb820ec52419a87ca2b853a4182a676cf09985bea460f2516904da1a43b",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s2",
+      "selection": "Earth",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s2-Earth-front.png",
+      "imageSha256": "2b9ec1f8b99bb5717d50ab041858a244f4d0e335e5b8dc8a08b04449dc4ef5bf",
+      "asset": "apps/web/public/assets/blender/v1/s2/earth.glb",
+      "assetSha256": "52ce2860cb3f3a71215d183b5b31bed611bea467d302e5538f0969bc4fd1e140",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s2",
+      "selection": "Earth",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s2-Earth-quarter.png",
+      "imageSha256": "bf042e4ae50b954309997198045c8cdd3df77ce6e6dbaa68e50d96d717190ba7",
+      "asset": "apps/web/public/assets/blender/v1/s2/earth.glb",
+      "assetSha256": "52ce2860cb3f3a71215d183b5b31bed611bea467d302e5538f0969bc4fd1e140",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s2",
+      "selection": "Earth",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s2-Earth-rear.png",
+      "imageSha256": "b0b683f0d1137a12d4e1d1067e6e30575d2b9aef7bf4bd6d9713538b50ef616c",
+      "asset": "apps/web/public/assets/blender/v1/s2/earth.glb",
+      "assetSha256": "52ce2860cb3f3a71215d183b5b31bed611bea467d302e5538f0969bc4fd1e140",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s2",
+      "selection": "Moon",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s2-Moon-front.png",
+      "imageSha256": "4544f6bc8a6560836d43ce6b959dcdfce7a602286b05304876c87c6342ada8e3",
+      "asset": "apps/web/public/assets/blender/v1/s2/Moon.glb",
+      "assetSha256": "52d1928435794158a4e167622dc62af1c12b0fe0ab9b2e2e763f2b1e3681fe64",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s2",
+      "selection": "Moon",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s2-Moon-quarter.png",
+      "imageSha256": "417fcd7397eba753d80c5eef1d8788dbf77654f8a6d95d0ca68cddb9981c8cf7",
+      "asset": "apps/web/public/assets/blender/v1/s2/Moon.glb",
+      "assetSha256": "52d1928435794158a4e167622dc62af1c12b0fe0ab9b2e2e763f2b1e3681fe64",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s2",
+      "selection": "Moon",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s2-Moon-rear.png",
+      "imageSha256": "5d03d3bc580a6b8a7025dac46bcaaa704900fe027da43e3ee4594b3c529f14fa",
+      "asset": "apps/web/public/assets/blender/v1/s2/Moon.glb",
+      "assetSha256": "52d1928435794158a4e167622dc62af1c12b0fe0ab9b2e2e763f2b1e3681fe64",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s2",
+      "selection": "Mars",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s2-Mars-front.png",
+      "imageSha256": "9df51dfba696270c77af7a8c9284b1bead1ec2351d37f128c445b4f47781133c",
+      "asset": "apps/web/public/assets/blender/v1/s2/Mars.glb",
+      "assetSha256": "0b08735ddb5864239a0a105cf2014a5cc49363395d20779d34c812b779440c43",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s2",
+      "selection": "Mars",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s2-Mars-quarter.png",
+      "imageSha256": "bf8e1e8c4feb7f4cd2ef478ebf993ed8418976f0fb890547b686ff74fe7b43ba",
+      "asset": "apps/web/public/assets/blender/v1/s2/Mars.glb",
+      "assetSha256": "0b08735ddb5864239a0a105cf2014a5cc49363395d20779d34c812b779440c43",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s2",
+      "selection": "Mars",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s2-Mars-rear.png",
+      "imageSha256": "6deb5ab617d03d514c3d369a90141550f464fa513d3bf172a3d40fb9d6e9809c",
+      "asset": "apps/web/public/assets/blender/v1/s2/Mars.glb",
+      "assetSha256": "0b08735ddb5864239a0a105cf2014a5cc49363395d20779d34c812b779440c43",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s2",
+      "selection": "asteroids",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s2-asteroids-front.png",
+      "imageSha256": "dcf67062df9c447d1c28e29ffc863e411c91f054fca65d5b0a7050a011c94f7e",
+      "asset": "apps/web/public/assets/blender/v1/s2/asteroids.glb",
+      "assetSha256": "de599e86e389c9c86da199d4ce00a5b54e6855b6e7fd7b414d2b777dc8adab11",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s2",
+      "selection": "asteroids",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s2-asteroids-quarter.png",
+      "imageSha256": "b494019a05ce7f845afcfbd9f7e2c50c15ed361c554c3e8a48a4f3d5ecca526d",
+      "asset": "apps/web/public/assets/blender/v1/s2/asteroids.glb",
+      "assetSha256": "de599e86e389c9c86da199d4ce00a5b54e6855b6e7fd7b414d2b777dc8adab11",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s2",
+      "selection": "asteroids",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s2-asteroids-rear.png",
+      "imageSha256": "df42654ad24c73471ece91aa9b8cc45f0c6efc40d46c0125b1b795b58f84a383",
+      "asset": "apps/web/public/assets/blender/v1/s2/asteroids.glb",
+      "assetSha256": "de599e86e389c9c86da199d4ce00a5b54e6855b6e7fd7b414d2b777dc8adab11",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "Earth",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s3-Earth-front.png",
+      "imageSha256": "2fbf6ea4c458be17c6c44357af60bebd1ae89c390cd23861e5f7a793b707db1e",
+      "asset": "apps/web/public/assets/blender/v1/s3/earth.glb",
+      "assetSha256": "9d6f9f2f0463d7fabcc96550ad61b10f73f62ee4bb16c950fc97cdd69e1d153e",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "Earth",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s3-Earth-quarter.png",
+      "imageSha256": "4b245ab6936078b5e86bc7d41d63095cf6f2216cc29124c22cc28b7e9dbb92c5",
+      "asset": "apps/web/public/assets/blender/v1/s3/earth.glb",
+      "assetSha256": "9d6f9f2f0463d7fabcc96550ad61b10f73f62ee4bb16c950fc97cdd69e1d153e",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "Earth",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s3-Earth-rear.png",
+      "imageSha256": "223d69a9a0ab1822db06dc9bdafcb4d7fffbdb87ce17773c706f68bf5a66b97a",
+      "asset": "apps/web/public/assets/blender/v1/s3/earth.glb",
+      "assetSha256": "9d6f9f2f0463d7fabcc96550ad61b10f73f62ee4bb16c950fc97cdd69e1d153e",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "Moon",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s3-Moon-front.png",
+      "imageSha256": "6439e70acb0b313dc40b4f8ab805f5ad281c7888ec6d1aa7a00ecd9c63d5f731",
+      "asset": "apps/web/public/assets/blender/v1/s3/Moon.glb",
+      "assetSha256": "d981399c1d804b10b524c020c466ce0560db84a4565436d9c6d1fc5e5535aa4f",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "Moon",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s3-Moon-quarter.png",
+      "imageSha256": "15bb0e6544c71471377029feb43ce7472ddd49acf347a9a9e0ef1e5ab8e810c0",
+      "asset": "apps/web/public/assets/blender/v1/s3/Moon.glb",
+      "assetSha256": "d981399c1d804b10b524c020c466ce0560db84a4565436d9c6d1fc5e5535aa4f",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "Moon",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s3-Moon-rear.png",
+      "imageSha256": "ce5eff1e54820894d12bff91d016a0947404b1df6e71a6c539ee4298d1aae6c9",
+      "asset": "apps/web/public/assets/blender/v1/s3/Moon.glb",
+      "assetSha256": "d981399c1d804b10b524c020c466ce0560db84a4565436d9c6d1fc5e5535aa4f",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "Mars",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s3-Mars-front.png",
+      "imageSha256": "8b53f62ce5984eb402ad0555929bbdcd7eca7ac3b358f3e4c3b25300dd8bb9f2",
+      "asset": "apps/web/public/assets/blender/v1/s3/Mars.glb",
+      "assetSha256": "fe2a6f11d12c33e2360fd280f8c107c96a691c8468f9525d20c1c52dfe6bb25b",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "Mars",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s3-Mars-quarter.png",
+      "imageSha256": "db77d15eec471cbd8b705c70de9c0ed5af0221591f454728708809cef50340bf",
+      "asset": "apps/web/public/assets/blender/v1/s3/Mars.glb",
+      "assetSha256": "fe2a6f11d12c33e2360fd280f8c107c96a691c8468f9525d20c1c52dfe6bb25b",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "Mars",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s3-Mars-rear.png",
+      "imageSha256": "d8a5fe755dc42ad27a1e1bdec5d0e70468801d47138a533dafa749b5198d96d8",
+      "asset": "apps/web/public/assets/blender/v1/s3/Mars.glb",
+      "assetSha256": "fe2a6f11d12c33e2360fd280f8c107c96a691c8468f9525d20c1c52dfe6bb25b",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "asteroids",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s3-asteroids-front.png",
+      "imageSha256": "edcbb683b79f34ae0e854fe15800373062b21f1e6c735a7ced810f1e16b7a0c2",
+      "asset": "apps/web/public/assets/blender/v1/s3/asteroids.glb",
+      "assetSha256": "b4341560bfd0e9ef79bb47ca4efa43e3dbc247650bbb840332dd834d7d50a8d8",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "asteroids",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s3-asteroids-quarter.png",
+      "imageSha256": "9069615ba216e882498d3802834e485ee55219f66b1a4cb9364a2123f747d86e",
+      "asset": "apps/web/public/assets/blender/v1/s3/asteroids.glb",
+      "assetSha256": "b4341560bfd0e9ef79bb47ca4efa43e3dbc247650bbb840332dd834d7d50a8d8",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "asteroids",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s3-asteroids-rear.png",
+      "imageSha256": "1d97dd768708a47b3ce061c06b710f528b8ad42de77f7e431ca77eb10db790da",
+      "asset": "apps/web/public/assets/blender/v1/s3/asteroids.glb",
+      "assetSha256": "b4341560bfd0e9ef79bb47ca4efa43e3dbc247650bbb840332dd834d7d50a8d8",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s3",
+      "selection": "outer",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s3-outer-front.png",
+      "imageSha256": "b64ee19f602a23de2cb928bc21f5e1bd73f4ea05e32d1cc9b232a8fe1bb443c0",
+      "asset": "apps/web/public/assets/blender/v1/s3/outer.glb",
+      "assetSha256": "da8eb2426715f02ec35404e24326468bf5b7cf9791158886f6cf0819f9099a8b",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s3",
+      "selection": "outer",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s3-outer-quarter.png",
+      "imageSha256": "c7da4a41cb10875c99dfb211507c02f2d06ecbec033975c0d9648ce8fd0b373b",
+      "asset": "apps/web/public/assets/blender/v1/s3/outer.glb",
+      "assetSha256": "da8eb2426715f02ec35404e24326468bf5b7cf9791158886f6cf0819f9099a8b",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s3",
+      "selection": "outer",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s3-outer-rear.png",
+      "imageSha256": "76fc5d7c0cd4de1941976d1b4804e0de723f99da424f1689c5379318a6a7c60c",
+      "asset": "apps/web/public/assets/blender/v1/s3/outer.glb",
+      "assetSha256": "da8eb2426715f02ec35404e24326468bf5b7cf9791158886f6cf0819f9099a8b",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s4",
+      "selection": "Earth",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s4-Earth-front.png",
+      "imageSha256": "fa00f920c41343c4e8d2a3b4113140737c75ac9ffdcec81c27f00e92644fe00c",
+      "asset": "apps/web/public/assets/blender/v1/s4/earth.glb",
+      "assetSha256": "456b6357c48b3cf907e6d65c5419fa249a5b2520a2cfab2df5786ad189019f09",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s4",
+      "selection": "Earth",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s4-Earth-quarter.png",
+      "imageSha256": "2b454d39fd5eb1547c292fe199b468c284d3227fef9cd3cd1728f54ebc249af8",
+      "asset": "apps/web/public/assets/blender/v1/s4/earth.glb",
+      "assetSha256": "456b6357c48b3cf907e6d65c5419fa249a5b2520a2cfab2df5786ad189019f09",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s4",
+      "selection": "Earth",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s4-Earth-rear.png",
+      "imageSha256": "9d3fb0792803054df8e41186a4ec7f21df632d71ad8f80c6e13b30dc292bebaa",
+      "asset": "apps/web/public/assets/blender/v1/s4/earth.glb",
+      "assetSha256": "456b6357c48b3cf907e6d65c5419fa249a5b2520a2cfab2df5786ad189019f09",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s5",
+      "selection": "Earth",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s5-Earth-front.png",
+      "imageSha256": "d53d031bebdacb768a1fa6aeacbd8657803f68cf5ce81114431c826184cb04e9",
+      "asset": "apps/web/public/assets/blender/v1/s5/earth.glb",
+      "assetSha256": "c8767715324fd0e9d933ea08e8a1bb2a81363bc12d49c1625e60ef797697a663",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s5",
+      "selection": "Earth",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s5-Earth-quarter.png",
+      "imageSha256": "a2aa8fb18551cf659ff6e4ffcb0ef4fa14e63e7731c00b37fe9804e14c9aaf76",
+      "asset": "apps/web/public/assets/blender/v1/s5/earth.glb",
+      "assetSha256": "c8767715324fd0e9d933ea08e8a1bb2a81363bc12d49c1625e60ef797697a663",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s5",
+      "selection": "Earth",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s5-Earth-rear.png",
+      "imageSha256": "9e4eab1470cef17449af6a1bb009eef4dc4180d05055185823d70db6acc6c63e",
+      "asset": "apps/web/public/assets/blender/v1/s5/earth.glb",
+      "assetSha256": "c8767715324fd0e9d933ea08e8a1bb2a81363bc12d49c1625e60ef797697a663",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s5",
+      "selection": "Moon",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s5-Moon-front.png",
+      "imageSha256": "3a48c4def6bbeaef3599b50b5f53fde653c498772a52764000b65994a1061cfc",
+      "asset": "apps/web/public/assets/blender/v1/s5/Moon.glb",
+      "assetSha256": "bdd50bd1317f501eda2e1520224343043bf9bfbc9137a1964cc6e386f9e6503e",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s5",
+      "selection": "Moon",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s5-Moon-quarter.png",
+      "imageSha256": "1d2ad0040eec3269147e0967e63e9f024431aa36434177b65b879d176aa174c2",
+      "asset": "apps/web/public/assets/blender/v1/s5/Moon.glb",
+      "assetSha256": "bdd50bd1317f501eda2e1520224343043bf9bfbc9137a1964cc6e386f9e6503e",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s5",
+      "selection": "Moon",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s5-Moon-rear.png",
+      "imageSha256": "1471040a132306a69713535bc73b7d8d16f820e6261e5c855a563323d8714614",
+      "asset": "apps/web/public/assets/blender/v1/s5/Moon.glb",
+      "assetSha256": "bdd50bd1317f501eda2e1520224343043bf9bfbc9137a1964cc6e386f9e6503e",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s5",
+      "selection": "Mars",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s5-Mars-front.png",
+      "imageSha256": "e070381859cf9eb5519c888137a99aeba85da6f32fcbca442908d0d9d13b37a1",
+      "asset": "apps/web/public/assets/blender/v1/s5/Mars.glb",
+      "assetSha256": "3e110363759461ac27a7560a034a2f1923ad68662a39c6cba8bcb6b566cd3572",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s5",
+      "selection": "Mars",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s5-Mars-quarter.png",
+      "imageSha256": "e7a0f77f680f216210bebe53d7abb0de1d03ca89fe30d1e4d7b70a150d90b81a",
+      "asset": "apps/web/public/assets/blender/v1/s5/Mars.glb",
+      "assetSha256": "3e110363759461ac27a7560a034a2f1923ad68662a39c6cba8bcb6b566cd3572",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s5",
+      "selection": "Mars",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s5-Mars-rear.png",
+      "imageSha256": "e198bfc1c78924907d554777b4d6692a22f53eb3ceb186b190dc6df2df90cd2e",
+      "asset": "apps/web/public/assets/blender/v1/s5/Mars.glb",
+      "assetSha256": "3e110363759461ac27a7560a034a2f1923ad68662a39c6cba8bcb6b566cd3572",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s5",
+      "selection": "Venus",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s5-Venus-front.png",
+      "imageSha256": "af43bac51539f6fd33ef5fd9db24944bf73be6ca464290d98812a53349ece3c5",
+      "asset": "apps/web/public/assets/blender/v1/s5/Venus.glb",
+      "assetSha256": "e3cad99fddac091586e4b6a4f218463511c8607c6d43515989827d2bda370f8e",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s5",
+      "selection": "Venus",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s5-Venus-quarter.png",
+      "imageSha256": "1816ebce1f5d2cc4679d1f96ca1c747fcaa664ff5254683f61891895c61a9c38",
+      "asset": "apps/web/public/assets/blender/v1/s5/Venus.glb",
+      "assetSha256": "e3cad99fddac091586e4b6a4f218463511c8607c6d43515989827d2bda370f8e",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s5",
+      "selection": "Venus",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s5-Venus-rear.png",
+      "imageSha256": "17c4776bd42b6f2b0bfa3075b023593280f2b5999f8d6aa5e285e3ef9027bc5e",
+      "asset": "apps/web/public/assets/blender/v1/s5/Venus.glb",
+      "assetSha256": "e3cad99fddac091586e4b6a4f218463511c8607c6d43515989827d2bda370f8e",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s5",
+      "selection": "asteroids",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s5-asteroids-front.png",
+      "imageSha256": "e1cef44411f84745f509ec06f51271cde23bea79d8ac3abf3b80bb5cdff04b47",
+      "asset": "apps/web/public/assets/blender/v1/s5/asteroids.glb",
+      "assetSha256": "e9ce6965b69f78ee6aaf72d1ecfef3c3d75dc49ba27533db049907dc4b71115c",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s5",
+      "selection": "asteroids",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s5-asteroids-quarter.png",
+      "imageSha256": "7146b77a319705db06f10bea606ada62ce89656ce6587cb63a8c9f6e396d7859",
+      "asset": "apps/web/public/assets/blender/v1/s5/asteroids.glb",
+      "assetSha256": "e9ce6965b69f78ee6aaf72d1ecfef3c3d75dc49ba27533db049907dc4b71115c",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s5",
+      "selection": "asteroids",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s5-asteroids-rear.png",
+      "imageSha256": "e64c700948977534ad9ef5fedc932f269026af93370bcdd8e877118c7199e3c8",
+      "asset": "apps/web/public/assets/blender/v1/s5/asteroids.glb",
+      "assetSha256": "e9ce6965b69f78ee6aaf72d1ecfef3c3d75dc49ba27533db049907dc4b71115c",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s5",
+      "selection": "outer",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s5-outer-front.png",
+      "imageSha256": "c8b6bf1057e0314dda0cbb54563b751f657be3fb3e032e0c2b95c0590ae3755b",
+      "asset": "apps/web/public/assets/blender/v1/s5/outer.glb",
+      "assetSha256": "9052e48340fc8885617b495717dbbcc44277a697de3cf2d7914f48322b804491",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s5",
+      "selection": "outer",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s5-outer-quarter.png",
+      "imageSha256": "3231237d0fcd022b3b0fed102a2bd01f061e5ff0aef698b4d6357214625c4447",
+      "asset": "apps/web/public/assets/blender/v1/s5/outer.glb",
+      "assetSha256": "9052e48340fc8885617b495717dbbcc44277a697de3cf2d7914f48322b804491",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s5",
+      "selection": "outer",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s5-outer-rear.png",
+      "imageSha256": "0cf6186aa196f4c714a1d7f8e9c65710c4d04a472033f9ffd090aae759ec46ac",
+      "asset": "apps/web/public/assets/blender/v1/s5/outer.glb",
+      "assetSha256": "9052e48340fc8885617b495717dbbcc44277a697de3cf2d7914f48322b804491",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s5",
+      "selection": "kuiper",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s5-kuiper-front.png",
+      "imageSha256": "4b1dbf7695d27fb9465ad512bfd121b62a1d2e9f656a189b31de9993491493f3",
+      "asset": "apps/web/public/assets/blender/v1/s5/kuiper.glb",
+      "assetSha256": "5df422221f02005504328776303032228250726f86a750c11679b4285d30a956",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s5",
+      "selection": "kuiper",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s5-kuiper-quarter.png",
+      "imageSha256": "8ad6c4aa6b6a27b0a9b4b45f719120c8756a8c519066dbab4616147abdd7e4fb",
+      "asset": "apps/web/public/assets/blender/v1/s5/kuiper.glb",
+      "assetSha256": "5df422221f02005504328776303032228250726f86a750c11679b4285d30a956",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s5",
+      "selection": "kuiper",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s5-kuiper-rear.png",
+      "imageSha256": "de0a6a83d01023cf6838c3854d9de2936eecfbc8a21fca56a9e96dfcf5199148",
+      "asset": "apps/web/public/assets/blender/v1/s5/kuiper.glb",
+      "assetSha256": "5df422221f02005504328776303032228250726f86a750c11679b4285d30a956",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s6",
+      "selection": "Earth",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s6-Earth-front.png",
+      "imageSha256": "8b6c811b00805bfc0354e879c4cdb02f8797a50312cf19a8c0814adfe63cd9c0",
+      "asset": "apps/web/public/assets/blender/v1/s6/earth.glb",
+      "assetSha256": "df7c69d384cb6e8f46e2079767709518a73d8798cfce239e99c6aa249f78fa9f",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s6",
+      "selection": "Earth",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s6-Earth-quarter.png",
+      "imageSha256": "f06c60926640b19bb69326ad3b9a8b0c5d3ffa0ff662227d56b174ce6065a5ae",
+      "asset": "apps/web/public/assets/blender/v1/s6/earth.glb",
+      "assetSha256": "df7c69d384cb6e8f46e2079767709518a73d8798cfce239e99c6aa249f78fa9f",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s6",
+      "selection": "Earth",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s6-Earth-rear.png",
+      "imageSha256": "883c1f30392993eef2b6cff86336a4fb2fca45d877b8dc657fe063caa17de208",
+      "asset": "apps/web/public/assets/blender/v1/s6/earth.glb",
+      "assetSha256": "df7c69d384cb6e8f46e2079767709518a73d8798cfce239e99c6aa249f78fa9f",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s6",
+      "selection": "Moon",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s6-Moon-front.png",
+      "imageSha256": "c5fba5bab46fae69f2d8f9c129020f7151e6c4e2c40ae90a630f50a90d693402",
+      "asset": "apps/web/public/assets/blender/v1/s6/Moon.glb",
+      "assetSha256": "c38e4d33028158a2f220ee4c50859498aee2c666c612cbde83ca435acdb2e7ea",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s6",
+      "selection": "Moon",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s6-Moon-quarter.png",
+      "imageSha256": "7b896fe0ae4278c7ea53f45969f746afa509ff963315bf9c55fd16a7a381dd34",
+      "asset": "apps/web/public/assets/blender/v1/s6/Moon.glb",
+      "assetSha256": "c38e4d33028158a2f220ee4c50859498aee2c666c612cbde83ca435acdb2e7ea",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s6",
+      "selection": "Moon",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s6-Moon-rear.png",
+      "imageSha256": "b88885bbcec57f8ec694c94b81ea50fca51636d67d4a2af527770da13cc55725",
+      "asset": "apps/web/public/assets/blender/v1/s6/Moon.glb",
+      "assetSha256": "c38e4d33028158a2f220ee4c50859498aee2c666c612cbde83ca435acdb2e7ea",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s6",
+      "selection": "Mars",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s6-Mars-front.png",
+      "imageSha256": "f4a8ba5590851df3f8c6bc444699cd9782b8f43fe00d9ae580e42bd582e2ec43",
+      "asset": "apps/web/public/assets/blender/v1/s6/Mars.glb",
+      "assetSha256": "f327cdf384e6f7f4cde40bd385b9b68f93ef061061b3d0a2798af09ab1e923e8",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s6",
+      "selection": "Mars",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s6-Mars-quarter.png",
+      "imageSha256": "2d133c2d3002d6c35497ec1127ba8cfaacfe08d9fa3c7e3355bb2d4254200056",
+      "asset": "apps/web/public/assets/blender/v1/s6/Mars.glb",
+      "assetSha256": "f327cdf384e6f7f4cde40bd385b9b68f93ef061061b3d0a2798af09ab1e923e8",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s6",
+      "selection": "Mars",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s6-Mars-rear.png",
+      "imageSha256": "b89c890c8978f96510b4d4f5676f984eeb550acc5f3aa29db758c70efa3ba3dd",
+      "asset": "apps/web/public/assets/blender/v1/s6/Mars.glb",
+      "assetSha256": "f327cdf384e6f7f4cde40bd385b9b68f93ef061061b3d0a2798af09ab1e923e8",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s6",
+      "selection": "Venus",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s6-Venus-front.png",
+      "imageSha256": "8a2acaa552c6387fb445c6ff12f1abe69d37c2fa2886ae323f27dda1040fc321",
+      "asset": "apps/web/public/assets/blender/v1/s6/Venus.glb",
+      "assetSha256": "731fe73e8367e0cbf1ee9eadc43b9ef2a0d7c530f875cff2563be0011bde3b73",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s6",
+      "selection": "Venus",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s6-Venus-quarter.png",
+      "imageSha256": "5978ebb6c4992ecd6f29bc3f185e15fd2803689a4fc40ef06f23b42d02d21b3c",
+      "asset": "apps/web/public/assets/blender/v1/s6/Venus.glb",
+      "assetSha256": "731fe73e8367e0cbf1ee9eadc43b9ef2a0d7c530f875cff2563be0011bde3b73",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s6",
+      "selection": "Venus",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s6-Venus-rear.png",
+      "imageSha256": "5d7f2ae1090699b13b5f5f99e1a58fc5b65fb39e2b88a46008996f0f64789545",
+      "asset": "apps/web/public/assets/blender/v1/s6/Venus.glb",
+      "assetSha256": "731fe73e8367e0cbf1ee9eadc43b9ef2a0d7c530f875cff2563be0011bde3b73",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s6",
+      "selection": "asteroids",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s6-asteroids-front.png",
+      "imageSha256": "53dcf43df29004f109f3fa63de0898976a6432cf3eeb1f82029d54908607749a",
+      "asset": "apps/web/public/assets/blender/v1/s6/asteroids.glb",
+      "assetSha256": "2f022566e0036ce480d2d66e389eb99d7a42e7bd5775d6e8cce8d1cf9801eca9",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s6",
+      "selection": "asteroids",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s6-asteroids-quarter.png",
+      "imageSha256": "119c4fe24c74294927a32f097faf2eaf4968fe41f9fbe85a69b97cfd61b98711",
+      "asset": "apps/web/public/assets/blender/v1/s6/asteroids.glb",
+      "assetSha256": "2f022566e0036ce480d2d66e389eb99d7a42e7bd5775d6e8cce8d1cf9801eca9",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s6",
+      "selection": "asteroids",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s6-asteroids-rear.png",
+      "imageSha256": "b9a7533dbb08d44dd834a413b9048859a65fe181ffc6d2ee5f2d602315c46074",
+      "asset": "apps/web/public/assets/blender/v1/s6/asteroids.glb",
+      "assetSha256": "2f022566e0036ce480d2d66e389eb99d7a42e7bd5775d6e8cce8d1cf9801eca9",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s6",
+      "selection": "kuiper",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s6-kuiper-front.png",
+      "imageSha256": "b01cbb7b3a9cb8bb57e7e69138b8a40de6dc93192848b5d69796b65b69b14b72",
+      "asset": "apps/web/public/assets/blender/v1/s6/kuiper.glb",
+      "assetSha256": "dbd2078a6f6eb465d885b277cb9eedac63686091458db1ef68415ee3fe050729",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s6",
+      "selection": "kuiper",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s6-kuiper-quarter.png",
+      "imageSha256": "8d0ae2eb4dcc201ca4b048a6a8b30152f99262cbb3f153be5264f2b7a4965809",
+      "asset": "apps/web/public/assets/blender/v1/s6/kuiper.glb",
+      "assetSha256": "dbd2078a6f6eb465d885b277cb9eedac63686091458db1ef68415ee3fe050729",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s6",
+      "selection": "kuiper",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s6-kuiper-rear.png",
+      "imageSha256": "c9e6ccc57077453ba4a66fc1067dcb9c6abc3bf364439845f0400f43315744bf",
+      "asset": "apps/web/public/assets/blender/v1/s6/kuiper.glb",
+      "assetSha256": "dbd2078a6f6eb465d885b277cb9eedac63686091458db1ef68415ee3fe050729",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s7",
+      "selection": "Earth",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s7-Earth-front.png",
+      "imageSha256": "a58c882bb238f09475577af34ec58fadfd5f3a7ed848ef86c53e35136d5deb39",
+      "asset": "apps/web/public/assets/blender/v1/s7/earth.glb",
+      "assetSha256": "d363939a2b3008965e2eb69b904f0640118cc40fa28a84900bdb56402a88f491",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s7",
+      "selection": "Earth",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s7-Earth-quarter.png",
+      "imageSha256": "603287052c3cc4fdb6f10e5f49ea2c513ec57ee93251e24680f468f556e2d9b6",
+      "asset": "apps/web/public/assets/blender/v1/s7/earth.glb",
+      "assetSha256": "d363939a2b3008965e2eb69b904f0640118cc40fa28a84900bdb56402a88f491",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s7",
+      "selection": "Earth",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s7-Earth-rear.png",
+      "imageSha256": "addf3c98be3dcf78f063f836dbc8d7ccaa1d88a291d1a184cefc9946dfcc5d3f",
+      "asset": "apps/web/public/assets/blender/v1/s7/earth.glb",
+      "assetSha256": "d363939a2b3008965e2eb69b904f0640118cc40fa28a84900bdb56402a88f491",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s8",
+      "selection": "Earth",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s8-Earth-front.png",
+      "imageSha256": "c2520f2a00a8569d59b722a6cb77ec9dfd0f845c64b3c0c1ead5412f7ecbeaf3",
+      "asset": "apps/web/public/assets/blender/v1/s8/earth.glb",
+      "assetSha256": "146eddb8d537e189738b116b3de37f095f7edb6cf00e41690f491f1dfe1e95f1",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s8",
+      "selection": "Earth",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s8-Earth-quarter.png",
+      "imageSha256": "7f5d013759df32dbbc1d0105f09d7b09e4e78fe5fbbec943dd0292a3cc6383b0",
+      "asset": "apps/web/public/assets/blender/v1/s8/earth.glb",
+      "assetSha256": "146eddb8d537e189738b116b3de37f095f7edb6cf00e41690f491f1dfe1e95f1",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s8",
+      "selection": "Earth",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s8-Earth-rear.png",
+      "imageSha256": "fd3b48a6f97cb51d802f28d5c0c5263e5ce37ae1913bb339e400667f190375ef",
+      "asset": "apps/web/public/assets/blender/v1/s8/earth.glb",
+      "assetSha256": "146eddb8d537e189738b116b3de37f095f7edb6cf00e41690f491f1dfe1e95f1",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s8",
+      "selection": "Moon",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s8-Moon-front.png",
+      "imageSha256": "d33076c8377dd89b536708384161cc1b3239041099da6a5d2fea98c5042199ff",
+      "asset": "apps/web/public/assets/blender/v1/s8/Moon.glb",
+      "assetSha256": "130f4d2308ed7fc8e0211b7f0de02f44dc64fbead629f74365f7715b779290cb",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s8",
+      "selection": "Moon",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s8-Moon-quarter.png",
+      "imageSha256": "e1443a892c6e42c5946a5508716c622c0f63b73dde06eef4d04bccdd46af7d97",
+      "asset": "apps/web/public/assets/blender/v1/s8/Moon.glb",
+      "assetSha256": "130f4d2308ed7fc8e0211b7f0de02f44dc64fbead629f74365f7715b779290cb",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s8",
+      "selection": "Moon",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s8-Moon-rear.png",
+      "imageSha256": "ab9b3a431947a2c619cdfb7f14a5934bb6816ef7e31240a519008086a5f847a1",
+      "asset": "apps/web/public/assets/blender/v1/s8/Moon.glb",
+      "assetSha256": "130f4d2308ed7fc8e0211b7f0de02f44dc64fbead629f74365f7715b779290cb",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "Earth",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s9-Earth-front.png",
+      "imageSha256": "889797a23888e65083250f278e3c3fba8ea07e2b2bbfdb1b0b0883c76498fa52",
+      "asset": "apps/web/public/assets/blender/v1/s9/earth.glb",
+      "assetSha256": "9516dd9790940e43b412f2fbc59ca2dec723e2cbdb70baa68f380e77ca69bab2",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "Earth",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s9-Earth-quarter.png",
+      "imageSha256": "01ea65c952061c91a9ad2a0b758eaca0053f0ba249e1928d7b3ec90571c90318",
+      "asset": "apps/web/public/assets/blender/v1/s9/earth.glb",
+      "assetSha256": "9516dd9790940e43b412f2fbc59ca2dec723e2cbdb70baa68f380e77ca69bab2",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "Earth",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s9-Earth-rear.png",
+      "imageSha256": "ad74141dce20d071a55e7ec2750de8513710c5a7b5181c1573e8fc65828eeb28",
+      "asset": "apps/web/public/assets/blender/v1/s9/earth.glb",
+      "assetSha256": "9516dd9790940e43b412f2fbc59ca2dec723e2cbdb70baa68f380e77ca69bab2",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "Moon",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s9-Moon-front.png",
+      "imageSha256": "8cb1f5af833f441eefe8ee33f68e21d6d72451500b24ad6ed687a97030aa01fa",
+      "asset": "apps/web/public/assets/blender/v1/s9/Moon.glb",
+      "assetSha256": "2446c4a7748293de582f7393aa4deef512c855c763994957cc3e55c044881037",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "Moon",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s9-Moon-quarter.png",
+      "imageSha256": "2b1034032ea33c19438e55b9cb8c64c43cbdcc04e26bc33969ccdf031a291fe8",
+      "asset": "apps/web/public/assets/blender/v1/s9/Moon.glb",
+      "assetSha256": "2446c4a7748293de582f7393aa4deef512c855c763994957cc3e55c044881037",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "Moon",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s9-Moon-rear.png",
+      "imageSha256": "cfbb8a7703ee6104336b00179aebc544f3ea43c4acc3ce735f1d957456042b12",
+      "asset": "apps/web/public/assets/blender/v1/s9/Moon.glb",
+      "assetSha256": "2446c4a7748293de582f7393aa4deef512c855c763994957cc3e55c044881037",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "Mars",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s9-Mars-front.png",
+      "imageSha256": "1625a5f9bc0ef8cc149c8f08ab7e79924904e9f3d6770e3f050a799649b76c8c",
+      "asset": "apps/web/public/assets/blender/v1/s9/Mars.glb",
+      "assetSha256": "f6a9c4c3b755c12a0054dd05b7cd03f4f3d2160b4cb34e810790ad581e0c50d4",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s9",
+      "selection": "Mars",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s9-Mars-quarter.png",
+      "imageSha256": "f99edc6dbf0ff8c82bc162200186044d0b6067d37e295bba54cdc8d0d665be45",
+      "asset": "apps/web/public/assets/blender/v1/s9/Mars.glb",
+      "assetSha256": "f6a9c4c3b755c12a0054dd05b7cd03f4f3d2160b4cb34e810790ad581e0c50d4",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s9",
+      "selection": "Mars",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s9-Mars-rear.png",
+      "imageSha256": "1dd2f78f6fb791993e63e6fe768a48391d030284f173d366c37e297bcd2d6ee4",
+      "asset": "apps/web/public/assets/blender/v1/s9/Mars.glb",
+      "assetSha256": "f6a9c4c3b755c12a0054dd05b7cd03f4f3d2160b4cb34e810790ad581e0c50d4",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s9",
+      "selection": "Venus",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s9-Venus-front.png",
+      "imageSha256": "9ad93a98df9ec877b34143e3b5db2ee8933910c35f0a697927df950e1297980f",
+      "asset": "apps/web/public/assets/blender/v1/s9/Venus.glb",
+      "assetSha256": "9a38c617edae1c9d7404516db15c3940bea7a3fc04b57ec69ca788cba408f8e0",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s9",
+      "selection": "Venus",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s9-Venus-quarter.png",
+      "imageSha256": "a16ea259f79d16ec0ba650a759dea0edddb6770a68add247f7c215dee3b4aede",
+      "asset": "apps/web/public/assets/blender/v1/s9/Venus.glb",
+      "assetSha256": "9a38c617edae1c9d7404516db15c3940bea7a3fc04b57ec69ca788cba408f8e0",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s9",
+      "selection": "Venus",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s9-Venus-rear.png",
+      "imageSha256": "dda30cea887fc30a2338dcd7c989d0c6973c489d29c2aad301a09e26f5ef48a3",
+      "asset": "apps/web/public/assets/blender/v1/s9/Venus.glb",
+      "assetSha256": "9a38c617edae1c9d7404516db15c3940bea7a3fc04b57ec69ca788cba408f8e0",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s9",
+      "selection": "asteroids",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s9-asteroids-front.png",
+      "imageSha256": "12adab5767ef3d0d4816d8b26af2174a0a308091651eff605cc9f5df28d7fe87",
+      "asset": "apps/web/public/assets/blender/v1/s9/asteroids.glb",
+      "assetSha256": "bf1b1e4f0c8a5d89fde0163943052184e329526586e6b772833720e19fe0be4c",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s9",
+      "selection": "asteroids",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s9-asteroids-quarter.png",
+      "imageSha256": "46eb4e51a66a4626f930a2449d15a2584f60da87f47732bc43028f0f58a1ce07",
+      "asset": "apps/web/public/assets/blender/v1/s9/asteroids.glb",
+      "assetSha256": "bf1b1e4f0c8a5d89fde0163943052184e329526586e6b772833720e19fe0be4c",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s9",
+      "selection": "asteroids",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s9-asteroids-rear.png",
+      "imageSha256": "858f272b59e5a6a17eba3d61ad5a030f46cc7df40e77f437b37ff30f5a4f7cd0",
+      "asset": "apps/web/public/assets/blender/v1/s9/asteroids.glb",
+      "assetSha256": "bf1b1e4f0c8a5d89fde0163943052184e329526586e6b772833720e19fe0be4c",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s9",
+      "selection": "outer",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s9-outer-front.png",
+      "imageSha256": "9a420d40149f29e6ec63bb1e7cfce33400418f88ad170796621a7a7131b8705a",
+      "asset": "apps/web/public/assets/blender/v1/s9/outer.glb",
+      "assetSha256": "80711a84627787eb1ad50a6e36b06c4cab179430aa3a3908a08784ff44e31f6e",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "outer",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s9-outer-quarter.png",
+      "imageSha256": "0dc19c96baa97d786cd3d4601421a0b5170424b2ce1f5e1be92fdde071766c08",
+      "asset": "apps/web/public/assets/blender/v1/s9/outer.glb",
+      "assetSha256": "80711a84627787eb1ad50a6e36b06c4cab179430aa3a3908a08784ff44e31f6e",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "outer",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s9-outer-rear.png",
+      "imageSha256": "503c43973613a79871c1900296440c240f250edb709739c1c39adb97d9c640d5",
+      "asset": "apps/web/public/assets/blender/v1/s9/outer.glb",
+      "assetSha256": "80711a84627787eb1ad50a6e36b06c4cab179430aa3a3908a08784ff44e31f6e",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "kuiper",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s9-kuiper-front.png",
+      "imageSha256": "4a41773cfe27c464299973ed15e27ae600cfac38645377afd663359c7560dbb1",
+      "asset": "apps/web/public/assets/blender/v1/s9/kuiper.glb",
+      "assetSha256": "361fbd7757e6673fe80557ed45e1a14a7a823e0c54eb2465b0d9bef86a03cf8c",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "kuiper",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s9-kuiper-quarter.png",
+      "imageSha256": "7ce9f12fd8cdffb75b73cdba5a7652e8680149a3a0324b9d6b1791dc85c78e0f",
+      "asset": "apps/web/public/assets/blender/v1/s9/kuiper.glb",
+      "assetSha256": "361fbd7757e6673fe80557ed45e1a14a7a823e0c54eb2465b0d9bef86a03cf8c",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "kuiper",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s9-kuiper-rear.png",
+      "imageSha256": "d5323e9dd70529ba43984127bf41a55941baa5c5a384014338d30f12b565948d",
+      "asset": "apps/web/public/assets/blender/v1/s9/kuiper.glb",
+      "assetSha256": "361fbd7757e6673fe80557ed45e1a14a7a823e0c54eb2465b0d9bef86a03cf8c",
+      "evidence": "final-revision-render"
+    },
+    {
+      "world": "s9",
+      "selection": "solar",
+      "angle": "front",
+      "image": "docs/qa/blender-finish/renders/s9-solar-front.png",
+      "imageSha256": "d713b7e2c31cf548b5ae472eab9c1e2e0f7b082793848aa46dc52a24586e2bb6",
+      "asset": "apps/web/public/assets/blender/v1/s9/solar.glb",
+      "assetSha256": "e0adf970111ae3fa8f2c213d9e1a1a221febff535769b7625974203809b5b6d5",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s9",
+      "selection": "solar",
+      "angle": "quarter",
+      "image": "docs/qa/blender-finish/renders/s9-solar-quarter.png",
+      "imageSha256": "e072d9af2e557adcd9c7332be3be94a30469779d5cda6dab46566dd21618763b",
+      "asset": "apps/web/public/assets/blender/v1/s9/solar.glb",
+      "assetSha256": "e0adf970111ae3fa8f2c213d9e1a1a221febff535769b7625974203809b5b6d5",
+      "evidence": "prior-render-of-byte-identical-export"
+    },
+    {
+      "world": "s9",
+      "selection": "solar",
+      "angle": "rear",
+      "image": "docs/qa/blender-finish/renders/s9-solar-rear.png",
+      "imageSha256": "679dd0c614fac061be35d26ff55dd2721227410893b67d7f399ec17a91961824",
+      "asset": "apps/web/public/assets/blender/v1/s9/solar.glb",
+      "assetSha256": "e0adf970111ae3fa8f2c213d9e1a1a221febff535769b7625974203809b5b6d5",
+      "evidence": "prior-render-of-byte-identical-export"
+    }
+  ],
+  "count": 144,
+  "note": "Changed portraits rerendered; unchanged portraits retain reviewed prior frames with identical exported geometry/material bytes. The final editable source hash is in model receipts."
+}

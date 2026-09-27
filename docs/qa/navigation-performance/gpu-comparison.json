@@ -1,0 +1,35 @@
+{
+  "viewport": [1440, 1000],
+  "deviceScaleFactor": 2,
+  "sampleSeconds": 3,
+  "warmupSeconds": 10,
+  "before": {
+    "atlas": {
+      "fps": 40,
+      "drawCalls": 32,
+      "triangles": 20674,
+      "buffer": [1033, 840]
+    },
+    "storyS3": {
+      "fps": 18.333333333333332,
+      "drawCalls": 76,
+      "triangles": 51718,
+      "buffer": [2160, 1500]
+    }
+  },
+  "after": {
+    "atlas": {
+      "fps": 46.666666666666664,
+      "drawCalls": 32,
+      "triangles": 20674,
+      "buffer": [1033, 840]
+    },
+    "storyS3": {
+      "fps": 31.666666666666668,
+      "drawCalls": 76,
+      "triangles": 51718,
+      "buffer": [1440, 1000]
+    }
+  },
+  "limits": "One local Chromium sample per state; not a hardware-independent FPS guarantee. Atlas improvement at unchanged pixel ratio is within run-to-run variability. Story sample shows the gain from reduced supersampling with identical draw calls and triangles."
+}

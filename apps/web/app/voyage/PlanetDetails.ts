@@ -1,8 +1,10 @@
+import { originRiver } from './origin-world';
 import * as THREE from 'three';
 import { Sculpture, surface, type Vec } from './sculpture';
 import { Ground } from './planet-surface';
 import { addWorldBiomes } from './WorldBiomes';
 import type { WorldArt } from './worlds';
+import { roadClearance } from './activity-corridor';
 
 type MapPoint = [number, number];
 const ivory = '#e8dec2',
@@ -49,14 +51,10 @@ function hatch(s: Sculpture, m: THREE.Matrix4, radius = 0.08) {
   s.cylinder(radius, radius, 0.021, ink, [0, 0.021, 0], m, 8);
   s.box([radius * 0.12, 0.012, radius * 1.1], ivory, [0, 0.036, 0], m);
 }
-function path(s: Sculpture, g: Ground, sites: MapPoint[], width = 0.012, color = '#c9be9c') {
-  g.trail(s, sites, width * 1.6, '#7c927e', 0.007);
-  g.trail(s, sites, width, color, 0.012);
-}
 function river(s: Sculpture, g: Ground, sites: MapPoint[], width = 0.023) {
-  g.trail(s, sites, width * 1.35, '#bdd2b1', 0.007);
-  g.trail(s, sites, width, '#69a9b1', 0.012);
-  g.trail(s, sites, width * 0.28, '#a0cace', 0.016);
+  g.trail(s, sites, width * 1.35, '#bdd2b1', 0.007, g.scale * 0.99);
+  g.trail(s, sites, width, '#69a9b1', 0.012, g.scale * 0.99);
+  g.trail(s, sites, width * 0.28, '#a0cace', 0.016, g.scale * 0.99);
 }
 function triangle(s: Sculpture, points: THREE.Vector3[], color: string) {
   const geometry = new THREE.BufferGeometry();
@@ -69,34 +67,40 @@ function triangle(s: Sculpture, points: THREE.Vector3[], color: string) {
   );
   s.add(geometry, color);
 }
-function solarPanel(s: Sculpture, m: THREE.Matrix4, x: number, z: number, w: number, d: number) {
-  s.box([w, 0.018, d], gold, [x, 0.01, z], m);
-  s.box([w * 0.93, 0.022, d * 0.9], '#577a91', [x, 0.013, z], m);
-  for (let row = 1; row < 4; row++)
-    s.box([w * 0.94, 0.024, 0.008], '#a2b7b8', [x, 0.016, z + (row / 4 - 0.5) * d], m);
-  for (let col = 1; col < 3; col++)
-    s.box([0.008, 0.024, d * 0.91], '#9db0b1', [x + (col / 3 - 0.5) * w, 0.016, z], m);
-}
-
 /** A second, authored scale of detail. Every object is fictional; no scientific quantities here. */
 export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number, mobile: boolean) {
   const g = new Ground(art, globeScale, mobile);
+  const clear = roadClearance(art, mobile);
+  // Hand-placed coastal details obey the same corridor as scattered vegetation.
+  // Relocate an obstructing detail onto nearby land, retaining its authored identity.
+  const place = (
+    lon: number,
+    lat: number,
+    radius: number,
+    build: (matrix: THREE.Matrix4) => void,
+  ) => {
+    for (const [dx, dy] of [
+      [0, 0],
+      [-8, 4],
+      [8, 4],
+      [-16, 8],
+      [16, 8],
+      [0, 16],
+      [-24, 12],
+      [24, 12],
+    ]) {
+      const position = g.project(g.direction(lon + dx, lat + dy), 0);
+      if (position.length() < globeScale * 0.99 || !clear(position, radius)) continue;
+      build(g.pose(lon + dx, lat + dy));
+      return;
+    }
+  };
+
   try {
     addWorldBiomes(s, g, art, globeScale, mobile);
     switch (art.form) {
       case 'origin': {
-        river(
-          s,
-          g,
-          [
-            [40, 53],
-            [34, 40],
-            [41, 30],
-            [34, 19],
-            [40, 8],
-          ],
-          0.011,
-        );
+        river(s, g, originRiver, 0.011);
         [
           [21, 62],
           [31, 65],
@@ -112,80 +116,14 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
           [-37, -34],
           [-29, -42],
           [-22, -44],
-        ].forEach(([lon, lat], i) => rock(s, g.pose(lon, lat), 0.07 - i * 0.01, '#9eb69b'));
+        ].forEach(([lon, lat], i) =>
+          place(lon, lat, 0.09, (m) => rock(s, m, 0.07 - i * 0.01, '#9eb69b')),
+        );
         break;
       }
-      case 'ecumenopolis': {
-        path(
-          s,
-          g,
-          [
-            [-49, 6],
-            [-30, 2],
-            [-10, -3],
-            [12, 1],
-            [33, 8],
-            [49, 18],
-          ],
-          0.018,
-          '#b2ad93',
-        );
-        path(
-          s,
-          g,
-          [
-            [-24, 29],
-            [-21, 9],
-            [-26, -12],
-            [-18, -31],
-          ],
-          0.012,
-          '#c0b199',
-        );
-        path(
-          s,
-          g,
-          [
-            [22, 30],
-            [17, 9],
-            [23, -8],
-            [38, -24],
-          ],
-          0.012,
-          '#c0b199',
-        );
-        const locations: MapPoint[] = [
-          [-38, -7],
-          [-13, -16],
-          [3, -14],
-          [15, -16],
-          [34, -8],
-          [-33, -25],
-          [6, -33],
-          [28, -30],
-        ];
-        locations.slice(0, mobile ? 6 : 8).forEach(([lon, lat], i) => {
-          const m = g.pose(lon, lat),
-            w = 0.11,
-            h = 0.08 + (i % 3) * 0.03;
-          s.box([w * 1.5, 0.02, w * 1.5], '#899698', [0, 0.01, 0], m);
-          s.box([w, h, w], '#9c9b8b', [0, 0.03 + h / 2, 0], m);
-          s.box([w * 0.7, 0.025, w * 0.7], ivory, [0, h + 0.046, 0], m);
-          for (let col = 0; col < 3; col++)
-            s.box([0.019, 0.018, 0.006], ink, [(col - 1) * 0.03, h * 0.6 + 0.03, w * 0.51], m);
-          if (i % 2 === 0) s.cylinder(0.014, 0.019, 0.03, gold, [0.02, h + 0.071, 0], m, 6);
-        });
-        // Elevated tramway: regular piers, a deck, rails and one compact vehicle.
-        const m = g.pose(-4, 1);
-        s.box([0.6, 0.026, 0.078], '#9da7a1', [0, 0.105, 0], m);
-        for (const x of [-0.23, 0, 0.23]) s.box([0.027, 0.11, 0.047], ink, [x, 0.048, 0], m);
-        for (const z of [-0.032, 0.032]) s.bar([-0.3, 0.132, z], [0.3, 0.132, z], 0.006, gold, m);
-        s.box([0.13, 0.055, 0.057], ivory, [0.06, 0.15, 0], m);
-        for (const x of [0.025, 0.06, 0.095])
-          s.box([0.019, 0.025, 0.005], ink, [x, 0.157, 0.031], m);
-        hatch(s, g.pose(3, -25), 0.08);
+      case 'ecumenopolis':
+        // Streets are assembled only from connected activity routes.
         break;
-      }
       case 'extraction': {
         const m = surface(-8, 19, 1.025);
         for (let i = 0; i < 6; i++) {
@@ -218,31 +156,6 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
         s.bar([-0.13, 0.31, 0], [0.14, 0.31, 0], 0.018, gold, crane);
         s.bar([0.13, 0.31, 0], [0.13, 0.16, 0], 0.003, ivory, crane);
         s.box([0.057, 0.04, 0.047], '#ab8e6c', [0.13, 0.14, 0], crane);
-        path(
-          s,
-          g,
-          [
-            [-32, -7],
-            [-17, -19],
-            [6, -20],
-            [25, -9],
-            [40, 13],
-          ],
-          0.014,
-          '#d7b593',
-        );
-        [
-          [-32, -8],
-          [9, -20],
-        ].forEach(([lon, lat], i) => {
-          const p = g.pose(lon, lat);
-          s.box([0.09, 0.035, 0.055], gold, [0, 0.035, 0], p);
-          s.box([0.065, 0.037, 0.052], '#e1c69f', [-0.012, 0.07, 0], p);
-          for (const x of [-0.028, 0.03])
-            for (const z of [-0.031, 0.031]) s.ico(0.014, ink, [x, 0.02, z], [1, 1, 1], p);
-          s.box([0.03, 0.018, 0.055], ink, [0.05, 0.044, 0], p);
-          if (i === 0) s.ico(0.028, '#877366', [-0.015, 0.097, 0], [1, 0.7, 1], p);
-        });
         [
           [-37, -31],
           [-26, -41],
@@ -272,52 +185,41 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
         break;
       }
       case 'arcadia': {
-        path(
-          s,
-          g,
-          [
-            [-43, 16],
-            [-31, 0],
-            [-9, -15],
-            [15, -16],
-            [38, 3],
-          ],
-          0.014,
-        );
         const gardens: MapPoint[] = [
           [-31, -12],
           [-8, -24],
           [19, -21],
           [35, -5],
         ];
-        gardens.forEach(([lon, lat], i) => {
-          const m = g.pose(lon, lat);
-          s.box([0.18, 0.025, 0.14], ivory, [0, 0.011, 0], m);
-          for (let row = 0; row < 3; row++) {
-            s.box(
-              [0.146, 0.026, 0.025],
-              i % 2 ? '#8fab7c' : '#aaac7d',
-              [0, 0.035, (row - 1) * 0.04],
-              m,
-            );
-            if (!mobile)
-              for (let col = 0; col < 4; col++)
-                s.ico(
-                  0.012,
-                  '#c6ba8a',
-                  [(col - 1.5) * 0.032, 0.06, (row - 1) * 0.04],
-                  [1, 0.7, 1],
-                  m,
-                );
-          }
-        });
+        gardens.forEach(([lon, lat], i) =>
+          place(lon, lat, 0.14, (m) => {
+            s.box([0.18, 0.025, 0.14], ivory, [0, 0.011, 0], m);
+            for (let row = 0; row < 3; row++) {
+              s.box(
+                [0.146, 0.026, 0.025],
+                i % 2 ? '#8fab7c' : '#aaac7d',
+                [0, 0.035, (row - 1) * 0.04],
+                m,
+              );
+              if (!mobile)
+                for (let col = 0; col < 4; col++)
+                  s.ico(
+                    0.012,
+                    '#c6ba8a',
+                    [(col - 1.5) * 0.032, 0.06, (row - 1) * 0.04],
+                    [1, 0.7, 1],
+                    m,
+                  );
+            }
+          }),
+        );
         [
           [-41, -3],
           [-21, -19],
           [9, -30],
           [32, 7],
         ].forEach(([lon, lat], i) =>
-          house(s, g.pose(lon, lat), 0.085, i % 2 ? '#d9cfb2' : ivory, '#849f93'),
+          place(lon, lat, 0.11, (m) => house(s, m, 0.085, i % 2 ? '#d9cfb2' : ivory, '#849f93')),
         );
         [
           [-47, 7],
@@ -325,21 +227,13 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
           [27, -33],
           [47, 9],
         ].forEach(([lon, lat], i) =>
-          leafyTree(s, g.pose(lon, lat), 0.12, i % 2 ? '#baaa8b' : sage),
+          place(lon, lat, 0.1, (m) => leafyTree(s, m, 0.12, i % 2 ? '#baaa8b' : sage)),
         );
-        const pool = g.pose(4, -4);
-        s.cylinder(0.13, 0.14, 0.019, ivory, [0, 0.018, 0], pool, 10);
-        s.cylinder(0.105, 0.105, 0.023, '#70a8ab', [0, 0.024, 0], pool, 10);
-        s.box([0.28, 0.025, 0.043], '#c6b998', [0, 0.058, 0], pool, [0, 0.3, 0]);
-        const station = new THREE.Matrix4().compose(
-          new THREE.Vector3(1.2, -0.18, 0.37),
-          new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0.2, -0.4)),
-          new THREE.Vector3(1, 1, 1),
-        );
-        for (const x of [-0.065, 0, 0.065])
-          s.box([0.035, 0.045, 0.006], ink, [x, 0.006, 0.064], station);
-        solarPanel(s, station, 0, -0.18, 0.22, 0.16);
-        s.bar([0, 0.06, 0], [0, 0.16, 0], 0.006, gold, station);
+        place(4, -4, 0.17, (pool) => {
+          s.cylinder(0.13, 0.14, 0.019, ivory, [0, 0.018, 0], pool, 10);
+          s.cylinder(0.105, 0.105, 0.023, '#70a8ab', [0, 0.024, 0], pool, 10);
+          s.box([0.28, 0.025, 0.043], '#c6b998', [0, 0.058, 0], pool, [0, 0.3, 0]);
+        });
         break;
       }
       case 'wilderness': {
@@ -377,14 +271,15 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
           [30, -24],
           [-48, 26],
         ].forEach(([lon, lat], i) => {
-          const m = g.pose(lon, lat);
-          rock(s, m, 0.065 + (i % 3) * 0.016);
-          if (i % 2 === 0) leafyTree(s, g.pose(lon + 6, lat + 4), 0.13, '#779b75');
+          place(lon, lat, 0.13, (m) => rock(s, m, 0.065 + (i % 3) * 0.016));
+          if (i % 2 === 0) place(lon + 6, lat + 4, 0.11, (m) => leafyTree(s, m, 0.13, '#779b75'));
         });
         [
           [-31, 7],
           [-24, 3],
-        ].forEach(([lon, lat]) => house(s, g.pose(lon, lat), 0.075, '#b1a787', '#7a8e74'));
+        ].forEach(([lon, lat]) =>
+          place(lon, lat, 0.1, (m) => house(s, m, 0.075, '#b1a787', '#7a8e74')),
+        );
         const bridge = g.pose(-10, -1);
         for (let i = 0; i < 8; i++)
           s.box([0.022, 0.018, 0.074], '#ad9b78', [(i - 3.5) * 0.027, 0.048, 0], bridge, [
@@ -401,30 +296,12 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
             [31, 24],
             [41, -10],
             [-8, -27],
-          ].forEach(([lon, lat]) => leafyTree(s, g.pose(lon, lat), 0.085, '#abc19a'));
+          ].forEach(([lon, lat]) =>
+            place(lon, lat, 0.08, (m) => leafyTree(s, m, 0.085, '#abc19a')),
+          );
         break;
       }
       case 'symbiosis': {
-        for (const sites of [
-          [
-            [-30, 8],
-            [-40, -4],
-            [-31, -20],
-            [-13, -30],
-          ],
-          [
-            [0, 8],
-            [-6, -10],
-            [3, -27],
-            [22, -39],
-          ],
-          [
-            [30, 8],
-            [39, -5],
-            [31, -23],
-          ],
-        ] as MapPoint[][])
-          path(s, g, sites, 0.008, '#c7d9b8');
         [-32, 0, 30].forEach((lon, i) => {
           const m = surface(lon, 8);
           for (let side = 0; side < 6; side++) {
@@ -512,30 +389,9 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
             inset.forEach((a) => s.ico(0.012, gold, a.clone().lerp(center, 0.06).toArray() as Vec));
         }
         shell.dispose();
-        const m = new THREE.Matrix4().compose(
-          new THREE.Vector3(0.88, 0.98, -0.02),
-          new THREE.Quaternion(),
-          new THREE.Vector3(1, 1, 1),
-        );
-        s.cylinder(0.05, 0.07, 0.14, ink, [0, 0, 0], m, 6);
-        s.bar([0, 0.08, 0], [0, 0.23, 0], 0.008, gold, m);
-        s.ico(0.035, ivory, [0, 0.23, 0], [1, 0.6, 1], m);
         break;
       }
       case 'reclaimed': {
-        path(
-          s,
-          g,
-          [
-            [-37, 23],
-            [-32, 6],
-            [-13, -13],
-            [7, -18],
-            [29, -9],
-          ],
-          0.015,
-          '#c6b891',
-        );
         const m = surface(-12, 42);
         // Small climbing vines follow the existing arch rather than covering its silhouette.
         for (const side of [-1, 1]) {
@@ -565,14 +421,16 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
           [-29, -8],
           [15, -29],
           [32, -13],
-        ].forEach(([lon, lat], i) =>
-          house(s, g.pose(lon, lat), 0.083, '#c8b995', i % 2 ? '#8e9c71' : '#b6a382'),
-        );
+        ].forEach(([lon, lat], i) => {
+          const site = g.project(g.direction(lon, lat), 0);
+          if (clear(site, 0.12) && site.length() > globeScale * 0.99)
+            house(s, g.pose(lon, lat), 0.083, '#c8b995', i % 2 ? '#8e9c71' : '#b6a382');
+        });
         [
           [-31, -28],
           [3, -36],
           [41, 2],
-        ].forEach(([lon, lat]) => leafyTree(s, g.pose(lon, lat), 0.15, '#8ea573'));
+        ].forEach(([lon, lat]) => place(lon, lat, 0.12, (m) => leafyTree(s, m, 0.15, '#8ea573')));
         const fallen = g.pose(22, -5);
         for (let block = 0; block < 5; block++)
           s.box(
@@ -585,30 +443,6 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
         break;
       }
       case 'fractured': {
-        path(
-          s,
-          g,
-          [
-            [-32, 21],
-            [-39, 3],
-            [-23, -14],
-            [-11, -22],
-          ],
-          0.012,
-          '#a8998c',
-        );
-        path(
-          s,
-          g,
-          [
-            [17, -28],
-            [32, -18],
-            [42, 2],
-            [34, 23],
-          ],
-          0.012,
-          '#b09f8e',
-        );
         [-26, 25].forEach((lon, i) => {
           const m = g.pose(lon, -12);
           s.cylinder(0.13, 0.15, 0.037, '#8b7d7c', [0, 0.019, 0], m, 8);
@@ -649,19 +483,6 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
       case 'machine-swarm':
         break;
       case 'duality': {
-        path(
-          s,
-          g,
-          [
-            [-43, 24],
-            [-35, 5],
-            [-15, -13],
-            [6, -15],
-            [24, -4],
-          ],
-          0.007,
-          '#cbd3b2',
-        );
         [
           [-34, -10],
           [-12, -24],

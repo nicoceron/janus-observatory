@@ -1,0 +1,86 @@
+[
+  {
+    "name": "desktop",
+    "route": "/",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "route": "/atlas",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "route": "/atlas/s6",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "route": "/observatory?scenario=S9&instrument=deep_space_probes",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "route": "/methods",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "route": "/sources",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "route": "/",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "route": "/atlas",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "route": "/atlas/s6",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "route": "/observatory?scenario=S9&instrument=deep_space_probes",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "route": "/methods",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "route": "/sources",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  }
+]

@@ -1,8 +1,20 @@
 # Janus Observatory - Master Product, Data, Architecture, and Execution Plan
 
+Current editable planet polish: [Decision 028](DECISION_028_PLANET_POLISH.md), with [individual world review](qa/planet-polish-2026-09-20/REPORT.md).
+
+Current deployment and fixed-resolution decision: [Decision 027](DECISION_027_FREE_CLOUDFLARE.md).
+
+Current unified navigation and adaptive rendering: [Decision 026](DECISION_026_NAVIGATION_PERFORMANCE.md), with [verification](qa/navigation-performance/REPORT.md).
+
+Current shared world pages, futuristic typography and render optimization: [Decision 025](DECISION_025_SHARED_WORLD_PAGES.md), with [verification](qa/release-polish/REPORT.md).
+
+Current telescope passage and section-anchored closing Earth: [Decision 024](DECISION_024_TELESCOPE_FLOW.md), with [verification](qa/telescope-flow/REPORT.md).
+
+Current story cleanup and Timer migration: [Decision 023](DECISION_023_STORY_CLEANUP.md), with [verification](qa/story-cleanup/REPORT.md).
+
 Status: implementation-ready plan
 
-Current scenario-specific world/system identities: [Decision 016](DECISION_016_SCENARIO_IDENTITIES.md), with the evidence in [scenario identities QA](qa/scenario-identities/REPORT.md). Reference-inspired low-poly art and character performance: [Decision 015](DECISION_015_LIVING_WORLDS.md), refining the rebuilt planet and observer models from [Decision 014](DECISION_014_LOW_POLY.md). Current story frontend: [Decision 013](DECISION_013_FIRST_LIGHT.md) supersedes the detailed Spline, WebGPU/TSL and former camera choreography below, following the user-authorized fresh frontend rebuild on 2026-09-07. Scientific, source, rights, accessibility and performance requirements remain in force.
+Latest behind-Earth reveal correction: [verification](qa/organic-reveal/REPORT.md). Latest spatial composition and on-demand names: [Decision 022](DECISION_022_SPATIAL_SYSTEMS.md), with [verification](qa/spatial-systems/REPORT.md). Latest starting-Earth airfield and hydration correction: [verification](qa/airfield-correction/REPORT.md). Current simultaneous systems, continuous star field and revised transport: [Decision 021](DECISION_021_OPEN_SYSTEMS.md), with [verification](qa/open-systems/REPORT.md). Current editable Blender finishing and bounded web assets: [Decision 020](DECISION_020_BLENDER_FINISHING.md), with [source files](../assets/blender/README.md) and [verification](qa/blender-finish/REPORT.md). Current connected roads and visible Solar System locations: [Decision 019](DECISION_019_CONNECTED_WORLDS.md). Current actor purpose and motion: [Decision 018](DECISION_018_PURPOSEFUL_ACTIVITY.md). Current individual world exploration and object refinement: [Decision 017](DECISION_017_WORLD_EXPLORER.md). Current scenario-specific world/system identities: [Decision 016](DECISION_016_SCENARIO_IDENTITIES.md), with the evidence in [scenario identities QA](qa/scenario-identities/REPORT.md). Reference-inspired low-poly art and character performance: [Decision 015](DECISION_015_LIVING_WORLDS.md), refining the rebuilt planet and observer models from [Decision 014](DECISION_014_LOW_POLY.md). Current story frontend: [Decision 013](DECISION_013_FIRST_LIGHT.md) supersedes the detailed Spline, WebGPU/TSL and former camera choreography below, following the user-authorized fresh frontend rebuild on 2026-09-07. Scientific, source, rights, accessibility and performance requirements remain in force.
 Version: 1.0
 Evidence cutoff: 2026-08-12
 Repository state at audit: empty Git repository, no commits, code, data, assets, or configuration

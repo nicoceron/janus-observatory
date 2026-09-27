@@ -1,6 +1,4 @@
 import { expect, test, type Page } from '@playwright/test';
-import { allScenarioProfiles } from '../lib/canonical-core';
-import { systemPortrait } from '../lib/system-portrait';
 
 export async function jump(page: Page, label: string, id: string) {
   await page.getByRole('button', { name: 'Index +', exact: true }).click();
@@ -23,10 +21,7 @@ test('the story is complete before WebGL and links every scenario to its data', 
       'href',
       `/atlas/s${i}`,
     );
-    const footprint = systemPortrait(allScenarioProfiles[i - 1]);
-    await expect(world.locator('a[href*="arxiv.org"]')).toHaveCount(
-      2 + footprint.locations.length + footprint.extended.length,
-    );
+    await expect(world.locator('a[href*="arxiv.org"]')).toHaveCount(0);
   }
   await expect(
     page.getByText('These are possibilities, not forecasts.', { exact: false }),
@@ -45,32 +40,27 @@ test('keyboard jumps and fast reversals reconcile to the final chapter', async (
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 's8');
   await page.locator('#s8').press('ArrowDown');
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 's9');
-  await page.getByRole('button', { name: 'Next chapter' }).press('Enter');
+  await page.locator('#s9').press('PageDown');
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 's10');
-  await page.getByRole('button', { name: 'Previous chapter' }).press('Enter');
+  await page.locator('#s10').press('PageUp');
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 's9');
   await jump(page, '00 First light ↗', 'first-light');
-  await expect(page.getByRole('button', { name: 'Previous chapter' })).toBeDisabled();
+  await page.locator('#first-light').press('ArrowUp');
+  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 'first-light');
 });
 
-test('reading mode preserves all ten profiles, matrix and native data table', async ({ page }) => {
+test('the complete story retains its native data table without a reading-mode toolbar', async ({
+  page,
+}) => {
   await page.goto('/');
-  await jump(page, '10 S9 ↗', 's9');
-  await page.getByRole('button', { name: 'Read without animation' }).click();
-  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-mode', 'reading');
-  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 's9');
-  await expect(page.locator('[data-stage-status]')).toBeHidden();
-  await expect(page.locator('[data-world]')).toHaveCount(10);
+  await jump(page, '15 Civilizations breathe ↗', 'endurance');
   await page.getByText('Read the data table', { exact: true }).click();
   await expect(
     page
       .getByRole('table', { name: 'Published scenario population and annual energy use' })
       .getByRole('row'),
   ).toHaveCount(11);
-  await jump(page, '10 S9 ↗', 's9');
-  await page.getByRole('button', { name: 'Return to visual story' }).click();
-  await expect(page.locator('[data-stage-status]')).toBeVisible();
-  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 's9');
+  await expect(page.getByLabel('Story controls')).toHaveCount(0);
 });
 
 test('matrix preserves blanks and reports the selected canonical signatures', async ({ page }) => {
@@ -116,18 +106,18 @@ test('index closes with Escape and restores focus', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Index +', exact: true })).toBeFocused();
 });
 
-test('reduced motion remains selected after reload and restores a session chapter', async ({
+test('the homepage uses full motion without changing the saved preference for research pages', async ({
   page,
 }) => {
+  await page.addInitScript(() => localStorage.setItem('janus-motion-preference', 'reduced'));
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  await page.getByRole('button', { name: 'Reduced', exact: true }).click();
-  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-mode', 'reduced');
-  await jump(page, '05 S4 ↗', 's4');
-  await page.reload();
-  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-mode', 'reduced');
-  await jump(page, '00 First light ↗', 'first-light');
-  await page.getByRole('button', { name: 'Resume ↗' }).click();
-  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 's4');
+  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-mode', 'full');
+  await expect(page.locator('html')).toHaveAttribute('data-motion', 'full');
+  await expect(page.getByLabel('Motion preference')).toHaveCount(0);
+  expect(await page.evaluate(() => localStorage.getItem('janus-motion-preference'))).toBe(
+    'reduced',
+  );
 });
 
 test('WebGL failure preserves story and offers a retry', async ({ page }) => {
@@ -148,23 +138,17 @@ test('WebGL failure preserves story and offers a retry', async ({ page }) => {
     'fallback',
     { timeout: 20000 },
   );
+  await expect(page.locator('[data-space-backdrop]')).toBeVisible();
+  await page.getByRole('button', { name: 'Index +', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Retry 3D' })).toBeVisible();
   await page.getByRole('button', { name: 'Retry 3D' }).click();
   await expect(page.locator('[data-stage-status]')).toHaveAttribute(
     'data-stage-status',
     'fallback',
   );
+  await page.keyboard.press('Escape');
   await jump(page, '10 S9 ↗', 's9');
   await expect(page.locator('#s9')).toContainText('200T');
-  await expect(page.locator('#s8 [aria-label="S8 published off-world footprint"]')).toContainText(
-    'Luna (Moon)',
-  );
-  await expect(page.locator('#s8 [aria-label="S8 published off-world footprint"] a')).toHaveCount(
-    1,
-  );
-  await expect(page.locator('#s6 [aria-label="S6 published off-world footprint"]')).toContainText(
-    'Venus',
-  );
 });
 
 test('core narrative and source tables survive JavaScript being unavailable', async ({

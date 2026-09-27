@@ -1,3 +1,5 @@
+import { originRiver } from './origin-world';
+import { roadClearance } from './activity-corridor';
 import * as THREE from 'three';
 import { Sculpture } from './sculpture';
 import type { Ground } from './planet-surface';
@@ -39,39 +41,32 @@ function villa(s: Sculpture, m: THREE.Matrix4, roof: string, w = 0.083) {
   s.box([w * 0.17, w * 0.48, w * 0.2], '#b8a38b', [w * 0.26, w, -w * 0.22], m);
 }
 function field(s: Sculpture, m: THREE.Matrix4, i: number) {
-  s.box([0.155, 0.018, 0.13], '#b5bc78', [0, 0.01, 0], m);
-  for (let row = 0; row < 4; row++)
-    s.box(
-      [0.137, 0.023, 0.017],
-      (row + i) % 2 ? '#91b661' : '#d3cb81',
-      [0, 0.025, (row - 1.5) * 0.028],
-      m,
-    );
-}
-export function sailboat(s: Sculpture) {
-  s.ico(0.11, '#a5794e', [0, 0, 0], [0.46, 0.28, 1.2]);
-  s.box([0.073, 0.018, 0.19], cream, [0, 0.018, 0]);
-  s.bar([0, 0.02, 0.015], [0, 0.23, 0.015], 0.007, timber);
-  const g = new THREE.BufferGeometry();
-  g.setAttribute(
-    'position',
-    new THREE.Float32BufferAttribute(
-      [
-        0, 0.23, 0.015, 0, 0.055, 0.015, 0, 0.055, -0.12, 0, 0.21, 0.028, 0, 0.065, 0.13, 0, 0.065,
-        0.028,
-      ],
-      3,
-    ),
-  );
-  s.add(g, '#f0eee0');
-}
-export function aircraft(s: Sculpture, color: string) {
-  s.ico(0.13, '#e5e4cf', [0, 0, 0], [0.29, 0.29, 1.5], undefined, 1);
-  s.box([0.32, 0.014, 0.073], cream, [0, -0.005, 0]);
-  for (const side of [-1, 1]) s.box([0.06, 0.018, 0.075], color, [side * 0.145, -0.003, 0]);
-  s.box([0.14, 0.012, 0.045], color, [0, 0.01, 0.145]);
-  s.box([0.012, 0.07, 0.068], color, [0, 0.035, 0.138]);
-  s.ico(0.04, '#376e87', [0, 0.03, -0.025], [0.7, 0.65, 1.6]);
+  // Open soil beds and individual leaves read as agriculture, without pallet-like rails.
+  const variant = Math.floor(i / 5) % 3;
+  s.box([0.132, 0.005, 0.108], '#66503b', [0, 0.003, 0], m);
+  for (let row = 0; row < 3; row++) {
+    for (let col = 0; col < 4; col++) {
+      const x = (col - 1.5) * 0.029 + Math.sin(i + row * 4 + col) * 0.002;
+      const z = (row - 1) * 0.031;
+      if (variant === 0) {
+        s.ico(0.015, col % 2 ? '#76af46' : '#94c65b', [x, 0.017, z], [1, 0.7, 1], m);
+        s.ico(0.008, '#bedb77', [x, 0.027, z], [0.7, 0.7, 0.7], m);
+      } else {
+        const h = 0.029 + ((row + col) % 3) * 0.006;
+        s.cone(0.006, h, '#4d8d43', [x, h / 2 + 0.005, z], m, 4);
+        for (const side of [-1, 1])
+          s.add(
+            new THREE.ConeGeometry(0.006, 0.028, 3),
+            '#81b44d',
+            [x + side * 0.007, 0.02, z],
+            [0, 0, side * -0.8],
+            [1, 1, 1],
+            m,
+          );
+        if (variant === 2) s.ico(0.006, '#e0be5e', [x, h + 0.007, z], [0.7, 1.7, 0.7], m);
+      }
+    }
+  }
 }
 export function satellite(s: Sculpture, color: string) {
   s.box([0.08, 0.075, 0.12], cream, [0, 0, 0]);
@@ -84,7 +79,7 @@ export function satellite(s: Sculpture, color: string) {
   s.ico(0.034, color, [0, 0.145, 0], [1, 0.3, 1]);
 }
 
-/** Preserve the accepted opening Earth; scenario-specific biomes have their own object families. */
+/** Original terrestrial vegetation and houses; living traffic is a separate articulated layer. */
 export function addWorldBiomes(
   s: Sculpture,
   g: Ground,
@@ -96,13 +91,26 @@ export function addWorldBiomes(
     addScenarioBiomes(s, g, art, scale, mobile);
     return;
   }
+  const clear = roadClearance(art, mobile);
+  const riverPoints = originRiver.slice(1).flatMap((end, i) => {
+    const a = g.direction(...originRiver[i]),
+      b = g.direction(...end);
+    return Array.from({ length: 16 }, (_, step) =>
+      a
+        .clone()
+        .lerp(b, step / 15)
+        .normalize(),
+    );
+  });
   for (let row = 0; row < 7; row++) {
     for (let col = 0; col < 20; col++) {
       const i = row * 20 + col,
         lon = -180 + col * 18 + Math.sin(i * 2.3 + art.seed) * 4,
         lat = -57 + row * 19 + Math.cos(i * 1.7 + art.seed) * 3;
-      if (mobile && i % 5 === 0) continue;
-      if (g.project(g.direction(lon, lat), 0).length() < scale * 0.99) continue;
+      if (mobile && i % 7 === 0) continue;
+      const position = g.project(g.direction(lon, lat), 0);
+      if (position.length() < scale * 0.99 || !clear(position, scale * 0.12)) continue;
+      if (riverPoints.some((p) => p.distanceTo(position.clone().normalize()) < 0.115)) continue;
       const m = g.pose(lon, lat).scale(new THREE.Vector3(scale, scale, scale));
       m.multiply(new THREE.Matrix4().makeRotationY(Math.sin(i * 2.1) * 0.5));
       const h = 0.12 + (i % 4) * 0.025;
@@ -111,23 +119,5 @@ export function addWorldBiomes(
       else if (i % 3 === 1) fir(s, m, h, i);
       else broadleaf(s, m, h * 0.95, i);
     }
-  }
-  let harbors = 0;
-  for (let lon = -65; lon < 75 && harbors < 3; lon += 13) {
-    const lat = -12 + harbors * 16;
-    if (g.project(g.direction(lon, lat), 0).length() > scale * 0.97) continue;
-    const m = g.pose(lon, lat).scale(new THREE.Vector3(scale, scale, scale));
-    for (const side of [-1, 1])
-      s.bar(
-        [-0.035 + side * 0.024, 0.009, 0.055],
-        [-0.035 + side * 0.054, 0.009, 0.145],
-        0.003,
-        '#b1d8d7',
-        m,
-      );
-    const boat = new Sculpture();
-    sailboat(boat);
-    s.add(boat.finish(), null, [-0.035, 0.005, 0], [0, 0.4, 0], [0.7, 0.7, 0.7], m);
-    harbors++;
   }
 }

@@ -1,0 +1,85 @@
+{
+  "world": "s2",
+  "blender": "5.2.1 LTS",
+  "source": "assets/blender/s2.blend",
+  "sourceSha256": "3ab7260736ac1d046da6c531ca78e77a9e291ea3aef3516571a19cf6fc15dafb",
+  "exports": [
+    {
+      "path": "apps/web/public/assets/blender/v1/s2/earth.glb",
+      "bytes": 632208,
+      "sha256": "4ef2a20ea9c2b24306f2c777c8014ec75211bc61f4563e4069e4bb10720b6bec",
+      "triangles": 23496,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_hauler",
+        "Landmark_derrick",
+        "Landmark_conveyor",
+        "Landmark_reservoir",
+        "Activity_haul-truck_road",
+        "Life_vehicle_haul-truck_body",
+        "Life_vehicle_haul-truck_extra0",
+        "Life_vehicle_haul-truck_extra1",
+        "Life_vehicle_haul-truck_extra2",
+        "Study_lunar-base",
+        "Study_mars-base"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s2/earth-mobile.glb",
+      "bytes": 545344,
+      "sha256": "81ef58c48a2d75097724b5f9a35ba08c934f592cb9f72c9345752a60a6b9b0e1",
+      "triangles": 20672,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_hauler",
+        "Landmark_derrick",
+        "Landmark_conveyor",
+        "Landmark_reservoir",
+        "Activity_haul-truck_road",
+        "Life_vehicle_haul-truck_body",
+        "Life_vehicle_haul-truck_extra0",
+        "Life_vehicle_haul-truck_extra1",
+        "Life_vehicle_haul-truck_extra2",
+        "Study_lunar-base",
+        "Study_mars-base"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s2/Moon.glb",
+      "bytes": 232216,
+      "sha256": "ca23430fe5ace9f1eb99dc11ac65eb69bc3ef84002d20d0ade6a7a2fb8469882",
+      "triangles": 9944,
+      "parts": [
+        "S2_Moon"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s2/Mars.glb",
+      "bytes": 262364,
+      "sha256": "e3cb828e551172e6ae392f2b27e094c9a29662b7c99766e2722e98f3a4da31bf",
+      "triangles": 11652,
+      "parts": [
+        "S2_Mars"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s2/asteroids.glb",
+      "bytes": 73840,
+      "sha256": "de599e86e389c9c86da199d4ce00a5b54e6855b6e7fd7b414d2b777dc8adab11",
+      "triangles": 3000,
+      "parts": [
+        "S2_asteroids"
+      ]
+    }
+  ],
+  "scenes": [
+    "S2 \u2022 asteroids",
+    "S2 \u2022 Earth",
+    "S2 \u2022 Mars",
+    "S2 \u2022 Moon"
+  ],
+  "interpretive": true,
+  "animations": "Editable 40-second route and articulation previews; web motion stays in R3F."
+}

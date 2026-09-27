@@ -1,0 +1,492 @@
+{
+  "origin": "http://localhost:3100",
+  "checkedAt": "2026-09-15T02:04:48.275Z",
+  "routes": [
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 138022
+    },
+    {
+      "path": "/atlas",
+      "status": 200,
+      "bytes": 121788
+    },
+    {
+      "path": "/observatory",
+      "status": 200,
+      "bytes": 96672
+    },
+    {
+      "path": "/methods",
+      "status": 200,
+      "bytes": 114047
+    },
+    {
+      "path": "/sources",
+      "status": 200,
+      "bytes": 472318
+    },
+    {
+      "path": "/accessibility",
+      "status": 200,
+      "bytes": 104528
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "bytes": 101777
+    },
+    {
+      "path": "/research",
+      "status": 200,
+      "bytes": 107904
+    },
+    {
+      "path": "/research/concordia",
+      "status": 200,
+      "bytes": 106097
+    },
+    {
+      "path": "/research/resilience",
+      "status": 200,
+      "bytes": 108882
+    },
+    {
+      "path": "/atlas/s1",
+      "status": 200,
+      "bytes": 182911
+    },
+    {
+      "path": "/atlas/s2",
+      "status": 200,
+      "bytes": 181077
+    },
+    {
+      "path": "/atlas/s3",
+      "status": 200,
+      "bytes": 184213
+    },
+    {
+      "path": "/atlas/s4",
+      "status": 200,
+      "bytes": 180433
+    },
+    {
+      "path": "/atlas/s5",
+      "status": 200,
+      "bytes": 185504
+    },
+    {
+      "path": "/atlas/s6",
+      "status": 200,
+      "bytes": 183401
+    },
+    {
+      "path": "/atlas/s7",
+      "status": 200,
+      "bytes": 180902
+    },
+    {
+      "path": "/atlas/s8",
+      "status": 200,
+      "bytes": 181710
+    },
+    {
+      "path": "/atlas/s9",
+      "status": 200,
+      "bytes": 186841
+    },
+    {
+      "path": "/atlas/s10",
+      "status": 200,
+      "bytes": 184155
+    }
+  ],
+  "models": [
+    {
+      "path": "/assets/blender/v1/origin/earth-mobile.glb.gz",
+      "status": 200,
+      "bytes": 133843,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/origin/earth.glb.gz",
+      "status": 200,
+      "bytes": 174721,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s1/Mars.glb.gz",
+      "status": 200,
+      "bytes": 92730,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s1/Moon.glb.gz",
+      "status": 200,
+      "bytes": 83806,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s1/Venus.glb.gz",
+      "status": 200,
+      "bytes": 58723,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s1/asteroids.glb.gz",
+      "status": 200,
+      "bytes": 36645,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s1/earth-mobile.glb.gz",
+      "status": 200,
+      "bytes": 200362,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s1/earth.glb.gz",
+      "status": 200,
+      "bytes": 247768,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s1/outer.glb.gz",
+      "status": 200,
+      "bytes": 42117,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s10/Mars.glb.gz",
+      "status": 200,
+      "bytes": 113262,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s10/Moon.glb.gz",
+      "status": 200,
+      "bytes": 97323,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s10/Venus.glb.gz",
+      "status": 200,
+      "bytes": 63513,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s10/asteroids.glb.gz",
+      "status": 200,
+      "bytes": 45102,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s10/earth-mobile.glb.gz",
+      "status": 200,
+      "bytes": 267261,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s10/earth.glb.gz",
+      "status": 200,
+      "bytes": 319173,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s10/kuiper.glb.gz",
+      "status": 200,
+      "bytes": 72479,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s10/outer.glb.gz",
+      "status": 200,
+      "bytes": 53836,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s2/Mars.glb.gz",
+      "status": 200,
+      "bytes": 98032,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s2/Moon.glb.gz",
+      "status": 200,
+      "bytes": 94678,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s2/asteroids.glb.gz",
+      "status": 200,
+      "bytes": 42025,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s2/earth-mobile.glb.gz",
+      "status": 200,
+      "bytes": 231247,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s2/earth.glb.gz",
+      "status": 200,
+      "bytes": 290928,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s3/Mars.glb.gz",
+      "status": 200,
+      "bytes": 116433,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s3/Moon.glb.gz",
+      "status": 200,
+      "bytes": 116776,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s3/asteroids.glb.gz",
+      "status": 200,
+      "bytes": 47621,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s3/earth-mobile.glb.gz",
+      "status": 200,
+      "bytes": 272712,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s3/earth.glb.gz",
+      "status": 200,
+      "bytes": 330046,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s3/outer.glb.gz",
+      "status": 200,
+      "bytes": 74277,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s4/earth-mobile.glb.gz",
+      "status": 200,
+      "bytes": 187393,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s4/earth.glb.gz",
+      "status": 200,
+      "bytes": 235488,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s5/Mars.glb.gz",
+      "status": 200,
+      "bytes": 114081,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s5/Moon.glb.gz",
+      "status": 200,
+      "bytes": 96617,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s5/Venus.glb.gz",
+      "status": 200,
+      "bytes": 56854,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s5/asteroids.glb.gz",
+      "status": 200,
+      "bytes": 43629,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s5/earth-mobile.glb.gz",
+      "status": 200,
+      "bytes": 402209,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s5/earth.glb.gz",
+      "status": 200,
+      "bytes": 465270,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s5/kuiper.glb.gz",
+      "status": 200,
+      "bytes": 77061,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s5/outer.glb.gz",
+      "status": 200,
+      "bytes": 52908,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s6/Mars.glb.gz",
+      "status": 200,
+      "bytes": 101687,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s6/Moon.glb.gz",
+      "status": 200,
+      "bytes": 100983,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s6/Venus.glb.gz",
+      "status": 200,
+      "bytes": 94909,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s6/asteroids.glb.gz",
+      "status": 200,
+      "bytes": 42566,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s6/earth-mobile.glb.gz",
+      "status": 200,
+      "bytes": 265039,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s6/earth.glb.gz",
+      "status": 200,
+      "bytes": 302349,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s6/kuiper.glb.gz",
+      "status": 200,
+      "bytes": 76280,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s7/earth-mobile.glb.gz",
+      "status": 200,
+      "bytes": 249104,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s7/earth.glb.gz",
+      "status": 200,
+      "bytes": 290347,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s8/Moon.glb.gz",
+      "status": 200,
+      "bytes": 87531,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s8/earth-mobile.glb.gz",
+      "status": 200,
+      "bytes": 144686,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s8/earth.glb.gz",
+      "status": 200,
+      "bytes": 188106,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s9/Mars.glb.gz",
+      "status": 200,
+      "bytes": 63292,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s9/Moon.glb.gz",
+      "status": 200,
+      "bytes": 58611,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s9/Venus.glb.gz",
+      "status": 200,
+      "bytes": 67631,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s9/asteroids.glb.gz",
+      "status": 200,
+      "bytes": 36239,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s9/earth-mobile.glb.gz",
+      "status": 200,
+      "bytes": 156124,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s9/earth.glb.gz",
+      "status": 200,
+      "bytes": 212230,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s9/kuiper.glb.gz",
+      "status": 200,
+      "bytes": 68157,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s9/outer.glb.gz",
+      "status": 200,
+      "bytes": 38327,
+      "lossless": true
+    },
+    {
+      "path": "/assets/blender/v1/s9/solar.glb.gz",
+      "status": 200,
+      "bytes": 40291,
+      "lossless": true
+    }
+  ],
+  "downloads": [
+    {
+      "path": "/atlas/data?format=json",
+      "bytes": 703928,
+      "sha256": "eb007b408a5ca354c2b82b82d1aea123664edb7f5438dcc838646db8bacc0b81"
+    },
+    {
+      "path": "/atlas/data?format=csv",
+      "bytes": 57240,
+      "sha256": "74e750d04c9bdca6237983f6b2332d3d699d9545991ac9183bda42b4f3735ed4"
+    },
+    {
+      "path": "/api/downloads/independent-validation",
+      "bytes": 16489,
+      "sha256": "3a36ce462795479e37a414e8347be15f8fc7da2243aed1ba03d570ff5e633061"
+    }
+  ],
+  "health": {
+    "status": "operational",
+    "dataVersion": "sha256:46a0e94a969301c49cfafe00463e5c7e9be5dce423ddcdeb21fe4ad0614d2046",
+    "canonicalDataReview": {
+      "status": "independent_review_pending",
+      "releaseStatus": "candidate_not_reviewed",
+      "readyForReviewedDataRelease": false,
+      "pendingIndependentReviews": 8,
+      "totalDatasets": 8
+    },
+    "liveCallsEnabled": false
+  },
+  "notFoundStatus": 404
+}

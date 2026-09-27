@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { IBM_Plex_Mono, Manrope } from 'next/font/google';
+import { IBM_Plex_Mono, Space_Grotesk, Chakra_Petch } from 'next/font/google';
 import type { ReactNode } from 'react';
 
 import { MotionPreference } from './components/MotionPreference';
@@ -7,7 +7,7 @@ import { OperationalTelemetry } from './components/OperationalTelemetry';
 import { siteDescription, siteOrigin } from '../lib/site';
 import './globals.css';
 
-const body = Manrope({
+const body = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-body',
   display: 'swap',
@@ -16,7 +16,14 @@ const body = Manrope({
 const mono = IBM_Plex_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
-  weight: ['400', '500'],
+  weight: ['400'],
+  display: 'swap',
+});
+
+const display = Chakra_Petch({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: ['400', '500', '600'],
   display: 'swap',
 });
 
@@ -64,7 +71,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body className={`${body.variable} ${mono.variable}`}>
+      <body className={`${body.variable} ${mono.variable} ${display.variable}`}>
         {children}
         <MotionPreference />
         <OperationalTelemetry />

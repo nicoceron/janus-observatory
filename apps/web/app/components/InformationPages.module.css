@@ -1,5 +1,5 @@
 .section {
-  border-top: 1px solid rgba(16, 32, 25, 0.2);
+  border-top: 1px solid rgba(186, 212, 227, 0.2);
   display: grid;
   gap: clamp(28px, 5vw, 72px);
   grid-template-columns: minmax(220px, 0.38fr) minmax(0, 1fr);
@@ -29,13 +29,13 @@
 
 .sectionBody p,
 .sectionBody li {
-  color: #43574c;
+  color: #afc2cc;
   font-size: 0.96rem;
   line-height: 1.8;
 }
 
 .sectionBody a {
-  color: #24543f;
+  color: #afc2cc;
 }
 
 .flow {
@@ -46,7 +46,7 @@
 
 .flow li {
   align-items: baseline;
-  border-top: 1px solid rgba(16, 32, 25, 0.15);
+  border-top: 1px solid rgba(186, 212, 227, 0.15);
   display: grid;
   gap: 22px;
   grid-template-columns: 42px minmax(150px, 0.4fr) 1fr;
@@ -58,19 +58,19 @@
 }
 
 .flow li::before {
-  color: #527063;
+  color: #afc2cc;
   content: counter(list-item, decimal-leading-zero);
   font-family: var(--font-mono);
-  font-size: 0.5rem;
+  font-size: 0.75rem;
 }
 
 .flow strong {
-  color: #102019;
+  color: #dce5eb;
   font-size: 0.84rem;
 }
 
 .flow span {
-  color: #53685d;
+  color: #afc2cc;
   font-size: 0.78rem;
   line-height: 1.6;
 }
@@ -82,32 +82,32 @@
 }
 
 .glossary div {
-  border-bottom: 1px solid rgba(16, 32, 25, 0.15);
+  border-bottom: 1px solid rgba(186, 212, 227, 0.15);
   padding: 20px 24px 20px 0;
 }
 
 .glossary dt {
-  color: #1f4c37;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
 }
 
 .glossary dd {
-  color: #566a5f;
+  color: #afc2cc;
   font-size: 0.78rem;
   line-height: 1.58;
   margin: 9px 0 0;
 }
 
 .factStrip {
-  border-bottom: 1px solid rgba(16, 32, 25, 0.16);
+  border-bottom: 1px solid rgba(186, 212, 227, 0.16);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: 26px 0;
 }
 
 .factStrip div {
-  border-left: 1px solid rgba(16, 32, 25, 0.16);
+  border-left: 1px solid rgba(186, 212, 227, 0.16);
   padding: 19px;
 }
 
@@ -122,9 +122,9 @@
 }
 
 .factStrip span {
-  color: #53685d;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.54rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
 }
 
@@ -142,9 +142,9 @@
 }
 
 .actions a {
-  border: 1px solid rgba(16, 32, 25, 0.22);
+  border: 1px solid rgba(186, 212, 227, 0.22);
   font-family: var(--font-mono);
-  font-size: 0.55rem;
+  font-size: 0.75rem;
   padding: 11px 13px;
   text-transform: uppercase;
 }
@@ -175,15 +175,15 @@
 .validationPanel code {
   background: rgba(36, 84, 63, 0.08);
   border-radius: 2px;
-  color: #24543f;
+  color: #afc2cc;
   font-size: 0.78em;
   padding: 0.14em 0.34em;
 }
 
 .validationEyebrow {
-  color: #24543f !important;
+  color: #afc2cc !important;
   font-family: var(--font-mono);
-  font-size: 0.52rem !important;
+  font-size: 0.75rem !important;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -195,8 +195,8 @@
 
 .accessTable th,
 .accessTable td {
-  border-bottom: 1px solid rgba(16, 32, 25, 0.15);
-  color: #40554a;
+  border-bottom: 1px solid rgba(186, 212, 227, 0.15);
+  color: #afc2cc;
   font-size: 0.76rem;
   line-height: 1.6;
   padding: 14px 12px;
@@ -205,9 +205,9 @@
 }
 
 .accessTable thead th {
-  color: #536c5f;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.5rem;
+  font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -217,7 +217,7 @@
 }
 
 .tableScroller:focus-visible {
-  outline-color: #24543f;
+  outline-color: #afc2cc;
 }
 
 @media (max-width: 820px) {
@@ -240,7 +240,7 @@
   .factStrip div,
   .factStrip div:first-child {
     border-left: 0;
-    border-top: 1px solid rgba(16, 32, 25, 0.15);
+    border-top: 1px solid rgba(186, 212, 227, 0.15);
     padding: 16px 0;
   }
 }

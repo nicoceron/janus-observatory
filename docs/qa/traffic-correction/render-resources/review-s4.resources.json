@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "1.0.0",
+  "attempts": [
+    {
+      "world": "s4",
+      "phase": "review",
+      "startedAt": "2026-09-20T06:56:19.836830+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+        "modules": {
+          "tmp/traffic-correction/render-landings.py": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+          "tmp/traffic-correction/review-guard.py": "sha256:a0e23203a7bb9d769ca1a95d99e47304de8e6d6f107c67f4662667b2158c0596"
+        },
+        "seeds": {
+          "s4.json": "sha256:79fc78508a76a37ec70bbacdc84bc988463977845e8510647c6e94c41139dde8"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/tmp/traffic-correction/render-landings.py",
+        "--",
+        "--world",
+        "s4",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/traffic-correction/render-resources/review-s4.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1040384000,
+      "observedProcessIds": [33963],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 3012984832,
+        "inactiveBytes": 6813188096,
+        "purgeableBytes": 15302656,
+        "freePlusInactiveBytes": 9826172928,
+        "launchAvailableBytes": 9841475584,
+        "capturedAt": "2026-09-20T06:56:19.867001+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 33963,
+      "processGroupId": 33963,
+      "requiredOutputs": {
+        "docs/qa/traffic-correction/landings/s4-canoe-to.png": "sha256:181ab9d6794d5d8142e58e0b8bbfe6f23e8d5cf51fd3ab335e66b14da66fe2b5",
+        "docs/qa/traffic-correction/landings/s4-canoe-from.png": "sha256:ae6db29774ac609fa8b31ded9a5c2a18d5b33c0860bd8c11330300dc38926c16"
+      },
+      "elapsedSeconds": 8.056,
+      "endedAt": "2026-09-20T06:56:27.892842+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2944974848,
+        "inactiveBytes": 6905741312,
+        "purgeableBytes": 134234112,
+        "freePlusInactiveBytes": 9850716160,
+        "launchAvailableBytes": 9984950272,
+        "capturedAt": "2026-09-20T06:56:27.895690+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    },
+    {
+      "world": "s4",
+      "phase": "review",
+      "startedAt": "2026-09-20T07:08:06.718202+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+        "modules": {
+          "tmp/traffic-correction/render-landings.py": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+          "tmp/traffic-correction/review-guard.py": "sha256:a0e23203a7bb9d769ca1a95d99e47304de8e6d6f107c67f4662667b2158c0596"
+        },
+        "seeds": {
+          "s4.json": "sha256:9c9ea26a618eef55a2af951a0a6022f72071296a15f92e35fe2364fe7a85b064"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/tmp/traffic-correction/render-landings.py",
+        "--",
+        "--world",
+        "s4",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/traffic-correction/render-resources/review-s4.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1033502720,
+      "observedProcessIds": [35338],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 3222437888,
+        "inactiveBytes": 7878836224,
+        "purgeableBytes": 39370752,
+        "freePlusInactiveBytes": 11101274112,
+        "launchAvailableBytes": 11140644864,
+        "capturedAt": "2026-09-20T07:08:06.745678+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 35338,
+      "processGroupId": 35338,
+      "requiredOutputs": {
+        "docs/qa/traffic-correction/landings/s4-canoe-to.png": "sha256:7942ccf51b8a9740f2543f86833e37a1b82537af593a4e2f65553b862e94b4ee",
+        "docs/qa/traffic-correction/landings/s4-canoe-from.png": "sha256:b7c4ce986d2647472a68b6ee67423a0ea77c12f5724f04d037eb195e808841a2"
+      },
+      "elapsedSeconds": 7.51,
+      "endedAt": "2026-09-20T07:08:14.228579+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 3217719296,
+        "inactiveBytes": 7972421632,
+        "purgeableBytes": 39567360,
+        "freePlusInactiveBytes": 11190140928,
+        "launchAvailableBytes": 11229708288,
+        "capturedAt": "2026-09-20T07:08:14.231493+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    }
+  ]
+}

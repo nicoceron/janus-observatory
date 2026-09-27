@@ -3,6 +3,9 @@ import { mkdir } from 'node:fs/promises';
 import { allScenarioProfiles } from '../lib/canonical-core';
 import { systemPortrait } from '../lib/system-portrait';
 
+// Serial native-GPU model preparation on WebKit can exceed the default 30-second sweep.
+test.setTimeout(90000);
+
 async function indexJump(page: import('@playwright/test').Page, label: string, id: string) {
   await page.getByRole('button', { name: 'Index +', exact: true }).click();
   await page
@@ -48,12 +51,11 @@ test('one canvas survives every world, reverse jumps, and the observer', async (
   }
   expect(errors).toEqual([]);
   if (testInfo.project.name === 'chromium')
-    await page.screenshot({ path: 'docs/qa/first-light/eyepiece.png' });
+    await page.screenshot({ path: 'docs/qa/spatial-systems/eyepiece.png' });
 });
 
 test('the telescope can be entered, exited, and reversed during travel', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Full', exact: true }).click();
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
     timeout: 30000,
   });
@@ -69,25 +71,25 @@ test('the telescope can be entered, exited, and reversed during travel', async (
   await enter.click();
   await indexJump(page, '12 The other side ↗', 'observer');
   await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'exterior');
-  await page.getByRole('button', { name: 'Reduced', exact: true }).click();
   await enter.click();
-  await expect(page.locator('canvas')).toHaveAttribute('data-scene', '13.000');
+  await expect
+    .poll(async () => Number(await page.locator('canvas').getAttribute('data-scene')))
+    .toBeCloseTo(13, 2);
   await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'eyepiece');
-  await page.getByRole('button', { name: 'Previous chapter', exact: true }).click();
-  await expect(page.locator('canvas')).toHaveAttribute('data-scene', '12.000');
+  await indexJump(page, '12 The other side ↗', 'observer');
+  await expect
+    .poll(async () => Number(await page.locator('canvas').getAttribute('data-scene')))
+    .toBeCloseTo(12, 2);
   await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'exterior');
 });
 
-test('observer continues moving while scroll stays still and reduced motion freezes it', async ({
-  page,
-}, testInfo) => {
+test('observer continues moving while scroll stays still', async ({ page }, testInfo) => {
   test.skip(
     testInfo.project.name !== 'chromium',
     'One GPU motion capture is sufficient; navigation and fallback run on all engines.',
   );
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
-  await page.getByRole('button', { name: 'Full', exact: true }).click();
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
     timeout: 30000,
   });
@@ -98,12 +100,6 @@ test('observer continues moving while scroll stays still and reduced motion free
   const second = await page.locator('canvas').screenshot();
   expect(first.equals(second)).toBe(false);
   expect(await page.evaluate(() => scrollY)).toBe(y);
-  await page.getByRole('button', { name: 'Reduced', exact: true }).click();
-  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-mode', 'reduced');
-  await page.waitForTimeout(200);
-  const still = await page.locator('canvas').screenshot();
-  await page.waitForTimeout(350);
-  expect(still.equals(await page.locator('canvas').screenshot())).toBe(true);
 });
 
 test('desktop and mobile compositions have no page overflow and retain readable profiles', async ({
@@ -114,7 +110,7 @@ test('desktop and mobile compositions have no page overflow and retain readable 
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
     timeout: 30000,
   });
-  await mkdir('docs/qa/first-light', { recursive: true });
+  await mkdir('docs/qa/spatial-systems', { recursive: true });
   const entries: [string, string][] = [
     ['first-light', '00 First light ↗'],
     ['possibilities', '01 Ten possible worlds ↗'],
@@ -135,50 +131,18 @@ test('desktop and mobile compositions have no page overflow and retain readable 
         `${Number(id.slice(1)) + 1}.000`,
       );
       const portrait = systemPortrait(allScenarioProfiles[Number(id.slice(1)) - 1]).art;
-      await expect
-        .poll(() =>
-          page
-            .locator('[data-system-label]')
-            .evaluateAll(
-              (els) => els.filter((el) => Number(getComputedStyle(el).opacity) > 0.99).length,
-            ),
-        )
-        .toBe(portrait.bodies.length + portrait.features.length);
-      const layout = await page.evaluate((world) => {
-        const visible = [...document.querySelectorAll<HTMLElement>('[data-system-label]')].filter(
-          (el) => Number(getComputedStyle(el).opacity) > 0.99,
-        );
-        const index = document.querySelector(`[data-world="${world}"] [class*="worldIndex"]`)!;
-        return {
-          width: innerWidth,
-          height: innerHeight,
-          copyTop: index.getBoundingClientRect().top,
-          labels: visible.map((el) => ({
-            id: el.dataset.systemLabel!,
-            rect: el.getBoundingClientRect().toJSON() as {
-              left: number;
-              right: number;
-              top: number;
-              bottom: number;
-            },
-          })),
-        };
-      }, id.toUpperCase());
-      for (const item of layout.labels) {
-        expect(item.id.startsWith(id.toUpperCase() + ':'), item.id).toBe(true);
-        expect(item.rect.left, item.id).toBeGreaterThanOrEqual(0);
-        expect(item.rect.right, item.id).toBeLessThanOrEqual(layout.width);
-        expect(item.rect.top, item.id).toBeGreaterThanOrEqual(76);
-        expect(item.rect.bottom, item.id).toBeLessThan(layout.height - 70);
-        if (layout.width <= 760)
-          expect(item.rect.bottom, item.id).toBeLessThan(layout.copyTop - 15);
-      }
+      const explore = page.locator(`[aria-label="Explore ${id.toUpperCase()} models"]`);
+      await expect(
+        explore.getByRole('button', { name: 'Inspect Earth', exact: true }),
+      ).toBeVisible();
+      const destinations = 1 + portrait.bodies.length + portrait.features.length;
+      await expect(explore.getByRole('button')).toHaveCount(destinations);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true,
     );
     if (testInfo.project.name === 'chromium' || testInfo.project.name === 'mobile-chromium') {
-      await page.screenshot({ path: `docs/qa/first-light/${testInfo.project.name}-${id}.png` });
+      await page.screenshot({ path: `docs/qa/spatial-systems/${testInfo.project.name}-${id}.png` });
     }
   }
 });

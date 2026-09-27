@@ -1,6 +1,9 @@
 import { gzipSync } from 'node:zlib';
 import { readFile, readdir, stat } from 'node:fs/promises';
-import { extname, join, relative } from 'node:path';
+import { basename, dirname, extname, join, relative, resolve } from 'node:path';
+import ts from 'typescript';
+import { allScenarioProfiles } from '../apps/web/lib/canonical-core';
+import { systemPortrait } from '../apps/web/lib/system-portrait';
 
 type BuildManifest = {
   polyfillFiles?: string[];
@@ -53,6 +56,79 @@ function localScriptSources(html: string): { modern: Set<string>; legacy: Set<st
     (tag.includes('noModule') ? legacy : modern).add(normalized);
   }
   return { modern, legacy };
+}
+
+/** Audit the complete Voyage directory and the relative source graph inherited by the home route. */
+async function homeAssetSources() {
+  const pending = [
+    ...(await filesBelow('apps/web/app/voyage')).filter(
+      (path) => /\.(?:[cm]?[jt]sx?|css)$/.test(path) && !/\.test\.[jt]sx?$/.test(path),
+    ),
+    'apps/web/app/page.tsx',
+    'apps/web/app/layout.tsx',
+  ].map((path) => resolve(path));
+  const sources = new Map<string, string>();
+  while (pending.length) {
+    const path = pending.pop()!;
+    if (sources.has(path)) continue;
+    const source = await readFile(path, 'utf8');
+    sources.set(path, source);
+    if (extname(path) === '.json' || extname(path) === '.css') continue;
+    for (const reference of ts.preProcessFile(source, true, true).importedFiles) {
+      if (!reference.fileName.startsWith('.')) continue;
+      const target = resolve(dirname(path), reference.fileName);
+      const candidates = extname(target)
+        ? [target]
+        : [
+            target + '.ts',
+            target + '.tsx',
+            target + '.js',
+            target + '.jsx',
+            target + '.json',
+            join(target, 'index.ts'),
+            join(target, 'index.tsx'),
+          ];
+      let found = false;
+      for (const candidate of candidates) {
+        if (!(await stat(candidate).catch(() => null))?.isFile()) continue;
+        pending.push(candidate);
+        found = true;
+        break;
+      }
+      if (!found)
+        failUnverified(
+          `could not inspect relative home import ${reference.fileName} from ${relative('.', path)}.`,
+        );
+    }
+  }
+  const loaderPath = resolve('apps/web/app/voyage/BlenderAssets.tsx');
+  const expectedTemplate =
+    "/assets/blender/v1/${world}/${selection === 'Earth' ? (mobile ? 'earth-mobile' : 'earth') : selection}.glb";
+  const references: { path: string; asset: string; kind: string }[] = [];
+  let loaderTemplates = 0;
+  for (const [path, source] of sources) {
+    const matches = [...source.matchAll(/(["'`])(\/assets\/[\s\S]*?)\1/g)];
+    if (matches.length !== [...source.matchAll(/\/assets\//g)].length)
+      failUnverified(`unexplained /assets/ reference in ${relative('.', path)}.`);
+    for (const match of matches) {
+      const asset = match[2];
+      if (path === loaderPath && asset === expectedTemplate) {
+        loaderTemplates++;
+        references.push({ path: relative('.', path), asset, kind: 'bounded-blender-library' });
+      } else
+        failUnverified(
+          `unexpected home asset reference ${asset} in ${relative('.', path)}; update the guided-path accounting before accepting it.`,
+        );
+    }
+  }
+  if (loaderTemplates !== 1)
+    failUnverified(
+      'the Blender asset URL template is missing or no longer matches the audited tier contract.',
+    );
+  return {
+    references,
+    files: [...sources.keys()].map((path) => relative('.', path)).sort(),
+  };
 }
 
 const nextRoot = 'apps/web/.next';
@@ -161,7 +237,8 @@ if (oversizedChunks.length > 0) {
   );
 }
 
-const publicFiles = await filesBelow('apps/web/public/assets');
+const publicRoot = 'apps/web/public';
+const publicFiles = await filesBelow(publicRoot);
 const oversizedAssets: string[] = [];
 for (const path of publicFiles) {
   const bytes = (await stat(path)).size;
@@ -173,34 +250,82 @@ if (oversizedAssets.length > 0) {
   throw new Error(`Runtime assets exceed the 4 MiB guardrail:\n${oversizedAssets.join('\n')}`);
 }
 
-// This is intentionally stricter than a normal guided-path trace: it counts every
-// public runtime asset plus every emitted client JS/CSS/font exactly once. Passing
-// this conservative upper bound proves that a typical path cannot exceed it.
+// Both journeys include every Blender destination. Mobile also
+// loads desktop Earth libraries for the detailed explorer. The individual 4 MiB check above
+// still covers every public file, including legacy imagery unreachable from this source graph.
+const homeSources = await homeAssetSources();
+const htmlAssets = new Set([
+  ...[...homeHtml.matchAll(/\/assets\/[^"'\\<>\s&?]+/g)].map((match) => match[0]),
+  ...[...homeHtml.matchAll(/%2Fassets%2F[^&"'\\<>\s]+/gi)].map((match) =>
+    decodeURIComponent(match[0]),
+  ),
+]);
+if (htmlAssets.size)
+  failUnverified('the built home HTML unexpectedly preloads public assets outside the 3D loader.');
+const publicSet = new Set(publicFiles);
+const blenderFiles = publicFiles.filter(
+  (path) =>
+    path.startsWith(join(publicRoot, 'assets/blender/v1') + '/') && extname(path) === '.glb',
+);
+const expectedBlenderFiles = [
+  ...['origin', ...allScenarioProfiles.map((profile) => profile.id.toLowerCase())].flatMap(
+    (world) =>
+      ['earth.glb', 'earth-mobile.glb'].map((name) =>
+        join(publicRoot, 'assets/blender/v1', world, name),
+      ),
+  ),
+  ...allScenarioProfiles.flatMap((profile) => {
+    const system = systemPortrait(profile).art;
+    return [...system.bodies.map((body) => body.body), ...system.features].map((name) =>
+      join(publicRoot, 'assets/blender/v1', profile.id.toLowerCase(), name + '.glb'),
+    );
+  }),
+];
+const missingBlenderFiles = expectedBlenderFiles.filter((path) => !publicSet.has(path));
+if (missingBlenderFiles.length)
+  failUnverified(
+    `source-selected Blender exports are missing: ${missingBlenderFiles.map((path) => relative(publicRoot, path)).join(', ')}.`,
+  );
+const desktopPublic = [
+  ...new Set(blenderFiles.filter((path) => basename(path) !== 'earth-mobile.glb')),
+];
+const mobilePublic = [...new Set(blenderFiles)];
+const publicReport = async (files: string[]) => ({
+  assetCount: files.length,
+  bytes: (await Promise.all(files.map(async (path) => (await stat(path)).size))).reduce(
+    (total, bytes) => total + bytes,
+    0,
+  ),
+  files: files.map((path) => '/' + relative(publicRoot, path)).sort(),
+});
+const desktopPublicReport = await publicReport(desktopPublic);
+const mobilePublicReport = await publicReport(mobilePublic);
 const allStaticFiles = await filesBelow(join(nextRoot, 'static'));
-let guidedPathUpperBoundBytes = 0;
-for (const path of publicFiles) guidedPathUpperBoundBytes += (await stat(path)).size;
+let sharedClientPayloadBytes = gzipSync(Buffer.from(homeHtml)).byteLength;
+const sharedClientFiles: string[] = [];
 for (const path of allStaticFiles) {
   const extension = extname(path);
   if (extension === '.js' || extension === '.css') {
-    guidedPathUpperBoundBytes += gzipSync(await readFile(path)).byteLength;
+    sharedClientPayloadBytes += gzipSync(await readFile(path)).byteLength;
+    sharedClientFiles.push(relative(nextRoot, path));
   } else if (extension === '.woff2') {
-    guidedPathUpperBoundBytes += (await stat(path)).size;
+    sharedClientPayloadBytes += (await stat(path)).size;
+    sharedClientFiles.push(relative(nextRoot, path));
   }
 }
-guidedPathUpperBoundBytes += gzipSync(Buffer.from(homeHtml)).byteLength;
+const desktopGuidedPathBytes = sharedClientPayloadBytes + desktopPublicReport.bytes;
+const mobileGuidedPathBytes = sharedClientPayloadBytes + mobilePublicReport.bytes;
+const guidedPathUpperBoundBytes = Math.max(desktopGuidedPathBytes, mobileGuidedPathBytes);
 if (guidedPathUpperBoundBytes > maximumGuidedPathPayload) {
   throw new Error(
-    `Conservative guided-path upper bound is ${guidedPathUpperBoundBytes} bytes; budget is ` +
-      `${maximumGuidedPathPayload} bytes.`,
+    `Source-audited guided-path upper bounds are ${desktopGuidedPathBytes} bytes desktop and ` +
+      `${mobileGuidedPathBytes} bytes mobile; budget is ${maximumGuidedPathPayload} bytes per journey.`,
   );
 }
 
 const criticalImages = new Set<string>();
 for (const match of homeHead.matchAll(/url=(%2Fassets%2F[^&" ]+)/g)) {
   criticalImages.add(`apps/web/public${decodeURIComponent(match[1])}`);
-}
-if (criticalImages.size === 0) {
-  failUnverified('home HTML did not expose any local critical image preload.');
 }
 const criticalFonts = new Set(
   [
@@ -264,7 +389,7 @@ process.stdout.write(
         fonts: [...criticalFonts].sort(),
         styles: [...criticalStyles].sort(),
         assumption:
-          'Conservative source-image bytes plus preloaded WOFF2, gzip CSS, and gzip HTML; optimized responsive images should be smaller.',
+          'Any preloaded source-image bytes plus preloaded WOFF2, gzip CSS, and gzip HTML. The home currently has no critical image preload while the deferred 3D scene starts.',
       },
       individualAssets: {
         nonDeferredJavaScriptChunkBudgetBytes: maximumChunkGzip,
@@ -273,10 +398,35 @@ process.stdout.write(
         runtimeAssetsChecked: publicFiles.length,
       },
       guidedPathPayload: {
+        accountingVersion: 'voyage-blender-tier-v2',
         conservativeUpperBoundBytes: guidedPathUpperBoundBytes,
         budgetBytes: maximumGuidedPathPayload,
+        desktop: {
+          conservativeUpperBoundBytes: desktopGuidedPathBytes,
+          publicAssets: desktopPublicReport,
+        },
+        mobile: {
+          conservativeUpperBoundBytes: mobileGuidedPathBytes,
+          publicAssets: mobilePublicReport,
+          includesDesktopEarthLibrariesForInspector: true,
+        },
+        sharedClientPayload: {
+          bytes: sharedClientPayloadBytes,
+          assetCount: sharedClientFiles.length,
+          files: sharedClientFiles.sort(),
+          includesHomeHtmlGzip: true,
+        },
+        sourceAudit: {
+          files: homeSources.files,
+          references: homeSources.references,
+          expectedSourceSelectedGlbs: expectedBlenderFiles.length,
+        },
+        excludedLegacyPublicFiles: publicFiles
+          .filter((path) => !blenderFiles.includes(path))
+          .map((path) => '/' + relative(publicRoot, path))
+          .sort(),
         assumption:
-          'Counts all public runtime assets plus every emitted client JS/CSS/font and home HTML once; a typical guided path is a subset.',
+          'Desktop counts all desktop Earth libraries and every offworld Blender GLB. Mobile counts both Earth tiers because the detailed inspector intentionally uses desktop libraries, plus all offworld GLBs. Both totals include every emitted client JS/CSS/WOFF2 and home HTML once; the reported upper bound is their maximum. Unreachable legacy public assets are excluded from this Voyage journey but remain subject to the per-file 4 MiB guardrail. Unexpected home /assets/ references or missing source-selected exports fail closed.',
       },
     },
     null,

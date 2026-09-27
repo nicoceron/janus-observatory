@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { buildWorldGeometry } from './WorldStructures';
 import { presentEarth } from './Planet';
 import { worlds } from './worlds';
+import { globeRadius } from './life-plan';
 
 describe('detailed miniature world geometry', () => {
   it('fits one finite, reproducible landmark mesh within the scene budget at both viewport tiers', () => {
@@ -10,14 +11,7 @@ describe('detailed miniature world geometry', () => {
     for (const mobile of [false, true]) {
       const signatures: string[] = [];
       for (const [index, art] of [presentEarth, ...worlds].entries()) {
-        const scale =
-          art.form === 'machine-swarm'
-            ? 0.65
-            : art.form === 'duality'
-              ? 0.78
-              : art.form === 'engineered'
-                ? 0.84
-                : 1;
+        const scale = globeRadius(art);
         const geometry = buildWorldGeometry(art, scale, mobile);
         const repeat = buildWorldGeometry(art, scale, mobile);
         try {

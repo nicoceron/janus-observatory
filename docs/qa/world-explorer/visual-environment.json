@@ -1,0 +1,13 @@
+{
+  "directory": "/tmp/janus-world-explorer-visual.heiuu0i9",
+  "image": "mcr.microsoft.com/playwright:v1.62.1-noble@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac",
+  "server": "host production preview on 3200",
+  "comparisonCompleted": true,
+  "testsPassed": 4,
+  "baselineChanges": ["first-light-earth.png", "first-light-reading-s1.png"],
+  "unchangedBaselines": [
+    "atlas-categorical-observing-matrix.png",
+    "observatory-s9-atmosphere-fingerprint.png"
+  ],
+  "verification": "Separate clean comparison passed after inspecting and updating the two story baselines; Linux Chromium against the host production build, not hosted CI or a Linux application build."
+}

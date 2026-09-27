@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import Link from '../../components/AppLink';
 
 import experiment from '../../../../../experiments/concordia/configs/experiment-matrix.json';
 import { InnerPage } from '../../components/InnerPage';

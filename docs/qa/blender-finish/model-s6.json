@@ -1,0 +1,105 @@
+{
+  "world": "s6",
+  "blender": "5.2.1 LTS",
+  "source": "assets/blender/s6.blend",
+  "sourceSha256": "f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
+  "exports": [
+    {
+      "path": "apps/web/public/assets/blender/v1/s6/earth.glb",
+      "bytes": 686648,
+      "sha256": "df7c69d384cb6e8f46e2079767709518a73d8798cfce239e99c6aa249f78fa9f",
+      "triangles": 25122,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_reactor",
+        "Landmark_radiator",
+        "Landmark_manifold",
+        "Landmark_control",
+        "Life_machine_maintenance-walker_body",
+        "Life_machine_maintenance-walker_extra0",
+        "Life_machine_maintenance-walker_extra1",
+        "Life_machine_maintenance-walker_extra2",
+        "Study_lunar-base",
+        "Study_mars-base",
+        "Study_venus-facility"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s6/earth-mobile.glb",
+      "bytes": 591960,
+      "sha256": "885f79a9b06c1977c146c030076747d705eb7b867b9f1df8d417e88005dfe96a",
+      "triangles": 22212,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_reactor",
+        "Landmark_radiator",
+        "Landmark_manifold",
+        "Landmark_control",
+        "Life_machine_maintenance-walker_body",
+        "Life_machine_maintenance-walker_extra0",
+        "Life_machine_maintenance-walker_extra1",
+        "Life_machine_maintenance-walker_extra2",
+        "Study_lunar-base",
+        "Study_mars-base",
+        "Study_venus-facility"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s6/Moon.glb",
+      "bytes": 254412,
+      "sha256": "e0b32a0be67e1484c1724c5b4fd85cd993ff084cd506b2f1637efc8ecdf5134b",
+      "triangles": 11196,
+      "parts": [
+        "S6_Moon"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s6/Mars.glb",
+      "bytes": 269512,
+      "sha256": "be3ee853ca857a2bf41edc3ee6c86efae0aa3267704f76fbdbe64748df17a753",
+      "triangles": 11812,
+      "parts": [
+        "S6_Mars"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s6/Venus.glb",
+      "bytes": 169432,
+      "sha256": "731fe73e8367e0cbf1ee9eadc43b9ef2a0d7c530f875cff2563be0011bde3b73",
+      "triangles": 7784,
+      "parts": [
+        "S6_Venus"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s6/asteroids.glb",
+      "bytes": 79792,
+      "sha256": "2f022566e0036ce480d2d66e389eb99d7a42e7bd5775d6e8cce8d1cf9801eca9",
+      "triangles": 3392,
+      "parts": [
+        "S6_asteroids"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s6/kuiper.glb",
+      "bytes": 128680,
+      "sha256": "dbd2078a6f6eb465d885b277cb9eedac63686091458db1ef68415ee3fe050729",
+      "triangles": 5332,
+      "parts": [
+        "S6_kuiper"
+      ]
+    }
+  ],
+  "scenes": [
+    "S6 \u2022 asteroids",
+    "S6 \u2022 Earth",
+    "S6 \u2022 kuiper",
+    "S6 \u2022 Mars",
+    "S6 \u2022 Moon",
+    "S6 \u2022 Venus"
+  ],
+  "interpretive": true,
+  "animations": "Editable 40-second route and articulation previews; web motion stays in R3F."
+}

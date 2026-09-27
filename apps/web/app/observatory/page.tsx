@@ -20,9 +20,9 @@ export const metadata: Metadata = {
 export default function ObservatoryPage() {
   return (
     <InnerPage
-      eyebrow="Observatory · categorical evidence engine"
+      eyebrow="THE OBSERVATORY"
       lede="Change the scenario or the observing method. The underlying civilization does not change—only the evidence available to the observer does."
-      title="No single instrument is enough."
+      title="See what survives the distance."
     >
       <Suspense fallback={<p>Preparing the observing matrix…</p>}>
         <ObservatoryExplorer />

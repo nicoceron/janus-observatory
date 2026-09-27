@@ -1,0 +1,832 @@
+{
+  "status": "passed",
+  "base": "http://127.0.0.1:3200",
+  "selected": [6],
+  "profiles": ["desktop", "portrait"],
+  "storyPortraits": 12,
+  "images": [
+    {
+      "file": "manifold-final-desktop-origin-story-Earth.png",
+      "profile": "desktop",
+      "world": 0,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-desktop-s6-story-Earth.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-desktop-s6-object-landmark-reactor.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:reactor",
+      "kind": "object"
+    },
+    {
+      "file": "manifold-final-desktop-s6-object-landmark-radiator.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:radiator",
+      "kind": "object"
+    },
+    {
+      "file": "manifold-final-desktop-s6-object-landmark-manifold.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:manifold",
+      "kind": "object"
+    },
+    {
+      "file": "manifold-final-desktop-s6-object-landmark-control.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:control",
+      "kind": "object"
+    },
+    {
+      "file": "manifold-final-desktop-s6-object-machine-maintenance-walker.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "machine:maintenance-walker",
+      "kind": "object"
+    },
+    {
+      "file": "manifold-final-desktop-s6-story-Moon.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Moon",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-desktop-s6-study-Moon-lunar-base.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Moon-lunar-base",
+      "kind": "study"
+    },
+    {
+      "file": "manifold-final-desktop-s6-story-Mars.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Mars",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-desktop-s6-study-Mars-mars-base.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Mars-mars-base",
+      "kind": "study"
+    },
+    {
+      "file": "manifold-final-desktop-s6-story-Venus.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Venus",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-desktop-s6-study-Venus-venus-facility.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Venus-venus-facility",
+      "kind": "study"
+    },
+    {
+      "file": "manifold-final-desktop-s6-story-asteroids.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "asteroids",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-desktop-s6-story-kuiper.png",
+      "profile": "desktop",
+      "world": 6,
+      "selection": "kuiper",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-portrait-origin-story-Earth.png",
+      "profile": "portrait",
+      "world": 0,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-portrait-s6-story-Earth.png",
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-portrait-s6-story-Moon.png",
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Moon",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-portrait-s6-study-Moon-lunar-base.png",
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Moon-lunar-base",
+      "kind": "study"
+    },
+    {
+      "file": "manifold-final-portrait-s6-story-Mars.png",
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Mars",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-portrait-s6-study-Mars-mars-base.png",
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Mars-mars-base",
+      "kind": "study"
+    },
+    {
+      "file": "manifold-final-portrait-s6-story-Venus.png",
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Venus",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-portrait-s6-study-Venus-venus-facility.png",
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Venus-venus-facility",
+      "kind": "study"
+    },
+    {
+      "file": "manifold-final-portrait-s6-story-asteroids.png",
+      "profile": "portrait",
+      "world": 6,
+      "selection": "asteroids",
+      "kind": "story"
+    },
+    {
+      "file": "manifold-final-portrait-s6-story-kuiper.png",
+      "profile": "portrait",
+      "world": 6,
+      "selection": "kuiper",
+      "kind": "story"
+    }
+  ],
+  "motionFrames": [],
+  "stillChecks": [
+    {
+      "profile": "desktop",
+      "world": 0,
+      "selection": "Earth",
+      "sha256": "db85128b148f4a9246b09627a811bfb2b801c5e8ccdda7280eb451825cb1bbf7"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "sha256": "09a5053ca1a52f8f38827b7cf97a640733f12ddba91c6c06bef31d0dbefba7d9"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:reactor",
+      "sha256": "e4505e11b552ae12d5fd4749f94d9b6ddc2d15cdb95f4005060a9706c0d8b758"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:radiator",
+      "sha256": "2f2b138b8bb2a1ff485a5ba61b43860063a51f3bf469ebf9ac9f44ae4de3e51f"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:manifold",
+      "sha256": "5eb6bf44817ab449165bd9c6a6fdd355bfefd338f4071c10e3ea44451094bd9a"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "landmark:control",
+      "sha256": "83b1024e76a6f3faa8127606f4b07b143f26400a67d1a35a153a9c4b8a10e30b"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "machine:maintenance-walker",
+      "sha256": "cd2147e0ea80b1ddb9ca562e3b21ff36ac1be075944bad7f84f020799233857e"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Moon",
+      "sha256": "f91e433b6776ade670c431463b53cce3a2658ee26a9eb9d6214a8254df91be67"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "lunar-base",
+      "sha256": "34c18d581505cc43ef34b9e0ffe7f23af76b1d4b8d745381b16b47c95e4ddeb5"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Mars",
+      "sha256": "ffea13014b0b4485178bc9f5426451924e9e713e8f610b11fa6b2894ca225ceb"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "mars-base",
+      "sha256": "893d19be4b53c09337c70c43590dd11a070c9327991334b5af2e0d0ae74a5238"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Venus",
+      "sha256": "32dfa5ff60df8c8060a7437d3963eaae8170ffb45aff1dcc1ceb355d3db1661a"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "venus-facility",
+      "sha256": "f46e26fb6b48145fff93ca91390c35d0298c33c2e49053ef2ab00326fd60903a"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "asteroids",
+      "sha256": "b67d5f33cf07287391ddf97576bf6fe59ecf1d92e5fc61ad77a8397ec63c15c0"
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "kuiper",
+      "sha256": "1776bf0bfd1d21cb6ca35d22f0286646e498e00ea5d37ab4be08e5a0ba0c5973"
+    },
+    {
+      "profile": "portrait",
+      "world": 0,
+      "selection": "Earth",
+      "sha256": "419baffa709c32f56e980b912bc44ee247fa982b8c585d20455e07d16fba8288"
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Earth",
+      "sha256": "9f89cea268f3f51c62328f367c12086bb0a7be8e34725ebe55e2d74186d47de6"
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Moon",
+      "sha256": "cb94a05b6b4781c47964b0be7a943e3576192c644716bbaf8e81347faad7a7c3"
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "lunar-base",
+      "sha256": "fdeec5d0acafe5b3c05f83693f035161909350a1a7f546041430e7254f784c35"
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Mars",
+      "sha256": "185ad4c2923e5747f6f6934f5d2850a5fc921bf5347007e128fabfec4a6f9836"
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "mars-base",
+      "sha256": "905f719c3937aa9e0680f281d6dd1b4f8c3af106c2c1bf735b1df89f47830754"
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Venus",
+      "sha256": "c9c38dc7f1d2cd393eea453639dcb81afdc210d9c84e32baee093f0f352049a2"
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "venus-facility",
+      "sha256": "c1826510d5dccd69e90c8baf195304fcfb375c6d0a6292d703c13d63b87a2cc7"
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "asteroids",
+      "sha256": "4345294fcc17270d99b26320ae63fcab944fa361125283175d1178e807028a34"
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "kuiper",
+      "sha256": "3541f62365918aa76469f02cdb776b5db91ce9a06919c0795d26ff12561d9ea3"
+    }
+  ],
+  "assetStates": [
+    {
+      "profile": "desktop",
+      "world": 0,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/origin/earth.glb",
+      "count": 1,
+      "bytes": 1023408,
+      "parts": 25
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2940660,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2940660,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2940660,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2940660,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2940660,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2940660,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2940660,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2940660,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Moon",
+      "url": "/assets/blender/v1/s6/Moon.glb",
+      "count": 2,
+      "bytes": 2376996,
+      "parts": 12
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Moon",
+      "url": "/assets/blender/v1/s6/Moon.glb",
+      "count": 2,
+      "bytes": 2376996,
+      "parts": 12
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2376996,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Moon",
+      "url": "/assets/blender/v1/s6/Moon.glb",
+      "count": 2,
+      "bytes": 2376996,
+      "parts": 12
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Mars",
+      "url": "/assets/blender/v1/s6/Mars.glb",
+      "count": 2,
+      "bytes": 921048,
+      "parts": 13
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Mars",
+      "url": "/assets/blender/v1/s6/Mars.glb",
+      "count": 2,
+      "bytes": 921048,
+      "parts": 13
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2378556,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Mars",
+      "url": "/assets/blender/v1/s6/Mars.glb",
+      "count": 2,
+      "bytes": 2378556,
+      "parts": 13
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Venus",
+      "url": "/assets/blender/v1/s6/Venus.glb",
+      "count": 2,
+      "bytes": 892968,
+      "parts": 12
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Venus",
+      "url": "/assets/blender/v1/s6/Venus.glb",
+      "count": 2,
+      "bytes": 892968,
+      "parts": 12
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2348916,
+      "parts": 71
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "Venus",
+      "url": "/assets/blender/v1/s6/Venus.glb",
+      "count": 2,
+      "bytes": 2348916,
+      "parts": 12
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "asteroids",
+      "url": "/assets/blender/v1/s6/asteroids.glb",
+      "count": 2,
+      "bytes": 615696,
+      "parts": 10
+    },
+    {
+      "profile": "desktop",
+      "world": 6,
+      "selection": "kuiper",
+      "url": "/assets/blender/v1/s6/kuiper.glb",
+      "count": 2,
+      "bytes": 494232,
+      "parts": 11
+    },
+    {
+      "profile": "portrait",
+      "world": 0,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/origin/earth-mobile.glb",
+      "count": 1,
+      "bytes": 858468,
+      "parts": 25
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth-mobile.glb",
+      "count": 2,
+      "bytes": 2459064,
+      "parts": 71
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Moon",
+      "url": "/assets/blender/v1/s6/Moon.glb",
+      "count": 2,
+      "bytes": 2060340,
+      "parts": 12
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Moon",
+      "url": "/assets/blender/v1/s6/Moon.glb",
+      "count": 2,
+      "bytes": 2060340,
+      "parts": 12
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2376996,
+      "parts": 71
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Moon",
+      "url": "/assets/blender/v1/s6/Moon.glb",
+      "count": 2,
+      "bytes": 2376996,
+      "parts": 12
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Mars",
+      "url": "/assets/blender/v1/s6/Mars.glb",
+      "count": 2,
+      "bytes": 921048,
+      "parts": 13
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Mars",
+      "url": "/assets/blender/v1/s6/Mars.glb",
+      "count": 2,
+      "bytes": 921048,
+      "parts": 13
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2378556,
+      "parts": 71
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Mars",
+      "url": "/assets/blender/v1/s6/Mars.glb",
+      "count": 2,
+      "bytes": 2378556,
+      "parts": 13
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Venus",
+      "url": "/assets/blender/v1/s6/Venus.glb",
+      "count": 2,
+      "bytes": 892968,
+      "parts": 12
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Venus",
+      "url": "/assets/blender/v1/s6/Venus.glb",
+      "count": 2,
+      "bytes": 892968,
+      "parts": 12
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s6/earth.glb",
+      "count": 2,
+      "bytes": 2348916,
+      "parts": 71
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "Venus",
+      "url": "/assets/blender/v1/s6/Venus.glb",
+      "count": 2,
+      "bytes": 2348916,
+      "parts": 12
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "asteroids",
+      "url": "/assets/blender/v1/s6/asteroids.glb",
+      "count": 2,
+      "bytes": 615696,
+      "parts": 10
+    },
+    {
+      "profile": "portrait",
+      "world": 6,
+      "selection": "kuiper",
+      "url": "/assets/blender/v1/s6/kuiper.glb",
+      "count": 2,
+      "bytes": 494232,
+      "parts": 11
+    }
+  ],
+  "requests": [
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/origin/earth.glb",
+      "status": 200,
+      "bodyBytes": 186226,
+      "transferredBytes": 187155
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/earth.glb",
+      "status": 200,
+      "bodyBytes": 303537,
+      "transferredBytes": 304466
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/Moon.glb",
+      "status": 200,
+      "bodyBytes": 101226,
+      "transferredBytes": 102155
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/Mars.glb",
+      "status": 200,
+      "bodyBytes": 101955,
+      "transferredBytes": 102884
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/earth.glb",
+      "status": 200,
+      "bodyBytes": 0,
+      "transferredBytes": 831
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/Venus.glb",
+      "status": 200,
+      "bodyBytes": 95164,
+      "transferredBytes": 96093
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/earth.glb",
+      "status": 200,
+      "bodyBytes": 0,
+      "transferredBytes": 831
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/asteroids.glb",
+      "status": 200,
+      "bodyBytes": 42706,
+      "transferredBytes": 43635
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/kuiper.glb",
+      "status": 200,
+      "bodyBytes": 76415,
+      "transferredBytes": 77344
+    },
+    {
+      "profile": "portrait",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/origin/earth-mobile.glb",
+      "status": 200,
+      "bodyBytes": 145768,
+      "transferredBytes": 146697
+    },
+    {
+      "profile": "portrait",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/earth-mobile.glb",
+      "status": 200,
+      "bodyBytes": 266086,
+      "transferredBytes": 267015
+    },
+    {
+      "profile": "portrait",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/Moon.glb",
+      "status": 200,
+      "bodyBytes": 101226,
+      "transferredBytes": 102155
+    },
+    {
+      "profile": "portrait",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/earth.glb",
+      "status": 200,
+      "bodyBytes": 303537,
+      "transferredBytes": 304466
+    },
+    {
+      "profile": "portrait",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/Mars.glb",
+      "status": 200,
+      "bodyBytes": 101955,
+      "transferredBytes": 102884
+    },
+    {
+      "profile": "portrait",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/earth.glb",
+      "status": 200,
+      "bodyBytes": 0,
+      "transferredBytes": 831
+    },
+    {
+      "profile": "portrait",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/Venus.glb",
+      "status": 200,
+      "bodyBytes": 95164,
+      "transferredBytes": 96093
+    },
+    {
+      "profile": "portrait",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/earth.glb",
+      "status": 200,
+      "bodyBytes": 0,
+      "transferredBytes": 831
+    },
+    {
+      "profile": "portrait",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/asteroids.glb",
+      "status": 200,
+      "bodyBytes": 42706,
+      "transferredBytes": 43635
+    },
+    {
+      "profile": "portrait",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s6/kuiper.glb",
+      "status": 200,
+      "bodyBytes": 76415,
+      "transferredBytes": 77344
+    }
+  ],
+  "failedRequests": [],
+  "downloadedBytes": 2040086,
+  "peakSettledLibraries": 2,
+  "peakSettledDecodedBytes": 2940660,
+  "errors": [],
+  "failure": null,
+  "scope": "Serial local browser QA: Blender readiness and named part gates, sourced story portraits and companion studies, desktop Earth objects, articulated motion, exact reduced/paused canvas identity. Memory figures estimate decoded GLB buffers/textures, not total process memory."
+}

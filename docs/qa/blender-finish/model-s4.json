@@ -1,0 +1,67 @@
+{
+  "world": "s4",
+  "blender": "5.2.1 LTS",
+  "source": "assets/blender/s4.blend",
+  "sourceSha256": "88327dc545f1571578b7126d516f30903168606218af571b4dc945fb59d3aec9",
+  "exports": [
+    {
+      "path": "apps/web/public/assets/blender/v1/s4/earth.glb",
+      "bytes": 410596,
+      "sha256": "a38b173cf06defe796e970ec0d9f53c8442329bf3a5c1dbf813f55e5398b6108",
+      "triangles": 11587,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_camp",
+        "Landmark_rack",
+        "Landmark_store",
+        "Landmark_totem",
+        "Activity_canoe_stops",
+        "Life_vessel_canoe_body",
+        "Life_vessel_canoe_extra0",
+        "Life_vessel_canoe_extra1",
+        "Life_vessel_canoe_extra2",
+        "Life_vessel_canoe_extra3",
+        "Life_animal_deer_body",
+        "Life_animal_deer_extra0",
+        "Life_animal_deer_extra1",
+        "Life_animal_deer_extra2",
+        "Cloud_0",
+        "Cloud_1",
+        "Cloud_2"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s4/earth-mobile.glb",
+      "bytes": 346188,
+      "sha256": "f9d6fa97980249102d46c9bc575cb22dd15fd9573f5b23b9670868636fbbd213",
+      "triangles": 9787,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_camp",
+        "Landmark_rack",
+        "Landmark_store",
+        "Landmark_totem",
+        "Activity_canoe_stops",
+        "Life_vessel_canoe_body",
+        "Life_vessel_canoe_extra0",
+        "Life_vessel_canoe_extra1",
+        "Life_vessel_canoe_extra2",
+        "Life_vessel_canoe_extra3",
+        "Life_animal_deer_body",
+        "Life_animal_deer_extra0",
+        "Life_animal_deer_extra1",
+        "Life_animal_deer_extra2",
+        "Cloud_0",
+        "Cloud_1",
+        "Cloud_2"
+      ]
+    }
+  ],
+  "scenes": [
+    "S4 \u2022 Earth"
+  ],
+  "interpretive": true,
+  "animations": "Editable 40-second route and articulation previews; web motion stays in R3F."
+}

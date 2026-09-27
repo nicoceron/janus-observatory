@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "1.0.0",
+  "attempts": [
+    {
+      "world": "s3",
+      "phase": "review",
+      "startedAt": "2026-09-20T06:56:08.485773+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+        "modules": {
+          "tmp/traffic-correction/render-landings.py": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+          "tmp/traffic-correction/review-guard.py": "sha256:a0e23203a7bb9d769ca1a95d99e47304de8e6d6f107c67f4662667b2158c0596"
+        },
+        "seeds": {
+          "s3.json": "sha256:245b71f8d7944e2a850e4a292949f45bb10869ee3a63be53d808e625c4b9c7da"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/tmp/traffic-correction/render-landings.py",
+        "--",
+        "--world",
+        "s3",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/traffic-correction/render-resources/review-s3.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1064730624,
+      "observedProcessIds": [33880],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 663961600,
+        "inactiveBytes": 7985528832,
+        "purgeableBytes": 819200,
+        "freePlusInactiveBytes": 8649490432,
+        "launchAvailableBytes": 8650309632,
+        "capturedAt": "2026-09-20T06:56:08.515617+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 33880,
+      "processGroupId": 33880,
+      "requiredOutputs": {
+        "docs/qa/traffic-correction/landings/s3-ferry-to.png": "sha256:1a050219b15a8c6f22c88ca06ea995022434f00d735818313b42bcb48d53e245",
+        "docs/qa/traffic-correction/landings/s3-ferry-from.png": "sha256:45af43022ca24c8ab1e5cd56afaa5a1987d29c78854297af42d8f77b78540cc9"
+      },
+      "elapsedSeconds": 11.339,
+      "endedAt": "2026-09-20T06:56:19.825216+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 3025420288,
+        "inactiveBytes": 6810599424,
+        "purgeableBytes": 15302656,
+        "freePlusInactiveBytes": 9836019712,
+        "launchAvailableBytes": 9851322368,
+        "capturedAt": "2026-09-20T06:56:19.828196+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    },
+    {
+      "world": "s3",
+      "phase": "review",
+      "startedAt": "2026-09-20T07:07:56.521421+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+        "modules": {
+          "tmp/traffic-correction/render-landings.py": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+          "tmp/traffic-correction/review-guard.py": "sha256:a0e23203a7bb9d769ca1a95d99e47304de8e6d6f107c67f4662667b2158c0596"
+        },
+        "seeds": {
+          "s3.json": "sha256:73cb9d127245cf4651fcdc6d6df89a3a9dcfc8711e633c233743ce14b22a4f26"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/tmp/traffic-correction/render-landings.py",
+        "--",
+        "--world",
+        "s3",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/traffic-correction/render-resources/review-s3.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1067843584,
+      "observedProcessIds": [35285],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 3420372992,
+        "inactiveBytes": 7660765184,
+        "purgeableBytes": 38551552,
+        "freePlusInactiveBytes": 11081138176,
+        "launchAvailableBytes": 11119689728,
+        "capturedAt": "2026-09-20T07:07:56.548068+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 35285,
+      "processGroupId": 35285,
+      "requiredOutputs": {
+        "docs/qa/traffic-correction/landings/s3-ferry-to.png": "sha256:74ae7725e9bacfcd6eaadec0592b5a9af54b07709079c8e3466d7e0c11680b2c",
+        "docs/qa/traffic-correction/landings/s3-ferry-from.png": "sha256:8079dedd8f4af39399e2961c6d26da374833e901fd29da39e614ff159fc2d61d"
+      },
+      "elapsedSeconds": 10.185,
+      "endedAt": "2026-09-20T07:08:06.706667+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 3220717568,
+        "inactiveBytes": 7876345856,
+        "purgeableBytes": 39370752,
+        "freePlusInactiveBytes": 11097063424,
+        "launchAvailableBytes": 11136434176,
+        "capturedAt": "2026-09-20T07:08:06.709240+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "world": "s3",
+  "blender": "5.2.1 LTS",
+  "source": "assets/blender/s3.blend",
+  "sourceSha256": "91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
+  "exports": [
+    {
+      "path": "apps/web/public/assets/blender/v1/s3/earth.glb",
+      "bytes": 846600,
+      "sha256": "9b858784da70aee56b90d4e14934805404f386c4c3f27563f76fcb6779933f84",
+      "triangles": 32054,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_courtyard",
+        "Landmark_pavilion",
+        "Landmark_terrace",
+        "Landmark_glasshouse",
+        "Activity_ferry_stops",
+        "Activity_regional-plane_stops",
+        "Life_vessel_ferry_body",
+        "Life_aircraft_regional-plane_body",
+        "Life_aircraft_regional-plane_extra0",
+        "Cloud_0",
+        "Cloud_1",
+        "Cloud_2",
+        "Study_lunar-base",
+        "Study_mars-base"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s3/earth-mobile.glb",
+      "bytes": 755660,
+      "sha256": "38361bd5db449eb89b1af6e4dcf188e42b72aeec5d45a358b147f0128e871dc7",
+      "triangles": 29234,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_courtyard",
+        "Landmark_pavilion",
+        "Landmark_terrace",
+        "Landmark_glasshouse",
+        "Activity_ferry_stops",
+        "Activity_regional-plane_stops",
+        "Life_vessel_ferry_body",
+        "Life_aircraft_regional-plane_body",
+        "Life_aircraft_regional-plane_extra0",
+        "Cloud_0",
+        "Cloud_1",
+        "Cloud_2",
+        "Study_lunar-base",
+        "Study_mars-base"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s3/Moon.glb",
+      "bytes": 280872,
+      "sha256": "0f76b01a022c7dba85fbfb93424fe4c05fad97159c99af36d7c293f53264c2b2",
+      "triangles": 12664,
+      "parts": [
+        "S3_Moon"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s3/Mars.glb",
+      "bytes": 303364,
+      "sha256": "39138573228d03a54b91644558958c9e015a0c44bcb0b121e505c8660010cb24",
+      "triangles": 13904,
+      "parts": [
+        "S3_Mars"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s3/asteroids.glb",
+      "bytes": 89104,
+      "sha256": "b4341560bfd0e9ef79bb47ca4efa43e3dbc247650bbb840332dd834d7d50a8d8",
+      "triangles": 3828,
+      "parts": [
+        "S3_asteroids"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s3/outer.glb",
+      "bytes": 144716,
+      "sha256": "da8eb2426715f02ec35404e24326468bf5b7cf9791158886f6cf0819f9099a8b",
+      "triangles": 6548,
+      "parts": [
+        "S3_outer"
+      ]
+    }
+  ],
+  "scenes": [
+    "S3 \u2022 asteroids",
+    "S3 \u2022 Earth",
+    "S3 \u2022 Mars",
+    "S3 \u2022 Moon",
+    "S3 \u2022 outer"
+  ],
+  "interpretive": true,
+  "animations": "Editable 40-second route and articulation previews; web motion stays in R3F."
+}

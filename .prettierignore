@@ -16,3 +16,21 @@ assets/sources/janus-cinematic/shot-metadata-v2.json
 docs/qa/cinematic-rebuild/*-report.json
 docs/qa/cinematic-rebuild/browser/
 media/cinematic-review/public/review/
+
+# Original procedural route geometry; owned by scripts/generate-activity-paths.ts.
+apps/web/app/voyage/activity-paths.generated.json
+
+# Blender exchange and receipts retain their generator-owned hashes and layout.
+assets/blender/seeds/
+docs/qa/blender-finish/*-*.resources.json
+docs/qa/blender-finish/model-*.json
+docs/qa/blender-finish/review-*.json
+docs/qa/blender-finish/seeds.json
+docs/qa/blender-finish/art-manifest.json
+
+# Playwright runtime traces are temporary browser output, not source.
+docs/qa/**/test-artifacts/
+docs/qa/**/*-artifacts/
+
+.open-next/
+.wrangler/

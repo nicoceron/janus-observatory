@@ -1,5 +1,7 @@
+import { landmarkCoordinates } from './landmark-plan';
+import { roadClearance } from './activity-corridor';
 import * as THREE from 'three';
-import { Sculpture, surface } from './sculpture';
+import { Sculpture } from './sculpture';
 import { scenarioObject, type ObjectKind } from './ScenarioObjects';
 import type { Ground } from './planet-surface';
 import type { WorldArt } from './worlds';
@@ -83,69 +85,6 @@ function groundPose(g: Ground, lon: number, lat: number, scale: number) {
   return null;
 }
 
-function engineeredDistricts(s: Sculpture, art: WorldArt) {
-  const kinds = objectFamilies.engineered;
-  const sites = [
-    [-31, 17],
-    [28, -17],
-    [-6, -46],
-    [58, 14],
-    [-71, -18],
-    [125, 32],
-    [-146, 7],
-  ];
-  sites.forEach(([lon, lat], i) => {
-    const m = surface(lon, lat, 1.083);
-    s.cylinder(0.15, 0.17, 0.024, '#6c788d', [0, 0.01, 0], m, 6);
-    scenarioObject(s, m, kinds[i % kinds.length], i);
-    if (i < 3) {
-      const side = m
-        .clone()
-        .multiply(new THREE.Matrix4().makeTranslation(0.2, 0, -0.065))
-        .scale(new THREE.Vector3(0.65, 0.65, 0.65));
-      scenarioObject(s, side, kinds[(i + 2) % kinds.length], i + 1);
-      s.bar([0, 0.04, 0.13], [0.24, 0.04, 0.13], 0.012, '#c1a271', m);
-      s.bar([0.24, 0.04, 0.13], [0.24, 0.04, -0.09], 0.012, '#96b8b9', m);
-    }
-  });
-  // A visibly different pressure core, with offset radiator wings, marks the front shell.
-  const core = surface(2, 24, 1.09);
-  scenarioObject(s, core.clone().scale(new THREE.Vector3(1.45, 1.45, 1.45)), 'reactor', art.seed);
-}
-
-function watercraft(s: Sculpture, g: Ground, scale: number, form: WorldArt['form']) {
-  if (!['arcadia', 'wilderness', 'reclaimed', 'duality'].includes(form)) return;
-  let count = 0;
-  for (let lon = -61; lon < 73 && count < 2; lon += 17) {
-    const lat = -18 + count * 27;
-    if (g.project(g.direction(lon, lat), 0).length() > scale * 0.97) continue;
-    const m = g.pose(lon, lat).scale(new THREE.Vector3(scale, scale, scale));
-    if (form === 'wilderness') {
-      s.ico(0.1, '#ac8554', [0, 0.008, 0], [0.36, 0.2, 1.5], m);
-      s.ico(0.085, '#4d6053', [0, 0.027, 0], [0.3, 0.08, 1.2], m);
-      s.bar([-0.06, 0.035, -0.04], [0.07, 0.035, 0.08], 0.004, '#d3bd8f', m);
-    } else if (form === 'arcadia') {
-      for (const x of [-0.045, 0.045]) s.ico(0.1, '#daceaf', [x, 0.008, 0], [0.2, 0.2, 1.25], m);
-      s.box([0.115, 0.025, 0.15], '#719c94', [0, 0.04, 0], m);
-      s.ico(0.055, '#a3c7b3', [0, 0.075, -0.01], [0.9, 0.6, 1.5], m);
-    } else {
-      s.ico(0.1, '#99744e', [0, 0.005, 0], [0.48, 0.23, 1.25], m);
-      s.bar([0, 0.02, 0], [0, 0.2, 0], 0.005, '#d1b886', m);
-      s.add(
-        new THREE.ConeGeometry(0.068, 0.16, 3),
-        '#d7d4ae',
-        [0, 0.12, 0.025],
-        [0, -0.4, 0],
-        [0.12, 1, 1],
-        m,
-      );
-    }
-    for (const side of [-1, 1])
-      s.bar([side * 0.035, 0.009, 0.06], [side * 0.065, 0.009, 0.17], 0.0025, '#9fc6c1', m);
-    count++;
-  }
-}
-
 /** Irregular patches and distinct assemblies replace the repeating latitude/longitude prop grid. */
 export function addScenarioBiomes(
   s: Sculpture,
@@ -156,57 +95,11 @@ export function addScenarioBiomes(
 ) {
   if (art.form === 'origin') return;
   if (art.form === 'engineered') {
-    engineeredDistricts(s, art);
     return;
   }
   const family = objectFamilies[art.form];
   const quiet = ['machine-swarm', 'duality'].includes(art.form);
-  const focalSites =
-    art.form === 'reclaimed'
-      ? [
-          [-13, 5],
-          [9, 25],
-          [30, -19],
-          [-45, 11],
-        ]
-      : art.form === 'machine-swarm'
-        ? [
-            [-31, 7],
-            [28, -19],
-            [3, 43],
-          ]
-        : art.form === 'duality'
-          ? [
-              [-35, 15],
-              [12, -31],
-              [27, 34],
-            ]
-          : [
-              [-30, -16],
-              [28, -22],
-              [39, 4],
-              [-45, 11],
-            ];
-  focalSites.forEach(([lon, lat], i) => {
-    const m = groundPose(g, lon, lat, scale);
-    if (!m) return;
-    const size = quiet
-      ? 0.73
-      : art.form === 'reclaimed'
-        ? 1.22
-        : art.form === 'wilderness'
-          ? 1.05
-          : 1.08;
-    m.scale(new THREE.Vector3(size, size, size));
-    scenarioObject(s, m, family[i % family.length], i);
-    if (!quiet && i < 2) {
-      const satellite = m
-        .clone()
-        .multiply(new THREE.Matrix4().makeTranslation(-0.2, 0, -0.13))
-        .scale(new THREE.Vector3(0.57, 0.57, 0.57));
-      scenarioObject(s, satellite, family[(i + 2) % family.length], i + 1);
-    }
-  });
+  const focalSites = landmarkCoordinates(art.form);
   if (art.form === 'reclaimed') {
     const garden = groundPose(g, -5, 21, scale);
     if (garden) {
@@ -226,7 +119,8 @@ export function addScenarioBiomes(
       s.bar([-0.16, 0.029, -0.11], [-0.16, 0.029, 0.11], 0.014, '#84aead', garden);
     }
   }
-  const count = 119;
+  const count = quiet ? 169 : 83;
+  const clear = roadClearance(art, mobile);
   for (let i = 0; i < count; i++) {
     if (mobile && i % 4 === 0) continue;
     const lat = THREE.MathUtils.radToDeg(Math.asin(1 - (2 * (i + 0.5)) / count));
@@ -237,6 +131,7 @@ export function addScenarioBiomes(
     if (focalSites.some(([x, y]) => Math.hypot((x - lon) * 0.8, y - lat) < 19)) continue;
     if (Math.sin(lon * 0.095 + art.seed) + Math.cos(lat * 0.15) < -0.8) continue;
     if (g.project(g.direction(lon, lat), 0).length() < scale * 0.99) continue;
+    if (!clear(g.project(g.direction(lon, lat), 0))) continue;
     const m = g.pose(lon, lat).scale(new THREE.Vector3(scale, scale, scale));
     m.multiply(new THREE.Matrix4().makeRotationY(Math.sin(i * 1.87) * 1.1));
     const variant = Math.floor(i / 4) + (i % 7);
@@ -261,10 +156,18 @@ export function addScenarioBiomes(
       s.ico(0.075, '#ac8a7c', [0, 0.02, 0], [1.2, 0.45, 0.8], m);
       if (i % 2) s.box([0.09, 0.02, 0.046], '#9b8d84', [0.035, 0.045, 0], m, [0, i * 0.6, -0.1]);
     } else {
+      if (i % 3 !== 0) {
+        s.ico(0.064, art.highland, [0, 0.018, 0], [1.3, 0.55, 0.85], m);
+        continue;
+      }
       const k = 0.56 + (i % 4) * 0.06;
       m.scale(new THREE.Vector3(k, k * (0.86 + (i % 3) * 0.16), k));
-      scenarioObject(s, m, family[variant % family.length], variant);
+      scenarioObject(
+        s,
+        m,
+        family[variant % family.length] === 'hauler' ? 'depot' : family[variant % family.length],
+        variant,
+      );
     }
   }
-  watercraft(s, g, scale, art.form);
 }

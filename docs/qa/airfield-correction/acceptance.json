@@ -1,0 +1,158 @@
+{
+  "time": "2026-09-12T19:11:13.325871+00:00",
+  "localUrl": "http://192.168.80.205:3000/",
+  "scope": "Starting Earth grass airfields; S3 building clearance; hydration correction",
+  "unitTests": 120,
+  "hydrationBrowserProfiles": 5,
+  "modelsDecoded": 59,
+  "evidence": [
+    {
+      "path": "docs/qa/airfield-correction/REPORT.md",
+      "sha256": "22df41b2f79e4c4812f4e7f09f1d93400a45d73f552113f2ed566e567af2d61f"
+    },
+    {
+      "path": "docs/qa/airfield-correction/art-admission.log",
+      "sha256": "c5bbf9b7952abe8d5067c68fdd5e85f6173eedd22225e3df600af74fd804f1d1"
+    },
+    {
+      "path": "docs/qa/airfield-correction/art-source.json",
+      "sha256": "ee7c05438c0abf18210ebc58ae2f373200dc908337b934e517dff5f974a25a93"
+    },
+    {
+      "path": "docs/qa/airfield-correction/assets.log",
+      "sha256": "ff3840c1728b612875507f26ffea3c6250e6d51d3a87fef3f101591b8010fe04"
+    },
+    {
+      "path": "docs/qa/airfield-correction/blender-admission.log",
+      "sha256": "cc2a81d8ab574f3e258b8f69caff3eff079ce9b810067fe72d50ff29e417f2bc"
+    },
+    {
+      "path": "docs/qa/airfield-correction/blender-audit.log",
+      "sha256": "5374e1e5d0ab84ac79aa0762bda23a65b15bd83b1367804c2cab3a33d1ed8690"
+    },
+    {
+      "path": "docs/qa/airfield-correction/blender-build.log",
+      "sha256": "3bed437b1c04dc3f2b39902cd221b4200958189db5b586642cd5e09dc8d0d227"
+    },
+    {
+      "path": "docs/qa/airfield-correction/blender-review-s3-final.log",
+      "sha256": "2c14d9cd0c9fdc03a3b8458c26db334d44345861f9008486179d43a762c069d7"
+    },
+    {
+      "path": "docs/qa/airfield-correction/blender-review.log",
+      "sha256": "299011231de528c782509251b0729b9ad45edd4331fd096e827829b9e15d1db9"
+    },
+    {
+      "path": "docs/qa/airfield-correction/build.log",
+      "sha256": "116d8df7e4b5e0b072f68ad641a7f2032eaeb095930823410af99e1ea280b685"
+    },
+    {
+      "path": "docs/qa/airfield-correction/bundle.log",
+      "sha256": "d5308b4569d36101918da3ef5d360830f8384cabfda2c2b4ad15f78beb527512"
+    },
+    {
+      "path": "docs/qa/airfield-correction/chromium-s3.png",
+      "sha256": "ea1057a4ed1b54847ab8ef5f73545decef6df0461a1f40b4db2903b100464933"
+    },
+    {
+      "path": "docs/qa/airfield-correction/firefox-s3.png",
+      "sha256": "9f160184a7ca88a2a86b4919f3b1a6e67e6e0b08d13bc0651bc7191185902ce2"
+    },
+    {
+      "path": "docs/qa/airfield-correction/format-art.log",
+      "sha256": "1d195d0c90ece1d267f9b1898bd54005bf2ac613fda88caf4ace3c1eb53dbdde"
+    },
+    {
+      "path": "docs/qa/airfield-correction/format-assets.log",
+      "sha256": "da3d34686841136ddf0fcd7e92519177211bc3e0f6d6055e89684a43ecda9d6e"
+    },
+    {
+      "path": "docs/qa/airfield-correction/format-check.log",
+      "sha256": "cd430b5101d3e1781e765bff42e2e4614f09c88a0741e885e8f0acc63f2bce25"
+    },
+    {
+      "path": "docs/qa/airfield-correction/format-docs.log",
+      "sha256": "db9a9315e2895446a83921640ce24e0673bb65866d161ba59ca7f0ee199caed4"
+    },
+    {
+      "path": "docs/qa/airfield-correction/format-final.log",
+      "sha256": "4a2142f12789bf21758d3f850377814a754b15b0ece31eacbfee94e65b42b328"
+    },
+    {
+      "path": "docs/qa/airfield-correction/format-report.log",
+      "sha256": "708b522745c6a532bf9c18695a6b16823c94c4dfa2620676a7db24dca2a16c08"
+    },
+    {
+      "path": "docs/qa/airfield-correction/format-route.log",
+      "sha256": "70cec5b70913e67f50bf94002b27920e34fddfccca86271381d5665379b36d81"
+    },
+    {
+      "path": "docs/qa/airfield-correction/format-test.log",
+      "sha256": "db48da7cd0b1f2079b53bd5e3a24ac8af4daf4c3755b3905240f35ee6acb137f"
+    },
+    {
+      "path": "docs/qa/airfield-correction/format.log",
+      "sha256": "b0c37fea12c2eef5316aba1bbdef012c288cda2317db7d0c0878b833f7529373"
+    },
+    {
+      "path": "docs/qa/airfield-correction/hydration-dev.log",
+      "sha256": "408c5c19c5959a5a4930c371696f82997d3f5409c4d1de70825cd6925acf4a52"
+    },
+    {
+      "path": "docs/qa/airfield-correction/links.log",
+      "sha256": "1c2f359240c062f630b98255021ef69b9462cc5295a9d49e3459a41f95e35df6"
+    },
+    {
+      "path": "docs/qa/airfield-correction/lint.log",
+      "sha256": "0dfdd54249128481ede44ff101912d6305ab130187cdfdfc6f13fc3638355fb6"
+    },
+    {
+      "path": "docs/qa/airfield-correction/mobile-chromium-s3.png",
+      "sha256": "b61c0721cd0b47a9ffb5843785e0599bc2ca0fb141d7a481eb4e3fdd768d1a6a"
+    },
+    {
+      "path": "docs/qa/airfield-correction/mobile-webkit-s3.png",
+      "sha256": "833c91c78f8e3e131bba69e6978dba1340f3cf2f07712c318468359aeb62be89"
+    },
+    {
+      "path": "docs/qa/airfield-correction/origin-airfield-arrival.png",
+      "sha256": "adf45ba1c03e6c3f24c14d5ca30c9be228ef4046742f555647d1f964eecfff2b"
+    },
+    {
+      "path": "docs/qa/airfield-correction/origin-airfield-departure.png",
+      "sha256": "5df1fb011667591ed3c1397390d1d09da6fe6805a6519363d92216643d557048"
+    },
+    {
+      "path": "docs/qa/airfield-correction/routes.log",
+      "sha256": "a515213ba3d43fecbb0e3ab6c0a806477f0cee70838c754ecd7865a2a30db924"
+    },
+    {
+      "path": "docs/qa/airfield-correction/s3-airfield-arrival.png",
+      "sha256": "50ff87e3bb11bdf86a1a26fe7d5e3e2ae189cfd9b628669451086be2ec088ffa"
+    },
+    {
+      "path": "docs/qa/airfield-correction/s3-airfield-departure.png",
+      "sha256": "cf4e3f452b3c4149dd109b4654bba1018ac945284f1afe4b21d9eff0c88d3951"
+    },
+    {
+      "path": "docs/qa/airfield-correction/seeds.log",
+      "sha256": "5454d7c2e90bf80b1ab8e7ec01f56e1c868d5adff0090598ee843f38b1af8830"
+    },
+    {
+      "path": "docs/qa/airfield-correction/served-assets.json",
+      "sha256": "b072531d7cf1c7cac0fa571a720c671954c4af5493dffaed5ec6504c163a6dbd"
+    },
+    {
+      "path": "docs/qa/airfield-correction/typecheck.log",
+      "sha256": "c84e28ef3888fd2ca0d49491974e346c292a2981b7ffabfd376ad90eca8d5efe"
+    },
+    {
+      "path": "docs/qa/airfield-correction/unit.log",
+      "sha256": "6555683de17883fce6e6e63202b6199ff2f052ce59e8b2375fb36382142ec939"
+    },
+    {
+      "path": "docs/qa/airfield-correction/webkit-s3.png",
+      "sha256": "d85f92d6ff9d39d4f2e9528d0865c3f97fca5ce589a87c8c1f55dc8ceeb439ef"
+    }
+  ]
+}

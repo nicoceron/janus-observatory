@@ -4,8 +4,9 @@ import { useEffect, useMemo } from 'react';
 import * as THREE from 'three';
 import { Sculpture, surface, type Vec } from './sculpture';
 import { addWorldDetails } from './PlanetDetails';
-import { orbitalHabitat } from './SystemGeometry';
+import { membrane, curveTube } from './modeling';
 import type { WorldArt } from './worlds';
+import { roadClearance } from './activity-corridor';
 
 const cream = '#e9dfbd',
   gold = '#c9a574',
@@ -31,12 +32,6 @@ function peak(s: Sculpture, lon: number, lat: number, h: number) {
   s.cone(h * 0.52, h, '#9aa79b', [0, h * 0.35, 0], m, 4);
   s.cone(h * 0.23, h * 0.45, cream, [0, h * 0.63, 0], m, 4);
 }
-function cloud(s: Sculpture, lon: number, lat: number, size: number, radius: number) {
-  const m = surface(lon, lat, radius);
-  s.ico(size, '#f1ead1', [0, 0.01, 0], [1.1, 0.92, 0.83], m, 0);
-  s.ico(size * 0.7, '#e4e3cb', [-size * 0.85, 0, 0], [1, 0.82, 0.8], m, 0);
-  s.ico(size * 0.78, '#f8efd6', [size * 0.75, 0.015, 0.015], [1, 0.85, 0.8], m, 0);
-}
 function arch(
   s: Sculpture,
   radius: number,
@@ -59,6 +54,7 @@ function arch(
 }
 export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = false) {
   const s = new Sculpture();
+  const clear = roadClearance(art, mobile);
   switch (art.form) {
     case 'origin':
       // The opening globe is deliberately quiet; the scenario landmarks arrive later.
@@ -80,7 +76,8 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
         [38, 14, 0.18, 0.18],
       ];
       towers.forEach(([lon, lat, h, w], i) => {
-        const m = surface(lon, lat, 1.015);
+        const m = surface(lon, lat, 1.015).scale(new THREE.Vector3(1, 0.68, 1));
+        if (!clear(new THREE.Vector3().setFromMatrixPosition(m), w * 0.82)) return;
         s.box([w * 1.25, 0.065, w * 1.25], '#798b8d', [0, 0.025, 0], m);
         if (i % 4 === 1) {
           // Faceted administration spire with a deep observation crown.
@@ -162,7 +159,7 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
         if (i < 4)
           s.bar([w * 0.2, h * 1.18 + 0.06, 0], [w * 0.2, h * 1.18 + 0.14, 0], 0.005, gold, m);
       });
-      const m = surface(-47, 53);
+      const m = surface(-47, 53).scale(new THREE.Vector3(0.78, 0.62, 0.78));
       s.cylinder(0.024, 0.06, 0.7, ink, [0, 0.33, 0], m, 6);
       s.cylinder(0.16, 0.12, 0.1, gold, [0, 0.7, 0], m, 8);
       s.ico(0.08, cream, [0, 0.79, 0], [1, 0.65, 1], m);
@@ -170,36 +167,58 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
     }
     case 'extraction': {
       const m = surface(-8, 19, 1.025);
-      s.add(
-        new THREE.CylinderGeometry(0.49, 0.54, 0.16, 6, 1, true),
-        '#ca9675',
-        [0, 0.02, 0],
-        [0, 0, 0],
-        [1, 1, 1],
-        m,
-      );
-      for (let i = 0; i < 5; i++) {
-        const outer = 0.49 - i * 0.079,
-          inner = outer - 0.064,
-          y = 0.1 - i * 0.044;
-        s.add(
-          new THREE.RingGeometry(inner, outer, 6, 1, Math.PI / 2),
-          i % 2 ? '#b97759' : '#e4b493',
-          [0, y, 0],
-          [-Math.PI / 2, 0, 0],
-          [1, 1, 1],
+      // Unequal benches with an open descending haul ramp, rather than concentric target rings.
+      const sections = 14;
+      const at = (radius: number, angle: number, y: number): Vec => [
+        Math.cos(angle) * radius * (1 + 0.1 * Math.sin(angle * 3 + 0.8)),
+        y,
+        Math.sin(angle) * radius * (0.83 + 0.08 * Math.cos(angle * 5)),
+      ];
+      for (let tier = 0; tier < 5; tier++) {
+        const outer = 0.51 - tier * 0.079,
+          inner = outer - 0.073,
+          y = 0.1 - tier * 0.04;
+        for (let j = 0; j < sections; j++) {
+          // Open working face on the east side, reached by the descending ramp.
+          const a = 0.35 + (j / sections) * 5.58,
+            b = 0.35 + ((j + 1) / sections) * 5.58;
+          const p = [
+            at(outer, a, y),
+            at(outer, b, y),
+            at(inner, b, y),
+            at(inner, a, y),
+            at(inner, a, y - 0.04),
+            at(inner, b, y - 0.04),
+          ];
+          const mesh = new THREE.BufferGeometry();
+          mesh.setAttribute(
+            'position',
+            new THREE.Float32BufferAttribute(
+              [0, 1, 2, 0, 2, 3, 3, 2, 5, 3, 5, 4].flatMap((i) => p[i]),
+              3,
+            ),
+          );
+          s.add(
+            mesh,
+            ['#ceab85', '#ad896a', '#ba9671', '#987a64', '#826d59'][tier],
+            undefined,
+            undefined,
+            undefined,
+            m,
+          );
+        }
+      }
+      for (let j = 0; j < 12; j++) {
+        const u = j / 11;
+        s.box(
+          [0.063, 0.016, 0.079],
+          '#bda47f',
+          [0.48 - u * 0.34, 0.099 - u * 0.168, 0],
           m,
-        );
-        s.add(
-          new THREE.CylinderGeometry(inner, inner, 0.044, 6, 1, true),
-          '#a36852',
-          [0, y - 0.022, 0],
-          [0, 0, 0],
-          [1, 1, 1],
-          m,
+          [0, 0, 0.45],
         );
       }
-      s.cylinder(0.095, 0.095, 0.02, '#514454', [0, -0.08, 0], m, 6);
+      s.cylinder(0.128, 0.14, 0.024, '#655849', [0, -0.071, 0], m, 9);
       peak(s, -32, 62, 0.32);
       peak(s, -8, 66, 0.44);
       for (let i = 0; i < 3; i++) {
@@ -207,8 +226,6 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
         s.cylinder(0.07, 0.085, 0.3, '#ead3ae', [0, 0.15, 0], t, 6);
         s.cylinder(0.082, 0.082, 0.025, ink, [0, 0.24, 0], t, 6);
       }
-      s.ico(0.15, '#be967c', [-1.28, 0.45, -0.1], [1.2, 0.9, 1], undefined, 1);
-      s.ico(0.09, '#e2c5a4', [-1.43, 0.74, -0.12]);
       break;
     }
     case 'arcadia': {
@@ -248,13 +265,6 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
         }
         s.ico(0.025, gold, [x, r * 0.8 + 0.082, z], [1, 1, 1], m);
       });
-      s.add(
-        new THREE.TorusGeometry(1.29, 0.014, 4, 80, Math.PI * 1.83),
-        gold,
-        [0, 0, 0],
-        [1.02, 0.38, -0.3],
-      );
-      s.add(new THREE.BoxGeometry(0.26, 0.12, 0.12), cream, [1.2, -0.18, 0.37], [0, 0.2, -0.4]);
       tree(s, -43, 15, 0.26);
       tree(s, 32, 45, 0.25);
       break;
@@ -284,7 +294,7 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
       break;
     }
     case 'symbiosis': {
-      const m = surface(-8, 45);
+      const m = surface(-8, 40).scale(new THREE.Vector3(0.72, 0.72, 0.72));
       const branches: [Vec, Vec][] = [
         [
           [0, 0, 0],
@@ -309,16 +319,35 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
       ];
       branches.forEach(([a, b], i) => {
         const mid: Vec = [b[0] * 0.5, b[1] * 0.7, b[2] * 0.5];
-        s.bar(a, mid, 0.041, '#709889', m);
-        s.bar(mid, b, 0.031, '#92b2a0', m);
-        for (let p = 0; p < 4; p++) {
-          const theta = (p * Math.PI) / 2;
+        curveTube(s, [a, mid, b], 0.023, '#78a894', m);
+        for (let p = 0; p < 5; p++) {
+          const theta = (p * Math.PI * 2) / 5;
           s.add(
-            new THREE.OctahedronGeometry(0.13),
-            i % 2 ? '#d7a18e' : '#ecd7b5',
-            [b[0] + Math.cos(theta) * 0.06, b[1], b[2] + Math.sin(theta) * 0.06],
-            [Math.sin(theta) * 0.45, 0, Math.cos(theta) * 0.45],
-            [0.7, 1.65, 0.6],
+            membrane(
+              [
+                [0, 0.035, 0.005],
+                [0.06, 0.15, 0.05],
+                [0.15, 0.16, 0.095],
+                [0.24, 0.035, 0.13],
+              ],
+              0,
+              0.024,
+            ),
+            i % 2 ? '#c892a4' : '#d8d6a8',
+            b,
+            [0, theta, 0],
+            undefined,
+            m,
+          );
+          curveTube(
+            s,
+            [
+              [b[0], b[1], b[2]],
+              [b[0] + Math.cos(theta) * 0.14, b[1] + 0.084, b[2] - Math.sin(theta) * 0.14],
+              [b[0] + Math.cos(theta) * 0.24, b[1] + 0.13, b[2] - Math.sin(theta) * 0.24],
+            ],
+            0.0028,
+            '#8cb6a2',
             m,
           );
         }
@@ -359,8 +388,6 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
         }
       }
       shell.dispose();
-      s.add(new THREE.TorusGeometry(1.23, 0.021, 4, 48), gold, [0, 0, 0], [1.15, 0.1, -0.4]);
-      s.ico(0.105, cream, [0.88, 0.98, -0.02], [1, 1.5, 1]);
       break;
     }
     case 'reclaimed': {
@@ -376,9 +403,11 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
         [-20, 55],
       ].forEach(([lon, lat], i) => tree(s, lon, lat, 0.27 + i * 0.014, 1.035, '#7e985e'));
       const ruin = surface(24, 5);
-      for (let i = 0; i < 3; i++)
-        s.cylinder(0.048, 0.057, 0.21 + i * 0.025, '#d3bea0', [(i - 1) * 0.15, 0.11, 0], ruin, 6);
-      s.box([0.48, 0.07, 0.11], '#bbaa8b', [0, 0.26, 0], ruin, [0, 0, -0.12]);
+      if (clear(new THREE.Vector3().setFromMatrixPosition(ruin), 0.3)) {
+        for (let i = 0; i < 3; i++)
+          s.cylinder(0.048, 0.057, 0.21 + i * 0.025, '#d3bea0', [(i - 1) * 0.15, 0.11, 0], ruin, 6);
+        s.box([0.48, 0.07, 0.11], '#bbaa8b', [0, 0.26, 0], ruin, [0, 0, -0.12]);
+      }
       break;
     }
     case 'fractured': {
@@ -391,8 +420,6 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
         ]);
         s.box([0.2, 0.055, 0.19], '#d5b5a0', [0.025, 0.31 + i * 0.04, 0], m, [0, 0, -0.18]);
       });
-      s.ico(0.16, '#a8847a', [0.08, 1.25, 0], [0.55, 1.2, 0.7]);
-      s.ico(0.08, '#d1af9b', [-0.1, 1.42, -0.04], [1, 0.7, 0.6]);
       const m = surface(-30, -18);
       arch(s, 0.23, 0.065, '#9a8078', m, true);
       break;
@@ -401,29 +428,11 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
       // Earth stays quiet; machine construction belongs to the separate solar-system portrait.
       break;
     case 'duality': {
-      const habitat = new THREE.Matrix4().compose(
-        new THREE.Vector3(-0.48, 1.03, 0.12),
-        new THREE.Quaternion().setFromEuler(new THREE.Euler(0.2, -0.3, -0.25)),
-        new THREE.Vector3(0.95, 0.95, 0.95),
-      );
-      orbitalHabitat(s, habitat, 1);
-      tree(s, -35, 44, 0.21, 0.81);
-      tree(s, -16, 56, 0.23, 0.81);
+      tree(s, -35, 44, 0.21, 1.035);
+      tree(s, -16, 56, 0.23, 1.035);
       break;
     }
   }
-  const cloudSites = [
-    [-37, -8, 0.15],
-    [35, 28, 0.16],
-    [-35, 68, 0.14],
-    [18, -44, 0.17],
-    [67, -9, 0.14],
-    [-72, 31, 0.13],
-    [5, 57, 0.12],
-  ];
-  cloudSites
-    .slice(0, art.cloud)
-    .forEach(([lon, lat, size]) => cloud(s, lon, lat, size * globeScale, globeScale * 1.17));
   addWorldDetails(s, art, globeScale, mobile);
   return s.finish();
 }

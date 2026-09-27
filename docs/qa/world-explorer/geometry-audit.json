@@ -1,0 +1,537 @@
+[
+  {
+    "id": "Earth",
+    "staticTriangles": 4792,
+    "landmarks": [],
+    "routes": [
+      {
+        "kind": "road",
+        "exists": true
+      },
+      {
+        "kind": "water",
+        "exists": true
+      },
+      {
+        "kind": "flight",
+        "exists": true
+      }
+    ],
+    "companions": []
+  },
+  {
+    "id": "S1",
+    "staticTriangles": 7076,
+    "landmarks": [
+      {
+        "kind": "checkpoint",
+        "triangles": 248
+      },
+      {
+        "kind": "tenement",
+        "triangles": 716
+      },
+      {
+        "kind": "watchtower",
+        "triangles": 148
+      },
+      {
+        "kind": "depot",
+        "triangles": 384
+      }
+    ],
+    "routes": [
+      {
+        "kind": "road",
+        "exists": true
+      }
+    ],
+    "companions": [
+      {
+        "id": "Moon",
+        "triangles": 6690,
+        "radius": 1.2859290411448046
+      },
+      {
+        "id": "Mars",
+        "triangles": 6474,
+        "radius": 1.2859290411448046
+      },
+      {
+        "id": "Venus",
+        "triangles": 3624,
+        "radius": 1.4121142824881572
+      },
+      {
+        "id": "asteroids",
+        "triangles": 2916,
+        "radius": 0.7862493650615443
+      },
+      {
+        "id": "outer",
+        "triangles": 7554,
+        "radius": 1.1383429585232097
+      }
+    ]
+  },
+  {
+    "id": "S2",
+    "staticTriangles": 7908,
+    "landmarks": [
+      {
+        "kind": "hauler",
+        "triangles": 2392
+      },
+      {
+        "kind": "derrick",
+        "triangles": 428
+      },
+      {
+        "kind": "conveyor",
+        "triangles": 556
+      },
+      {
+        "kind": "reservoir",
+        "triangles": 348
+      }
+    ],
+    "routes": [
+      {
+        "kind": "road",
+        "exists": true
+      }
+    ],
+    "companions": [
+      {
+        "id": "Moon",
+        "triangles": 6802,
+        "radius": 1.3108467646160489
+      },
+      {
+        "id": "Mars",
+        "triangles": 6586,
+        "radius": 1.3108467646160489
+      },
+      {
+        "id": "asteroids",
+        "triangles": 2916,
+        "radius": 0.7862493650615443
+      }
+    ]
+  },
+  {
+    "id": "S3",
+    "staticTriangles": 8268,
+    "landmarks": [
+      {
+        "kind": "courtyard",
+        "triangles": 196
+      },
+      {
+        "kind": "pavilion",
+        "triangles": 356
+      },
+      {
+        "kind": "terrace",
+        "triangles": 380
+      },
+      {
+        "kind": "glasshouse",
+        "triangles": 344
+      }
+    ],
+    "routes": [
+      {
+        "kind": "road",
+        "exists": true
+      },
+      {
+        "kind": "water",
+        "exists": true
+      },
+      {
+        "kind": "flight",
+        "exists": true
+      }
+    ],
+    "companions": [
+      {
+        "id": "Moon",
+        "triangles": 7478,
+        "radius": 1.2648043291403972
+      },
+      {
+        "id": "Mars",
+        "triangles": 7262,
+        "radius": 1.2648043291403972
+      },
+      {
+        "id": "asteroids",
+        "triangles": 2916,
+        "radius": 0.7862493650615443
+      },
+      {
+        "id": "outer",
+        "triangles": 8342,
+        "radius": 1.150587955814834
+      }
+    ]
+  },
+  {
+    "id": "S4",
+    "staticTriangles": 5220,
+    "landmarks": [
+      {
+        "kind": "camp",
+        "triangles": 254
+      },
+      {
+        "kind": "rack",
+        "triangles": 292
+      },
+      {
+        "kind": "store",
+        "triangles": 326
+      },
+      {
+        "kind": "totem",
+        "triangles": 312
+      }
+    ],
+    "routes": [
+      {
+        "kind": "water",
+        "exists": true
+      },
+      {
+        "kind": "wildlife",
+        "exists": true
+      },
+      {
+        "kind": "flight",
+        "exists": true
+      }
+    ],
+    "companions": []
+  },
+  {
+    "id": "S5",
+    "staticTriangles": 16220,
+    "landmarks": [
+      {
+        "kind": "growth-pod",
+        "triangles": 928
+      },
+      {
+        "kind": "bio-arch",
+        "triangles": 776
+      },
+      {
+        "kind": "synthesis",
+        "triangles": 636
+      },
+      {
+        "kind": "petal-house",
+        "triangles": 300
+      }
+    ],
+    "routes": [
+      {
+        "kind": "road",
+        "exists": true
+      },
+      {
+        "kind": "water",
+        "exists": true
+      },
+      {
+        "kind": "flight",
+        "exists": true
+      }
+    ],
+    "companions": [
+      {
+        "id": "Moon",
+        "triangles": 8158,
+        "radius": 1.2450464677623339
+      },
+      {
+        "id": "Mars",
+        "triangles": 10726,
+        "radius": 1.5156828789071732
+      },
+      {
+        "id": "Venus",
+        "triangles": 2628,
+        "radius": 1.2356069756402053
+      },
+      {
+        "id": "asteroids",
+        "triangles": 2916,
+        "radius": 0.7862493650615443
+      },
+      {
+        "id": "outer",
+        "triangles": 9022,
+        "radius": 1.1483484504368953
+      },
+      {
+        "id": "kuiper",
+        "triangles": 708,
+        "radius": 0.7257930586934542
+      }
+    ]
+  },
+  {
+    "id": "S6",
+    "staticTriangles": 9676,
+    "landmarks": [
+      {
+        "kind": "reactor",
+        "triangles": 500
+      },
+      {
+        "kind": "radiator",
+        "triangles": 312
+      },
+      {
+        "kind": "manifold",
+        "triangles": 428
+      },
+      {
+        "kind": "control",
+        "triangles": 212
+      }
+    ],
+    "routes": [
+      {
+        "kind": "road",
+        "exists": true
+      }
+    ],
+    "companions": [
+      {
+        "id": "Moon",
+        "triangles": 6734,
+        "radius": 1.2970604609127734
+      },
+      {
+        "id": "Mars",
+        "triangles": 6518,
+        "radius": 1.2970604609127734
+      },
+      {
+        "id": "Venus",
+        "triangles": 2628,
+        "radius": 1.2356069756402053
+      },
+      {
+        "id": "asteroids",
+        "triangles": 2916,
+        "radius": 0.7862493650615443
+      },
+      {
+        "id": "kuiper",
+        "triangles": 708,
+        "radius": 0.7257930586934542
+      }
+    ]
+  },
+  {
+    "id": "S7",
+    "staticTriangles": 7950,
+    "landmarks": [
+      {
+        "kind": "watermill",
+        "triangles": 888
+      },
+      {
+        "kind": "workshop",
+        "triangles": 236
+      },
+      {
+        "kind": "seed-bank",
+        "triangles": 616
+      },
+      {
+        "kind": "windmill",
+        "triangles": 652
+      }
+    ],
+    "routes": [
+      {
+        "kind": "road",
+        "exists": true
+      },
+      {
+        "kind": "water",
+        "exists": true
+      },
+      {
+        "kind": "wildlife",
+        "exists": true
+      }
+    ],
+    "companions": []
+  },
+  {
+    "id": "S8",
+    "staticTriangles": 3664,
+    "landmarks": [
+      {
+        "kind": "bunker",
+        "triangles": 284
+      },
+      {
+        "kind": "salvage",
+        "triangles": 192
+      },
+      {
+        "kind": "broken-dish",
+        "triangles": 172
+      },
+      {
+        "kind": "pylon",
+        "triangles": 140
+      }
+    ],
+    "routes": [
+      {
+        "kind": "road",
+        "exists": true
+      }
+    ],
+    "companions": [
+      {
+        "id": "Moon",
+        "triangles": 4514,
+        "radius": 1.2752725391158
+      }
+    ]
+  },
+  {
+    "id": "S9",
+    "staticTriangles": 4470,
+    "landmarks": [
+      {
+        "kind": "gift",
+        "triangles": 232
+      }
+    ],
+    "routes": [
+      {
+        "kind": "water",
+        "exists": true
+      },
+      {
+        "kind": "wildlife",
+        "exists": true
+      }
+    ],
+    "companions": [
+      {
+        "id": "Moon",
+        "triangles": 2228,
+        "radius": 1.35898606492621
+      },
+      {
+        "id": "Mars",
+        "triangles": 2432,
+        "radius": 1.3693994256044626
+      },
+      {
+        "id": "Venus",
+        "triangles": 1864,
+        "radius": 1.2126033394967963
+      },
+      {
+        "id": "asteroids",
+        "triangles": 2916,
+        "radius": 0.7862493650615443
+      },
+      {
+        "id": "outer",
+        "triangles": 3068,
+        "radius": 1.1248380651062289
+      },
+      {
+        "id": "kuiper",
+        "triangles": 708,
+        "radius": 0.7257930586934542
+      },
+      {
+        "id": "solar",
+        "triangles": 1476,
+        "radius": 1.1803165083678056
+      }
+    ]
+  },
+  {
+    "id": "S10",
+    "staticTriangles": 5522,
+    "landmarks": [
+      {
+        "kind": "canopy",
+        "triangles": 1040
+      },
+      {
+        "kind": "windmill",
+        "triangles": 652
+      },
+      {
+        "kind": "store",
+        "triangles": 326
+      }
+    ],
+    "routes": [
+      {
+        "kind": "road",
+        "exists": true
+      },
+      {
+        "kind": "water",
+        "exists": true
+      },
+      {
+        "kind": "wildlife",
+        "exists": true
+      },
+      {
+        "kind": "flight",
+        "exists": true
+      }
+    ],
+    "companions": [
+      {
+        "id": "Moon",
+        "triangles": 7478,
+        "radius": 1.2648043291403972
+      },
+      {
+        "id": "Mars",
+        "triangles": 7262,
+        "radius": 1.2648043291403972
+      },
+      {
+        "id": "Venus",
+        "triangles": 2628,
+        "radius": 1.2356069756402053
+      },
+      {
+        "id": "asteroids",
+        "triangles": 2916,
+        "radius": 0.7862493650615443
+      },
+      {
+        "id": "outer",
+        "triangles": 8342,
+        "radius": 1.150587955814834
+      },
+      {
+        "id": "kuiper",
+        "triangles": 708,
+        "radius": 0.7257930586934542
+      }
+    ]
+  }
+]

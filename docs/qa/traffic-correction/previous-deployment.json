@@ -1,0 +1,14 @@
+{
+  "url": "https://janus-observatory.nicocerond.workers.dev",
+  "worker": "janus-observatory",
+  "accountPlan": "Existing Workers Free configuration retained; no paid binding or plan change performed",
+  "versionId": "0cea7ce0-0861-4513-8419-01d57c12840f",
+  "deployedAt": "2026-09-20T06:10:49.954Z",
+  "previousVersionId": "eefb2bef-619a-4635-9f78-af7d8d5bc9e9",
+  "method": "Direct upload from current checkout using OpenNext and Wrangler",
+  "paidServicesAdded": false,
+  "compressedWorkerKiB": 2770.64,
+  "freeBundleLimitKiB": 3072,
+  "workerStartupMs": 28,
+  "artVersion": "blender-polish-v9-2026-09-20"
+}

@@ -5,9 +5,10 @@
   --night-soft: #0a1714;
   --acid: #d0dfbe;
   --line: rgba(207, 231, 215, 0.18);
-  --paper: #e8eee7;
-  --paper-ink: #102019;
-  --font-body: 'Manrope', sans-serif;
+  --paper: #0d1721;
+  --paper-ink: #e3eaf0;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-display: 'Chakra Petch', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 }
 
@@ -121,7 +122,7 @@ footer p {
   margin: 0;
 }
 .proseSection {
-  border-top: 1px solid rgba(16, 32, 25, 0.2);
+  border-top: 1px solid rgba(186, 212, 227, 0.2);
   display: grid;
   gap: 30px;
   grid-template-columns: minmax(220px, 0.35fr) minmax(0, 1fr);
@@ -146,13 +147,13 @@ footer p {
 }
 .proseSection p,
 .proseSection li {
-  color: #405249;
+  color: #afc2cc;
   font-size: 1rem;
   line-height: 1.8;
   margin-top: 0;
 }
 .proseSection a {
-  color: #24543f;
+  color: #afc2cc;
 }
 .pageNotice {
   background: #102019;
@@ -163,7 +164,7 @@ footer p {
   padding: 28px 32px;
 }
 .inlineAction {
-  color: #204f3a;
+  color: #afc2cc;
   font-family: var(--font-mono);
   font-size: 0.65rem;
   text-transform: uppercase;
@@ -175,15 +176,15 @@ footer p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .concordiaAgentGrid article {
-  background: #dfe7df;
-  border: 1px solid rgba(16, 32, 25, 0.12);
+  background: #101d29;
+  border: 1px solid rgba(186, 212, 227, 0.12);
   min-height: 210px;
   padding: 22px;
 }
 .concordiaAgentGrid article > span {
-  color: #52645b;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.52rem;
+  font-size: 0.75rem;
 }
 .concordiaAgentGrid h3 {
   font-size: 1.05rem;
@@ -199,20 +200,20 @@ footer p {
   grid-template-columns: repeat(5, 1fr);
 }
 .concordiaRunGrid div {
-  border: 1px solid rgba(16, 32, 25, 0.16);
+  border: 1px solid rgba(186, 212, 227, 0.16);
   display: flex;
   flex-direction: column;
   gap: 6px;
   padding: 18px;
 }
 .concordiaRunGrid strong {
-  color: #24543f;
+  color: #afc2cc;
   font-family: var(--font-mono);
 }
 .concordiaRunGrid span {
-  color: #52645b;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.56rem;
+  font-size: 0.75rem;
 }
 
 @media (max-width: 880px) {
@@ -344,4 +345,10 @@ body {
   html {
     scroll-padding-block-start: 3.5rem;
   }
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
 }

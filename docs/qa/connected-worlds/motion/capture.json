@@ -1,0 +1,204 @@
+{
+  "base": "http://127.0.0.1:3200",
+  "captures": [
+    {
+      "file": "s1-Earth-0.png",
+      "world": 1,
+      "selection": "Earth",
+      "frame": 0,
+      "elapsed": 0
+    },
+    {
+      "file": "s1-Earth-1.png",
+      "world": 1,
+      "selection": "Earth",
+      "frame": 1,
+      "elapsed": 5
+    },
+    {
+      "file": "s1-Earth-2.png",
+      "world": 1,
+      "selection": "Earth",
+      "frame": 2,
+      "elapsed": 10
+    },
+    {
+      "file": "s1-Earth-3.png",
+      "world": 1,
+      "selection": "Earth",
+      "frame": 3,
+      "elapsed": 15
+    },
+    {
+      "file": "s1-Earth-4.png",
+      "world": 1,
+      "selection": "Earth",
+      "frame": 4,
+      "elapsed": 20
+    },
+    {
+      "file": "s1-Earth-5.png",
+      "world": 1,
+      "selection": "Earth",
+      "frame": 5,
+      "elapsed": 25
+    },
+    {
+      "file": "s1-Earth-6.png",
+      "world": 1,
+      "selection": "Earth",
+      "frame": 6,
+      "elapsed": 30
+    },
+    {
+      "file": "s2-Earth-0.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 0,
+      "elapsed": 0
+    },
+    {
+      "file": "s2-Earth-1.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 1,
+      "elapsed": 5
+    },
+    {
+      "file": "s2-Earth-2.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 2,
+      "elapsed": 10
+    },
+    {
+      "file": "s2-Earth-3.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 3,
+      "elapsed": 15
+    },
+    {
+      "file": "s2-Earth-4.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 4,
+      "elapsed": 20
+    },
+    {
+      "file": "s2-Earth-5.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 5,
+      "elapsed": 25
+    },
+    {
+      "file": "s2-Earth-6.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 6,
+      "elapsed": 30
+    },
+    {
+      "file": "s7-Earth-0.png",
+      "world": 7,
+      "selection": "Earth",
+      "frame": 0,
+      "elapsed": 0
+    },
+    {
+      "file": "s7-Earth-1.png",
+      "world": 7,
+      "selection": "Earth",
+      "frame": 1,
+      "elapsed": 5
+    },
+    {
+      "file": "s7-Earth-2.png",
+      "world": 7,
+      "selection": "Earth",
+      "frame": 2,
+      "elapsed": 10
+    },
+    {
+      "file": "s7-Earth-3.png",
+      "world": 7,
+      "selection": "Earth",
+      "frame": 3,
+      "elapsed": 15
+    },
+    {
+      "file": "s7-Earth-4.png",
+      "world": 7,
+      "selection": "Earth",
+      "frame": 4,
+      "elapsed": 20
+    },
+    {
+      "file": "s7-Earth-5.png",
+      "world": 7,
+      "selection": "Earth",
+      "frame": 5,
+      "elapsed": 25
+    },
+    {
+      "file": "s7-Earth-6.png",
+      "world": 7,
+      "selection": "Earth",
+      "frame": 6,
+      "elapsed": 30
+    },
+    {
+      "file": "s8-Earth-0.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 0,
+      "elapsed": 0
+    },
+    {
+      "file": "s8-Earth-1.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 1,
+      "elapsed": 5
+    },
+    {
+      "file": "s8-Earth-2.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 2,
+      "elapsed": 10
+    },
+    {
+      "file": "s8-Earth-3.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 3,
+      "elapsed": 15
+    },
+    {
+      "file": "s8-Earth-4.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 4,
+      "elapsed": 20
+    },
+    {
+      "file": "s8-Earth-5.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 5,
+      "elapsed": 25
+    },
+    {
+      "file": "s8-Earth-6.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 6,
+      "elapsed": 30
+    }
+  ],
+  "errors": [],
+  "pauseChecks": 4,
+  "scope": "Real-time local Chromium captures. Full-world trips include arrival and task pauses; close-up studies show articulation. Pause checks compare exact canvas pixels."
+}

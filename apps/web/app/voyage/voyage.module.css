@@ -4,7 +4,7 @@
   --fine: rgba(222, 228, 226, 0.17);
   --signal: #d3e7bc;
   color: var(--cream);
-  background: #050709;
+  background: #000;
   position: relative;
   isolation: isolate;
   font-weight: 400;
@@ -15,109 +15,6 @@
 .experience a {
   text-underline-offset: 5px;
 }
-.header {
-  position: fixed;
-  z-index: 50;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 94px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 4.5vw;
-  background: linear-gradient(#050709c9, #05070900);
-}
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  text-decoration: none;
-  letter-spacing: 0.14em;
-  font-size: 23px;
-  line-height: 1;
-  font-weight: 650;
-}
-.brandSymbol {
-  font-size: 40px;
-  font-weight: 300;
-  transform: rotate(-30deg);
-  color: var(--signal);
-}
-.brandSub {
-  display: block;
-  letter-spacing: 0.22em;
-  font-size: 8px;
-  font-family: var(--font-mono);
-  font-weight: 400;
-  margin-top: 7px;
-}
-.navigation {
-  display: flex;
-  align-items: center;
-  gap: 38px;
-}
-.navigation a,
-.navigation button {
-  font-size: 11px;
-  color: #d1d4d0;
-  text-decoration: none;
-  letter-spacing: 0.015em;
-}
-.navigation button {
-  background: none;
-  border: 0;
-  padding: 12px 0;
-}
-.navigation span {
-  margin-left: 10px;
-  color: #9ba49a;
-}
-.navigation a:hover,
-.navigation button:hover {
-  color: var(--signal);
-}
-.menu {
-  position: fixed;
-  right: 4vw;
-  top: 86px;
-  z-index: 60;
-  width: 340px;
-  max-height: 75svh;
-  overflow: auto;
-  background: #0d1214f7;
-  backdrop-filter: blur(20px);
-  padding: 18px 28px;
-  border: 1px solid var(--fine);
-}
-.menu button {
-  display: flex;
-  gap: 18px;
-  width: 100%;
-  text-align: left;
-  border: 0;
-  border-bottom: 1px solid var(--fine);
-  background: none;
-  color: var(--cream);
-  padding: 12px 0;
-  font-size: 12px;
-}
-.menu button span:first-child {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--dim);
-}
-.menu button span:last-child {
-  margin-left: auto;
-}
-.menu button[aria-current] {
-  color: var(--signal);
-}
-.menu > a {
-  display: block;
-  font-size: 11px;
-  margin-top: 22px;
-}
 .stage {
   position: sticky;
   top: 0;
@@ -127,21 +24,6 @@
   pointer-events: none;
   z-index: -1;
   background: radial-gradient(ellipse at 80% 32%, #19263032, transparent 48%), #050709;
-}
-.poster {
-  position: absolute;
-  right: 0;
-  top: 3%;
-  width: 72%;
-  height: 94%;
-  transition: opacity 1s;
-  opacity: 0.8;
-}
-.poster img {
-  object-fit: contain;
-}
-.posterHidden {
-  opacity: 0;
 }
 .shade {
   position: absolute;
@@ -192,9 +74,10 @@
   margin: 32px 0;
 }
 .experience em {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-display);
+  font-style: normal;
   font-weight: 400;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.035em;
 }
 .copy h2 em {
   color: var(--world-color, var(--cream));
@@ -517,52 +400,14 @@
   color: #eeeadb;
   text-decoration: underline;
 }
-.targetReticle {
-  position: absolute;
-  left: calc(69% - 60px);
-  top: calc(50% - 60px);
-  width: 120px;
-  height: 120px;
-  border: 1px solid #e5ebd926;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: end;
-}
-.targetReticle i {
-  position: absolute;
-  height: 1px;
-  width: 160px;
-  top: 50%;
-  background: #e5ebd933;
-}
-.targetReticle i:nth-child(2) {
-  transform: rotate(90deg);
-}
-.targetReticle span {
-  position: absolute;
-  top: 150px;
-  font-family: var(--font-mono);
-  font-size: 8px;
-  white-space: nowrap;
-  letter-spacing: 0.12em;
-}
-.targetReticle small {
-  position: absolute;
-  top: 169px;
-  font-family: var(--font-mono);
-  font-size: 7px;
-  white-space: nowrap;
-  color: var(--dim);
-}
+
 .opticalChapter .textLink {
   display: block;
   width: fit-content;
   margin-top: 18px;
 }
 .opticalChapter {
-  background: linear-gradient(90deg, #050709fa 0%, #050709e6 32%, #05070900 64%);
+  background: none;
 }
 .textLink {
   display: inline-block;
@@ -933,72 +778,7 @@
   font-size: 8px;
   margin: 25px 0;
 }
-.controls {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  min-height: 57px;
-  z-index: 45;
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  padding: 8px 4.5vw;
-  background: #06090ce8;
-  backdrop-filter: blur(18px);
-  border-top: 1px solid #acbab313;
-}
-.chapterProgress {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-mono);
-  font-size: 8px;
-  color: #b4c3ac;
-}
-.chapterProgress > div {
-  height: 1px;
-  width: 86px;
-  background: #bbc6bb33;
-}
-.chapterProgress i {
-  display: block;
-  height: 100%;
-  width: 100%;
-  background: #d7e8bd;
-  transform-origin: left;
-  transition: transform 0.5s;
-}
-.chapterName {
-  font-family: var(--font-mono);
-  font-size: 8px;
-  letter-spacing: 0.07em;
-  color: #b9c3bb;
-}
-.controlActions {
-  display: flex;
-  gap: 10px;
-  margin-left: auto;
-  margin-right: 235px;
-  align-items: center;
-}
-.controlActions button {
-  border: 0;
-  background: none;
-  color: #b8c5bd;
-  min-height: 32px;
-  min-width: 32px;
-  padding: 6px;
-  font-family: var(--font-mono);
-  font-size: 8px;
-}
-.controlActions button:disabled {
-  opacity: 0.35;
-  cursor: default;
-}
-.controlActions button:hover:enabled {
-  color: var(--signal);
-}
+
 .reading .stage {
   display: none;
 }
@@ -1017,8 +797,7 @@
 .reading .heroCoordinates,
 .reading .heroCaption,
 .reading .worldAnnotation,
-.reading .visualNote,
-.reading .targetReticle {
+.reading .visualNote {
   display: none;
 }
 .reading .copy > p {
@@ -1058,15 +837,7 @@
     right: 5%;
     width: 34%;
   }
-  .header {
-    padding-inline: 5vw;
-  }
-  .chapterName {
-    display: none;
-  }
-  .controlActions {
-    margin-right: 224px;
-  }
+
   .hero h1 {
     font-size: 86px;
   }
@@ -1103,36 +874,6 @@
   }
 }
 @media (max-width: 760px) {
-  .header {
-    height: 76px;
-    padding: 0 22px;
-    background: linear-gradient(#050709e8, #05070900);
-  }
-  .brand {
-    font-size: 19px;
-    gap: 8px;
-  }
-  .brandSymbol {
-    font-size: 31px;
-  }
-  .brandSub {
-    font-size: 6px;
-  }
-  .navigation {
-    gap: 24px;
-  }
-  .navigation a {
-    display: none;
-  }
-  .navigation button {
-    font-size: 10px;
-  }
-  .menu {
-    right: 18px;
-    left: 18px;
-    top: 70px;
-    width: auto;
-  }
   .chapter {
     min-height: 140svh;
     padding: 58svh 26px 140px;
@@ -1148,7 +889,7 @@
     font-size: 48px;
     line-height: 1.06;
     margin: 22px 0;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.035em;
   }
   .copy > p {
     font-size: 13px;
@@ -1213,11 +954,6 @@
     height: 42px;
     width: 42px;
   }
-  .poster {
-    width: 100%;
-    height: 70%;
-    top: 5%;
-  }
   .shade {
     background: linear-gradient(180deg, #05070966, transparent 52%, #050709cc 80%);
   }
@@ -1271,35 +1007,7 @@
   .opticalChapter {
     background: none;
   }
-  .worldChapter::before {
-    content: 'ARTISTIC SYSTEM PORTRAIT · NOT TO SCALE';
-    position: absolute;
-    top: calc(58svh + 10px);
-    left: 26px;
-    font-family: var(--font-mono);
-    font-size: 6px;
-    letter-spacing: 0.1em;
-    color: #b4c2bf;
-  }
-  .observerChapter::before {
-    content: 'FICTIONAL OBSERVER · ORIGINAL ART';
-    position: absolute;
-    top: calc(50% - 8svh);
-    left: 26px;
-    font-family: var(--font-mono);
-    font-size: 6px;
-    color: #c0cfc6;
-  }
-  .targetReticle {
-    left: calc(50% - 60px);
-    top: calc(50% - 25svh - 60px);
-  }
-  .targetReticle span {
-    top: 138px;
-  }
-  .targetReticle small {
-    top: 155px;
-  }
+
   .fullChapter {
     padding: 110px 25px;
     min-height: auto;
@@ -1440,29 +1148,7 @@
   .footer .releaseNote {
     font-size: 7px;
   }
-  .controls {
-    padding: 5px 14px 43px;
-    gap: 10px;
-    min-height: 90px;
-  }
-  .chapterProgress {
-    gap: 7px;
-    font-size: 7px;
-  }
-  .chapterProgress > div {
-    width: 36px;
-  }
-  .controlActions {
-    margin-right: 0;
-    gap: 4px;
-  }
-  .controlActions button {
-    font-size: 7px;
-    min-width: 27px;
-  }
-  .chapterName {
-    display: none;
-  }
+
   .reading .chapter,
   .reading .fullChapter {
     padding: 110px 25px 60px;
@@ -1483,23 +1169,15 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .experience * {
+  :global(html:not([data-motion='full'])) .experience * {
     transition: none !important;
-  }
-  .poster {
-    transition: none;
   }
 }
 :global(html[data-motion='reduced']) .experience * {
   transition: none !important;
 }
 @media print {
-  .header,
   .stage,
-  .controls,
-  .menu {
-    display: none !important;
-  }
   .chapter {
     min-height: 0 !important;
     padding: 30px !important;
@@ -1525,5 +1203,690 @@
   }
   .footer {
     padding: 30px;
+  }
+}
+
+/* Each body gets an uninterrupted portrait; the explorer uses the existing spatial canvas. */
+.worldExplore {
+  margin: 18px 0;
+}
+.exploreMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  width: 100%;
+  padding: 13px 0;
+  border: 0;
+  border-block: 1px solid #a0b5a740;
+  background: none;
+  color: #d9eac9;
+  font: 12px var(--font-body);
+  text-align: left;
+}
+.exploreMain span {
+  font-size: 19px;
+}
+.worldDestinations {
+  display: block;
+  margin-bottom: 8px;
+}
+.worldDestinations > span {
+  display: block;
+  font: 7px var(--font-mono);
+  letter-spacing: 0.13em;
+  color: #a9b5af;
+  margin: 0 0 7px;
+}
+.worldDestinations > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 6px;
+}
+.worldDestinations button {
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: none;
+  color: #c4d3c8;
+  font: 10px var(--font-mono);
+  min-height: 32px;
+  padding: 6px 7px;
+}
+.worldDestinations button[aria-pressed='true'] {
+  color: #e0eccb;
+  border-color: #c3d5ad;
+  background: #b0c6a010;
+}
+.worldDestinations button:hover {
+  color: #f2f1dc;
+  background: #b0c6a018;
+}
+.exploreMain .exploreSubject {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 14px;
+}
+.chapter[data-world] .exploreMain .exploreSubject small {
+  display: inline;
+  font: 10px var(--font-body);
+  color: #b5c2b5;
+}
+.chapter[data-world] .worldAnnotation {
+  top: calc(50% + 25svh);
+  right: 5%;
+  width: 43%;
+  max-width: 650px;
+}
+.chapter[data-world] .worldAnnotation > span {
+  display: none;
+}
+.chapter[data-world] .worldAnnotation > p {
+  margin: 10px 0;
+}
+.chapter[data-world] .worldAnnotation small {
+  display: none;
+}
+.inspecting {
+  position: fixed;
+  inset: 0;
+  height: 100dvh;
+  margin: 0;
+  z-index: 100;
+  pointer-events: auto;
+  background: radial-gradient(ellipse at 30% 45%, #1c3036 0, #0b151c 40%, #080e13 74%);
+}
+.inspecting .shade,
+.inspecting .grain {
+  display: none;
+}
+.inspecting .spaceCanvas {
+  width: calc(100% - 375px) !important;
+  height: 100% !important;
+  touch-action: none;
+  cursor: grab;
+}
+.inspecting .spaceCanvas:active {
+  cursor: grabbing;
+}
+.inspector {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: #e3e8e0;
+}
+.inspector button,
+.inspector a {
+  pointer-events: auto;
+}
+.inspectorHeader {
+  position: absolute;
+  inset: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 36px;
+  gap: 24px;
+  background: linear-gradient(#0a111b, #0a111b00);
+}
+.inspectorHeader > div {
+  display: grid;
+  gap: 12px;
+}
+.inspectorHeader span,
+.inspectorHeader strong {
+  font: 9px var(--font-mono);
+  letter-spacing: 0.16em;
+}
+.inspectorHeader strong {
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+}
+.inspectorHeader i {
+  color: #7b998a;
+  font-style: normal;
+  margin: 0 9px;
+}
+.inspectorHeader button {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  background: none;
+  border: 1px solid #a4b4b24d;
+  color: #e2e7dd;
+  padding: 10px 15px;
+  font-size: 12px;
+}
+.inspectorHeader button span {
+  font: 22px var(--font-body);
+}
+.inspectorPanel {
+  position: absolute;
+  inset: 119px 0 0 auto;
+  width: 375px;
+  padding: 17px 34px 30px;
+  border-left: 1px solid #b1bdc01c;
+  overflow: auto;
+  pointer-events: auto;
+  scrollbar-width: thin;
+}
+.inspectKicker {
+  display: flex;
+  justify-content: space-between;
+  font: 8px var(--font-mono);
+  letter-spacing: 0.13em;
+  color: #c0cfa9;
+}
+.inspectorPanel h2 {
+  font: clamp(29px, 3vw, 43px)/1.08 var(--font-body);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  margin: 25px 0 18px;
+}
+.inspectDescription {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #aebdc0;
+}
+.inspectWorlds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 29px 0 20px;
+}
+.inspectWorlds button {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  border: 1px solid #718a8a55;
+  background: #12212a66;
+  color: #c4d4d1;
+  padding: 10px 11px;
+  font: 10px var(--font-mono);
+}
+.inspectWorlds button[aria-pressed='true'],
+.inspectObjects button[aria-pressed='true'] {
+  color: #11241f;
+  background: #d1e1bf;
+  border-color: #d1e1bf;
+}
+.inspectRelated {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border: 0;
+  border-block: 1px solid #a6b9b22e;
+  background: transparent;
+  color: #d2e1bf;
+  padding: 15px 0;
+  font-size: 11px;
+}
+.inspectObjects {
+  margin-top: 29px;
+}
+.inspectObjects > p {
+  font: 8px var(--font-mono);
+  letter-spacing: 0.12em;
+  color: #9aaeb1;
+  margin-bottom: 15px;
+}
+.inspectObjects > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 6px;
+}
+.inspectObjects button {
+  border: 1px solid #7d8d903d;
+  color: #bdcbc8;
+  background: transparent;
+  padding: 9px 10px;
+  font-size: 10px;
+}
+.inspectCredit {
+  font: 9px/1.7 var(--font-mono);
+  color: #8fa3a7;
+  margin: 27px 0 16px;
+}
+.inspectSource {
+  font-size: 11px;
+  color: #c9d9c1;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 0;
+}
+.inspectorTools {
+  position: absolute;
+  bottom: 55px;
+  left: calc((100% - 375px) / 2);
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  white-space: nowrap;
+}
+.inspectorTools button {
+  min-width: 38px;
+  min-height: 38px;
+  padding: 7px 12px;
+  color: #c9d9d3;
+  background: #0e1c24cc;
+  border: 1px solid #86a6a44a;
+  font: 14px var(--font-body);
+}
+.inspectorTools button:last-child {
+  font-size: 10px;
+  padding-inline: 16px;
+}
+.inspectorTools button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.inspectHint {
+  position: absolute;
+  bottom: 20px;
+  left: calc((100% - 375px) / 2);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font: 7px var(--font-mono);
+  letter-spacing: 0.1em;
+  color: #9db1b4;
+}
+.inspectHint span {
+  margin: 0 9px;
+  color: #d2c097;
+}
+.inspector button:hover {
+  border-color: #a3bca3;
+  color: #e9efd8;
+}
+.inspector button[aria-pressed='true']:hover {
+  color: #11241f;
+}
+@media (max-width: 760px) {
+  .chapter[data-world] .worldAnnotation {
+    display: block;
+    top: 44svh;
+    right: 26px;
+    left: 26px;
+    width: auto;
+    max-width: none;
+  }
+  .chapter[data-world] .worldAnnotation > span,
+  .chapter[data-world] .worldAnnotation > p {
+    display: none;
+  }
+  .worldExplore {
+    margin: 0;
+  }
+  .exploreMain {
+    padding: 9px 0;
+    font-size: 11px;
+  }
+  .worldDestinations {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .worldDestinations button {
+    font-size: 9px;
+    min-height: 32px;
+    padding: 6px;
+  }
+  .worldDestinations > span {
+    font-size: 6px;
+    margin-bottom: 5px;
+  }
+  .worldChapter:has([data-has-system='true']) {
+    padding-top: 64svh;
+  }
+  .worldChapter:has([data-has-system='true'])::before {
+    top: calc(64svh + 10px);
+  }
+  .inspecting .spaceCanvas {
+    width: 100% !important;
+    height: 54dvh !important;
+    min-height: 300px;
+  }
+  .inspectorHeader {
+    padding: 19px 21px;
+  }
+  .inspectorHeader > div {
+    gap: 8px;
+  }
+  .inspectorHeader > div > span {
+    font-size: 7px;
+  }
+  .inspectorHeader strong {
+    font-size: 10px;
+  }
+  .inspectorHeader button {
+    padding: 6px 11px;
+    gap: 11px;
+    font-size: 10px;
+  }
+  .inspectorPanel {
+    inset: max(54dvh, 300px) 0 0;
+    width: 100%;
+    padding: 21px 26px 35px;
+    border-left: 0;
+    border-top: 1px solid #a8b9b426;
+    background: #0a141d;
+  }
+  .inspectKicker {
+    margin-top: 0;
+  }
+  .inspectorPanel h2 {
+    font-size: 31px;
+    margin: 14px 0 10px;
+  }
+  .inspectDescription {
+    font-size: 12px;
+  }
+  .inspectWorlds {
+    margin: 22px 0 17px;
+    gap: 6px;
+  }
+  .inspectorTools {
+    bottom: auto;
+    top: calc(max(54dvh, 300px) - 47px);
+    left: 50%;
+    gap: 5px;
+  }
+  .inspectorTools button {
+    min-height: 32px;
+    min-width: 32px;
+    padding: 4px 9px;
+  }
+  .inspectHint {
+    bottom: auto;
+    top: calc(max(54dvh, 300px) - 78px);
+    left: 50%;
+    font-size: 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .inspector * {
+    scroll-behavior: auto;
+  }
+}
+
+.chapter[data-world] .worldAnnotation > p {
+  display: none;
+}
+.chapter[data-world] .worldAnnotation {
+  top: calc(50% + 27svh);
+}
+.chapter[data-world] .worldExplore {
+  margin: 8px 0;
+}
+@media (max-width: 760px) {
+  .chapter[data-world] .worldAnnotation {
+    position: absolute;
+    top: 44svh;
+    padding: 0;
+  }
+  .worldChapter:has([data-has-system='false']) .worldAnnotation {
+    top: 50svh;
+  }
+}
+
+.experience.exploring {
+  z-index: 100;
+}
+.exploring > [inert] {
+  /* Hide the complete story layer, including children with explicit visibility. */
+  opacity: 0;
+  visibility: hidden;
+}
+.inspectorTools button:nth-last-child(2) {
+  font-size: 10px;
+  padding-inline: 12px;
+}
+@media (max-width: 760px) {
+  .inspectorTools button:last-child,
+  .inspectorTools button:nth-last-child(2) {
+    font-size: 9px;
+    padding-inline: 8px;
+  }
+}
+
+@media (min-width: 761px) and (max-height: 800px) {
+  .chapter[data-world] .copy h2 {
+    font-size: 47px;
+    line-height: 1.03;
+    margin-bottom: 23px;
+  }
+  .chapter[data-world] .worldIndex {
+    margin-bottom: 22px;
+  }
+  .chapter[data-world] .copy > p {
+    font-size: 12px;
+    line-height: 1.75;
+  }
+  .chapter[data-world] .worldStats {
+    margin: 22px 0 14px;
+    padding: 14px 0;
+  }
+  .chapter[data-world] .worldStats dd {
+    font-size: 28px;
+  }
+  .chapter[data-world] .source {
+    margin-top: 19px;
+    font-size: 7px;
+  }
+  .chapter[data-world] .worldAnnotation {
+    top: calc(50% + 25svh);
+  }
+  .worldDestinations > span {
+    display: none;
+  }
+}
+
+/* Reserve the fixed footer and focus-scroll inset inside the centered chapter viewport. */
+@media (min-width: 761px) {
+  .chapter[data-world] .worldAnnotation {
+    top: auto;
+    bottom: calc(50% - 50svh + 110px);
+  }
+}
+
+/* Black space stays dominant; only prepainted light and star layers move. */
+.spaceBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+  background: #000;
+}
+.spaceBackdrop svg {
+  position: absolute;
+  inset: -16% -6%;
+  width: 112%;
+  height: 132%;
+  will-change: transform;
+}
+.spaceLight {
+  position: absolute;
+  inset: 0;
+  will-change: transform, opacity;
+}
+.spaceBackdrop .galacticBand {
+  opacity: 0.58;
+  transform-origin: 65% 50%;
+  will-change: transform, opacity;
+}
+.spaceBlue {
+  background: radial-gradient(ellipse at 80% 44%, #183b4f 0%, #0a1422 28%, transparent 64%);
+  opacity: 0.18;
+}
+.spaceAmber {
+  background: radial-gradient(ellipse at 78% 50%, #3c2716 0%, #130d08 28%, transparent 61%);
+  opacity: 0;
+}
+.spaceViolet {
+  background: radial-gradient(ellipse at 72% 66%, #28213e 0%, #100a1c 28%, transparent 60%);
+  opacity: 0.04;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spaceBackdrop svg,
+  .spaceBackdrop .galacticBand,
+  .spaceLight {
+    will-change: auto;
+  }
+}
+.stage {
+  background: transparent;
+}
+.grain {
+  opacity: 0.022;
+}
+.shade {
+  background: linear-gradient(90deg, #00000070, transparent 52%);
+}
+.chapter[data-world] .worldAnnotation {
+  top: calc(50% - 50svh);
+  bottom: auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: none;
+  height: 100svh;
+  pointer-events: none;
+}
+.systemMap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.bodyTarget {
+  position: fixed;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  pointer-events: none;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  will-change: transform;
+}
+.bodyTarget .bodyName {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + var(--body-radius) + 6px);
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 160px;
+  padding: 5px 9px;
+  border-radius: 3px;
+  font: 10px var(--font-mono);
+  color: #eff1e7;
+  background: #06101cbb;
+  opacity: 0;
+  transition: opacity 140ms ease;
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .bodyTarget:hover .bodyName {
+    opacity: 1;
+  }
+}
+.bodyTarget:focus-visible {
+  outline: 1px solid #d3e7bc88;
+  outline-offset: 4px;
+}
+.bodyTarget:focus-visible .bodyName {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bodyTarget .bodyName {
+    transition: none;
+  }
+}
+.chapter[data-world].worldChapter::before {
+  display: none;
+}
+@media (max-width: 760px) {
+  .chapter[data-world].worldChapter {
+    padding-top: 72svh;
+  }
+  .chapter[data-world].worldChapter .worldAnnotation {
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+}
+
+/* The closing world belongs to this section, including its exit into the footer. */
+.closingPortrait {
+  position: absolute;
+  width: min(40vw, 68svh);
+  height: min(40vw, 68svh);
+  left: 72%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+@media (max-width: 760px) {
+  .closingPortrait {
+    width: min(78vw, 44svh);
+    height: min(78vw, 44svh);
+    left: 50%;
+    top: 31svh;
+  }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+:global(html):has(.experience) {
+  scroll-behavior: auto;
+  background: #000;
+}
+
+/* One semantic copy per world; its slot reserves the normal document layout. */
+.copySlot {
+  width: 40%;
+  max-width: 515px;
+}
+.copySlot > .copy {
+  width: 100%;
+  max-width: none;
+}
+.copySlot[data-copy-layout='staged'] > .copy {
+  position: fixed;
+  left: var(--copy-left);
+  top: 50%;
+  width: var(--copy-width);
+  transform: translate3d(0, calc(-50% + var(--copy-y, 0px)), 0);
+  opacity: var(--copy-opacity, 0);
+  visibility: var(--copy-visibility, hidden);
+  will-change: transform, opacity;
+}
+@media (max-width: 1100px) {
+  .copySlot {
+    width: 44%;
+  }
+}
+@media (max-width: 760px) {
+  .copySlot {
+    width: 100%;
+    max-width: none;
+  }
+}
+.reading .copySlot {
+  width: 100%;
+  max-width: 750px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .copySlot[data-copy-layout='staged'] > .copy {
+    will-change: auto;
   }
 }

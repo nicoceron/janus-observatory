@@ -1,0 +1,117 @@
+{
+  "world": "s10",
+  "blender": "5.2.1 LTS",
+  "source": "assets/blender/s10.blend",
+  "sourceSha256": "60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
+  "exports": [
+    {
+      "path": "apps/web/public/assets/blender/v1/s10/earth.glb",
+      "bytes": 672840,
+      "sha256": "6c303d92bbc5d0f04b579c30b34b65fe89a5009938d748a11f8e812f03d5e919",
+      "triangles": 25028,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_canopy",
+        "Landmark_windmill",
+        "Mechanism_windmill",
+        "Landmark_store",
+        "Activity_sail-barge_stops",
+        "Life_vessel_sail-barge_body",
+        "Cloud_0",
+        "Cloud_1",
+        "Study_aerostat",
+        "Study_lunar-base",
+        "Study_mars-base",
+        "Study_orbital-habitat"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s10/earth-mobile.glb",
+      "bytes": 595012,
+      "sha256": "d5b73b9220f0cb6a4aaebf8ae2e3bd334ae52317dabb47fe9a943493311e7e57",
+      "triangles": 22818,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_canopy",
+        "Landmark_windmill",
+        "Mechanism_windmill",
+        "Landmark_store",
+        "Activity_sail-barge_stops",
+        "Life_vessel_sail-barge_body",
+        "Cloud_0",
+        "Cloud_1",
+        "Study_aerostat",
+        "Study_lunar-base",
+        "Study_mars-base",
+        "Study_orbital-habitat"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s10/Moon.glb",
+      "bytes": 241040,
+      "sha256": "7fa905c8792c6744408cbe66619ca43f3e715f226c114f93cff8fa20e85bf906",
+      "triangles": 10420,
+      "parts": [
+        "S10_Moon"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s10/Mars.glb",
+      "bytes": 299608,
+      "sha256": "9834aae4f040aac0ac58bdc2d1aa4daab5c1387ec578b87d9cbeae0d851e7a1c",
+      "triangles": 13684,
+      "parts": [
+        "S10_Mars"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s10/Venus.glb",
+      "bytes": 113768,
+      "sha256": "9d5064f3fa837612a474235669196e50034998c95e86776c68d58d938f292880",
+      "triangles": 4688,
+      "parts": [
+        "S10_Venus"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s10/asteroids.glb",
+      "bytes": 83112,
+      "sha256": "7bdd6c2231d220722ad954955c05007ef280c576cf283baec318bd5437eeac90",
+      "triangles": 3476,
+      "parts": [
+        "S10_asteroids"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s10/outer.glb",
+      "bytes": 104192,
+      "sha256": "e722850c30e4c3b6323349a9964c1bbaec7d1890461a6aab324ba919395b9ff5",
+      "triangles": 4304,
+      "parts": [
+        "S10_outer"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s10/kuiper.glb",
+      "bytes": 123832,
+      "sha256": "b5825cb820ec52419a87ca2b853a4182a676cf09985bea460f2516904da1a43b",
+      "triangles": 5024,
+      "parts": [
+        "S10_kuiper"
+      ]
+    }
+  ],
+  "scenes": [
+    "S10 \u2022 asteroids",
+    "S10 \u2022 Earth",
+    "S10 \u2022 kuiper",
+    "S10 \u2022 Mars",
+    "S10 \u2022 Moon",
+    "S10 \u2022 outer",
+    "S10 \u2022 Venus"
+  ],
+  "interpretive": true,
+  "animations": "Editable 40-second route and articulation previews; web motion stays in R3F."
+}

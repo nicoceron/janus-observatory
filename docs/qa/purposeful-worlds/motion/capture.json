@@ -1,0 +1,322 @@
+{
+  "base": "http://127.0.0.1:3200",
+  "captures": [
+    {
+      "file": "s2-Earth-0.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 0,
+      "elapsed": 0
+    },
+    {
+      "file": "s2-Earth-1.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 1,
+      "elapsed": 4.2
+    },
+    {
+      "file": "s2-Earth-2.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 2,
+      "elapsed": 8.4
+    },
+    {
+      "file": "s2-Earth-3.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 3,
+      "elapsed": 12.600000000000001
+    },
+    {
+      "file": "s2-Earth-4.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 4,
+      "elapsed": 16.8
+    },
+    {
+      "file": "s2-Earth-5.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 5,
+      "elapsed": 21
+    },
+    {
+      "file": "s2-Earth-6.png",
+      "world": 2,
+      "selection": "Earth",
+      "frame": 6,
+      "elapsed": 25.200000000000003
+    },
+    {
+      "file": "s3-Earth-0.png",
+      "world": 3,
+      "selection": "Earth",
+      "frame": 0,
+      "elapsed": 0
+    },
+    {
+      "file": "s3-Earth-1.png",
+      "world": 3,
+      "selection": "Earth",
+      "frame": 1,
+      "elapsed": 4.2
+    },
+    {
+      "file": "s3-Earth-2.png",
+      "world": 3,
+      "selection": "Earth",
+      "frame": 2,
+      "elapsed": 8.4
+    },
+    {
+      "file": "s3-Earth-3.png",
+      "world": 3,
+      "selection": "Earth",
+      "frame": 3,
+      "elapsed": 12.600000000000001
+    },
+    {
+      "file": "s3-Earth-4.png",
+      "world": 3,
+      "selection": "Earth",
+      "frame": 4,
+      "elapsed": 16.8
+    },
+    {
+      "file": "s3-Earth-5.png",
+      "world": 3,
+      "selection": "Earth",
+      "frame": 5,
+      "elapsed": 21
+    },
+    {
+      "file": "s3-Earth-6.png",
+      "world": 3,
+      "selection": "Earth",
+      "frame": 6,
+      "elapsed": 25.200000000000003
+    },
+    {
+      "file": "s8-Earth-0.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 0,
+      "elapsed": 0
+    },
+    {
+      "file": "s8-Earth-1.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 1,
+      "elapsed": 4.2
+    },
+    {
+      "file": "s8-Earth-2.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 2,
+      "elapsed": 8.4
+    },
+    {
+      "file": "s8-Earth-3.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 3,
+      "elapsed": 12.600000000000001
+    },
+    {
+      "file": "s8-Earth-4.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 4,
+      "elapsed": 16.8
+    },
+    {
+      "file": "s8-Earth-5.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 5,
+      "elapsed": 21
+    },
+    {
+      "file": "s8-Earth-6.png",
+      "world": 8,
+      "selection": "Earth",
+      "frame": 6,
+      "elapsed": 25.200000000000003
+    },
+    {
+      "file": "s4-animal-deer-0.png",
+      "world": 4,
+      "selection": "animal:deer",
+      "frame": 0,
+      "elapsed": 0
+    },
+    {
+      "file": "s4-animal-deer-1.png",
+      "world": 4,
+      "selection": "animal:deer",
+      "frame": 1,
+      "elapsed": 2.3
+    },
+    {
+      "file": "s4-animal-deer-2.png",
+      "world": 4,
+      "selection": "animal:deer",
+      "frame": 2,
+      "elapsed": 4.6
+    },
+    {
+      "file": "s4-animal-deer-3.png",
+      "world": 4,
+      "selection": "animal:deer",
+      "frame": 3,
+      "elapsed": 6.8999999999999995
+    },
+    {
+      "file": "s4-animal-deer-4.png",
+      "world": 4,
+      "selection": "animal:deer",
+      "frame": 4,
+      "elapsed": 9.2
+    },
+    {
+      "file": "s4-animal-deer-5.png",
+      "world": 4,
+      "selection": "animal:deer",
+      "frame": 5,
+      "elapsed": 11.5
+    },
+    {
+      "file": "s6-machine-maintenance-walker-0.png",
+      "world": 6,
+      "selection": "machine:maintenance-walker",
+      "frame": 0,
+      "elapsed": 0
+    },
+    {
+      "file": "s6-machine-maintenance-walker-1.png",
+      "world": 6,
+      "selection": "machine:maintenance-walker",
+      "frame": 1,
+      "elapsed": 2.3
+    },
+    {
+      "file": "s6-machine-maintenance-walker-2.png",
+      "world": 6,
+      "selection": "machine:maintenance-walker",
+      "frame": 2,
+      "elapsed": 4.6
+    },
+    {
+      "file": "s6-machine-maintenance-walker-3.png",
+      "world": 6,
+      "selection": "machine:maintenance-walker",
+      "frame": 3,
+      "elapsed": 6.8999999999999995
+    },
+    {
+      "file": "s6-machine-maintenance-walker-4.png",
+      "world": 6,
+      "selection": "machine:maintenance-walker",
+      "frame": 4,
+      "elapsed": 9.2
+    },
+    {
+      "file": "s6-machine-maintenance-walker-5.png",
+      "world": 6,
+      "selection": "machine:maintenance-walker",
+      "frame": 5,
+      "elapsed": 11.5
+    },
+    {
+      "file": "s5-animal-bio-ray-0.png",
+      "world": 5,
+      "selection": "animal:bio-ray",
+      "frame": 0,
+      "elapsed": 0
+    },
+    {
+      "file": "s5-animal-bio-ray-1.png",
+      "world": 5,
+      "selection": "animal:bio-ray",
+      "frame": 1,
+      "elapsed": 2.3
+    },
+    {
+      "file": "s5-animal-bio-ray-2.png",
+      "world": 5,
+      "selection": "animal:bio-ray",
+      "frame": 2,
+      "elapsed": 4.6
+    },
+    {
+      "file": "s5-animal-bio-ray-3.png",
+      "world": 5,
+      "selection": "animal:bio-ray",
+      "frame": 3,
+      "elapsed": 6.8999999999999995
+    },
+    {
+      "file": "s5-animal-bio-ray-4.png",
+      "world": 5,
+      "selection": "animal:bio-ray",
+      "frame": 4,
+      "elapsed": 9.2
+    },
+    {
+      "file": "s5-animal-bio-ray-5.png",
+      "world": 5,
+      "selection": "animal:bio-ray",
+      "frame": 5,
+      "elapsed": 11.5
+    },
+    {
+      "file": "s10-vessel-sail-barge-0.png",
+      "world": 10,
+      "selection": "vessel:sail-barge",
+      "frame": 0,
+      "elapsed": 0
+    },
+    {
+      "file": "s10-vessel-sail-barge-1.png",
+      "world": 10,
+      "selection": "vessel:sail-barge",
+      "frame": 1,
+      "elapsed": 2.3
+    },
+    {
+      "file": "s10-vessel-sail-barge-2.png",
+      "world": 10,
+      "selection": "vessel:sail-barge",
+      "frame": 2,
+      "elapsed": 4.6
+    },
+    {
+      "file": "s10-vessel-sail-barge-3.png",
+      "world": 10,
+      "selection": "vessel:sail-barge",
+      "frame": 3,
+      "elapsed": 6.8999999999999995
+    },
+    {
+      "file": "s10-vessel-sail-barge-4.png",
+      "world": 10,
+      "selection": "vessel:sail-barge",
+      "frame": 4,
+      "elapsed": 9.2
+    },
+    {
+      "file": "s10-vessel-sail-barge-5.png",
+      "world": 10,
+      "selection": "vessel:sail-barge",
+      "frame": 5,
+      "elapsed": 11.5
+    }
+  ],
+  "errors": [],
+  "scope": "Real-time local Chromium captures. Full-world trips include arrival and task pauses; close-up studies show articulation. Seven pause checks compare exact canvas pixels."
+}
