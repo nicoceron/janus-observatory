@@ -52,22 +52,23 @@ for (const route of routes) {
 test('/ guided mode has no automatically detectable WCAG A/AA violations', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  await expect(page.locator('.story-guided')).toBeVisible();
+  await expect(page.locator('[data-voyage]')).toBeVisible();
 
   const results = await analyzeStablePage(page);
 
   expect(results.violations).toEqual([]);
 });
 
-test('/ reading mode is entered and axe-scanned as the complete article', async ({ page }) => {
+test('/ WebGL fallback is axe-scanned as the complete article', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.addInitScript(() => {
+    HTMLCanvasElement.prototype.getContext = () => null;
+  });
   await page.goto('/');
 
-  await page.getByRole('button', { name: 'Read without animation' }).click();
-  await expect(page.locator('.story-reading')).toBeVisible();
-  await expect(page.locator('.storySticky')).toBeHidden();
-  await expect(page.getByRole('button', { name: 'Return to visual story' })).toBeVisible();
-  await expect(page.getByLabel('Story chapters').getByRole('article')).toHaveCount(31);
+  await expect(page.locator('[data-mode="reading"]')).toBeVisible();
+  await expect(page.locator('[data-stage-status]')).toBeHidden();
+  await expect(page.locator('[data-chapter]')).toHaveCount(17);
 
   const results = await analyzeStablePage(page);
 

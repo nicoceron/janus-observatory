@@ -1,361 +1,190 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { chromium, expect, type Page } from '@playwright/test';
+import { chapters } from '../apps/web/app/voyage/worlds';
 
-import { chromium, type Page } from '@playwright/test';
-
-const baseUrl = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:3000';
-const outputRoot = resolve(process.argv[2] ?? 'docs/qa/premium-motion-2026-08-31');
+const baseUrl = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:3200';
+const outputRoot = resolve(process.argv[2] ?? 'docs/qa/low-poly/motion');
 const hardwareGpu = process.env.JANUS_QA_HARDWARE_GPU === '1';
+const issues: { kind: string; detail: string }[] = [];
+const captures: unknown[] = [];
+const cadence: unknown[] = [];
 
-type FrameRecord = {
-  description: string;
-  file: string;
-  state: {
-    activeStep: string | null;
-    branchProgress: string;
-    motionPhase: string | null;
-    observerProgress: string | null;
-    renderState: string | null;
-    sceneHandoff: string | null;
-    scrollDirection: string | null;
-    transitionDirection: string | null;
-  };
-};
+async function jump(page: Page, id: string) {
+  const index = chapters.findIndex((chapter) => chapter.id === id);
+  await page.getByRole('button', { name: 'Index +', exact: true }).click();
+  await page
+    .getByRole('navigation', { name: 'Story index' })
+    .getByRole('button', {
+      name: String(index).padStart(2, '0') + ' ' + chapters[index].label + ' ↗',
+      exact: true,
+    })
+    .click();
+  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', id);
+}
 
-type RuntimeIssue = {
-  detail: string;
-  kind: 'console' | 'pageerror' | 'requestfailed';
-};
+async function capture(page: Page, file: string) {
+  await page.screenshot({ path: resolve(outputRoot, file) });
+  captures.push({
+    file,
+    chapter: await page.locator('[data-voyage]').getAttribute('data-active-chapter'),
+    scene: await page.locator('canvas').getAttribute('data-scene'),
+    observerTime: await page.locator('canvas').getAttribute('data-observer-time'),
+  });
+}
 
-const frames: FrameRecord[] = [];
-const issues: RuntimeIssue[] = [];
-const frameCadence: unknown[] = [];
-
-async function sampleObserverCadence(page: Page, viewport: string) {
-  await positionStep(page, 13, 0.1);
-  await page.waitForTimeout(1400);
-  // A documented string expression keeps tsx's injected __name helper out of
-  // Playwright's isolated browser context. No production page globals are patched.
-  const { times, states } = await page.evaluate<{ times: number[]; states: string[] }>(`
-      new Promise((resolve) => {
-        const element = document.querySelector('#story-step-14');
-        const bounds = element.getBoundingClientRect();
-        const start = scrollY + bounds.top - innerHeight * 0.1;
-        const travel = bounds.height - innerHeight * 0.96;
-        const times = [];
-        const states = new Set();
-        let first = 0,
-          previous = 0;
-        const frame = (now) => {
-          states.add(document.querySelector('.storyStage')?.getAttribute('data-active-step'));
-          if (!first) first = previous = now;
-          else times.push(now - previous);
-          previous = now;
-          const t = Math.min(1, (now - first) / 6000);
-          scrollTo({
-            top: start + (travel * (1 - Math.cos(t * Math.PI * 2))) / 2,
-            behavior: 'instant',
-          });
-          if (t < 1) requestAnimationFrame(frame);
-          else resolve({times, states: [...states]});
-        };
-        requestAnimationFrame(frame);
-      })
-  `);
-  if (states.some((state) => state !== 'observer-turn')) {
-    issues.push({
-      kind: 'pageerror',
-      detail: `Cadence sample left the observer: ${states.join(', ')}`,
-    });
-  }
-  const sorted = times.toSorted((a, b) => a - b);
-  const percentile = (p: number) =>
-    sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * p))];
-  frameCadence.push({
-    viewport,
-    samples: times.length,
-    activeStates: states,
-    p50Ms: percentile(0.5),
-    p95Ms: percentile(0.95),
-    p99Ms: percentile(0.99),
-    longestMs: sorted.at(-1),
-    meanCadenceHz: (1000 * times.length) / times.reduce((a, b) => a + b, 0),
-    browser: await page.evaluate(() => navigator.userAgent),
-    graphics: await page.evaluate(() => {
-      const gl = document.createElement('canvas').getContext('webgl2');
-      const info = gl?.getExtension('WEBGL_debug_renderer_info');
-      return {
-        webglDriver: gl && info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : 'unavailable',
-        stage: document.querySelector('.earthStage')?.getAttribute('data-render-state'),
+async function measure(page: Page, label: string, travel: boolean) {
+  // A string expression avoids tsx's injected __name helper in the browser isolate.
+  const result = await page.evaluate<{
+    times: number[];
+    scenes: string[];
+    initialY: number;
+    finalY: number;
+  }>(`
+    new Promise((resolve) => {
+      const times = [], scenes = new Set(), initialY = scrollY;
+      const distance = document.querySelector('#s2').getBoundingClientRect().top - document.querySelector('#s1').getBoundingClientRect().top;
+      let first = 0, previous = 0;
+      const frame = (now) => {
+        if (!first) first = previous = now;
+        else times.push(now - previous);
+        previous = now;
+        const t = Math.min(1, (now - first) / 6000);
+        if (${travel}) scrollTo({ top: initialY + distance * (1 - Math.cos(t * Math.PI * 2)) / 2, behavior: 'instant' });
+        scenes.add(document.querySelector('[data-voyage]').getAttribute('data-active-chapter'));
+        if (t < 1) requestAnimationFrame(frame);
+        else resolve({ times, scenes: [...scenes], initialY, finalY: scrollY });
       };
-    }),
-    hardwareGpuRequested: hardwareGpu,
-    scope:
-      'Unthrottled headless Chromium requestAnimationFrame cadence during six-second native forward/reverse scroll after asset warm-up. Not GPU presentation timing or physical mobile-device certification.',
+      requestAnimationFrame(frame);
+    })
+  `);
+  const sorted = result.times.toSorted((a, b) => a - b);
+  cadence.push({
+    label,
+    samples: sorted.length,
+    p50Ms: sorted[Math.floor(sorted.length * 0.5)],
+    p95Ms: sorted[Math.floor(sorted.length * 0.95)],
+    p99Ms: sorted[Math.floor(sorted.length * 0.99)],
+    longestMs: sorted.at(-1),
+    meanHz: (1000 * sorted.length) / sorted.reduce((a, b) => a + b, 0),
+    scenes: result.scenes,
+    returnsToStartingScroll: Math.abs(result.initialY - result.finalY) < 1,
   });
 }
 
-async function waitForPaint(page: Page, delay = 70) {
-  await page.evaluate(
-    () =>
-      new Promise<void>((resolvePaint) => {
-        window.requestAnimationFrame(() => window.requestAnimationFrame(() => resolvePaint()));
-      }),
-  );
-  if (delay > 0) await page.waitForTimeout(delay);
-}
-
-async function capture(page: Page, file: string, description: string, delay = 70) {
-  await waitForPaint(page, delay);
-  await page.screenshot({ animations: 'allow', path: resolve(outputRoot, file) });
-  const state = await page.evaluate(() => {
-    const story = document.querySelector<HTMLElement>('.story');
-    const stage = document.querySelector<HTMLElement>('.storyStage');
-    const earth = document.querySelector<HTMLElement>('.earthStage');
-    return {
-      activeStep: stage?.dataset.activeStep ?? null,
-      branchProgress: earth?.dataset.branchProgress ?? '',
-      motionPhase: story?.dataset.motionPhase ?? null,
-      observerProgress: earth?.dataset.observerProgress ?? null,
-      renderState: earth?.dataset.renderState ?? null,
-      sceneHandoff: stage?.dataset.sceneHandoff ?? null,
-      scrollDirection: story?.dataset.scrollDirection ?? null,
-      transitionDirection: story?.dataset.transitionDirection ?? null,
-    };
-  });
-  frames.push({ description, file, state });
-}
-
-async function positionStep(page: Page, index: number, topViewportRatio: number) {
-  const step = page.locator(`#story-step-${index + 1}`);
-  await step.waitFor({ state: 'attached' });
-  await step.evaluate((element, ratio) => {
-    const target =
-      window.scrollY + element.getBoundingClientRect().top - window.innerHeight * Number(ratio);
-    window.scrollTo({ left: 0, top: Math.max(0, target), behavior: 'instant' });
-  }, topViewportRatio);
-}
-
-function observeRuntime(page: Page) {
+function observe(page: Page) {
+  page.on('pageerror', (error) => issues.push({ kind: 'pageerror', detail: error.message }));
   page.on('console', (message) => {
-    if (message.type() === 'error') {
-      issues.push({ detail: message.text(), kind: 'console' });
-    }
-  });
-  page.on('pageerror', (error) => {
-    issues.push({ detail: error.message, kind: 'pageerror' });
+    if (message.type() === 'error') issues.push({ kind: 'console', detail: message.text() });
   });
   page.on('requestfailed', (request) => {
-    const detail = `${request.failure()?.errorText ?? 'request failed'} ${request.url()}`;
-    if (!detail.includes('ERR_ABORTED') && !detail.includes('webpack-hmr')) {
-      issues.push({ detail, kind: 'requestfailed' });
-    }
+    const error = request.failure()?.errorText ?? '';
+    if (!error.includes('ERR_ABORTED') && !error.includes('cancelled'))
+      issues.push({ kind: 'requestfailed', detail: error + ' ' + request.url() });
   });
-}
-
-async function startStory(page: Page) {
-  await page.getByRole('button', { exact: true, name: 'Start story' }).click();
-  await page.locator('.earthStage[data-spatial-consent]').waitFor();
-  if ((await page.locator('.earthStage').getAttribute('data-spatial-consent')) === 'required') {
-    await page.getByRole('button', { name: 'Open interactive view' }).click();
-  }
-  await page.waitForFunction(
-    () => {
-      const state = document.querySelector('.earthStage')?.getAttribute('data-render-state');
-      return state === 'ready' || state === 'failed';
-    },
-    undefined,
-    { timeout: 30_000 },
-  );
 }
 
 await mkdir(outputRoot, { recursive: true });
-// Chromium documents --enable-gpu as the opt-in that disables forced software
-// rendering in headless mode. Keep the software receipt separate for comparison.
-// https://chromium.googlesource.com/chromium/src/+/HEAD/docs/gpu/using-gpu-hardware-in-headless-chrome.md
 const browser = await chromium.launch({
   headless: true,
   args: hardwareGpu
     ? ['--enable-gpu', ...(process.platform === 'darwin' ? ['--use-angle=metal'] : [])]
     : [],
 });
-
+let graphics: unknown;
 try {
-  const page = await browser.newPage({ viewport: { height: 900, width: 1440 } });
-  observeRuntime(page);
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.addInitScript(() => window.sessionStorage.clear());
-  await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
-  await page.evaluate(() => document.fonts.ready);
-  await page.locator('[data-motion-source="native-svg-gsap"]').waitFor({ state: 'visible' });
-  await page.waitForTimeout(1_100);
-  await capture(
-    page,
-    '01-hero-settle.png',
-    'Local hero orbital field after its authored settle.',
-    0,
-  );
-  await page.evaluate(() => window.scrollTo(0, 260));
-  await capture(page, '02-hero-parallax.png', 'Hero after passive native-scroll parallax.', 40);
-  await page.evaluate(() => window.scrollTo(0, 0));
-
-  await startStory(page);
-
-  for (const [suffix, ratio, description] of [
-    ['03-branch-early.png', 0.62, 'Branch trunk begins before the families arrive.'],
-    ['04-branch-mid.png', 0.4, 'Family paths separate at mid-draw.'],
-    ['05-branch-late.png', 0.12, 'Scenario limbs and worlds arrive with stagger.'],
-    ['06-branch-settle.png', -0.1, 'Complete branch target state.'],
-  ] as const) {
-    await positionStep(page, 1, ratio);
-    await capture(page, suffix, description, 55);
-  }
-
-  await positionStep(page, 2, 0.35);
-  await capture(
-    page,
-    '07-branch-all.png',
-    'All ten worlds in their complete authored branch state.',
-    280,
-  );
-  await positionStep(page, 1, 0.24);
-  await capture(
-    page,
-    '08-branch-reverse.png',
-    'Reverse scroll redraws toward the same deterministic state.',
-    20,
-  );
-
-  const captureWorldHandoff = async (file: string, description: string, delay: number) => {
-    await positionStep(page, 1, 0.24);
-    await page.waitForFunction(
-      () =>
-        document.querySelector('.storyStage')?.getAttribute('data-active-step') ===
-        'possibility-families',
+  for (const mobile of [false, true]) {
+    const name = mobile ? 'portrait' : 'desktop';
+    const context = await browser.newContext({
+      viewport: mobile ? { width: 390, height: 844 } : { width: 1440, height: 900 },
+      deviceScaleFactor: 1,
+      isMobile: mobile,
+      hasTouch: mobile,
+    });
+    const page = await context.newPage();
+    observe(page);
+    await page.goto(baseUrl);
+    await page.getByRole('button', { name: 'Full', exact: true }).click();
+    await expect(page.locator('[data-stage-status]')).toHaveAttribute(
+      'data-stage-status',
+      'ready',
+      { timeout: 30000 },
     );
-    await page.waitForTimeout(1_550);
-
-    await positionStep(page, 3, 0.2);
-    await page.waitForFunction(
-      () =>
-        document.querySelector('.storyStage')?.getAttribute('data-active-step') === 'scenario-s1',
-    );
-    await capture(page, file, description, delay);
-  };
-
-  await captureWorldHandoff(
-    '09-world-handoff-early.png',
-    'Selected world handoff while native chapter travel settles.',
-    0,
-  );
-  await captureWorldHandoff(
-    '10-world-handoff-mid.png',
-    'Selected world handoff during eased travel.',
-    420,
-  );
-  await captureWorldHandoff(
-    '11-world-handoff-settle.png',
-    'Selected world in its complete target state.',
-    1_650,
-  );
-
-  await page.getByLabel('Choose story chapter').click();
-  await page.getByRole('button', { exact: true, name: 'Chapter 03: Observer' }).click();
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.storyStage')?.getAttribute('data-active-step') === 'observer-turn',
-  );
-  await page.waitForTimeout(1_600);
-
-  for (const [suffix, ratio, description] of [
-    ['12-observer-establish.png', -0.18, 'Observer silhouette and camera establish first.'],
-    ['13-observer-focus.png', -0.48, 'Observer focus and reach enter after camera establishment.'],
-    [
-      '14-observer-follow-through.png',
-      -1.08,
-      'Authored focus settles before the optical-axis camera move.',
-    ],
-    ['15-observer-settle.png', -1.48, 'Observer sequence converges on its complete state.'],
-  ] as const) {
-    await positionStep(page, 13, ratio);
-    await page.waitForFunction(
-      () =>
-        document.querySelector('.storyStage')?.getAttribute('data-active-step') === 'observer-turn',
-    );
-    await capture(page, suffix, description, 95);
-    if (frames.at(-1)?.state.activeStep !== 'observer-turn') {
-      throw new Error(`Observer frame ${suffix} captured outside its authored chapter.`);
+    await page.evaluate(() => document.fonts.ready);
+    if (!mobile)
+      graphics = await page.evaluate(() => {
+        const gl = document.querySelector('canvas')?.getContext('webgl2');
+        const extension = gl?.getExtension('WEBGL_debug_renderer_info');
+        return {
+          renderer:
+            extension && gl ? gl.getParameter(extension.UNMASKED_RENDERER_WEBGL) : 'unavailable',
+          userAgent: navigator.userAgent,
+        };
+      });
+    await jump(page, 's1');
+    await page.waitForTimeout(700);
+    await measure(page, name + ' native forward/reverse world transition', true);
+    await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 's1');
+    await jump(page, 'observer');
+    await page.waitForTimeout(700);
+    await measure(page, name + ' autonomous organism, stationary scroll', false);
+    for (let frame = 0; frame < 20; frame++) {
+      await capture(page, name + '-organism-' + String(frame).padStart(2, '0') + '.png');
+      await page.waitForTimeout(1000);
     }
+    await page.getByRole('link', { name: 'Look through the telescope', exact: true }).click();
+    await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'eyepiece');
+    await capture(page, name + '-eyepiece.png');
+    await page.getByRole('link', { name: 'Step back from the eyepiece', exact: true }).click();
+    await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 'observer');
+    await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'exterior');
+    // The active chapter changes halfway through travel; freeze only after native travel settles.
+    await expect(page.locator('canvas')).toHaveAttribute('data-scene', '12.000');
+    await page.getByRole('button', { name: 'Reduced', exact: true }).click();
+    await expect(page.locator('[data-voyage]')).toHaveAttribute('data-mode', 'reduced');
+    await page.waitForTimeout(150);
+    const frozen = await page.locator('canvas').screenshot();
+    await page.waitForTimeout(450);
+    expect(frozen.equals(await page.locator('canvas').screenshot())).toBe(true);
+    await capture(page, name + '-reduced-observer.png');
+    await page
+      .locator('canvas')
+      .evaluate((canvas) =>
+        canvas.dispatchEvent(new Event('webglcontextlost', { cancelable: true })),
+      );
+    await expect(page.locator('[data-stage-status]')).toHaveAttribute(
+      'data-stage-status',
+      'fallback',
+    );
+    await expect(page.getByRole('button', { name: 'Retry 3D' })).toBeVisible();
+    await page.getByRole('button', { name: 'Retry 3D' }).click();
+    await expect(page.locator('[data-stage-status]')).toHaveAttribute(
+      'data-stage-status',
+      'ready',
+      { timeout: 30000 },
+    );
+    await jump(page, 's9');
+    await page.setViewportSize(mobile ? { width: 844, height: 390 } : { width: 1100, height: 850 });
+    await jump(page, 's9');
+    await expect(page.locator('canvas')).toHaveAttribute('data-scene', '10.000');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    await context.close();
   }
-
-  await sampleObserverCadence(page, '1440x900, DPR 1');
-  await positionStep(page, 5, 0.2);
-  await capture(
-    page,
-    '17-system-context.png',
-    'Canonical S9 system signature staged separately from Earth; hypothetical geometry.',
-    1400,
-  );
-
-  const externalSplineRequests = await page.evaluate(() =>
-    performance
-      .getEntriesByType('resource')
-      .map((entry) => entry.name)
-      .filter((url) => url.includes('spline')),
-  );
-  if (externalSplineRequests.length > 0) {
-    issues.push({ detail: externalSplineRequests.join('\n'), kind: 'requestfailed' });
-  }
-  await page.close();
-
-  const reducedPage = await browser.newPage({ viewport: { height: 900, width: 1440 } });
-  observeRuntime(reducedPage);
-  await reducedPage.emulateMedia({ reducedMotion: 'reduce' });
-  await reducedPage.addInitScript(() => window.sessionStorage.clear());
-  await reducedPage.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
-  await reducedPage.evaluate(() => document.fonts.ready);
-  await startStory(reducedPage);
-  await reducedPage.getByLabel('Choose story chapter').click();
-  await reducedPage.getByRole('button', { exact: true, name: 'Chapter 02: Worlds' }).click();
-  await reducedPage.waitForFunction(
-    () => document.querySelector('.storyStage')?.getAttribute('data-active-step') === 'scenario-s1',
-  );
-  await capture(
-    reducedPage,
-    '16-reduced-motion.png',
-    'Reduced motion resolves directly to the same complete S1 target state.',
-    0,
-  );
-  await reducedPage.close();
-
-  const mobilePage = await browser.newPage({
-    viewport: { width: 390, height: 844 },
-    deviceScaleFactor: 1,
-    hasTouch: true,
-    isMobile: true,
-  });
-  observeRuntime(mobilePage);
-  await mobilePage.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
-  await startStory(mobilePage);
-  await sampleObserverCadence(mobilePage, '390x844, DPR 1, touch emulation');
-  await capture(
-    mobilePage,
-    '18-portrait-observer.png',
-    'Portrait observer after native forward/reverse scrub.',
-    500,
-  );
-  await mobilePage.close();
 } finally {
   await browser.close();
 }
-
-await writeFile(
-  resolve(outputRoot, 'capture-report.json'),
-  `${JSON.stringify({ baseUrl, frames, issues, frameCadence }, null, 2)}\n`,
-);
-
-if (issues.length > 0) {
-  throw new Error(`Premium motion QA captured ${issues.length} runtime issue(s).`);
-}
-
-process.stdout.write(`Captured ${frames.length} premium-motion frames in ${outputRoot}\n`);
+const report = {
+  baseUrl,
+  hardwareGpuRequested: hardwareGpu,
+  graphics,
+  captures,
+  cadence,
+  issues,
+  scope:
+    'Unthrottled local headless Chromium requestAnimationFrame cadence; desktop and mobile viewport emulation. This is not GPU presentation timing, physical mobile-device certification, or field Core Web Vitals. Context-loss, retry, resize, autonomous motion, and reduced-motion stability are exercised.',
+};
+await writeFile(resolve(outputRoot, 'capture-report.json'), JSON.stringify(report, null, 2) + '\n');
+process.stdout.write(JSON.stringify({ cadence, issues, outputRoot }, null, 2) + '\n');
+if (issues.length) throw new Error('Motion QA captured ' + issues.length + ' runtime issues.');

@@ -1,0 +1,289 @@
+{
+  "frames": {
+    "count": 285,
+    "p50": 16.599999999999454,
+    "p95": 17.5
+  },
+  "hot": [
+    {
+      "ms": 4128.683,
+      "functionName": "(program)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 13.595,
+      "functionName": "needsUpdate",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 1487,
+      "columnNumber": 24
+    },
+    {
+      "ms": 7.537,
+      "functionName": "update",
+      "scriptId": "218",
+      "url": "http://localhost:3000/_next/static/chunks/1pzi_%40react-three_fiber_dist_1u92-zo._.js",
+      "lineNumber": 15394,
+      "columnNumber": 15
+    },
+    {
+      "ms": 7.383,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 5.147,
+      "functionName": "setup",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 1410,
+      "columnNumber": 18
+    },
+    {
+      "ms": 3.824,
+      "functionName": "BlenderLibrary.useFrame",
+      "scriptId": "213",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_211ahc8._.js",
+      "lineNumber": 311,
+      "columnNumber": 43
+    },
+    {
+      "ms": 3.772,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 2.526,
+      "functionName": "sort",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 5645,
+      "columnNumber": 17
+    },
+    {
+      "ms": 2.526,
+      "functionName": "clear",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 2.519,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 2.518,
+      "functionName": "get",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 146,
+      "columnNumber": 16
+    },
+    {
+      "ms": 2.518,
+      "functionName": "BlenderLibrary.useFrame",
+      "scriptId": "213",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_211ahc8._.js",
+      "lineNumber": 343,
+      "columnNumber": 55
+    },
+    {
+      "ms": 2.517,
+      "functionName": "WebGLRenderer.render",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 11737,
+      "columnNumber": 28
+    },
+    {
+      "ms": 2.515,
+      "functionName": "drawElements",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 2.513,
+      "functionName": "loop",
+      "scriptId": "218",
+      "url": "http://localhost:3000/_next/static/chunks/1pzi_%40react-three_fiber_dist_1u92-zo._.js",
+      "lineNumber": 15420,
+      "columnNumber": 13
+    },
+    {
+      "ms": 2.509,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 1.268,
+      "functionName": "setValueV3f",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 3794,
+      "columnNumber": 20
+    },
+    {
+      "ms": 1.267,
+      "functionName": "addToRenderList",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 1281,
+      "columnNumber": 28
+    },
+    {
+      "ms": 1.263,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 1.263,
+      "functionName": "setProgram",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 12146,
+      "columnNumber": 27
+    },
+    {
+      "ms": 1.263,
+      "functionName": "normalize",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 4415,
+      "columnNumber": 14
+    },
+    {
+      "ms": 1.262,
+      "functionName": "disable",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 1.261,
+      "functionName": "uniformMatrix4fv",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 1.26,
+      "functionName": "render",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 1258,
+      "columnNumber": 19
+    },
+    {
+      "ms": 1.259,
+      "functionName": "bindVertexArray",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 1.259,
+      "functionName": "copyArray",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 3752,
+      "columnNumber": 18
+    },
+    {
+      "ms": 1.257,
+      "functionName": "queueMicrotask",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 1.257,
+      "functionName": "workingToColorSpace",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 5955,
+      "columnNumber": 37
+    },
+    {
+      "ms": 1.257,
+      "functionName": "projectObject",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 11854,
+      "columnNumber": 30
+    },
+    {
+      "ms": 1.257,
+      "functionName": "uniformMatrix3fv",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 1.257,
+      "functionName": "convert",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 5935,
+      "columnNumber": 25
+    },
+    {
+      "ms": 1.256,
+      "functionName": "update",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 3426,
+      "columnNumber": 19
+    },
+    {
+      "ms": 1.256,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 33289,
+      "columnNumber": 21
+    },
+    {
+      "ms": 1.256,
+      "functionName": "set",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 4663,
+      "columnNumber": 8
+    },
+    {
+      "ms": 1.256,
+      "functionName": "uniform1f",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    }
+  ]
+}

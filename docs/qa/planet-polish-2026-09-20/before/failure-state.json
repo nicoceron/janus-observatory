@@ -1,0 +1,16 @@
+{
+  "engine": "three.js r185",
+  "opticalView": "exterior",
+  "blenderLibraries": "[{\"url\":\"/assets/blender/v1/origin/earth.glb\",\"state\":\"ready\"}]",
+  "blenderOwner": "1",
+  "blenderAsset": "/assets/blender/v1/origin/earth.glb",
+  "blenderState": "ready",
+  "blenderMissingParts": "",
+  "blenderPartCount": "25",
+  "blenderCacheCount": "1",
+  "blenderCacheBytes": "969288",
+  "opticalTravel": "{\"approach\":0,\"align\":0,\"through\":0,\"enter\":0,\"frame\":0,\"leave\":0,\"telescopeVisible\":false,\"camera\":[0,0,11]}",
+  "scene": "0.000",
+  "companionReveal": "[]",
+  "storyBody": "Earth"
+}

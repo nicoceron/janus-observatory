@@ -1,0 +1,113 @@
+{
+  "world": "s5",
+  "blender": "5.2.1 LTS",
+  "source": "assets/blender/s5.blend",
+  "sourceSha256": "3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
+  "exports": [
+    {
+      "path": "apps/web/public/assets/blender/v1/s5/earth.glb",
+      "bytes": 831636,
+      "sha256": "c8767715324fd0e9d933ea08e8a1bb2a81363bc12d49c1625e60ef797697a663",
+      "triangles": 30112,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_growth-pod",
+        "Landmark_bio-arch",
+        "Landmark_synthesis",
+        "Landmark_petal-house",
+        "Life_animal_bio-ray_body",
+        "Life_animal_bio-ray_extra0",
+        "Life_animal_bio-ray_extra1",
+        "Study_aerostat",
+        "Study_lunar-base",
+        "Study_mars-base"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s5/earth-mobile.glb",
+      "bytes": 730084,
+      "sha256": "4ad83c4e9a92cec51726cb7b0806209c365d13739fc9cfbe12d03940ff47448e",
+      "triangles": 26816,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_growth-pod",
+        "Landmark_bio-arch",
+        "Landmark_synthesis",
+        "Landmark_petal-house",
+        "Life_animal_bio-ray_body",
+        "Life_animal_bio-ray_extra0",
+        "Life_animal_bio-ray_extra1",
+        "Study_aerostat",
+        "Study_lunar-base",
+        "Study_mars-base"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s5/Moon.glb",
+      "bytes": 241816,
+      "sha256": "8c9855b7385482e751cb348a6a479d41ddbdaac8182cd342a2fe9366a3c84b9e",
+      "triangles": 10476,
+      "parts": [
+        "S5_Moon"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s5/Mars.glb",
+      "bytes": 272136,
+      "sha256": "5a619ea3bbadf89da72df83e388f04dd76088c528e0a0cd5fa76c1ab59a61dd4",
+      "triangles": 12084,
+      "parts": [
+        "S5_Mars"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s5/Venus.glb",
+      "bytes": 94704,
+      "sha256": "e3cad99fddac091586e4b6a4f218463511c8607c6d43515989827d2bda370f8e",
+      "triangles": 3520,
+      "parts": [
+        "S5_Venus"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s5/asteroids.glb",
+      "bytes": 83100,
+      "sha256": "e9ce6965b69f78ee6aaf72d1ecfef3c3d75dc49ba27533db049907dc4b71115c",
+      "triangles": 3376,
+      "parts": [
+        "S5_asteroids"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s5/outer.glb",
+      "bytes": 104908,
+      "sha256": "9052e48340fc8885617b495717dbbcc44277a697de3cf2d7914f48322b804491",
+      "triangles": 4360,
+      "parts": [
+        "S5_outer"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s5/kuiper.glb",
+      "bytes": 128992,
+      "sha256": "5df422221f02005504328776303032228250726f86a750c11679b4285d30a956",
+      "triangles": 5212,
+      "parts": [
+        "S5_kuiper"
+      ]
+    }
+  ],
+  "scenes": [
+    "S5 \u2022 asteroids",
+    "S5 \u2022 Earth",
+    "S5 \u2022 kuiper",
+    "S5 \u2022 Mars",
+    "S5 \u2022 Moon",
+    "S5 \u2022 outer",
+    "S5 \u2022 Venus"
+  ],
+  "interpretive": true,
+  "animations": "Editable 40-second route and articulation previews; web motion stays in R3F."
+}

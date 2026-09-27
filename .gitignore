@@ -51,3 +51,21 @@ media/cinematic-review/public/review/
 docs/qa/cinematic-rebuild/browser/
 docs/qa/cinematic-rebuild/debug-*.png
 docs/qa/cinematic-rebuild/observer/motion/
+assets/blender/*.blend1
+
+# Playwright runtime traces are temporary browser output, not source.
+docs/qa/**/test-artifacts/
+docs/qa/**/*-artifacts/
+# Generated captures stay local; reports and reproducible capture scripts are versioned.
+docs/qa/**/*.png
+docs/qa/**/*.jpg
+docs/qa/**/*.webp
+docs/qa/**/*.webm
+docs/qa/**/*.mp4
+docs/qa/**/*.zip
+docs/qa/**/*.log
+
+# Cloudflare build products and local authentication/runtime state.
+.open-next/
+.wrangler/
+.dev.vars*

@@ -1,0 +1,23 @@
+{
+  "world": "s6",
+  "images": [
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-Earth-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-Earth-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-Earth-rear.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-Mars-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-Mars-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-Mars-rear.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-Moon-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-Moon-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-Moon-rear.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-Venus-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-Venus-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-Venus-rear.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-asteroids-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-asteroids-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-asteroids-rear.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-kuiper-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-kuiper-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/s6-kuiper-rear.png"
+  ]
+}

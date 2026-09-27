@@ -1,0 +1,10 @@
+{
+  "world": "origin",
+  "images": [
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/origin-Earth-front.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/origin-Earth-quarter.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/origin-Earth-rear.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/origin-airfield-arrival.png",
+    "/Users/ceron/Developer/Projects/janus-observatory/docs/qa/blender-finish/renders/origin-airfield-departure.png"
+  ]
+}

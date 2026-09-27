@@ -4,52 +4,39 @@ import { resolve } from 'node:path';
 import { chromium, type Page } from '@playwright/test';
 
 const baseUrl = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:3000';
-const outputRoot = resolve(process.argv[2] ?? 'docs/qa/final-release-2026-08-30');
+const outputRoot = resolve(process.argv[2] ?? 'docs/qa/first-light/routes');
 
 const storyFrames = [
-  [0, '01-present', 'one-earth'],
-  [1, '02-branches', 'possibility-families'],
-  [3, '03-s1-world', 'scenario-s1'],
-  [13, '04-observer', 'observer-turn'],
-  [14, '05-s1-hwo', 'observe-s1'],
-  [15, '06-s9-hwo-blank', 'observe-s9-hwo-blank'],
-  [17, '07-s9-sgl', 'observe-s9-sgl'],
-  [26, '08-matrix', 'observing-ladder'],
-  [27, '09-collapse', 'civilizations-breathe'],
-  [29, '10-handoff', 'explore-handoff'],
-  [30, '11-epilogue', 'absence-of-evidence'],
-] as const;
+  ['first-light', '00 First light ↗'],
+  ['possibilities', '01 Ten possible worlds ↗'],
+  ...Array.from({ length: 10 }, (_, i) => [
+    's' + (i + 1),
+    String(i + 2).padStart(2, '0') + ' S' + (i + 1) + ' ↗',
+  ]),
+  ['observer', '12 The other side ↗'],
+  ['invisible', '13 Hidden in plain sight ↗'],
+  ['signals', '14 Ways of seeing ↗'],
+  ['endurance', '15 Civilizations breathe ↗'],
+  ['beyond', '16 Keep looking ↗'],
+];
 
 async function waitForFonts(page: Page) {
   await page.evaluate(() => document.fonts.ready);
 }
 
 async function captureStory(page: Page, directory: string) {
-  await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
+  await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
   await waitForFonts(page);
-  await page.getByRole('button', { name: 'Start story', exact: true }).click();
-
-  await page.waitForFunction(
-    () => {
-      const state = document.querySelector('.earthStage')?.getAttribute('data-render-state');
-      return state === 'ready' || state === 'failed';
-    },
-    undefined,
-    { timeout: 30_000 },
-  );
-
-  const stage = page.locator('.storyStage');
-  const articles = page.getByLabel('Story chapters').getByRole('article');
-  for (const [index, filename, stepId] of storyFrames) {
-    await articles.nth(index).scrollIntoViewIfNeeded();
-    await stage.waitFor({ state: 'visible' });
-    await page.waitForFunction(
-      (expectedStep) =>
-        document.querySelector('.storyStage')?.getAttribute('data-active-step') === expectedStep,
-      stepId,
-    );
+  await page.locator('[data-stage-status="ready"]').waitFor({ timeout: 30000 });
+  for (const [id, label] of storyFrames) {
+    await page.getByRole('button', { name: 'Index +', exact: true }).click();
+    await page
+      .getByRole('navigation', { name: 'Story index' })
+      .getByRole('button', { name: label, exact: true })
+      .click();
+    await page.locator('[data-active-chapter="' + id + '"]').waitFor();
     await page.waitForTimeout(650);
-    await page.screenshot({ path: resolve(directory, `${filename}.png`) });
+    await page.screenshot({ path: resolve(directory, id + '.png') });
   }
 }
 

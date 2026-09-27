@@ -1,0 +1,57 @@
+{
+  "world": "s7",
+  "blender": "5.2.1 LTS",
+  "source": "assets/blender/s7.blend",
+  "sourceSha256": "acc146fa5f6528571c96c937d4b807f4a2d365dce3c3af5863925514f6caeb00",
+  "exports": [
+    {
+      "path": "apps/web/public/assets/blender/v1/s7/earth.glb",
+      "bytes": 586968,
+      "sha256": "cccc292317cbd8787d38b63b7c65ce7326bed3252a441c7077740b9946747ea3",
+      "triangles": 19054,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_watermill",
+        "Mechanism_watermill",
+        "Landmark_workshop",
+        "Landmark_seed-bank",
+        "Landmark_windmill",
+        "Mechanism_windmill",
+        "Activity_cargo-cycle_road",
+        "Activity_cutter_stops",
+        "Life_vehicle_cargo-cycle_body",
+        "Life_vehicle_cargo-cycle_extra0",
+        "Life_vessel_cutter_body",
+        "Cloud_0"
+      ]
+    },
+    {
+      "path": "apps/web/public/assets/blender/v1/s7/earth-mobile.glb",
+      "bytes": 529984,
+      "sha256": "ec9bb1258f86309fc92207b951d3518d6985071ef4070136dccee6dcf3e6a975",
+      "triangles": 17444,
+      "parts": [
+        "Terrain",
+        "Structures",
+        "Landmark_watermill",
+        "Mechanism_watermill",
+        "Landmark_workshop",
+        "Landmark_seed-bank",
+        "Landmark_windmill",
+        "Mechanism_windmill",
+        "Activity_cargo-cycle_road",
+        "Activity_cutter_stops",
+        "Life_vehicle_cargo-cycle_body",
+        "Life_vehicle_cargo-cycle_extra0",
+        "Life_vessel_cutter_body",
+        "Cloud_0"
+      ]
+    }
+  ],
+  "scenes": [
+    "S7 \u2022 Earth"
+  ],
+  "interpretive": true,
+  "animations": "Editable 40-second route and articulation previews; web motion stays in R3F."
+}

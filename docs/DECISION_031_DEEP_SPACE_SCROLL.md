@@ -1,0 +1,11 @@
+# Decision 031 — Black space and unified anchor travel
+
+The user requested a blacker sky, background movement through the story and more polished scrolling. Keep native wheel/touch scrolling and the existing sticky/IntersectionObserver architecture. Use GSAP's already-installed ScrollToPlugin for deliberate chapter-link and index travel; do not add Lenis or a second scroll scheduler.
+
+The implementation follows the [official ScrollToPlugin documentation](https://gsap.com/docs/v3/Plugins/ScrollToPlugin/): register the plugin, enable autoKill and remove CSS smooth scrolling for the story to avoid competing interpolators. A bounded tween handles anchor navigation. Wheel, touch, pointer, keyboard and viewport resize cancel it; reduced-motion navigation is immediate. Focus and URL hash commit on arrival. Hash entry, reload and browser history use the same measured portrait anchors.
+
+The black background has three faint prepainted light layers and two static SVG star layers. Only transform and opacity animate. GSAP quickTo follows absolute story progress and sleeps when no updates arrive. A reduced-motion preference holds the sky still. No filters, extra canvas, generated textures, per-frame star regeneration or resolution changes. Every chapter has a complete light target; reversal does not depend on previous playback.
+
+Earth handoffs use an easing curve with zero endpoint velocity and acceleration and a shallow spatial arc, preserving existing anchor poses and the companions' behind-Earth emergence. Telescope and closing-portrait anchoring remain independently tested. Scientific values, model files and rights remain unchanged; updated code provenance is recorded in the original-art ledger.
+
+Native scroll coordinates may quantize fractional CSS pixels. Resolve positions within one pixel of a measured anchor to its complete scene, and settle residual renderer damping to the exact target. History restoration also runs on `hashchange`, after native persisted-scroll restoration, following the [documented history event order](https://developer.mozilla.org/en-US/docs/Web/API/Window/popstate_event). This preserves the browser's normal scroll-restoration policy while making chapter Back/Forward deterministic, including return to the unfragmented homepage.

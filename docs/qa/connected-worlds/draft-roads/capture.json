@@ -1,0 +1,10 @@
+{
+  "base": "http://127.0.0.1:3000",
+  "images": [
+    "desktop-s1-Earth.png",
+    "desktop-s7-Earth.png",
+    "portrait-s1-Earth.png",
+    "portrait-s7-Earth.png"
+  ],
+  "errors": []
+}

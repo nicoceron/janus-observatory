@@ -1,10 +1,12 @@
-import Link from 'next/link';
+import Link from './components/AppLink';
 
 import styles from './status.module.css';
+import { SiteHeader } from './components/SiteHeader';
 
 export default function NotFound() {
   return (
     <main className={styles.shell}>
+      <SiteHeader />
       <p className={styles.eyebrow}>Janus Observatory · signal absent</p>
       <section className={styles.message}>
         <p className={styles.code} aria-hidden="true">

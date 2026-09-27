@@ -1,0 +1,5 @@
+
+> janus-observatory@0.1.0 data:generate:check /Users/ceron/Developer/Projects/janus-observatory
+> uv run --project pipeline janus-generate --check
+
+validated generated release artifacts in data/generated

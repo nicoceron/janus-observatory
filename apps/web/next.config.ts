@@ -24,6 +24,7 @@ const contentSecurityPolicy = [
 const nextConfig: NextConfig = {
   allowedDevOrigins: ['127.0.0.1', '192.168.80.205'],
   poweredByHeader: false,
+  devIndicators: false,
   images: {
     formats: ['image/avif', 'image/webp'],
     qualities: [75, 90],

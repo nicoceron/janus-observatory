@@ -1,0 +1,803 @@
+{
+  "schemaVersion": "1.0.0",
+  "attempts": [
+    {
+      "world": "s3",
+      "phase": "review",
+      "startedAt": "2026-09-12T03:43:23.775579+00:00",
+      "status": "success",
+      "blenderVersion": "5.2.1 LTS",
+      "fingerprints": {
+        "runner": "sha256:fce4acc040f480ae9221332ca9efef8f28c417b4c4154dedaa3de3e05f3d7543",
+        "builder": "sha256:71562afe5c1dc255b8f8c78f48a705f3b4f2b316161befeaeea3c3e9e4543b23",
+        "modules": {
+          "scripts/blender/earth_polish.py": "sha256:de3fed049e8554ec11c90b9a2f0fe44f32504fb7ac32b79722a9ec3912707617",
+          "scripts/blender/finish_world.py": "sha256:71562afe5c1dc255b8f8c78f48a705f3b4f2b316161befeaeea3c3e9e4543b23",
+          "scripts/blender/system_worlds.py": "sha256:0f8739c2deff2c035f0b120daa4a1bfc83ab4c2a6983b9a8f2d2d8211519a07d"
+        },
+        "seeds": {
+          "s3.json": "sha256:cb529f040aadf065fb44daa163be6d407df002d97f025d2674de34176e7e0300"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/scripts/blender/finish_world.py",
+        "--",
+        "--world",
+        "s3",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/blender-finish/review-s3.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1211432960,
+      "observedProcessIds": [
+        35173
+      ],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 179634176,
+        "inactiveBytes": 7319207936,
+        "purgeableBytes": 394199040,
+        "freePlusInactiveBytes": 7498842112,
+        "launchAvailableBytes": 7893041152,
+        "capturedAt": "2026-09-12T03:43:23.813782+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 35173,
+      "processGroupId": 35173,
+      "requiredOutputs": {
+        "assets/blender/s3.blend": "sha256:8bf0b8dd58f9d7c255a36511bb4821ec46994819601b6e27126146fcf4374b54",
+        "docs/qa/blender-finish/model-s3.json": "sha256:0c59024807d037fe361f71190aa5e4343ee374435717f1127f54012c8c726e45"
+      },
+      "elapsedSeconds": 28.432,
+      "endedAt": "2026-09-12T03:43:52.207944+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 1446084608,
+        "inactiveBytes": 6702317568,
+        "purgeableBytes": 146227200,
+        "freePlusInactiveBytes": 8148402176,
+        "launchAvailableBytes": 8294629376,
+        "capturedAt": "2026-09-12T03:43:52.215059+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    },
+    {
+      "world": "s3",
+      "phase": "review",
+      "startedAt": "2026-09-12T03:49:32.872892+00:00",
+      "status": "success",
+      "blenderVersion": "5.2.1 LTS",
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:695f4793b7d98fc841572e2e8d62297a6a52fa37b3c7a1ef471f9c58dbd76b54",
+        "modules": {
+          "scripts/blender/earth_polish.py": "sha256:739c583058c4c1296b5b6fd20f658da98bca8a4ea38711059c5d2b5888e25bde",
+          "scripts/blender/finish_world.py": "sha256:695f4793b7d98fc841572e2e8d62297a6a52fa37b3c7a1ef471f9c58dbd76b54",
+          "scripts/blender/system_worlds.py": "sha256:1699fa9262c7ea1cd1289ae5c56c41add1c27aea5ffaab811de855a797a763aa"
+        },
+        "seeds": {
+          "s3.json": "sha256:41b7c37e832843198b4bba20ca2bfa06ac1b0a0ffbd778173afbb15b400a0bea"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/scripts/blender/finish_world.py",
+        "--",
+        "--world",
+        "s3",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/blender-finish/review-s3.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1275068416,
+      "observedProcessIds": [
+        83492
+      ],
+      "exitCode": 0,
+      "idleGui": {
+        "pid": 55636,
+        "cpuPercent": 2.4,
+        "rssBytes": 293257216,
+        "untouched": true
+      },
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 1314258944,
+        "inactiveBytes": 8453144576,
+        "purgeableBytes": 585334784,
+        "freePlusInactiveBytes": 9767403520,
+        "launchAvailableBytes": 10352738304,
+        "capturedAt": "2026-09-12T03:49:32.912654+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 3072.00M  used = 1988.12M  free = 1083.88M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 83492,
+      "processGroupId": 83492,
+      "requiredOutputs": {
+        "assets/blender/s3.blend": "sha256:2e3668cf7eff02de9249a680bd1d94fda182aee6127f97ba276c0ee802ced8ca",
+        "docs/qa/blender-finish/model-s3.json": "sha256:fc0367c58498cac89a8384a0089db69bf4f4cd48d6f6579f30cdd6b2239aecf2"
+      },
+      "elapsedSeconds": 38.024,
+      "endedAt": "2026-09-12T03:50:10.903048+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 757809152,
+        "inactiveBytes": 8445788160,
+        "purgeableBytes": 14434304,
+        "freePlusInactiveBytes": 9203597312,
+        "launchAvailableBytes": 9218031616,
+        "capturedAt": "2026-09-12T03:50:10.905581+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 3072.00M  used = 1980.12M  free = 1091.88M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    },
+    {
+      "world": "s3",
+      "phase": "review",
+      "startedAt": "2026-09-12T03:57:34.517684+00:00",
+      "status": "success",
+      "blenderVersion": "5.2.1 LTS",
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:ae0eaa0ff8b8f3e1a145bda407ff800dd1e644eaa6d73173469bf0d1642e2a21",
+        "modules": {
+          "scripts/blender/earth_polish.py": "sha256:c56420bf51c10c4694ee879d2b5195751ba3a9e07746a11a51a4acc6cba7a7f7",
+          "scripts/blender/finish_world.py": "sha256:ae0eaa0ff8b8f3e1a145bda407ff800dd1e644eaa6d73173469bf0d1642e2a21",
+          "scripts/blender/system_worlds.py": "sha256:374d8d712e82c1b1d91d96dd6fe22fe3d0452fcb23822f269646ed35253b18a2"
+        },
+        "seeds": {
+          "s3.json": "sha256:41b7c37e832843198b4bba20ca2bfa06ac1b0a0ffbd778173afbb15b400a0bea"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/scripts/blender/finish_world.py",
+        "--",
+        "--world",
+        "s3",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/blender-finish/review-s3.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1264680960,
+      "observedProcessIds": [
+        38524
+      ],
+      "exitCode": 0,
+      "idleGui": {
+        "pid": 55636,
+        "cpuPercent": 1.2,
+        "rssBytes": 272105472,
+        "untouched": true
+      },
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 1630830592,
+        "inactiveBytes": 5776736256,
+        "purgeableBytes": 18235392,
+        "freePlusInactiveBytes": 7407566848,
+        "launchAvailableBytes": 7425802240,
+        "capturedAt": "2026-09-12T03:57:34.560252+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 3072.00M  used = 1956.12M  free = 1115.88M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 38524,
+      "processGroupId": 38524,
+      "requiredOutputs": {
+        "assets/blender/s3.blend": "sha256:af3ac403474443fe26fe5f5811821ea0d093ac017433bc1dada576d6a5d588dc",
+        "docs/qa/blender-finish/model-s3.json": "sha256:aa65f1596109f18fc9ddda0a86338705f95647fa42596491b06663fa282a6539"
+      },
+      "elapsedSeconds": 44.203,
+      "endedAt": "2026-09-12T03:58:18.720806+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 1788411904,
+        "inactiveBytes": 6775980032,
+        "purgeableBytes": 129957888,
+        "freePlusInactiveBytes": 8564391936,
+        "launchAvailableBytes": 8694349824,
+        "capturedAt": "2026-09-12T03:58:18.724718+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 3072.00M  used = 1948.12M  free = 1123.88M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    },
+    {
+      "world": "s3",
+      "phase": "review",
+      "startedAt": "2026-09-12T04:16:07.768927+00:00",
+      "status": "success",
+      "blenderVersion": "5.2.1 LTS (9e2066aef7ef)",
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:afb5eadb614cda9354a026b55c4b2f62d79194a7bc6927285dbec7906439ee52",
+        "modules": {
+          "scripts/blender/earth_polish.py": "sha256:b1cb5d2357eeabe36b597fb5f340c772731e8411db16e40290d9bc92759d7da5",
+          "scripts/blender/finish_world.py": "sha256:afb5eadb614cda9354a026b55c4b2f62d79194a7bc6927285dbec7906439ee52",
+          "scripts/blender/system_worlds.py": "sha256:5cfd1a4849b3ace917f550260c36717ec8e7974980206977f9b55f9477ef56d6"
+        },
+        "seeds": {
+          "s3.json": "sha256:41b7c37e832843198b4bba20ca2bfa06ac1b0a0ffbd778173afbb15b400a0bea"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/scripts/blender/finish_world.py",
+        "--",
+        "--world",
+        "s3",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/blender-finish/review-s3.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1292402688,
+      "observedProcessIds": [
+        65240
+      ],
+      "exitCode": 0,
+      "idleGui": {
+        "pid": 55636,
+        "cpuPercent": 4.0,
+        "rssBytes": 71204864,
+        "untouched": true
+      },
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 10541744128,
+        "inactiveBytes": 6825721856,
+        "purgeableBytes": 401195008,
+        "freePlusInactiveBytes": 17367465984,
+        "launchAvailableBytes": 17768660992,
+        "capturedAt": "2026-09-12T04:16:07.802217+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 15360.00M  used = 14362.75M  free = 997.25M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 65240,
+      "processGroupId": 65240,
+      "requiredOutputs": {
+        "assets/blender/s3.blend": "sha256:9024e9b5fc264465374e1472fe13d6045498aa5b3a53d99ea02ae0c425d914b1",
+        "docs/qa/blender-finish/model-s3.json": "sha256:95f220da1c26d511b3d215e7a324ad66293a4e8a78db99eb9744c583449c661d"
+      },
+      "elapsedSeconds": 5.4,
+      "endedAt": "2026-09-12T04:16:13.169024+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 10325770240,
+        "inactiveBytes": 6989430784,
+        "purgeableBytes": 183369728,
+        "freePlusInactiveBytes": 17315201024,
+        "launchAvailableBytes": 17498570752,
+        "capturedAt": "2026-09-12T04:16:13.171625+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 15360.00M  used = 14346.75M  free = 1013.25M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    },
+    {
+      "world": "s3",
+      "phase": "review",
+      "startedAt": "2026-09-12T17:21:25.719604+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:ffdda0d8f61f0812f0cee7cfe53d37b531f6236fe44d39b46dab9c9ee9a0d5d5",
+        "modules": {
+          "scripts/blender/earth_polish.py": "sha256:f4e7cd549f2dc8e63d9c5c08b523701ed23f703ed53d6e1da9257a5f1bea58b0",
+          "scripts/blender/finish_world.py": "sha256:ffdda0d8f61f0812f0cee7cfe53d37b531f6236fe44d39b46dab9c9ee9a0d5d5",
+          "scripts/blender/system_worlds.py": "sha256:5d4826bb71c6a2ca6a079cb4d713815a3ad62c6bfd5c92ad622b28bca188434b"
+        },
+        "seeds": {
+          "s3.json": "sha256:71d51658328558c032843b06dec0cad468ca442f2223366b82ce82dad75298eb"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/scripts/blender/finish_world.py",
+        "--",
+        "--world",
+        "s3",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/blender-finish/review-s3.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1286684672,
+      "observedProcessIds": [
+        82287
+      ],
+      "exitCode": 0,
+      "idleGui": {
+        "pid": 14179,
+        "cpuPercent": 1.6,
+        "rssBytes": 263700480,
+        "untouched": true
+      },
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2924150784,
+        "inactiveBytes": 12269502464,
+        "purgeableBytes": 383451136,
+        "freePlusInactiveBytes": 15193653248,
+        "launchAvailableBytes": 15577104384,
+        "capturedAt": "2026-09-12T17:21:25.756519+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 3072.00M  used = 1867.75M  free = 1204.25M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 82287,
+      "processGroupId": 82287,
+      "requiredOutputs": {
+        "assets/blender/s3.blend": "sha256:756b4f74a1d0d7356e9ec1e02298eeccb377ffb6f4f5027e645f14e7d93f802a",
+        "docs/qa/blender-finish/model-s3.json": "sha256:a7edc3c64736c1762e9290396a5e65880c3b33d9a0d437029de902e9ee414ba5"
+      },
+      "elapsedSeconds": 6.99,
+      "endedAt": "2026-09-12T17:21:32.709450+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2807070720,
+        "inactiveBytes": 12229541888,
+        "purgeableBytes": 379322368,
+        "freePlusInactiveBytes": 15036612608,
+        "launchAvailableBytes": 15415934976,
+        "capturedAt": "2026-09-12T17:21:32.712039+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 3072.00M  used = 1867.75M  free = 1204.25M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    },
+    {
+      "world": "s3",
+      "phase": "review",
+      "startedAt": "2026-09-12T19:00:30.916807+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:ffdda0d8f61f0812f0cee7cfe53d37b531f6236fe44d39b46dab9c9ee9a0d5d5",
+        "modules": {
+          "scripts/blender/earth_polish.py": "sha256:f4e7cd549f2dc8e63d9c5c08b523701ed23f703ed53d6e1da9257a5f1bea58b0",
+          "scripts/blender/finish_world.py": "sha256:ffdda0d8f61f0812f0cee7cfe53d37b531f6236fe44d39b46dab9c9ee9a0d5d5",
+          "scripts/blender/system_worlds.py": "sha256:5d4826bb71c6a2ca6a079cb4d713815a3ad62c6bfd5c92ad622b28bca188434b"
+        },
+        "seeds": {
+          "s3.json": "sha256:764435a54ecaad60cdc189f52beb87ac6f12533d2b0def12255f40e5daceaeca"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/scripts/blender/finish_world.py",
+        "--",
+        "--world",
+        "s3",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/blender-finish/review-s3.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1258684416,
+      "observedProcessIds": [
+        16421
+      ],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 3186262016,
+        "inactiveBytes": 14411464704,
+        "purgeableBytes": 288292864,
+        "freePlusInactiveBytes": 17597726720,
+        "launchAvailableBytes": 17886019584,
+        "capturedAt": "2026-09-12T19:00:30.948188+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 16421,
+      "processGroupId": 16421,
+      "requiredOutputs": {
+        "assets/blender/s3.blend": "sha256:e8a39fc5767364c75affdf574b3c6a6a98a6aa602b36d7fbb27fd1455b937809",
+        "docs/qa/blender-finish/model-s3.json": "sha256:849f364b3782f1771f0771cb085c3120a093e74a2c14b659f767fa5a19e091c9"
+      },
+      "elapsedSeconds": 7.501,
+      "endedAt": "2026-09-12T19:00:38.417449+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2234695680,
+        "inactiveBytes": 14210088960,
+        "purgeableBytes": 209813504,
+        "freePlusInactiveBytes": 16444784640,
+        "launchAvailableBytes": 16654598144,
+        "capturedAt": "2026-09-12T19:00:38.420827+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    },
+    {
+      "world": "s3",
+      "phase": "review",
+      "startedAt": "2026-09-12T19:03:56.871369+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:eb46be819dcd7e2483e164c9f0d756dc2493579f0094d8db22e9e71e15828823",
+        "modules": {
+          "scripts/blender/earth_polish.py": "sha256:f4e7cd549f2dc8e63d9c5c08b523701ed23f703ed53d6e1da9257a5f1bea58b0",
+          "scripts/blender/finish_world.py": "sha256:eb46be819dcd7e2483e164c9f0d756dc2493579f0094d8db22e9e71e15828823",
+          "scripts/blender/system_worlds.py": "sha256:5d4826bb71c6a2ca6a079cb4d713815a3ad62c6bfd5c92ad622b28bca188434b"
+        },
+        "seeds": {
+          "s3.json": "sha256:764435a54ecaad60cdc189f52beb87ac6f12533d2b0def12255f40e5daceaeca"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/scripts/blender/finish_world.py",
+        "--",
+        "--world",
+        "s3",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/blender-finish/review-s3.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1290403840,
+      "observedProcessIds": [
+        17679
+      ],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2590457856,
+        "inactiveBytes": 14394425344,
+        "purgeableBytes": 295862272,
+        "freePlusInactiveBytes": 16984883200,
+        "launchAvailableBytes": 17280745472,
+        "capturedAt": "2026-09-12T19:03:56.898448+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 17679,
+      "processGroupId": 17679,
+      "requiredOutputs": {
+        "assets/blender/s3.blend": "sha256:757877c447d687ef58fa3b4772252aeb1700cfa9f6e8c44ed839a7d8c7c70bb1",
+        "docs/qa/blender-finish/model-s3.json": "sha256:69e9eb1f730947a56ae3b4c6f72afa3569eec4a654e57bebbf682602d4201b18"
+      },
+      "elapsedSeconds": 20.186,
+      "endedAt": "2026-09-12T19:04:17.057167+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2416820224,
+        "inactiveBytes": 14453719040,
+        "purgeableBytes": 393723904,
+        "freePlusInactiveBytes": 16870539264,
+        "launchAvailableBytes": 17264263168,
+        "capturedAt": "2026-09-12T19:04:17.059792+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    },
+    {
+      "world": "s3",
+      "phase": "review",
+      "startedAt": "2026-09-12T19:06:44.868558+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:eb46be819dcd7e2483e164c9f0d756dc2493579f0094d8db22e9e71e15828823",
+        "modules": {
+          "scripts/blender/earth_polish.py": "sha256:f4e7cd549f2dc8e63d9c5c08b523701ed23f703ed53d6e1da9257a5f1bea58b0",
+          "scripts/blender/finish_world.py": "sha256:eb46be819dcd7e2483e164c9f0d756dc2493579f0094d8db22e9e71e15828823",
+          "scripts/blender/system_worlds.py": "sha256:5d4826bb71c6a2ca6a079cb4d713815a3ad62c6bfd5c92ad622b28bca188434b"
+        },
+        "seeds": {
+          "s3.json": "sha256:b13d0323a378c20d61e3ab7a8fe929b8cad7dfb3a9818371c98c3a9838f4d10f"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/scripts/blender/finish_world.py",
+        "--",
+        "--world",
+        "s3",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/blender-finish/review-s3.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1266008064,
+      "observedProcessIds": [
+        18363
+      ],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 1839382528,
+        "inactiveBytes": 14556332032,
+        "purgeableBytes": 273956864,
+        "freePlusInactiveBytes": 16395714560,
+        "launchAvailableBytes": 16669671424,
+        "capturedAt": "2026-09-12T19:06:44.895126+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 18363,
+      "processGroupId": 18363,
+      "requiredOutputs": {
+        "assets/blender/s3.blend": "sha256:ae682a5285bf6b5f2d2886dbd7b9edba2277b85dd3361b6b35fb43d0ceba8e27",
+        "docs/qa/blender-finish/model-s3.json": "sha256:fa8c0ffd56cd44a5d5c3cd5045c7abca4709bc08ca5a5f0f509abe4d0891e55c"
+      },
+      "elapsedSeconds": 21.258,
+      "endedAt": "2026-09-12T19:07:06.126015+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2289254400,
+        "inactiveBytes": 14697627648,
+        "purgeableBytes": 56967168,
+        "freePlusInactiveBytes": 16986882048,
+        "launchAvailableBytes": 17043849216,
+        "capturedAt": "2026-09-12T19:07:06.128564+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    },
+    {
+      "world": "s3",
+      "phase": "review",
+      "startedAt": "2026-09-12T19:08:54.117005+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:eb46be819dcd7e2483e164c9f0d756dc2493579f0094d8db22e9e71e15828823",
+        "modules": {
+          "scripts/blender/earth_polish.py": "sha256:f4e7cd549f2dc8e63d9c5c08b523701ed23f703ed53d6e1da9257a5f1bea58b0",
+          "scripts/blender/finish_world.py": "sha256:eb46be819dcd7e2483e164c9f0d756dc2493579f0094d8db22e9e71e15828823",
+          "scripts/blender/system_worlds.py": "sha256:5d4826bb71c6a2ca6a079cb4d713815a3ad62c6bfd5c92ad622b28bca188434b"
+        },
+        "seeds": {
+          "s3.json": "sha256:31a9480515b1264729d18c9fa31c84f3418ab68ec235cf0693e8327ecf832b14"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/scripts/blender/finish_world.py",
+        "--",
+        "--world",
+        "s3",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/blender-finish/review-s3.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1290584064,
+      "observedProcessIds": [
+        18857
+      ],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 1998438400,
+        "inactiveBytes": 14594588672,
+        "purgeableBytes": 157761536,
+        "freePlusInactiveBytes": 16593027072,
+        "launchAvailableBytes": 16750788608,
+        "capturedAt": "2026-09-12T19:08:54.144497+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 18857,
+      "processGroupId": 18857,
+      "requiredOutputs": {
+        "assets/blender/s3.blend": "sha256:c9522ac6c8ba3886a6a30236c980983c1a93231a4d0e94d6e27c4f8cc8468047",
+        "docs/qa/blender-finish/model-s3.json": "sha256:d2da8c3c5ad5bf85bcf471990bab662c3e9bddbe28b3e23230c60ac1e11321ba"
+      },
+      "elapsedSeconds": 18.624,
+      "endedAt": "2026-09-12T19:09:12.740333+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 1395392512,
+        "inactiveBytes": 15019917312,
+        "purgeableBytes": 104431616,
+        "freePlusInactiveBytes": 16415309824,
+        "launchAvailableBytes": 16519741440,
+        "capturedAt": "2026-09-12T19:09:12.743349+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+
+> janus-observatory@0.1.0 format:check /Users/ceron/Developer/Projects/janus-observatory
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!

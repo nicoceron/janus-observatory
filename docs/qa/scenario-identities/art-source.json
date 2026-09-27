@@ -1,0 +1,22 @@
+{
+  "id": "janus.low-poly.worlds.v4",
+  "version": "scenario-identities-v4-2026-09-08",
+  "sourceChecksum": "sha256:7db2c791cd0a89b25b9a22bb4a9428e4ba50dfa725ffc959b237bb2f7bf0b9eb",
+  "files": [
+    "apps/web/app/voyage/worlds.ts",
+    "apps/web/app/voyage/Planet.tsx",
+    "apps/web/app/voyage/terrain.ts",
+    "apps/web/app/voyage/WorldStructures.tsx",
+    "apps/web/app/voyage/sculpture.ts",
+    "apps/web/app/voyage/PlanetDetails.ts",
+    "apps/web/app/voyage/planet-surface.ts",
+    "apps/web/app/voyage/WorldBiomes.ts",
+    "apps/web/app/voyage/WorldActivity.tsx",
+    "apps/web/app/voyage/Space.tsx",
+    "apps/web/app/voyage/ScenarioObjects.ts",
+    "apps/web/app/voyage/ScenarioBiomes.ts",
+    "apps/web/app/voyage/SystemGeometry.ts",
+    "apps/web/app/voyage/WorldSystem.tsx"
+  ],
+  "verified": true
+}

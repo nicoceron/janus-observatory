@@ -126,28 +126,24 @@ export default function SourcesPage() {
         <h2>Credits and interpretation</h2>
         <div className={styles.sectionBody}>
           <p>
-            The hero uses an AI-enhanced poster derived from Caner Sevince&apos;s CC0 Spline scene,
-            “Solar System – Basic,” beneath an original local SVG/GSAP orbital layer. The live
-            Spline runtime is not embedded. The persistent spatial globe uses Solar System Scope
-            Earth textures, licensed CC BY 4.0 and pinned through the Three.js WebGPU TSL Earth
-            example; Janus Observatory supplies the documented responsive derivatives. A separate
-            Blender-rendered Earth poster uses the same admitted maps. The current observer,
-            telescope, architecture, and stellar cutaway are original Blender-authored fictional
-            geometry, with code assistance from OpenAI Codex. Moon, Mars, and Venus reference maps
-            are by Solar System Scope / INOVE, CC BY 4.0, based on NASA imagery and elevation data;
-            Janus downsampled and converted them to WebP. The provider notes enhanced colors and
-            fictional infill in unmapped regions. These maps are not future surfaces or instrument
-            images. Older character, telescope, and generated-portrait assets retain their separate
-            credits in the ledger but do not replace the current story renderer. Atmospheric
-            fingerprints and instrument results beside them are rendered from the canonical Table 1
-            and structured Figure 6 transcriptions—never from screenshots or digitized plot pixels.
-            The fictional observer scene and scenario portraits are not NASA mission renders or
-            Project Janus research artifacts.
+            The story, atlas and observatory share original low-poly Three.js geometry and
+            Blender-authored world details. Their surfaces, settlements, observer and telescope are
+            illustrative artwork, created with code assistance from OpenAI Codex. They are not NASA
+            mission renders or Project Janus research artifacts. No raster planet textures or
+            generated posters are used by these current 3D views.
           </p>
           <p>
-            The newer observer poster is also model-generated interpretive concept art. Its alien,
-            telescope, room, and Earth framing do not encode scientific values; all results,
-            reticles, labels, assumptions, and citations remain DOM-rendered from canonical data.
+            Historical texture and poster assets retain their credits and rights records in the
+            ledger below. Solar System Scope / INOVE reference maps are licensed CC BY 4.0 and based
+            on NASA imagery and elevation data. Atmospheric fingerprints and instrument results use
+            the canonical Table 1 and structured Figure 6 transcriptions, never screenshots or
+            digitized plot pixels.
+          </p>
+          <p>
+            Typography: <a href="/licenses/chakra-petch-OFL.txt">Chakra Petch</a>,{' '}
+            <a href="/licenses/space-grotesk-OFL.txt">Space Grotesk</a> and{' '}
+            <a href="/licenses/ibm-plex-mono-OFL.txt">IBM Plex Mono</a>, licensed under the SIL Open
+            Font License 1.1 and served locally.
           </p>
         </div>
       </section>

@@ -1,0 +1,66 @@
+[
+  {
+    "world": "origin",
+    "mobile": false,
+    "kind": "regional-plane",
+    "poses": 193,
+    "hits": [],
+    "clear": true
+  },
+  {
+    "world": "origin",
+    "mobile": true,
+    "kind": "regional-plane",
+    "poses": 193,
+    "hits": [],
+    "clear": true
+  },
+  {
+    "world": "s1",
+    "mobile": false,
+    "kind": "survey-drone",
+    "poses": 193,
+    "hits": [],
+    "clear": true
+  },
+  {
+    "world": "s1",
+    "mobile": true,
+    "kind": "survey-drone",
+    "poses": 193,
+    "hits": [],
+    "clear": true
+  },
+  {
+    "world": "s3",
+    "mobile": false,
+    "kind": "regional-plane",
+    "poses": 193,
+    "hits": [],
+    "clear": true
+  },
+  {
+    "world": "s3",
+    "mobile": true,
+    "kind": "regional-plane",
+    "poses": 193,
+    "hits": [],
+    "clear": true
+  },
+  {
+    "world": "s5",
+    "mobile": false,
+    "kind": "bio-ray",
+    "poses": 193,
+    "hits": [],
+    "clear": true
+  },
+  {
+    "world": "s5",
+    "mobile": true,
+    "kind": "bio-ray",
+    "poses": 193,
+    "hits": [],
+    "clear": true
+  }
+]

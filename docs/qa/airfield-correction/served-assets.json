@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-09-12T19:10:15.143185+00:00",
+  "assets": [
+    {
+      "url": "http://192.168.80.205:3000/assets/blender/v1/origin/earth.glb",
+      "sha256": "e88d92cb6b0aa9fe86b772d20dcd2f5f6cf00b9f6d2852f372c393dfc4942e99",
+      "matchesLocalExport": true
+    },
+    {
+      "url": "http://192.168.80.205:3000/assets/blender/v1/origin/earth-mobile.glb",
+      "sha256": "9dd895e61e724222900af8bba9a1dc5ed4868f57294bfa11005ea793afdbacbb",
+      "matchesLocalExport": true
+    },
+    {
+      "url": "http://192.168.80.205:3000/assets/blender/v1/s3/earth.glb",
+      "sha256": "23de578aa4751ee750c5eb38ffe410f37334ea9755973241e954dcb2b707dab0",
+      "matchesLocalExport": true
+    },
+    {
+      "url": "http://192.168.80.205:3000/assets/blender/v1/s3/earth-mobile.glb",
+      "sha256": "41bdd9692fdbaf5d81733e340c3d994e8f942cb2a679ce72506a8bc976f7c8c3",
+      "matchesLocalExport": true
+    }
+  ]
+}

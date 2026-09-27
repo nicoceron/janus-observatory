@@ -1,9 +1,10 @@
 'use client';
 
-import Link from 'next/link';
+import Link from './components/AppLink';
 import { useEffect } from 'react';
 
 import styles from './status.module.css';
+import { SiteHeader } from './components/SiteHeader';
 
 export default function ErrorBoundary({
   error,
@@ -18,6 +19,7 @@ export default function ErrorBoundary({
 
   return (
     <main className={styles.shell}>
+      <SiteHeader />
       <p className={styles.eyebrow}>Janus Observatory · recoverable fault</p>
       <section className={styles.message}>
         <p className={styles.code} aria-hidden="true">

@@ -26,7 +26,7 @@
 .formMeta,
 .liveStatus {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -34,7 +34,7 @@
 .releaseStrip span,
 .sectionLead > p,
 .kicker {
-  color: #59665e;
+  color: #afc2cc;
 }
 
 .releaseStrip strong {
@@ -106,8 +106,8 @@
 
 .askForm {
   align-self: start;
-  background: #f1f4ef;
-  color: #142018;
+  background: #101d29;
+  color: #dce5eb;
   padding: clamp(24px, 4vw, 52px);
 }
 
@@ -158,7 +158,7 @@
 
 .formMeta button:hover:not(:disabled),
 .formMeta button:focus-visible {
-  background: #b8f15c;
+  background: #d3e7bc;
   color: #07100e;
 }
 
@@ -169,7 +169,7 @@
 
 .liveStatus {
   align-items: center;
-  color: #4a594f;
+  color: #afc2cc;
   display: flex;
   gap: 10px;
   margin: 22px 0 0;
@@ -184,7 +184,7 @@
 
 .errorNotice {
   border-left: 3px solid #9f3d35;
-  color: #7e241f;
+  color: #ffa89e;
   line-height: 1.5;
   padding-left: 14px;
 }
@@ -196,7 +196,7 @@
 }
 
 .answerHeader {
-  color: #b8f15c;
+  color: #d3e7bc;
   display: flex;
   justify-content: space-between;
 }
@@ -236,7 +236,7 @@
   border-top: 1px solid rgba(206, 226, 213, 0.2);
   color: #95a99c;
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   letter-spacing: 0.04em;
   margin-top: 30px;
   padding-top: 20px;
@@ -279,7 +279,7 @@
 }
 
 .sectionLead h2 {
-  color: #142018;
+  color: #dce5eb;
 }
 
 .boundaryList article {
@@ -291,9 +291,9 @@
 }
 
 .boundaryList article > span {
-  color: #53645b;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
 }
 
 .boundaryList h3 {
@@ -322,20 +322,20 @@
 }
 
 .paperPanel {
-  background: #dfe8df;
+  background: #142530;
 }
 
 .darkPanel {
-  background: #0a1511;
+  background: #0b1620;
   color: #e7eee8;
 }
 
 .darkPanel .kicker {
-  color: #b8f15c;
+  color: #d3e7bc;
 }
 
 .darkPanel code {
-  color: #b8f15c;
+  color: #d3e7bc;
   overflow-wrap: anywhere;
 }
 
@@ -356,9 +356,9 @@
 
 .textLink {
   align-self: end;
-  color: #213128;
+  color: #dce5eb;
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -368,27 +368,27 @@
   display: flex;
   flex-wrap: wrap;
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   gap: 16px 30px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .footerLinks a {
-  color: #26382e;
+  color: #dce5eb;
 }
 
 .scientificNotice {
-  background: #0b1712;
+  background: #0b1620;
   color: #dce8df;
   margin-bottom: clamp(72px, 9vw, 132px);
   padding: clamp(28px, 4vw, 54px);
 }
 
 .scientificNotice strong {
-  color: #b8f15c;
+  color: #d3e7bc;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -421,7 +421,7 @@
 }
 
 .tableScroll caption {
-  color: #5b695f;
+  color: #afc2cc;
   line-height: 1.6;
   margin-bottom: 20px;
   max-width: 760px;
@@ -436,20 +436,20 @@
 }
 
 .tableScroll thead th {
-  color: #4f6258;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .tableScroll tbody th {
-  color: #36501f;
+  color: #afc2cc;
   font-family: var(--font-mono);
 }
 
 .tableScroll tbody td {
-  color: #32473b;
+  color: #afc2cc;
 }
 
 .limitations {

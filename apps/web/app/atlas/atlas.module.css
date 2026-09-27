@@ -19,7 +19,7 @@
 .downloadSection,
 .museum,
 .recordSection {
-  border-top: 1px solid rgba(16, 32, 25, 0.19);
+  border-top: 1px solid rgba(186, 212, 227, 0.19);
   margin-top: clamp(72px, 10vw, 132px);
   padding-top: clamp(54px, 7vw, 92px);
 }
@@ -61,8 +61,8 @@
 
 .sectionHeader > p:first-child,
 .recordKicker {
-  color: #315b47;
-  font-size: 0.6rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
   margin: 0 0 18px;
 }
 
@@ -84,28 +84,28 @@
 }
 
 .headerAside p {
-  color: #50655a;
+  color: #afc2cc;
   line-height: 1.75;
   margin: 0;
 }
 
 .headerAside > span {
-  color: #315b47;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   margin-top: 5px;
   text-transform: uppercase;
 }
 
 .scenarioIndex {
-  border-bottom: 1px solid rgba(16, 32, 25, 0.18);
+  border-bottom: 1px solid rgba(186, 212, 227, 0.18);
   margin-top: 54px;
 }
 
 .indexLabels {
-  color: #53685d;
+  color: #afc2cc;
   display: grid;
-  font-size: 0.47rem;
+  font-size: 0.75rem;
   gap: 22px;
   grid-template-columns: minmax(360px, 1.2fr) minmax(160px, 0.45fr) minmax(190px, 0.5fr) 180px;
   padding: 0 18px 13px;
@@ -114,7 +114,7 @@
 .scenarioRow {
   --scenario-accent: #557465;
   align-items: center;
-  border-top: 1px solid rgba(16, 32, 25, 0.18);
+  border-top: 1px solid rgba(186, 212, 227, 0.18);
   display: grid;
   gap: 22px;
   grid-template-columns: minmax(360px, 1.2fr) minmax(160px, 0.45fr) minmax(190px, 0.5fr) 180px;
@@ -137,7 +137,7 @@
 
 .scenarioRow:hover,
 .selectedRow {
-  background: color-mix(in srgb, var(--scenario-accent) 8%, #e9efe9);
+  background: color-mix(in srgb, var(--scenario-accent) 8%, #0d1721);
 }
 
 .selectedRow::before {
@@ -153,8 +153,8 @@
 }
 
 .rowNumber {
-  color: #53685d;
-  font-size: 0.47rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
 }
 
 .scenarioPortrait {
@@ -174,8 +174,8 @@
 }
 
 .scenarioIdentity > div:last-child > span {
-  color: #486155;
-  font-size: 0.51rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
 }
 
 .scenarioIdentity h3 {
@@ -203,8 +203,8 @@
 
 .scenarioTrajectory span,
 .scenarioConstruction span {
-  color: #53685d;
-  font-size: 0.48rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
   line-height: 1.55;
 }
 
@@ -219,10 +219,10 @@
 .scenarioActions a {
   background: transparent;
   border: 0;
-  color: #1f4b37;
+  color: #afc2cc;
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   padding: 10px 0;
   text-decoration: underline;
   text-transform: uppercase;
@@ -235,7 +235,7 @@
 }
 
 .scenarioActions button[aria-pressed='true'] {
-  color: #102019;
+  color: #dce5eb;
   font-weight: 600;
 }
 
@@ -248,21 +248,21 @@
 
 .metricControls button {
   background: transparent;
-  border: 1px solid rgba(16, 32, 25, 0.23);
-  color: #244637;
+  border: 1px solid rgba(186, 212, 227, 0.23);
+  color: #afc2cc;
   cursor: pointer;
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   padding: 12px 15px;
 }
 
 .metricControls button[aria-pressed='true'] {
   background: #102019;
-  border-color: #102019;
+  border-color: #dce5eb;
   color: var(--acid);
 }
 
 .metricChart {
-  background: #0a1511;
+  background: #0b1620;
   color: var(--ink);
   padding: clamp(26px, 4vw, 54px);
 }
@@ -285,7 +285,7 @@
 
 .metricChartHeading p {
   color: #9bada3;
-  font-size: 0.5rem;
+  font-size: 0.75rem;
   line-height: 1.6;
   margin: 0;
   max-width: 420px;
@@ -315,11 +315,11 @@
 
 .metricChart li a > span {
   color: #d7e7dd;
-  font-size: 0.58rem;
+  font-size: 0.75rem;
 }
 
 .metricChart li a > strong {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 500;
 }
 
@@ -340,7 +340,7 @@
 
 .metricValue {
   color: #afc0b6;
-  font-size: 0.53rem;
+  font-size: 0.75rem;
   text-align: right;
 }
 
@@ -371,7 +371,7 @@
 
 .missionCell > strong {
   color: var(--acid);
-  font-size: 0.55rem;
+  font-size: 0.75rem;
   font-weight: 650;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -380,7 +380,7 @@
 .missionCell > span,
 .systemTags > span {
   color: #afc0b6;
-  font-size: 0.52rem;
+  font-size: 0.75rem;
   line-height: 1.45;
 }
 
@@ -397,20 +397,20 @@
 }
 
 .metricDataTable {
-  border: 1px solid rgba(16, 32, 25, 0.17);
+  border: 1px solid rgba(186, 212, 227, 0.17);
   border-top: 0;
   padding: 19px 22px;
 }
 
 .metricDataTable summary {
-  color: #204f3a;
+  color: #afc2cc;
   cursor: pointer;
-  font-size: 0.62rem;
+  font-size: 0.75rem;
 }
 
 .emptyComparison,
 .comparisonNote {
-  color: #586c61;
+  color: #afc2cc;
   font-size: 0.75rem;
   line-height: 1.65;
   margin-top: 28px;
@@ -422,7 +422,7 @@
 }
 
 .tableScroller:focus-visible {
-  outline-color: #24543f;
+  outline-color: #afc2cc;
 }
 
 .tableScroller table {
@@ -433,17 +433,17 @@
 
 .tableScroller caption,
 .comparisonTable caption {
-  color: #3b5749;
-  font-size: 0.55rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
   padding-bottom: 16px;
   text-align: left;
 }
 
 .tableScroller th,
 .tableScroller td {
-  border-bottom: 1px solid rgba(16, 32, 25, 0.14);
-  color: #304a3d;
-  font-size: 0.7rem;
+  border-bottom: 1px solid rgba(186, 212, 227, 0.14);
+  color: #afc2cc;
+  font-size: 0.75rem;
   line-height: 1.6;
   padding: 13px 12px;
   text-align: left;
@@ -451,8 +451,8 @@
 }
 
 .tableScroller thead th {
-  color: #526b5e;
-  font-size: 0.49rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
 }
 
 .comparisonTable thead th:not(:first-child) {
@@ -465,11 +465,11 @@
 }
 
 .comparisonTable thead th span {
-  color: #24483a;
+  color: #afc2cc;
 }
 
 .comparisonTable thead th strong {
-  color: #102019;
+  color: #dce5eb;
   font-family: var(--font-body);
   font-size: 0.82rem;
   letter-spacing: 0;
@@ -482,19 +482,19 @@
 }
 
 .fieldSource {
-  color: #224f3b;
-  font-size: 0.5rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
   text-decoration: underline;
 }
 
 .chronologyGrid {
-  border-bottom: 1px solid rgba(16, 32, 25, 0.18);
+  border-bottom: 1px solid rgba(186, 212, 227, 0.18);
   margin-top: 50px;
 }
 
 .chronologyLane {
   align-items: center;
-  border-top: 1px solid rgba(16, 32, 25, 0.18);
+  border-top: 1px solid rgba(186, 212, 227, 0.18);
   display: grid;
   gap: 28px;
   grid-template-columns: 180px minmax(190px, 0.45fr) minmax(0, 1fr) auto;
@@ -503,8 +503,8 @@
 }
 
 .chronologyLabel {
-  color: #365c49;
-  font-size: 0.5rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
 }
 
 .chronologyLane strong {
@@ -514,16 +514,16 @@
 }
 
 .chronologyLane p {
-  color: #54685d;
+  color: #afc2cc;
   font-size: 0.78rem;
   line-height: 1.65;
   margin: 0;
 }
 
 .chronologyLane a {
-  color: #24543f;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.51rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
 }
 
@@ -565,7 +565,7 @@
 
 .downloadMeta {
   color: #8fa398;
-  font-size: 0.48rem;
+  font-size: 0.75rem;
 }
 
 .downloadAction strong {
@@ -577,18 +577,18 @@
 .downloadAction a {
   color: var(--acid);
   font-family: var(--font-mono);
-  font-size: 0.56rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
 }
 
 .museumList {
-  border-bottom: 1px solid rgba(16, 32, 25, 0.18);
+  border-bottom: 1px solid rgba(186, 212, 227, 0.18);
   margin-top: 48px;
 }
 
 .museumItem {
   align-items: center;
-  border-top: 1px solid rgba(16, 32, 25, 0.18);
+  border-top: 1px solid rgba(186, 212, 227, 0.18);
   display: grid;
   gap: 22px;
   grid-template-columns:
@@ -599,14 +599,14 @@
 }
 
 .museumIndex {
-  color: #53685d;
-  font-size: 0.54rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
 }
 
 .artifactId {
-  color: #365b49;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.56rem;
+  font-size: 0.75rem;
 }
 
 .museumItem h3 {
@@ -617,25 +617,25 @@
 }
 
 .museumItem p {
-  color: #566a5f;
-  font-size: 0.7rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
   line-height: 1.55;
   margin: 0;
 }
 
 .rightsBadge {
-  border: 1px solid rgba(16, 32, 25, 0.2);
-  color: #365b49;
-  font-size: 0.46rem;
+  border: 1px solid rgba(186, 212, 227, 0.2);
+  color: #afc2cc;
+  font-size: 0.75rem;
   line-height: 1.5;
   padding: 7px 9px;
   width: fit-content;
 }
 
 .museumItem a {
-  color: #24543f;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.51rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
 }
 
@@ -643,13 +643,13 @@
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  font-size: 0.53rem;
+  font-size: 0.75rem;
   margin-bottom: 40px;
 }
 
 .recordNav a {
   align-items: center;
-  border: 1px solid rgba(16, 32, 25, 0.2);
+  border: 1px solid rgba(186, 212, 227, 0.2);
   display: flex;
   height: 38px;
   justify-content: center;
@@ -689,7 +689,7 @@
   bottom: 24px;
   color: #c6d5cc;
   font-family: var(--font-mono);
-  font-size: 0.48rem;
+  font-size: 0.75rem;
   left: 24px;
   letter-spacing: 0.06em;
   padding: 8px 10px;
@@ -715,7 +715,7 @@
 
 .recordLedger dt {
   color: #8fa399;
-  font-size: 0.47rem;
+  font-size: 0.75rem;
 }
 
 .recordLedger dd {
@@ -738,20 +738,20 @@
 }
 
 .recordSectionHeader p {
-  color: #53685d;
+  color: #afc2cc;
   line-height: 1.75;
   margin: 0;
   max-width: 670px;
 }
 
 .observationList {
-  border-bottom: 1px solid rgba(16, 32, 25, 0.18);
+  border-bottom: 1px solid rgba(186, 212, 227, 0.18);
   margin-top: 42px;
 }
 
 .observationRow {
   align-items: start;
-  border-top: 1px solid rgba(16, 32, 25, 0.18);
+  border-top: 1px solid rgba(186, 212, 227, 0.18);
   display: grid;
   gap: 24px;
   grid-template-columns: 58px minmax(220px, 0.48fr) minmax(0, 1fr) minmax(210px, 0.48fr);
@@ -760,8 +760,8 @@
 }
 
 .observationIndex {
-  color: #53685d;
-  font-size: 0.49rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
 }
 
 .observationRow h3 {
@@ -777,22 +777,22 @@
 
 .observationRow li,
 .observationRow p {
-  color: #53685d;
-  font-size: 0.72rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
   line-height: 1.65;
   margin-top: 0;
 }
 
 .observationState {
-  color: #365c49;
-  font-size: 0.49rem;
+  color: #afc2cc;
+  font-size: 0.75rem;
   line-height: 1.6;
 }
 
 .recordSource {
-  color: #24543f;
+  color: #afc2cc;
   display: inline-block;
-  font-size: 0.51rem;
+  font-size: 0.75rem;
   margin-top: 24px;
 }
 
@@ -810,7 +810,7 @@
 }
 
 .twoColumnRecord > div {
-  background: #dce5dd;
+  background: #101d29;
   padding: clamp(28px, 4vw, 50px);
 }
 
@@ -823,13 +823,13 @@
 
 .twoColumnRecord p,
 .twoColumnRecord li {
-  color: #53685d;
+  color: #afc2cc;
   font-size: 0.75rem;
   line-height: 1.7;
 }
 
 .twoColumnRecord dl div {
-  border-top: 1px solid rgba(16, 32, 25, 0.14);
+  border-top: 1px solid rgba(186, 212, 227, 0.14);
   display: grid;
   gap: 18px;
   grid-template-columns: 1fr 1fr;
@@ -837,29 +837,29 @@
 }
 
 .twoColumnRecord dt {
-  color: #53685d;
+  color: #afc2cc;
   font-family: var(--font-mono);
-  font-size: 0.5rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
 }
 
 .twoColumnRecord dd {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   margin: 0;
 }
 
 .sourceFooter {
-  border-top: 1px solid rgba(16, 32, 25, 0.2);
+  border-top: 1px solid rgba(186, 212, 227, 0.2);
   display: flex;
   flex-wrap: wrap;
-  font-size: 0.52rem;
+  font-size: 0.75rem;
   gap: 20px 32px;
   margin-top: 74px;
   padding-top: 28px;
 }
 
 .sourceFooter a {
-  color: #24543f;
+  color: #afc2cc;
 }
 
 @media (max-width: 1080px) {
@@ -1052,4 +1052,96 @@
 :global(html[data-motion='reduced']) .scenarioRow,
 :global(html[data-motion='reduced']) .bar {
   transition: none;
+}
+
+.worldGallery {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 110px;
+  padding: 25px 0 35px;
+  border-bottom: 1px solid var(--line);
+}
+.galleryCopy h2 {
+  font-size: clamp(34px, 4vw, 58px);
+  line-height: 1.07;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  margin: 22px 0;
+}
+.galleryCopy p {
+  color: #afc2cc;
+  line-height: 1.8;
+  font-size: 15px;
+  max-width: 500px;
+}
+.galleryCopy a {
+  display: inline-block;
+  color: #d3e7bc;
+  margin-top: 20px;
+  text-decoration: none;
+}
+.galleryId {
+  font-family: var(--font-mono);
+  color: #b1d6e0;
+}
+.galleryChoices {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+}
+.galleryChoices button {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  min-height: 48px;
+  background: #0b1520;
+  color: #b9cbd4;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.galleryChoices button[aria-pressed='true'] {
+  background: #d3e7bc;
+  color: #07100e;
+  border-color: #d3e7bc;
+}
+.sectionHeader h2 {
+  font-size: clamp(30px, 4vw, 52px);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+.scenarioRow {
+  border-color: var(--line);
+  padding-block: 25px;
+}
+.scenarioIdentity {
+  grid-template-columns: 26px 1fr;
+}
+.scenarioIdentity h3 {
+  font-size: 21px;
+  letter-spacing: -0.025em;
+}
+.recordHero {
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #0b152080;
+  overflow: hidden;
+}
+@media (max-width: 760px) {
+  .worldGallery {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 70px;
+  }
+  .galleryCopy {
+    order: 1;
+  }
+  .galleryChoices {
+    order: 2;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 25px;
+  }
 }

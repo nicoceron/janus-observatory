@@ -1,0 +1,6 @@
+{
+  "compressedWorkerKiB": 2783.47,
+  "freeLimitKiB": 3072,
+  "localCredentialScan": "passed",
+  "runtimeEnvironment": "Wrangler bindings only"
+}

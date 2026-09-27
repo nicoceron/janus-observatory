@@ -1,0 +1,69 @@
+{
+  "service": "janus-observatory",
+  "status": "operational",
+  "coreExperienceAvailable": true,
+  "publicReleaseAssessment": "not_determined_by_health_endpoint",
+  "canonicalDataReview": {
+    "status": "independent_review_pending",
+    "releaseStatus": "candidate_not_reviewed",
+    "readyForReviewedDataRelease": false,
+    "pendingIndependentReviews": 8,
+    "totalDatasets": 8
+  },
+  "data": {
+    "version": "sha256:46a0e94a969301c49cfafe00463e5c7e9be5dce423ddcdeb21fe4ad0614d2046",
+    "generatedAt": "2026-08-12T22:05:39+00:00",
+    "generatedFiles": 27
+  },
+  "retrieval": {
+    "mode": "lexical",
+    "available": true,
+    "requestedMode": "lexical",
+    "fallbackReason": "preview_disabled",
+    "hybridFusionInterface": "connected_version_model_dimension_gated",
+    "chunkCount": 196,
+    "contentHash": "sha256:b8e169f34af358bad4ba576b688fb66c1230b6e20117b97056f3e8441bcef7e9",
+    "scenarioCoverage": 10,
+    "vectorIndex": "not_built",
+    "runtimeVectorIndex": {
+      "status": "preview_disabled",
+      "vectorCandidateCount": 0,
+      "provider": "voyage",
+      "model": "voyage-4-lite",
+      "dimensions": 1024
+    }
+  },
+  "assets": {
+    "ledgerVersion": "2.0.0",
+    "reviewedAt": "2026-09-07T20:30:00Z",
+    "records": 107,
+    "approved": 102,
+    "linkOnly": 5
+  },
+  "collapse": {
+    "reportedAvailable": true,
+    "independentStatus": "validated_experiment_report",
+    "canonicalStatus": "noncanonical"
+  },
+  "research": {
+    "previewEnabled": false,
+    "liveCallsEnabled": false,
+    "lexicalFallbackAvailable": true,
+    "deepSeekConfigured": true,
+    "embeddingsConfigured": true,
+    "liveProviderValidation": "held_closed_pending_full_provider_canary",
+    "providerCanary": {
+      "status": "partial_external_gate",
+      "implementedProbeCoverage": ["model_list", "plain_text_generation", "embedding"],
+      "unverifiedReleaseCoverage": [
+        "json_mode",
+        "tool_call_and_result",
+        "thinking_multi_tool_replay",
+        "live_usage_and_cache",
+        "live_timeout",
+        "live_rate_limit_429"
+      ]
+    }
+  },
+  "telemetry": { "enabled": false }
+}

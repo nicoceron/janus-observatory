@@ -1,0 +1,5 @@
+
+> janus-observatory@0.1.0 source:validate /Users/ceron/Developer/Projects/janus-observatory
+> tsx scripts/validate-source-manifest.ts
+
+Validated 15 source records: 5 papers, 10 scenario pipelines; 15 checksums verified.

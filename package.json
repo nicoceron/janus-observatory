@@ -39,7 +39,10 @@
     "qa:motion": "tsx scripts/capture-premium-motion-qa.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm lint:python && pnpm test:python && pnpm lint:resilience && pnpm test:resilience && pnpm resilience:validate && pnpm source:validate && pnpm data:generate:check && pnpm data:validate && pnpm assets:validate && pnpm links:validate && pnpm eval:research && pnpm build && pnpm bundle:check"
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm lint:python && pnpm test:python && pnpm lint:resilience && pnpm test:resilience && pnpm resilience:validate && pnpm source:validate && pnpm data:generate:check && pnpm data:validate && pnpm assets:validate && pnpm links:validate && pnpm eval:research && pnpm build && pnpm bundle:check",
+    "build:cloudflare": "node scripts/build-cloudflare.mjs",
+    "preview:cloudflare": "pnpm --filter @janus/web exec opennextjs-cloudflare preview --port 3100",
+    "deploy:cloudflare": "pnpm build:cloudflare && pnpm --filter @janus/web exec opennextjs-cloudflare deploy"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
@@ -51,6 +54,7 @@
     "prettier": "3.9.6",
     "tsx": "4.23.1",
     "typescript": "5.9.3",
-    "vitest": "4.1.10"
+    "vitest": "4.1.10",
+    "wrangler": "4.131.2"
   }
 }

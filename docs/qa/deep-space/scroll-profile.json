@@ -1,0 +1,20 @@
+[
+  {
+    "label": "before",
+    "url": "https://janus-observatory.nicocerond.workers.dev/",
+    "samples": 697,
+    "median": 8.300000000000182,
+    "p95": 9.299999999999272,
+    "over50": 2,
+    "buffer": [1440, 1000]
+  },
+  {
+    "label": "after",
+    "url": "http://127.0.0.1:3100/",
+    "samples": 701,
+    "median": 8.300000000000182,
+    "p95": 9.300000000000182,
+    "over50": 1,
+    "buffer": [1440, 1000]
+  }
+]

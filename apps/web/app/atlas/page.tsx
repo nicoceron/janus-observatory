@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import assetLedger from '../../../../data/assets/ledger.json';
 import { collapseDataset } from '../../lib/canonical';
 import { InnerPage } from '../components/InnerPage';
+import { WorldGallery } from './WorldGallery';
 import { AtlasExplorer } from './AtlasExplorer';
 import styles from './atlas.module.css';
 
@@ -25,10 +26,11 @@ const artifacts = assetLedger.entries.filter(({ kind }) => kind === 'artifact');
 export default function AtlasPage() {
   return (
     <InnerPage
-      eyebrow="Atlas · ten canonical scenarios"
-      lede="Compare morphology, growth, atmosphere, technosignatures, observability, and reported collapse outcomes—field by field."
-      title="Ten possibilities. No leaderboard."
+      eyebrow="THE ATLAS"
+      lede="Ten possible civilizations. Explore their worlds, then compare what changes—and what another observer could see."
+      title="Choose a different future."
     >
+      <WorldGallery />
       <Suspense fallback={<p>Preparing canonical comparison…</p>}>
         <AtlasExplorer />
       </Suspense>

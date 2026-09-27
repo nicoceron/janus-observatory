@@ -1,0 +1,122 @@
+[
+  {
+    "world": "origin",
+    "mobile": false,
+    "kind": "research-skiff",
+    "poses": 142,
+    "hits": [],
+    "nativeRadius": 0.122640625,
+    "reservedRadius": 0.14767519850730895,
+    "clear": true
+  },
+  {
+    "world": "origin",
+    "mobile": false,
+    "kind": "cutter",
+    "poses": 142,
+    "hits": [],
+    "nativeRadius": 0.10731054687500001,
+    "reservedRadius": 0.13234079869389534,
+    "clear": true
+  },
+  {
+    "world": "origin",
+    "mobile": true,
+    "kind": "research-skiff",
+    "poses": 142,
+    "hits": [],
+    "nativeRadius": 0.122640625,
+    "reservedRadius": 0.14767519850730895,
+    "clear": true
+  },
+  {
+    "world": "origin",
+    "mobile": true,
+    "kind": "cutter",
+    "poses": 142,
+    "hits": [],
+    "nativeRadius": 0.10731054687500001,
+    "reservedRadius": 0.13234079869389534,
+    "clear": true
+  },
+  {
+    "world": "s3",
+    "mobile": false,
+    "kind": "ferry",
+    "poses": 142,
+    "hits": [],
+    "nativeRadius": 0.15093902811157583,
+    "reservedRadius": 0.17598431776952006,
+    "clear": true
+  },
+  {
+    "world": "s3",
+    "mobile": true,
+    "kind": "ferry",
+    "poses": 142,
+    "hits": [],
+    "nativeRadius": 0.15093902811157583,
+    "reservedRadius": 0.17598431776952006,
+    "clear": true
+  },
+  {
+    "world": "s4",
+    "mobile": false,
+    "kind": "canoe",
+    "poses": 142,
+    "hits": [],
+    "nativeRadius": 0.14946826171875,
+    "reservedRadius": 0.1745103981807828,
+    "clear": true
+  },
+  {
+    "world": "s4",
+    "mobile": true,
+    "kind": "canoe",
+    "poses": 142,
+    "hits": [],
+    "nativeRadius": 0.14946826171875,
+    "reservedRadius": 0.1745103981807828,
+    "clear": true
+  },
+  {
+    "world": "s7",
+    "mobile": false,
+    "kind": "cutter",
+    "poses": 142,
+    "hits": [],
+    "nativeRadius": 0.12072436523437499,
+    "reservedRadius": 0.14575839853063224,
+    "clear": true
+  },
+  {
+    "world": "s7",
+    "mobile": true,
+    "kind": "cutter",
+    "poses": 142,
+    "hits": [],
+    "nativeRadius": 0.12072436523437499,
+    "reservedRadius": 0.14575839853063224,
+    "clear": true
+  },
+  {
+    "world": "s10",
+    "mobile": false,
+    "kind": "sail-barge",
+    "poses": 142,
+    "hits": [],
+    "nativeRadius": 0.1924592558391796,
+    "reservedRadius": 0.21743524451410898,
+    "clear": true
+  },
+  {
+    "world": "s10",
+    "mobile": true,
+    "kind": "sail-barge",
+    "poses": 142,
+    "hits": [],
+    "nativeRadius": 0.1924592558391796,
+    "reservedRadius": 0.21743524451410898,
+    "clear": true
+  }
+]

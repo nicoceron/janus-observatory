@@ -4,7 +4,7 @@ test.describe('Observatory URL state', () => {
   test('restores and updates a shareable scenario/instrument selection', async ({ page }) => {
     await page.goto('/observatory?scenario=S9&instrument=deep_space_probes');
 
-    const console = page.getByRole('region', { name: 'Alien telescope console' });
+    const console = page.getByRole('region', { name: 'Choose how to look' });
     const scenario = console.getByRole('group', { name: /Select future/ });
     const instrument = console.getByRole('group', { name: /Select observing concept/ });
     await expect(scenario.getByRole('button', { name: /^S9:/ })).toHaveAttribute(

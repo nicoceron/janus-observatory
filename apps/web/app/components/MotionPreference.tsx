@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
 import styles from './MotionPreference.module.css';
@@ -58,6 +59,7 @@ export function useReducedMotionPreference() {
 }
 
 export function MotionPreference() {
+  const pathname = usePathname();
   const [preference, setPreference] = useState<MotionPreferenceValue>('system');
 
   const applyPreference = useCallback((nextPreference: MotionPreferenceValue) => {
@@ -72,9 +74,18 @@ export function MotionPreference() {
   }, []);
 
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => applyPreference(storedPreference()));
+    const frame = window.requestAnimationFrame(() => {
+      if (pathname === '/') {
+        document.documentElement.dataset.motion = 'full';
+        window.dispatchEvent(new CustomEvent(motionChangeEvent));
+      } else {
+        applyPreference(storedPreference());
+      }
+    });
     return () => window.cancelAnimationFrame(frame);
-  }, [applyPreference]);
+  }, [applyPreference, pathname]);
+
+  if (pathname !== '/accessibility') return null;
 
   return (
     <aside className={styles.motionPreference} aria-label="Motion preference">

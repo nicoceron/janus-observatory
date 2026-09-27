@@ -1,0 +1,289 @@
+{
+  "frames": {
+    "count": 134,
+    "p50": 33.29999999999927,
+    "p95": 33.70000000000073
+  },
+  "hot": [
+    {
+      "ms": 4149.885,
+      "functionName": "(program)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 17.507,
+      "functionName": "needsUpdate",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 1487,
+      "columnNumber": 24
+    },
+    {
+      "ms": 5.021,
+      "functionName": "(idle)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 5.014,
+      "functionName": "placeSpatialTarget",
+      "scriptId": "247",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_0ehoyyn._.js",
+      "lineNumber": 2600,
+      "columnNumber": 27
+    },
+    {
+      "ms": 4.3,
+      "functionName": "setup",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 1410,
+      "columnNumber": 18
+    },
+    {
+      "ms": 2.747,
+      "functionName": "BlenderLibrary.useFrame",
+      "scriptId": "418",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_1nofpid._.js",
+      "lineNumber": 311,
+      "columnNumber": 43
+    },
+    {
+      "ms": 2.514,
+      "functionName": "loop",
+      "scriptId": "210",
+      "url": "http://localhost:3000/_next/static/chunks/1pzi_%40react-three_fiber_dist_1u92-zo._.js",
+      "lineNumber": 15420,
+      "columnNumber": 13
+    },
+    {
+      "ms": 2.512,
+      "functionName": "Scene.useFrame",
+      "scriptId": "418",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_1nofpid._.js",
+      "lineNumber": 8728,
+      "columnNumber": 26
+    },
+    {
+      "ms": 2.507,
+      "functionName": "setValueM4",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 3861,
+      "columnNumber": 19
+    },
+    {
+      "ms": 1.507,
+      "functionName": "bindVertexArray",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 1.364,
+      "functionName": "setProgram",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 12146,
+      "columnNumber": 27
+    },
+    {
+      "ms": 1.338,
+      "functionName": "uniform3f",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 1.265,
+      "functionName": "disable",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 6788,
+      "columnNumber": 20
+    },
+    {
+      "ms": 1.263,
+      "functionName": "painterSortStable",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 5552,
+      "columnNumber": 26
+    },
+    {
+      "ms": 1.263,
+      "functionName": "multiplyMatrices",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 8586,
+      "columnNumber": 21
+    },
+    {
+      "ms": 1.26,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 1.26,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 1.26,
+      "functionName": "WebGLProgram.getAttributes",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 4989,
+      "columnNumber": 33
+    },
+    {
+      "ms": 1.259,
+      "functionName": "copyArray",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 3752,
+      "columnNumber": 18
+    },
+    {
+      "ms": 1.258,
+      "functionName": "getNormalMatrix",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 5747,
+      "columnNumber": 20
+    },
+    {
+      "ms": 1.258,
+      "functionName": "queueMicrotask",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 1.258,
+      "functionName": "StoryBody.useFrame",
+      "scriptId": "418",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_1nofpid._.js",
+      "lineNumber": 9320,
+      "columnNumber": 30
+    },
+    {
+      "ms": 1.257,
+      "functionName": "updateWorldMatrix",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10341,
+      "columnNumber": 22
+    },
+    {
+      "ms": 1.257,
+      "functionName": "multiplyMatrices",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 8586,
+      "columnNumber": 21
+    },
+    {
+      "ms": 1.257,
+      "functionName": "BlenderLibrary.useFrame",
+      "scriptId": "418",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_1nofpid._.js",
+      "lineNumber": 361,
+      "columnNumber": 55
+    },
+    {
+      "ms": 1.257,
+      "functionName": "setClear",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 1367,
+      "columnNumber": 21
+    },
+    {
+      "ms": 1.256,
+      "functionName": "setValue",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 4356,
+      "columnNumber": 12
+    },
+    {
+      "ms": 1.256,
+      "functionName": "projectObject",
+      "scriptId": "206",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 11854,
+      "columnNumber": 30
+    },
+    {
+      "ms": 1.256,
+      "functionName": "push.REVISION",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 480,
+      "columnNumber": 4
+    },
+    {
+      "ms": 1.254,
+      "functionName": "activityMotion",
+      "scriptId": "418",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_1nofpid._.js",
+      "lineNumber": 14453,
+      "columnNumber": 23
+    },
+    {
+      "ms": 1.254,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "207",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 1.254,
+      "functionName": "hideSpatialTargets",
+      "scriptId": "247",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_0ehoyyn._.js",
+      "lineNumber": 2589,
+      "columnNumber": 27
+    },
+    {
+      "ms": 1.253,
+      "functionName": "update",
+      "scriptId": "210",
+      "url": "http://localhost:3000/_next/static/chunks/1pzi_%40react-three_fiber_dist_1u92-zo._.js",
+      "lineNumber": 15394,
+      "columnNumber": 15
+    },
+    {
+      "ms": 1.253,
+      "functionName": "uniformMatrix3fv",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 1.252,
+      "functionName": "uniform1f",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    }
+  ]
+}

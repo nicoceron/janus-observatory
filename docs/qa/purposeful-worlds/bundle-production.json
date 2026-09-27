@@ -1,0 +1,56 @@
+{
+  "homeInitialJavaScript": {
+    "gzipBytes": 193536,
+    "budgetBytes": 256000,
+    "files": [
+      "static/chunks/1-riv1-ctwk62.js",
+      "static/chunks/1616vv5x0aijc.js",
+      "static/chunks/1bjh42maaiu_y.js",
+      "static/chunks/1x80bvjs1qy_f.js",
+      "static/chunks/2isjso1na-1tl.js",
+      "static/chunks/3-5uy7mz7sf5p.js",
+      "static/chunks/3-c76cvpd6e81.js",
+      "static/chunks/35dqe6xc1sx-z.js",
+      "static/chunks/3gcwd3byl2d2j.js",
+      "static/chunks/3x49uafz63uis.js",
+      "static/chunks/turbopack-2dzij86ti7thk.js"
+    ],
+    "excludedLegacyNoModulePolyfills": ["static/chunks/0cz1d0mv5g_q7.js"],
+    "excludedDeferredR3fThree": [
+      {
+        "path": "static/chunks/2ues9nw8jux37.js",
+        "gzipBytes": 717366
+      }
+    ],
+    "assumption": "Modern-browser budget measures non-noModule scripts emitted in prerendered home HTML; root and page entries are required, and every emitted script must occur in the route client-reference or root build manifest."
+  },
+  "homeCriticalVisual": {
+    "auditedBytes": 126804,
+    "mobileBudgetBytes": 1572864,
+    "desktopBudgetBytes": 3145728,
+    "sourceImages": ["apps/web/public/assets/planets/low-poly-origin-v5.webp"],
+    "fonts": [
+      "apps/web/.next/static/media/99e609270109b47d-s.p.40sczeszzbjw1.woff2",
+      "apps/web/.next/static/media/a343f882a40d2cc9-s.p.1sj6eobyi31rd.woff2",
+      "apps/web/.next/static/media/effe91970fc4db64-s.p.0oace-s_gkfks.woff2"
+    ],
+    "styles": [
+      "apps/web/.next/static/chunks/05n2b_b4g5ea6.css",
+      "apps/web/.next/static/chunks/0pud43dmp31mt.css",
+      "apps/web/.next/static/chunks/288havgsgofmx.css",
+      "apps/web/.next/static/chunks/3-xmbrykcl5-t.css"
+    ],
+    "assumption": "Conservative source-image bytes plus preloaded WOFF2, gzip CSS, and gzip HTML; optimized responsive images should be smaller."
+  },
+  "individualAssets": {
+    "nonDeferredJavaScriptChunkBudgetBytes": 256000,
+    "runtimeAssetBudgetBytes": 4194304,
+    "javascriptChunksChecked": 19,
+    "runtimeAssetsChecked": 35
+  },
+  "guidedPathPayload": {
+    "conservativeUpperBoundBytes": 12167116,
+    "budgetBytes": 20971520,
+    "assumption": "Counts all public runtime assets plus every emitted client JS/CSS/font and home HTML once; a typical guided path is a subset."
+  }
+}

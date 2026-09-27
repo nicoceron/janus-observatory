@@ -1,0 +1,322 @@
+{
+  "baseUrl": "http://127.0.0.1:3200",
+  "hardwareGpuRequested": true,
+  "graphics": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36"
+  },
+  "captures": [
+    {
+      "file": "desktop-organism-00.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "6.991"
+    },
+    {
+      "file": "desktop-organism-01.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "8.259"
+    },
+    {
+      "file": "desktop-organism-02.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "9.534"
+    },
+    {
+      "file": "desktop-organism-03.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "10.800"
+    },
+    {
+      "file": "desktop-organism-04.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "12.067"
+    },
+    {
+      "file": "desktop-organism-05.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "13.342"
+    },
+    {
+      "file": "desktop-organism-06.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "14.600"
+    },
+    {
+      "file": "desktop-organism-07.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "15.858"
+    },
+    {
+      "file": "desktop-organism-08.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "17.125"
+    },
+    {
+      "file": "desktop-organism-09.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "0.399"
+    },
+    {
+      "file": "desktop-organism-10.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "1.658"
+    },
+    {
+      "file": "desktop-organism-11.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "2.925"
+    },
+    {
+      "file": "desktop-organism-12.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "4.209"
+    },
+    {
+      "file": "desktop-organism-13.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "5.484"
+    },
+    {
+      "file": "desktop-organism-14.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "6.742"
+    },
+    {
+      "file": "desktop-organism-15.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "8.009"
+    },
+    {
+      "file": "desktop-organism-16.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "9.275"
+    },
+    {
+      "file": "desktop-organism-17.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "10.534"
+    },
+    {
+      "file": "desktop-organism-18.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "11.808"
+    },
+    {
+      "file": "desktop-organism-19.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "13.066"
+    },
+    {
+      "file": "desktop-eyepiece.png",
+      "chapter": "invisible",
+      "scene": "13.000",
+      "observerTime": "14.592"
+    },
+    {
+      "file": "desktop-reduced-observer.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "4.400"
+    },
+    {
+      "file": "portrait-organism-00.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "6.806"
+    },
+    {
+      "file": "portrait-organism-01.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "7.871"
+    },
+    {
+      "file": "portrait-organism-02.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "8.939"
+    },
+    {
+      "file": "portrait-organism-03.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "10.005"
+    },
+    {
+      "file": "portrait-organism-04.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "11.071"
+    },
+    {
+      "file": "portrait-organism-05.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "12.131"
+    },
+    {
+      "file": "portrait-organism-06.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "13.189"
+    },
+    {
+      "file": "portrait-organism-07.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "14.256"
+    },
+    {
+      "file": "portrait-organism-08.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "15.313"
+    },
+    {
+      "file": "portrait-organism-09.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "16.371"
+    },
+    {
+      "file": "portrait-organism-10.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "17.430"
+    },
+    {
+      "file": "portrait-organism-11.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "0.489"
+    },
+    {
+      "file": "portrait-organism-12.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "1.547"
+    },
+    {
+      "file": "portrait-organism-13.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "2.606"
+    },
+    {
+      "file": "portrait-organism-14.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "3.672"
+    },
+    {
+      "file": "portrait-organism-15.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "4.739"
+    },
+    {
+      "file": "portrait-organism-16.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "5.796"
+    },
+    {
+      "file": "portrait-organism-17.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "6.859"
+    },
+    {
+      "file": "portrait-organism-18.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "7.926"
+    },
+    {
+      "file": "portrait-organism-19.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "8.985"
+    },
+    {
+      "file": "portrait-eyepiece.png",
+      "chapter": "invisible",
+      "scene": "13.000",
+      "observerTime": "10.434"
+    },
+    {
+      "file": "portrait-reduced-observer.png",
+      "chapter": "observer",
+      "scene": "12.000",
+      "observerTime": "4.400"
+    }
+  ],
+  "cadence": [
+    {
+      "label": "desktop native forward/reverse world transition",
+      "samples": 716,
+      "p50Ms": 8.300000000000182,
+      "p95Ms": 9.300000000000182,
+      "p99Ms": 9.399999999999636,
+      "longestMs": 65.20000000000073,
+      "meanHz": 119.16848359768986,
+      "scenes": ["s1", "s2"],
+      "returnsToStartingScroll": true
+    },
+    {
+      "label": "desktop autonomous organism, stationary scroll",
+      "samples": 721,
+      "p50Ms": 8.300000000001091,
+      "p95Ms": 9.299999999999272,
+      "p99Ms": 9.399999999999636,
+      "longestMs": 9.5,
+      "meanHz": 119.99667138220853,
+      "scenes": ["observer"],
+      "returnsToStartingScroll": true
+    },
+    {
+      "label": "portrait native forward/reverse world transition",
+      "samples": 721,
+      "p50Ms": 8.300000000000182,
+      "p95Ms": 9.300000000000182,
+      "p99Ms": 9.300000000000182,
+      "longestMs": 9.400000000000091,
+      "meanHz": 119.98668663671153,
+      "scenes": ["s1", "s2"],
+      "returnsToStartingScroll": true
+    },
+    {
+      "label": "portrait autonomous organism, stationary scroll",
+      "samples": 721,
+      "p50Ms": 8.300000000001091,
+      "p95Ms": 9.299999999999272,
+      "p99Ms": 9.300000000001091,
+      "longestMs": 9.400000000001455,
+      "meanHz": 120.08260884047836,
+      "scenes": ["observer"],
+      "returnsToStartingScroll": true
+    }
+  ],
+  "issues": [],
+  "scope": "Unthrottled local headless Chromium requestAnimationFrame cadence; desktop and mobile viewport emulation. This is not GPU presentation timing, physical mobile-device certification, or field Core Web Vitals. Context-loss, retry, resize, autonomous motion, and reduced-motion stability are exercised."
+}

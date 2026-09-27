@@ -74,10 +74,9 @@ export default function PrivacyPage() {
         <h2>External services and sources</h2>
         <div className={styles.sectionBody}>
           <p>
-            The decorative home-page solar-system motion is rendered locally from project-owned SVG
-            and the admitted poster. It makes no request to the original Spline host. Reduced motion
-            omits the animated overlay while preserving the local poster, copy, and every scientific
-            control.
+            The home-page spatial scene is rendered locally and does not request the original Spline
+            host. It does not load a temporary poster before the Earth scene. Reduced motion
+            preserves the copy and every scientific control.
           </p>
           <p>
             Source and artifact links open other third-party sites with their own privacy practices.

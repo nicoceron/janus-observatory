@@ -49,18 +49,28 @@ const routePatterns = appFiles
     return new RegExp(`^${escaped || '/'}(?:[?#].*)?$`);
   });
 
+const publicFiles = new Set(
+  (await filesBelow('apps/web/public')).map(
+    (path) => '/' + relative('apps/web/public', path).replaceAll('\\', '/'),
+  ),
+);
 const missingRoutes: string[] = [];
 for (const path of appFiles) {
   const source = await readFile(path, 'utf8');
   const hrefs = [...source.matchAll(/href\s*=\s*["'](\/[^"']*)["']/g)].map((match) => match[1]);
   for (const href of hrefs) {
-    if (!routePatterns.some((pattern) => pattern.test(href))) {
+    if (
+      !routePatterns.some((pattern) => pattern.test(href)) &&
+      !publicFiles.has(href.split(/[?#]/)[0])
+    ) {
       missingRoutes.push(`${path}: ${href}`);
     }
   }
 }
 if (missingRoutes.length > 0) {
-  throw new Error(`Local links have no matching App Router page:\n${missingRoutes.join('\n')}`);
+  throw new Error(
+    `Local links have no matching App Router page or public file:\n${missingRoutes.join('\n')}`,
+  );
 }
 
 const sourceManifest = SourceManifestSchema.parse(sourceManifestJson);

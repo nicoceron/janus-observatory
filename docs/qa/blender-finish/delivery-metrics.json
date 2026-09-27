@@ -1,0 +1,14 @@
+{
+  "sourceFiles": 11,
+  "scenes": 48,
+  "glbs": 59,
+  "glbBytes": 15848444,
+  "largestGlbBytes": 831636,
+  "sourceBytes": 7990993,
+  "buildPeakRssBytes": 374751232,
+  "reviewPeakRssBytes": 1382858752,
+  "latestBuildSeconds": 20.161,
+  "initialJsGzipBytes": 193783,
+  "desktopJourneyBytes": 11990016,
+  "mobileJourneyBytes": 17140200
+}

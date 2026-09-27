@@ -1,0 +1,494 @@
+{
+  "scope": "Original interpretive geometry. Counts do not encode scientific values.",
+  "uniqueScenarioObjectFamilies": 34,
+  "worlds": [
+    {
+      "id": "Earth",
+      "mobile": false,
+      "landmarkTriangles": 5400,
+      "terrainTriangles": 1688,
+      "companions": [],
+      "companionTriangles": 0
+    },
+    {
+      "id": "S1",
+      "mobile": false,
+      "landmarkTriangles": 10972,
+      "terrainTriangles": 1548,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1932
+        },
+        {
+          "name": "Mars",
+          "triangles": 1716
+        },
+        {
+          "name": "Venus",
+          "triangles": 1604
+        },
+        {
+          "name": "asteroids",
+          "triangles": 444
+        },
+        {
+          "name": "outer",
+          "triangles": 560
+        }
+      ],
+      "companionTriangles": 6256
+    },
+    {
+      "id": "S2",
+      "mobile": false,
+      "landmarkTriangles": 12580,
+      "terrainTriangles": 1460,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1716
+        },
+        {
+          "name": "Mars",
+          "triangles": 1500
+        },
+        {
+          "name": "asteroids",
+          "triangles": 488
+        }
+      ],
+      "companionTriangles": 3704
+    },
+    {
+      "id": "S3",
+      "mobile": false,
+      "landmarkTriangles": 9660,
+      "terrainTriangles": 1720,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1732
+        },
+        {
+          "name": "Mars",
+          "triangles": 1516
+        },
+        {
+          "name": "asteroids",
+          "triangles": 444
+        },
+        {
+          "name": "outer",
+          "triangles": 564
+        }
+      ],
+      "companionTriangles": 4256
+    },
+    {
+      "id": "S4",
+      "mobile": false,
+      "landmarkTriangles": 7612,
+      "terrainTriangles": 1676,
+      "companions": [],
+      "companionTriangles": 0
+    },
+    {
+      "id": "S5",
+      "mobile": false,
+      "landmarkTriangles": 9012,
+      "terrainTriangles": 1600,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1816
+        },
+        {
+          "name": "Mars",
+          "triangles": 1600
+        },
+        {
+          "name": "Venus",
+          "triangles": 1256
+        },
+        {
+          "name": "asteroids",
+          "triangles": 444
+        },
+        {
+          "name": "outer",
+          "triangles": 564
+        },
+        {
+          "name": "kuiper",
+          "triangles": 216
+        }
+      ],
+      "companionTriangles": 5896
+    },
+    {
+      "id": "S6",
+      "mobile": false,
+      "landmarkTriangles": 12308,
+      "terrainTriangles": 1396,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 2052
+        },
+        {
+          "name": "Mars",
+          "triangles": 1836
+        },
+        {
+          "name": "Venus",
+          "triangles": 1256
+        },
+        {
+          "name": "asteroids",
+          "triangles": 444
+        },
+        {
+          "name": "kuiper",
+          "triangles": 216
+        }
+      ],
+      "companionTriangles": 5804
+    },
+    {
+      "id": "S7",
+      "mobile": false,
+      "landmarkTriangles": 8014,
+      "terrainTriangles": 1668,
+      "companions": [],
+      "companionTriangles": 0
+    },
+    {
+      "id": "S8",
+      "mobile": false,
+      "landmarkTriangles": 3756,
+      "terrainTriangles": 1624,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1572
+        }
+      ],
+      "companionTriangles": 1572
+    },
+    {
+      "id": "S9",
+      "mobile": false,
+      "landmarkTriangles": 3274,
+      "terrainTriangles": 1712,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1320
+        },
+        {
+          "name": "Mars",
+          "triangles": 1644
+        },
+        {
+          "name": "Venus",
+          "triangles": 1580
+        },
+        {
+          "name": "asteroids",
+          "triangles": 508
+        },
+        {
+          "name": "outer",
+          "triangles": 480
+        },
+        {
+          "name": "kuiper",
+          "triangles": 216
+        },
+        {
+          "name": "solar",
+          "triangles": 1140
+        }
+      ],
+      "companionTriangles": 6888
+    },
+    {
+      "id": "S10",
+      "mobile": false,
+      "landmarkTriangles": 4786,
+      "terrainTriangles": 1640,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1732
+        },
+        {
+          "name": "Mars",
+          "triangles": 1516
+        },
+        {
+          "name": "Venus",
+          "triangles": 1256
+        },
+        {
+          "name": "asteroids",
+          "triangles": 444
+        },
+        {
+          "name": "outer",
+          "triangles": 564
+        },
+        {
+          "name": "kuiper",
+          "triangles": 216
+        }
+      ],
+      "companionTriangles": 5728
+    },
+    {
+      "id": "Earth",
+      "mobile": true,
+      "landmarkTriangles": 4424,
+      "terrainTriangles": 1012,
+      "companions": [],
+      "companionTriangles": 0
+    },
+    {
+      "id": "S1",
+      "mobile": true,
+      "landmarkTriangles": 9604,
+      "terrainTriangles": 928,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1452
+        },
+        {
+          "name": "Mars",
+          "triangles": 1236
+        },
+        {
+          "name": "Venus",
+          "triangles": 1124
+        },
+        {
+          "name": "asteroids",
+          "triangles": 444
+        },
+        {
+          "name": "outer",
+          "triangles": 560
+        }
+      ],
+      "companionTriangles": 4816
+    },
+    {
+      "id": "S2",
+      "mobile": true,
+      "landmarkTriangles": 10028,
+      "terrainTriangles": 860,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1236
+        },
+        {
+          "name": "Mars",
+          "triangles": 1020
+        },
+        {
+          "name": "asteroids",
+          "triangles": 488
+        }
+      ],
+      "companionTriangles": 2744
+    },
+    {
+      "id": "S3",
+      "mobile": true,
+      "landmarkTriangles": 8050,
+      "terrainTriangles": 1060,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1252
+        },
+        {
+          "name": "Mars",
+          "triangles": 1036
+        },
+        {
+          "name": "asteroids",
+          "triangles": 444
+        },
+        {
+          "name": "outer",
+          "triangles": 564
+        }
+      ],
+      "companionTriangles": 3296
+    },
+    {
+      "id": "S4",
+      "mobile": true,
+      "landmarkTriangles": 5962,
+      "terrainTriangles": 1028,
+      "companions": [],
+      "companionTriangles": 0
+    },
+    {
+      "id": "S5",
+      "mobile": true,
+      "landmarkTriangles": 6570,
+      "terrainTriangles": 948,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1336
+        },
+        {
+          "name": "Mars",
+          "triangles": 1120
+        },
+        {
+          "name": "Venus",
+          "triangles": 776
+        },
+        {
+          "name": "asteroids",
+          "triangles": 444
+        },
+        {
+          "name": "outer",
+          "triangles": 564
+        },
+        {
+          "name": "kuiper",
+          "triangles": 216
+        }
+      ],
+      "companionTriangles": 4456
+    },
+    {
+      "id": "S6",
+      "mobile": true,
+      "landmarkTriangles": 10268,
+      "terrainTriangles": 800,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1572
+        },
+        {
+          "name": "Mars",
+          "triangles": 1356
+        },
+        {
+          "name": "Venus",
+          "triangles": 776
+        },
+        {
+          "name": "asteroids",
+          "triangles": 444
+        },
+        {
+          "name": "kuiper",
+          "triangles": 216
+        }
+      ],
+      "companionTriangles": 4364
+    },
+    {
+      "id": "S7",
+      "mobile": true,
+      "landmarkTriangles": 6802,
+      "terrainTriangles": 1016,
+      "companions": [],
+      "companionTriangles": 0
+    },
+    {
+      "id": "S8",
+      "mobile": true,
+      "landmarkTriangles": 3256,
+      "terrainTriangles": 976,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1092
+        }
+      ],
+      "companionTriangles": 1092
+    },
+    {
+      "id": "S9",
+      "mobile": true,
+      "landmarkTriangles": 2574,
+      "terrainTriangles": 1032,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 840
+        },
+        {
+          "name": "Mars",
+          "triangles": 1164
+        },
+        {
+          "name": "Venus",
+          "triangles": 1100
+        },
+        {
+          "name": "asteroids",
+          "triangles": 508
+        },
+        {
+          "name": "outer",
+          "triangles": 480
+        },
+        {
+          "name": "kuiper",
+          "triangles": 216
+        },
+        {
+          "name": "solar",
+          "triangles": 1140
+        }
+      ],
+      "companionTriangles": 5448
+    },
+    {
+      "id": "S10",
+      "mobile": true,
+      "landmarkTriangles": 3826,
+      "terrainTriangles": 964,
+      "companions": [
+        {
+          "name": "Moon",
+          "triangles": 1252
+        },
+        {
+          "name": "Mars",
+          "triangles": 1036
+        },
+        {
+          "name": "Venus",
+          "triangles": 776
+        },
+        {
+          "name": "asteroids",
+          "triangles": 444
+        },
+        {
+          "name": "outer",
+          "triangles": 564
+        },
+        {
+          "name": "kuiper",
+          "triangles": 216
+        }
+      ],
+      "companionTriangles": 4288
+    }
+  ]
+}

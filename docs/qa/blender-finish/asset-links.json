@@ -1,0 +1,407 @@
+{
+  "version": "blender-orbit-crops-v11-2026-09-20",
+  "manifest": "docs/qa/blender-finish/art-manifest.json",
+  "rightsReport": "docs/qa/blender-finish/asset-rights.md",
+  "editableSources": [
+    {
+      "world": "origin",
+      "path": "assets/blender/origin.blend"
+    },
+    {
+      "world": "s1",
+      "path": "assets/blender/s1.blend"
+    },
+    {
+      "world": "s2",
+      "path": "assets/blender/s2.blend"
+    },
+    {
+      "world": "s3",
+      "path": "assets/blender/s3.blend"
+    },
+    {
+      "world": "s4",
+      "path": "assets/blender/s4.blend"
+    },
+    {
+      "world": "s5",
+      "path": "assets/blender/s5.blend"
+    },
+    {
+      "world": "s6",
+      "path": "assets/blender/s6.blend"
+    },
+    {
+      "world": "s7",
+      "path": "assets/blender/s7.blend"
+    },
+    {
+      "world": "s8",
+      "path": "assets/blender/s8.blend"
+    },
+    {
+      "world": "s9",
+      "path": "assets/blender/s9.blend"
+    },
+    {
+      "world": "s10",
+      "path": "assets/blender/s10.blend"
+    }
+  ],
+  "assets": [
+    {
+      "id": "janus.blender.v1.origin.earth-mobile",
+      "href": "/assets/blender/v1/origin/earth-mobile.glb",
+      "sourcePath": "assets/blender/origin.blend",
+      "derivativeChecksum": "sha256:f1741609f25d8942c8dbd8e397c217585a61d8ce3c595531943ae4526041f91d"
+    },
+    {
+      "id": "janus.blender.v1.origin.earth",
+      "href": "/assets/blender/v1/origin/earth.glb",
+      "sourcePath": "assets/blender/origin.blend",
+      "derivativeChecksum": "sha256:9cb7b59e107a03c09c144c8535d9032c2e498b646312e0090751cfab7d1be7ad"
+    },
+    {
+      "id": "janus.blender.v1.s1.asteroids",
+      "href": "/assets/blender/v1/s1/asteroids.glb",
+      "sourcePath": "assets/blender/s1.blend",
+      "derivativeChecksum": "sha256:367796326a5f56bb265ebf2d4bb1ab0947b5c9a7c4a2a22c0a260387a8d45a55"
+    },
+    {
+      "id": "janus.blender.v1.s1.earth-mobile",
+      "href": "/assets/blender/v1/s1/earth-mobile.glb",
+      "sourcePath": "assets/blender/s1.blend",
+      "derivativeChecksum": "sha256:f80a8330eae1f34dbc86df5c54a5dd66ccb3151886c17a0c165d42dcb223d756"
+    },
+    {
+      "id": "janus.blender.v1.s1.earth",
+      "href": "/assets/blender/v1/s1/earth.glb",
+      "sourcePath": "assets/blender/s1.blend",
+      "derivativeChecksum": "sha256:538c3310f34318ac61531a3c6e381f8b598be440965c8f566bd825ef24e2a6c0"
+    },
+    {
+      "id": "janus.blender.v1.s1.mars",
+      "href": "/assets/blender/v1/s1/Mars.glb",
+      "sourcePath": "assets/blender/s1.blend",
+      "derivativeChecksum": "sha256:c3026e5e52b979976744a0b2d89f0c7387ae422e65a5c38d6ea5e9de21d731a0"
+    },
+    {
+      "id": "janus.blender.v1.s1.moon",
+      "href": "/assets/blender/v1/s1/Moon.glb",
+      "sourcePath": "assets/blender/s1.blend",
+      "derivativeChecksum": "sha256:0915b6f0fa760f6f9db98a86a32d117799cf839a0cff3908516edadea4381dd1"
+    },
+    {
+      "id": "janus.blender.v1.s1.outer",
+      "href": "/assets/blender/v1/s1/outer.glb",
+      "sourcePath": "assets/blender/s1.blend",
+      "derivativeChecksum": "sha256:147fa6e8e3316abe8615a6f80a9cc410a6f01a187d604867e2d15656d60c012b"
+    },
+    {
+      "id": "janus.blender.v1.s1.venus",
+      "href": "/assets/blender/v1/s1/Venus.glb",
+      "sourcePath": "assets/blender/s1.blend",
+      "derivativeChecksum": "sha256:8e46e4d8f004c6837edac058411dda13e799c34e1ecee3fee65e270e094ffd30"
+    },
+    {
+      "id": "janus.blender.v1.s2.asteroids",
+      "href": "/assets/blender/v1/s2/asteroids.glb",
+      "sourcePath": "assets/blender/s2.blend",
+      "derivativeChecksum": "sha256:de599e86e389c9c86da199d4ce00a5b54e6855b6e7fd7b414d2b777dc8adab11"
+    },
+    {
+      "id": "janus.blender.v1.s2.earth-mobile",
+      "href": "/assets/blender/v1/s2/earth-mobile.glb",
+      "sourcePath": "assets/blender/s2.blend",
+      "derivativeChecksum": "sha256:81ef58c48a2d75097724b5f9a35ba08c934f592cb9f72c9345752a60a6b9b0e1"
+    },
+    {
+      "id": "janus.blender.v1.s2.earth",
+      "href": "/assets/blender/v1/s2/earth.glb",
+      "sourcePath": "assets/blender/s2.blend",
+      "derivativeChecksum": "sha256:4ef2a20ea9c2b24306f2c777c8014ec75211bc61f4563e4069e4bb10720b6bec"
+    },
+    {
+      "id": "janus.blender.v1.s2.mars",
+      "href": "/assets/blender/v1/s2/Mars.glb",
+      "sourcePath": "assets/blender/s2.blend",
+      "derivativeChecksum": "sha256:e3cb828e551172e6ae392f2b27e094c9a29662b7c99766e2722e98f3a4da31bf"
+    },
+    {
+      "id": "janus.blender.v1.s2.moon",
+      "href": "/assets/blender/v1/s2/Moon.glb",
+      "sourcePath": "assets/blender/s2.blend",
+      "derivativeChecksum": "sha256:ca23430fe5ace9f1eb99dc11ac65eb69bc3ef84002d20d0ade6a7a2fb8469882"
+    },
+    {
+      "id": "janus.blender.v1.s3.asteroids",
+      "href": "/assets/blender/v1/s3/asteroids.glb",
+      "sourcePath": "assets/blender/s3.blend",
+      "derivativeChecksum": "sha256:b4341560bfd0e9ef79bb47ca4efa43e3dbc247650bbb840332dd834d7d50a8d8"
+    },
+    {
+      "id": "janus.blender.v1.s3.earth-mobile",
+      "href": "/assets/blender/v1/s3/earth-mobile.glb",
+      "sourcePath": "assets/blender/s3.blend",
+      "derivativeChecksum": "sha256:38361bd5db449eb89b1af6e4dcf188e42b72aeec5d45a358b147f0128e871dc7"
+    },
+    {
+      "id": "janus.blender.v1.s3.earth",
+      "href": "/assets/blender/v1/s3/earth.glb",
+      "sourcePath": "assets/blender/s3.blend",
+      "derivativeChecksum": "sha256:9b858784da70aee56b90d4e14934805404f386c4c3f27563f76fcb6779933f84"
+    },
+    {
+      "id": "janus.blender.v1.s3.mars",
+      "href": "/assets/blender/v1/s3/Mars.glb",
+      "sourcePath": "assets/blender/s3.blend",
+      "derivativeChecksum": "sha256:39138573228d03a54b91644558958c9e015a0c44bcb0b121e505c8660010cb24"
+    },
+    {
+      "id": "janus.blender.v1.s3.moon",
+      "href": "/assets/blender/v1/s3/Moon.glb",
+      "sourcePath": "assets/blender/s3.blend",
+      "derivativeChecksum": "sha256:0f76b01a022c7dba85fbfb93424fe4c05fad97159c99af36d7c293f53264c2b2"
+    },
+    {
+      "id": "janus.blender.v1.s3.outer",
+      "href": "/assets/blender/v1/s3/outer.glb",
+      "sourcePath": "assets/blender/s3.blend",
+      "derivativeChecksum": "sha256:da8eb2426715f02ec35404e24326468bf5b7cf9791158886f6cf0819f9099a8b"
+    },
+    {
+      "id": "janus.blender.v1.s4.earth-mobile",
+      "href": "/assets/blender/v1/s4/earth-mobile.glb",
+      "sourcePath": "assets/blender/s4.blend",
+      "derivativeChecksum": "sha256:f9d6fa97980249102d46c9bc575cb22dd15fd9573f5b23b9670868636fbbd213"
+    },
+    {
+      "id": "janus.blender.v1.s4.earth",
+      "href": "/assets/blender/v1/s4/earth.glb",
+      "sourcePath": "assets/blender/s4.blend",
+      "derivativeChecksum": "sha256:a38b173cf06defe796e970ec0d9f53c8442329bf3a5c1dbf813f55e5398b6108"
+    },
+    {
+      "id": "janus.blender.v1.s5.asteroids",
+      "href": "/assets/blender/v1/s5/asteroids.glb",
+      "sourcePath": "assets/blender/s5.blend",
+      "derivativeChecksum": "sha256:e9ce6965b69f78ee6aaf72d1ecfef3c3d75dc49ba27533db049907dc4b71115c"
+    },
+    {
+      "id": "janus.blender.v1.s5.earth-mobile",
+      "href": "/assets/blender/v1/s5/earth-mobile.glb",
+      "sourcePath": "assets/blender/s5.blend",
+      "derivativeChecksum": "sha256:4ad83c4e9a92cec51726cb7b0806209c365d13739fc9cfbe12d03940ff47448e"
+    },
+    {
+      "id": "janus.blender.v1.s5.earth",
+      "href": "/assets/blender/v1/s5/earth.glb",
+      "sourcePath": "assets/blender/s5.blend",
+      "derivativeChecksum": "sha256:c8767715324fd0e9d933ea08e8a1bb2a81363bc12d49c1625e60ef797697a663"
+    },
+    {
+      "id": "janus.blender.v1.s5.kuiper",
+      "href": "/assets/blender/v1/s5/kuiper.glb",
+      "sourcePath": "assets/blender/s5.blend",
+      "derivativeChecksum": "sha256:5df422221f02005504328776303032228250726f86a750c11679b4285d30a956"
+    },
+    {
+      "id": "janus.blender.v1.s5.mars",
+      "href": "/assets/blender/v1/s5/Mars.glb",
+      "sourcePath": "assets/blender/s5.blend",
+      "derivativeChecksum": "sha256:5a619ea3bbadf89da72df83e388f04dd76088c528e0a0cd5fa76c1ab59a61dd4"
+    },
+    {
+      "id": "janus.blender.v1.s5.moon",
+      "href": "/assets/blender/v1/s5/Moon.glb",
+      "sourcePath": "assets/blender/s5.blend",
+      "derivativeChecksum": "sha256:8c9855b7385482e751cb348a6a479d41ddbdaac8182cd342a2fe9366a3c84b9e"
+    },
+    {
+      "id": "janus.blender.v1.s5.outer",
+      "href": "/assets/blender/v1/s5/outer.glb",
+      "sourcePath": "assets/blender/s5.blend",
+      "derivativeChecksum": "sha256:9052e48340fc8885617b495717dbbcc44277a697de3cf2d7914f48322b804491"
+    },
+    {
+      "id": "janus.blender.v1.s5.venus",
+      "href": "/assets/blender/v1/s5/Venus.glb",
+      "sourcePath": "assets/blender/s5.blend",
+      "derivativeChecksum": "sha256:e3cad99fddac091586e4b6a4f218463511c8607c6d43515989827d2bda370f8e"
+    },
+    {
+      "id": "janus.blender.v1.s6.asteroids",
+      "href": "/assets/blender/v1/s6/asteroids.glb",
+      "sourcePath": "assets/blender/s6.blend",
+      "derivativeChecksum": "sha256:2f022566e0036ce480d2d66e389eb99d7a42e7bd5775d6e8cce8d1cf9801eca9"
+    },
+    {
+      "id": "janus.blender.v1.s6.earth-mobile",
+      "href": "/assets/blender/v1/s6/earth-mobile.glb",
+      "sourcePath": "assets/blender/s6.blend",
+      "derivativeChecksum": "sha256:885f79a9b06c1977c146c030076747d705eb7b867b9f1df8d417e88005dfe96a"
+    },
+    {
+      "id": "janus.blender.v1.s6.earth",
+      "href": "/assets/blender/v1/s6/earth.glb",
+      "sourcePath": "assets/blender/s6.blend",
+      "derivativeChecksum": "sha256:df7c69d384cb6e8f46e2079767709518a73d8798cfce239e99c6aa249f78fa9f"
+    },
+    {
+      "id": "janus.blender.v1.s6.kuiper",
+      "href": "/assets/blender/v1/s6/kuiper.glb",
+      "sourcePath": "assets/blender/s6.blend",
+      "derivativeChecksum": "sha256:dbd2078a6f6eb465d885b277cb9eedac63686091458db1ef68415ee3fe050729"
+    },
+    {
+      "id": "janus.blender.v1.s6.mars",
+      "href": "/assets/blender/v1/s6/Mars.glb",
+      "sourcePath": "assets/blender/s6.blend",
+      "derivativeChecksum": "sha256:be3ee853ca857a2bf41edc3ee6c86efae0aa3267704f76fbdbe64748df17a753"
+    },
+    {
+      "id": "janus.blender.v1.s6.moon",
+      "href": "/assets/blender/v1/s6/Moon.glb",
+      "sourcePath": "assets/blender/s6.blend",
+      "derivativeChecksum": "sha256:e0b32a0be67e1484c1724c5b4fd85cd993ff084cd506b2f1637efc8ecdf5134b"
+    },
+    {
+      "id": "janus.blender.v1.s6.venus",
+      "href": "/assets/blender/v1/s6/Venus.glb",
+      "sourcePath": "assets/blender/s6.blend",
+      "derivativeChecksum": "sha256:731fe73e8367e0cbf1ee9eadc43b9ef2a0d7c530f875cff2563be0011bde3b73"
+    },
+    {
+      "id": "janus.blender.v1.s7.earth-mobile",
+      "href": "/assets/blender/v1/s7/earth-mobile.glb",
+      "sourcePath": "assets/blender/s7.blend",
+      "derivativeChecksum": "sha256:ec9bb1258f86309fc92207b951d3518d6985071ef4070136dccee6dcf3e6a975"
+    },
+    {
+      "id": "janus.blender.v1.s7.earth",
+      "href": "/assets/blender/v1/s7/earth.glb",
+      "sourcePath": "assets/blender/s7.blend",
+      "derivativeChecksum": "sha256:cccc292317cbd8787d38b63b7c65ce7326bed3252a441c7077740b9946747ea3"
+    },
+    {
+      "id": "janus.blender.v1.s8.earth-mobile",
+      "href": "/assets/blender/v1/s8/earth-mobile.glb",
+      "sourcePath": "assets/blender/s8.blend",
+      "derivativeChecksum": "sha256:ecc81502e792faa9fc7311c26e70f4c4535794a15a99e5b14326f0f4461dbd1b"
+    },
+    {
+      "id": "janus.blender.v1.s8.earth",
+      "href": "/assets/blender/v1/s8/earth.glb",
+      "sourcePath": "assets/blender/s8.blend",
+      "derivativeChecksum": "sha256:808b52be56c01dccfd601840fea2b4c45b7fac8be85807f22d1057b6f75ceab3"
+    },
+    {
+      "id": "janus.blender.v1.s8.moon",
+      "href": "/assets/blender/v1/s8/Moon.glb",
+      "sourcePath": "assets/blender/s8.blend",
+      "derivativeChecksum": "sha256:0999cbccb7cfe546ad6c2bc20893b96d93be7c54c72439c93439cbfcfbc9a255"
+    },
+    {
+      "id": "janus.blender.v1.s9.asteroids",
+      "href": "/assets/blender/v1/s9/asteroids.glb",
+      "sourcePath": "assets/blender/s9.blend",
+      "derivativeChecksum": "sha256:bf1b1e4f0c8a5d89fde0163943052184e329526586e6b772833720e19fe0be4c"
+    },
+    {
+      "id": "janus.blender.v1.s9.earth-mobile",
+      "href": "/assets/blender/v1/s9/earth-mobile.glb",
+      "sourcePath": "assets/blender/s9.blend",
+      "derivativeChecksum": "sha256:66859db529ddbc0698ffc66b6a990c2fdd554d4d6feafbf4ce0a3907043ca500"
+    },
+    {
+      "id": "janus.blender.v1.s9.earth",
+      "href": "/assets/blender/v1/s9/earth.glb",
+      "sourcePath": "assets/blender/s9.blend",
+      "derivativeChecksum": "sha256:a9c2c721e24f458ac5d9d839a8f67d60d159c72f7b2c399c373f9c9525a89a7b"
+    },
+    {
+      "id": "janus.blender.v1.s9.kuiper",
+      "href": "/assets/blender/v1/s9/kuiper.glb",
+      "sourcePath": "assets/blender/s9.blend",
+      "derivativeChecksum": "sha256:361fbd7757e6673fe80557ed45e1a14a7a823e0c54eb2465b0d9bef86a03cf8c"
+    },
+    {
+      "id": "janus.blender.v1.s9.mars",
+      "href": "/assets/blender/v1/s9/Mars.glb",
+      "sourcePath": "assets/blender/s9.blend",
+      "derivativeChecksum": "sha256:b1fd74409f0e32b39646544b2f60b513f3cde1bf66eac8041283fe1571250412"
+    },
+    {
+      "id": "janus.blender.v1.s9.moon",
+      "href": "/assets/blender/v1/s9/Moon.glb",
+      "sourcePath": "assets/blender/s9.blend",
+      "derivativeChecksum": "sha256:31f080b65c5a2be1575b4daab8d775a709862805fcc82e9adac7bb97417e4975"
+    },
+    {
+      "id": "janus.blender.v1.s9.outer",
+      "href": "/assets/blender/v1/s9/outer.glb",
+      "sourcePath": "assets/blender/s9.blend",
+      "derivativeChecksum": "sha256:80711a84627787eb1ad50a6e36b06c4cab179430aa3a3908a08784ff44e31f6e"
+    },
+    {
+      "id": "janus.blender.v1.s9.solar",
+      "href": "/assets/blender/v1/s9/solar.glb",
+      "sourcePath": "assets/blender/s9.blend",
+      "derivativeChecksum": "sha256:e0adf970111ae3fa8f2c213d9e1a1a221febff535769b7625974203809b5b6d5"
+    },
+    {
+      "id": "janus.blender.v1.s9.venus",
+      "href": "/assets/blender/v1/s9/Venus.glb",
+      "sourcePath": "assets/blender/s9.blend",
+      "derivativeChecksum": "sha256:9a38c617edae1c9d7404516db15c3940bea7a3fc04b57ec69ca788cba408f8e0"
+    },
+    {
+      "id": "janus.blender.v1.s10.asteroids",
+      "href": "/assets/blender/v1/s10/asteroids.glb",
+      "sourcePath": "assets/blender/s10.blend",
+      "derivativeChecksum": "sha256:7bdd6c2231d220722ad954955c05007ef280c576cf283baec318bd5437eeac90"
+    },
+    {
+      "id": "janus.blender.v1.s10.earth-mobile",
+      "href": "/assets/blender/v1/s10/earth-mobile.glb",
+      "sourcePath": "assets/blender/s10.blend",
+      "derivativeChecksum": "sha256:d5b73b9220f0cb6a4aaebf8ae2e3bd334ae52317dabb47fe9a943493311e7e57"
+    },
+    {
+      "id": "janus.blender.v1.s10.earth",
+      "href": "/assets/blender/v1/s10/earth.glb",
+      "sourcePath": "assets/blender/s10.blend",
+      "derivativeChecksum": "sha256:6c303d92bbc5d0f04b579c30b34b65fe89a5009938d748a11f8e812f03d5e919"
+    },
+    {
+      "id": "janus.blender.v1.s10.kuiper",
+      "href": "/assets/blender/v1/s10/kuiper.glb",
+      "sourcePath": "assets/blender/s10.blend",
+      "derivativeChecksum": "sha256:b5825cb820ec52419a87ca2b853a4182a676cf09985bea460f2516904da1a43b"
+    },
+    {
+      "id": "janus.blender.v1.s10.mars",
+      "href": "/assets/blender/v1/s10/Mars.glb",
+      "sourcePath": "assets/blender/s10.blend",
+      "derivativeChecksum": "sha256:9834aae4f040aac0ac58bdc2d1aa4daab5c1387ec578b87d9cbeae0d851e7a1c"
+    },
+    {
+      "id": "janus.blender.v1.s10.moon",
+      "href": "/assets/blender/v1/s10/Moon.glb",
+      "sourcePath": "assets/blender/s10.blend",
+      "derivativeChecksum": "sha256:7fa905c8792c6744408cbe66619ca43f3e715f226c114f93cff8fa20e85bf906"
+    },
+    {
+      "id": "janus.blender.v1.s10.outer",
+      "href": "/assets/blender/v1/s10/outer.glb",
+      "sourcePath": "assets/blender/s10.blend",
+      "derivativeChecksum": "sha256:e722850c30e4c3b6323349a9964c1bbaec7d1890461a6aab324ba919395b9ff5"
+    },
+    {
+      "id": "janus.blender.v1.s10.venus",
+      "href": "/assets/blender/v1/s10/Venus.glb",
+      "sourcePath": "assets/blender/s10.blend",
+      "derivativeChecksum": "sha256:9d5064f3fa837612a474235669196e50034998c95e86776c68d58d938f292880"
+    }
+  ]
+}

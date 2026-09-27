@@ -1,0 +1,122 @@
+[
+  {
+    "family": "Space Grotesk",
+    "publicPath": "/_next/static/media/32687112bd2dd8db-s.1gepa_7fcx9fm.woff2",
+    "bytes": 6772,
+    "checksum": "sha256:d699664b145bfeeccc66a4cce7fa55e14eb63efd7ec6b0b2ec52e25dd98f3917"
+  },
+  {
+    "family": "Space Grotesk",
+    "publicPath": "/_next/static/media/28868e710e86be81-s.2eksvhm1z0jwa.woff2",
+    "bytes": 18924,
+    "checksum": "sha256:054c266fbb441ee059365dba0885d206f67ca05b375de869b88e02ebfccc9b9d"
+  },
+  {
+    "family": "Space Grotesk",
+    "publicPath": "/_next/static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2",
+    "bytes": 22320,
+    "checksum": "sha256:a0d054c4af557de20afd6ca59f47ab353bcaec49c63ff04b6c9d39d0f8910557"
+  },
+  {
+    "family": "IBM Plex Mono",
+    "publicPath": "/_next/static/media/e390973e931a41c5-s.0rgnxg2b64rzs.woff2",
+    "bytes": 4348,
+    "checksum": "sha256:c6f09ee0e0a24b7c85ecb2a601eb99332f65b1f6b37c31e0bbe73fb307625eca"
+  },
+  {
+    "family": "IBM Plex Mono",
+    "publicPath": "/_next/static/media/59b15b4bcd7b1eb5-s.2vemzm0itqzfy.woff2",
+    "bytes": 5476,
+    "checksum": "sha256:7b59d6bf7f8b8408ac28f27d01dca9a890abeae77045d343b1d8ccb089a92e54"
+  },
+  {
+    "family": "IBM Plex Mono",
+    "publicPath": "/_next/static/media/e532fa1b9921e1cd-s.3cb5lpr2l6xud.woff2",
+    "bytes": 4000,
+    "checksum": "sha256:0a8b854cc18641bd1b8222afa7ec82a75e59bc6501f777744ec87db1b6cd7a2c"
+  },
+  {
+    "family": "IBM Plex Mono",
+    "publicPath": "/_next/static/media/2fe89d53234c61d4-s.1u30mmyq6lnsd.woff2",
+    "bytes": 8860,
+    "checksum": "sha256:f1050dc5317b43434c0aeda599d4624c774ffc162e87a8cf204b949b6a85816d"
+  },
+  {
+    "family": "IBM Plex Mono",
+    "publicPath": "/_next/static/media/99e609270109b47d-s.p.40sczeszzbjw1.woff2",
+    "bytes": 10052,
+    "checksum": "sha256:c36f509c0a8f9f85f29cb44bc8701d8a9e0b14c499e77a884f789ead7093a7ac"
+  },
+  {
+    "family": "Chakra Petch",
+    "publicPath": "/_next/static/media/785695c5b05eabf2-s.3spzr2pk4d7--.woff2",
+    "bytes": 7012,
+    "checksum": "sha256:f14313e693adf2d10979525be5f19f555577db20c2cc258e88093e9da78fb370"
+  },
+  {
+    "family": "Chakra Petch",
+    "publicPath": "/_next/static/media/ac548f9ce6284f94-s.1i2s8u2nsha1s.woff2",
+    "bytes": 3680,
+    "checksum": "sha256:90cc8fa7f45882c82058fb9df255a474266df849cdb18211fa544c236458200d"
+  },
+  {
+    "family": "Chakra Petch",
+    "publicPath": "/_next/static/media/9728433aadc137d6-s.1j8zp90epkiwf.woff2",
+    "bytes": 8904,
+    "checksum": "sha256:c2086b274b3c6e1597c9c1638e40be0220f406e7dd04247069d423f292ab8ec7"
+  },
+  {
+    "family": "Chakra Petch",
+    "publicPath": "/_next/static/media/638f182e7ded7477-s.p.1yexyk_f9-p2r.woff2",
+    "bytes": 9728,
+    "checksum": "sha256:e592818029a919d578974df32686d415d6acd8401bc5420695de41a46eeae426"
+  },
+  {
+    "family": "Chakra Petch",
+    "publicPath": "/_next/static/media/cf9d54c4342bfde9-s.2luydo5uehvh-.woff2",
+    "bytes": 7512,
+    "checksum": "sha256:3b986e5105918aaa70ee916ba5f6212498b3e87f22f722be16bde16965da0ee7"
+  },
+  {
+    "family": "Chakra Petch",
+    "publicPath": "/_next/static/media/c26308a965d8ee8a-s.1q1056bo3qtcm.woff2",
+    "bytes": 3724,
+    "checksum": "sha256:193afbc30f4bf583873584f719bc1f629d4fcdab2bef12af329bde191f9e1c30"
+  },
+  {
+    "family": "Chakra Petch",
+    "publicPath": "/_next/static/media/d03928121523449c-s.3lswex48iwfpe.woff2",
+    "bytes": 9024,
+    "checksum": "sha256:b821fcd55102d303590e2b5da0c6097f2e0c384bd5ad8fbf157bb5e91402c250"
+  },
+  {
+    "family": "Chakra Petch",
+    "publicPath": "/_next/static/media/1ccf8ef962b3f693-s.p.0gwn7w9k-i020.woff2",
+    "bytes": 9944,
+    "checksum": "sha256:adf007cd277ef6dac0c8cecacfb60cc5e24e7c8bcce4db98aa233bd3a88ef5a3"
+  },
+  {
+    "family": "Chakra Petch",
+    "publicPath": "/_next/static/media/664b8486c44baa2d-s.02rcwld1m-ji4.woff2",
+    "bytes": 7536,
+    "checksum": "sha256:0c876eaa32a415e408f08eeef87b59cfebad424c6a3b7fa50628eac98f66ce82"
+  },
+  {
+    "family": "Chakra Petch",
+    "publicPath": "/_next/static/media/c5ac7bd8b2d9fce6-s.17ncvpysp7y4m.woff2",
+    "bytes": 3720,
+    "checksum": "sha256:752ec6b8cdc54147e98e31fea5de9747e612f75c0d5d9740c4d78949f900222d"
+  },
+  {
+    "family": "Chakra Petch",
+    "publicPath": "/_next/static/media/8457265da2739722-s.23gs_p123xcz8.woff2",
+    "bytes": 9100,
+    "checksum": "sha256:140bd5c457550ed1e06cf2346e5ab432d4a7344c4ba44d5460ee7384f210d098"
+  },
+  {
+    "family": "Chakra Petch",
+    "publicPath": "/_next/static/media/dc0c65e819e3bb6c-s.p.1d4mg4yt567i3.woff2",
+    "bytes": 10040,
+    "checksum": "sha256:4d6d5f0b31b3a471a843779c4ecada040e5bc291f96bca9805a94293fe8003fa"
+  }
+]

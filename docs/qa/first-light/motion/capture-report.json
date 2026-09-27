@@ -1,0 +1,158 @@
+{
+  "baseUrl": "http://127.0.0.1:3200",
+  "hardwareGpuRequested": true,
+  "graphics": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36"
+  },
+  "captures": [
+    {
+      "file": "desktop-organism-00.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "desktop-organism-01.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "desktop-organism-02.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "desktop-organism-03.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "desktop-organism-04.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "desktop-organism-05.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "desktop-organism-06.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "desktop-organism-07.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "desktop-eyepiece.png",
+      "chapter": "invisible",
+      "scene": "13.000"
+    },
+    {
+      "file": "desktop-reduced-observer.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "portrait-organism-00.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "portrait-organism-01.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "portrait-organism-02.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "portrait-organism-03.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "portrait-organism-04.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "portrait-organism-05.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "portrait-organism-06.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "portrait-organism-07.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    },
+    {
+      "file": "portrait-eyepiece.png",
+      "chapter": "invisible",
+      "scene": "12.966"
+    },
+    {
+      "file": "portrait-reduced-observer.png",
+      "chapter": "observer",
+      "scene": "12.000"
+    }
+  ],
+  "cadence": [
+    {
+      "label": "desktop native forward/reverse world transition",
+      "samples": 720,
+      "p50Ms": 8.300000000000182,
+      "p95Ms": 9.199999999999818,
+      "p99Ms": 9.300000000000182,
+      "longestMs": 9.400000000000546,
+      "meanHz": 119.9980000333331,
+      "scenes": ["s1", "s2"],
+      "returnsToStartingScroll": true
+    },
+    {
+      "label": "desktop autonomous organism, stationary scroll",
+      "samples": 721,
+      "p50Ms": 8.300000000001091,
+      "p95Ms": 9.100000000000364,
+      "p99Ms": 9.299999999999272,
+      "longestMs": 9.300000000001091,
+      "meanHz": 119.99866853072362,
+      "scenes": ["observer"],
+      "returnsToStartingScroll": true
+    },
+    {
+      "label": "portrait native forward/reverse world transition",
+      "samples": 721,
+      "p50Ms": 8.300000000000182,
+      "p95Ms": 9.199999999999818,
+      "p99Ms": 9.300000000000182,
+      "longestMs": 9.400000000000546,
+      "meanHz": 119.99866853072406,
+      "scenes": ["s1", "s2"],
+      "returnsToStartingScroll": true
+    },
+    {
+      "label": "portrait autonomous organism, stationary scroll",
+      "samples": 720,
+      "p50Ms": 8.300000000001091,
+      "p95Ms": 9.100000000000364,
+      "p99Ms": 9.299999999999272,
+      "longestMs": 9.300000000001091,
+      "meanHz": 120,
+      "scenes": ["observer"],
+      "returnsToStartingScroll": true
+    }
+  ],
+  "issues": [],
+  "scope": "Unthrottled local headless Chromium requestAnimationFrame cadence; desktop and mobile viewport emulation. This is not GPU presentation timing, physical mobile-device certification, or field Core Web Vitals. Context-loss, retry, resize, autonomous motion, and reduced-motion stability are exercised."
+}

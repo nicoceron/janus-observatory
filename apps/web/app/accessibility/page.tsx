@@ -27,12 +27,18 @@ export default function AccessibilityPage() {
         <h2>Story controls</h2>
         <div className={styles.sectionBody}>
           <ul>
-            <li>Use “Read as article” to render all prose and source tables in document order.</li>
             <li>
-              While the guided story is active, arrow keys move between complete story states.
+              The complete narrative and source tables remain available in document order. Use the
+              Atlas for the scientific content outside the animated journey.
             </li>
-            <li>“Skip story” moves directly to the categorical Observatory.</li>
-            <li>“Restart” returns to the playback choice without reloading the page.</li>
+            <li>
+              When a story section has focus, Arrow Up/Down or Page Up/Down moves between chapters.
+              Escape closes the Index.
+            </li>
+            <li>
+              “Skip story” opens the Atlas. The Index opens direct navigation to every chapter.
+            </li>
+            <li>The Index’s “First light” returns to the beginning.</li>
           </ul>
         </div>
       </section>
@@ -41,13 +47,15 @@ export default function AccessibilityPage() {
         <h2>Reduced motion and WebGL</h2>
         <div className={styles.sectionBody}>
           <p>
-            The global Motion control offers System, Reduced, and Full. Reduced motion stops smooth
-            scrolling and nonessential transitions; named story states snap to their destination.
-            The setting persists locally and never changes scientific content.
+            The homepage runs in full motion, including when the system requests reduced motion.
+            Research pages respect your saved preference. Change it with the System, Reduced, and
+            Full controls on this page. The Atlas provides the scenario content outside the animated
+            story.
           </p>
           <p>
-            If WebGL cannot start, admitted poster imagery remains behind the canvas while all
-            narrative, controls, values, citations, and data tables stay available as semantic HTML.
+            The story does not display a temporary image while the 3D scene starts. If WebGL cannot
+            start, all narrative, controls, values, citations, and data tables remain available as
+            semantic HTML.
           </p>
         </div>
       </section>
@@ -76,8 +84,10 @@ export default function AccessibilityPage() {
               <tbody>
                 <tr>
                   <th scope="row">Story</th>
-                  <td>Native scroll, Start/Skip/Restart buttons, arrow-key step navigation</td>
-                  <td>Article mode, live state description, scenario lists and source tables</td>
+                  <td>Native scroll, Begin/Skip links, Index and arrow-key chapter navigation</td>
+                  <td>
+                    Semantic narrative, live state description, scenario lists and source tables
+                  </td>
                   <td>Named chapter and handoff links</td>
                 </tr>
                 <tr>

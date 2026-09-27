@@ -1,0 +1,83 @@
+{
+  "base": "http://127.0.0.1:3100",
+  "mobile": false,
+  "cadence": {
+    "samples": 720,
+    "medianMs": 8.30000000000291,
+    "p95Ms": 9.30000000000291,
+    "framesOver50Ms": 0,
+    "buffer": [1440, 1000],
+    "css": [1440, 1000],
+    "devicePixelRatio": 1,
+    "renderer": {
+      "engine": "three.js r185",
+      "opticalView": "exterior",
+      "blenderLibraries": "[{\"url\":\"/assets/blender/v1/origin/earth.glb\",\"state\":\"ready\"}]",
+      "blenderOwner": "1",
+      "blenderAsset": "/assets/blender/v1/origin/earth.glb",
+      "blenderState": "ready",
+      "blenderMissingParts": "",
+      "blenderPartCount": "45",
+      "blenderCacheCount": "1",
+      "blenderCacheBytes": "2579448",
+      "opticalTravel": "{\"approach\":0,\"align\":0,\"through\":0,\"enter\":0,\"frame\":0,\"leave\":0,\"telescopeVisible\":false,\"camera\":[0,0,11]}",
+      "scene": "0.000",
+      "companionReveal": "[]",
+      "storyBody": "Earth"
+    }
+  },
+  "errors": [],
+  "receipts": [
+    {
+      "engine": "three.js r185",
+      "opticalView": "exterior",
+      "blenderLibraries": "[{\"url\":\"/assets/blender/v1/s1/earth.glb\",\"state\":\"ready\"},{\"url\":\"/assets/blender/v1/s1/earth.glb\",\"state\":\"ready\"}]",
+      "blenderMissingParts": "",
+      "blenderPartCount": "71",
+      "blenderCacheCount": "1",
+      "blenderCacheBytes": "1783302",
+      "opticalTravel": "{\"approach\":0,\"align\":0,\"through\":0,\"enter\":0,\"frame\":0,\"leave\":0,\"telescopeVisible\":false,\"camera\":[0,0,11]}",
+      "scene": "2.000",
+      "companionReveal": "[{\"id\":\"0:Moon\",\"reveal\":1,\"visible\":true,\"position\":[1.9561613414861543,0.41798144332069903,0.4251260367507512],\"hasEarth\":true},{\"id\":\"0:Mars\",\"reveal\":1,\"visible\":true,\"position\":[3.1633525951223285,2.7919295717348707,-3.1818569666428367],\"hasEarth\":true},{\"id\":\"0:Venus\",\"reveal\":1,\"visible\":true,\"position\":[-1.5875564957867616,2.1952547465600447,-1.9428606888929192],\"hasEarth\":true},{\"id\":\"0:asteroids\",\"reveal\":1,\"visible\":true,\"position\":[-1.3298641880944542,-2.1090267219714236,-4.833852003642726],\"hasEarth\":true},{\"id\":\"0:outer\",\"reveal\":1,\"visible\":true,\"position\":[5.623142804912539,-3.094192223136925,-7.3118445591425605],\"hasEarth\":true},{\"id\":\"1:Moon\",\"reveal\":0,\"visible\":false,\"position\":[0,0,0],\"hasEarth\":true},{\"id\":\"1:Mars\",\"reveal\":0,\"visible\":false,\"position\":[0,0,0],\"hasEarth\":true},{\"id\":\"1:asteroids\",\"reveal\":0,\"visible\":false,\"position\":[0,0,0],\"hasEarth\":true}]",
+      "storyBody": "system",
+      "inspection": "Earth",
+      "blenderOwner": "50",
+      "blenderAsset": "/assets/blender/v1/s1/earth.glb",
+      "blenderState": "ready"
+    },
+    {
+      "engine": "three.js r185",
+      "opticalView": "exterior",
+      "blenderLibraries": "[{\"url\":\"/assets/blender/v1/s3/earth.glb\",\"state\":\"ready\"},{\"url\":\"/assets/blender/v1/s3/earth.glb\",\"state\":\"ready\"}]",
+      "blenderMissingParts": "",
+      "blenderPartCount": "72",
+      "blenderCacheCount": "2",
+      "blenderCacheBytes": "2993868",
+      "opticalTravel": "{\"approach\":0,\"align\":0,\"through\":0,\"enter\":0,\"frame\":0,\"leave\":0,\"telescopeVisible\":false,\"camera\":[0,0,11]}",
+      "scene": "4.000",
+      "companionReveal": "[{\"id\":\"1:Moon\",\"reveal\":0,\"visible\":false,\"position\":[0,0,0],\"hasEarth\":true},{\"id\":\"1:Mars\",\"reveal\":0,\"visible\":false,\"position\":[0,0,0],\"hasEarth\":true},{\"id\":\"1:asteroids\",\"reveal\":0,\"visible\":false,\"position\":[0,0,0],\"hasEarth\":true},{\"id\":\"2:Moon\",\"reveal\":1,\"visible\":true,\"position\":[1.7805927926045126,0.3844744016925675,0.3888448849882511],\"hasEarth\":true},{\"id\":\"2:Mars\",\"reveal\":1,\"visible\":true,\"position\":[2.8886235490498415,2.5449163928259155,-2.8858049421910703],\"hasEarth\":true},{\"id\":\"2:asteroids\",\"reveal\":1,\"visible\":true,\"position\":[-1.2022156117893184,-1.9171482924887695,-4.389860125131268],\"hasEarth\":true},{\"id\":\"2:outer\",\"reveal\":1,\"visible\":true,\"position\":[5.128134038560331,-2.814090017430494,-6.645942899541565],\"hasEarth\":true}]",
+      "storyBody": "system",
+      "inspection": "Earth",
+      "blenderOwner": "143",
+      "blenderAsset": "/assets/blender/v1/s3/earth.glb",
+      "blenderState": "ready"
+    },
+    {
+      "engine": "three.js r185",
+      "opticalView": "exterior",
+      "blenderLibraries": "[{\"url\":\"/assets/blender/v1/s5/earth.glb\",\"state\":\"ready\"},{\"url\":\"/assets/blender/v1/s5/earth.glb\",\"state\":\"ready\"}]",
+      "blenderMissingParts": "",
+      "blenderPartCount": "66",
+      "blenderCacheCount": "2",
+      "blenderCacheBytes": "2974896",
+      "opticalTravel": "{\"approach\":0,\"align\":0,\"through\":0,\"enter\":0,\"frame\":0,\"leave\":0,\"telescopeVisible\":false,\"camera\":[0,0,11]}",
+      "scene": "6.000",
+      "companionReveal": "[{\"id\":\"4:Moon\",\"reveal\":1,\"visible\":true,\"position\":[1.780181511203087,0.384290644276892,0.3907234633693728],\"hasEarth\":true},{\"id\":\"4:Mars\",\"reveal\":1,\"visible\":true,\"position\":[2.8887228734935273,2.54497049796291,-2.885626162414566],\"hasEarth\":true},{\"id\":\"4:Venus\",\"reveal\":1,\"visible\":true,\"position\":[-1.4367316719610168,2.001729239221651,-1.7575847752094176],\"hasEarth\":true},{\"id\":\"4:asteroids\",\"reveal\":1,\"visible\":true,\"position\":[-1.2021162873456326,-1.917094187351775,-4.389681345354764],\"hasEarth\":true},{\"id\":\"4:outer\",\"reveal\":1,\"visible\":true,\"position\":[5.128233363004017,-2.8140359122934995,-6.645764119765061],\"hasEarth\":true},{\"id\":\"4:kuiper\",\"reveal\":1,\"visible\":true,\"position\":[1.9033382581089138,-4.688968313225901,-9.653874485645456],\"hasEarth\":true},{\"id\":\"5:Moon\",\"reveal\":0,\"visible\":false,\"position\":[0,0,0],\"hasEarth\":true},{\"id\":\"5:Mars\",\"reveal\":0,\"visible\":false,\"position\":[0,0,0],\"hasEarth\":true},{\"id\":\"5:Venus\",\"reveal\":0,\"visible\":false,\"position\":[0,0,0],\"hasEarth\":true},{\"id\":\"5:asteroids\",\"reveal\":0,\"visible\":false,\"position\":[0,0,0],\"hasEarth\":true},{\"id\":\"5:kuiper\",\"reveal\":0,\"visible\":false,\"position\":[0,0,0],\"hasEarth\":true}]",
+      "storyBody": "system",
+      "inspection": "Earth",
+      "blenderOwner": "254",
+      "blenderAsset": "/assets/blender/v1/s5/earth.glb",
+      "blenderState": "ready"
+    }
+  ]
+}

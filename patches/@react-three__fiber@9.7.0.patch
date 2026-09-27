@@ -1,0 +1,180 @@
+diff --git a/dist/events-156d8d12.esm.js b/dist/events-156d8d12.esm.js
+index 9681d0c62238d67f2d5ad389307dfd45ee8ba7ba..f77543f99f56ac5797c43cb2310c06ee2d9cc69b 100644
+--- a/dist/events-156d8d12.esm.js
++++ b/dist/events-156d8d12.esm.js
+@@ -945,6 +945,46 @@ function createEvents(store) {
+ 
+ const isRenderer = def => !!(def != null && def.render);
+ const context = /* @__PURE__ */React.createContext(null);
++// Timer-backed compatibility for the public R3F clock API. No document listeners.
++class FrameClock {
++  constructor() {
++    this.timer = new THREE.Timer();
++    this.autoStart = true;
++    this.startTime = 0;
++    this.oldTime = 0;
++    this.elapsedTime = 0;
++    this.running = false;
++  }
++  start() {
++    this.startTime = performance.now();
++    this.oldTime = this.startTime;
++    this.elapsedTime = 0;
++    this.running = true;
++    this.timer.reset();
++  }
++  stop() {
++    this.getDelta();
++    this.running = false;
++    this.autoStart = false;
++  }
++  getDelta() {
++    if (this.autoStart && !this.running) {
++      this.start();
++      return 0;
++    }
++    if (!this.running) return 0;
++    this.timer.update();
++    const delta = this.timer.getDelta();
++    this.oldTime += delta * 1000;
++    this.elapsedTime += delta;
++    return delta;
++  }
++  getElapsedTime() {
++    // Frame subscribers read the same simulation time without advancing it again.
++    return this.elapsedTime;
++  }
++}
++
+ const createStore = (invalidate, advance) => {
+   const rootStore = createWithEqualityFn((set, get) => {
+     const position = new THREE.Vector3();
+@@ -1013,7 +1053,7 @@ const createStore = (invalidate, advance) => {
+       linear: false,
+       flat: false,
+       controls: null,
+-      clock: new THREE.Clock(),
++      clock: new FrameClock(),
+       pointer,
+       mouse: pointer,
+       frameloop: 'always',
+diff --git a/dist/events-4c71f21f.cjs.prod.js b/dist/events-4c71f21f.cjs.prod.js
+index 65e702ef67d954387307b168529752690a586fd0..d8a521f2889a5e9a43d8e997a67c714605c460ba 100644
+--- a/dist/events-4c71f21f.cjs.prod.js
++++ b/dist/events-4c71f21f.cjs.prod.js
+@@ -970,6 +970,46 @@ function createEvents(store) {
+ 
+ const isRenderer = def => !!(def != null && def.render);
+ const context = /* @__PURE__ */React__namespace.createContext(null);
++// Timer-backed compatibility for the public R3F clock API. No document listeners.
++class FrameClock {
++  constructor() {
++    this.timer = new THREE__namespace.Timer();
++    this.autoStart = true;
++    this.startTime = 0;
++    this.oldTime = 0;
++    this.elapsedTime = 0;
++    this.running = false;
++  }
++  start() {
++    this.startTime = performance.now();
++    this.oldTime = this.startTime;
++    this.elapsedTime = 0;
++    this.running = true;
++    this.timer.reset();
++  }
++  stop() {
++    this.getDelta();
++    this.running = false;
++    this.autoStart = false;
++  }
++  getDelta() {
++    if (this.autoStart && !this.running) {
++      this.start();
++      return 0;
++    }
++    if (!this.running) return 0;
++    this.timer.update();
++    const delta = this.timer.getDelta();
++    this.oldTime += delta * 1000;
++    this.elapsedTime += delta;
++    return delta;
++  }
++  getElapsedTime() {
++    // Frame subscribers read the same simulation time without advancing it again.
++    return this.elapsedTime;
++  }
++}
++
+ const createStore = (invalidate, advance) => {
+   const rootStore = traditional.createWithEqualityFn((set, get) => {
+     const position = new THREE__namespace.Vector3();
+@@ -1038,7 +1078,7 @@ const createStore = (invalidate, advance) => {
+       linear: false,
+       flat: false,
+       controls: null,
+-      clock: new THREE__namespace.Clock(),
++      clock: new FrameClock(),
+       pointer,
+       mouse: pointer,
+       frameloop: 'always',
+diff --git a/dist/events-b1bdeb1a.cjs.dev.js b/dist/events-b1bdeb1a.cjs.dev.js
+index 7785529f79299cdefe706c0df1d5c756817ca274..4c2aa87a4c337cac4f7750936c674aacbd08734f 100644
+--- a/dist/events-b1bdeb1a.cjs.dev.js
++++ b/dist/events-b1bdeb1a.cjs.dev.js
+@@ -970,6 +970,46 @@ function createEvents(store) {
+ 
+ const isRenderer = def => !!(def != null && def.render);
+ const context = /* @__PURE__ */React__namespace.createContext(null);
++// Timer-backed compatibility for the public R3F clock API. No document listeners.
++class FrameClock {
++  constructor() {
++    this.timer = new THREE__namespace.Timer();
++    this.autoStart = true;
++    this.startTime = 0;
++    this.oldTime = 0;
++    this.elapsedTime = 0;
++    this.running = false;
++  }
++  start() {
++    this.startTime = performance.now();
++    this.oldTime = this.startTime;
++    this.elapsedTime = 0;
++    this.running = true;
++    this.timer.reset();
++  }
++  stop() {
++    this.getDelta();
++    this.running = false;
++    this.autoStart = false;
++  }
++  getDelta() {
++    if (this.autoStart && !this.running) {
++      this.start();
++      return 0;
++    }
++    if (!this.running) return 0;
++    this.timer.update();
++    const delta = this.timer.getDelta();
++    this.oldTime += delta * 1000;
++    this.elapsedTime += delta;
++    return delta;
++  }
++  getElapsedTime() {
++    // Frame subscribers read the same simulation time without advancing it again.
++    return this.elapsedTime;
++  }
++}
++
+ const createStore = (invalidate, advance) => {
+   const rootStore = traditional.createWithEqualityFn((set, get) => {
+     const position = new THREE__namespace.Vector3();
+@@ -1038,7 +1078,7 @@ const createStore = (invalidate, advance) => {
+       linear: false,
+       flat: false,
+       controls: null,
+-      clock: new THREE__namespace.Clock(),
++      clock: new FrameClock(),
+       pointer,
+       mouse: pointer,
+       frameloop: 'always',

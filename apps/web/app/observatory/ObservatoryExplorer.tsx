@@ -3,7 +3,7 @@
 import type { Sourced } from '@janus/domain/evidence';
 import { observingMissionIds, type ObservingMissionId } from '@janus/domain/scientific-dataset';
 import { scaleLinear, scaleLog, scalePoint } from 'd3';
-import Link from 'next/link';
+import Link from '../components/AppLink';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useMemo, type CSSProperties } from 'react';
 
@@ -18,6 +18,7 @@ import {
 } from '../../lib/canonical-core';
 import { useReducedMotionPreference } from '../components/MotionPreference';
 import styles from './observatory.module.css';
+import { WorldPortrait } from '../components/WorldPortrait';
 
 type ScenarioId = (typeof allScenarioProfiles)[number]['id'];
 
@@ -42,10 +43,6 @@ function isScenarioId(value: string | null): value is ScenarioId {
 
 function isInstrumentId(value: string | null): value is ObservingMissionId {
   return observingMissionIds.some((id) => id === value);
-}
-
-function targetImage(scenarioId: ScenarioId) {
-  return `url('/assets/scenarios/${scenarioId.toLowerCase()}-world-v1.webp')`;
 }
 
 function formatAtmosphereValue(value: number | null, unit: string) {
@@ -439,14 +436,12 @@ export function ObservatoryExplorer() {
         style={
           {
             '--signal': profile.accent,
-            '--target-image': targetImage(scenarioId),
           } as CSSProperties
         }
       >
         <header className={styles.consoleHeader}>
           <div>
-            <p className={styles.kicker}>JANUS / REMOTE EVIDENCE STATION</p>
-            <h2 id="alien-console-title">Alien telescope console</h2>
+            <h2 id="alien-console-title">Choose how to look</h2>
           </div>
           <dl>
             <div>
@@ -465,35 +460,7 @@ export function ObservatoryExplorer() {
         </header>
 
         <div className={styles.viewport}>
-          <div
-            aria-describedby="target-visual-description"
-            aria-label={`Interpretive alien observer viewing scenario ${scenarioId}`}
-            className={styles.targetField}
-            role="img"
-          >
-            <p className={styles.telemetry} aria-hidden="true">
-              <span>ACQ · {scenarioId}</span>
-              <span>{instrumentCopy[instrumentId].short}</span>
-              <span>LOCK</span>
-            </p>
-            <div className={styles.ocular} aria-hidden="true">
-              <span className={styles.ocularRing} />
-              <span className={styles.ocularDot} />
-            </div>
-            <div className={styles.modeTrace} aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </div>
-            <p className={styles.targetNote}>
-              model_generated observer · interpretive target · not measured imagery
-            </p>
-            <p className="srOnly" id="target-visual-description">
-              Model-generated, interpretive alien-observer scene with an ocular view of scenario{' '}
-              {scenarioId}. It is orientation art only. The adjacent text and the structured data
-              view state the authoritative categorical evidence from Figure 6.
-            </p>
-          </div>
+          <WorldPortrait world={Number(scenarioId.slice(1)) - 1} />
 
           <div className={styles.evidencePanel} aria-live="polite">
             <span className={styles.epistemic}>

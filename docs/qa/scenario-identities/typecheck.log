@@ -1,0 +1,16 @@
+
+> janus-observatory@0.1.0 typecheck /Users/ceron/Developer/Projects/janus-observatory
+> pnpm --filter @janus/domain typecheck && pnpm --filter @janus/agent typecheck && pnpm --filter @janus/web typecheck
+
+
+> @janus/domain@0.1.0 typecheck /Users/ceron/Developer/Projects/janus-observatory/packages/domain
+> tsc --noEmit
+
+
+> @janus/agent@0.1.0 typecheck /Users/ceron/Developer/Projects/janus-observatory/packages/agent
+> tsc --noEmit
+
+
+> @janus/web@0.1.0 typecheck /Users/ceron/Developer/Projects/janus-observatory/apps/web
+> tsc --noEmit
+

@@ -1,0 +1,90 @@
+{
+  "base": "http://127.0.0.1:3200",
+  "checks": [
+    {
+      "mobile": false,
+      "id": "vehicle:haul-truck",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": false,
+      "id": "animal:deer",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": false,
+      "id": "animal:crane",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": false,
+      "id": "animal:bio-ray",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": false,
+      "id": "landmark:watermill",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": false,
+      "id": "landmark:windmill",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": false,
+      "id": "vessel:cutter",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": true,
+      "id": "vehicle:haul-truck",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": true,
+      "id": "animal:deer",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": true,
+      "id": "animal:crane",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": true,
+      "id": "animal:bio-ray",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": true,
+      "id": "landmark:watermill",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": true,
+      "id": "landmark:windmill",
+      "moving": true,
+      "pausedStill": true
+    },
+    {
+      "mobile": true,
+      "id": "vessel:cutter",
+      "moving": true,
+      "pausedStill": true
+    }
+  ],
+  "errors": []
+}

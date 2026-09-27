@@ -1,0 +1,289 @@
+{
+  "frames": {
+    "count": 132,
+    "p50": 32.400000000001455,
+    "p95": 34.100000000000364
+  },
+  "hot": [
+    {
+      "ms": 3948.107,
+      "functionName": "(program)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 16.82,
+      "functionName": "needsUpdate",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 1487,
+      "columnNumber": 24
+    },
+    {
+      "ms": 15.076,
+      "functionName": "terrainGeometry",
+      "scriptId": "423",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_1nofpid._.js",
+      "lineNumber": 15839,
+      "columnNumber": 24
+    },
+    {
+      "ms": 11.075,
+      "functionName": "terrainGeometry",
+      "scriptId": "423",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_1nofpid._.js",
+      "lineNumber": 15839,
+      "columnNumber": 24
+    },
+    {
+      "ms": 8.794,
+      "functionName": "terrainGeometry",
+      "scriptId": "423",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_1nofpid._.js",
+      "lineNumber": 15839,
+      "columnNumber": 24
+    },
+    {
+      "ms": 6.285,
+      "functionName": "Scene.useFrame",
+      "scriptId": "423",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_1nofpid._.js",
+      "lineNumber": 8736,
+      "columnNumber": 26
+    },
+    {
+      "ms": 6.274,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "47",
+      "url": "http://localhost:3000/_next/static/chunks/_17ed9go._.js",
+      "lineNumber": 679,
+      "columnNumber": 29
+    },
+    {
+      "ms": 4.975,
+      "functionName": "intersectTriangle",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 17201,
+      "columnNumber": 22
+    },
+    {
+      "ms": 3.781,
+      "functionName": "placeSpatialTarget",
+      "scriptId": "254",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_0mr4phw._.js",
+      "lineNumber": 2516,
+      "columnNumber": 27
+    },
+    {
+      "ms": 3.78,
+      "functionName": "setProgram",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 12146,
+      "columnNumber": 27
+    },
+    {
+      "ms": 3.773,
+      "functionName": "updateMatrixWorld",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10313,
+      "columnNumber": 22
+    },
+    {
+      "ms": 3.769,
+      "functionName": "BlenderLibrary.useFrame",
+      "scriptId": "423",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_1nofpid._.js",
+      "lineNumber": 311,
+      "columnNumber": 43
+    },
+    {
+      "ms": 3.766,
+      "functionName": "getVertexPosition",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 17594,
+      "columnNumber": 22
+    },
+    {
+      "ms": 3.764,
+      "functionName": "intersectTriangle",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 17201,
+      "columnNumber": 22
+    },
+    {
+      "ms": 3.719,
+      "functionName": "getVertexPosition",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 17594,
+      "columnNumber": 22
+    },
+    {
+      "ms": 3.679,
+      "functionName": "(garbage collector)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 2.523,
+      "functionName": "intersectTriangle",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 17201,
+      "columnNumber": 22
+    },
+    {
+      "ms": 2.522,
+      "functionName": "WebGLRenderer.renderBufferDirect",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 11490,
+      "columnNumber": 42
+    },
+    {
+      "ms": 2.517,
+      "functionName": "setFromBufferAttribute",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 12421,
+      "columnNumber": 27
+    },
+    {
+      "ms": 2.511,
+      "functionName": "Planet.useFrame",
+      "scriptId": "423",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_1nofpid._.js",
+      "lineNumber": 5514,
+      "columnNumber": 27
+    },
+    {
+      "ms": 2.51,
+      "functionName": "subdivideFace",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 22303,
+      "columnNumber": 30
+    },
+    {
+      "ms": 2.506,
+      "functionName": "updateWorldMatrix",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10341,
+      "columnNumber": 22
+    },
+    {
+      "ms": 2.506,
+      "functionName": "toNonIndexed",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 14737,
+      "columnNumber": 17
+    },
+    {
+      "ms": 2.505,
+      "functionName": "updateWorldMatrix",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10341,
+      "columnNumber": 22
+    },
+    {
+      "ms": 2.504,
+      "functionName": "(idle)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 2.479,
+      "functionName": "setValueM4",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 3861,
+      "columnNumber": 19
+    },
+    {
+      "ms": 1.272,
+      "functionName": "ReactElement",
+      "scriptId": "47",
+      "url": "http://localhost:3000/_next/static/chunks/_17ed9go._.js",
+      "lineNumber": 590,
+      "columnNumber": 25
+    },
+    {
+      "ms": 1.268,
+      "functionName": "jsxDEVImpl",
+      "scriptId": "47",
+      "url": "http://localhost:3000/_next/static/chunks/_17ed9go._.js",
+      "lineNumber": 634,
+      "columnNumber": 23
+    },
+    {
+      "ms": 1.265,
+      "functionName": "updateMatrix",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 10291,
+      "columnNumber": 17
+    },
+    {
+      "ms": 1.265,
+      "functionName": "fromBufferAttribute",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 5444,
+      "columnNumber": 24
+    },
+    {
+      "ms": 1.265,
+      "functionName": "mergeAttributes",
+      "scriptId": "422",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_examples_jsm_0vk9q-k._.js",
+      "lineNumber": 3399,
+      "columnNumber": 28
+    },
+    {
+      "ms": 1.263,
+      "functionName": "useStore",
+      "scriptId": "218",
+      "url": "http://localhost:3000/_next/static/chunks/1pzi_%40react-three_fiber_dist_1u92-zo._.js",
+      "lineNumber": 1246,
+      "columnNumber": 21
+    },
+    {
+      "ms": 1.263,
+      "functionName": "intersectTriangle",
+      "scriptId": "215",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_core_15pyy7s.js",
+      "lineNumber": 17201,
+      "columnNumber": 22
+    },
+    {
+      "ms": 1.262,
+      "functionName": "add",
+      "scriptId": "423",
+      "url": "http://localhost:3000/_next/static/chunks/apps_web_app_voyage_1nofpid._.js",
+      "lineNumber": 15627,
+      "columnNumber": 7
+    },
+    {
+      "ms": 1.261,
+      "functionName": "setMaterial",
+      "scriptId": "214",
+      "url": "http://localhost:3000/_next/static/chunks/0hqc_three_build_three_module_21b0uez.js",
+      "lineNumber": 6959,
+      "columnNumber": 24
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "1.0.0",
+  "attempts": [
+    {
+      "world": "s10",
+      "phase": "review",
+      "startedAt": "2026-09-20T06:56:35.984953+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+        "modules": {
+          "tmp/traffic-correction/render-landings.py": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+          "tmp/traffic-correction/review-guard.py": "sha256:a0e23203a7bb9d769ca1a95d99e47304de8e6d6f107c67f4662667b2158c0596"
+        },
+        "seeds": {
+          "s10.json": "sha256:1ae5565e7d806cf04c234e9817e70c1ad752e3dffdc09672086e119c1a5aa5ab"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/tmp/traffic-correction/render-landings.py",
+        "--",
+        "--world",
+        "s10",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/traffic-correction/render-resources/review-s10.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1056456704,
+      "observedProcessIds": [34028],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2810609664,
+        "inactiveBytes": 6747619328,
+        "purgeableBytes": 22691840,
+        "freePlusInactiveBytes": 9558228992,
+        "launchAvailableBytes": 9580920832,
+        "capturedAt": "2026-09-20T06:56:36.014129+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 34028,
+      "processGroupId": 34028,
+      "requiredOutputs": {
+        "docs/qa/traffic-correction/landings/s10-sail-barge-to.png": "sha256:6f0d159415140c0ba138493e6e126cedb4a4876eb517b980abd4536243d9b69f",
+        "docs/qa/traffic-correction/landings/s10-sail-barge-from.png": "sha256:0cfb55aeafc3e5e8e9f82a373baa23c975d9a88347b080b9e921cd14e2d11dc3"
+      },
+      "elapsedSeconds": 8.583,
+      "endedAt": "2026-09-20T06:56:44.568080+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2206253056,
+        "inactiveBytes": 7351779328,
+        "purgeableBytes": 61014016,
+        "freePlusInactiveBytes": 9558032384,
+        "launchAvailableBytes": 9619046400,
+        "capturedAt": "2026-09-20T06:56:44.570428+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    },
+    {
+      "world": "s10",
+      "phase": "review",
+      "startedAt": "2026-09-20T07:08:22.311966+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+        "modules": {
+          "tmp/traffic-correction/render-landings.py": "sha256:a1ab502654b55e507081eca78deb85cfbcbc3ee3b0ba9eac6f37cb6cfbbfd689",
+          "tmp/traffic-correction/review-guard.py": "sha256:a0e23203a7bb9d769ca1a95d99e47304de8e6d6f107c67f4662667b2158c0596"
+        },
+        "seeds": {
+          "s10.json": "sha256:1ae5565e7d806cf04c234e9817e70c1ad752e3dffdc09672086e119c1a5aa5ab"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/tmp/traffic-correction/render-landings.py",
+        "--",
+        "--world",
+        "s10",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/traffic-correction/render-resources/review-s10.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1043005440,
+      "observedProcessIds": [35414],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 3109011456,
+        "inactiveBytes": 8022556672,
+        "purgeableBytes": 43876352,
+        "freePlusInactiveBytes": 11131568128,
+        "launchAvailableBytes": 11175444480,
+        "capturedAt": "2026-09-20T07:08:22.340945+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 35414,
+      "processGroupId": 35414,
+      "requiredOutputs": {
+        "docs/qa/traffic-correction/landings/s10-sail-barge-to.png": "sha256:d17f861bf34738645158058125aa51bc598e63515e470be7dec298d5e891e922",
+        "docs/qa/traffic-correction/landings/s10-sail-barge-from.png": "sha256:2315bd952f2e1b7643f30bc9e7ed67480b48f26b3b1b7617f66f08bbdaf11078"
+      },
+      "elapsedSeconds": 8.612,
+      "endedAt": "2026-09-20T07:08:30.932852+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 3082305536,
+        "inactiveBytes": 8036253696,
+        "purgeableBytes": 44367872,
+        "freePlusInactiveBytes": 11118559232,
+        "launchAvailableBytes": 11162927104,
+        "capturedAt": "2026-09-20T07:08:30.936660+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 1014.00M  free = 1034.00M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    }
+  ]
+}

@@ -1,0 +1,410 @@
+{
+  "status": "passed",
+  "base": "http://127.0.0.1:3200",
+  "selected": [4, 7],
+  "profiles": ["desktop"],
+  "storyPortraits": 2,
+  "images": [
+    {
+      "file": "detail-polish-desktop-origin-story-Earth.png",
+      "profile": "desktop",
+      "world": 0,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "detail-polish-desktop-s4-story-Earth.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "detail-polish-desktop-s4-object-landmark-camp.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:camp",
+      "kind": "object"
+    },
+    {
+      "file": "detail-polish-desktop-s4-object-landmark-rack.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:rack",
+      "kind": "object"
+    },
+    {
+      "file": "detail-polish-desktop-s4-object-landmark-store.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:store",
+      "kind": "object"
+    },
+    {
+      "file": "detail-polish-desktop-s4-object-landmark-totem.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:totem",
+      "kind": "object"
+    },
+    {
+      "file": "detail-polish-desktop-s4-object-vessel-canoe.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "vessel:canoe",
+      "kind": "object"
+    },
+    {
+      "file": "detail-polish-desktop-s4-object-animal-deer.png",
+      "profile": "desktop",
+      "world": 4,
+      "selection": "animal:deer",
+      "kind": "object"
+    },
+    {
+      "file": "detail-polish-desktop-s7-story-Earth.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "kind": "story"
+    },
+    {
+      "file": "detail-polish-desktop-s7-object-landmark-watermill.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:watermill",
+      "kind": "object"
+    },
+    {
+      "file": "detail-polish-desktop-s7-object-landmark-workshop.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:workshop",
+      "kind": "object"
+    },
+    {
+      "file": "detail-polish-desktop-s7-object-landmark-seed-bank.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:seed-bank",
+      "kind": "object"
+    },
+    {
+      "file": "detail-polish-desktop-s7-object-landmark-windmill.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:windmill",
+      "kind": "object"
+    },
+    {
+      "file": "detail-polish-desktop-s7-object-vehicle-cargo-cycle.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "vehicle:cargo-cycle",
+      "kind": "object"
+    },
+    {
+      "file": "detail-polish-desktop-s7-object-vessel-cutter.png",
+      "profile": "desktop",
+      "world": 7,
+      "selection": "vessel:cutter",
+      "kind": "object"
+    }
+  ],
+  "motionFrames": [],
+  "stillChecks": [
+    {
+      "profile": "desktop",
+      "world": 0,
+      "selection": "Earth",
+      "sha256": "db85128b148f4a9246b09627a811bfb2b801c5e8ccdda7280eb451825cb1bbf7"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "sha256": "5f036e9de1066ce197998a63ba9ba4052f1676472d653d88c3a50d2dc730adb1"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:camp",
+      "sha256": "c533ba576afbafb97c5c3d7e37a5bf60a4e72871f706d47db71333bd58ed648d"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:rack",
+      "sha256": "04288d7150410febd1fba8f45141c002b0089dd7cd1468074884af94f8967815"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:store",
+      "sha256": "6a6f8ac7633175d04579439c36f60d8ac0468bc727644a835fc4d80a0be577f7"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "landmark:totem",
+      "sha256": "1f88244fc501c2b4586fbb507f195cdd3fea40d5a344301f5bdf46af75ce9090"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "vessel:canoe",
+      "sha256": "2a27bff7d43f0e57eeceec7a70ad5266329664fdbb608b6d56f9b87d98697d76"
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "animal:deer",
+      "sha256": "730f5daec6ddbb24b10f500c60722cb585fa4c8a25bf49702ab84264f4f4e8b4"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "sha256": "303fcf80de51faea1c6833754001f052e209ee992623472d912249c4734817a0"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:watermill",
+      "sha256": "e783e1e3014fc18c2416c9d381d4962a270e9af34a9c0bbfe9a78ed9ec2c36a0"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:workshop",
+      "sha256": "fa507989147d5d7dd9739b28dc015d97149a7d5ab642532197f9c65be4f3de4e"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:seed-bank",
+      "sha256": "ee1d551a454594d58eedd8c3d52c39bc3406c7597ef1cb57ccdd1c98f760fd1f"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "landmark:windmill",
+      "sha256": "4e9a8eddf29402a7862a53a6a019276513d948b3ab9d9bfdc0f7734d595a82aa"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "vehicle:cargo-cycle",
+      "sha256": "1e37c546efb20c99ce12a4c46e38346c28e9301c59560decd45dc3103405129a"
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "vessel:cutter",
+      "sha256": "e2dee0f4d49be62e17fe0280b4667f09ed90e99aeb6b798550714ec52250d437"
+    }
+  ],
+  "assetStates": [
+    {
+      "profile": "desktop",
+      "world": 0,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/origin/earth.glb",
+      "count": 1,
+      "bytes": 1023408,
+      "parts": 25
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 2186934,
+      "parts": 60
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 2186934,
+      "parts": 60
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 2186934,
+      "parts": 60
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 2186934,
+      "parts": 60
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 2186934,
+      "parts": 60
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 2186934,
+      "parts": 60
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 2186934,
+      "parts": 60
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 2186934,
+      "parts": 60
+    },
+    {
+      "profile": "desktop",
+      "world": 4,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s4/earth.glb",
+      "count": 2,
+      "bytes": 2186934,
+      "parts": 60
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 2648262,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 2648262,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 2648262,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 2648262,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 2648262,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 2648262,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 2648262,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 2648262,
+      "parts": 56
+    },
+    {
+      "profile": "desktop",
+      "world": 7,
+      "selection": "Earth",
+      "url": "/assets/blender/v1/s7/earth.glb",
+      "count": 2,
+      "bytes": 2648262,
+      "parts": 56
+    }
+  ],
+  "requests": [
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/origin/earth.glb",
+      "status": 200,
+      "bodyBytes": 186226,
+      "transferredBytes": 187155
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s4/earth.glb",
+      "status": 200,
+      "bodyBytes": 235612,
+      "transferredBytes": 236541
+    },
+    {
+      "profile": "desktop",
+      "url": "http://127.0.0.1:3200/assets/blender/v1/s7/earth.glb",
+      "status": 200,
+      "bodyBytes": 290273,
+      "transferredBytes": 291202
+    }
+  ],
+  "failedRequests": [],
+  "downloadedBytes": 712111,
+  "peakSettledLibraries": 2,
+  "peakSettledDecodedBytes": 2648262,
+  "errors": [],
+  "failure": null,
+  "scope": "Serial local browser QA: Blender readiness and named part gates, sourced story portraits and companion studies, desktop Earth objects, articulated motion, exact reduced/paused canvas identity. Memory figures estimate decoded GLB buffers/textures, not total process memory."
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0.0",
+  "attempts": [
+    {
+      "world": "origin",
+      "phase": "review",
+      "startedAt": "2026-09-20T19:23:24.212558+00:00",
+      "status": "success",
+      "blenderVersion": null,
+      "fingerprints": {
+        "runner": "sha256:fafa08185bc552306541fd63965cf61449fb7bb2b59c0cacc7981ac32eb4c4ff",
+        "builder": "sha256:844c5facf6e220e28cd049680505f2c9b86aba5fa54d7da6835de527604e5eb9",
+        "modules": {
+          "tmp/orbit-crops/guard.py": "sha256:60c0f02d4a2eb0b38e3c493ce5c9a02b58a27771be13a653cd2659fd24a5724c",
+          "tmp/orbit-crops/render.py": "sha256:844c5facf6e220e28cd049680505f2c9b86aba5fa54d7da6835de527604e5eb9"
+        },
+        "seeds": {
+          "origin.json": "sha256:912728ad42a75a056bdcefcdbeb646c7bdfeb4ed16c897f8385e495d92abc459"
+        }
+      },
+      "command": [
+        "/usr/bin/nice",
+        "-n",
+        "12",
+        "/Applications/Blender.app/Contents/MacOS/Blender",
+        "--background",
+        "--factory-startup",
+        "--threads",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/Users/ceron/Developer/Projects/janus-observatory/tmp/orbit-crops/render.py",
+        "--",
+        "--world",
+        "origin",
+        "--phase",
+        "review"
+      ],
+      "cwd": "/Users/ceron/Developer/Projects/janus-observatory",
+      "log": "docs/qa/orbit-crops/render-resources/review-origin.log",
+      "limits": {
+        "rssBytes": 4294967296,
+        "deadlineSeconds": 600,
+        "minimumAvailableBytes": 4294967296,
+        "threads": 2,
+        "niceAdjustment": 12,
+        "terminationGraceSeconds": 10,
+        "sampleSeconds": 0.5
+      },
+      "peakSampledGroupRssBytes": 1442283520,
+      "observedProcessIds": [67324],
+      "exitCode": 0,
+      "memoryStart": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2261925888,
+        "inactiveBytes": 9236873216,
+        "purgeableBytes": 271990784,
+        "freePlusInactiveBytes": 11498799104,
+        "launchAvailableBytes": 11770789888,
+        "capturedAt": "2026-09-20T19:23:24.240360+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 989.94M  free = 1058.06M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      },
+      "pid": 67324,
+      "processGroupId": 67324,
+      "requiredOutputs": {
+        "docs/qa/orbit-crops/native/origin-0.png": "sha256:4a1cf7c7f97edbafc1febcee01d6997f789aec492e12fd78b3a903148712f468",
+        "docs/qa/orbit-crops/native/origin-1.png": "sha256:f2198dbb640b0c2b44b4ac2d6370d32bfe586b4741440efbea856596061c7714",
+        "docs/qa/orbit-crops/native/origin-3.png": "sha256:3e5f54f6d70f4f68263e2ea2f085bb17a5c97a73f81da5c51be0ba87f65c3a5f",
+        "docs/qa/orbit-crops/native/origin-2.png": "sha256:8589089fb6b96e1b4521526de23916a6a305b60cd8cf672d40b8680b2269cc16"
+      },
+      "elapsedSeconds": 9.638,
+      "endedAt": "2026-09-20T19:23:33.850676+00:00",
+      "memoryEnd": {
+        "pageSizeBytes": 16384,
+        "freeBytes": 2035908608,
+        "inactiveBytes": 9365585920,
+        "purgeableBytes": 425984000,
+        "freePlusInactiveBytes": 11401494528,
+        "launchAvailableBytes": 11827478528,
+        "capturedAt": "2026-09-20T19:23:33.853564+00:00",
+        "totalRamBytes": 38654705664,
+        "swap": "vm.swapusage: total = 2048.00M  used = 989.94M  free = 1058.06M  (encrypted)",
+        "availableDefinition": "free + inactive + purgeable; conservative checks also retain free + inactive"
+      }
+    }
+  ]
+}
