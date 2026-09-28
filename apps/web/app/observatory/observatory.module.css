@@ -65,19 +65,34 @@
 }
 
 .viewport {
+  align-items: start;
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(330px, 0.65fr);
-  min-height: clamp(520px, 66svh, 720px);
-  overflow: hidden;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  border-top: 1px solid var(--line);
 }
 
-.evidencePanel {
-  align-content: center;
+.evidenceStack {
+  align-content: start;
+  align-self: stretch;
   background: linear-gradient(rgba(172, 205, 187, 0.035) 1px, transparent 1px), #06100d;
   background-size: 100% 48px;
   display: grid;
+  grid-template-rows: repeat(6, auto);
+  grid-template-columns: minmax(0, 1fr);
   min-width: 0;
-  padding: clamp(30px, 4.5vw, 64px);
+  padding: clamp(24px, 3vw, 40px);
+}
+
+.evidencePanel {
+  display: grid;
+  grid-area: 1 / 1 / span 6 / 2;
+  grid-template-rows: subgrid;
+  align-items: start;
+  min-width: 0;
+}
+
+.evidencePanel[aria-hidden='true'] {
+  visibility: hidden;
 }
 
 .epistemic {
@@ -86,10 +101,10 @@
 }
 
 .evidencePanel h3 {
-  font-size: clamp(2.3rem, 4.5vw, 5.2rem);
+  font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 460;
-  letter-spacing: -0.065em;
-  line-height: 0.9;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
   margin: 18px 0;
   overflow-wrap: anywhere;
 }
@@ -102,6 +117,7 @@
 }
 
 .signalList {
+  align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -146,7 +162,7 @@
   border-top: 1px solid var(--line);
   display: grid;
   gap: 28px;
-  grid-template-columns: minmax(300px, 0.75fr) minmax(480px, 1.25fr) auto;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr) minmax(100px, 0.35fr);
   padding: clamp(22px, 3vw, 34px);
 }
 
@@ -726,10 +742,6 @@
     grid-template-columns: 1fr;
   }
 
-  .evidencePanel {
-    min-height: 410px;
-  }
-
   .controls {
     grid-template-columns: 1fr;
   }
@@ -772,13 +784,12 @@
     padding: 10px 0;
   }
 
-  .evidencePanel {
-    min-height: 390px;
+  .evidenceStack {
     padding: 30px 20px;
   }
 
   .evidencePanel h3 {
-    font-size: clamp(2.7rem, 14vw, 4.2rem);
+    font-size: clamp(2rem, 8vw, 2.7rem);
   }
 
   .controls,
@@ -930,10 +941,6 @@
   background: #0b1520aa;
   box-shadow: none;
 }
-.viewport {
-  align-items: center;
-  min-height: 470px;
-}
 .consoleHeader {
   padding: 26px 32px;
 }
@@ -949,10 +956,6 @@
 }
 .controls {
   border-top: 1px solid var(--line);
-}
-.evidencePanel h3 {
-  letter-spacing: -0.025em;
-  line-height: 1.1;
 }
 @media (max-width: 760px) {
   .viewport {

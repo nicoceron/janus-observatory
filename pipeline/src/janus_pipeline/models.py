@@ -268,7 +268,15 @@ class ScenarioGrowthRecord(JanusModel):
     field_provenance: ScenarioGrowthProvenance = Field(alias="fieldProvenance")
 
 
+class ReferenceEarth(JanusModel):
+    population: SourcedValue[Annotated[float, Field(gt=0, allow_inf_nan=False)]]
+    annual_energy_per_person_gj: SourcedValue[
+        Annotated[float, Field(gt=0, allow_inf_nan=False)]
+    ] = Field(alias="annualEnergyPerPersonGJ")
+
+
 class ScenarioGrowthDataset(CanonicalHeader):
+    reference_earth: ReferenceEarth = Field(alias="referenceEarth")
     records: list[ScenarioGrowthRecord] = Field(min_length=10, max_length=10)
 
     @model_validator(mode="after")

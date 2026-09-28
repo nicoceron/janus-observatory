@@ -344,6 +344,21 @@
   text-align: right;
 }
 
+.metricChart .quantityRow {
+  grid-template-columns: minmax(180px, 0.7fr) minmax(100px, 1fr) minmax(220px, 0.85fr);
+  padding: 18px 0;
+}
+
+@media (max-width: 760px) {
+  .metricChart .quantityRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .metricChart .quantityRow .barTrack {
+    grid-column: 1;
+  }
+}
+
 .metricChart .categoricalRows li {
   align-items: start;
   grid-template-columns: minmax(190px, 0.38fr) minmax(0, 1.62fr);

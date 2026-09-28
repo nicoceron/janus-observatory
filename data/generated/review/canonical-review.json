@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "dataVersion": "sha256:46a0e94a969301c49cfafe00463e5c7e9be5dce423ddcdeb21fe4ad0614d2046",
+  "dataVersion": "sha256:a93da15bce68f5d475179bccf968199c0f247a58242e1477244939848ceb754f",
   "releaseStatus": "candidate_not_reviewed",
   "reviewInstruction": "An independent reviewer must compare each sourcePageText with normalizedPayload, record corrections and rationale, and sign the release before public reviewed status.",
   "renderedReviewIndex": "review/pages/index.html",
@@ -10098,14 +10098,22 @@
           "sourceId": "JANUS-PAPER-01",
           "sourceVersion": "arXiv:2409.00067v3",
           "resolvedManifestId": "janus.paper.scenario-modeling",
+          "page": 12,
+          "sourcePageTextHash": "sha256:8518dd8423d277417aa6b2a01b865782b04ffcac7020e603a8430bcb2c388ce1",
+          "sourcePageText": "J. Haqq-Misra et al.\nFig. 6. A diagram of the spatial distribution of the technosphere (orange) and biosphere (green) for each of the ten scenarios. Centers or ‘‘poles’’ of the technosphere are marked \nwith X. Note that three cases involve a technosphere that remains limited to Earth and/or the moon (S4, S7, S8), and two cases involve a complete separation of the technosphere \nfrom the biosphere (S9, S10). (For interpretation of the references to color in this figure legend, the reader is referred to the web version of this article.)\net al., 2023). This class of technosignatures could conceivably be de-\ntectable through ongoing attempts to detect and characterize extrasolar \nplanets and their atmospheres.\nInformation regarding all of these technosignatures is available in \neach scenario’s pipeline. We make simple scaling arguments in the text \nthat follows in order to connect the quantitative details in each pipeline \nwith estimates for the magnitudes of each planetary technosignature. \nWe present all of these magnitudes in comparison with the values of \npresent-day Earth, as this enables us to understand how the qualities \nof each scenario compare with our known, present-day conditions. Fig. \n7 shows several planetary technosignatures on Earth, the moon, Mars, \nand Venus for the full set of scenarios. The values of these technosigna-\nture magnitudes are listed in Table 6. Taken in aggregate, these results \nalready show upper and lower limits for each technosignature category, \nwith examples in all categories of scenarios with magnitudes greater \nand less than Earth today. The assumptions underlying each of these \ntechnosignature comparisons will also reveal further detail about the \ntechnospheres in each of our scenarios, as we discuss in the subsequent \nparagraphs.\nWe estimate the abundance of industrial pollution relative to\npresent-day Earth as the average of the ratio of the total population of \neach planetary body to the present-day population of Earth (7.9 billion) \nand the ratio of land used for industrial or urban purposes to the 0.2% \nurban coverage of present-day Earth. We also modify this baseline value \nin several scenarios due to unique factors in the pipeline that either \nincrease or reduce the abundance of industrial pollution. Scenarios S2 \nand S8 include prolonged effects of climate change, which is reflected \nby a factor of 2 in the enhancement of industrial pollution. Scenario S5 \nincludes atmospheric remediation and has no industrial pollutants on \nEarth or the moon. Scenarios S5 and S6 include intentional terraform-\ning of Mars by using artificial greenhouse gases, which is reflected as a \nfactor of 1000 in the enhancement of industrial pollution. Scenarios \nS5 and S6 also include ongoing terraforming of Venus through the \nincrease in atmospheric O2 and reduction of SO2, sulfur gases, and \nTechnological Forecasting & Social Change 218 (2025) 124194 \n12"
+        },
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "resolvedManifestId": "janus.paper.scenario-modeling",
           "page": 18,
           "sourcePageTextHash": "sha256:c1d128c3a5594af922f2dbcd81ce7fd31649f1b6162a8024d0e09bd5c084b35f",
           "sourcePageText": "J. Haqq-Misra et al.\nTable 9\nOverview of total population and total annual energy use across all bodies in the \nsolar system for each scenario. The growth rate describes the conditions at the end \nof the 1000-year future timeline. Several scenarios have achieved stable (zero growth) \nconditions and only one (S9) is close to the 1% value assumed by Kardashev (1964). \nCalculations assume that energy use is correlated with population at a value of 75 GJ \nper person per year (Jackson et al., 2022).\nPopulation Energy use Growth rate \nS1 3 × 1010 2 × 1021 0.12% \nS2 1011 8 × 1021 0.26% \nS3 1010 8 × 1020 Stable \nS4 4 × 108 3 × 1019 Stable \nS5 4 × 1010 3 × 1021 Stable \nS6 2 × 1011 2 × 1022 0.35% \nS7 4 × 109 3 × 1020 Stable \nS8 3 × 1010 2 × 1021 Oscillatory \nS9 2 × 1014 1025 0.98% \nS10 3 × 1010 2 × 1021 Stable \nThe population across all bodies in the solar system is listed for each \nscenario in Table 9. This represents the total population at the end of \nthe 1000-year future timeline. We also calculate the total energy use \nacross the solar system by assuming a constant consumption of 75 GJ \nper person per year, which is sufficient for a person today to live a \nhigh-quality life (e.g., Jackson et al., 2022). Although we acknowledge \nthe possibility that future technology could increase the per capita \nenergy needed for a good life, we also acknowledge the possibility that \nincreases in efficiency will decrease these requirements. We therefore \nassume these two factors balance each other and consider this fixed \nvalue as an adequate choice for our analysis. Energy use and the \ncorresponding growth rate from the present-day are also shown in \nTable 9. These results show that five scenarios have reached a state \nof stable growth (S3, S4, S5, S7, S10), all of which have equilibrated at \ndifferent population and energy levels. Four scenarios are experiencing \ngrowth at different rates (S1, S2, S6, S9), only one of which approaches \nthe 1% value assumed by Kardashev (1964). The remaining scenario \nis in a state of oscillation between periods of growth and collapse \n(S8), with the values of population and energy use representative of \na pre-collapse state.\nWe use the values in Table 9 to show approximate trajectories for \nenergy use across the 1000-year timeline for all our scenarios in Fig. 10. \nWe draw a line or curve from the present-day energy use to the final \nvalue at the end of the timeline for each scenario. For some scenarios \nthe value of energy use is lower than today (S4, S7, S8), which results \nfrom a prior period of growth before collapsing into the current state. \nScenario S8 has a long-period oscillation with rapid growth followed \nby a collapse, currently midway through its third phase of growth. The \nthree stable scenarios (S3, S5, S10) have energy use higher than today \nbut have reached an equilibrium. The remaining growth scenarios \nfeature several different rates, as low as 0.12% per year (S1) and up \nto 0.98% per year (S9). The idea of growth remains possible in our \nscenario set, but the rates of growth are lower than those considered \nby Kardashev (1964) for three of the scenarios (S1, S2, S6). The idea \nof slower-growth rates for future civilizational trajectories is consistent \nwith insights from previous studies that have suggested rapid growth \nmay be unsustainable, even across the solar system or beyond (e.g., \nVon Hoerner, 1975; Newman and Sagan, 1981; Haqq-Misra and Baum, \n2009; Mullan and Haqq-Misra, 2019; Likavčan, 2024). For the future \nof human civilization, our scenario set provides several possibilities in \nwhich zero-growth (S3, S5, S10) or slow-growth (S1, S2, S6) is reached; \nthese are alternative possibilities to the extremes of collapse (S4, S7, S8) \nor rapid growth (S9).\nThe S9 scenario with rapid growth is worth examining further, as it \nis the only one that is consistent with the growth rate assumed by Kar-\ndashev (1964) and that has reached the Type I threshold. Scenario S9 \nis also the only one with Dyson sphere elements as well as other exotic \ntechnosignatures such as laser propulsion and gravitational waves from \nsuper-luminal propulsion (Table 8). The biosphere and technnosphere \nare completely separated in S9, with the biosphere limited to Earth \nonly and the technosphere spanning from Mars to the Kuiper belt and \nfrom Venus to Mercury (Fig. 6). This scenario involves the emergence \nof a posthuman AI civilization that expands across the solar system, \ntransforming the other planets but leaving Earth to remain in a pristine \nstate for humans. It is worth noting that the only scenario in our \nset of ten that includes rapid growth and Dyson sphere elements is a \nscenario with AI-driven growth, rather than human-driven growth. The \nprojection of rapid growth by Kardashev (1964) remains a plausible \nscenario, but among our scenario set such rapid growth is not an \ninherent feature of human futures.\nEach of our scenarios represents a different future trajectory based \non different assumptions about human social systems and techno-\nlogical capabilities. These assumptions include not only the physi-\ncal infrastructure of civilization but also the values, worldviews, and \nmyths/metaphors that form the basis of thinking and decisions in each \nscenario. The projection envisioned by Kardashev (1964) represents \none possible future with a particular underlying myth/metaphor. Using \nthe framing of Kardashev (1964), the appropriate description would \nbe the myth of ‘‘inevitable growth’’, which reflects other concerns that \nwere prevalent on Earth during the early 1970s about limits to growth \n(e.g., Meadows et al., 1972). Using the narrative in scenario S9, we \ndescribe this future as the myth of ‘‘Deus Ex Machina’’ to reflect the \nemergence of an advanced and self-directed technosphere. But other \nmyths remain possible for the future (Table 5), and these other myths \ndrive other futures, which in turn lead to different technosignatures. \nIn thinking about the future of civilization on Earth, an important \nconclusion is that myths and worldviews can evolve with time, so the \nidea of continued growth into the long-term future is not necessarily \nan inevitability. For the search for technosignatures, an important \nconclusion is that the idea of rapid growth across the galaxy may \nbe plausible but does not represent the only possible set of myths or \nworldviews that could sustain a long-lived technological civilization.\n5.2. Degenerate observations\nOur preliminary example of atmospheric technosignatures from \nindustrial and agricultural pollution highlight an interesting case of \ndegeneracy that could complicate observation strategies. Three sce-\nnarios (S5, S9, S10) all have zero industrial or agricultural pollution \non Earth (Table 6) due to remediation efforts that attempt to restore \nEarth’s atmosphere to a pre-industrial and pre-agricultural state. The \nmixing ratios (Table 7) and absorption spectra (Figs. 8 and 9) are \nlikewise identical for these three scenarios. Furthermore, the spectral \nsignature of these three scenarios are all identical to the pre-agricultural \nEarth reference scenario (R0), which represents Earth prior to any \nglobal influence by humans. If exoplanet observations were to detect a \nplanet with spectral features similar to these, we would need additional \ninformation to be able to decide whether we have detected a system \nwith a biosphere only (R0), or with a biosphere plus a technosphere \n(S5, S9, S10).\nWe can attempt to break this degeneracy by examining the spatial \ndistribution of these three scenarios (Fig. 6). Scenario S5 includes an \nextended technosphere with poles at Earth and Mars, while S9 and S10 \ninclude a separation of the biosphere on Earth from the technosphere \nin the rest of the solar system. Further optical observations of Earth \ncould be useful for identifying scenario S5, as this scenario has a high \nintensity of artificial illumination from urban areas (Fig. 7). However, \nthe lack of artificial illumination would still be consistent with S9, S10, \nor R0.\nThe extended technospheres in S9 and S10 include activities such \nas mining in the asteroid and Kuiper belts, settlements across the outer \nsolar system, and fusion propulsion, along with radio, optical, and \nquantum communication technosignatures (Table 8). Scenario S9 in-\ncludes Dyson sphere elements, gravitational waves from super-luminal \nTechnological Forecasting & Social Change 218 (2025) 124194 \n18"
         }
       ],
-      "normalizedPayloadHash": "sha256:cb509441bba389553e1498b9a1fa13ae147d7c3c4a9a97dc448a226fb5be3ba0",
+      "normalizedPayloadHash": "sha256:33a3a4ca66cff94a2c224995e2c91f796113cede4cb0d89c2db892a7ff746c8e",
       "normalizedPayload": {
-        "schemaVersion": "1.1.0",
+        "schemaVersion": "1.2.0",
         "id": "janus.scenarios.growth.tfsc-table-9",
         "title": "Population, annual energy use, and growth state after 1,000 years",
         "contentOrigin": "transcribed",
@@ -10125,7 +10133,8 @@
           "A null annualGrowthRate preserves categorical Stable or Oscillatory entries; it does not mean a measured numeric zero."
         ],
         "notes": [
-          "Every trajectory scalar and categorical endpoint carries an exact Table 9 row/column locator."
+          "Every trajectory scalar and categorical endpoint carries an exact Table 9 row/column locator.",
+          "Reference Earth inputs checked against extracted text and rendered PDF pages 12 and 18 on 2026-09-27. Independent human review remains pending; no author approval is implied."
         ],
         "records": [
           {
@@ -10884,7 +10893,45 @@
               ]
             }
           }
-        ]
+        ],
+        "referenceEarth": {
+          "population": {
+            "captureStatus": "captured",
+            "value": 7900000000.0,
+            "unit": "people",
+            "evidenceKind": "transcribed",
+            "sourceRefs": [
+              {
+                "sourceId": "JANUS-PAPER-01",
+                "sourceVersion": "arXiv:2409.00067v3",
+                "evidenceKind": "transcribed",
+                "locator": {
+                  "page": 12,
+                  "section": "Planetary technosignatures: industrial pollution scaling"
+                }
+              }
+            ],
+            "note": "The paper uses 7.9 billion as its present-day Earth reference. This is a fixed paper reference, not a 2026 population estimate."
+          },
+          "annualEnergyPerPersonGJ": {
+            "captureStatus": "captured",
+            "value": 75,
+            "unit": "GJ / person / year",
+            "evidenceKind": "transcribed",
+            "sourceRefs": [
+              {
+                "sourceId": "JANUS-PAPER-01",
+                "sourceVersion": "arXiv:2409.00067v3",
+                "evidenceKind": "transcribed",
+                "locator": {
+                  "page": 18,
+                  "section": "Table 9 caption and Section 5.1"
+                }
+              }
+            ],
+            "note": "A model assumption for annual energy use per person, not a measured global energy statistic. Multiplying by the reference population produces a derived reference energy budget."
+          }
+        }
       },
       "machineChecks": [
         "schema_valid",

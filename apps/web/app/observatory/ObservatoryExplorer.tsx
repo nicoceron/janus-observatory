@@ -5,7 +5,7 @@ import { observingMissionIds, type ObservingMissionId } from '@janus/domain/scie
 import { scaleLinear, scaleLog, scalePoint } from 'd3';
 import Link from '../components/AppLink';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useMemo, type CSSProperties } from 'react';
+import { useEffect, useMemo, useRef, type CSSProperties } from 'react';
 
 import {
   allScenarioProfiles,
@@ -19,6 +19,10 @@ import {
 import { useReducedMotionPreference } from '../components/MotionPreference';
 import styles from './observatory.module.css';
 import { WorldPortrait } from '../components/WorldPortrait';
+import { GuidedObservation, isLessonStep } from './GuidedObservation';
+import { InstrumentExplanation } from './InstrumentExplanation';
+import { ScenarioEvidence } from './ScenarioEvidence';
+import learningStyles from './learning.module.css';
 
 type ScenarioId = (typeof allScenarioProfiles)[number]['id'];
 
@@ -409,10 +413,27 @@ export function ObservatoryExplorer() {
   const reducedMotion = useReducedMotionPreference();
   const scenarioValue = searchParams.get('scenario');
   const instrumentValue = searchParams.get('instrument');
+  const lessonValue = searchParams.get('lesson');
+  const lessonStep = isLessonStep(lessonValue) ? lessonValue : null;
+  const firstValue = searchParams.get('first');
+  const firstInstrumentId = isInstrumentId(firstValue)
+    ? firstValue
+    : 'habitable_worlds_observatory';
   const scenarioId: ScenarioId = isScenarioId(scenarioValue) ? scenarioValue : 'S1';
-  const instrumentId: ObservingMissionId = isInstrumentId(instrumentValue)
+  const selectedInstrumentId: ObservingMissionId = isInstrumentId(instrumentValue)
     ? instrumentValue
     : 'habitable_worlds_observatory';
+  const instrumentId =
+    lessonStep === 'compare' && selectedInstrumentId === firstInstrumentId
+      ? firstInstrumentId === 'deep_space_probes'
+        ? 'habitable_worlds_observatory'
+        : 'deep_space_probes'
+      : selectedInstrumentId;
+  const wasInLesson = useRef(Boolean(lessonStep));
+  useEffect(() => {
+    if (wasInLesson.current && !lessonStep) document.getElementById('alien-console-title')?.focus();
+    wasInLesson.current = Boolean(lessonStep);
+  }, [lessonStep]);
   const showData = searchParams.get('view') === 'data';
   const profile = useMemo(
     () => allScenarioProfiles.find(({ id }) => id === scenarioId)!,
@@ -420,15 +441,56 @@ export function ObservatoryExplorer() {
   );
   const observation = profile.observations.find(({ id }) => id === instrumentId)!;
 
-  function replaceParam(name: 'scenario' | 'instrument' | 'view', value?: string) {
+  function replaceParams(updates: Record<string, string | undefined>) {
     const next = new URLSearchParams(searchParams.toString());
-    if (value) next.set(name, value);
-    else next.delete(name);
+    for (const [name, value] of Object.entries(updates)) {
+      if (value) next.set(name, value);
+      else next.delete(name);
+    }
     router.replace(`${pathname}?${next.toString()}`, { scroll: false });
   }
+  function replaceParam(name: 'scenario' | 'instrument' | 'view', value?: string) {
+    replaceParams({ [name]: value });
+  }
+
+  if (lessonStep)
+    return (
+      <GuidedObservation
+        step={lessonStep}
+        profile={profile}
+        instrumentId={instrumentId}
+        firstInstrumentId={firstInstrumentId}
+        guess={searchParams.get('guess')}
+        onChange={replaceParams}
+      />
+    );
 
   return (
     <>
+      <section className={learningStyles.intro} aria-labelledby="guided-intro-title">
+        <p className={learningStyles.eyebrow}>A short guided investigation</p>
+        <h2 id="guided-intro-title">Would you recognize a civilization?</h2>
+        <p>
+          Choose a possible world, make an observation guess, then compare what two instruments can
+          reveal. Learn why a quiet observation can leave a bigger story untold.
+        </p>
+        <div className={learningStyles.actions}>
+          <button
+            type="button"
+            onClick={() =>
+              replaceParams({
+                lesson: 'predict',
+                scenario: isScenarioId(scenarioValue) ? scenarioValue : 'S9',
+                first: undefined,
+                guess: undefined,
+              })
+            }
+          >
+            Start guided observation
+          </button>
+          <a href="#alien-console-title">Skip to free exploration</a>
+        </div>
+      </section>
       <section
         aria-labelledby="alien-console-title"
         className={styles.explorer}
@@ -441,7 +503,9 @@ export function ObservatoryExplorer() {
       >
         <header className={styles.consoleHeader}>
           <div>
-            <h2 id="alien-console-title">Choose how to look</h2>
+            <h2 id="alien-console-title" tabIndex={-1}>
+              Choose how to look
+            </h2>
           </div>
           <dl>
             <div>
@@ -458,40 +522,6 @@ export function ObservatoryExplorer() {
             </div>
           </dl>
         </header>
-
-        <div className={styles.viewport}>
-          <WorldPortrait world={Number(scenarioId.slice(1)) - 1} />
-
-          <div className={styles.evidencePanel} aria-live="polite">
-            <span className={styles.epistemic}>
-              reported · transcribed · {observation.result.status.replaceAll('_', ' ')}
-            </span>
-            <h3>{profile.morphology.mythMetaphor}</h3>
-            <p className={styles.instrumentLabel}>
-              {observation.label} · {observation.mode}
-            </p>
-            {observation.result.signatures.length > 0 ? (
-              <ul className={styles.signalList}>
-                {observation.result.signatures.map((signature) => (
-                  <li key={signature}>{signature}</li>
-                ))}
-              </ul>
-            ) : (
-              <p className={styles.quietResult}>No signature listed for this method.</p>
-            )}
-            <p className={styles.caveat}>{observation.result.caveat}</p>
-            <a
-              className={styles.sourceLink}
-              data-telemetry-event="source_link"
-              data-telemetry-value="JANUS-PAPER-03"
-              href={sourceRefHref(observation.result.sourceRefs[0]!)}
-              rel="noreferrer"
-              target="_blank"
-            >
-              {sourceRefLabel(observation.result.sourceRefs[0]!)} · source exact ↗
-            </a>
-          </div>
-        </div>
 
         <div className={styles.controls}>
           <fieldset>
@@ -523,8 +553,10 @@ export function ObservatoryExplorer() {
                   onClick={() => replaceParam('instrument', id)}
                   type="button"
                 >
-                  <strong>{instrumentCopy[id].short}</strong>
-                  <span>{instrumentCopy[id].mode}</span>
+                  <strong>{instrumentCopy[id].plainLabel}</strong>
+                  <span>
+                    {instrumentCopy[id].short} · {instrumentCopy[id].mode}
+                  </span>
                 </button>
               ))}
             </div>
@@ -541,6 +573,12 @@ export function ObservatoryExplorer() {
             <Link href={`/atlas/${scenarioId.toLowerCase()}`}>Open scenario record →</Link>
           </div>
         </div>
+
+        <div className={styles.viewport} data-observation-viewport>
+          <WorldPortrait world={Number(scenarioId.slice(1)) - 1} />
+          <ScenarioEvidence scenarioId={scenarioId} instrumentId={instrumentId} />
+        </div>
+        <InstrumentExplanation instrumentId={instrumentId} />
 
         <aside className={styles.assumptions} aria-labelledby="assumption-title">
           <div className={styles.assumptionsHeader}>

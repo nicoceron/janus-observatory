@@ -30,28 +30,47 @@ export const systemDataset = SystemTechnosignatureDatasetSchema.parse(systemJson
 
 export const instrumentCopy: Record<
   ObservingMissionId,
-  { short: string; label: string; mode: string }
+  { short: string; label: string; plainLabel: string; mode: string; explanation: string }
 > = {
   habitable_worlds_observatory: {
     short: 'HWO',
     label: 'Habitable Worlds Observatory',
+    plainLabel: 'Optical space telescope',
     mode: 'Reflected light',
+    explanation:
+      'Collect starlight reflected by a planet. Splitting that light into colors can reveal atmospheric fingerprints; artificial lighting and directed lasers may add their own light.',
   },
-  radio: { short: 'Radio', label: 'Radio array', mode: 'Narrowband emissions' },
+  radio: {
+    short: 'Radio',
+    label: 'Radio array',
+    plainLabel: 'Radio telescope array',
+    mode: 'Radio signals',
+    explanation:
+      'Listen for radio emissions, including signals concentrated into a narrow range of frequencies. Detecting a transmission depends on how it is sent and where it travels.',
+  },
   large_interferometer_for_exoplanets: {
     short: 'LIFE',
     label: 'Large Interferometer for Exoplanets',
-    mode: 'Mid-infrared',
+    plainLabel: 'Infrared telescope array',
+    mode: 'Thermal glow',
+    explanation:
+      'Combine light from several space telescopes to separate a planet’s faint infrared glow from its star. This thermal light carries information about temperature and atmospheric gases.',
   },
   solar_gravitational_lens: {
     short: 'SGL',
     label: 'Solar Gravitational Lens',
+    plainLabel: 'Sun-as-a-lens telescope',
     mode: 'Resolved surface imaging',
+    explanation:
+      'Use the Sun’s gravity to bend and amplify light from a distant planet. A telescope far beyond the planets could use this effect to reconstruct surface detail.',
   },
   deep_space_probes: {
     short: 'Probe',
     label: 'Deep-space probe',
-    mode: 'In situ observation',
+    plainLabel: 'Visiting space probe',
+    mode: 'Close-up exploration',
+    explanation:
+      'Send a spacecraft to explore the target system at close range. It could investigate structures and activity that a distant telescope cannot distinguish.',
   },
 };
 

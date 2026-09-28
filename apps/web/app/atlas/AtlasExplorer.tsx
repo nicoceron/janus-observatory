@@ -14,6 +14,11 @@ import {
   sourcedDisplay,
 } from '../../lib/canonical-core';
 import styles from './atlas.module.css';
+import {
+  QuantityComparison,
+  ReferenceEarthNote,
+  readableNumber,
+} from '../components/QuantityComparison';
 
 type ScenarioId = (typeof allScenarioProfiles)[number]['id'];
 type LensKey = 'population' | 'energy' | 'observability' | 'system';
@@ -225,7 +230,7 @@ export function AtlasExplorer() {
                 </div>
                 <div className={styles.scenarioTrajectory}>
                   <strong>{profile.growth.growthState.replace('_', ' ')}</strong>
-                  <span>{scientificNotation(profile.growth.population)} people</span>
+                  <span>{readableNumber(profile.growth.population)} total population</span>
                 </div>
                 <div className={styles.scenarioConstruction}>
                   <strong>{profile.morphology.globalFactor}</strong>
@@ -284,7 +289,7 @@ export function AtlasExplorer() {
           {lens === 'population' || lens === 'energy' ? (
             <ol>
               {numericRows.map(({ profile, value }) => (
-                <li key={profile.id}>
+                <li className={styles.quantityRow} key={profile.id}>
                   <Link href={`/atlas/${profile.id.toLowerCase()}`}>
                     <span>{profile.id}</span>
                     <strong>{profile.morphology.mythMetaphor}</strong>
@@ -300,7 +305,7 @@ export function AtlasExplorer() {
                       }
                     />
                   </span>
-                  <span className={styles.metricValue}>{numericLensDisplay(lens, value)}</span>
+                  <QuantityComparison dimension={lens} value={value} />
                 </li>
               ))}
             </ol>
@@ -347,6 +352,7 @@ export function AtlasExplorer() {
             </ol>
           )}
         </div>
+        {(lens === 'population' || lens === 'energy') && <ReferenceEarthNote />}
         <details className={styles.metricDataTable}>
           <summary>Open structured lens table</summary>
           <div className={styles.tableScroller} tabIndex={0}>
