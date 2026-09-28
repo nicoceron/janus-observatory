@@ -13,6 +13,7 @@ import {
   sourcedDisplay,
 } from '../../../lib/canonical';
 import { WorldPortrait } from '../../components/WorldPortrait';
+import { QuantityComparison, ReferenceEarthNote } from '../../components/QuantityComparison';
 import { InnerPage } from '../../components/InnerPage';
 import styles from '../atlas.module.css';
 
@@ -122,11 +123,15 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
           </div>
           <div>
             <dt>Population · +1,000 yr</dt>
-            <dd>{scientificNotation(profile.growth.population)}</dd>
+            <dd>
+              <QuantityComparison dimension="population" value={profile.growth.population} />
+            </dd>
           </div>
           <div>
             <dt>Annual energy</dt>
-            <dd>{scientificNotation(profile.growth.annualEnergyUseJ)} J / year</dd>
+            <dd>
+              <QuantityComparison dimension="energy" value={profile.growth.annualEnergyUseJ} />
+            </dd>
           </div>
           <div>
             <dt>Reported endpoint</dt>
@@ -138,6 +143,7 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
           </div>
         </dl>
       </section>
+      <ReferenceEarthNote />
       <a
         className={styles.recordSource}
         data-telemetry-event="source_link"

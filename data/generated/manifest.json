@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "dataVersion": "sha256:46a0e94a969301c49cfafe00463e5c7e9be5dce423ddcdeb21fe4ad0614d2046",
+  "dataVersion": "sha256:a93da15bce68f5d475179bccf968199c0f247a58242e1477244939848ceb754f",
   "generatedAt": "2026-08-12T22:05:39+00:00",
   "releaseStatus": "candidate_pending_independent_review",
   "reviewAttestationHash": null,
@@ -17,8 +17,8 @@
     },
     {
       "path": "downloads/janus-observatory-1.0.0.json",
-      "sha256": "eb007b408a5ca354c2b82b82d1aea123664edb7f5438dcc838646db8bacc0b81",
-      "bytes": 703928
+      "sha256": "d7d78f7739aa5bee2d163812015b707a6d67313a5e96959600159f158eb6f5b7",
+      "bytes": 705567
     },
     {
       "path": "downloads/janus-scenarios-1.0.0.csv",
@@ -27,72 +27,72 @@
     },
     {
       "path": "research/corpus.json",
-      "sha256": "0169b3270e4e421c03d4ebfebcc0edf8641bcc94ac4318fb51d4c372b0a5db1a",
+      "sha256": "22c4166ce56a46b500eb7b23294f07d4863f6269d2805e5ed74da3dd144b46e2",
       "bytes": 529327
     },
     {
       "path": "research/index.json",
-      "sha256": "b17afc68fd7bfcd4b2a87f82618b0ed36dbfc27ef2767776a907c07be0ac4966",
+      "sha256": "e511175f1e436eb347846cbb2ab70ad6febc841ab2c50209a8e14396ee9fbbbb",
       "bytes": 639
     },
     {
       "path": "review/canonical-review.json",
-      "sha256": "57e978e426e8fc321c56db8bb9748c3a54a698ae2c402148ad38fe251a1e8c87",
-      "bytes": 923266
+      "sha256": "e48051b81d3e9ef147fac6699ed4cd792536abc22a165691494abbf7166f318a",
+      "bytes": 928293
     },
     {
       "path": "review/discrepancies.json",
-      "sha256": "b9be33ffba22aba40ce494a98949b21da197d0f2b2e28bf62a8acd1c627f2715",
+      "sha256": "d045be7a6db328f155066687f7788070fb22995982f0f9bd87531756640b2c33",
       "bytes": 1481
     },
     {
       "path": "review/pages/collapse.html",
-      "sha256": "c14e64ace3c3371ae6e0c6c63e0d6fa3f18fc370868eb7327a38f380bdcbbf61",
+      "sha256": "bc8a1d9429155756c524e5c50158f38145016eb61f88561183c673e2a90f26cd",
       "bytes": 136356
     },
     {
       "path": "review/pages/earthAtmosphere.html",
-      "sha256": "2bc9fd47b3ba64b82b00eb6f53475bd1d0276127d8e1134ed8d6dab8980a2494",
+      "sha256": "bd615758dea6e0170b4a1feeb758cb4806279831dcc1b7079ccf4ed52bf95b59",
       "bytes": 148645
     },
     {
       "path": "review/pages/growth.html",
-      "sha256": "c1cbcdb454f3d98d429aff5c5d81dd9411b490843364d46ba5888905b639c248",
-      "bytes": 42251
+      "sha256": "4434690fdcc071bb7d75eb6b41af5e3f37f285c744c6c2f9b8c6122656eff6ff",
+      "bytes": 47272
     },
     {
       "path": "review/pages/index.html",
-      "sha256": "d4a5807f30503dbc21e1fef281040559a970d51936217c7beee2c460bb8159c9",
+      "sha256": "2ecde2d48fe608b516a4b5302ef439ec389e044bbd6fb630b3c5f55beb295bbd",
       "bytes": 3086
     },
     {
       "path": "review/pages/morphology.html",
-      "sha256": "27c8c3136346c4d2f7ac4df413a707a4557b5b547d5749605773c0a9d19606c2",
+      "sha256": "918cc487778e9c9a5544b210aa7c419307ff593e30cb7362834a8a5d54705a2d",
       "bytes": 153597
     },
     {
       "path": "review/pages/observability.html",
-      "sha256": "d72ec812f9a35f7686efef18a38c3843a65e01a747c5bc014b0686afd2aa2ed8",
+      "sha256": "12dbf83d6020b9cd9be54d65e18e4a5809088cfc22cd1daee20d3d1a318601fe",
       "bytes": 101242
     },
     {
       "path": "review/pages/planetary.html",
-      "sha256": "9f617c1f1606e1412952493feb946245d0d1894eaad16844ac955013ea81970a",
+      "sha256": "225e2e6b5390e30733e23637d763ce2575ea0471ee39827b54cb73ee434b6b30",
       "bytes": 222182
     },
     {
       "path": "review/pages/system.html",
-      "sha256": "d96279752e1b3a26a15fa88fff15f814481cabfc5b489469210bb3425fb8cd40",
+      "sha256": "fd004949c18973e053ed85b7264dad2fe5593e0367af486ba460ca4d759919c2",
       "bytes": 105070
     },
     {
       "path": "review/pages/venusAtmosphere.html",
-      "sha256": "0b74baafddc72ee71fc7497ba237bfdd7f26c37f4cd0f241b5681ada746453e0",
+      "sha256": "428299218729aa7a8e1a3c3bcf6ab0e3ff1417420389a4153deb9d7d9a852942",
       "bytes": 79898
     },
     {
       "path": "review/reconciliations/paper-01-table-7--paper-03-table-1.json",
-      "sha256": "05b58539a7b74183f7021283f6e5e467db6fa874386ae0f879e252cb991d8594",
+      "sha256": "f293946029ba2cb9f29a8d1217cdfbb86cdeb89c1f98280e79c9756fd109736b",
       "bytes": 8506
     },
     {
@@ -107,8 +107,8 @@
     },
     {
       "path": "runtime/growth.json",
-      "sha256": "94f25e994b21eda8cb6bb268480d5889911f18e1620f1efd153afa3aca7b5a23",
-      "bytes": 22856
+      "sha256": "088fbcde2eb31e189aafea0b2d5209af17842d45d33b1e35aabfb18be46ad8b7",
+      "bytes": 24339
     },
     {
       "path": "runtime/morphology.json",
@@ -127,7 +127,7 @@
     },
     {
       "path": "runtime/release-identity.json",
-      "sha256": "5c83c24c78851b0863902b761e849bf66670f63e8ac941609af74a3cd3908e3b",
+      "sha256": "0ea0f0bbd5d11f74568bdc597a4b25aced3b7cdc7394cf0f0ee3d86f590fa8af",
       "bytes": 254
     },
     {

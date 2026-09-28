@@ -89,6 +89,10 @@ export const SystemTechnosignatureDatasetSchema = CanonicalHeaderSchema.extend({
 });
 
 export const ScenarioGrowthDatasetSchema = CanonicalHeaderSchema.extend({
+  referenceEarth: z.object({
+    population: sourced(z.number().positive().finite()),
+    annualEnergyPerPersonGJ: sourced(z.number().positive().finite()),
+  }),
   records: z
     .array(
       z.object({

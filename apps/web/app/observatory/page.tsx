@@ -21,7 +21,7 @@ export default function ObservatoryPage() {
   return (
     <InnerPage
       eyebrow="THE OBSERVATORY"
-      lede="Change the scenario or the observing method. The underlying civilization does not change—only the evidence available to the observer does."
+      lede="Imagine looking back at our Solar System from another star. Keep the same possible civilization in view and change instruments to discover how the available evidence changes."
       title="See what survives the distance."
     >
       <Suspense fallback={<p>Preparing the observing matrix…</p>}>

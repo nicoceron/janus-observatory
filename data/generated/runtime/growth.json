@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.2.0",
   "id": "janus.scenarios.growth.tfsc-table-9",
   "title": "Population, annual energy use, and growth state after 1,000 years",
   "contentOrigin": "transcribed",
@@ -19,7 +19,8 @@
     "A null annualGrowthRate preserves categorical Stable or Oscillatory entries; it does not mean a measured numeric zero."
   ],
   "notes": [
-    "Every trajectory scalar and categorical endpoint carries an exact Table 9 row/column locator."
+    "Every trajectory scalar and categorical endpoint carries an exact Table 9 row/column locator.",
+    "Reference Earth inputs checked against extracted text and rendered PDF pages 12 and 18 on 2026-09-27. Independent human review remains pending; no author approval is implied."
   ],
   "records": [
     {
@@ -778,5 +779,43 @@
         ]
       }
     }
-  ]
+  ],
+  "referenceEarth": {
+    "population": {
+      "captureStatus": "captured",
+      "value": 7900000000.0,
+      "unit": "people",
+      "evidenceKind": "transcribed",
+      "sourceRefs": [
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 12,
+            "section": "Planetary technosignatures: industrial pollution scaling"
+          }
+        }
+      ],
+      "note": "The paper uses 7.9 billion as its present-day Earth reference. This is a fixed paper reference, not a 2026 population estimate."
+    },
+    "annualEnergyPerPersonGJ": {
+      "captureStatus": "captured",
+      "value": 75,
+      "unit": "GJ / person / year",
+      "evidenceKind": "transcribed",
+      "sourceRefs": [
+        {
+          "sourceId": "JANUS-PAPER-01",
+          "sourceVersion": "arXiv:2409.00067v3",
+          "evidenceKind": "transcribed",
+          "locator": {
+            "page": 18,
+            "section": "Table 9 caption and Section 5.1"
+          }
+        }
+      ],
+      "note": "A model assumption for annual energy use per person, not a measured global energy statistic. Multiplying by the reference population produces a derived reference energy budget."
+    }
+  }
 }

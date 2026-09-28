@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "dataVersion": "sha256:46a0e94a969301c49cfafe00463e5c7e9be5dce423ddcdeb21fe4ad0614d2046",
+  "dataVersion": "sha256:a93da15bce68f5d475179bccf968199c0f247a58242e1477244939848ceb754f",
   "reconciliationId": "janus.reconciliation.paper-01-table-7.paper-03-table-1",
   "releaseStatus": "candidate_not_reviewed",
   "relation": "exact_value_equivalence_for_overlap",
@@ -290,5 +290,5 @@
   },
   "canonicalDecision": "APJL Table 1 remains the single canonical Earth-atmosphere table because it exactly reproduces the Table 7 overlap and adds later observing inputs; this record does not duplicate the canonical values.",
   "independentHumanReview": "pending",
-  "reconciliationPayloadHash": "sha256:d37190c7d508a38b86052a871fdc2e9afc95ed272c4ef154d5d3fb371cae43d7"
+  "reconciliationPayloadHash": "sha256:2364a2f26cb02d85fa902fa575f51a81d6fb0e8f31015f7e521b4f7e7c019ac0"
 }

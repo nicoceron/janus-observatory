@@ -1,5 +1,12 @@
 # Janus Observatory - Master Product, Data, Architecture, and Execution Plan
 
+Current Observatory scenario-switch layout stability:
+[verification and implementation](qa/observatory-stability/REPORT.md).
+
+Current instrument explanations, reference quantities, and guided observation:
+[Decision 029](DECISION_029_OBSERVER_LEARNING.md), with
+[verification](qa/observer-learning/REPORT.md).
+
 Current editable planet polish: [Decision 028](DECISION_028_PLANET_POLISH.md), with [individual world review](qa/planet-polish-2026-09-20/REPORT.md).
 
 Current deployment and fixed-resolution decision: [Decision 027](DECISION_027_FREE_CLOUDFLARE.md).

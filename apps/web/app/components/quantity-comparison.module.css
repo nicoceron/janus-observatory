@@ -1,0 +1,49 @@
+.quantity {
+  display: grid;
+  gap: 7px;
+  text-align: left;
+}
+.quantity strong {
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.quantity small {
+  color: #a8bac8;
+  font-size: 0.72rem;
+}
+.comparison {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  color: #c2d6e5;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+.comparison svg {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  color: var(--acid);
+}
+.reference {
+  border-block: 1px solid var(--line);
+  padding: 18px 0;
+  margin: 24px 0;
+  font-size: 0.85rem;
+  color: #b7c9d8;
+  line-height: 1.7;
+}
+.reference summary {
+  cursor: pointer;
+  color: var(--ink);
+  padding: 8px 0;
+}
+.reference p {
+  max-width: 80ch;
+}
+.reference a {
+  display: inline-block;
+  margin: 0 20px 10px 0;
+  color: var(--acid);
+}

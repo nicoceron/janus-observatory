@@ -2,6 +2,7 @@ export * from './evidence';
 export * from './observation';
 export * from './observatory-engine';
 export * from './published-table';
+export * from './quantity-comparison';
 export * from './release';
 export * from './runtime-release';
 export * from './scenario';

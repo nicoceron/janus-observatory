@@ -213,8 +213,8 @@ export default function Home() {
             </h2>
             <p className={s.lede}>Return to S9. The machines have moved beyond Earth.</p>
             <p>
-              The published HWO atmospheric comparison does not reveal the scale of that
-              civilization. Its technological activity exists elsewhere in the system.
+              The published optical space telescope (HWO) comparison does not reveal the scale of
+              that civilization. Its technological activity exists elsewhere in the system.
             </p>
             <p className={s.highlight}>
               No detected signature by this method does not mean no technology.
