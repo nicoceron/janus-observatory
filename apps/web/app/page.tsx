@@ -325,6 +325,9 @@ export default function Home() {
             <p>
               An independent interpretation of Project Janus. Worlds and observer are illustrative.
             </p>
+            <p>
+              Designed and built by <a href="https://dardo.studio/">Dardo</a>.
+            </p>
             <nav aria-label="Research and credits">
               <Link href="/sources">Sources & credits ↗</Link>
               <Link href="/methods">Methods ↗</Link>

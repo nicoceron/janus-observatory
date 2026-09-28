@@ -126,6 +126,11 @@ export default function SourcesPage() {
         <h2>Credits and interpretation</h2>
         <div className={styles.sectionBody}>
           <p>
+            Experience design and development by <a href="https://dardo.studio/">Dardo</a>, an
+            independent creative studio in Bogotá. Janus Observatory is an independent studio
+            project; it is not commissioned or endorsed by the Project Janus researchers or NASA.
+          </p>
+          <p>
             The story, atlas and observatory share original low-poly Three.js geometry and
             Blender-authored world details. Their surfaces, settlements, observer and telescope are
             illustrative artwork, created with code assistance from OpenAI Codex. They are not NASA
