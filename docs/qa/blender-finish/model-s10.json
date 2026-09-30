@@ -2,13 +2,13 @@
   "world": "s10",
   "blender": "5.2.1 LTS",
   "source": "assets/blender/s10.blend",
-  "sourceSha256": "60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
+  "sourceSha256": "9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
   "exports": [
     {
       "path": "apps/web/public/assets/blender/v1/s10/earth.glb",
-      "bytes": 672840,
-      "sha256": "6c303d92bbc5d0f04b579c30b34b65fe89a5009938d748a11f8e812f03d5e919",
-      "triangles": 25028,
+      "bytes": 681632,
+      "sha256": "33a67ef372b1e9f945e2a8348c18a94ecc71aebaede6ee3be41a087f4f15db49",
+      "triangles": 25114,
       "parts": [
         "Terrain",
         "Structures",
@@ -28,9 +28,9 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s10/earth-mobile.glb",
-      "bytes": 595012,
-      "sha256": "d5b73b9220f0cb6a4aaebf8ae2e3bd334ae52317dabb47fe9a943493311e7e57",
-      "triangles": 22818,
+      "bytes": 613536,
+      "sha256": "48ca7ce3da98b47313bacba221c6bb69be054767f7e2135def6b17525573eb04",
+      "triangles": 23276,
       "parts": [
         "Terrain",
         "Structures",
@@ -68,8 +68,8 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s10/Venus.glb",
-      "bytes": 113768,
-      "sha256": "9d5064f3fa837612a474235669196e50034998c95e86776c68d58d938f292880",
+      "bytes": 111972,
+      "sha256": "b1462a1bc4dd5743bb05f01c39b7c09231b3c50a64afc5ca1df71856f4735c85",
       "triangles": 4688,
       "parts": [
         "S10_Venus"
@@ -77,8 +77,8 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s10/asteroids.glb",
-      "bytes": 83112,
-      "sha256": "7bdd6c2231d220722ad954955c05007ef280c576cf283baec318bd5437eeac90",
+      "bytes": 82992,
+      "sha256": "e685c71688c2c4c0d188bc8b40eb5021ac447943532bb750364c57dc19378c56",
       "triangles": 3476,
       "parts": [
         "S10_asteroids"
@@ -86,8 +86,8 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s10/outer.glb",
-      "bytes": 104192,
-      "sha256": "e722850c30e4c3b6323349a9964c1bbaec7d1890461a6aab324ba919395b9ff5",
+      "bytes": 104000,
+      "sha256": "24dc180a45bfd70009f76afd8e9b33021c5cb7b010f2d91f7806803c618ec9b6",
       "triangles": 4304,
       "parts": [
         "S10_outer"

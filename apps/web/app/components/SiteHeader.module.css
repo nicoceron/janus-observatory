@@ -9,7 +9,22 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  background: linear-gradient(#000000f5, #000000e8 76%, #00000000);
+}
+/* A longer, softer fade lets scrolled copy dissolve under the bar instead of reappearing at
+   full brightness beside the wordmark. Paint only: no blur over the WebGL stage. */
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -24px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    #000000f5 0%,
+    #000000ec 62%,
+    #000000a8 80%,
+    #00000047 91%,
+    #00000000 100%
+  );
 }
 .brand {
   display: flex;
@@ -125,7 +140,10 @@
     padding: 16px 22px 10px;
     flex-wrap: wrap;
     gap: 6px;
-    background: #000000f5;
+  }
+  .header::before {
+    inset: 0 0 -28px;
+    background: linear-gradient(#000000f5 0%, #000000f0 78%, #00000080 90%, #00000000 100%);
   }
   .symbol {
     width: 28px;

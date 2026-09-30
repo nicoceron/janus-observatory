@@ -16,17 +16,20 @@ describe('original low-poly planet surfaces', () => {
         expect(first.attributes.normal.array.every(Number.isFinite)).toBe(true);
         expect(first.attributes.position.count / 3).toBeLessThanOrEqual(mobile ? 1500 : 2400);
         expect(first.index).toBeNull();
-        for (let face = 0; face < data.length; face += 9) {
+        // Every facet is flat: its three corners share one normal and one colour. Collect
+        // mismatches and assert once; per-facet expectations dominated the suite's runtime.
+        const unevenFacets: string[] = [];
+        for (let face = 0; face < data.length; face += 9)
           for (const attribute of ['normal', 'color']) {
             const values = first.attributes[attribute].array;
-            expect(Array.from(values.slice(face, face + 3))).toEqual(
-              Array.from(values.slice(face + 3, face + 6)),
-            );
-            expect(Array.from(values.slice(face, face + 3))).toEqual(
-              Array.from(values.slice(face + 6, face + 9)),
-            );
+            for (let k = 0; k < 3; k++)
+              if (
+                values[face + k] !== values[face + 3 + k] ||
+                values[face + k] !== values[face + 6 + k]
+              )
+                unevenFacets.push(`${world.id}:${face / 9}:${attribute}`);
           }
-        }
+        expect(unevenFacets).toEqual([]);
         const signature = createHash('sha256').update(new Uint8Array(data.buffer)).digest('hex');
         first.dispose();
         repeat.dispose();

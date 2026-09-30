@@ -47,3 +47,5 @@ The guard launches one private background Blender process group at reduced prior
 For visual intent, see [world art direction](../../docs/BLENDER_WORLD_ART_DIRECTION.md). For the source/export contract, see [Decision 020](../../docs/DECISION_020_BLENDER_FINISHING.md). Verification results and remaining limitations belong in the [QA report](../../docs/qa/blender-finish/REPORT.md); source/export availability alone does not establish final visual acceptance.
 
 The September 20 geometry, cloud and transport refinements are documented in [Decision 028](../../docs/DECISION_028_PLANET_POLISH.md) and the [dated review](../../docs/qa/planet-polish-2026-09-20/REPORT.md).
+
+The September 30 contour coastlines, lower clouds, globe-wrapped S2 pit, grounded ruins, Venus cloud deck and lobed asteroids are documented in [Decision 034](../../docs/DECISION_034_CONTOUR_COASTS_AND_EXPERIENCE_POLISH.md) and its [review](../../docs/qa/planet-polish-2026-09-30/REPORT.md). Terrain facets receive the faceted water material only where their colour matches the world's ocean colour, so green land and pale beaches keep the mineral finish.

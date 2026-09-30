@@ -2,13 +2,13 @@
   "world": "s6",
   "blender": "5.2.1 LTS",
   "source": "assets/blender/s6.blend",
-  "sourceSha256": "f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
+  "sourceSha256": "b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
   "exports": [
     {
       "path": "apps/web/public/assets/blender/v1/s6/earth.glb",
-      "bytes": 686648,
-      "sha256": "df7c69d384cb6e8f46e2079767709518a73d8798cfce239e99c6aa249f78fa9f",
-      "triangles": 25122,
+      "bytes": 690292,
+      "sha256": "ab261d5a0750e6b084284c3cb11557dfabcc3e8a698661d057a4b3224bacb1aa",
+      "triangles": 25186,
       "parts": [
         "Terrain",
         "Structures",
@@ -27,9 +27,9 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s6/earth-mobile.glb",
-      "bytes": 591960,
-      "sha256": "885f79a9b06c1977c146c030076747d705eb7b867b9f1df8d417e88005dfe96a",
-      "triangles": 22212,
+      "bytes": 596064,
+      "sha256": "aea8d60ff3757fd78bcd5cab8f418da9f7316c07d0f4265e5e601943548ecda7",
+      "triangles": 22288,
       "parts": [
         "Terrain",
         "Structures",
@@ -66,8 +66,8 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s6/Venus.glb",
-      "bytes": 169432,
-      "sha256": "731fe73e8367e0cbf1ee9eadc43b9ef2a0d7c530f875cff2563be0011bde3b73",
+      "bytes": 167656,
+      "sha256": "b25004c2dd11e389230acc38aee173dc5b0568cceaa3253931e40d3d3ab862ad",
       "triangles": 7784,
       "parts": [
         "S6_Venus"
@@ -75,8 +75,8 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s6/asteroids.glb",
-      "bytes": 79792,
-      "sha256": "2f022566e0036ce480d2d66e389eb99d7a42e7bd5775d6e8cce8d1cf9801eca9",
+      "bytes": 79616,
+      "sha256": "cfb7f50e2589971fe76a6f6749b69e60876ba6242c97790d8c491437c0b55743",
       "triangles": 3392,
       "parts": [
         "S6_asteroids"

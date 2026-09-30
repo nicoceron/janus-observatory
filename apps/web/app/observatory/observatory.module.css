@@ -305,9 +305,30 @@
 
 .assumptionGrid dd {
   color: #c9d7cf;
+  display: grid;
   font-size: 0.75rem;
+  gap: 6px;
+  justify-items: start;
   line-height: 1.55;
   margin: 8px 0 0;
+}
+
+/* Value, caveat and citation are separate lines rather than one run-on phrase. */
+.assumptionGrid dd > span {
+  color: #e3ece6;
+  font-size: 0.82rem;
+}
+
+.assumptionGrid dd > small {
+  color: #93a79c;
+  font-size: 0.72rem;
+}
+
+.assumptionGrid dd > a {
+  color: #aebfb5;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  text-underline-offset: 3px;
 }
 
 .dataView,
@@ -451,7 +472,7 @@
 
 .rowUnit {
   fill: #71877c;
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
 }
 
@@ -484,7 +505,7 @@
 
 .scenarioPoint text {
   fill: #c7d8ce;
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .chartNull {
@@ -493,7 +514,7 @@
 }
 
 .chartNull text {
-  font-size: 8px;
+  font-size: 10px;
   stroke: none;
 }
 
@@ -580,7 +601,7 @@
 
 .modalityIndex {
   fill: #afc2cc;
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .modalityName {
@@ -591,17 +612,17 @@
 
 .modalityMode {
   fill: #779084;
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .modalityState {
   fill: #9ab1a5;
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .modalitySignature {
   fill: #c5d3cb;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0;
 }
 

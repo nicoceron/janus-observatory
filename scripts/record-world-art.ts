@@ -83,7 +83,7 @@ if (entry.id !== 'janus.low-poly.worlds.v7')
   );
 entry.id = 'janus.low-poly.worlds.v7';
 entry.title = 'Janus spatial systems, star field and connected transport';
-entry.sourceVersion = 'inspector-text-v24-2026-09-21';
+entry.sourceVersion = 'planet-polish-v25-2026-09-30';
 if (!entry.notes.some((note: string) => note.startsWith('Airfield correction v10')))
   entry.notes.push(
     'Airfield correction v10 replaces ' +
@@ -180,6 +180,12 @@ if (!entry.notes.some((note: string) => note.startsWith('Inspector text v24')))
       old +
       '. The inert story layer is hidden as one composited group during model inspection, preventing explicitly visible anchored narrative from appearing behind enlarged planets or assets. Layout, scroll position, focus restoration, sky, models, resolution and canonical data remain unchanged. Evidence: docs/qa/inspector-text/.',
   );
+if (!entry.notes.some((note: string) => note.startsWith('Planet polish v25')))
+  entry.notes.push(
+    'Planet polish v25 replaces ' +
+      old +
+      '. Coastlines follow the terrain contour instead of stepped facets, with a beach rim and one cliff face per segment. Clouds sit closer to the land. S1 land reads as a grey city plate with low-rise blocks; S2 benches, fence and excavator are wrapped onto the globe over a carved pit; S7 and S8 ruins stand on grounded piers. Venus is a pale cloud deck and asteroids are lobed bodies. Routes were re-planned offline; canonical data, resolution and rights are unchanged. Evidence: docs/qa/planet-polish-2026-09-30/.',
+  );
 entry.sourceChecksum = sourceChecksum;
 entry.notes[0] =
   'Source checksum covers the concatenated UTF-8 files, in this order: ' + files.join(', ') + '.';
@@ -188,7 +194,7 @@ entry.transformations = [
 ];
 await writeFile(path, JSON.stringify(ledger, null, 2) + '\n');
 await writeFile(
-  'docs/qa/inspector-text/art-source.json',
+  'docs/qa/planet-polish-2026-09-30/art-source.json',
   JSON.stringify(
     { id: entry.id, version: entry.sourceVersion, sourceChecksum, files, verified: true },
     null,

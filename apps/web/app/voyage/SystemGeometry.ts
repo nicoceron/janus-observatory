@@ -49,9 +49,11 @@ function coloredBody(art: WorldArt, body: Companion['body'], mobile: boolean) {
       color = patch > 0.2 ? '#99a5a6' : patch < -0.35 ? '#526477' : '#73838b';
     else if (body === 'Moon')
       color = patch > 0.25 ? '#c5c5b6' : patch < -0.3 ? '#7c91a2' : '#a3b1b4';
-    else if (body === 'Venus')
-      color = Math.sin(center.y * 13 + center.x * 3) > 0.2 ? '#e8c181' : '#c39862';
-    else if (Math.abs(center.y) > 0.83) color = '#dcd7bd';
+    else if (body === 'Venus') {
+      // A pale, nearly featureless cloud deck with soft sideways chevrons, not gas-giant belts.
+      const streak = Math.sin((center.y + Math.abs(center.x - 0.1) * 0.55) * 9 + center.z * 1.6);
+      color = streak > 0.55 ? '#f1e3bf' : streak < -0.7 ? '#d2b98a' : '#e4d2a4';
+    } else if (Math.abs(center.y) > 0.83) color = '#dcd7bd';
     else if (art.form === 'symbiosis' && patch > 0.06) color = patch > 0.45 ? '#71b6b1' : '#93ae7b';
     else if (art.form === 'engineered' && patch > 0.25) color = '#7d9e8d';
     else color = patch > 0.25 ? '#e3ad78' : patch < -0.27 ? '#a45f47' : '#c98560';

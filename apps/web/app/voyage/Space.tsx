@@ -50,13 +50,15 @@ function worldPose(world: number, scene: number, mobile: boolean): Pose {
       : [12, 0, -10, 0];
   if (scene === 1) {
     if (world === -1) return [-9, 0, -8, 0];
-    const col = world % 3,
-      row = Math.floor(world / 3);
+    // A staggered 3-4-3 constellation: every world has neighbours, none is left alone on a row.
+    const row = world < 3 ? 0 : world < 7 ? 1 : 2,
+      col = world - [0, 3, 7][row],
+      offset = col - (row === 1 ? 1.5 : 1);
     return [
-      mobile ? (col - 1) * 1.45 : 1.3 + col * 1.64,
-      mobile ? 2.5 - row * 1.25 : 2.25 - row * 1.5,
+      mobile ? offset * 1.02 : 2.94 + offset * 1.64,
+      mobile ? 2.9 - row * 1.3 : 1.55 - row * 1.55,
       -1,
-      0.55 * worlds[world].displayScale,
+      (mobile ? 0.44 : 0.58) * worlds[world].displayScale,
     ];
   }
   if (scene >= 2 && scene <= 11) {
