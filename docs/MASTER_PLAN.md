@@ -7,7 +7,9 @@ Current instrument explanations, reference quantities, and guided observation:
 [Decision 029](DECISION_029_OBSERVER_LEARNING.md), with
 [verification](qa/observer-learning/REPORT.md).
 
-Current editable planet polish: [Decision 028](DECISION_028_PLANET_POLISH.md), with [individual world review](qa/planet-polish-2026-09-20/REPORT.md).
+Current contour coastlines, grounded sites and experience polish: [Decision 034](DECISION_034_CONTOUR_COASTS_AND_EXPERIENCE_POLISH.md), with [world-by-world review](qa/planet-polish-2026-09-30/REPORT.md).
+
+Previous editable planet polish: [Decision 028](DECISION_028_PLANET_POLISH.md), with [individual world review](qa/planet-polish-2026-09-20/REPORT.md).
 
 Current deployment and fixed-resolution decision: [Decision 027](DECISION_027_FREE_CLOUDFLARE.md).
 

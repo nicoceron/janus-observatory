@@ -65,7 +65,23 @@ def material(name, roughness=0.75, metalness=0.03):
     return mat
 
 
-def import_mesh(name, data, coll):
+def _linear_hex(value):
+    channels = [int(value.lstrip("#")[i : i + 2], 16) / 255 for i in (0, 2, 4)]
+    return [c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4 for c in channels]
+
+
+def _is_water(color, ocean):
+    # Ocean facets are the world's ocean colour times a small brightness variation, so their
+    # channel ratios match exactly. Green land and blue-grey beaches no longer pass as water.
+    if not (ocean[2] > ocean[0] * 1.15 and ocean[1] > ocean[0] * 1.12) or color[1] <= 0:
+        return False
+    return (
+        abs(color[0] / color[1] - ocean[0] / ocean[1]) < 0.02
+        and abs(color[2] / color[1] - ocean[2] / ocean[1]) < 0.02
+    )
+
+
+def import_mesh(name, data, coll, ocean=None):
     positions, colors = data["positions"], data["colors"]
     mesh = bpy.data.meshes.new(name)
     points = [xyz(positions[i : i + 3]) for i in range(0, len(positions), 3)]
@@ -88,10 +104,9 @@ def import_mesh(name, data, coll):
     if name == "Terrain":
         mesh.materials.append(material("Janus • faceted water", 0.36, 0.08))
         col = mesh.color_attributes.get("Color")
-        if col:
+        if col and ocean:
             for poly in mesh.polygons:
-                color = col.data[poly.loop_start].color
-                if color[2] > color[0] * 1.15 and color[1] > color[0] * 1.12:
+                if _is_water(col.data[poly.loop_start].color, ocean):
                     poly.material_index = 1
     obj = bpy.data.objects.new(name + " • foundation", mesh)
     coll.objects.link(obj)
@@ -465,7 +480,7 @@ def build(world_id):
         for name, data in {**tier["parts"], **seed["shared"]}.items():
             parent = empty(name, coll)
             parent["semantic_part"] = name
-            obj = import_mesh(name, data, coll)
+            obj = import_mesh(name, data, coll, _linear_hex(seed["art"]["ocean"]))
             obj.parent = parent
             for detail in polish_part(world_id, name, obj, tier["mobile"]):
                 detail.parent = parent

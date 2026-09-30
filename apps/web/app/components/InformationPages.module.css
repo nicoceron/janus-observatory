@@ -39,12 +39,15 @@
 }
 
 .flow {
+  counter-reset: flow-step;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .flow li {
+  /* Grid items are not list items, so the implicit list-item counter never advances. */
+  counter-increment: flow-step;
   align-items: baseline;
   border-top: 1px solid rgba(186, 212, 227, 0.15);
   display: grid;
@@ -59,7 +62,7 @@
 
 .flow li::before {
   color: #afc2cc;
-  content: counter(list-item, decimal-leading-zero);
+  content: counter(flow-step, decimal-leading-zero);
   font-family: var(--font-mono);
   font-size: 0.75rem;
 }

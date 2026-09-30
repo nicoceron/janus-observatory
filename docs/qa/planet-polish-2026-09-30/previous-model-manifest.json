@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "version": "blender-planet-polish-v12-2026-09-30",
+  "version": "blender-orbit-crops-v11-2026-09-20",
   "contentOrigin": "interpretive",
   "assetPrefix": "janus.blender.v1.",
   "checksumAlgorithm": "sha256",
@@ -12,13 +12,13 @@
     },
     {
       "path": "scripts/blender/finish_world.py",
-      "checksum": "sha256:84822b6aec3c8639d3625fa512907cb1c294c70f462289f3f2727aa924029bcb",
-      "bytes": 28555
+      "checksum": "sha256:593b38c79d7a54b3cb643f1cf1dfa9e1149c105cb90a67846fb2084c9ee78a90",
+      "bytes": 27890
     },
     {
       "path": "scripts/blender/system_worlds.py",
-      "checksum": "sha256:555af578ac409125e5a6ede2c4f5165f2239a3379f083d02b1590053037e1ff8",
-      "bytes": 110451
+      "checksum": "sha256:0d6752a0b4c38ca398cad113e30b9a2949c31331082b8099eebebf36dc0395ef",
+      "bytes": 108752
     },
     {
       "path": "scripts/export-blender-seeds.ts",
@@ -27,60 +27,58 @@
     },
     {
       "path": "scripts/record-blender-art.ts",
-      "checksum": "sha256:feb4a616b8d4e456c067adf16a1fec69343f23f3d19d73bb87f58310e401bc27",
-      "bytes": 18903
+      "checksum": "sha256:eaecfc79af3c461b2c446cadf714a7ed78cfca4bb0a9c5bae7cdfed855713fda",
+      "bytes": 18901
     }
   ],
   "seedExchangeReceipt": {
     "path": "docs/qa/blender-finish/seeds.json",
-    "checksum": "sha256:701a5c5e35298bca4e50ce696f0f3f4bfa56f5a6c48b025f42db60422598491e",
+    "checksum": "sha256:84a71b38ee9ab49134252f56a8e39fc55c45254aa9e694504abc752b9a94896d",
     "bytes": 1927
   },
   "sources": [
     {
       "world": "origin",
       "path": "assets/blender/origin.blend",
-      "checksum": "sha256:c3d9bf3982c019233242d8b08688eb5320b49539899f7cf3328c808c2f471b54",
-      "bytes": 720279,
+      "checksum": "sha256:b94540bdb4b31955154e112e855e09bfaaa32f8ffa6481a3b6ab8e317b511371",
+      "bytes": 704699,
       "seed": {
         "path": "assets/blender/seeds/origin.json",
-        "checksum": "sha256:ba6580087ec6ea0896478e4721617b0ae1cbd47784fd38acd9e862fa10019f28",
-        "bytes": 8692141
+        "checksum": "sha256:912728ad42a75a056bdcefcdbeb646c7bdfeb4ed16c897f8385e495d92abc459",
+        "bytes": 8540147
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-origin.json",
-        "checksum": "sha256:1b463ba406d5cea5cafee23c5cdb8bda338dbdce0147b917bd420a08fc9a83ca",
+        "checksum": "sha256:1b0153769da75559130210b5279b1ceb970bffeca5f707fa367c91daf92aa473",
         "bytes": 1688
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-origin.resources.json",
-        "checksum": "sha256:a0c2c64826dbbe3130071acd129ff1f487b9e3f322fd449f3bdfaec186e05a41",
-        "bytes": 85063
+        "checksum": "sha256:c8f69b89fd8de24f9caa116622cbbd8e17c85a193f8a8a72bb122e0a4367f6b3",
+        "bytes": 78043
       },
-      "scenes": [
-        "ORIGIN • Earth"
-      ],
+      "scenes": ["ORIGIN • Earth"],
       "blender": "5.2.1 LTS"
     },
     {
       "world": "s1",
       "path": "assets/blender/s1.blend",
-      "checksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "bytes": 1059412,
+      "checksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
+      "bytes": 1059452,
       "seed": {
         "path": "assets/blender/seeds/s1.json",
-        "checksum": "sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e",
-        "bytes": 4958948
+        "checksum": "sha256:32aa5eaa910f1d5da0317615443d39b0f94375c7c46507ec13045c0f78c276e6",
+        "bytes": 4879338
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s1.json",
-        "checksum": "sha256:4034bf9f3999d6b523b5dacd900599226207d80d00999c6a5e08765eead75466",
+        "checksum": "sha256:31b1164d961436087e9c3739758debe6d37d082bf7c3541c32d93e170708887a",
         "bytes": 3103
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s1.resources.json",
-        "checksum": "sha256:86f6389d9b7c19537b7165ed88c68073050abd8646eb04ce7ce348dc076efc5c",
-        "bytes": 55237
+        "checksum": "sha256:ded2a49463d1d085b3f11af65abdff4e909a24c6c7224073c47fde7eb4c3066c",
+        "bytes": 48256
       },
       "scenes": [
         "S1 • asteroids",
@@ -95,104 +93,91 @@
     {
       "world": "s2",
       "path": "assets/blender/s2.blend",
-      "checksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
-      "bytes": 998135,
+      "checksum": "sha256:3ab7260736ac1d046da6c531ca78e77a9e291ea3aef3516571a19cf6fc15dafb",
+      "bytes": 984025,
       "seed": {
         "path": "assets/blender/seeds/s2.json",
-        "checksum": "sha256:a22cfc9536ac3ff8422dcded0a721416287f8e77061a3933c277f30e9b5726ea",
-        "bytes": 6000804
+        "checksum": "sha256:5ae8e3dab6de3119f8035c5c86d0f92de0b1a8c15161cdc9e945abf6065b3cf8",
+        "bytes": 5802942
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s2.json",
-        "checksum": "sha256:298055aa2ea1bf4b41924505b97a3667ef801d371fb33b0451173efc10ab4b29",
+        "checksum": "sha256:d9237113a6ff789db78547b19234df8cb136892220fb9eaa0aaa30a1441594ef",
         "bytes": 2484
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s2.resources.json",
-        "checksum": "sha256:d6b7d232debc2ed7f9c5c748992d555c83f723fdc20da9c18d04b7c147e60329",
-        "bytes": 58711
+        "checksum": "sha256:281a8e5237e68caae159f4df2c318e023f02dda872d7a748d8fe63c9031cfac7",
+        "bytes": 48253
       },
-      "scenes": [
-        "S2 • asteroids",
-        "S2 • Earth",
-        "S2 • Mars",
-        "S2 • Moon"
-      ],
+      "scenes": ["S2 • asteroids", "S2 • Earth", "S2 • Mars", "S2 • Moon"],
       "blender": "5.2.1 LTS"
     },
     {
       "world": "s3",
       "path": "assets/blender/s3.blend",
-      "checksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
-      "bytes": 1208369,
+      "checksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
+      "bytes": 1210467,
       "seed": {
         "path": "assets/blender/seeds/s3.json",
-        "checksum": "sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e",
-        "bytes": 7376118
+        "checksum": "sha256:10c2b8b06373713f478957c5a7af64a6e695e7dfebcc19b2541a1a5362f93a6f",
+        "bytes": 7296948
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s3.json",
-        "checksum": "sha256:5d10dbb7ae43c43d75ecaff021af4d331dabc54e6ac2c706dd9ac768a04e8b26",
+        "checksum": "sha256:f7c53c448f4d22fa225e1aa5e69eb43463fdf195b525be4732aecaedbf746aab",
         "bytes": 2877
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s3.resources.json",
-        "checksum": "sha256:0eb88fb8aaf1885e136ffc5af1d7914e0ad133140f45515eeabe5f6620007fbd",
-        "bytes": 81786
+        "checksum": "sha256:a644b1e95ad91a68b603c79c0b1ba0c7ec4373f6a422333f3a0ca6c512376085",
+        "bytes": 74812
       },
-      "scenes": [
-        "S3 • asteroids",
-        "S3 • Earth",
-        "S3 • Mars",
-        "S3 • Moon",
-        "S3 • outer"
-      ],
+      "scenes": ["S3 • asteroids", "S3 • Earth", "S3 • Mars", "S3 • Moon", "S3 • outer"],
       "blender": "5.2.1 LTS"
     },
     {
       "world": "s4",
       "path": "assets/blender/s4.blend",
-      "checksum": "sha256:00c6855e5e7be9a231b4bf9464ebaec6f898f959b9c4ee1acef9ea8bcfcce9c3",
-      "bytes": 476183,
+      "checksum": "sha256:88327dc545f1571578b7126d516f30903168606218af571b4dc945fb59d3aec9",
+      "bytes": 455709,
       "seed": {
         "path": "assets/blender/seeds/s4.json",
-        "checksum": "sha256:a82d08f03364814fd48283a9a3e4033fd61e52e4c39dfa32ee26a38046637d91",
-        "bytes": 3144706
+        "checksum": "sha256:9c9ea26a618eef55a2af951a0a6022f72071296a15f92e35fe2364fe7a85b064",
+        "bytes": 2993375
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s4.json",
-        "checksum": "sha256:0f8451ef0c9c81381e2cbb627a6f91193097d79fe1e0fff9ce1f2335da2330d3",
-        "bytes": 1922
+        "checksum": "sha256:f153933e98d3014f2bfa212735b9274c1718dc13ae94cf5f3474a2b028bd21ca",
+        "bytes": 1921
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s4.resources.json",
-        "checksum": "sha256:235e0b91ecbc705d74335b6f263dcc146d2090997823b1c096c4f34370aefe6d",
-        "bytes": 72185
+        "checksum": "sha256:5095224fe2f6a6db549708a89b3f9a43112831d2f08b8ac5d9a81276f326e144",
+        "bytes": 65209
       },
-      "scenes": [
-        "S4 • Earth"
-      ],
+      "scenes": ["S4 • Earth"],
       "blender": "5.2.1 LTS"
     },
     {
       "world": "s5",
       "path": "assets/blender/s5.blend",
-      "checksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "bytes": 1200352,
+      "checksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
+      "bytes": 1194840,
       "seed": {
         "path": "assets/blender/seeds/s5.json",
-        "checksum": "sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e",
-        "bytes": 6230112
+        "checksum": "sha256:373929212c55a475afcff678d0405e2c02de6ba1bd611f42f68acf38d6040d9f",
+        "bytes": 6153206
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s5.json",
-        "checksum": "sha256:d194c4d8d7b5d75c49613cf0920d6ae0421e0f531865d79a7129ab089d46df04",
+        "checksum": "sha256:d8bc9af36ce79579cc842be65e7f8f37f00707094acb705b90a7f15866920337",
         "bytes": 3203
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s5.resources.json",
-        "checksum": "sha256:f20690f2f65ca05c609f8895fce5cd5bcfd98d49086ba3fd7904d7ab65e85bd8",
-        "bytes": 55241
+        "checksum": "sha256:daf525fa6455c17f2d32a5dce0ea2dd6586624bc516c9d101289b3b80dac0bc5",
+        "bytes": 48263
       },
       "scenes": [
         "S5 • asteroids",
@@ -208,22 +193,22 @@
     {
       "world": "s6",
       "path": "assets/blender/s6.blend",
-      "checksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "bytes": 1016560,
+      "checksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
+      "bytes": 1013946,
       "seed": {
         "path": "assets/blender/seeds/s6.json",
-        "checksum": "sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26",
-        "bytes": 3804585
+        "checksum": "sha256:f3280f034b281c45061c98c82301bef68d12a7053bc342ed5610f9ebd3938ff3",
+        "bytes": 3781668
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s6.json",
-        "checksum": "sha256:14e8e768f0f02cc61a13f50d38ff7481b007b2c9bc0276362505c39c472d023e",
+        "checksum": "sha256:6fead16b5970895c186950214a0a4297479ee7a3b0a1d11e0f7c5a6f1e04ff75",
         "bytes": 3096
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s6.resources.json",
-        "checksum": "sha256:8999819ad13c87bfc1d19e0ca7c195433c2f07030d13cf0928f97d7b42e2e99f",
-        "bytes": 55236
+        "checksum": "sha256:bef3e15966748035ed43412eef98eac0e3d08284e09e6d02707faa5675163b28",
+        "bytes": 48256
       },
       "scenes": [
         "S6 • asteroids",
@@ -238,73 +223,68 @@
     {
       "world": "s7",
       "path": "assets/blender/s7.blend",
-      "checksum": "sha256:f4d8b7cb1a0e0db65479b5d5429ad9829b0bb478276ff8cb446412af3ebcd454",
-      "bytes": 589639,
+      "checksum": "sha256:acc146fa5f6528571c96c937d4b807f4a2d365dce3c3af5863925514f6caeb00",
+      "bytes": 584085,
       "seed": {
         "path": "assets/blender/seeds/s7.json",
-        "checksum": "sha256:5d9ff3ae2bad44c761eae79caa5b646756a40dbd0dba28c5100cacec9d72b756",
-        "bytes": 6054113
+        "checksum": "sha256:5de87af0593ed1899cdfa0ae95a85a3cfc5e99ca055b162dce8c1303401708dd",
+        "bytes": 6110912
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s7.json",
-        "checksum": "sha256:b937c1e5e273a34d7736b2d5f6e811c5ce86d4295199758dca41158a0a4de24c",
+        "checksum": "sha256:41397246022f5bb6d90d1c73a29e844e941f299853fba63f45a79a3607511053",
         "bytes": 1682
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s7.resources.json",
-        "checksum": "sha256:91855b7fd503e2f33dfbd3a8b29139f38b53443a36edfab7b2215ccbd9de44c9",
-        "bytes": 65383
+        "checksum": "sha256:679b498feb195bf05836a6dfe58a284dfb86ed08d111f2f97485451b9e37f7ec",
+        "bytes": 58410
       },
-      "scenes": [
-        "S7 • Earth"
-      ],
+      "scenes": ["S7 • Earth"],
       "blender": "5.2.1 LTS"
     },
     {
       "world": "s8",
       "path": "assets/blender/s8.blend",
-      "checksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
-      "bytes": 570704,
+      "checksum": "sha256:d22f6a6dbc4b9c51c63827d2dfcb6820d7a865846219c8996555e0e032e52c85",
+      "bytes": 558992,
       "seed": {
         "path": "assets/blender/seeds/s8.json",
-        "checksum": "sha256:cec67d135c446fab439ee575ea94c5f5f03f0b6d7d5eab86469d44d1704bacec",
-        "bytes": 3916454
+        "checksum": "sha256:00d59fc9bcedf6827a865cbe6c60db393a4d5023560b3313502cdfa9e0f7addb",
+        "bytes": 3793057
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s8.json",
-        "checksum": "sha256:1a5645929b715ed072e21454db248bca06ea1f16b7f7562760f2483406cb169b",
+        "checksum": "sha256:d4acfded579e223af26f4ddb0fcb08f9f0da0ef5e34ad276b132f69fcb64d3b6",
         "bytes": 1807
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s8.resources.json",
-        "checksum": "sha256:450d6ad1ec3ff88f97814dd837d8e3297c602fc61b4597d0ed41a7ba55a39cd0",
-        "bytes": 55236
+        "checksum": "sha256:25e3429211a64196c52f55159e227e069c6e3f24fa2e24295ac155049eec1edb",
+        "bytes": 48255
       },
-      "scenes": [
-        "S8 • Earth",
-        "S8 • Moon"
-      ],
+      "scenes": ["S8 • Earth", "S8 • Moon"],
       "blender": "5.2.1 LTS"
     },
     {
       "world": "s9",
       "path": "assets/blender/s9.blend",
-      "checksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "bytes": 803062,
+      "checksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
+      "bytes": 797450,
       "seed": {
         "path": "assets/blender/seeds/s9.json",
-        "checksum": "sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85",
-        "bytes": 1952773
+        "checksum": "sha256:3fa20ebaddebdb30379111b93945fdb4f2144875b4547f3f14aea37b0eb2ce29",
+        "bytes": 1856940
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s9.json",
-        "checksum": "sha256:d54147a1d7cb434f594c2fc5d73c325b54668b88428a87d41af7a354c885b17c",
+        "checksum": "sha256:ae860c01054423d4d971e10b2fd0c5149177c471768e48e158e9896398f61ef9",
         "bytes": 3170
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s9.resources.json",
-        "checksum": "sha256:c2aaa539f6b3c6765b2f69b6fe12cd9fe94207558c6113c63649e2a0f299ef3e",
-        "bytes": 58638
+        "checksum": "sha256:95660e8895b3adc9d8730e1382317e0bdc1126741b51eaff8548ab02ddc0cc9a",
+        "bytes": 51657
       },
       "scenes": [
         "S9 • asteroids",
@@ -321,22 +301,22 @@
     {
       "world": "s10",
       "path": "assets/blender/s10.blend",
-      "checksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "bytes": 1027193,
+      "checksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
+      "bytes": 1020630,
       "seed": {
         "path": "assets/blender/seeds/s10.json",
-        "checksum": "sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a",
-        "bytes": 2903388
+        "checksum": "sha256:1ae5565e7d806cf04c234e9817e70c1ad752e3dffdc09672086e119c1a5aa5ab",
+        "bytes": 2825336
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s10.json",
-        "checksum": "sha256:41a7454b7ce1f5ae23880e910bdc7547131cbe0b2880b05a30e8129bbb134e3a",
+        "checksum": "sha256:fa852dce2722e024f0d89e6646896d2bf9711ee359356d6715d1476bf03db5a6",
         "bytes": 3277
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s10.resources.json",
-        "checksum": "sha256:0631a1409f41a45c0bbfd177a9150ebee23a5dc17401bc5aeacf331a1e09f714",
-        "bytes": 65660
+        "checksum": "sha256:0c2cda27dfa6399a06d447d7cf7be7cbea72b1179a84b2bb57b0e4be1599728c",
+        "bytes": 58666
       },
       "scenes": [
         "S10 • asteroids",
@@ -358,10 +338,10 @@
       "path": "apps/web/public/assets/blender/v1/origin/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/origin/earth-mobile.glb",
       "sourcePath": "assets/blender/origin.blend",
-      "sourceChecksum": "sha256:c3d9bf3982c019233242d8b08688eb5320b49539899f7cf3328c808c2f471b54",
-      "derivativeChecksum": "sha256:18d553a447b0e0b6138fc8d81600e810b5f1080256e121a6e0b18fc90f533c20",
-      "bytes": 690588,
-      "triangles": 23196,
+      "sourceChecksum": "sha256:b94540bdb4b31955154e112e855e09bfaaa32f8ffa6481a3b6ab8e317b511371",
+      "derivativeChecksum": "sha256:f1741609f25d8942c8dbd8e397c217585a61d8ce3c595531943ae4526041f91d",
+      "bytes": 689332,
+      "triangles": 23308,
       "parts": [
         "Terrain",
         "Structures",
@@ -379,9 +359,7 @@
         "Cloud_4"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 14,
       "materialCount": 10,
       "animationCount": 0,
@@ -423,10 +401,10 @@
       "path": "apps/web/public/assets/blender/v1/origin/earth.glb",
       "publicPath": "/assets/blender/v1/origin/earth.glb",
       "sourcePath": "assets/blender/origin.blend",
-      "sourceChecksum": "sha256:c3d9bf3982c019233242d8b08688eb5320b49539899f7cf3328c808c2f471b54",
-      "derivativeChecksum": "sha256:eb2177913541356191eb17d4cb5e85a1dbe7ed80ed2ad1f4c62f0b8b1b6cf97b",
-      "bytes": 795764,
-      "triangles": 26164,
+      "sourceChecksum": "sha256:b94540bdb4b31955154e112e855e09bfaaa32f8ffa6481a3b6ab8e317b511371",
+      "derivativeChecksum": "sha256:9cb7b59e107a03c09c144c8535d9032c2e498b646312e0090751cfab7d1be7ad",
+      "bytes": 764616,
+      "triangles": 25356,
       "parts": [
         "Terrain",
         "Structures",
@@ -444,9 +422,7 @@
         "Cloud_4"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 14,
       "materialCount": 10,
       "animationCount": 0,
@@ -488,24 +464,17 @@
       "path": "apps/web/public/assets/blender/v1/s1/asteroids.glb",
       "publicPath": "/assets/blender/v1/s1/asteroids.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "derivativeChecksum": "sha256:49089a2a01f7178d4f125aba3be0b802afb61f88cc4c89c86c54578c21308f0c",
-      "bytes": 63540,
+      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
+      "derivativeChecksum": "sha256:367796326a5f56bb265ebf2d4bb1ab0947b5c9a7c4a2a22c0a260387a8d45a55",
+      "bytes": 63568,
       "triangles": 2524,
-      "parts": [
-        "S1_asteroids"
-      ],
+      "parts": ["S1_asteroids"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 8,
       "animationCount": 0,
-      "namedNodes": [
-        "S1_asteroids • modeled surfaces",
-        "S1_asteroids"
-      ]
+      "namedNodes": ["S1_asteroids • modeled surfaces", "S1_asteroids"]
     },
     {
       "id": "janus.blender.v1.s1.earth-mobile",
@@ -514,10 +483,10 @@
       "path": "apps/web/public/assets/blender/v1/s1/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s1/earth-mobile.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "derivativeChecksum": "sha256:2a5372a052e28b248ceb9249160587bf2142f06bea010a28e4ca05b777c5b036",
-      "bytes": 536524,
-      "triangles": 20441,
+      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
+      "derivativeChecksum": "sha256:f80a8330eae1f34dbc86df5c54a5dd66ccb3151886c17a0c165d42dcb223d756",
+      "bytes": 529580,
+      "triangles": 20209,
       "parts": [
         "Terrain",
         "Structures",
@@ -535,9 +504,7 @@
         "Study_orbital-habitat"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 14,
       "materialCount": 26,
       "animationCount": 0,
@@ -579,10 +546,10 @@
       "path": "apps/web/public/assets/blender/v1/s1/earth.glb",
       "publicPath": "/assets/blender/v1/s1/earth.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "derivativeChecksum": "sha256:359b9526d3763a93b16dddcb2037f6157bac5de92ff89f277aa8a2e4d2d5a8d9",
-      "bytes": 604576,
-      "triangles": 22481,
+      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
+      "derivativeChecksum": "sha256:538c3310f34318ac61531a3c6e381f8b598be440965c8f566bd825ef24e2a6c0",
+      "bytes": 595664,
+      "triangles": 22241,
       "parts": [
         "Terrain",
         "Structures",
@@ -600,9 +567,7 @@
         "Study_orbital-habitat"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 14,
       "materialCount": 26,
       "animationCount": 0,
@@ -644,24 +609,17 @@
       "path": "apps/web/public/assets/blender/v1/s1/Mars.glb",
       "publicPath": "/assets/blender/v1/s1/Mars.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
+      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
       "derivativeChecksum": "sha256:c3026e5e52b979976744a0b2d89f0c7387ae422e65a5c38d6ea5e9de21d731a0",
       "bytes": 252036,
       "triangles": 11080,
-      "parts": [
-        "S1_Mars"
-      ],
+      "parts": ["S1_Mars"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 10,
       "animationCount": 0,
-      "namedNodes": [
-        "S1_Mars • modeled surfaces",
-        "S1_Mars"
-      ]
+      "namedNodes": ["S1_Mars • modeled surfaces", "S1_Mars"]
     },
     {
       "id": "janus.blender.v1.s1.moon",
@@ -670,24 +628,17 @@
       "path": "apps/web/public/assets/blender/v1/s1/Moon.glb",
       "publicPath": "/assets/blender/v1/s1/Moon.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
+      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
       "derivativeChecksum": "sha256:0915b6f0fa760f6f9db98a86a32d117799cf839a0cff3908516edadea4381dd1",
       "bytes": 220852,
       "triangles": 9348,
-      "parts": [
-        "S1_Moon"
-      ],
+      "parts": ["S1_Moon"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 10,
       "animationCount": 0,
-      "namedNodes": [
-        "S1_Moon • modeled surfaces",
-        "S1_Moon"
-      ]
+      "namedNodes": ["S1_Moon • modeled surfaces", "S1_Moon"]
     },
     {
       "id": "janus.blender.v1.s1.outer",
@@ -696,24 +647,17 @@
       "path": "apps/web/public/assets/blender/v1/s1/outer.glb",
       "publicPath": "/assets/blender/v1/s1/outer.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "derivativeChecksum": "sha256:3eb71e36985441b85c743e9d769f568309d55d32a4e48f763a5c2fe76dd173d4",
-      "bytes": 84132,
+      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
+      "derivativeChecksum": "sha256:147fa6e8e3316abe8615a6f80a9cc410a6f01a187d604867e2d15656d60c012b",
+      "bytes": 85228,
       "triangles": 3232,
-      "parts": [
-        "S1_outer"
-      ],
+      "parts": ["S1_outer"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 10,
       "animationCount": 0,
-      "namedNodes": [
-        "S1_outer • modeled surfaces",
-        "S1_outer"
-      ]
+      "namedNodes": ["S1_outer • modeled surfaces", "S1_outer"]
     },
     {
       "id": "janus.blender.v1.s1.venus",
@@ -722,24 +666,17 @@
       "path": "apps/web/public/assets/blender/v1/s1/Venus.glb",
       "publicPath": "/assets/blender/v1/s1/Venus.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "derivativeChecksum": "sha256:35e7a5af4e8ca98ab8debe111576c50001a1886966b809e34018fbd158ab43ac",
-      "bytes": 101944,
+      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
+      "derivativeChecksum": "sha256:8e46e4d8f004c6837edac058411dda13e799c34e1ecee3fee65e270e094ffd30",
+      "bytes": 103716,
       "triangles": 4236,
-      "parts": [
-        "S1_Venus"
-      ],
+      "parts": ["S1_Venus"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 9,
       "animationCount": 0,
-      "namedNodes": [
-        "S1_Venus • modeled surfaces",
-        "S1_Venus"
-      ]
+      "namedNodes": ["S1_Venus • modeled surfaces", "S1_Venus"]
     },
     {
       "id": "janus.blender.v1.s2.asteroids",
@@ -748,24 +685,17 @@
       "path": "apps/web/public/assets/blender/v1/s2/asteroids.glb",
       "publicPath": "/assets/blender/v1/s2/asteroids.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
-      "derivativeChecksum": "sha256:f50847f387383318f678751012f1f7695fb0bf062b69fde2bd8542c3fe0e6fc5",
-      "bytes": 73424,
+      "sourceChecksum": "sha256:3ab7260736ac1d046da6c531ca78e77a9e291ea3aef3516571a19cf6fc15dafb",
+      "derivativeChecksum": "sha256:de599e86e389c9c86da199d4ce00a5b54e6855b6e7fd7b414d2b777dc8adab11",
+      "bytes": 73840,
       "triangles": 3000,
-      "parts": [
-        "S2_asteroids"
-      ],
+      "parts": ["S2_asteroids"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 9,
       "animationCount": 0,
-      "namedNodes": [
-        "S2_asteroids • modeled surfaces",
-        "S2_asteroids"
-      ]
+      "namedNodes": ["S2_asteroids • modeled surfaces", "S2_asteroids"]
     },
     {
       "id": "janus.blender.v1.s2.earth-mobile",
@@ -774,10 +704,10 @@
       "path": "apps/web/public/assets/blender/v1/s2/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s2/earth-mobile.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
-      "derivativeChecksum": "sha256:1b5a9afe3667f16547afd5601b59e09ad86e933df30d32dca57b4777650d94ba",
-      "bytes": 567560,
-      "triangles": 21264,
+      "sourceChecksum": "sha256:3ab7260736ac1d046da6c531ca78e77a9e291ea3aef3516571a19cf6fc15dafb",
+      "derivativeChecksum": "sha256:81ef58c48a2d75097724b5f9a35ba08c934f592cb9f72c9345752a60a6b9b0e1",
+      "bytes": 545344,
+      "triangles": 20672,
       "parts": [
         "Terrain",
         "Structures",
@@ -794,9 +724,7 @@
         "Study_mars-base"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 13,
       "materialCount": 18,
       "animationCount": 0,
@@ -836,10 +764,10 @@
       "path": "apps/web/public/assets/blender/v1/s2/earth.glb",
       "publicPath": "/assets/blender/v1/s2/earth.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
-      "derivativeChecksum": "sha256:92876c8f4d8f0a1d40687bd3f037e3c40cb1de26702e34f7108b54df46af60f2",
-      "bytes": 655964,
-      "triangles": 24112,
+      "sourceChecksum": "sha256:3ab7260736ac1d046da6c531ca78e77a9e291ea3aef3516571a19cf6fc15dafb",
+      "derivativeChecksum": "sha256:4ef2a20ea9c2b24306f2c777c8014ec75211bc61f4563e4069e4bb10720b6bec",
+      "bytes": 632208,
+      "triangles": 23496,
       "parts": [
         "Terrain",
         "Structures",
@@ -856,9 +784,7 @@
         "Study_mars-base"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 13,
       "materialCount": 18,
       "animationCount": 0,
@@ -898,24 +824,17 @@
       "path": "apps/web/public/assets/blender/v1/s2/Mars.glb",
       "publicPath": "/assets/blender/v1/s2/Mars.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
+      "sourceChecksum": "sha256:3ab7260736ac1d046da6c531ca78e77a9e291ea3aef3516571a19cf6fc15dafb",
       "derivativeChecksum": "sha256:e3cb828e551172e6ae392f2b27e094c9a29662b7c99766e2722e98f3a4da31bf",
       "bytes": 262364,
       "triangles": 11652,
-      "parts": [
-        "S2_Mars"
-      ],
+      "parts": ["S2_Mars"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 10,
       "animationCount": 0,
-      "namedNodes": [
-        "S2_Mars • modeled surfaces",
-        "S2_Mars"
-      ]
+      "namedNodes": ["S2_Mars • modeled surfaces", "S2_Mars"]
     },
     {
       "id": "janus.blender.v1.s2.moon",
@@ -924,24 +843,17 @@
       "path": "apps/web/public/assets/blender/v1/s2/Moon.glb",
       "publicPath": "/assets/blender/v1/s2/Moon.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
+      "sourceChecksum": "sha256:3ab7260736ac1d046da6c531ca78e77a9e291ea3aef3516571a19cf6fc15dafb",
       "derivativeChecksum": "sha256:ca23430fe5ace9f1eb99dc11ac65eb69bc3ef84002d20d0ade6a7a2fb8469882",
       "bytes": 232216,
       "triangles": 9944,
-      "parts": [
-        "S2_Moon"
-      ],
+      "parts": ["S2_Moon"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 10,
       "animationCount": 0,
-      "namedNodes": [
-        "S2_Moon • modeled surfaces",
-        "S2_Moon"
-      ]
+      "namedNodes": ["S2_Moon • modeled surfaces", "S2_Moon"]
     },
     {
       "id": "janus.blender.v1.s3.asteroids",
@@ -950,24 +862,17 @@
       "path": "apps/web/public/assets/blender/v1/s3/asteroids.glb",
       "publicPath": "/assets/blender/v1/s3/asteroids.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
-      "derivativeChecksum": "sha256:b4c243862e084f39ecd2a8b86548a4f9d5afddddf817be4aa3f277219f317ae4",
-      "bytes": 88872,
+      "sourceChecksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
+      "derivativeChecksum": "sha256:b4341560bfd0e9ef79bb47ca4efa43e3dbc247650bbb840332dd834d7d50a8d8",
+      "bytes": 89104,
       "triangles": 3828,
-      "parts": [
-        "S3_asteroids"
-      ],
+      "parts": ["S3_asteroids"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 10,
       "animationCount": 0,
-      "namedNodes": [
-        "S3_asteroids • modeled surfaces",
-        "S3_asteroids"
-      ]
+      "namedNodes": ["S3_asteroids • modeled surfaces", "S3_asteroids"]
     },
     {
       "id": "janus.blender.v1.s3.earth-mobile",
@@ -976,10 +881,10 @@
       "path": "apps/web/public/assets/blender/v1/s3/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s3/earth-mobile.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
-      "derivativeChecksum": "sha256:1b4949d9e9a43f8592d8f118cd5ab7ee08a995fe5fd375bae378fd704e768d04",
-      "bytes": 780184,
-      "triangles": 29942,
+      "sourceChecksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
+      "derivativeChecksum": "sha256:38361bd5db449eb89b1af6e4dcf188e42b72aeec5d45a358b147f0128e871dc7",
+      "bytes": 755660,
+      "triangles": 29234,
       "parts": [
         "Terrain",
         "Structures",
@@ -999,9 +904,7 @@
         "Study_mars-base"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 16,
       "materialCount": 24,
       "animationCount": 0,
@@ -1047,10 +950,10 @@
       "path": "apps/web/public/assets/blender/v1/s3/earth.glb",
       "publicPath": "/assets/blender/v1/s3/earth.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
-      "derivativeChecksum": "sha256:133ec6660ac808d8694f2a8af361fb3c4b92b724971db2c22ad1cdd619568a01",
-      "bytes": 852076,
-      "triangles": 31998,
+      "sourceChecksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
+      "derivativeChecksum": "sha256:9b858784da70aee56b90d4e14934805404f386c4c3f27563f76fcb6779933f84",
+      "bytes": 846600,
+      "triangles": 32054,
       "parts": [
         "Terrain",
         "Structures",
@@ -1070,9 +973,7 @@
         "Study_mars-base"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 16,
       "materialCount": 24,
       "animationCount": 0,
@@ -1118,24 +1019,17 @@
       "path": "apps/web/public/assets/blender/v1/s3/Mars.glb",
       "publicPath": "/assets/blender/v1/s3/Mars.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
+      "sourceChecksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
       "derivativeChecksum": "sha256:39138573228d03a54b91644558958c9e015a0c44bcb0b121e505c8660010cb24",
       "bytes": 303364,
       "triangles": 13904,
-      "parts": [
-        "S3_Mars"
-      ],
+      "parts": ["S3_Mars"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 11,
       "animationCount": 0,
-      "namedNodes": [
-        "S3_Mars • modeled surfaces",
-        "S3_Mars"
-      ]
+      "namedNodes": ["S3_Mars • modeled surfaces", "S3_Mars"]
     },
     {
       "id": "janus.blender.v1.s3.moon",
@@ -1144,24 +1038,17 @@
       "path": "apps/web/public/assets/blender/v1/s3/Moon.glb",
       "publicPath": "/assets/blender/v1/s3/Moon.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
+      "sourceChecksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
       "derivativeChecksum": "sha256:0f76b01a022c7dba85fbfb93424fe4c05fad97159c99af36d7c293f53264c2b2",
       "bytes": 280872,
       "triangles": 12664,
-      "parts": [
-        "S3_Moon"
-      ],
+      "parts": ["S3_Moon"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 11,
       "animationCount": 0,
-      "namedNodes": [
-        "S3_Moon • modeled surfaces",
-        "S3_Moon"
-      ]
+      "namedNodes": ["S3_Moon • modeled surfaces", "S3_Moon"]
     },
     {
       "id": "janus.blender.v1.s3.outer",
@@ -1170,24 +1057,17 @@
       "path": "apps/web/public/assets/blender/v1/s3/outer.glb",
       "publicPath": "/assets/blender/v1/s3/outer.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
-      "derivativeChecksum": "sha256:82a95da8f5ebb05354eb048c440636b12ab63f66f2ef13132ba87651b37a8aba",
-      "bytes": 142336,
+      "sourceChecksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
+      "derivativeChecksum": "sha256:da8eb2426715f02ec35404e24326468bf5b7cf9791158886f6cf0819f9099a8b",
+      "bytes": 144716,
       "triangles": 6548,
-      "parts": [
-        "S3_outer"
-      ],
+      "parts": ["S3_outer"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 11,
       "animationCount": 0,
-      "namedNodes": [
-        "S3_outer • modeled surfaces",
-        "S3_outer"
-      ]
+      "namedNodes": ["S3_outer • modeled surfaces", "S3_outer"]
     },
     {
       "id": "janus.blender.v1.s4.earth-mobile",
@@ -1196,10 +1076,10 @@
       "path": "apps/web/public/assets/blender/v1/s4/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s4/earth-mobile.glb",
       "sourcePath": "assets/blender/s4.blend",
-      "sourceChecksum": "sha256:00c6855e5e7be9a231b4bf9464ebaec6f898f959b9c4ee1acef9ea8bcfcce9c3",
-      "derivativeChecksum": "sha256:bef4adbc394438e6fdb6903c5cc7fa904532aa9e5ade78dffeff7637a7bda808",
-      "bytes": 359156,
-      "triangles": 10053,
+      "sourceChecksum": "sha256:88327dc545f1571578b7126d516f30903168606218af571b4dc945fb59d3aec9",
+      "derivativeChecksum": "sha256:f9d6fa97980249102d46c9bc575cb22dd15fd9573f5b23b9670868636fbbd213",
+      "bytes": 346188,
+      "triangles": 9787,
       "parts": [
         "Terrain",
         "Structures",
@@ -1222,9 +1102,7 @@
         "Cloud_2"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 19,
       "materialCount": 11,
       "animationCount": 0,
@@ -1276,10 +1154,10 @@
       "path": "apps/web/public/assets/blender/v1/s4/earth.glb",
       "publicPath": "/assets/blender/v1/s4/earth.glb",
       "sourcePath": "assets/blender/s4.blend",
-      "sourceChecksum": "sha256:00c6855e5e7be9a231b4bf9464ebaec6f898f959b9c4ee1acef9ea8bcfcce9c3",
-      "derivativeChecksum": "sha256:1f918ae0070c037c17365fc998e0f6b99928d28d3a70c00be9d21ed3e55fa4fc",
-      "bytes": 435716,
-      "triangles": 12249,
+      "sourceChecksum": "sha256:88327dc545f1571578b7126d516f30903168606218af571b4dc945fb59d3aec9",
+      "derivativeChecksum": "sha256:a38b173cf06defe796e970ec0d9f53c8442329bf3a5c1dbf813f55e5398b6108",
+      "bytes": 410596,
+      "triangles": 11587,
       "parts": [
         "Terrain",
         "Structures",
@@ -1302,9 +1180,7 @@
         "Cloud_2"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 19,
       "materialCount": 11,
       "animationCount": 0,
@@ -1356,24 +1232,17 @@
       "path": "apps/web/public/assets/blender/v1/s5/asteroids.glb",
       "publicPath": "/assets/blender/v1/s5/asteroids.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:9f920fa971871a321c9a84682450fca329a56dfe921fe8794165835217a3ed3d",
-      "bytes": 83072,
+      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
+      "derivativeChecksum": "sha256:e9ce6965b69f78ee6aaf72d1ecfef3c3d75dc49ba27533db049907dc4b71115c",
+      "bytes": 83100,
       "triangles": 3376,
-      "parts": [
-        "S5_asteroids"
-      ],
+      "parts": ["S5_asteroids"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 11,
       "animationCount": 0,
-      "namedNodes": [
-        "S5_asteroids • modeled surfaces",
-        "S5_asteroids"
-      ]
+      "namedNodes": ["S5_asteroids • modeled surfaces", "S5_asteroids"]
     },
     {
       "id": "janus.blender.v1.s5.earth-mobile",
@@ -1382,10 +1251,10 @@
       "path": "apps/web/public/assets/blender/v1/s5/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s5/earth-mobile.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:899efa6cc4b71d79e0d7b4c73c3da89f652465f7aba77064ba140c528ae8e24f",
-      "bytes": 739712,
-      "triangles": 27024,
+      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
+      "derivativeChecksum": "sha256:4ad83c4e9a92cec51726cb7b0806209c365d13739fc9cfbe12d03940ff47448e",
+      "bytes": 730084,
+      "triangles": 26816,
       "parts": [
         "Terrain",
         "Structures",
@@ -1401,9 +1270,7 @@
         "Study_mars-base"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 12,
       "materialCount": 26,
       "animationCount": 0,
@@ -1441,10 +1308,10 @@
       "path": "apps/web/public/assets/blender/v1/s5/earth.glb",
       "publicPath": "/assets/blender/v1/s5/earth.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:a7a3c1f2c02a5cd8440b14124a92c5028ab01c14c05ce9a05872c307ac0c7f40",
-      "bytes": 843284,
-      "triangles": 30364,
+      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
+      "derivativeChecksum": "sha256:c8767715324fd0e9d933ea08e8a1bb2a81363bc12d49c1625e60ef797697a663",
+      "bytes": 831636,
+      "triangles": 30112,
       "parts": [
         "Terrain",
         "Structures",
@@ -1460,9 +1327,7 @@
         "Study_mars-base"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 12,
       "materialCount": 26,
       "animationCount": 0,
@@ -1500,24 +1365,17 @@
       "path": "apps/web/public/assets/blender/v1/s5/kuiper.glb",
       "publicPath": "/assets/blender/v1/s5/kuiper.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
+      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
       "derivativeChecksum": "sha256:5df422221f02005504328776303032228250726f86a750c11679b4285d30a956",
       "bytes": 128992,
       "triangles": 5212,
-      "parts": [
-        "S5_kuiper"
-      ],
+      "parts": ["S5_kuiper"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 11,
       "animationCount": 0,
-      "namedNodes": [
-        "S5_kuiper • modeled surfaces",
-        "S5_kuiper"
-      ]
+      "namedNodes": ["S5_kuiper • modeled surfaces", "S5_kuiper"]
     },
     {
       "id": "janus.blender.v1.s5.mars",
@@ -1526,24 +1384,17 @@
       "path": "apps/web/public/assets/blender/v1/s5/Mars.glb",
       "publicPath": "/assets/blender/v1/s5/Mars.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
+      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
       "derivativeChecksum": "sha256:5a619ea3bbadf89da72df83e388f04dd76088c528e0a0cd5fa76c1ab59a61dd4",
       "bytes": 272136,
       "triangles": 12084,
-      "parts": [
-        "S5_Mars"
-      ],
+      "parts": ["S5_Mars"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 11,
       "animationCount": 0,
-      "namedNodes": [
-        "S5_Mars • modeled surfaces",
-        "S5_Mars"
-      ]
+      "namedNodes": ["S5_Mars • modeled surfaces", "S5_Mars"]
     },
     {
       "id": "janus.blender.v1.s5.moon",
@@ -1552,24 +1403,17 @@
       "path": "apps/web/public/assets/blender/v1/s5/Moon.glb",
       "publicPath": "/assets/blender/v1/s5/Moon.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
+      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
       "derivativeChecksum": "sha256:8c9855b7385482e751cb348a6a479d41ddbdaac8182cd342a2fe9366a3c84b9e",
       "bytes": 241816,
       "triangles": 10476,
-      "parts": [
-        "S5_Moon"
-      ],
+      "parts": ["S5_Moon"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 11,
       "animationCount": 0,
-      "namedNodes": [
-        "S5_Moon • modeled surfaces",
-        "S5_Moon"
-      ]
+      "namedNodes": ["S5_Moon • modeled surfaces", "S5_Moon"]
     },
     {
       "id": "janus.blender.v1.s5.outer",
@@ -1578,24 +1422,17 @@
       "path": "apps/web/public/assets/blender/v1/s5/outer.glb",
       "publicPath": "/assets/blender/v1/s5/outer.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:b9f23ba60a75e1a13a220c54dbdbe1bcfc8b86da1110ddaaffac782df4d7d9eb",
-      "bytes": 104304,
+      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
+      "derivativeChecksum": "sha256:9052e48340fc8885617b495717dbbcc44277a697de3cf2d7914f48322b804491",
+      "bytes": 104908,
       "triangles": 4360,
-      "parts": [
-        "S5_outer"
-      ],
+      "parts": ["S5_outer"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 11,
       "animationCount": 0,
-      "namedNodes": [
-        "S5_outer • modeled surfaces",
-        "S5_outer"
-      ]
+      "namedNodes": ["S5_outer • modeled surfaces", "S5_outer"]
     },
     {
       "id": "janus.blender.v1.s5.venus",
@@ -1604,24 +1441,17 @@
       "path": "apps/web/public/assets/blender/v1/s5/Venus.glb",
       "publicPath": "/assets/blender/v1/s5/Venus.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:53f47cbcc414ae59eac5f918d096fd2657bf8421737807925a8a50d01518b1b7",
-      "bytes": 92912,
+      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
+      "derivativeChecksum": "sha256:e3cad99fddac091586e4b6a4f218463511c8607c6d43515989827d2bda370f8e",
+      "bytes": 94704,
       "triangles": 3520,
-      "parts": [
-        "S5_Venus"
-      ],
+      "parts": ["S5_Venus"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 8,
       "animationCount": 0,
-      "namedNodes": [
-        "S5_Venus • modeled surfaces",
-        "S5_Venus"
-      ]
+      "namedNodes": ["S5_Venus • modeled surfaces", "S5_Venus"]
     },
     {
       "id": "janus.blender.v1.s6.asteroids",
@@ -1630,24 +1460,17 @@
       "path": "apps/web/public/assets/blender/v1/s6/asteroids.glb",
       "publicPath": "/assets/blender/v1/s6/asteroids.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "derivativeChecksum": "sha256:cfb7f50e2589971fe76a6f6749b69e60876ba6242c97790d8c491437c0b55743",
-      "bytes": 79616,
+      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
+      "derivativeChecksum": "sha256:2f022566e0036ce480d2d66e389eb99d7a42e7bd5775d6e8cce8d1cf9801eca9",
+      "bytes": 79792,
       "triangles": 3392,
-      "parts": [
-        "S6_asteroids"
-      ],
+      "parts": ["S6_asteroids"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 8,
       "animationCount": 0,
-      "namedNodes": [
-        "S6_asteroids • modeled surfaces",
-        "S6_asteroids"
-      ]
+      "namedNodes": ["S6_asteroids • modeled surfaces", "S6_asteroids"]
     },
     {
       "id": "janus.blender.v1.s6.earth-mobile",
@@ -1656,10 +1479,10 @@
       "path": "apps/web/public/assets/blender/v1/s6/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s6/earth-mobile.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "derivativeChecksum": "sha256:aea8d60ff3757fd78bcd5cab8f418da9f7316c07d0f4265e5e601943548ecda7",
-      "bytes": 596064,
-      "triangles": 22288,
+      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
+      "derivativeChecksum": "sha256:885f79a9b06c1977c146c030076747d705eb7b867b9f1df8d417e88005dfe96a",
+      "bytes": 591960,
+      "triangles": 22212,
       "parts": [
         "Terrain",
         "Structures",
@@ -1676,9 +1499,7 @@
         "Study_venus-facility"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 13,
       "materialCount": 25,
       "animationCount": 0,
@@ -1718,10 +1539,10 @@
       "path": "apps/web/public/assets/blender/v1/s6/earth.glb",
       "publicPath": "/assets/blender/v1/s6/earth.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "derivativeChecksum": "sha256:ab261d5a0750e6b084284c3cb11557dfabcc3e8a698661d057a4b3224bacb1aa",
-      "bytes": 690292,
-      "triangles": 25186,
+      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
+      "derivativeChecksum": "sha256:df7c69d384cb6e8f46e2079767709518a73d8798cfce239e99c6aa249f78fa9f",
+      "bytes": 686648,
+      "triangles": 25122,
       "parts": [
         "Terrain",
         "Structures",
@@ -1738,9 +1559,7 @@
         "Study_venus-facility"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 13,
       "materialCount": 25,
       "animationCount": 0,
@@ -1780,24 +1599,17 @@
       "path": "apps/web/public/assets/blender/v1/s6/kuiper.glb",
       "publicPath": "/assets/blender/v1/s6/kuiper.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
+      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
       "derivativeChecksum": "sha256:dbd2078a6f6eb465d885b277cb9eedac63686091458db1ef68415ee3fe050729",
       "bytes": 128680,
       "triangles": 5332,
-      "parts": [
-        "S6_kuiper"
-      ],
+      "parts": ["S6_kuiper"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 9,
       "animationCount": 0,
-      "namedNodes": [
-        "S6_kuiper • modeled surfaces",
-        "S6_kuiper"
-      ]
+      "namedNodes": ["S6_kuiper • modeled surfaces", "S6_kuiper"]
     },
     {
       "id": "janus.blender.v1.s6.mars",
@@ -1806,24 +1618,17 @@
       "path": "apps/web/public/assets/blender/v1/s6/Mars.glb",
       "publicPath": "/assets/blender/v1/s6/Mars.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
+      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
       "derivativeChecksum": "sha256:be3ee853ca857a2bf41edc3ee6c86efae0aa3267704f76fbdbe64748df17a753",
       "bytes": 269512,
       "triangles": 11812,
-      "parts": [
-        "S6_Mars"
-      ],
+      "parts": ["S6_Mars"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 11,
       "animationCount": 0,
-      "namedNodes": [
-        "S6_Mars • modeled surfaces",
-        "S6_Mars"
-      ]
+      "namedNodes": ["S6_Mars • modeled surfaces", "S6_Mars"]
     },
     {
       "id": "janus.blender.v1.s6.moon",
@@ -1832,24 +1637,17 @@
       "path": "apps/web/public/assets/blender/v1/s6/Moon.glb",
       "publicPath": "/assets/blender/v1/s6/Moon.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
+      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
       "derivativeChecksum": "sha256:e0b32a0be67e1484c1724c5b4fd85cd993ff084cd506b2f1637efc8ecdf5134b",
       "bytes": 254412,
       "triangles": 11196,
-      "parts": [
-        "S6_Moon"
-      ],
+      "parts": ["S6_Moon"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 10,
       "animationCount": 0,
-      "namedNodes": [
-        "S6_Moon • modeled surfaces",
-        "S6_Moon"
-      ]
+      "namedNodes": ["S6_Moon • modeled surfaces", "S6_Moon"]
     },
     {
       "id": "janus.blender.v1.s6.venus",
@@ -1858,24 +1656,17 @@
       "path": "apps/web/public/assets/blender/v1/s6/Venus.glb",
       "publicPath": "/assets/blender/v1/s6/Venus.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "derivativeChecksum": "sha256:b25004c2dd11e389230acc38aee173dc5b0568cceaa3253931e40d3d3ab862ad",
-      "bytes": 167656,
+      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
+      "derivativeChecksum": "sha256:731fe73e8367e0cbf1ee9eadc43b9ef2a0d7c530f875cff2563be0011bde3b73",
+      "bytes": 169432,
       "triangles": 7784,
-      "parts": [
-        "S6_Venus"
-      ],
+      "parts": ["S6_Venus"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 10,
       "animationCount": 0,
-      "namedNodes": [
-        "S6_Venus • modeled surfaces",
-        "S6_Venus"
-      ]
+      "namedNodes": ["S6_Venus • modeled surfaces", "S6_Venus"]
     },
     {
       "id": "janus.blender.v1.s7.earth-mobile",
@@ -1884,10 +1675,10 @@
       "path": "apps/web/public/assets/blender/v1/s7/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s7/earth-mobile.glb",
       "sourcePath": "assets/blender/s7.blend",
-      "sourceChecksum": "sha256:f4d8b7cb1a0e0db65479b5d5429ad9829b0bb478276ff8cb446412af3ebcd454",
-      "derivativeChecksum": "sha256:f2ef09d424ff64cec3ef4cd041e54eeb18fdfc39c2911b4866b1e5affe5f228b",
-      "bytes": 524332,
-      "triangles": 16994,
+      "sourceChecksum": "sha256:acc146fa5f6528571c96c937d4b807f4a2d365dce3c3af5863925514f6caeb00",
+      "derivativeChecksum": "sha256:ec9bb1258f86309fc92207b951d3518d6985071ef4070136dccee6dcf3e6a975",
+      "bytes": 529984,
+      "triangles": 17444,
       "parts": [
         "Terrain",
         "Structures",
@@ -1905,9 +1696,7 @@
         "Cloud_0"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 14,
       "materialCount": 11,
       "animationCount": 0,
@@ -1949,10 +1738,10 @@
       "path": "apps/web/public/assets/blender/v1/s7/earth.glb",
       "publicPath": "/assets/blender/v1/s7/earth.glb",
       "sourcePath": "assets/blender/s7.blend",
-      "sourceChecksum": "sha256:f4d8b7cb1a0e0db65479b5d5429ad9829b0bb478276ff8cb446412af3ebcd454",
-      "derivativeChecksum": "sha256:c7a87a62b91e75d00b2a2e86201c629b82844d341f3583c26d85e98e40f19874",
-      "bytes": 600132,
-      "triangles": 19222,
+      "sourceChecksum": "sha256:acc146fa5f6528571c96c937d4b807f4a2d365dce3c3af5863925514f6caeb00",
+      "derivativeChecksum": "sha256:cccc292317cbd8787d38b63b7c65ce7326bed3252a441c7077740b9946747ea3",
+      "bytes": 586968,
+      "triangles": 19054,
       "parts": [
         "Terrain",
         "Structures",
@@ -1970,9 +1759,7 @@
         "Cloud_0"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 14,
       "materialCount": 11,
       "animationCount": 0,
@@ -2014,10 +1801,10 @@
       "path": "apps/web/public/assets/blender/v1/s8/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s8/earth-mobile.glb",
       "sourcePath": "assets/blender/s8.blend",
-      "sourceChecksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
-      "derivativeChecksum": "sha256:04dc3d6e2c983596eee0382a3b105ff24008f015f7b23c64ca1d647198a287b6",
-      "bytes": 345732,
-      "triangles": 11570,
+      "sourceChecksum": "sha256:d22f6a6dbc4b9c51c63827d2dfcb6820d7a865846219c8996555e0e032e52c85",
+      "derivativeChecksum": "sha256:ecc81502e792faa9fc7311c26e70f4c4535794a15a99e5b14326f0f4461dbd1b",
+      "bytes": 332484,
+      "triangles": 11326,
       "parts": [
         "Terrain",
         "Structures",
@@ -2032,9 +1819,7 @@
         "Study_lunar-base"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 11,
       "materialCount": 13,
       "animationCount": 0,
@@ -2070,10 +1855,10 @@
       "path": "apps/web/public/assets/blender/v1/s8/earth.glb",
       "publicPath": "/assets/blender/v1/s8/earth.glb",
       "sourcePath": "assets/blender/s8.blend",
-      "sourceChecksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
-      "derivativeChecksum": "sha256:2f67df8a745083804d2102fec23a63009ea1ae82d0f7292389333a6132014c76",
-      "bytes": 409744,
-      "triangles": 13332,
+      "sourceChecksum": "sha256:d22f6a6dbc4b9c51c63827d2dfcb6820d7a865846219c8996555e0e032e52c85",
+      "derivativeChecksum": "sha256:808b52be56c01dccfd601840fea2b4c45b7fac8be85807f22d1057b6f75ceab3",
+      "bytes": 388448,
+      "triangles": 12848,
       "parts": [
         "Terrain",
         "Structures",
@@ -2088,9 +1873,7 @@
         "Study_lunar-base"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 11,
       "materialCount": 13,
       "animationCount": 0,
@@ -2126,24 +1909,17 @@
       "path": "apps/web/public/assets/blender/v1/s8/Moon.glb",
       "publicPath": "/assets/blender/v1/s8/Moon.glb",
       "sourcePath": "assets/blender/s8.blend",
-      "sourceChecksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
+      "sourceChecksum": "sha256:d22f6a6dbc4b9c51c63827d2dfcb6820d7a865846219c8996555e0e032e52c85",
       "derivativeChecksum": "sha256:0999cbccb7cfe546ad6c2bc20893b96d93be7c54c72439c93439cbfcfbc9a255",
       "bytes": 220812,
       "triangles": 9296,
-      "parts": [
-        "S8_Moon"
-      ],
+      "parts": ["S8_Moon"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 9,
       "animationCount": 0,
-      "namedNodes": [
-        "S8_Moon • modeled surfaces",
-        "S8_Moon"
-      ]
+      "namedNodes": ["S8_Moon • modeled surfaces", "S8_Moon"]
     },
     {
       "id": "janus.blender.v1.s9.asteroids",
@@ -2152,24 +1928,17 @@
       "path": "apps/web/public/assets/blender/v1/s9/asteroids.glb",
       "publicPath": "/assets/blender/v1/s9/asteroids.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:fd76a2200cd41f938df4d329658209d094e6e5922f31653414b5b5a2923a336c",
-      "bytes": 63160,
+      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
+      "derivativeChecksum": "sha256:bf1b1e4f0c8a5d89fde0163943052184e329526586e6b772833720e19fe0be4c",
+      "bytes": 63224,
       "triangles": 2404,
-      "parts": [
-        "S9_asteroids"
-      ],
+      "parts": ["S9_asteroids"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 9,
       "animationCount": 0,
-      "namedNodes": [
-        "S9_asteroids • modeled surfaces",
-        "S9_asteroids"
-      ]
+      "namedNodes": ["S9_asteroids • modeled surfaces", "S9_asteroids"]
     },
     {
       "id": "janus.blender.v1.s9.earth-mobile",
@@ -2178,10 +1947,10 @@
       "path": "apps/web/public/assets/blender/v1/s9/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s9/earth-mobile.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:44c55ebb1d0d4914c07c98c4cbb71493c51bfe58080dceffcb6aaed9ea3f5607",
-      "bytes": 316680,
-      "triangles": 10502,
+      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
+      "derivativeChecksum": "sha256:66859db529ddbc0698ffc66b6a990c2fdd554d4d6feafbf4ce0a3907043ca500",
+      "bytes": 302840,
+      "triangles": 10176,
       "parts": [
         "Terrain",
         "Structures",
@@ -2193,9 +1962,7 @@
         "Study_venus-facility"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 8,
       "materialCount": 19,
       "animationCount": 0,
@@ -2225,10 +1992,10 @@
       "path": "apps/web/public/assets/blender/v1/s9/earth.glb",
       "publicPath": "/assets/blender/v1/s9/earth.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:0172ef963018bd09211c70f24738ef3fae2d260959755374d5559f872567b7eb",
-      "bytes": 391656,
-      "triangles": 12560,
+      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
+      "derivativeChecksum": "sha256:a9c2c721e24f458ac5d9d839a8f67d60d159c72f7b2c399c373f9c9525a89a7b",
+      "bytes": 381060,
+      "triangles": 12306,
       "parts": [
         "Terrain",
         "Structures",
@@ -2240,9 +2007,7 @@
         "Study_venus-facility"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 8,
       "materialCount": 19,
       "animationCount": 0,
@@ -2272,24 +2037,17 @@
       "path": "apps/web/public/assets/blender/v1/s9/kuiper.glb",
       "publicPath": "/assets/blender/v1/s9/kuiper.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
+      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
       "derivativeChecksum": "sha256:361fbd7757e6673fe80557ed45e1a14a7a823e0c54eb2465b0d9bef86a03cf8c",
       "bytes": 112868,
       "triangles": 4468,
-      "parts": [
-        "S9_kuiper"
-      ],
+      "parts": ["S9_kuiper"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 9,
       "animationCount": 0,
-      "namedNodes": [
-        "S9_kuiper • modeled surfaces",
-        "S9_kuiper"
-      ]
+      "namedNodes": ["S9_kuiper • modeled surfaces", "S9_kuiper"]
     },
     {
       "id": "janus.blender.v1.s9.mars",
@@ -2298,24 +2056,17 @@
       "path": "apps/web/public/assets/blender/v1/s9/Mars.glb",
       "publicPath": "/assets/blender/v1/s9/Mars.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
+      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
       "derivativeChecksum": "sha256:b1fd74409f0e32b39646544b2f60b513f3cde1bf66eac8041283fe1571250412",
       "bytes": 190624,
       "triangles": 7780,
-      "parts": [
-        "S9_Mars"
-      ],
+      "parts": ["S9_Mars"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 8,
       "animationCount": 0,
-      "namedNodes": [
-        "S9_Mars • modeled surfaces",
-        "S9_Mars"
-      ]
+      "namedNodes": ["S9_Mars • modeled surfaces", "S9_Mars"]
     },
     {
       "id": "janus.blender.v1.s9.moon",
@@ -2324,24 +2075,17 @@
       "path": "apps/web/public/assets/blender/v1/s9/Moon.glb",
       "publicPath": "/assets/blender/v1/s9/Moon.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
+      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
       "derivativeChecksum": "sha256:31f080b65c5a2be1575b4daab8d775a709862805fcc82e9adac7bb97417e4975",
       "bytes": 168300,
       "triangles": 6636,
-      "parts": [
-        "S9_Moon"
-      ],
+      "parts": ["S9_Moon"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 7,
       "animationCount": 0,
-      "namedNodes": [
-        "S9_Moon • modeled surfaces",
-        "S9_Moon"
-      ]
+      "namedNodes": ["S9_Moon • modeled surfaces", "S9_Moon"]
     },
     {
       "id": "janus.blender.v1.s9.outer",
@@ -2350,24 +2094,17 @@
       "path": "apps/web/public/assets/blender/v1/s9/outer.glb",
       "publicPath": "/assets/blender/v1/s9/outer.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:365fd8d394d4b2b88cfaa3d8dc6e03bfd0ffd721e121a2a58e40a8ccc13a9eae",
-      "bytes": 73680,
+      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
+      "derivativeChecksum": "sha256:80711a84627787eb1ad50a6e36b06c4cab179430aa3a3908a08784ff44e31f6e",
+      "bytes": 73700,
       "triangles": 2724,
-      "parts": [
-        "S9_outer"
-      ],
+      "parts": ["S9_outer"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 9,
       "animationCount": 0,
-      "namedNodes": [
-        "S9_outer • modeled surfaces",
-        "S9_outer"
-      ]
+      "namedNodes": ["S9_outer • modeled surfaces", "S9_outer"]
     },
     {
       "id": "janus.blender.v1.s9.solar",
@@ -2376,24 +2113,17 @@
       "path": "apps/web/public/assets/blender/v1/s9/solar.glb",
       "publicPath": "/assets/blender/v1/s9/solar.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
+      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
       "derivativeChecksum": "sha256:e0adf970111ae3fa8f2c213d9e1a1a221febff535769b7625974203809b5b6d5",
       "bytes": 78708,
       "triangles": 3580,
-      "parts": [
-        "S9_solar"
-      ],
+      "parts": ["S9_solar"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 6,
       "animationCount": 0,
-      "namedNodes": [
-        "S9_solar • modeled surfaces",
-        "S9_solar"
-      ]
+      "namedNodes": ["S9_solar • modeled surfaces", "S9_solar"]
     },
     {
       "id": "janus.blender.v1.s9.venus",
@@ -2402,24 +2132,17 @@
       "path": "apps/web/public/assets/blender/v1/s9/Venus.glb",
       "publicPath": "/assets/blender/v1/s9/Venus.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:672acefb567cd1c6680cbdcc32becdb28aa837d1c43a267f370f2d847eb460a6",
-      "bytes": 115088,
+      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
+      "derivativeChecksum": "sha256:9a38c617edae1c9d7404516db15c3940bea7a3fc04b57ec69ca788cba408f8e0",
+      "bytes": 116860,
       "triangles": 4956,
-      "parts": [
-        "S9_Venus"
-      ],
+      "parts": ["S9_Venus"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 8,
       "animationCount": 0,
-      "namedNodes": [
-        "S9_Venus • modeled surfaces",
-        "S9_Venus"
-      ]
+      "namedNodes": ["S9_Venus • modeled surfaces", "S9_Venus"]
     },
     {
       "id": "janus.blender.v1.s10.asteroids",
@@ -2428,24 +2151,17 @@
       "path": "apps/web/public/assets/blender/v1/s10/asteroids.glb",
       "publicPath": "/assets/blender/v1/s10/asteroids.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:e685c71688c2c4c0d188bc8b40eb5021ac447943532bb750364c57dc19378c56",
-      "bytes": 82992,
+      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
+      "derivativeChecksum": "sha256:7bdd6c2231d220722ad954955c05007ef280c576cf283baec318bd5437eeac90",
+      "bytes": 83112,
       "triangles": 3476,
-      "parts": [
-        "S10_asteroids"
-      ],
+      "parts": ["S10_asteroids"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 10,
       "animationCount": 0,
-      "namedNodes": [
-        "S10_asteroids • modeled surfaces",
-        "S10_asteroids"
-      ]
+      "namedNodes": ["S10_asteroids • modeled surfaces", "S10_asteroids"]
     },
     {
       "id": "janus.blender.v1.s10.earth-mobile",
@@ -2454,10 +2170,10 @@
       "path": "apps/web/public/assets/blender/v1/s10/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s10/earth-mobile.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:48ca7ce3da98b47313bacba221c6bb69be054767f7e2135def6b17525573eb04",
-      "bytes": 613536,
-      "triangles": 23276,
+      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
+      "derivativeChecksum": "sha256:d5b73b9220f0cb6a4aaebf8ae2e3bd334ae52317dabb47fe9a943493311e7e57",
+      "bytes": 595012,
+      "triangles": 22818,
       "parts": [
         "Terrain",
         "Structures",
@@ -2475,9 +2191,7 @@
         "Study_orbital-habitat"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 14,
       "materialCount": 34,
       "animationCount": 0,
@@ -2519,10 +2233,10 @@
       "path": "apps/web/public/assets/blender/v1/s10/earth.glb",
       "publicPath": "/assets/blender/v1/s10/earth.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:33a67ef372b1e9f945e2a8348c18a94ecc71aebaede6ee3be41a087f4f15db49",
-      "bytes": 681632,
-      "triangles": 25114,
+      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
+      "derivativeChecksum": "sha256:6c303d92bbc5d0f04b579c30b34b65fe89a5009938d748a11f8e812f03d5e919",
+      "bytes": 672840,
+      "triangles": 25028,
       "parts": [
         "Terrain",
         "Structures",
@@ -2540,9 +2254,7 @@
         "Study_orbital-habitat"
       ],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 14,
       "materialCount": 34,
       "animationCount": 0,
@@ -2584,24 +2296,17 @@
       "path": "apps/web/public/assets/blender/v1/s10/kuiper.glb",
       "publicPath": "/assets/blender/v1/s10/kuiper.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
+      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
       "derivativeChecksum": "sha256:b5825cb820ec52419a87ca2b853a4182a676cf09985bea460f2516904da1a43b",
       "bytes": 123832,
       "triangles": 5024,
-      "parts": [
-        "S10_kuiper"
-      ],
+      "parts": ["S10_kuiper"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 10,
       "animationCount": 0,
-      "namedNodes": [
-        "S10_kuiper • modeled surfaces",
-        "S10_kuiper"
-      ]
+      "namedNodes": ["S10_kuiper • modeled surfaces", "S10_kuiper"]
     },
     {
       "id": "janus.blender.v1.s10.mars",
@@ -2610,24 +2315,17 @@
       "path": "apps/web/public/assets/blender/v1/s10/Mars.glb",
       "publicPath": "/assets/blender/v1/s10/Mars.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
+      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
       "derivativeChecksum": "sha256:9834aae4f040aac0ac58bdc2d1aa4daab5c1387ec578b87d9cbeae0d851e7a1c",
       "bytes": 299608,
       "triangles": 13684,
-      "parts": [
-        "S10_Mars"
-      ],
+      "parts": ["S10_Mars"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 11,
       "animationCount": 0,
-      "namedNodes": [
-        "S10_Mars • modeled surfaces",
-        "S10_Mars"
-      ]
+      "namedNodes": ["S10_Mars • modeled surfaces", "S10_Mars"]
     },
     {
       "id": "janus.blender.v1.s10.moon",
@@ -2636,24 +2334,17 @@
       "path": "apps/web/public/assets/blender/v1/s10/Moon.glb",
       "publicPath": "/assets/blender/v1/s10/Moon.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
+      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
       "derivativeChecksum": "sha256:7fa905c8792c6744408cbe66619ca43f3e715f226c114f93cff8fa20e85bf906",
       "bytes": 241040,
       "triangles": 10420,
-      "parts": [
-        "S10_Moon"
-      ],
+      "parts": ["S10_Moon"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 11,
       "animationCount": 0,
-      "namedNodes": [
-        "S10_Moon • modeled surfaces",
-        "S10_Moon"
-      ]
+      "namedNodes": ["S10_Moon • modeled surfaces", "S10_Moon"]
     },
     {
       "id": "janus.blender.v1.s10.outer",
@@ -2662,24 +2353,17 @@
       "path": "apps/web/public/assets/blender/v1/s10/outer.glb",
       "publicPath": "/assets/blender/v1/s10/outer.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:24dc180a45bfd70009f76afd8e9b33021c5cb7b010f2d91f7806803c618ec9b6",
-      "bytes": 104000,
+      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
+      "derivativeChecksum": "sha256:e722850c30e4c3b6323349a9964c1bbaec7d1890461a6aab324ba919395b9ff5",
+      "bytes": 104192,
       "triangles": 4304,
-      "parts": [
-        "S10_outer"
-      ],
+      "parts": ["S10_outer"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 11,
       "animationCount": 0,
-      "namedNodes": [
-        "S10_outer • modeled surfaces",
-        "S10_outer"
-      ]
+      "namedNodes": ["S10_outer • modeled surfaces", "S10_outer"]
     },
     {
       "id": "janus.blender.v1.s10.venus",
@@ -2688,24 +2372,17 @@
       "path": "apps/web/public/assets/blender/v1/s10/Venus.glb",
       "publicPath": "/assets/blender/v1/s10/Venus.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:b1462a1bc4dd5743bb05f01c39b7c09231b3c50a64afc5ca1df71856f4735c85",
-      "bytes": 111972,
+      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
+      "derivativeChecksum": "sha256:9d5064f3fa837612a474235669196e50034998c95e86776c68d58d938f292880",
+      "bytes": 113768,
       "triangles": 4688,
-      "parts": [
-        "S10_Venus"
-      ],
+      "parts": ["S10_Venus"],
       "generator": "Khronos glTF Blender I/O v5.2.40",
-      "extensions": [
-        "EXT_meshopt_compression"
-      ],
+      "extensions": ["EXT_meshopt_compression"],
       "meshCount": 1,
       "materialCount": 9,
       "animationCount": 0,
-      "namedNodes": [
-        "S10_Venus • modeled surfaces",
-        "S10_Venus"
-      ]
+      "namedNodes": ["S10_Venus • modeled surfaces", "S10_Venus"]
     }
   ],
   "verification": {
@@ -2718,9 +2395,7 @@
     "semanticPivotNames": true,
     "originalProjectRights": true,
     "canonicalScientificDataModified": false,
-    "blenderVersions": [
-      "5.2.1 LTS"
-    ]
+    "blenderVersions": ["5.2.1 LTS"]
   },
   "limits": [
     "Rights/provenance and binary checks do not certify visual polish, accessibility, browser performance or the scientific interpretation. See the separate Blender finishing QA report."

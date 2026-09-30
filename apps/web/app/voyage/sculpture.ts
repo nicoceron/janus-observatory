@@ -104,3 +104,35 @@ export function surface(lon: number, lat: number, radius = 1.035) {
     new THREE.Vector3(1, 1, 1),
   );
 }
+
+/**
+ * Bend a diorama modelled in a flat tangent frame onto the globe. Horizontal offsets follow the
+ * sphere and local height becomes height above `baseRadius`, so broad sites never float at
+ * their edges the way a flat plate does on a small planet.
+ */
+export function wrapOnGlobe(
+  s: Sculpture,
+  frame: THREE.Matrix4,
+  baseRadius: number,
+  build: (local: Sculpture) => void,
+) {
+  const local = new Sculpture();
+  build(local);
+  const g = local.finish();
+  const origin = new THREE.Vector3().setFromMatrixPosition(frame);
+  const x = new THREE.Vector3().setFromMatrixColumn(frame, 0).normalize(),
+    z = new THREE.Vector3().setFromMatrixColumn(frame, 2).normalize();
+  const p = g.attributes.position,
+    v = new THREE.Vector3(),
+    direction = new THREE.Vector3();
+  for (let i = 0; i < p.count; i++) {
+    v.fromBufferAttribute(p, i);
+    direction
+      .copy(origin)
+      .addScaledVector(x, v.x)
+      .addScaledVector(z, v.z)
+      .setLength(baseRadius + v.y);
+    p.setXYZ(i, direction.x, direction.y, direction.z);
+  }
+  s.add(g, null);
+}

@@ -16,7 +16,7 @@
 .label {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.56rem;
+  font-size: 0.66rem;
   letter-spacing: 0.08em;
   padding-left: 6px;
   text-transform: uppercase;
@@ -32,7 +32,7 @@
   color: var(--muted);
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.49rem;
+  font-size: 0.625rem;
   letter-spacing: 0.04em;
   min-height: 32px;
   padding: 7px 9px;

@@ -157,7 +157,18 @@ export function addScenarioBiomes(
       if (i % 2) s.box([0.09, 0.02, 0.046], '#9b8d84', [0.035, 0.045, 0], m, [0, i * 0.6, -0.1]);
     } else {
       if (i % 3 !== 0) {
-        s.ico(0.064, art.highland, [0, 0.018, 0], [1.3, 0.55, 0.85], m);
+        if (art.form === 'ecumenopolis') {
+          // Low-rise urban fabric between the towers; a city world has no loose boulders.
+          const tall = 0.045 + (i % 4) * 0.014,
+            low = 0.03 + ((i + 1) % 3) * 0.011;
+          s.box(
+            [0.085, tall, 0.07],
+            ['#b8ad97', '#a39785', '#c7bda6'][i % 3],
+            [-0.02, tall / 2, 0],
+            m,
+          );
+          s.box([0.06, low, 0.075], '#8e8a7e', [0.045, low / 2, 0.012], m);
+        } else s.ico(0.064, art.highland, [0, 0.018, 0], [1.3, 0.55, 0.85], m);
         continue;
       }
       const k = 0.56 + (i % 4) * 0.06;

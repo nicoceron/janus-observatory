@@ -86,7 +86,7 @@
 .sectionIntro .kicker,
 .kicker {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.6;
   letter-spacing: 0.16em;
   color: #bcc9b5;
@@ -109,7 +109,7 @@
 .source {
   display: block;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.8;
   color: #a0a8a6;
   margin-top: 24px;
@@ -189,7 +189,7 @@
 .begin small {
   display: block;
   font-family: var(--font-mono);
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.14em;
   color: var(--dim);
   margin-top: 7px;
@@ -202,7 +202,7 @@
   gap: 20px;
   color: #a7afb0;
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.1em;
 }
 .heroCaption {
@@ -214,7 +214,7 @@
   gap: 14px;
   color: #adb8bc;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.7;
 }
 .heroCaption i {
@@ -227,7 +227,7 @@
   bottom: 13%;
   right: 9%;
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.09em;
   color: #a4afae;
 }
@@ -255,7 +255,7 @@
 .worldIndex small {
   display: block;
   font-family: var(--font-mono);
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.13em;
   color: #a7afac;
   margin-top: 7px;
@@ -271,7 +271,7 @@
 }
 .worldStats dt {
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.1em;
   color: #aab2af;
   text-transform: uppercase;
@@ -283,11 +283,18 @@
   font-weight: 400;
   letter-spacing: -0.045em;
 }
+/* The display figure is tightly tracked; its scientific-notation tail must not inherit that. */
 .worldStats dd span {
   font-size: 18px;
+  letter-spacing: 0.01em;
+  margin-left: 0.12em;
 }
 .worldStats sup {
-  font-size: 10px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  line-height: 0;
+  margin-left: 1px;
+  vertical-align: 0.72em;
 }
 .worldLinks {
   display: flex;
@@ -302,7 +309,7 @@
 }
 .worldLinks a:last-child {
   color: #b7c1bb;
-  font-size: 9px;
+  font-size: 11px;
   font-family: var(--font-mono);
 }
 .worldAnnotation {
@@ -315,7 +322,7 @@
 .worldAnnotation > span {
   color: var(--world-color, #b2c5bf);
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.14em;
 }
 .worldAnnotation p {
@@ -327,7 +334,7 @@
 }
 .worldAnnotation small {
   font-family: var(--font-mono);
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.08em;
   color: #a7afad;
 }
@@ -369,7 +376,7 @@
 }
 .systemFootprint > span {
   color: #a7b2a5;
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.14em;
 }
 .systemFootprint p,
@@ -387,7 +394,7 @@
 }
 .systemFootprint small a {
   color: #a8b6b0;
-  font-size: 8px;
+  font-size: 10px;
   text-decoration: none;
 }
 .systemFootprint a {
@@ -455,7 +462,7 @@
   gap: 30px;
   color: #aebba9;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   padding-bottom: 25px;
 }
 .tableScroll {
@@ -468,7 +475,7 @@
   font-size: 10px;
 }
 .matrix thead th {
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 400;
   letter-spacing: 0.14em;
   color: #b9c4be;
@@ -544,7 +551,7 @@
 }
 .signalReadout strong {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
   display: block;
   margin-bottom: 10px;
@@ -572,7 +579,7 @@
   border-top: 1px solid var(--fine);
   padding-top: 22px;
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: 10px;
   color: #b6c3b6;
   letter-spacing: 0.1em;
 }
@@ -606,7 +613,7 @@
 }
 .chartSelector button {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   color: #a8b6b0;
   background: transparent;
   border: 1px solid transparent;
@@ -639,7 +646,7 @@
   letter-spacing: -0.05em;
 }
 .chartReadout small {
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.05em;
   display: block;
   font-family: var(--font-mono);
@@ -681,7 +688,7 @@
 }
 .enduranceNote > span {
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: 10px;
   color: #b6c5ad;
 }
 .enduranceNote h3 {
@@ -751,7 +758,7 @@
 }
 .footerBrand > span {
   display: block;
-  font-size: 8px;
+  font-size: 10px;
   font-family: var(--font-mono);
   letter-spacing: 0.2em;
   margin-top: 12px;
@@ -775,7 +782,7 @@
 }
 .footer .releaseNote {
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: 10px;
   margin: 25px 0;
 }
 
@@ -846,10 +853,10 @@
   }
   .heroCoordinates {
     gap: 15px;
-    font-size: 7px;
+    font-size: 10px;
   }
   .worldLinks a {
-    font-size: 9px;
+    font-size: 10px;
   }
   .sectionIntro {
     column-gap: 30px;
@@ -901,7 +908,7 @@
     font-size: 19px;
   }
   .copy .kicker {
-    font-size: 8px;
+    font-size: 10px;
   }
   .copy .highlight {
     font-size: 12px;
@@ -921,7 +928,7 @@
     margin-top: 22px;
   }
   .hero .kicker {
-    font-size: 7px;
+    font-size: 10px;
     letter-spacing: 0.12em;
   }
   .heroQuestion {
@@ -941,7 +948,7 @@
     left: 25px;
     right: auto;
     gap: 18px;
-    font-size: 6px;
+    font-size: 10px;
   }
   .heroCoordinates span:last-child {
     display: none;
@@ -969,7 +976,7 @@
     font-size: 11px;
   }
   .worldIndex small {
-    font-size: 6px;
+    font-size: 10px;
   }
   .worldStats {
     padding: 16px 0;
@@ -979,7 +986,7 @@
     font-size: 30px;
   }
   .source {
-    font-size: 8px;
+    font-size: 10px;
     line-height: 1.7;
   }
   .worldLinks a {
@@ -997,7 +1004,7 @@
     bottom: auto;
     right: 25px;
     top: 43svh;
-    font-size: 6px;
+    font-size: 10px;
   }
   .worldChapter,
   .observerChapter,
@@ -1018,7 +1025,7 @@
     margin-bottom: 45px;
   }
   .sectionIntro .kicker {
-    font-size: 8px;
+    font-size: 10px;
     margin-bottom: 24px;
   }
   .sectionIntro h2 {
@@ -1031,7 +1038,7 @@
     max-width: 400px;
   }
   .matrixLegend {
-    font-size: 7px;
+    font-size: 10px;
     gap: 15px;
     line-height: 1.8;
   }
@@ -1039,12 +1046,12 @@
     min-width: 330px;
   }
   .matrix thead th {
-    font-size: 7px;
+    font-size: 10px;
     letter-spacing: 0;
   }
   .matrix tbody button {
     padding: 14px 8px;
-    font-size: 9px;
+    font-size: 10px;
     gap: 0;
   }
   .matrix tbody button span {
@@ -1067,10 +1074,10 @@
     font-size: 10px;
   }
   .finePrint {
-    font-size: 9px;
+    font-size: 10px;
   }
   .chartHeading {
-    font-size: 6px;
+    font-size: 10px;
     gap: 10px;
     line-height: 1.8;
   }
@@ -1084,7 +1091,7 @@
     justify-content: space-between;
   }
   .chartSelector button {
-    font-size: 8px;
+    font-size: 10px;
     min-width: 27px;
     min-height: 33px;
   }
@@ -1100,7 +1107,7 @@
     font-size: 23px;
   }
   .chartReadout small {
-    font-size: 7px;
+    font-size: 10px;
   }
   .dataDetails table {
     font-size: 10px;
@@ -1117,7 +1124,7 @@
     font-size: 12px;
   }
   .enduranceNote a {
-    font-size: 9px;
+    font-size: 10px;
   }
   .epilogue .copy {
     width: 100%;
@@ -1143,10 +1150,10 @@
     gap: 18px;
   }
   .footer nav a {
-    font-size: 9px;
+    font-size: 10px;
   }
   .footer .releaseNote {
-    font-size: 7px;
+    font-size: 10px;
   }
 
   .reading .chapter,
@@ -1529,12 +1536,12 @@
     margin-bottom: 4px;
   }
   .worldDestinations button {
-    font-size: 9px;
+    font-size: 10px;
     min-height: 32px;
     padding: 6px;
   }
   .worldDestinations > span {
-    font-size: 6px;
+    font-size: 10px;
     margin-bottom: 5px;
   }
   .worldChapter:has([data-has-system='true']) {
@@ -1555,7 +1562,7 @@
     gap: 8px;
   }
   .inspectorHeader > div > span {
-    font-size: 7px;
+    font-size: 10px;
   }
   .inspectorHeader strong {
     font-size: 10px;
@@ -1602,7 +1609,7 @@
     bottom: auto;
     top: calc(max(54dvh, 300px) - 78px);
     left: 50%;
-    font-size: 6px;
+    font-size: 10px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1646,7 +1653,7 @@
 @media (max-width: 760px) {
   .inspectorTools button:last-child,
   .inspectorTools button:nth-last-child(2) {
-    font-size: 9px;
+    font-size: 10px;
     padding-inline: 8px;
   }
 }
@@ -1673,7 +1680,7 @@
   }
   .chapter[data-world] .source {
     margin-top: 19px;
-    font-size: 7px;
+    font-size: 10px;
   }
   .chapter[data-world] .worldAnnotation {
     top: calc(50% + 25svh);
@@ -1789,20 +1796,41 @@
   transition: opacity 140ms ease;
   pointer-events: none;
 }
+/* A faint orbit ring ties the name to its body, even where a large globe's label falls
+   beside a smaller companion. */
+.bodyTarget::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--body-radius) * 2 + 14px);
+  height: calc(var(--body-radius) * 2 + 14px);
+  transform: translate(-50%, -50%);
+  border: 1px solid #d3e7bc59;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 140ms ease;
+  pointer-events: none;
+}
 @media (hover: hover) {
-  .bodyTarget:hover .bodyName {
+  .bodyTarget:hover .bodyName,
+  .bodyTarget:hover::before {
     opacity: 1;
   }
 }
 .bodyTarget:focus-visible {
-  outline: 1px solid #d3e7bc88;
-  outline-offset: 4px;
+  outline: none;
+}
+.bodyTarget:focus-visible::before {
+  border: 2px solid #d3e7bc;
+  opacity: 1;
 }
 .bodyTarget:focus-visible .bodyName {
   opacity: 1;
 }
 @media (prefers-reduced-motion: reduce) {
-  .bodyTarget .bodyName {
+  .bodyTarget .bodyName,
+  .bodyTarget::before {
     transition: none;
   }
 }

@@ -11,7 +11,7 @@ import { systemPortrait } from '../apps/web/lib/system-portrait';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const qa = 'docs/qa/blender-finish';
 const prefix = 'janus.blender.v1.';
-const version = 'blender-orbit-crops-v11-2026-09-20';
+const version = 'blender-planet-polish-v12-2026-09-30';
 const worlds = ['origin', ...allScenarioProfiles.map((profile) => profile.id.toLowerCase())];
 
 type Input = { path: string; checksum: string; bytes: number };
