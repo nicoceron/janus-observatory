@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useContext } from 'react';
 import type { SystemPortrait } from '../../lib/system-portrait';
-import { selectionName, selectionDescription, systemSelections } from './inspection';
+import { selectionName, selectionDescription, systemSelections } from '../planets/explore';
 import { bindSpatialTarget } from './spatial-targets';
 import s from './voyage.module.css';
 export const ExploreContext = createContext<{

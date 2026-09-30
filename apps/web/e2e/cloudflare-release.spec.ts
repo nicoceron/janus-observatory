@@ -8,26 +8,21 @@ test('model loading works without compression streams or background workers', as
   await page.goto('/atlas');
   const canvas = page.locator('[data-world-portrait] canvas');
   await canvas.scrollIntoViewIfNeeded();
-  await expect(canvas).toHaveAttribute('data-blender-state', 'ready');
-  await expect(canvas).toHaveAttribute('data-blender-missing-parts', '');
+  await expect(canvas).toHaveAttribute('data-planet-state', 'ready');
+  await expect(canvas).toHaveAttribute('data-planet-models', /world:S3/);
 });
 
-test('decompression worker is released after loading and keeps the model available', async ({
+test('procedural worlds start no decoder workers and keep the model available', async ({
   page,
 }) => {
   const started: string[] = [];
-  const closed: string[] = [];
-  page.on('worker', (worker) => {
-    started.push(worker.url());
-    worker.on('close', () => closed.push(worker.url()));
-  });
+  page.on('worker', (worker) => started.push(worker.url()));
   await page.goto('/atlas');
   const canvas = page.locator('[data-world-portrait] canvas');
   await canvas.scrollIntoViewIfNeeded();
-  await expect(canvas).toHaveAttribute('data-blender-state', 'ready');
-  await expect.poll(() => started.length).toBeGreaterThan(0);
-  await expect.poll(() => closed.length, { timeout: 10000 }).toBe(started.length);
-  await expect(canvas).toHaveAttribute('data-blender-state', 'ready');
+  await expect(canvas).toHaveAttribute('data-planet-state', 'ready');
+  expect(started).toEqual([]);
+  await expect(canvas).toHaveAttribute('data-planet-state', 'ready');
 });
 
 test('downloads retain their exact published hashes on the deployment runtime', async ({

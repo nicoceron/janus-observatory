@@ -1,5 +1,7 @@
 # Janus Observatory - Master Product, Data, Architecture, and Execution Plan
 
+Current planets: story-drawn procedural low-poly worlds, [Decision 034](DECISION_034_STORY_DRAWN_LOW_POLY_WORLDS.md), superseding the planet artwork of Decisions 014–020 and 028.
+
 Current Observatory scenario-switch layout stability:
 [verification and implementation](qa/observatory-stability/REPORT.md).
 

@@ -13,6 +13,7 @@ import {
   sourcedDisplay,
 } from '../../../lib/canonical';
 import { WorldPortrait } from '../../components/WorldPortrait';
+import { worldSignals } from '../../../lib/world-signals';
 import { QuantityComparison, ReferenceEarthNote } from '../../components/QuantityComparison';
 import { InnerPage } from '../../components/InnerPage';
 import styles from '../atlas.module.css';
@@ -108,7 +109,7 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
       </nav>
 
       <section className={styles.recordHero} aria-label={`${profile.id} canonical overview`}>
-        <WorldPortrait world={Number(profile.id.slice(1)) - 1} />
+        <WorldPortrait world={Number(profile.id.slice(1)) - 1} signals={worldSignals(profile)} />
         <dl className={styles.recordLedger}>
           <div>
             <dt>Scenario</dt>
