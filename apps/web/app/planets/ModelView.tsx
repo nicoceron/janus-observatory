@@ -1,9 +1,10 @@
-import { useFrame, type ThreeEvent } from '@react-three/fiber';
+import { useFrame, useThree, type ThreeEvent } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { useReducedMotionPreference } from '../components/MotionPreference';
 import { atmosphereMaterial, createMaterials, surfaces } from './materials';
 import type { Layer, WorldModel } from './model';
+import { InstanceView, MoverView, type PropMaterials } from './Instances';
 
 type Animated = { group: THREE.Group; layer: Layer; glow?: THREE.MeshBasicMaterial };
 
@@ -20,15 +21,29 @@ export function ModelView({
   model,
   reduced,
   sway = true,
+  live = false,
   onSelect,
 }: {
   model: WorldModel;
   reduced: boolean;
   /** Rock the globe gently so the story's key site stays in view. */
   sway?: boolean;
+  /** Keep drawing frames so citizens, traffic and weather move while this world is in focus. */
+  live?: boolean;
   onSelect?: (landmark: string) => void;
 }) {
   const materials = useMemo(() => createMaterials(), []);
+  const propMaterials = useMemo<PropMaterials>(
+    () => ({
+      base: materials.solid,
+      tint: materials.solid,
+      glass: materials.glass,
+      metal: materials.sheen,
+      glow: materials.glow,
+    }),
+    [materials],
+  );
+  const invalidate = useThree((state) => state.invalidate);
   const atmosphere = useMemo(
     () => (model.atmosphere ? atmosphereMaterial(model.atmosphere) : null),
     [model.atmosphere],
@@ -68,6 +83,7 @@ export function ModelView({
   const clock = useRef(0);
   useFrame((_, delta) => {
     if (!visible(planet.current)) return;
+    if (live && !still && !document.hidden) invalidate();
     if (!still) clock.current += Math.min(delta, 0.05);
     const t = still ? 0 : clock.current;
     if (planet.current && sway)
@@ -123,6 +139,12 @@ export function ModelView({
     <group rotation={[model.pitch, 0, model.tilt]}>
       <group ref={planet} rotation={[0, -THREE.MathUtils.degToRad(model.facing), 0]}>
         {model.layers.filter((layer) => layer.frame === 'surface').map(view)}
+        {model.instances.map((group) => (
+          <InstanceView key={group.kind} group={group} materials={propMaterials} />
+        ))}
+        {model.movers.map((group) => (
+          <MoverView key={group.kind} group={group} materials={propMaterials} clock={clock} />
+        ))}
       </group>
       {model.layers.filter((layer) => layer.frame === 'orbit').map(view)}
       {shell && atmosphere && <mesh geometry={shell} material={atmosphere} renderOrder={3} />}

@@ -461,6 +461,8 @@ export function buildCompanion(
     tilt: body === 'Mars' ? 0.44 : body === 'Venus' ? 0.05 : 0.12,
     pitch: 0.15,
     extent: extentOf(layers),
+    instances: world.props.finish(),
+    movers: world.traffic.finish(),
   };
 }
 
@@ -592,5 +594,7 @@ export function buildFeature(feature: Feature, scenario: string, quality: Qualit
     tilt: 0,
     pitch: 0,
     extent: extentOf(layers),
+    instances: [],
+    movers: [],
   };
 }

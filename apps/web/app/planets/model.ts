@@ -3,6 +3,8 @@ import { frame, Mesher, type Tone } from './kit';
 import type { Face } from './globe';
 import { direction } from './continents';
 import { rng, type Random } from './random';
+import { Props, Traffic, type InstanceGroup, type MoverGroup } from './scene/collect';
+import { Surface } from './scene/surface';
 
 export type Motion =
   /** Rotate about the layer's local +y axis, in radians per second. */
@@ -52,6 +54,10 @@ export type WorldModel = {
   extent: number;
   /** Box centre and largest side, for standalone studies that are not centred on a globe. */
   bounds?: { centre: THREE.Vector3; size: number };
+  /** Library props placed on the surface: buildings, plants, citizens, parked vehicles. */
+  instances: InstanceGroup[];
+  /** Props travelling along routes: walkers, traffic, ships, aircraft, herds and flocks. */
+  movers: MoverGroup[];
 };
 
 export type Quality = {
@@ -59,13 +65,15 @@ export type Quality = {
   detail: number;
   /** 0..1 thinning of repeated props; landmarks and data-driven counts keep their identity. */
   density: number;
+  /** Citizens, animals and traffic. Off for the ten-world overview, where they cannot be seen. */
+  life: boolean;
 };
 
 export const qualities = {
-  overview: { detail: 9, density: 0.4 },
-  story: { detail: 14, density: 1 },
-  compact: { detail: 11, density: 0.7 },
-  inspect: { detail: 16, density: 1 },
+  overview: { detail: 9, density: 0.35, life: false },
+  story: { detail: 14, density: 1, life: true },
+  compact: { detail: 11, density: 0.6, life: true },
+  inspect: { detail: 16, density: 1, life: true },
 } satisfies Record<string, Quality>;
 
 /** Collects the meshes of one layer by material. */
@@ -106,8 +114,12 @@ export class LayerBuilder {
 export class WorldContext {
   random: Random;
   layers: LayerBuilder[] = [];
-  /** Buildings, fields and props that turn with the planet. */
+  /** Merged ground detail that turns with the planet: streets, plazas, fields, plating. */
   ground: LayerBuilder;
+  surface: Surface;
+  props = new Props();
+  traffic = new Traffic();
+  private taken = new Map<string, { dir: THREE.Vector3; cos: number }[]>();
   constructor(
     public faces: Face[],
     public quality: Quality,
@@ -115,6 +127,36 @@ export class WorldContext {
   ) {
     this.random = rng(seed);
     this.ground = this.layer('ground', 'surface');
+    this.surface = new Surface(faces);
+  }
+
+  /** Reserve a disc of ground (radius in radians) so wild plants keep out of settlements. */
+  occupy(dir: THREE.Vector3, radius: number) {
+    const entry = { dir: dir.clone().normalize(), cos: Math.cos(radius) };
+    const span = Math.ceil(radius / 0.12);
+    const [cx, cy, cz] = this.cellOf(entry.dir);
+    for (let x = -span; x <= span; x++)
+      for (let y = -span; y <= span; y++)
+        for (let z = -span; z <= span; z++) {
+          const key = `${cx + x},${cy + y},${cz + z}`;
+          const list = this.taken.get(key);
+          if (list) list.push(entry);
+          else this.taken.set(key, [entry]);
+        }
+  }
+
+  occupied(dir: THREE.Vector3) {
+    const [cx, cy, cz] = this.cellOf(dir);
+    const list = this.taken.get(`${cx},${cy},${cz}`);
+    if (!list) return false;
+    const unit = dir.lengthSq() > 1.0001 || dir.lengthSq() < 0.9999 ? dir.clone().normalize() : dir;
+    for (const t of list) if (t.dir.dot(unit) > t.cos) return true;
+    return false;
+  }
+
+  private cellOf(dir: THREE.Vector3) {
+    const n = dir.clone().normalize();
+    return [Math.floor(n.x / 0.12), Math.floor(n.y / 0.12), Math.floor(n.z / 0.12)];
   }
 
   layer(name: string, kind: Layer['frame'], options: LayerBuilder['options'] = {}) {

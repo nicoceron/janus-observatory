@@ -158,5 +158,7 @@ export function buildLandmark(scenario: string, id: string): WorldModel {
     pitch: 0,
     extent: extentOf(layers),
     bounds: { centre: box.getCenter(new THREE.Vector3()), size: Math.max(size.x, size.y, size.z) },
+    instances: [],
+    movers: [],
   };
 }

@@ -6,6 +6,14 @@ import type { Face } from '../globe';
 import type { LayerBuilder, WorldContext } from '../model';
 import { orderedSwarm } from '../orbits';
 import { stack, tank } from '../parts';
+import type { Tone } from '../kit';
+import { U } from '../props/library';
+import { makeRoute } from '../scene/collect';
+import { roads, seaLanes } from '../scene/network';
+import { bareFlora, citizens } from '../scene/presets';
+import { harbour } from '../scene/sites';
+import { offset } from '../scene/surface';
+import { buildTown, type TownStyle } from '../scene/towns';
 
 /**
  * S6 · Sword of Damocles. "Nanoscale engineering regulates biological processes inside a
@@ -112,6 +120,8 @@ export const s6: EarthBrief = {
     seaice: '#b8c2bc',
   },
   clouds: { count: 20, tone: '#c9c98a', speed: 0.018, size: 0.06 },
+  flora: bareFlora(['#6f7a50', '#7d7b62'], 0.5),
+  fauna: { flocks: { count: 2, tints: ['#5f6874'] } },
   atmosphere: (signals) => ({
     rim: '#d6d77a',
     rimStrength: 1,
@@ -133,60 +143,95 @@ export const s6: EarthBrief = {
       coveredFaces(earth.surface_modification, faces.length),
       (f) => 4 - world.distance(f, heart.lat, heart.lon) + (f.land ? 1 : 0),
     );
-    const warnings = world.layer('warnings', 'surface', {
-      motion: { kind: 'pulse', period: 3.2, floor: 0.2 },
-    });
+
+    // Worker districts sit in clearings of the shell, beside the machinery they maintain.
+    const overalls: Tone[] = ['#e08a2e', '#d0702a', '#c4a030', '#8a949e'];
+    const works: TownStyle = {
+      layout: 'grid',
+      radius: 0.06,
+      block: 8 * U,
+      street: { width: 1.6 * U, tone: '#3d434a' },
+      plaza: { radius: 2.6 * U, tone: '#5f6874', centre: [['pressure-tank', 1, [1, 1.2]]] },
+      lot: { spacing: 2.2 * U },
+      core: [['worker-block', 4, [1, 1.1]], ['hab-dome', 1, [0.7, 0.8]], ['warehouse', 1, [1, 1.1], ['#7d8894']]],
+      edge: [['worker-block', 4, [1, 1.1]], ['pipe-rack', 1, [1, 1.1]], ['greenhouse-dark', 1, [1, 1.1]]],
+      people: { standing: 18, walking: 7, kinds: ['worker', 'worker', ...citizens.kinds], walkers: ['worker-walk'], tints: overalls },
+      cars: { count: 2, kinds: ['van', 'haul-truck'], tints: ['#e0a830', '#8a949e'] },
+      lamps: 'lamp',
+    };
+    const landShell = shell.filter((f) => f.land && f.elevation < 0.4);
+    const sites = world.scatter(landShell, 12, 13);
+    const clearing = (face: Face) => sites.some((s) => s.up.angleTo(face.up) < 0.07);
+    const towns = sites.map((face) => buildTown(world, face.up, works));
+
+    const warnings = world.layer('warnings', 'surface', { motion: { kind: 'pulse', period: 3.2, floor: 0.2 } });
+    const machines: [string, number, number][] = [
+      ['pressure-tank', 4, 1.1],
+      ['cooling-tower', 2, 1],
+      ['pipe-rack', 3, 1.1],
+      ['crane', 0.6, 1],
+      ['solar-array', 1, 1.1],
+      ['hab-dome', 0.8, 0.8],
+    ];
+    const total = machines.reduce((sum, m) => sum + m[1], 0);
     for (const face of shell) {
       face.used = true;
       face.tone = face.land ? '#4b525b' : '#3a4a4f';
+      if (clearing(face)) continue;
       const lift = plate(world, face, random.pick(steel));
-      const top = world.on(face, random() * 6, 1, -lift);
-      const roll = random();
-      if (roll < 0.1 * world.quality.density)
-        tank(world.ground.sheen, top, face.size * 0.12, face.size * 0.22, '#9aa6b1');
-      else if (roll < 0.16 * world.quality.density)
-        stack(world.ground.solid, top, face.size * 0.1, face.size * 0.4, '#a3a9ad');
-      else if (roll < 0.22 * world.quality.density)
-        world.ground.solid.box(top, face.size * 0.3, face.size * 0.06, face.size * 0.12, '#8a949e');
+      const count = Math.round((face.land ? 3 : 1.5) * world.quality.density * random());
+      for (let k = 0; k < count; k++) {
+        const dir = offset(face.up, random() * 6, random() * face.size * 0.3);
+        if (world.surface.face(dir) !== face) continue;
+        let r = random() * total,
+          pick = machines[0];
+        for (const m of machines) if ((r -= m[1]) <= 0) {
+          pick = m;
+          break;
+        }
+        world.props.add(pick[0], world.surface.point(dir, lift - 0.0003), offset(dir, random() * 6, 0.01).sub(dir), pick[2]);
+      }
       if (random() < lit * 0.25)
-        warnings.glow.box(
-          local(top, face.size * 0.15, 0, 0),
-          face.size * 0.05,
-          face.size * 0.03,
-          face.size * 0.05,
-          random() < 0.8 ? '#ffb03a' : '#ff4a3a',
-        );
+        warnings.glow.box(world.on(face, random() * 6, 1, -lift), 0.002, 0.0012, 0.002, random() < 0.8 ? '#ffb03a' : '#ff4a3a');
     }
     // Pipes between neighbouring plates carry the planet's regulated flows.
     for (const face of shell)
-      if (world.thin(0.06)) {
+      if (world.thin(0.06) && !clearing(face)) {
         const next = faces[face.neighbours[0]];
-        if (next.used)
+        if (next.used && !clearing(next))
           world.ground.solid.beam(
             face.centre.clone().addScaledVector(face.up, face.size * 0.12),
             next.centre.clone().addScaledVector(next.up, face.size * 0.12),
-            face.size * 0.025,
+            face.size * 0.018,
             '#b48a4a',
           );
       }
 
+    roads(world, towns, {
+      width: 2 * U,
+      tone: '#3d434a',
+      neighbours: 2,
+      reach: 0.5,
+      traffic: { kinds: ['haul-truck', 'truck', 'van'], per: 2, speed: 0.008, tints: ['#e0a830', '#8a949e', '#5f6874'] },
+    });
+    const ports = towns.map((t) => harbour(world, t.centre, { crane: true })).filter((p): p is THREE.Vector3 => !!p);
+    seaLanes(world, ports, { kinds: ['tanker', 'ship'], per: 2, speed: 0.005, tints: ['#3a3d44', '#5f6874'] });
+    if (world.quality.life)
+      for (const town of towns) {
+        const loop: THREE.Vector3[] = [];
+        for (let i = 0; i < 16; i++) loop.push(offset(town.centre, (i / 16) * Math.PI * 2, town.radius).multiplyScalar(1.02));
+        world.traffic.add('drone', makeRoute(loop, true), { count: 3, speed: 0.006, size: 1.4, tints: ['#e0a830'], pingpong: false, random });
+      }
+
     const core = world.faceAt(heart.lat, heart.lon);
-    regulator(
-      world.layer('regulator', 'surface', { landmark: 'regulator' }),
-      world.on(core, 0, 1, -core.size * 0.08),
-      0.13,
-    );
+    regulator(world.layer('regulator', 'surface', { landmark: 'regulator' }), world.on(core, 0, 1, -core.size * 0.08), 0.05);
     const vent = world.around(core, 12).find((f) => f !== core && f.land) ?? core;
-    thermalStack(
-      world.layer('thermal-stack', 'surface', { landmark: 'thermal-stack' }),
-      world.on(vent, 0, 1, -vent.size * 0.08),
-      0.12,
-    );
+    thermalStack(world.layer('thermal-stack', 'surface', { landmark: 'thermal-stack' }), world.on(vent, 0, 1, -vent.size * 0.08), 0.05);
 
     // Hangs over the heart of the machine, turning with it: the suspended regulator.
     const sword = world.layer('hanging-regulator', 'surface', { landmark: 'hanging-regulator' });
     const over = world.faceAt(heart.lat - 10, heart.lon - 52);
-    hangingRegulator(sword, frame(over.up.clone().multiplyScalar(1.1), over.up), 0.4);
+    hangingRegulator(sword, frame(over.up.clone().multiplyScalar(1.1), over.up), 0.32);
 
     orderedSwarm(
       world,

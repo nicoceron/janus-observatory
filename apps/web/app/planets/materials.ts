@@ -2,11 +2,18 @@ import * as THREE from 'three';
 import type { Atmosphere, Layer } from './model';
 
 export type Surface = 'solid' | 'sheen' | 'glow' | 'cloud' | 'beam';
+export type MaterialSet = Record<Surface | 'glass', THREE.Material>;
 export const surfaces: Surface[] = ['solid', 'sheen', 'glow', 'cloud', 'beam'];
 
 /** Materials for every world. Colour lives in vertex colours, so a handful of programs serve all. */
-export function createMaterials(): Record<Surface, THREE.Material> {
+export function createMaterials(): MaterialSet {
   return {
+    glass: new THREE.MeshStandardMaterial({
+      vertexColors: true,
+      flatShading: true,
+      roughness: 0.18,
+      metalness: 0.3,
+    }),
     solid: new THREE.MeshStandardMaterial({
       vertexColors: true,
       flatShading: true,

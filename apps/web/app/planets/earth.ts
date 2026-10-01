@@ -20,7 +20,7 @@ import {
   type WorldModel,
 } from './model';
 import { frame } from './kit';
-import { tree } from './parts';
+import { animals, plant, type Fauna, type Flora } from './scene/wilds';
 
 export type EarthBrief = {
   id: string;
@@ -32,7 +32,9 @@ export type EarthBrief = {
   climate: Climate;
   palette: Palette;
   clouds: { count: number; tone: Tone; speed: number; size?: number; flat?: number };
-  forest?: { count: number; tones: Partial<Record<Face['biome'], Tone>> };
+  /** Wild plants by biome, planted after settlements so forests stay out of towns. */
+  flora?: Flora;
+  fauna?: Fauna;
   atmosphere: (signals: WorldSignals) => Atmosphere;
   decorate: (world: WorldContext, signals: WorldSignals) => void;
 };
@@ -70,27 +72,8 @@ export function buildEarthWorld(
   const world = new WorldContext(faces, quality, brief.seed);
   brief.decorate(world, signals);
 
-  if (brief.forest) {
-    const leafy = faces.filter((f) => f.land && !f.used && f.biome in brief.forest!.tones);
-    const count = Math.round(brief.forest.count * quality.density);
-    for (let i = 0; i < count && leafy.length; i++) {
-      const face = world.random.pick(leafy);
-      const kind =
-        Math.abs(face.lat) > 45 || face.biome === 'upland'
-          ? 'pine'
-          : face.biome === 'jungle'
-            ? 'tall'
-            : 'round';
-      const size = face.size * world.random.range(0.22, 0.32);
-      tree(
-        world.ground.solid,
-        world.within(face, world.random() * 6),
-        kind,
-        brief.forest.tones[face.biome]!,
-        size,
-      );
-    }
-  }
+  if (brief.flora) plant(world, brief.flora);
+  if (brief.fauna) animals(world, brief.fauna);
 
   const sky = world.layer('clouds', 'surface', {
     motion: { kind: 'spin', speed: brief.clouds.speed },
@@ -123,6 +106,8 @@ export function buildEarthWorld(
     tilt: brief.tilt,
     pitch: brief.pitch ?? 0.2,
     extent: extentOf(layers),
+    instances: world.props.finish(),
+    movers: world.traffic.finish(),
   };
 }
 

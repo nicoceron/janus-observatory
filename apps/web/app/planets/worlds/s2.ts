@@ -6,6 +6,13 @@ import type { Face } from '../globe';
 import type { LayerBuilder } from '../model';
 import { chaoticSwarm } from '../orbits';
 import { mast, rocks } from '../parts';
+import { U } from '../props/library';
+import { makeRoute } from '../scene/collect';
+import { flights, harbourLoops, roads, seaLanes } from '../scene/network';
+import { citizens, earthFlora, earthy } from '../scene/presets';
+import { furrows, harbour, settleable } from '../scene/sites';
+import { offset, tangents } from '../scene/surface';
+import { buildTown } from '../scene/towns';
 
 /**
  * S2 · Wild West. "Competition for scarce resources is entrenched. The technosphere and
@@ -152,7 +159,15 @@ export const s2: EarthBrief = {
     seaice: '#cdd9dc',
   },
   clouds: { count: 18, tone: '#d9b683', speed: 0.02, size: 0.07, flat: 0.28 },
-  forest: { count: 50, tones: { forest: '#5e6f36', jungle: '#4f6a34' } },
+  flora: earthFlora(
+    { broad: ['#6a7a3e', '#5e6f36'], conifer: ['#4f6a3a'], scrub: ['#9a8f5a', '#a89a5c'], flowers: ['#e0a830'] },
+    0.45,
+  ),
+  fauna: {
+    herds: [{ kind: 'cow', biomes: ['lowland', 'desert'], count: 10, size: [6, 10], tints: ['#5a3f2c', '#efe8dc'] }],
+    flocks: { count: 5, tints: ['#3a3d44'] },
+    whales: 2,
+  },
   atmosphere: (signals) => ({
     rim: '#e7b27a',
     rimStrength: 1,
@@ -170,91 +185,115 @@ export const s2: EarthBrief = {
     const lit = lightShare(earth.artificial_illumination);
     const land = faces.filter((f) => f.land && f.biome !== 'ice');
 
+    // Rival enclaves first: walled company towns, each in its own colour.
+    const seats = world.scatter(settleable(world, ['lowland', 'shore', 'desert', 'forest']), companies.length, 26);
+    const enclaves = seats.map((seat, i) => {
+      const colour = companies[i];
+      const town = buildTown(
+        world,
+        seat.up,
+        {
+          layout: 'radial',
+          radius: 0.07,
+          streets: 6,
+          street: { width: 1.7 * U, tone: '#55504a' },
+          plaza: { radius: 3 * U, tone: '#b9b2a6', centre: [['statue', 1, [1.4, 1.6], [colour]]] },
+          lot: { spacing: 2.6 * U },
+          core: [
+            ['skyscraper', 3, [1, 1.25]],
+            ['tower', 3, [1, 1.2], [colour, '#d9dde2']],
+          ],
+          edge: [
+            ['apartment', 3, [1, 1.1], [colour, '#d9d4c8']],
+            ['warehouse', 1, [1, 1.1], ['#a7b0b8']],
+            ['oil-tank', 0.6, [0.8, 1]],
+          ],
+          rise: (r) => (r < 0.3 ? 1.25 : 1),
+          people: { standing: 14, walking: 4, ...citizens, tints: [colour, '#2a2d33', '#e6e8ea'] },
+          cars: { count: 3, kinds: ['car', 'van', 'car'], tints: [colour, '#2a2d33', '#e6e8ea'] },
+          lamps: 'lamp',
+          perimeter: { kind: 'wall', size: 1.1 },
+        },
+        i === 0 ? 1.15 : 1,
+      );
+      for (let k = 0; k < 4; k++)
+        world.props.add('guard', world.surface.point(offset(seat.up, k * 1.6, town.radius * 1.02), 0), null, 1, colour);
+      return town;
+    });
+    const hq = seats[0];
+    if (hq) enclave(world.layer('enclave', 'surface', { landmark: 'enclave' }), world.on(hq, random() * 6, 1, -0.002), 0.06, companies[0], lit, random);
+
+    // Outside the walls: shanty towns, markets and tent lines.
+    const shanties = world.scatter(settleable(world, ['lowland', 'desert', 'shore', 'forest']), 14, 10).map((face) =>
+      buildTown(world, face.up, {
+        layout: 'radial',
+        radius: 0.045,
+        streets: 4,
+        street: { width: 1.3 * U, tone: '#9a8466' },
+        plaza: { radius: 2.6 * U, tone: '#b39a72', centre: [['market', 1, [1, 1.2], companies]] },
+        lot: { spacing: 2 * U },
+        core: [['shanty-dark', 4, [1, 1.2], ['#a89a84', '#8a7a64', '#b9a68a']], ['market', 1, [1, 1.1], companies]],
+        edge: [['shanty-dark', 4, [0.9, 1.1], ['#a89a84', '#8a7a64']], ['tent', 2, [0.9, 1.1], ['#c4955f', '#8a8f96']], ['billboard', 0.3, [1, 1.1], companies]],
+        people: { standing: 16, walking: 5, ...citizens, tints: earthy },
+        cars: { count: 1, kinds: ['car', 'van'], tints: ['#8a4a32', '#6a6a70', '#a89a84'] },
+      }),
+    );
+
     // Monoculture: the agricultural-pollution decade sets how much green land is ploughed flat.
     const plough = Math.round(land.length * decades(earth.agricultural_pollution, 0.1, 100) * 0.35);
-    for (const face of claim(faces, plough, (f) =>
-      f.land && ['lowland', 'forest', 'jungle', 'shore'].includes(f.biome) ? random() : null,
-    )) {
-      face.used = true;
-      face.tone = random() < 0.5 ? '#d8c25c' : '#b9b04a';
-      const rows = world.aligned(face);
-      for (let r = -1; r <= 1; r++)
-        if (world.thin(0.8))
-          world.ground.solid.box(
-            local(rows, 0, 0, r * face.size * 0.14),
-            face.size * 0.5,
-            face.size * 0.02,
-            face.size * 0.05,
-            '#9a9a3a',
-          );
+    const fields = claim(faces, plough, (f) => (f.land && ['lowland', 'forest', 'jungle', 'shore'].includes(f.biome) ? random() : null));
+    for (const face of fields) {
+      furrows(world, face, random() < 0.5 ? '#d8c25c' : '#b9b04a', tangents(face.up).east);
+      if (random() < 0.15) world.props.add('silo', world.surface.point(face.up, -0.0004), null, 1.2);
+      else if (random() < 0.1) world.props.add('barn', world.surface.point(face.up, -0.0004), tangents(face.up).east, 1);
     }
 
-    // Surface modification: a few rival enclaves and many mines.
+    // Surface modification: the published fraction becomes mines, rigs and oil fields.
     const target = coveredFaces(earth.surface_modification, faces.length);
-    const seats = world.scatter(
-      land.filter((f) => f.elevation < 0.45),
-      companies.length,
-      28,
-    );
-    const owned: Face[] = [];
-    seats.forEach((seat, i) => {
-      const colour = companies[i];
-      const holding = world
-        .around(seat, 9)
-        .filter((f) => f.land && !f.used)
-        .slice(0, Math.max(3, Math.round((target * 0.45) / seats.length)));
-      for (const face of holding) {
-        face.used = true;
-        face.tone = '#8a857d';
-        owned.push(face);
-        if (face === seat) continue;
-        for (let k = 0; k < (world.quality.density < 0.6 ? 1 : 2); k++) {
-          const t = world.within(face, random() * 6);
-          const h = face.size * random.range(0.2, 0.6);
-          world.ground.sheen.box(t, face.size * 0.16, h, face.size * 0.16, colour, '#2d3238');
-          if (random() < lit)
-            world.ground.glow.box(
-              local(t, 0, h * 0.5, face.size * 0.051),
-              face.size * 0.07,
-              h * 0.3,
-              0.001,
-              '#ffe3a0',
-            );
-        }
-      }
-      const layer =
-        i === 0 ? world.layer('enclave', 'surface', { landmark: 'enclave' }) : world.ground;
-      enclave(layer, world.on(seat, random() * 6), i === 0 ? 0.11 : 0.085, colour, lit, random);
-    });
-
-    const mines = claim(faces, Math.max(1, target - owned.length), (f) =>
-      f.land && ['desert', 'upland', 'mountain', 'lowland'].includes(f.biome)
-        ? random() + (f.biome === 'desert' ? 0.4 : 0)
-        : null,
+    const mines = claim(faces, target, (f) =>
+      f.land && ['desert', 'upland', 'mountain', 'lowland'].includes(f.biome) ? random() + (f.biome === 'desert' ? 0.4 : 0) : null,
     );
     mines.forEach((face, i) => {
       face.used = true;
       face.tone = '#8d5b39';
-      const layer =
-        i === 0 ? world.layer('pit-mine', 'surface', { landmark: 'pit-mine' }) : world.ground;
-      if (i === 0 || world.thin(0.6))
-        pitMine(layer, world.on(face, random() * 6), i === 0 ? 0.08 : 0.05);
-      if (world.thin(0.2)) mast(world.ground.solid, world.within(face), face.size * 0.4, '#5a4a3a');
+      const layer = i === 0 ? world.layer('pit-mine', 'surface', { landmark: 'pit-mine' }) : world.ground;
+      if (i === 0 || world.thin(0.5)) {
+        pitMine(layer, world.on(face, random() * 6), i === 0 ? 0.06 : 0.04);
+        if (world.quality.life && (i === 0 || random() < 0.35)) {
+          const loop: THREE.Vector3[] = [];
+          for (let k = 0; k < 14; k++) loop.push(world.surface.point(offset(face.up, (k / 14) * Math.PI * 2, i === 0 ? 0.04 : 0.028), 0.001));
+          world.traffic.add('haul-truck', makeRoute(loop, true), { count: 2, speed: 0.003, size: 1.1, pingpong: false, random });
+        }
+      } else if (random() < 0.6) {
+        world.props.add('derrick', world.surface.point(face.up, -0.0004), tangents(face.up).east, 1.1);
+        world.props.add('oil-tank', world.surface.point(offset(face.up, 1, 0.012), -0.0004), null, 1);
+        world.props.add('worker', world.surface.point(offset(face.up, 2, 0.006), 0), null, 1);
+      }
     });
 
     const shelf = faces.filter((f) => !f.land && f.biome === 'shallows' && !f.used);
-    world.scatter(shelf, 10, 14).forEach((face, i) => {
+    const rigs = world.scatter(shelf, 10, 14);
+    rigs.forEach((face, i) => {
       face.used = true;
-      const layer =
-        i === 0 ? world.layer('platform', 'surface', { landmark: 'platform' }) : world.ground;
-      offshoreRig(layer, world.on(face, random() * 6, 1, 0), i === 0 ? 0.075 : 0.05);
+      const layer = i === 0 ? world.layer('platform', 'surface', { landmark: 'platform' }) : world.ground;
+      offshoreRig(layer, world.on(face, random() * 6, 1, 0), i === 0 ? 0.05 : 0.035);
     });
-    for (const face of world.scatter(
-      land.filter((f) => f.biome === 'desert' && !f.used),
-      16,
-      6,
-    ))
-      rocks(world.ground.solid, world.on(face), face.size * 0.12, '#b98450', random, 2);
+
+    const towns = [...enclaves, ...shanties];
+    roads(world, towns, {
+      width: 2.2 * U,
+      tone: '#6a5a48',
+      neighbours: 2,
+      reach: 0.6,
+      pylons: 'pylon',
+      traffic: { kinds: ['haul-truck', 'truck', 'car', 'van'], per: 2, speed: 0.009, tints: [...companies, '#8a8f96'] },
+    });
+    for (const town of shanties)
+      world.props.add('billboard', world.surface.point(offset(town.centre, random() * 6, town.radius * 1.3), -0.0004), offset(town.centre, 0, 0.01).sub(town.centre), 1.2, world.random.pick(companies));
+    const ports = enclaves.map((t) => harbour(world, t.centre, { crane: true, light: true })).filter((p): p is THREE.Vector3 => !!p);
+    seaLanes(world, [...ports, ...rigs.map((r) => r.up.clone())], { kinds: ['tanker', 'ship'], per: 2, speed: 0.005, tints: ['#2a2d33', '#c4452f'] });
+    harbourLoops(world, ports, { kinds: ['fishing', 'ferry'], per: 1, speed: 0.003 });
+    flights(world, enclaves.map((t) => t.centre), { kinds: ['plane'], per: 1, speed: 0.02, size: 0.9, tints: companies }, 6);
 
     chaoticSwarm(world, satelliteCount(earth.satellite_belt), [1.1, 1.3], {
       size: 0.009,
