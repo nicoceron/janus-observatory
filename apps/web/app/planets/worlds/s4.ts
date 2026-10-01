@@ -9,7 +9,7 @@ import { U } from '../props/library';
 import { makeRoute } from '../scene/collect';
 import { harbourLoops, roads } from '../scene/network';
 import { citizens, earthFlora } from '../scene/presets';
-import { farmland, harbour, sprinkle } from '../scene/sites';
+import { farmland, harbour, setPieces, sprinkle } from '../scene/sites';
 import { arc, offset } from '../scene/surface';
 import { buildTown, type TownStyle } from '../scene/towns';
 
@@ -149,6 +149,11 @@ export const s4: EarthBrief = {
   decorate(world, signals) {
     const earth = signals.bodies.Earth;
     const { faces, random } = world;
+    // Set pieces: titans of the lost age, fallen and grown over by the returning forest.
+    setPieces(world, [['titan-wreck', 1, [1, 1.15], ['#7a6a52', '#6a7a5a', '#8a7a62']]], 3, {
+      spacing: 45,
+      eligible: (f) => ['forest', 'jungle', 'upland', 'lowland'].includes(f.biome),
+    });
     const lit = lightShare(earth.artificial_illumination);
     const hides: Tone[] = ['#c4955f', '#a7714a', '#d8b98a', '#8f6844', '#e8dcc4'];
     const cloth: Tone[] = ['#b3824f', '#8f6a44', '#c9a06a', '#7a5a3a', '#d8c39a', '#a8744a'];

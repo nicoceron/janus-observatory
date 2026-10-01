@@ -83,18 +83,25 @@ At story distance revision 2 was unreadable: thousands of person-sized props blu
 texture. The user asked for drastically fewer, bigger assets, in the spirit of the original's
 few large models. Every world is now a toy diorama:
 
-- One person unit is 0.026 planet radii (was 0.0075): a house stands about 0.07 radii tall and a
-  pine about 0.07–0.1. Citizens and animals are drawn 1.5× and vehicles 1.3× life size so they
-  stay legible beside the buildings.
-- At story quality a world keeps at most 90 buildings and structures, 70 plants, 28 citizens,
-  22 small details, 16 animals and 10 parked vehicles, plus 46 movers; other tiers scale these
-  budgets by their density. When a recipe offers more, a declutter pass widens the spacing
+- One person unit is 0.045 planet radii (was 0.0075): a house stands about an eighth of the
+  planet radius tall. Citizens and animals are drawn 2× life size, robots 2.6× (as tall as the
+  houses they walk between), vehicles 1.6×; aircraft and ships stay near life size.
+- At story quality a world keeps at most 45 buildings and structures, 36 plants, 12 citizens,
+  10 robots, 8 small details, 8 animals and 6 parked vehicles, plus 40 movers; other tiers scale
+  these budgets by their density. When a recipe offers more, a declutter pass widens the spacing
   between same-group props evenly, so every settlement keeps a few buildings rather than some
   vanishing. Props never overlap each other or a landmark's ground footprint.
 - Settlements, regions, mines, rigs, camps and ruins are fewer and wider; landmarks are about
   2.5× larger; clouds float higher; aircraft and drones fly above the rooftops.
-- Per world: 100–215 static props and 30–42 movers (were 1,200–6,000 and 260–2,200), and
-  20k–54k triangles at story quality (were 105k–432k).
+- Per world: about 60–120 static props and 10–36 movers (revision 2 had 1,200–6,000 and
+  260–2,200), and 13k–52k triangles at story quality (were 105k–432k).
+- Set pieces (`props/heroes.ts`) give each future one recognisable silhouette, drawn about a
+  third of the planet radius tall and placed near the limb of the story view, where they stand
+  in profile: panopticon towers and enforcer titans (S1), company titans, a giant excavator and
+  a launch site (S2), garden spires and a launch site (S3), fallen titans grown over by forest
+  (S4, S7), bio-spires (S5), nanoforges and maintenance titans (S6), rogue enforcers and wrecks
+  of the machine war (S8), the machines' monoliths (S9) and a seed ark (S10). Present-day Earth
+  has none.
 - A sci-fi set (`props/scifi.ts`, 19 models) gives the high-technology futures their machines:
   service robots, security sentinels, mechs, six-legged maintenance crawlers, hover cars and
   buses, cargo drones, shuttles, landers, light-ringed spires, arcologies, fusion reactors,

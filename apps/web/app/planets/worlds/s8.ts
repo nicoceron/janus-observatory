@@ -6,9 +6,10 @@ import type { LayerBuilder } from '../model';
 import { chaoticSwarm } from '../orbits';
 import type { Tone } from '../kit';
 import { U } from '../props/library';
+import { makeRoute } from '../scene/collect';
 import { harbourLoops, roads } from '../scene/network';
 import { bareFlora, citizens } from '../scene/presets';
-import { furrows, harbour, ring, sprinkle } from '../scene/sites';
+import { furrows, harbour, ring, setPieces, sprinkle } from '../scene/sites';
 import { offset, tangents } from '../scene/surface';
 import { buildTown, type TownStyle } from '../scene/towns';
 
@@ -131,6 +132,17 @@ export const s8: EarthBrief = {
   decorate(world, signals) {
     const earth = signals.bodies.Earth;
     const { faces, random } = world;
+    // Set pieces: rogue enforcer titans still standing, and the wrecks of the machine war.
+    setPieces(
+      world,
+      [
+        ['enforcer', 1, [1, 1.1], ['#2d2a2f', '#3a3638']],
+        ['titan-wreck', 1, [1, 1.2], ['#5a4a42', '#4a4044']],
+        ['titan-wreck', 1, [1, 1.1], ['#5a4a42', '#4a4044']],
+      ],
+      4,
+      { spacing: 40, escort: ['mech', 1, [1, 1], ['#2d2a2f']], escorts: 1 },
+    );
     const scar = { lat: 38, lon: -98 };
     const land = faces.filter((f) => f.land && f.biome !== 'ice');
     const lit = lightShare(earth.artificial_illumination);
@@ -237,6 +249,21 @@ export const s8: EarthBrief = {
           1,
         );
     });
+    // Hunter drones from the machine war still circle the ruins.
+    if (world.quality.life)
+      for (const town of towns.slice(0, 3)) {
+        const loop: THREE.Vector3[] = [];
+        for (let i = 0; i < 18; i++)
+          loop.push(
+            offset(town.centre, (i / 18) * Math.PI * 2, town.radius * 0.9).multiplyScalar(1.13),
+          );
+        world.traffic.add('hunter-drone', makeRoute(loop, true), {
+          count: 1,
+          speed: 0.012,
+          pingpong: false,
+          random,
+        });
+      }
     roads(world, towns, {
       width: 1.4 * U,
       tone: '#5a524a',

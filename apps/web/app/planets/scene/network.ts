@@ -57,7 +57,7 @@ export function roads(
             0.0012,
             '#8a8580',
           );
-        else if (options.pylons && world.quality.life && i % 24 === 12 && surface.land(dir))
+        else if (options.pylons && world.quality.life && i % 40 === 20 && surface.land(dir))
           world.props.add(
             options.pylons,
             surface.point(
@@ -75,7 +75,7 @@ export function roads(
               -0.0004,
             ),
             points[Math.min(points.length - 1, i + 1)].clone().sub(points[i]),
-            0.7,
+            0.55,
           );
       });
       links.push([town, other]);

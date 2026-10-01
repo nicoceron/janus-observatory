@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import type { Face } from '../globe';
 import type { Tone } from '../kit';
 import type { WorldContext } from '../model';
-import { U } from '../props/library';
+import { propFootprint, propHeight, U } from '../props/library';
 import { ribbon } from './collect';
 import { offset, tangents } from './surface';
 import type { Pick } from './towns';
@@ -89,7 +89,8 @@ export function harbour(
   const shore = coast.neighbours.map((n) => world.faces[n]).find((f) => f.land)!;
   const seaward = coast.up.clone().sub(shore.up);
   const edge = shore.up.clone().lerp(coast.up, 0.5).normalize();
-  world.props.add('dock', world.surface.point(edge, -0.0015), seaward, 0.55);
+  if (world.random() < 0.5)
+    world.props.add('dock', world.surface.point(edge, -0.0015), seaward, 0.55);
   if (kit.crane) {
     world.props.add(
       'harbor-crane',
@@ -101,7 +102,7 @@ export function harbour(
       'containers',
       world.surface.point(offset(shore.up, 2.5, 3 * U), -0.0004),
       seaward,
-      1,
+      0.6,
     );
   }
   if (kit.light)
@@ -128,6 +129,81 @@ export function harbour(
         1,
       );
   return coast.up.clone();
+}
+
+/**
+ * A world's set pieces: large signature models spread round the globe so every view shows one,
+ * each on cleared ground with an optional escort. Call before settlements so they always stay.
+ * Each is drawn so its larger extent, height or half-length, is about `reach` planet radii,
+ * landmark-sized whatever scale it was authored at; a pick's size range scales that.
+ */
+export function setPieces(
+  world: WorldContext,
+  picks: Pick[],
+  count: number,
+  options: {
+    spacing?: number;
+    eligible?: (face: Face) => boolean;
+    escort?: Pick;
+    escorts?: number;
+    reach?: number;
+  } = {},
+) {
+  const eligible = world.faces.filter(
+    (f) =>
+      f.land &&
+      !f.used &&
+      f.elevation < 0.45 &&
+      !['ice', 'peak'].includes(f.biome) &&
+      (options.eligible?.(f) ?? true),
+  );
+  // Prefer ground near the limb of the story view, where a tall model stands in profile rather
+  // than being seen from straight above; fill from anywhere if the limb runs short.
+  const view = world.view;
+  const limb = view
+    ? eligible.filter((f) => {
+        const angle = THREE.MathUtils.radToDeg(f.up.angleTo(view));
+        return angle > 50 && angle < 78;
+      })
+    : [];
+  const sites = world.scatter(limb, count, options.spacing ?? 40);
+  if (sites.length < count)
+    sites.push(
+      ...world
+        .scatter(eligible, count, options.spacing ?? 40)
+        .filter((f) => sites.every((s) => s.up.angleTo(f.up) > 0.5))
+        .slice(0, count - sites.length),
+    );
+  sites.forEach((face, i) => {
+    const pick = picks[i % picks.length];
+    const [lo, hi] = pick[2] ?? [1, 1];
+    const extent = Math.max(propHeight(pick[0]), propFootprint(pick[0]));
+    const size = ((options.reach ?? 0.32) / U / extent) * (lo + (hi - lo) * world.random());
+    world.props.add(
+      pick[0],
+      world.surface.point(face.up, -0.001),
+      offset(face.up, world.random() * 6, 0.01).sub(face.up),
+      size,
+      pick[3]?.length ? world.random.pick(pick[3]) : undefined,
+    );
+    face.used = true;
+    world.occupy(face.up, 0.16);
+    const escort = options.escort;
+    if (escort && world.quality.life)
+      for (let k = 0; k < (options.escorts ?? 2); k++) {
+        const a = world.random() * Math.PI * 2;
+        const dir = offset(face.up, a, 0.2 + world.random() * 0.04);
+        if (!world.surface.land(dir)) continue;
+        world.props.add(
+          escort[0],
+          world.surface.point(dir, 0),
+          face.up.clone().sub(dir),
+          escort[2]?.[0] ?? 1,
+          escort[3]?.length ? world.random.pick(escort[3]) : undefined,
+        );
+      }
+  });
+  return sites;
 }
 
 /** A ring of props, e.g. walls around an enclave or stones around a ritual site. */

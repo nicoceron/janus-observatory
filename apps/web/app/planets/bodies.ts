@@ -597,7 +597,8 @@ function stations(world: WorldContext, body: Companion, style: Style) {
   for (const face of chosen) {
     const town = buildTown(world, face.up, {
       layout: kit.layout,
-      radius: kit.radius,
+      // Stations spread wider than their kit radius so a few toy-scale buildings fit.
+      radius: kit.radius * 1.5,
       block: 9 * U * BODY,
       streets: 4,
       street:

@@ -8,7 +8,7 @@ import type { Tone } from '../kit';
 import { U } from '../props/library';
 import { harbourLoops, roads } from '../scene/network';
 import { citizens, earthFlora } from '../scene/presets';
-import { farmland, harbour, sprinkle } from '../scene/sites';
+import { farmland, harbour, setPieces, sprinkle } from '../scene/sites';
 import { offset } from '../scene/surface';
 import { buildTown, type TownStyle } from '../scene/towns';
 
@@ -148,6 +148,12 @@ export const s10: EarthBrief = {
   decorate(world, signals) {
     const earth = signals.bodies.Earth;
     const { faces, random } = world;
+    // Set piece: a seed ark readied for the autonomous expansion beyond Earth.
+    setPieces(world, [['seed-ark', 1, [1.3, 1.35]]], 1, {
+      spacing: 60,
+      escort: ['gardener-bot', 1, [1, 1], ['#7fbf5a']],
+      escorts: 2,
+    });
     // Flowering meadows: the restored garden, with no surface technosignature drawn.
     for (const face of faces)
       if (face.land && ['lowland', 'forest', 'upland'].includes(face.biome) && random() < 0.07)
@@ -187,7 +193,7 @@ export const s10: EarthBrief = {
         standing: 5,
         walking: 2,
         ...citizens,
-        kinds: [...citizens.kinds, 'robed'],
+        kinds: [...citizens.kinds, 'robed', 'gardener-bot'],
         tints: wool,
       },
       cars: { count: 1, kinds: ['cart', 'bicycle'], tints: ['#9a7a5a'], speed: 0.002 },

@@ -8,7 +8,7 @@ import { U } from '../props/library';
 import { makeRoute } from '../scene/collect';
 import { harbourLoops, roads } from '../scene/network';
 import { citizens, earthFlora } from '../scene/presets';
-import { farmland, harbour } from '../scene/sites';
+import { farmland, harbour, setPieces } from '../scene/sites';
 import { arc } from '../scene/surface';
 import { buildTown, type TownStyle } from '../scene/towns';
 
@@ -118,6 +118,8 @@ export const s9: EarthBrief = {
   decorate(world, signals) {
     const earth = signals.bodies.Earth;
     const { faces, random } = world;
+    // Set pieces: the machines' parting gifts, black monoliths carved with light.
+    setPieces(world, [['monolith', 1, [1.05, 1.2]]], 4, { spacing: 50 });
     const linen: Tone[] = ['#f2efe6', '#d8e6d0', '#e8dcc4', '#c9d6e8', '#e6d0dc'];
     // No Table 6 surface value: people live lightly, without lights, roads or engines.
     const hamlet: TownStyle = {

@@ -123,6 +123,8 @@ export class WorldContext {
   surface: Surface;
   props: Props;
   traffic = new Traffic();
+  /** Direction to the story camera in the planet's own frame, when the recipe knows its pose. */
+  view?: THREE.Vector3;
   private taken = new Map<string, { dir: THREE.Vector3; cos: number }[]>();
   constructor(
     public faces: Face[],

@@ -59,13 +59,13 @@ export function standing(point: THREE.Vector3, forward: THREE.Vector3 | null, sc
  * until the budget fits, so every settlement keeps a few buildings rather than some vanishing.
  */
 const budgets: Record<PropGroup, number> = {
-  structure: 90,
-  vehicle: 10,
-  person: 28,
-  robot: 14,
-  animal: 16,
-  plant: 70,
-  decor: 22,
+  structure: 45,
+  vehicle: 6,
+  person: 12,
+  robot: 10,
+  animal: 8,
+  plant: 36,
+  decor: 8,
 };
 const order: PropGroup[] = ['structure', 'vehicle', 'robot', 'person', 'animal', 'plant', 'decor'];
 /** Footprints are half-widths of bounding boxes, so a little overlap still reads as touching. */
@@ -313,10 +313,10 @@ export class Traffic {
 }
 
 const moverBudgets: Partial<Record<PropGroup, number>> = {
-  person: 14,
-  robot: 10,
-  vehicle: 16,
-  animal: 12,
+  person: 8,
+  robot: 8,
+  vehicle: 12,
+  animal: 8,
   structure: 4,
 };
 

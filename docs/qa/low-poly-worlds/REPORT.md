@@ -117,6 +117,16 @@ After the fixes:
 - Reviewed with hardware WebGL: the opening Earth, the ten-world overview, S1, S2, S3, S5, S6,
   S7, S8 and S10 chapters, and explorer close-ups of S1, S3 and S7.
 
+## Revision 3b: bigger toys and set pieces
+
+- The user still could not read the worlds at story distance and asked for bigger robots and
+  assets, cool and sci-fi according to each story. Person unit 0.045 planet radii; figures 2×,
+  robots 2.6×; smaller budgets; 13 set pieces in `props/heroes.ts`, sized to about a third of the
+  planet radius and placed near the limb of the story view (Decision 034).
+- Per world at story quality: 64–121 static props, 11–36 movers, 13k–52k triangles.
+- Reviewed with hardware WebGL in the lab (present, S1, S5, S8, S9, S10) and in the S1, S2, S3,
+  S6 story chapters.
+
 ## Data and rights
 
 - Magnitudes come from `data/generated/runtime/{planetary,system,growth,morphology}.json`

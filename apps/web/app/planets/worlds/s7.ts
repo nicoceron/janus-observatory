@@ -8,7 +8,7 @@ import type { Tone } from '../kit';
 import { U } from '../props/library';
 import { harbourLoops, roads } from '../scene/network';
 import { citizens, earthFlora, villageStyle } from '../scene/presets';
-import { farmland, furrows, harbour, sprinkle } from '../scene/sites';
+import { farmland, furrows, harbour, setPieces, sprinkle } from '../scene/sites';
 import { offset, tangents } from '../scene/surface';
 import { buildTown, type Town } from '../scene/towns';
 
@@ -117,6 +117,8 @@ export const s7: EarthBrief = {
   decorate(world, signals) {
     const earth = signals.bodies.Earth;
     const { faces, random } = world;
+    // Set pieces: two titans from before the collapse, left where they fell, now pasture.
+    setPieces(world, [['titan-wreck', 1, [1, 1.1], ['#8a6a52', '#7a7a5a']]], 2, { spacing: 60 });
     const land = faces.filter(
       (f) => f.land && ['lowland', 'forest', 'upland', 'shore', 'jungle'].includes(f.biome),
     );

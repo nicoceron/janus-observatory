@@ -9,7 +9,7 @@ import type { Tone } from '../kit';
 import { U } from '../props/library';
 import { flights, harbourLoops, rails, roads, seaLanes } from '../scene/network';
 import { citizens, earthFlora } from '../scene/presets';
-import { farmland, harbour } from '../scene/sites';
+import { farmland, harbour, setPieces } from '../scene/sites';
 import { offset, tangents } from '../scene/surface';
 import { buildTown, type TownStyle } from '../scene/towns';
 
@@ -150,6 +150,17 @@ export const s3: EarthBrief = {
   decorate(world, signals) {
     const earth = signals.bodies.Earth;
     const { faces, random } = world;
+    // Set pieces: garden spires and a launch site, tended by gardener robots.
+    setPieces(
+      world,
+      [
+        ['garden-spire', 1, [1.25, 1.35]],
+        ['launch-site', 1, [1.15, 1.2]],
+        ['garden-spire', 1, [1.15, 1.25]],
+      ],
+      4,
+      { spacing: 40, escort: ['gardener-bot', 1, [1, 1], ['#7fbf5a', '#e0a830']], escorts: 2 },
+    );
     const lit = lightShare(earth.artificial_illumination);
     const land = faces.filter((f) => f.land && !['ice', 'peak', 'mountain'].includes(f.biome));
     const bright: Tone[] = [
@@ -183,7 +194,7 @@ export const s3: EarthBrief = {
         ['greenhouse', 1.2, [0.9, 1.1]],
         ['dome-house', 1, [1, 1.1]],
         ['market', 0.6, [1, 1.1], ['#e0a830', '#7fbf5a', '#4f9fd0']],
-        ['spire', 0.7, [0.8, 1], ['#f6f4ee', '#e3b84b']],
+        ['spire', 0.7, [0.55, 0.7], ['#f6f4ee', '#e3b84b']],
       ],
       edge: [
         ['solar-house', 3, [1, 1.1]],
@@ -197,7 +208,7 @@ export const s3: EarthBrief = {
       people: {
         standing: 6,
         walking: 2,
-        kinds: [...citizens.kinds, 'robot'],
+        kinds: [...citizens.kinds, 'robot', 'gardener-bot'],
         walkers: [...citizens.walkers, 'robot-walk'],
         tints: bright,
       },

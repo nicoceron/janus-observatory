@@ -70,6 +70,15 @@ export function buildEarthWorld(
   });
   paintEarth(faces, brief.climate, brief.palette);
   const world = new WorldContext(faces, quality, brief.seed);
+  // The camera looks at the planet along -z after its pose: pitch and tilt, then facing.
+  const pose = new THREE.Quaternion()
+    .setFromEuler(new THREE.Euler(brief.pitch ?? 0.2, 0, brief.tilt))
+    .multiply(
+      new THREE.Quaternion().setFromEuler(
+        new THREE.Euler(0, -THREE.MathUtils.degToRad(brief.facing), 0),
+      ),
+    );
+  world.view = new THREE.Vector3(0, 0, 1).applyQuaternion(pose.invert());
   brief.decorate(world, signals);
 
   if (brief.flora) plant(world, brief.flora);
@@ -86,7 +95,7 @@ export function buildEarthWorld(
     const size = (brief.clouds.size ?? 0.05) * 1.05 * world.random.range(0.7, 1.3);
     cloud(
       sky,
-      frame(up.clone().multiplyScalar(1.1 + world.random() * 0.05), up, world.random() * 6),
+      frame(up.clone().multiplyScalar(1.14 + world.random() * 0.05), up, world.random() * 6),
       size,
       brief.clouds.tone,
       world.random,

@@ -11,7 +11,7 @@ import { U } from '../props/library';
 import { makeRoute } from '../scene/collect';
 import { roads, seaLanes } from '../scene/network';
 import { bareFlora, citizens } from '../scene/presets';
-import { harbour } from '../scene/sites';
+import { harbour, setPieces } from '../scene/sites';
 import { offset } from '../scene/surface';
 import { buildTown, type TownStyle } from '../scene/towns';
 
@@ -136,6 +136,16 @@ export const s6: EarthBrief = {
   decorate(world, signals) {
     const earth = signals.bodies.Earth;
     const { faces, random } = world;
+    // Set pieces: nanoforges that make the regulators, and maintenance titans that tend them.
+    setPieces(
+      world,
+      [
+        ['nanoforge', 1, [0.85, 0.95]],
+        ['titan', 1, [1, 1.1], ['#e08a2e', '#d0702a']],
+      ],
+      4,
+      { spacing: 40, escort: ['spider-bot', 1, [1, 1], ['#e0a830']], escorts: 2 },
+    );
     const lit = lightShare(earth.artificial_illumination);
     const heart = { lat: 30, lon: 80 };
     const shell = claim(
@@ -186,6 +196,16 @@ export const s6: EarthBrief = {
     const sites = world.scatter(landShell, 6, 24);
     const clearing = (face: Face) => sites.some((s) => s.up.angleTo(face.up) < 0.15);
     const towns = sites.map((face) => buildTown(world, face.up, works));
+    // The regulated biosphere: tended planters at the edge of every works plaza.
+    for (const town of towns)
+      for (const a of [1.2, 3.6])
+        world.props.add(
+          a < 2 ? 'oak-small' : 'bush',
+          world.surface.point(offset(town.centre, a, 3.0 * U), -0.0004),
+          null,
+          1.1,
+          '#5f8a4a',
+        );
 
     const warnings = world.layer('warnings', 'surface', {
       motion: { kind: 'pulse', period: 3.2, floor: 0.2 },

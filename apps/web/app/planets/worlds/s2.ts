@@ -9,7 +9,7 @@ import { U } from '../props/library';
 import { makeRoute } from '../scene/collect';
 import { flights, harbourLoops, roads, seaLanes } from '../scene/network';
 import { citizens, earthFlora, earthy } from '../scene/presets';
-import { furrows, harbour, settleable } from '../scene/sites';
+import { furrows, harbour, setPieces, settleable } from '../scene/sites';
 import { offset, tangents } from '../scene/surface';
 import { buildTown } from '../scene/towns';
 
@@ -194,6 +194,18 @@ export const s2: EarthBrief = {
   decorate(world, signals) {
     const earth = signals.bodies.Earth;
     const { faces, random } = world;
+    // Set pieces: company titans, a giant excavator and a launch site for the Moon and Mars.
+    setPieces(
+      world,
+      [
+        ['titan', 1, [1, 1.1], companies],
+        ['excavator', 1, [1, 1.1], ['#e0a830']],
+        ['launch-site', 1, [1.15, 1.2]],
+        ['titan', 1, [1, 1.1], companies],
+      ],
+      4,
+      { spacing: 40, escort: ['mech', 1, [1, 1], companies], escorts: 1 },
+    );
     const lit = lightShare(earth.artificial_illumination);
     const land = faces.filter((f) => f.land && f.biome !== 'ice');
 
@@ -216,9 +228,9 @@ export const s2: EarthBrief = {
           plaza: { radius: 3 * U, tone: '#b9b2a6', centre: [['statue', 1, [1.4, 1.6], [colour]]] },
           lot: { spacing: 2.6 * U },
           core: [
-            ['skyscraper', 3, [1, 1.25]],
-            ['tower', 2, [1, 1.2], [colour, '#d9dde2']],
-            ['arcology', 1.2, [0.9, 1], [colour, '#d9dde2']],
+            ['skyscraper', 3, [0.6, 0.75]],
+            ['tower', 2, [0.65, 0.8], [colour, '#d9dde2']],
+            ['arcology', 1.2, [0.6, 0.7], [colour, '#d9dde2']],
           ],
           edge: [
             ['apartment', 3, [1, 1.1], [colour, '#d9d4c8']],
@@ -226,7 +238,7 @@ export const s2: EarthBrief = {
             ['hologram', 0.6, [1, 1.1]],
             ['oil-tank', 0.6, [0.8, 1]],
           ],
-          rise: (r) => (r < 0.3 ? 1.25 : 1),
+          rise: (r) => (r < 0.3 ? 1.1 : 1),
           people: { standing: 6, walking: 2, ...citizens, tints: [colour, '#2a2d33', '#e6e8ea'] },
           cars: {
             count: 3,

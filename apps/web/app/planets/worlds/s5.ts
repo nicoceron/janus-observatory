@@ -8,7 +8,7 @@ import type { Tone } from '../kit';
 import { U } from '../props/library';
 import { makeRoute } from '../scene/collect';
 import { flights, harbourLoops, seaLanes } from '../scene/network';
-import { harbour } from '../scene/sites';
+import { harbour, setPieces } from '../scene/sites';
 import { offset } from '../scene/surface';
 import { buildTown, type TownStyle } from '../scene/towns';
 
@@ -191,6 +191,12 @@ export const s5: EarthBrief = {
   decorate(world, signals) {
     const earth = signals.bodies.Earth;
     const { faces, random } = world;
+    // Set pieces: bio-spires grown from the engineered cells, hung with luminous pods.
+    setPieces(world, [['bio-spire', 1, [1.2, 1.35], cellTones]], 4, {
+      spacing: 40,
+      escort: ['robot', 1, [1, 1], ['#e9e2f5', '#d9f2ec']],
+      escorts: 1,
+    });
     const lit = lightShare(earth.artificial_illumination);
     // Designed cells: a Voronoi patchwork over the whole sphere, one palette colour per cell.
     const seeds = Array.from({ length: 90 }, (_, i) => fibonacci(90, i, 0.4, random));
@@ -226,8 +232,8 @@ export const s5: EarthBrief = {
       plaza: { radius: 3 * U, tone: '#d9f2ec', centre: [['bio-tree', 1, [1.6, 2]]] },
       lot: { spacing: 2.4 * U },
       core: [
-        ['bio-tower', 3, [1, 1.3], cellTones],
-        ['spire', 1.2, [0.9, 1.1], cellTones],
+        ['bio-tower', 3, [0.7, 0.9], cellTones],
+        ['spire', 1.2, [0.6, 0.75], cellTones],
         ['bio-pod', 2, [1, 1.2], cellTones],
       ],
       edge: [
@@ -236,7 +242,7 @@ export const s5: EarthBrief = {
         ['pod-house', 1.5, [0.9, 1.1], ['#efe6f5', '#d9f2ec', '#f5e2ef']],
         ['bio-shroom', 1, [1.4, 1.8], ['#6fe0c8', '#d35fc4']],
       ],
-      rise: (r) => (r < 0.35 ? 1.25 : 1),
+      rise: (r) => (r < 0.35 ? 1.1 : 1),
       people: {
         standing: 6,
         walking: 2,

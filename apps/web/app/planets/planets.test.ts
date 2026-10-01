@@ -123,7 +123,7 @@ describe('inhabited worlds', () => {
       // A diorama of a few large models, not a crowd of specks.
       const statics = model.instances.reduce((n, g) => n + g.matrices.length / 16, 0);
       const moving = model.movers.reduce((n, g) => n + g.route.length, 0);
-      expect(statics, `${id} props`).toBeGreaterThan(60);
+      expect(statics, `${id} props`).toBeGreaterThan(40);
       expect(statics, `${id} props`).toBeLessThanOrEqual(250);
       expect(moving, `${id} movers`).toBeLessThanOrEqual(56);
       if (['present', 'S3', 'S4', 'S7', 'S9', 'S10'].includes(id))

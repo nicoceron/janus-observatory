@@ -11,7 +11,7 @@ import { citizenKinds, walkerKinds } from '../props/people';
 import { makeRoute } from '../scene/collect';
 import { flights, roads, seaLanes } from '../scene/network';
 import { bareFlora } from '../scene/presets';
-import { harbour, queue } from '../scene/sites';
+import { harbour, queue, setPieces } from '../scene/sites';
 import { offset, tangents } from '../scene/surface';
 import { buildTown, type TownStyle } from '../scene/towns';
 
@@ -111,6 +111,16 @@ export const s1: EarthBrief = {
   decorate(world, signals) {
     const earth = signals.bodies.Earth;
     const { faces } = world;
+    // Set pieces: panopticon towers and enforcer titans watch over every quarter of the grid.
+    setPieces(
+      world,
+      [
+        ['panopticon', 1, [1.3, 1.4]],
+        ['enforcer', 1, [1, 1.1], ['#4a4f58', '#5d6168']],
+      ],
+      5,
+      { spacing: 36, escort: ['sentinel', 1, [1, 1], ['#4a4f58']], escorts: 1 },
+    );
     const lit = lightShare(earth.artificial_illumination);
     // The grid spreads from the capital: dry land first, then ice, then the shelf seas.
     const built = claim(faces, coveredFaces(earth.surface_modification, faces.length), (face) => {
@@ -219,7 +229,7 @@ export const s1: EarthBrief = {
       lamps: 'surveillance',
       // What remains of the biosphere: a few rationed planters and dead street trees.
       trees: {
-        count: 6,
+        count: 14,
         kinds: ['dead-tree', 'shrub', 'bush'],
         tints: ['#6f7a5a', '#5f6a50'],
         size: [0.9, 1.2],
@@ -230,6 +240,15 @@ export const s1: EarthBrief = {
     );
     fieldBlocks.forEach((place) => place());
     for (const town of towns) {
+      // What remains of the biosphere: two rationed planters at the edge of each plaza.
+      for (const a of [1.9, 4.2])
+        world.props.add(
+          a < 3 ? 'bush' : 'dead-tree',
+          world.surface.point(offset(town.centre, a, 3.1 * U), -0.0004),
+          null,
+          1.1,
+          '#6f7a5a',
+        );
       // Ration lines outside the distribution depots, and drones over every district.
       queue(
         world,
