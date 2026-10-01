@@ -96,7 +96,7 @@ test('desktop world rotation is keyboard accessible while reduced motion stays s
     'Touch previews preserve vertical scrolling.',
   );
   const canvas = page.locator('[data-world-portrait] canvas');
-  await expect(canvas).toHaveAttribute('data-blender-state', 'ready');
+  await expect(canvas).toHaveAttribute('data-planet-state', 'ready');
   await expect(canvas).toHaveAttribute('tabindex', '0');
   await expect(canvas).toHaveAttribute('aria-label', /Shift and arrow keys/);
   await canvas.focus();

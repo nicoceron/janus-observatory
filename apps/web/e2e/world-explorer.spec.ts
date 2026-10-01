@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { allScenarioProfiles } from '../lib/canonical-core';
 import { systemPortrait } from '../lib/system-portrait';
-import { selectionName, systemSelections } from '../app/voyage/inspection';
+import { objectSelections, selectionName, systemSelections } from '../app/planets/explore';
 
 // The complete ten-world inspection sweep includes serial model preparation.
 test.setTimeout(90000);
@@ -29,7 +29,7 @@ test('full-motion story text stays out of planet and asset inspection and return
   await trigger.click();
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
-  for (const name of ['Earth', 'Mining hauler', 'Luna']) {
+  for (const name of ['Earth', 'Open-pit mine', 'Luna']) {
     await dialog.getByRole('button', { name, exact: true }).click();
     await expect(dialog.getByRole('heading', { name, exact: true })).toBeVisible();
     await expect.poll(paintedOpacity).toBe(0);
@@ -83,7 +83,9 @@ test('every world can be inspected independently and closing restores the same s
     const trigger = await enter(page, i),
       dialog = page.getByRole('dialog'),
       system = systemPortrait(allScenarioProfiles[i]).art;
-    for (const id of systemSelections(system)) {
+    for (const id of [...systemSelections(system), ...objectSelections(i)]) {
+      if (id.startsWith('landmark:'))
+        await dialog.getByRole('button', { name: 'Earth', exact: true }).click();
       await dialog.getByRole('button', { name: selectionName(id), exact: true }).click();
       await expect(page.locator('canvas')).toHaveAttribute('data-inspection', id);
       await expect(
@@ -115,8 +117,9 @@ test('explorer keyboard loop, model controls and accessible dialog work', async 
   await expect(dialog.getByRole('link', { name: 'Read the scenario & sources ↗' })).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(close).toBeFocused();
-  await dialog.getByRole('button', { name: 'Woodland deer', exact: true }).click();
-  await expect(page.locator('canvas')).toHaveAttribute('data-inspection', 'animal:deer');
+  await dialog.getByRole('button', { name: 'Seasonal camp', exact: true }).click();
+  await expect(page.locator('canvas')).toHaveAttribute('data-inspection', 'landmark:camp');
+  // The homepage story runs full motion, so the study turns on its own turntable.
   const first = await page.locator('canvas').screenshot();
   await page.waitForTimeout(250);
   expect(first.equals(await page.locator('canvas').screenshot())).toBe(false);

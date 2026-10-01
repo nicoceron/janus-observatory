@@ -64,7 +64,7 @@ test('every main route uses the same navigation and a working story index', asyn
 test('render resolution remains fixed while the model animates', async ({ page }) => {
   await page.goto('/atlas');
   const canvas = page.locator('[data-world-portrait] canvas');
-  await expect(canvas).toHaveAttribute('data-blender-state', 'ready');
+  await expect(canvas).toHaveAttribute('data-planet-state', 'ready');
   await canvas.scrollIntoViewIfNeeded();
   const size = await canvas.evaluate((c) => ({
     buffer: (c as HTMLCanvasElement).width,

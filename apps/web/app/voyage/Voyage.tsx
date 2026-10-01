@@ -7,12 +7,13 @@ import { gsap } from 'gsap';
 import { chapters } from './worlds';
 import { useJourneyScroll } from './use-journey-scroll';
 import type { SystemPortrait } from '../../lib/system-portrait';
+import type { WorldSignals } from '../../lib/world-signals';
 import s from './voyage.module.css';
 import { SiteHeader } from '../components/SiteHeader';
 import { SpaceBackdrop } from './SpaceBackdrop';
 import { ExploreContext } from './WorldExplore';
 import { Inspector, type ViewAdjustment } from './Inspector';
-import type { Inspection } from './inspection';
+import type { Inspection } from '../planets/explore';
 
 const Space = dynamic(() => import('./Space'), { ssr: false });
 
@@ -27,7 +28,15 @@ function spatialContextAvailable() {
   }
 }
 
-export function Voyage({ children, systems }: { children: ReactNode; systems: SystemPortrait[] }) {
+export function Voyage({
+  children,
+  systems,
+  signals,
+}: {
+  children: ReactNode;
+  systems: SystemPortrait[];
+  signals: WorldSignals[];
+}) {
   const [inspection, setInspection] = useState<Inspection | null>(null);
   const [view, setView] = useState<ViewAdjustment>({ yaw: 0, zoom: 1, reset: 0 });
   const inspectionTrigger = useRef<HTMLElement | null>(null);
@@ -146,6 +155,7 @@ export function Voyage({ children, systems }: { children: ReactNode; systems: Sy
           {mount && !reading && !failed && (
             <Space
               systems={systems}
+              signals={signals}
               inspection={inspection}
               onSelect={selectObject}
               view={view}

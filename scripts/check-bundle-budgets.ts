@@ -1,9 +1,7 @@
 import { gzipSync } from 'node:zlib';
 import { readFile, readdir, stat } from 'node:fs/promises';
-import { basename, dirname, extname, join, relative, resolve } from 'node:path';
+import { dirname, extname, join, relative, resolve } from 'node:path';
 import ts from 'typescript';
-import { allScenarioProfiles } from '../apps/web/lib/canonical-core';
-import { systemPortrait } from '../apps/web/lib/system-portrait';
 
 type BuildManifest = {
   polyfillFiles?: string[];
@@ -58,15 +56,12 @@ function localScriptSources(html: string): { modern: Set<string>; legacy: Set<st
   return { modern, legacy };
 }
 
-/** Audit the complete Voyage directory and the relative source graph inherited by the home route. */
+/**
+ * Audit the relative source graph reachable from the home route, including dynamic imports. The
+ * low-poly worlds are procedural, so no reachable home source may reference a public asset.
+ */
 async function homeAssetSources() {
-  const pending = [
-    ...(await filesBelow('apps/web/app/voyage')).filter(
-      (path) => /\.(?:[cm]?[jt]sx?|css)$/.test(path) && !/\.test\.[jt]sx?$/.test(path),
-    ),
-    'apps/web/app/page.tsx',
-    'apps/web/app/layout.tsx',
-  ].map((path) => resolve(path));
+  const pending = ['apps/web/app/page.tsx', 'apps/web/app/layout.tsx'].map((path) => resolve(path));
   const sources = new Map<string, string>();
   while (pending.length) {
     const path = pending.pop()!;
@@ -101,32 +96,15 @@ async function homeAssetSources() {
         );
     }
   }
-  const loaderPath = resolve('apps/web/app/voyage/BlenderAssets.tsx');
-  const expectedTemplate =
-    "/assets/blender/v1/${world}/${selection === 'Earth' ? (mobile ? 'earth-mobile' : 'earth') : selection}.glb";
-  const references: { path: string; asset: string; kind: string }[] = [];
-  let loaderTemplates = 0;
-  for (const [path, source] of sources) {
-    const matches = [...source.matchAll(/(["'`])(\/assets\/[\s\S]*?)\1/g)];
-    if (matches.length !== [...source.matchAll(/\/assets\//g)].length)
-      failUnverified(`unexplained /assets/ reference in ${relative('.', path)}.`);
-    for (const match of matches) {
-      const asset = match[2];
-      if (path === loaderPath && asset === expectedTemplate) {
-        loaderTemplates++;
-        references.push({ path: relative('.', path), asset, kind: 'bounded-blender-library' });
-      } else
-        failUnverified(
-          `unexpected home asset reference ${asset} in ${relative('.', path)}; update the guided-path accounting before accepting it.`,
-        );
-    }
-  }
-  if (loaderTemplates !== 1)
-    failUnverified(
-      'the Blender asset URL template is missing or no longer matches the audited tier contract.',
-    );
+  for (const [path, source] of sources)
+    if (/\/assets\//.test(source))
+      failUnverified(
+        `unexpected home asset reference in ${relative('.', path)}; update the guided-path accounting before accepting it.`,
+      );
+  if (![...sources.keys()].some((path) => path.endsWith('/app/planets/catalog.ts')))
+    failUnverified('the procedural world catalog is no longer reachable from the home route.');
   return {
-    references,
+    references: [] as { path: string; asset: string; kind: string }[],
     files: [...sources.keys()].map((path) => relative('.', path)).sort(),
   };
 }
@@ -250,9 +228,9 @@ if (oversizedAssets.length > 0) {
   throw new Error(`Runtime assets exceed the 4 MiB guardrail:\n${oversizedAssets.join('\n')}`);
 }
 
-// Both journeys include every Blender destination. Mobile also
-// loads desktop Earth libraries for the detailed explorer. The individual 4 MiB check above
-// still covers every public file, including legacy imagery unreachable from this source graph.
+// Both journeys build every world, body and study procedurally, so neither downloads public
+// assets. The individual 4 MiB check above still covers every public file, including legacy
+// imagery and retired Blender exports unreachable from this source graph.
 const homeSources = await homeAssetSources();
 const htmlAssets = new Set([
   ...[...homeHtml.matchAll(/\/assets\/[^"'\\<>\s&?]+/g)].map((match) => match[0]),
@@ -262,34 +240,8 @@ const htmlAssets = new Set([
 ]);
 if (htmlAssets.size)
   failUnverified('the built home HTML unexpectedly preloads public assets outside the 3D loader.');
-const publicSet = new Set(publicFiles);
-const blenderFiles = publicFiles.filter(
-  (path) =>
-    path.startsWith(join(publicRoot, 'assets/blender/v1') + '/') && extname(path) === '.glb',
-);
-const expectedBlenderFiles = [
-  ...['origin', ...allScenarioProfiles.map((profile) => profile.id.toLowerCase())].flatMap(
-    (world) =>
-      ['earth.glb', 'earth-mobile.glb'].map((name) =>
-        join(publicRoot, 'assets/blender/v1', world, name),
-      ),
-  ),
-  ...allScenarioProfiles.flatMap((profile) => {
-    const system = systemPortrait(profile).art;
-    return [...system.bodies.map((body) => body.body), ...system.features].map((name) =>
-      join(publicRoot, 'assets/blender/v1', profile.id.toLowerCase(), name + '.glb'),
-    );
-  }),
-];
-const missingBlenderFiles = expectedBlenderFiles.filter((path) => !publicSet.has(path));
-if (missingBlenderFiles.length)
-  failUnverified(
-    `source-selected Blender exports are missing: ${missingBlenderFiles.map((path) => relative(publicRoot, path)).join(', ')}.`,
-  );
-const desktopPublic = [
-  ...new Set(blenderFiles.filter((path) => basename(path) !== 'earth-mobile.glb')),
-];
-const mobilePublic = [...new Set(blenderFiles)];
+const desktopPublic: string[] = [];
+const mobilePublic: string[] = [];
 const publicReport = async (files: string[]) => ({
   assetCount: files.length,
   bytes: (await Promise.all(files.map(async (path) => (await stat(path)).size))).reduce(
@@ -398,7 +350,7 @@ process.stdout.write(
         runtimeAssetsChecked: publicFiles.length,
       },
       guidedPathPayload: {
-        accountingVersion: 'voyage-blender-tier-v2',
+        accountingVersion: 'voyage-procedural-v1',
         conservativeUpperBoundBytes: guidedPathUpperBoundBytes,
         budgetBytes: maximumGuidedPathPayload,
         desktop: {
@@ -408,7 +360,6 @@ process.stdout.write(
         mobile: {
           conservativeUpperBoundBytes: mobileGuidedPathBytes,
           publicAssets: mobilePublicReport,
-          includesDesktopEarthLibrariesForInspector: true,
         },
         sharedClientPayload: {
           bytes: sharedClientPayloadBytes,
@@ -419,14 +370,12 @@ process.stdout.write(
         sourceAudit: {
           files: homeSources.files,
           references: homeSources.references,
-          expectedSourceSelectedGlbs: expectedBlenderFiles.length,
         },
         excludedLegacyPublicFiles: publicFiles
-          .filter((path) => !blenderFiles.includes(path))
           .map((path) => '/' + relative(publicRoot, path))
           .sort(),
         assumption:
-          'Desktop counts all desktop Earth libraries and every offworld Blender GLB. Mobile counts both Earth tiers because the detailed inspector intentionally uses desktop libraries, plus all offworld GLBs. Both totals include every emitted client JS/CSS/WOFF2 and home HTML once; the reported upper bound is their maximum. Unreachable legacy public assets are excluded from this Voyage journey but remain subject to the per-file 4 MiB guardrail. Unexpected home /assets/ references or missing source-selected exports fail closed.',
+          'The low-poly worlds, companions and explorer studies are generated in the browser from canonical values, so both journeys download no public 3D assets. Both totals include every emitted client JS/CSS/WOFF2 and home HTML once; the reported upper bound is their maximum. Unreachable legacy public assets are excluded from this Voyage journey but remain subject to the per-file 4 MiB guardrail. Any /assets/ reference in the reachable home source graph fails closed.',
       },
     },
     null,

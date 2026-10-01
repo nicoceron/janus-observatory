@@ -10,6 +10,7 @@ import { useEffect, useMemo, useRef, type CSSProperties } from 'react';
 import {
   allScenarioProfiles,
   earthAtmosphere,
+  getScenarioProfile,
   instrumentCopy,
   observabilityDataset,
   sourceRefHref,
@@ -19,6 +20,7 @@ import {
 import { useReducedMotionPreference } from '../components/MotionPreference';
 import styles from './observatory.module.css';
 import { WorldPortrait } from '../components/WorldPortrait';
+import { worldSignals } from '../../lib/world-signals';
 import { GuidedObservation, isLessonStep } from './GuidedObservation';
 import { InstrumentExplanation } from './InstrumentExplanation';
 import { ScenarioEvidence } from './ScenarioEvidence';
@@ -575,7 +577,10 @@ export function ObservatoryExplorer() {
         </div>
 
         <div className={styles.viewport} data-observation-viewport>
-          <WorldPortrait world={Number(scenarioId.slice(1)) - 1} />
+          <WorldPortrait
+            world={Number(scenarioId.slice(1)) - 1}
+            signals={worldSignals(getScenarioProfile(scenarioId))}
+          />
           <ScenarioEvidence scenarioId={scenarioId} instrumentId={instrumentId} />
         </div>
         <InstrumentExplanation instrumentId={instrumentId} />

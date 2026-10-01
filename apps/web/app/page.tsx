@@ -14,6 +14,7 @@ import { Voyage } from './voyage/Voyage';
 import { CivilizationChart, SignalMatrix } from './voyage/Charts';
 import { worlds } from './voyage/worlds';
 import { systemPortrait } from '../lib/system-portrait';
+import { worldSignals } from '../lib/world-signals';
 import s from './voyage/voyage.module.css';
 
 export const metadata: Metadata = {
@@ -64,7 +65,10 @@ export default function Home() {
   }));
   return (
     <main id="main">
-      <Voyage systems={systems.map((system) => system.art)}>
+      <Voyage
+        systems={systems.map((system) => system.art)}
+        signals={allScenarioProfiles.map(worldSignals)}
+      >
         <section
           id="first-light"
           data-chapter="0"

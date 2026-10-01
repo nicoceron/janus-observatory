@@ -3,13 +3,12 @@ import { useEffect, useRef } from 'react';
 import type { SystemPortrait } from '../../lib/system-portrait';
 import { worlds } from './worlds';
 import {
-  companionStudy,
   objectSelections,
   selectionDescription,
   selectionName,
   systemSelections,
   type Inspection,
-} from './inspection';
+} from '../planets/explore';
 import s from './voyage.module.css';
 export type ViewAdjustment = { yaw: number; zoom: number; reset: number };
 export function Inspector({
@@ -65,7 +64,6 @@ export function Inspector({
     };
   }, [onClose]);
   const objects = objectSelections(world);
-  const contextObject = companionStudy(world, selection, system);
   return (
     <div
       ref={dialog}
@@ -101,8 +99,8 @@ export function Inspector({
         </button>
         <button
           aria-label="Zoom in"
-          disabled={view.zoom >= 1.6}
-          onClick={() => onView({ ...view, zoom: Math.min(1.6, view.zoom + 0.2) })}
+          disabled={view.zoom >= 2.6}
+          onClick={() => onView({ ...view, zoom: Math.min(2.6, view.zoom + 0.3) })}
         >
           +
         </button>
@@ -118,7 +116,7 @@ export function Inspector({
         </button>
       </div>
       <p className={s.inspectHint}>
-        DRAG TO ROTATE <span>·</span> CLICK AN OBJECT TO INSPECT
+        DRAG TO ROTATE <span>·</span> CLICK A LANDMARK TO INSPECT
       </p>
       <aside className={s.inspectorPanel}>
         <p className={s.inspectKicker}>
@@ -137,14 +135,9 @@ export function Inspector({
             </button>
           ))}
         </nav>
-        {contextObject && (
-          <button className={s.inspectRelated} onClick={() => onSelect(contextObject)}>
-            Inspect {selectionName(contextObject).toLowerCase()} <span>↗</span>
-          </button>
-        )}
         {(selection === 'Earth' || objects.includes(selection)) && (
           <div className={s.inspectObjects}>
-            <p>DETAILS ON EARTH</p>
+            <p>LANDMARKS</p>
             <div>
               {objects.map((id) => (
                 <button key={id} aria-pressed={id === selection} onClick={() => onSelect(id)}>
@@ -155,8 +148,8 @@ export function Inspector({
           </div>
         )}
         <p className={s.inspectCredit}>
-          Original interpretive artwork. Species, architecture, sizes and distances are
-          illustrative.
+          Original interpretive low-poly artwork. Architecture, sizes and distances are
+          illustrative; counts and extents follow published scenario values.
         </p>
         <a className={s.inspectSource} href={`/atlas/${art.id.toLowerCase()}`}>
           Read the scenario & sources ↗

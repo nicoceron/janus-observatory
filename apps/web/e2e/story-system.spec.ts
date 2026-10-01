@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { allScenarioProfiles } from '../lib/canonical-core';
 import { systemPortrait } from '../lib/system-portrait';
-import { selectionName, systemSelections } from '../app/voyage/inspection';
+import { selectionName, systemSelections } from '../app/planets/explore';
 
 test('every published destination is visible together and opens its own inspector without replacing the system', async ({
   page,
@@ -27,12 +27,12 @@ test('every published destination is visible together and opens its own inspecto
     const ids = systemSelections(systemPortrait(allScenarioProfiles[i]).art);
     const region = page.getByLabel(`Explore S${i + 1} models`, { exact: true });
     await expect(region.getByRole('button')).toHaveCount(ids.length);
+    // Every destination is a mounted low-poly model: the Earth plus one body per published place.
     await expect
       .poll(
         async () =>
-          JSON.parse((await canvas.getAttribute('data-blender-libraries')) ?? '[]').filter(
-            (a: { url: string; state: string }) =>
-              a.url.includes(`/s${i + 1}/`) && a.state === 'ready',
+          JSON.parse((await canvas.getAttribute('data-planet-models')) ?? '[]').filter(
+            (key: string) => key === `world:S${i + 1}` || key.startsWith(`body:S${i + 1}:`),
           ).length,
         { timeout: 45000 },
       )

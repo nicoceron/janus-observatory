@@ -5,7 +5,7 @@ test('anchor travel is interruptible, lands accurately and survives browser hist
 }, info) => {
   await page.goto('/');
   const root = page.locator('[data-voyage]');
-  await expect(page.locator('canvas')).toHaveAttribute('data-blender-state', 'ready', {
+  await expect(page.locator('canvas')).toHaveAttribute('data-planet-state', 'ready', {
     timeout: 60000,
   });
   await expect(page.locator('[data-space-backdrop]')).toHaveCSS('background-color', 'rgb(0, 0, 0)');
