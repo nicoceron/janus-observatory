@@ -397,6 +397,95 @@ export const heroes: Record<string, PropDef> = {
     },
   },
 
+  /** A space freighter: cockpit, a spine of ore containers and a block of glowing engines. */
+  'ore-hauler': {
+    tint: '#e0a830',
+    build: (p) => {
+      const o = at();
+      p.base.prism(forward(o, 0, 0.6, -2.4), 0.12, 0.12, 4.6, 6, steel);
+      p.glass.box(local(o, 0, 0.35, 2.1), 0.7, 0.45, 0.6, '#2f4f6a');
+      p.tint.box(local(o, 0, 0.2, 1.6), 1.0, 0.8, 0.8, '#ffffff');
+      for (let k = 0; k < 3; k++)
+        p.tint.box(
+          local(o, 0, 0.12, 0.6 - k * 1.05),
+          1.15,
+          0.95,
+          0.9,
+          k % 2 ? '#ffffff' : '#e6e8ea',
+        );
+      p.base.box(local(o, 0, 0.1, -2.5), 1.3, 1.0, 0.8, dark);
+      for (const x of [-0.35, 0.35])
+        for (const y of [0.35, 0.8])
+          p.glow.prism(forward(o, x, y, -3.0), 0.16, 0.16, 0.08, 6, amber);
+      for (const side of [-1, 1]) p.base.panel(local(o, side * 0.95, 0.6, -2.2), 0.6, 0.5, dark);
+      p.glow.box(local(o, 0, 1.1, 1.6), 0.12, 0.08, 0.12, red);
+    },
+  },
+
+  /** A mining rig: a lattice tower over a spinning drill head, an ore hopper and a lit conveyor. */
+  'mining-rig': {
+    tint: '#e0a830',
+    build: (p) => {
+      const o = at();
+      p.base.prism(local(o, 0, 0, 0), 1.5, 1.3, 0.3, 8, '#5f6874');
+      for (const [x, z] of [
+        [-0.6, -0.6],
+        [0.6, -0.6],
+        [-0.6, 0.6],
+        [0.6, 0.6],
+      ])
+        p.tint.beam(v(x, 0.3, z), v(x * 0.35, 3.6, z * 0.35), 0.07, '#ffffff');
+      for (let y = 0.9; y < 3.4; y += 0.8) {
+        const r = 0.6 - (y / 3.6) * 0.4;
+        p.tint.beam(v(-r, y, -r), v(r, y + 0.4, -r), 0.035, '#ffffff');
+        p.tint.beam(v(-r, y, r), v(r, y + 0.4, r), 0.035, '#ffffff');
+      }
+      p.metal.prism(local(o, 0, 3.6, 0), 0.35, 0.25, 0.5, 8, '#ffffff');
+      p.base.prism(local(o, 0, 0.3, 0), 0.32, 0.22, 2.4, 8, steel);
+      p.glow.torus(local(o, 0, 0.45, 0), 0.45, 0.05, amber, 12, 3);
+      p.tint.box(local(o, 1.5, 0, 0.4), 0.9, 0.9, 0.9, '#ffffff');
+      for (const [x, z] of [
+        [1.35, 0.3],
+        [1.6, 0.55],
+        [1.5, 0.2],
+      ])
+        p.glow.gem(local(o, x, 0.9, z), 0.14, 0.32, '#7fe0ff', 5, 0.5);
+      p.base.beam(v(0.4, 0.5, 0.2), v(1.1, 1.0, 0.4), 0.06, dark);
+      p.glow.box(local(o, 0, 4.15, 0), 0.14, 0.14, 0.14, red);
+    },
+  },
+
+  /** A Venusian cloud city: towers on a platform under a lifting glass dome, a lit rim and fins. */
+  'cloud-city': {
+    tint: '#f1efe7',
+    build: (p) => {
+      const o = at();
+      p.tint.prism(local(o, 0, 0, 0), 1.2, 2.2, 0.5, 12, '#ffffff', '#d9d6cc');
+      p.glow.torus(local(o, 0, 0.45, 0), 2.2, 0.06, '#fff1c4', 24, 3);
+      for (const [x, z, h] of [
+        [0, 0, 1.6],
+        [0.8, 0.4, 1.0],
+        [-0.7, 0.6, 0.8],
+        [0.3, -0.9, 1.2],
+        [-0.8, -0.5, 0.9],
+      ]) {
+        p.tint.box(local(o, x, 0.5, z), 0.45, h, 0.45, '#ffffff');
+        p.glow.plate(local(o, x, 0.5 + h * 0.55, z + 0.226), 0.3, 0.08, '#ffe6a8');
+      }
+      p.glass.dome(local(o, 0, 0.5, 0), 2.0, '#cfe8ef', 12, 3, 0.8);
+      for (let i = 0; i < 4; i++) {
+        const a = (i / 4) * Math.PI * 2;
+        p.base.panel(
+          local(o, Math.cos(a) * 2.1, 0.1, Math.sin(a) * 2.1, -a, 1, [0, Math.PI / 2]),
+          0.5,
+          0.8,
+          steel,
+        );
+      }
+      p.base.prism(local(o, 0, -0.9, 0), 0.25, 0.6, 0.9, 8, steel);
+    },
+  },
+
   /** A gardener robot: domed head, watering arm and a planter of seedlings on its back. */
   'gardener-bot': {
     tint: '#7fbf5a',

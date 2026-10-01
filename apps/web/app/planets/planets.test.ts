@@ -201,6 +201,18 @@ describe('companions and system features', () => {
     }
   });
 
+  it('works every published asteroid, outer and Kuiper feature with a set piece and traffic', () => {
+    for (const [i, profile] of allScenarioProfiles.entries()) {
+      for (const feature of systemPortrait(profile).art.features) {
+        if (feature === 'solar') continue;
+        const model = buildFeature(feature, profile.id, qualities.story);
+        expect(model.instances.length, `${profile.id} ${feature} props`).toBeGreaterThan(1);
+        expect(model.movers.length, `${profile.id} ${feature} ships`).toBeGreaterThan(0);
+      }
+      void i;
+    }
+  }, 30000);
+
   it('builds every published destination of every scenario', () => {
     for (const [i, profile] of allScenarioProfiles.entries()) {
       const system = systemPortrait(profile).art;

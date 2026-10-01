@@ -119,6 +119,26 @@ The published values still decide extent and intensity (built fraction, light, t
 haze, fields). Crowds, vehicles and wildlife are interpretive illustration of each narrative,
 labelled as original interpretive artwork, and never presented as measured quantities.
 
+## The rest of the system (revision 3c)
+
+Companions and system features get the same toy treatment, at twice the Earth's toy scale because
+they are drawn smaller in the system view:
+
+- Moon, Mars and Venus stations carry set pieces about 0.6 of the body's radius, by station
+  style: S1's panopticon and enforcer on the Moon, S2's resort arcology and launch site on the
+  Moon and its excavator, mining rig and company titan on Mars, S3's launch sites and landers,
+  S5's bio-spires and garden spires on the bloom Moon and terraformed Mars, S6's nanoforges,
+  maintenance titans and reactors, S8's guarded hatch, S9's machine monoliths, titans and spires
+  on Mars and Venus, and S10's seed arks and launch sites. Bodies worked only from orbit (S1's
+  and S5's Venus, S9's Moon) carry a station ring: S1's elite settlements, S5's habitats, S9's
+  machine nodes. S10's Venus floats cloud cities in its upper atmosphere.
+- `features.ts` rebuilds the asteroid, outer-planet and Kuiper features per scenario as small
+  dioramas: a set piece on the main rock or moon (an enforcer, a giant excavator, a lander, a
+  bio-spire, a nanoforge, a monolith or a seed ark), mining rigs or homes and a crew around it,
+  lit ore veins, orbital settlements around the giant, and ore haulers, cargo drones or gliders
+  circling. S9's Dyson swarm has five rings of seamed panels with collector stations.
+- Table 8 still decides only whether a feature appears; what is drawn on it is interpretive.
+
 ## Published values drive the drawing
 
 Magnitudes are never typed into components. `apps/web/lib/world-signals.ts` copies the relevant

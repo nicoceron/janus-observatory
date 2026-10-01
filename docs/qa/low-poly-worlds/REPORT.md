@@ -127,6 +127,14 @@ After the fixes:
 - Reviewed with hardware WebGL in the lab (present, S1, S5, S8, S9, S10) and in the S1, S2, S3,
   S6 story chapters.
 
+## Revision 3c: companions and features
+
+- Companion set pieces and orbital stations, S10 cloud cities, and per-scenario asteroid, outer
+  and Kuiper dioramas with ships (`features.ts`). A new test checks that every published asteroid,
+  outer and Kuiper feature has props and traffic; `pnpm test` 42 files, 167 tests.
+- Reviewed in the lab system views for S2, S6, S9 and S10, close-ups of S9's Moon and S1's
+  Venus, and the S5 and S9 story chapters.
+
 ## Data and rights
 
 - Magnitudes come from `data/generated/runtime/{planetary,system,growth,morphology}.json`

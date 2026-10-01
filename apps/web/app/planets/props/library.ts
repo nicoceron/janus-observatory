@@ -29,7 +29,7 @@ export const living =
 const robot = /^(robot|robot-walk|sentinel|mech|spider-bot|gardener-bot)$/;
 const animal = /^(deer|bison|cow|sheep|horse|bird|whale|fish)/;
 const vehicle =
-  /^(car|taxi|van|truck|haul-truck|bus|tram|maglev|rover|cart|bicycle|ship|tanker|ferry|sailboat|fishing|canoe|bio-skiff|plane|airship|glider|machine-walker|drone|hover-car|hover-bus|cargo-drone|hunter-drone)$/;
+  /^(car|taxi|van|truck|haul-truck|bus|tram|maglev|rover|cart|bicycle|ship|tanker|ferry|sailboat|fishing|canoe|bio-skiff|plane|airship|glider|machine-walker|drone|hover-car|hover-bus|cargo-drone|hunter-drone|ore-hauler)$/;
 const plant =
   /^(pine|pine-tall|spruce|oak|oak-small|birch|cypress|palm|bush|shrub|cactus|dead-tree|bio-tree|bio-shroom|coral)$/;
 const decor =
@@ -55,7 +55,7 @@ export function propScale(kind: string) {
   // Aircraft fly above everything else and stay near life size, or they would dwarf the towns.
   if (/^(plane|airship|glider)$/.test(kind)) return 0.8;
   // Ships are long and sit low on open water; near life size they still read clearly.
-  if (/^(ship|tanker|ferry)$/.test(kind)) return 0.75;
+  if (/^(ship|tanker|ferry|ore-hauler)$/.test(kind)) return 0.75;
   if (/^(sailboat|fishing|canoe|bio-skiff)$/.test(kind)) return 1;
   if (kind === 'mech') return 1.7;
   if (kind === 'spider-bot') return 2.2;

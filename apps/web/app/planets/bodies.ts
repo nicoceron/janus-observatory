@@ -1,9 +1,10 @@
 import * as THREE from 'three';
 import type { SignalBody, WorldSignals } from '../../lib/world-signals';
 import { claim, extentOf } from './earth';
+import { accent } from './features';
 import { coveredFaces, hazeStrength, lightShare, satelliteCount } from './encoding';
 import { buildFaces, globeGeometry, type Face } from './globe';
-import { frame, local, Mesher, type Tone } from './kit';
+import { local, type Tone } from './kit';
 import {
   onOrbit,
   orbitMatrix,
@@ -16,13 +17,17 @@ import {
 import { orderedSwarm } from './orbits';
 import { U } from './props/library';
 import { makeRoute } from './scene/collect';
-import { sprinkle } from './scene/sites';
+import { setPieces, sprinkle } from './scene/sites';
 import { offset } from './scene/surface';
 import { buildTown, type Pick, type TownStyle } from './scene/towns';
 import { fbm, rng } from './random';
+import { eliteSettlement } from './worlds/s1';
+import { machineNode } from './worlds/s9';
+import { habitat } from './worlds/s10';
 
 export type Companion = Exclude<SignalBody, 'Earth'>;
-export type Feature = 'asteroids' | 'outer' | 'kuiper' | 'solar';
+export type { Feature } from './features';
+export { buildFeature } from './features';
 
 /**
  * How each scenario's published off-world values are drawn. Styles interpret narrative summaries;
@@ -53,17 +58,6 @@ const styles: Record<string, Partial<Record<Companion, Style>>> = {
   S8: { Moon: 'hatch' },
   S9: { Moon: 'orbit', Mars: 'machine-dark', Venus: 'machine-gold' },
   S10: { Moon: 'machine-light', Mars: 'machine-light', Venus: 'aerostat' },
-};
-
-const accent: Record<string, Tone> = {
-  S1: '#ffb357',
-  S2: '#ffd28a',
-  S3: '#ffe6a8',
-  S5: '#b8fff0',
-  S6: '#ffb03a',
-  S8: '#ffcf7a',
-  S9: '#6ff6ff',
-  S10: '#fff1c4',
 };
 
 function craters(seed: number, count: number) {
@@ -363,8 +357,8 @@ function atmosphereFor(
   };
 }
 
-/** Bases drawn larger than on Earth so their life reads on a small body. */
-const BODY = 1;
+/** Bases drawn twice Earth's toy scale so their life reads on a small, distant body. */
+const BODY = 2;
 const suits: Tone[] = ['#eef0f2', '#e0a830', '#c9cdd2', '#d0493a', '#4f7fbf'];
 
 type Kit = {
@@ -576,6 +570,106 @@ const kits: Partial<Record<Style, Kit>> = {
   },
 };
 
+const companies = ['#d0493a', '#3a68d0', '#e0a52e', '#2e9e6e'];
+
+/**
+ * Each station style's set pieces, drawn landmark-sized near the limb of the story view so a
+ * small body still reads from the system view: S1's panopticons, S2's resort arcologies and
+ * mining machines, S5's bio-spires, S6's nanoforges, S8's guarded hatch, S9's machine monoliths
+ * and S10's arks.
+ */
+const pieces: Partial<Record<Style, { picks: Pick[]; count: number; escort?: Pick }>> = {
+  grid: {
+    picks: [
+      ['panopticon', 1, [1.2, 1.3]],
+      ['enforcer', 1, [1, 1.1], ['#4a4f58']],
+    ],
+    count: 2,
+    escort: ['sentinel', 1, [1, 1], ['#4a4f58']],
+  },
+  resort: {
+    picks: [
+      ['arcology', 1, [1, 1.1], companies],
+      ['launch-site', 1, [1.1, 1.2]],
+    ],
+    count: 2,
+    escort: ['robot', 1, [1, 1], ['#eef0f2']],
+  },
+  outpost: {
+    picks: [
+      ['launch-site', 1, [1.05, 1.15]],
+      ['lander', 1, [0.9, 1]],
+    ],
+    count: 2,
+    escort: ['robot', 1, [1, 1], suits],
+  },
+  mining: {
+    picks: [
+      ['excavator', 1, [1, 1.1], ['#e0a830']],
+      ['mining-rig', 1, [1, 1.1], companies],
+      ['titan', 1, [1, 1.1], companies],
+    ],
+    count: 3,
+    escort: ['spider-bot', 1, [1, 1], ['#e0a830']],
+  },
+  bloom: { picks: [['bio-spire', 1, [1.2, 1.3], ['#cc4fbd', '#2fbf9c']]], count: 2 },
+  terraform: {
+    picks: [
+      ['bio-spire', 1, [1.2, 1.3], ['#cc4fbd', '#7d55d8']],
+      ['garden-spire', 1, [1.2, 1.3]],
+    ],
+    count: 3,
+    escort: ['enhanced', 1, [1, 1], ['#e9e2f5']],
+  },
+  industrial: {
+    picks: [
+      ['nanoforge', 1, [0.85, 0.95]],
+      ['titan', 1, [1, 1.1], ['#e08a2e', '#d0702a']],
+    ],
+    count: 2,
+    escort: ['spider-bot', 1, [1, 1], ['#e0a830']],
+  },
+  works: {
+    picks: [
+      ['nanoforge', 1, [0.8, 0.9]],
+      ['reactor', 1, [0.8, 0.9]],
+    ],
+    count: 2,
+  },
+  hatch: {
+    picks: [['enforcer', 1, [1, 1.1], ['#2d2a2f']]],
+    count: 1,
+    escort: ['sentinel', 1, [1, 1], ['#3a3638']],
+  },
+  'machine-dark': {
+    picks: [
+      ['monolith', 1, [1.1, 1.2]],
+      ['titan', 1, [1, 1.1], ['#1f2230']],
+      ['spire', 1, [1.2, 1.3], ['#1f2230']],
+    ],
+    count: 3,
+    escort: ['spider-bot', 1, [1, 1], ['#1f2230']],
+  },
+  'machine-gold': {
+    picks: [
+      ['monolith', 1, [1.1, 1.2], ['#3a2f1c']],
+      ['titan', 1, [1, 1.1], ['#5a4728']],
+      ['spire', 1, [1.2, 1.3], ['#5a4728']],
+    ],
+    count: 3,
+    escort: ['spider-bot', 1, [1, 1], ['#5a4728']],
+  },
+  'machine-light': {
+    picks: [
+      ['seed-ark', 1, [1.2, 1.3]],
+      ['launch-site', 1, [1.1, 1.2]],
+      ['titan', 1, [1, 1.1], ['#e8e6df']],
+    ],
+    count: 3,
+    escort: ['robot', 1, [1, 1], ['#e8e6df', '#d6b34f']],
+  },
+};
+
 /** Inhabited and working sites on a companion: buildings, walkers in suits and moving vehicles. */
 function stations(world: WorldContext, body: Companion, style: Style) {
   const kit = kits[style];
@@ -597,8 +691,8 @@ function stations(world: WorldContext, body: Companion, style: Style) {
   for (const face of chosen) {
     const town = buildTown(world, face.up, {
       layout: kit.layout,
-      // Stations spread wider than their kit radius so a few toy-scale buildings fit.
-      radius: kit.radius * 1.5,
+      // Stations spread wider than their kit radius so a few large buildings fit.
+      radius: kit.radius * 2.6,
       block: 9 * U * BODY,
       streets: 4,
       street:
@@ -665,8 +759,34 @@ export function buildCompanion(
   const faces = surface(body, style, quality.detail);
   const world = new WorldContext(faces, quality, body.length * 97 + scenario.length * 13);
   const cells = signals.bodies[body];
+  const tilt = body === 'Mars' ? 0.44 : body === 'Venus' ? 0.05 : 0.12;
+  // The camera looks at the body along -z after its pose, as for the Earths.
+  world.view = new THREE.Vector3(0, 0, 1).applyQuaternion(
+    new THREE.Quaternion().setFromEuler(new THREE.Euler(0.15, 0, tilt)).invert(),
+  );
   if (style) furnish(world, body, style, scenario, signals);
+  const set = style && pieces[style];
+  if (set)
+    setPieces(world, set.picks, set.count, {
+      spacing: 55,
+      reach: 0.6,
+      escort: set.escort && [set.escort[0], 1, [BODY, BODY], set.escort[3]],
+      escorts: 1,
+    });
   if (style) stations(world, body, style);
+  // Bodies worked only from orbit carry a station on their own ring.
+  if (style === 'orbit') {
+    const ring = world.layer('station', 'orbit', {
+      matrix: orbitMatrix(0.35, 0.8),
+      motion: { kind: 'spin', speed: 0.04 },
+    });
+    for (let i = 0; i < 3; i++) {
+      const m = onOrbit(1.45, (i / 3) * Math.PI * 2 + 0.5);
+      if (scenario === 'S1') eliteSettlement(ring, m, 0.32);
+      else if (scenario === 'S9') machineNode(ring, m, 0.32);
+      else habitat(ring, m, 0.24);
+    }
+  }
   if (style === 'aerostat' && world.quality.life) {
     const loop: THREE.Vector3[] = [];
     for (let i = 0; i < 24; i++)
@@ -686,29 +806,19 @@ export function buildCompanion(
     });
   }
 
+  // Venus's aerostat era: cloud cities riding the upper atmosphere.
   if (style === 'aerostat')
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
       const up = new THREE.Vector3(
-        Math.cos(i * 1.3),
-        (i - 2) * 0.25,
-        Math.sin(i * 1.3) + 0.8,
+        Math.cos(i * 1.6),
+        (i - 1.5) * 0.35,
+        Math.sin(i * 1.6) + 0.9,
       ).normalize();
-      const m = frame(up.clone().multiplyScalar(1.12), up, i);
-      world.ground.sheen.prism(
-        local(m, -0.08, 0.04, 0, 0, 1, [0, Math.PI / 2]),
-        0.035,
-        0.035,
-        0.16,
-        8,
-        '#f1efe7',
-      );
-      world.ground.solid.box(m, 0.05, 0.02, 0.03, '#c9cdd2');
-      world.ground.glow.box(
-        local(m, 0, 0.01, 0.016),
-        0.03,
-        0.006,
-        0.002,
-        accent[scenario] ?? '#fff1c4',
+      world.props.add(
+        'cloud-city',
+        up.clone().multiplyScalar(1.1),
+        offset(up, i, 0.01).sub(up),
+        2.4 - (i % 2) * 0.5,
       );
     }
 
@@ -744,142 +854,9 @@ export function buildCompanion(
     layers,
     atmosphere: atmosphereFor(body, style, cells),
     facing: 0,
-    tilt: body === 'Mars' ? 0.44 : body === 'Venus' ? 0.05 : 0.12,
+    tilt,
     pitch: 0.15,
     extent: extentOf(layers),
     ...world.population(layers),
-  };
-}
-
-export function buildFeature(feature: Feature, scenario: string, quality: Quality): WorldModel {
-  const layers: Layer[] = [];
-  const light = accent[scenario] ?? '#ffe6a8';
-  const random = rng(feature.length * 31 + scenario.length);
-  const mesh = new Mesher(7);
-  const glow = new Mesher(8, 0);
-  const sheen = new Mesher(9, 0.02);
-  const detail = Math.max(2, Math.round(quality.detail / 4));
-  if (feature === 'asteroids') {
-    const rocks: [number, number, number, number][] = [
-      [0, 0, 0, 0.55],
-      [0.8, 0.3, -0.2, 0.3],
-      [-0.75, -0.25, 0.1, 0.34],
-      [0.3, -0.7, 0.3, 0.22],
-      [-0.35, 0.65, -0.3, 0.2],
-      [0.95, -0.45, 0.2, 0.14],
-    ];
-    rocks.forEach(([x, y, z, r], i) => {
-      const m = new THREE.Matrix4()
-        .makeTranslation(x, y, z)
-        .multiply(new THREE.Matrix4().makeRotationFromEuler(new THREE.Euler(i, i * 2, 0)));
-      mesh.blob(
-        m.clone().scale(new THREE.Vector3(1, 0.75, 0.85)),
-        r,
-        i % 2 ? '#8a7f72' : '#77706a',
-        0.35,
-        i + 41,
-      );
-      if (i < 3) {
-        const top = local(m, 0, r * 0.62, 0);
-        mesh.prism(top, r * 0.12, r * 0.06, r * 0.5, 4, '#c9b27a');
-        mesh.box(local(top, r * 0.15, 0, 0), r * 0.25, r * 0.15, r * 0.2, '#d9d6cc');
-        glow.box(local(top, 0, r * 0.5, 0), r * 0.08, r * 0.08, r * 0.08, light);
-      }
-    });
-  } else if (feature === 'outer') {
-    const giant = new THREE.IcosahedronGeometry(0.8, detail + 1);
-    const p = giant.getAttribute('position');
-    const bands: Tone[] = ['#d9b98a', '#c9956a', '#e8d6b0', '#b98a62', '#e2c79a'];
-    for (let i = 0; i < p.count; i += 3) {
-      const c = [0, 1, 2].map((k) => new THREE.Vector3().fromBufferAttribute(p, i + k));
-      const y = (c[0].y + c[1].y + c[2].y) / 3;
-      mesh.tri(
-        c[0],
-        c[1],
-        c[2],
-        bands[
-          Math.floor((y + 0.8) * 5 + fbm(c[0].x, c[0].y, c[0].z, 5, 2, 3) * 0.8) % bands.length
-        ],
-      );
-    }
-    giant.dispose();
-    const ring = new THREE.Matrix4().makeRotationFromEuler(new THREE.Euler(0.45, 0, 0.2));
-    for (let i = 0; i < 40; i++) {
-      const a = (i / 40) * Math.PI * 2,
-        b = ((i + 1) / 40) * Math.PI * 2;
-      const q = (r: number, t: number) =>
-        new THREE.Vector3(Math.cos(t) * r, 0, Math.sin(t) * r).applyMatrix4(ring);
-      mesh.quad(q(1.05, a), q(1.05, b), q(1.45, b), q(1.45, a), i % 2 ? '#cbb59a' : '#b9a488');
-      mesh.quad(q(1.45, a), q(1.45, b), q(1.05, b), q(1.05, a), '#a8937a');
-    }
-    const moon = new THREE.Matrix4().makeTranslation(1.25, 0.55, 0.4);
-    mesh.blob(moon, 0.16, '#c9c6bf', 0.15, 3);
-    sheen.dome(local(moon, 0, 0.14, 0), 0.06, '#bfe8f0', 6, 1);
-    glow.box(local(moon, 0.05, 0.15, 0), 0.03, 0.03, 0.03, light);
-  } else if (feature === 'kuiper') {
-    mesh.blob(new THREE.Matrix4().scale(new THREE.Vector3(1, 0.85, 0.9)), 0.7, '#cfe0ea', 0.18, 12);
-    mesh.blob(
-      new THREE.Matrix4().makeTranslation(0.35, 0.25, 0.3).scale(new THREE.Vector3(1, 0.8, 1)),
-      0.35,
-      '#b9cfdc',
-      0.2,
-      13,
-    );
-    const top = frame(new THREE.Vector3(0.08, 0.5, 0.2), new THREE.Vector3(0.1, 1, 0.3));
-    sheen.dome(top, 0.14, '#e8edf2', 8, 2);
-    mesh.prism(local(top, 0.2, 0, 0), 0.015, 0.01, 0.4, 4, '#9aa0a6');
-    mesh.dome(local(top, 0.2, 0.4, 0, 0, 1, [0.6, 0]), 0.08, '#e8edf2', 6, 1, 0.4);
-    glow.box(local(top, 0, 0.02, 0.13), 0.06, 0.02, 0.01, light);
-  } else {
-    const sun = new THREE.IcosahedronGeometry(0.55, 2);
-    const p = sun.getAttribute('position');
-    const tones: Tone[] = ['#ffd36a', '#ffc24a', '#ffe08a', '#ffb43a'];
-    for (let i = 0; i < p.count; i += 3) {
-      const c = [0, 1, 2].map((k) => new THREE.Vector3().fromBufferAttribute(p, i + k));
-      glow.tri(c[0], c[1], c[2], tones[(i / 3) % tones.length]);
-    }
-    sun.dispose();
-  }
-  layers.push({
-    name: 'feature',
-    frame: 'surface',
-    solid: mesh.triangles ? mesh.geometry() : undefined,
-    glow: glow.triangles ? glow.geometry() : undefined,
-    sheen: sheen.triangles ? sheen.geometry() : undefined,
-  });
-  if (feature === 'solar') {
-    // Collector swarm: panels on several inclined rings, each turning at its own pace.
-    for (let r = 0; r < 4; r++) {
-      const swarm = new Mesher(20 + r, 0.02);
-      const panels = Math.round(28 * quality.density) + 8;
-      for (let i = 0; i < panels; i++) {
-        const m = onOrbit(0.9 + r * 0.14, (i / panels) * Math.PI * 2 + random() * 0.1);
-        swarm.panel(
-          m.multiply(new THREE.Matrix4().makeRotationX(Math.PI / 2)),
-          0.07,
-          0.1,
-          '#1f2230',
-          '#3a3f55',
-        );
-      }
-      layers.push({
-        name: `swarm-${r}`,
-        frame: 'orbit',
-        matrix: orbitMatrix(-0.9 + r * 0.6, r * 1.3),
-        motion: { kind: 'spin', speed: 0.05 + r * 0.02 },
-        sheen: swarm.geometry(),
-      });
-    }
-  }
-  return {
-    id: `${scenario}:${feature}`,
-    layers,
-    atmosphere: null,
-    facing: 0,
-    tilt: 0,
-    pitch: 0,
-    extent: extentOf(layers),
-    instances: [],
-    movers: [],
   };
 }
