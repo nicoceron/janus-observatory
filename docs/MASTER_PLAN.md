@@ -1,6 +1,6 @@
 # Janus Observatory - Master Product, Data, Architecture, and Execution Plan
 
-Current planets: story-drawn procedural low-poly worlds, [Decision 034](DECISION_034_STORY_DRAWN_LOW_POLY_WORLDS.md), superseding the planet artwork of Decisions 014–020 and 028.
+Current planets: story-drawn procedural low-poly worlds, [Decision 035](DECISION_035_STORY_DRAWN_LOW_POLY_WORLDS.md), superseding the planet artwork of Decisions 014–020, 028 and 034.
 
 Current Observatory scenario-switch layout stability:
 [verification and implementation](qa/observatory-stability/REPORT.md).
@@ -9,7 +9,7 @@ Current instrument explanations, reference quantities, and guided observation:
 [Decision 029](DECISION_029_OBSERVER_LEARNING.md), with
 [verification](qa/observer-learning/REPORT.md).
 
-Current contour coastlines, grounded sites and experience polish: [Decision 034](DECISION_034_CONTOUR_COASTS_AND_EXPERIENCE_POLISH.md), with [world-by-world review](qa/planet-polish-2026-09-30/REPORT.md).
+Current site and journey polish: [Decision 034](DECISION_034_CONTOUR_COASTS_AND_EXPERIENCE_POLISH.md), with [world-by-world review](qa/planet-polish-2026-09-30/REPORT.md); its contour coastlines and grounded sites belong to the Blender planets that Decision 035 replaces.
 
 Previous editable planet polish: [Decision 028](DECISION_028_PLANET_POLISH.md), with [individual world review](qa/planet-polish-2026-09-20/REPORT.md).
 

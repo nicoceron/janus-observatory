@@ -1,6 +1,6 @@
 # Low-poly worlds QA — 2026-09-30
 
-Verification for [Decision 034](../../DECISION_034_STORY_DRAWN_LOW_POLY_WORLDS.md) on branch
+Verification for [Decision 035](../../DECISION_035_STORY_DRAWN_LOW_POLY_WORLDS.md) on branch
 `claude/low-poly-planets-redesign-e6a3a2`.
 
 ## Evidence
@@ -90,7 +90,7 @@ After the fixes:
 ## Revision 3: toy scale
 
 - Person unit 0.026 planet radii; per-group prop budgets with an even-spacing declutter; landmarks
-  about 2.5× larger. See Decision 034.
+  about 2.5× larger. See Decision 035.
 - `pnpm test`: 42 files, 166 tests. The inhabited-worlds test now bounds each world to 61–236
   static props and at most 46 movers, and a new test checks that no two props overlap on present,
   S1, S3 and S6. Lint, typecheck and Prettier pass.
@@ -122,7 +122,7 @@ After the fixes:
 - The user still could not read the worlds at story distance and asked for bigger robots and
   assets, cool and sci-fi according to each story. Person unit 0.045 planet radii; figures 2×,
   robots 2.6×; smaller budgets; 13 set pieces in `props/heroes.ts`, sized to about a third of the
-  planet radius and placed near the limb of the story view (Decision 034).
+  planet radius and placed near the limb of the story view (Decision 035).
 - Per world at story quality: 64–121 static props, 11–36 movers, 13k–52k triangles.
 - Reviewed with hardware WebGL in the lab (present, S1, S5, S8, S9, S10) and in the S1, S2, S3,
   S6 story chapters.

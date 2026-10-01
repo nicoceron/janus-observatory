@@ -1,7 +1,9 @@
-# Decision 034 — Story-drawn low-poly worlds
+# Decision 035 — Story-drawn low-poly worlds
 
-2026-09-30. Supersedes the planet, companion and explorer-study artwork of Decisions 014–020
-and 028 on branch `claude/low-poly-planets-redesign-e6a3a2`. Story choreography, camera,
+2026-09-30, merged with `main` on 2026-10-01. Supersedes the planet, companion and
+explorer-study artwork of Decisions 014–020 and 028, and the planet artwork of Decision 034
+(contour coastlines and grounded sites). Decision 034's site and journey polish (labels,
+counters, header fade, the 3-4-3 world constellation) stays current. Story choreography, camera,
 observer, telescope, layout anchors and canonical data are unchanged.
 
 ## Request and approach
