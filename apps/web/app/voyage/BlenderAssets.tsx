@@ -183,7 +183,7 @@ async function readLibrary(entry: Entry): Promise<Library | null> {
       process.env.NEXT_PUBLIC_JANUS_COMPRESSED_MODELS === 'true' &&
       typeof DecompressionStream !== 'undefined';
     const response = await fetch(
-      (compressed ? entry.url + '.gz' : entry.url) + '?revision=20260920-orbit-crops',
+      (compressed ? entry.url + '.gz' : entry.url) + '?revision=20260930-planet-polish',
       {
         signal: entry.controller.signal,
       },

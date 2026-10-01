@@ -2,13 +2,13 @@
   "world": "s1",
   "blender": "5.2.1 LTS",
   "source": "assets/blender/s1.blend",
-  "sourceSha256": "f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
+  "sourceSha256": "643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
   "exports": [
     {
       "path": "apps/web/public/assets/blender/v1/s1/earth.glb",
-      "bytes": 595664,
-      "sha256": "538c3310f34318ac61531a3c6e381f8b598be440965c8f566bd825ef24e2a6c0",
-      "triangles": 22241,
+      "bytes": 604576,
+      "sha256": "359b9526d3763a93b16dddcb2037f6157bac5de92ff89f277aa8a2e4d2d5a8d9",
+      "triangles": 22481,
       "parts": [
         "Terrain",
         "Structures",
@@ -28,9 +28,9 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s1/earth-mobile.glb",
-      "bytes": 529580,
-      "sha256": "f80a8330eae1f34dbc86df5c54a5dd66ccb3151886c17a0c165d42dcb223d756",
-      "triangles": 20209,
+      "bytes": 536524,
+      "sha256": "2a5372a052e28b248ceb9249160587bf2142f06bea010a28e4ca05b777c5b036",
+      "triangles": 20441,
       "parts": [
         "Terrain",
         "Structures",
@@ -68,8 +68,8 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s1/Venus.glb",
-      "bytes": 103716,
-      "sha256": "8e46e4d8f004c6837edac058411dda13e799c34e1ecee3fee65e270e094ffd30",
+      "bytes": 101944,
+      "sha256": "35e7a5af4e8ca98ab8debe111576c50001a1886966b809e34018fbd158ab43ac",
       "triangles": 4236,
       "parts": [
         "S1_Venus"
@@ -77,8 +77,8 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s1/asteroids.glb",
-      "bytes": 63568,
-      "sha256": "367796326a5f56bb265ebf2d4bb1ab0947b5c9a7c4a2a22c0a260387a8d45a55",
+      "bytes": 63540,
+      "sha256": "49089a2a01f7178d4f125aba3be0b802afb61f88cc4c89c86c54578c21308f0c",
       "triangles": 2524,
       "parts": [
         "S1_asteroids"
@@ -86,8 +86,8 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s1/outer.glb",
-      "bytes": 85228,
-      "sha256": "147fa6e8e3316abe8615a6f80a9cc410a6f01a187d604867e2d15656d60c012b",
+      "bytes": 84132,
+      "sha256": "3eb71e36985441b85c743e9d769f568309d55d32a4e48f763a5c2fe76dd173d4",
       "triangles": 3232,
       "parts": [
         "S1_outer"

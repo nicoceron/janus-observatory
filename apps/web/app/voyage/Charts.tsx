@@ -22,6 +22,28 @@ export function CivilizationChart({ worlds }: { worlds: ChartWorld[] }) {
   const maxY = Math.ceil(Math.log10(Math.max(...worlds.map((w) => w.energy)))) + 1;
   const x = (value: number) => 85 + ((Math.log10(value) - minX) / (maxX - minX)) * 680;
   const y = (value: number) => 370 - ((Math.log10(value) - minY) / (maxY - minY)) * 310;
+  // Scenarios with identical reported values share one point and one label. The remaining
+  // labels alternate above and below the diagonal so neighbours never overprint.
+  const grouped = new Map<string, ChartWorld[]>();
+  for (const w of worlds) {
+    const key = `${w.population}|${w.energy}`;
+    grouped.set(key, [...(grouped.get(key) ?? []), w]);
+  }
+  const points = [...grouped.values()].sort((a, b) => a[0].population - b[0].population);
+  const labels = points.map((group, i) => {
+    const [first] = group,
+      last = i === points.length - 1,
+      above = !last && i % 2 === 0;
+    return {
+      key: group.map((w) => w.id).join('-'),
+      text: group.map((w) => w.id).join(' · '),
+      color: first.color,
+      active: group.some((w) => w.id === selected),
+      x: x(first.population) + (last ? 16 : above ? -11 : 11),
+      y: y(first.energy) + (last ? 4 : above ? -9 : 17),
+      anchor: above ? ('end' as const) : ('start' as const),
+    };
+  });
   return (
     <div className={s.chart}>
       <div className={s.chartHeading}>
@@ -79,14 +101,6 @@ export function CivilizationChart({ worlds }: { worlds: ChartWorld[] }) {
               r={w.id === selected ? 4 : 2}
               fill={w.color}
             />
-            <text
-              x={x(w.population) + (w.id === 'S10' ? -15 : 11)}
-              y={y(w.energy) + (w.id === 'S8' ? 23 : w.id === 'S10' ? -15 : -10)}
-              fill={w.color}
-              textAnchor={w.id === 'S10' ? 'end' : 'start'}
-            >
-              {w.id}
-            </text>
             <circle
               cx={x(w.population)}
               cy={y(w.energy)}
@@ -97,6 +111,19 @@ export function CivilizationChart({ worlds }: { worlds: ChartWorld[] }) {
               <title>{`${w.id}: ${w.title}. Population ${w.populationDisplay}. Annual energy ${w.energyDisplay} J.`}</title>
             </circle>
           </g>
+        ))}
+        {labels.map((label) => (
+          <text
+            key={label.key}
+            x={label.x}
+            y={label.y}
+            fill={label.color}
+            opacity={label.active ? 1 : 0.8}
+            textAnchor={label.anchor}
+            aria-hidden="true"
+          >
+            {label.text}
+          </text>
         ))}
       </svg>
       <div className={s.chartSelector} role="group" aria-label="Inspect a civilization">

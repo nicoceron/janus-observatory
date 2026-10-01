@@ -74,7 +74,8 @@ class _Builder:
         elif selection == "Mars":
             terrain = ("ba7d5c", "8f5345", "dca277")
         elif selection == "Venus":
-            terrain = ("d6ad75", "a67e5c", "e6c794")
+            # Pale sulphuric cloud deck; contrast stays low so it never reads as a gas giant.
+            terrain = ("e4d2a4", "d2b98a", "f1e3bf")
         elif selection in {"outer", "kuiper"}:
             terrain = ("b0c7cc", "7c9ba8", "dae1d6")
         elif selection == "solar":
@@ -870,8 +871,9 @@ def _terrain(b, body, radius=0.82):
         elif body == "Mars" and abs(center.z) > radius * 0.82:
             polygon.material_index = 2
         elif body == "Venus":
-            band = math.sin(center.z * 19 + center.x * 4 + math.sin(center.y * 5))
-            polygon.material_index = 2 if band > 0.3 else 1 if band < -0.52 else 0
+            # Soft sideways chevrons in the cloud deck instead of hard horizontal belts.
+            streak = math.sin((center.z + abs(center.x - 0.08) * 0.55) * 9 + center.y * 1.6)
+            polygon.material_index = 2 if streak > 0.55 else 1 if streak < -0.7 else 0
     obj.data.update()
     # Crater bowls and ejecta rims are part of the terrain itself. Separate white rings
     # previously appeared pasted onto the globe and could float above its facets.
@@ -2242,6 +2244,46 @@ def _machine_station(b):
         )
 
 
+def _site_normal(longitude, latitude):
+    lon, lat = math.radians(longitude), math.radians(latitude)
+    return Vector(
+        (math.sin(lon) * math.cos(lat), -math.cos(lon) * math.cos(lat), math.sin(lat))
+    )
+
+
+# Working sites on the ore and ice bodies. Their ground stays at the nominal radius.
+ROCK_SITES = ((-6, 46), (-59, 24), (53, 10), (-5, 45), (-63, 19))
+ROCK_ANCHORS = [_site_normal(lon, lat) for lon, lat in ROCK_SITES]
+ROCK_LOBES = (
+    (Vector((0.78, 0.0, -0.62)).normalized(), 0.42),
+    (Vector((-0.80, 0.15, -0.58)).normalized(), 0.22),
+    (Vector((-0.30, 0.50, 0.80)).normalized(), 0.14),
+)
+ROCK_DENTS = (
+    (Vector((0.55, -0.60, -0.58)).normalized(), 0.30),
+    (Vector((-0.35, -0.55, -0.76)).normalized(), 0.22),
+    (Vector((0.30, -0.10, 0.95)).normalized(), 0.18),
+    (Vector((0.95, -0.10, 0.30)).normalized(), 0.20),
+)
+
+
+def _rock_shape(n):
+    """Elongated, lobed body with impact dents, not a faceted ball.
+
+    Displacement fades out around every working site so foundations still meet the rock
+    exactly where they were built.
+    """
+    shape = 0.1 * math.sin(n.x * 6 + n.z * 4) * math.cos(n.y * 7 - n.z * 5)
+    for axis, amount in ROCK_LOBES:
+        shape += amount * max(0.0, n.dot(axis)) ** 3
+    for center, size in ROCK_DENTS:
+        distance = (n - center).length
+        shape -= 0.085 * math.exp(-((distance / (size * 0.7)) ** 4))
+        shape += 0.025 * math.exp(-(((distance - size) / 0.05) ** 2))
+    guard = min(1.0, min((n - a).length for a in ROCK_ANCHORS) / 0.36)
+    return 1 + shape * guard**2
+
+
 def _rock(b, ice=False, radius=0.64):
     rock = b.ico(
         "irregular_ice_body" if ice else "irregular_ore_body",
@@ -2249,13 +2291,10 @@ def _rock(b, ice=False, radius=0.64):
         material="terrain",
         subdivisions=3,
     )
-    rock.scale = (1.10, 0.86, 1.0)
     rock.data.materials.append(b.mats["terrain_dark"])
     rock.data.materials.append(b.mats["terrain_light"])
     for vertex in rock.data.vertices:
-        n = vertex.co.normalized()
-        amount = 1 + 0.08 * math.sin(n.x * 6 + n.z * 4) * math.cos(n.y * 7 - n.z * 5)
-        vertex.co *= amount
+        vertex.co *= _rock_shape(vertex.co.normalized())
     for polygon in rock.data.polygons:
         center = sum(
             (rock.data.vertices[i].co for i in polygon.vertices), Vector()
@@ -2264,7 +2303,8 @@ def _rock(b, ice=False, radius=0.64):
         polygon.material_index = 2 if vein > 0.8 else 1 if vein < -0.5 else 0
     # Distinct large cleaved strata support an actual grounded working collar.
     for longitude, latitude in ((-57, -21), (60, -24), (-75, 36)):
-        with b.site("cleaved_surface_stratum", longitude, latitude, radius * 0.92):
+        surface = radius * _rock_shape(_site_normal(longitude, latitude))
+        with b.site("cleaved_surface_stratum", longitude, latitude, surface * 0.92):
             b.ico(
                 "exposed_fracture_facet",
                 0.13,
@@ -2773,7 +2813,7 @@ def _feature(b, feature):
         b.ico(
             "cleaved_companion_fragment",
             0.105,
-            (-0.75, 0.045, -0.40),
+            (-0.95, 0.06, -0.55),
             "terrain_dark",
             (1.1, 0.65, 0.8),
             1,

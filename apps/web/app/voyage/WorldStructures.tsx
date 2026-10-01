@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo } from 'react';
 import * as THREE from 'three';
-import { Sculpture, surface, type Vec } from './sculpture';
+import { Sculpture, surface, wrapOnGlobe, type Vec } from './sculpture';
+import { landRadius, quarryBase, quarryOutline, quarrySite } from './terrain';
 import { addWorldDetails } from './PlanetDetails';
 import { membrane, curveTube } from './modeling';
 import type { WorldArt } from './worlds';
@@ -27,30 +28,54 @@ function tree(
   s.cone(height * 0.37, height * 0.75, color, [0, height * 0.52, 0], m);
   s.cone(height * 0.28, height * 0.61, '#8bad8d', [0, height * 0.78, 0], m);
 }
-function peak(s: Sculpture, lon: number, lat: number, h: number) {
-  const m = surface(lon, lat);
-  s.cone(h * 0.52, h, '#9aa79b', [0, h * 0.35, 0], m, 4);
-  s.cone(h * 0.23, h * 0.45, cream, [0, h * 0.63, 0], m, 4);
+/** A small massif: main summit, lower shoulder and cap, so it never reads as a flat card. */
+function peak(s: Sculpture, lon: number, lat: number, h: number, rock = '#9aa79b', cap = cream) {
+  const m = surface(lon, lat, 1.02);
+  const shade = new THREE.Color(rock).multiplyScalar(0.86).getStyle();
+  s.cone(h * 0.5, h, rock, [0, h * 0.42, 0], m, 6);
+  s.cone(h * 0.36, h * 0.6, shade, [h * 0.3, h * 0.22, h * 0.1], m, 5);
+  s.cone(h * 0.22, h * 0.4, cap, [0, h * 0.72, 0], m, 6);
 }
-function arch(
-  s: Sculpture,
-  radius: number,
-  thickness: number,
-  color: string,
-  parent: THREE.Matrix4,
-  broken = false,
-) {
+/** A ruined masonry arch modelled on flat ground; wrap it so both piers meet the globe. */
+function arch(s: Sculpture, radius: number, thickness: number, color: string, broken = false) {
+  const spring = radius * 0.32;
+  const pier = new THREE.Color(color).multiplyScalar(0.84).getStyle();
+  for (const side of [-1, 1])
+    s.box([thickness * 1.3, spring + 0.04, thickness * 1.3], pier, [
+      side * radius,
+      (spring - 0.04) / 2,
+      0,
+    ]);
   for (let i = 0; i < 11; i++) {
     if (broken && (i === 3 || i === 4)) continue;
     const a = (i / 10) * Math.PI;
     s.box(
       [radius * 0.29, thickness, thickness],
       color,
-      [Math.cos(a) * radius, 0.08 + Math.sin(a) * radius, 0],
-      parent,
+      [Math.cos(a) * radius, spring + Math.sin(a) * radius, 0],
+      undefined,
       [0, 0, a + Math.PI / 2],
     );
   }
+}
+/** Ground under a wrapped site: the lowest raised-land point across its footprint. */
+function siteBase(art: WorldArt, lon: number, lat: number, halfWidth: number) {
+  const frame = surface(lon, lat, 1);
+  const origin = new THREE.Vector3().setFromMatrixPosition(frame),
+    x = new THREE.Vector3().setFromMatrixColumn(frame, 0).normalize();
+  return (
+    Math.min(
+      ...[-1, 0, 1].map((side) =>
+        landRadius(
+          art,
+          origin
+            .clone()
+            .addScaledVector(x, side * halfWidth)
+            .normalize(),
+        ),
+      ),
+    ) - 0.01
+  );
 }
 export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = false) {
   const s = new Sculpture();
@@ -166,61 +191,56 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
       break;
     }
     case 'extraction': {
-      const m = surface(-8, 19, 1.025);
       // Unequal benches with an open descending haul ramp, rather than concentric target rings.
-      const sections = 14;
-      const at = (radius: number, angle: number, y: number): Vec => [
-        Math.cos(angle) * radius * (1 + 0.1 * Math.sin(angle * 3 + 0.8)),
-        y,
-        Math.sin(angle) * radius * (0.83 + 0.08 * Math.cos(angle * 5)),
-      ];
-      for (let tier = 0; tier < 5; tier++) {
-        const outer = 0.51 - tier * 0.079,
-          inner = outer - 0.073,
-          y = 0.1 - tier * 0.04;
-        for (let j = 0; j < sections; j++) {
-          // Open working face on the east side, reached by the descending ramp.
-          const a = 0.35 + (j / sections) * 5.58,
-            b = 0.35 + ((j + 1) / sections) * 5.58;
-          const p = [
-            at(outer, a, y),
-            at(outer, b, y),
-            at(inner, b, y),
-            at(inner, a, y),
-            at(inner, a, y - 0.04),
-            at(inner, b, y - 0.04),
-          ];
-          const mesh = new THREE.BufferGeometry();
-          mesh.setAttribute(
-            'position',
-            new THREE.Float32BufferAttribute(
-              [0, 1, 2, 0, 2, 3, 3, 2, 5, 3, 5, 4].flatMap((i) => p[i]),
-              3,
-            ),
-          );
-          s.add(
-            mesh,
-            ['#ceab85', '#ad896a', '#ba9671', '#987a64', '#826d59'][tier],
+      // The pit is wrapped onto the globe: its top bench meets the surrounding ground.
+      wrapOnGlobe(s, surface(...quarrySite, 1.025), quarryBase(art), (q) => {
+        const sections = 14;
+        const at = (radius: number, angle: number, y: number): Vec => {
+          const [x, z] = quarryOutline(radius, angle);
+          return [x, y, z];
+        };
+        for (let tier = 0; tier < 5; tier++) {
+          const outer = 0.51 - tier * 0.079,
+            inner = outer - 0.073,
+            y = -tier * 0.04;
+          for (let j = 0; j < sections; j++) {
+            // Open working face on the east side, reached by the descending ramp.
+            const a = 0.35 + (j / sections) * 5.58,
+              b = 0.35 + ((j + 1) / sections) * 5.58;
+            const p = [
+              at(outer, a, y),
+              at(outer, b, y),
+              at(inner, b, y),
+              at(inner, a, y),
+              at(inner, a, y - 0.04),
+              at(inner, b, y - 0.04),
+            ];
+            const mesh = new THREE.BufferGeometry();
+            mesh.setAttribute(
+              'position',
+              new THREE.Float32BufferAttribute(
+                [0, 1, 2, 0, 2, 3, 3, 2, 5, 3, 5, 4].flatMap((i) => p[i]),
+                3,
+              ),
+            );
+            q.add(mesh, ['#ceab85', '#ad896a', '#ba9671', '#987a64', '#826d59'][tier]);
+          }
+        }
+        // The haul ramp is a solid earth embankment down the open working face.
+        for (let j = 0; j < 12; j++) {
+          const u = j / 11;
+          q.box(
+            [0.066, 0.14, 0.079],
+            '#bda47f',
+            [0.48 - u * 0.34, -0.063 - u * 0.168, 0],
             undefined,
-            undefined,
-            undefined,
-            m,
+            [0, 0, 0.45],
           );
         }
-      }
-      for (let j = 0; j < 12; j++) {
-        const u = j / 11;
-        s.box(
-          [0.063, 0.016, 0.079],
-          '#bda47f',
-          [0.48 - u * 0.34, 0.099 - u * 0.168, 0],
-          m,
-          [0, 0, 0.45],
-        );
-      }
-      s.cylinder(0.128, 0.14, 0.024, '#655849', [0, -0.071, 0], m, 9);
-      peak(s, -32, 62, 0.32);
-      peak(s, -8, 66, 0.44);
+        q.cylinder(0.128, 0.14, 0.024, '#655849', [0, -0.171, 0], undefined, 9);
+      });
+      peak(s, -32, 62, 0.32, '#b39373', '#e6d2ae');
+      peak(s, -8, 66, 0.44, '#b39373', '#e6d2ae');
       for (let i = 0; i < 3; i++) {
         const t = surface(36 + i * 10, 27 - i * 7);
         s.cylinder(0.07, 0.085, 0.3, '#ead3ae', [0, 0.15, 0], t, 6);
@@ -391,10 +411,14 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
       break;
     }
     case 'reclaimed': {
-      const m = surface(-12, 42);
-      arch(s, 0.5, 0.11, '#d5c19d', m, true);
-      s.box([0.18, 0.34, 0.18], '#b7a386', [-0.5, 0.1, 0], m, [0, 0, -0.12]);
-      s.box([0.18, 0.22, 0.18], '#b7a386', [0.5, 0.05, 0], m, [0, 0, 0.14]);
+      // A ruined gateway of the old world, its fallen stones and ivy left where they lie.
+      wrapOnGlobe(s, surface(-14, 38, 1), siteBase(art, -14, 38, 0.22), (q) => {
+        arch(q, 0.22, 0.07, '#d5c19d', true);
+        q.box([0.08, 0.06, 0.075], '#b7a386', [0.33, 0.024, 0.04], undefined, [0.1, 0.5, 0.18]);
+        q.box([0.065, 0.05, 0.065], '#c4b08f', [0.28, 0.018, -0.08], undefined, [0, -0.3, -0.1]);
+        for (const side of [-1, 1])
+          q.ico(0.04, '#7e985e', [side * 0.22, 0.1, 0.015], [1.25, 0.7, 1.1]);
+      });
       [
         [-26, 15],
         [15, 20],
@@ -420,8 +444,9 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
         ]);
         s.box([0.2, 0.055, 0.19], '#d5b5a0', [0.025, 0.31 + i * 0.04, 0], m, [0, 0, -0.18]);
       });
-      const m = surface(-30, -18);
-      arch(s, 0.23, 0.065, '#9a8078', m, true);
+      wrapOnGlobe(s, surface(-30, -18, 1), siteBase(art, -30, -18, 0.23), (q) =>
+        arch(q, 0.23, 0.065, '#9a8078', true),
+      );
       break;
     }
     case 'machine-swarm':

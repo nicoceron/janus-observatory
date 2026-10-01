@@ -1,8 +1,8 @@
 # Blender original-art admission
 
-Version: `blender-orbit-crops-v11-2026-09-20`.
+Version: `blender-planet-polish-v12-2026-09-30`.
 
-Verified **11 editable Blender sources** and **59 runtime GLBs** (18,675,760 bytes total across all optional assets). Each source and derivative checksum matches its production receipt. Source modules and per-world seeds match the latest successful monitored builds.
+Verified **11 editable Blender sources** and **59 runtime GLBs** (18,946,648 bytes total across all optional assets). Each source and derivative checksum matches its production receipt. Source modules and per-world seeds match the latest successful monitored builds.
 
 These are original Janus Observatory artworks commissioned by the user for this project, admitted under the existing original-project permission record. All existing records outside `janus.blender.v1.` are preserved. No external model, texture, restricted PDF or reference-image pixels are incorporated.
 

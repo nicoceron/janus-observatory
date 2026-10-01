@@ -1,5 +1,5 @@
 {
-  "version": "blender-orbit-crops-v11-2026-09-20",
+  "version": "blender-planet-polish-v12-2026-09-30",
   "manifest": "docs/qa/blender-finish/art-manifest.json",
   "rightsReport": "docs/qa/blender-finish/asset-rights.md",
   "editableSources": [
@@ -53,31 +53,31 @@
       "id": "janus.blender.v1.origin.earth-mobile",
       "href": "/assets/blender/v1/origin/earth-mobile.glb",
       "sourcePath": "assets/blender/origin.blend",
-      "derivativeChecksum": "sha256:f1741609f25d8942c8dbd8e397c217585a61d8ce3c595531943ae4526041f91d"
+      "derivativeChecksum": "sha256:18d553a447b0e0b6138fc8d81600e810b5f1080256e121a6e0b18fc90f533c20"
     },
     {
       "id": "janus.blender.v1.origin.earth",
       "href": "/assets/blender/v1/origin/earth.glb",
       "sourcePath": "assets/blender/origin.blend",
-      "derivativeChecksum": "sha256:9cb7b59e107a03c09c144c8535d9032c2e498b646312e0090751cfab7d1be7ad"
+      "derivativeChecksum": "sha256:eb2177913541356191eb17d4cb5e85a1dbe7ed80ed2ad1f4c62f0b8b1b6cf97b"
     },
     {
       "id": "janus.blender.v1.s1.asteroids",
       "href": "/assets/blender/v1/s1/asteroids.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "derivativeChecksum": "sha256:367796326a5f56bb265ebf2d4bb1ab0947b5c9a7c4a2a22c0a260387a8d45a55"
+      "derivativeChecksum": "sha256:49089a2a01f7178d4f125aba3be0b802afb61f88cc4c89c86c54578c21308f0c"
     },
     {
       "id": "janus.blender.v1.s1.earth-mobile",
       "href": "/assets/blender/v1/s1/earth-mobile.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "derivativeChecksum": "sha256:f80a8330eae1f34dbc86df5c54a5dd66ccb3151886c17a0c165d42dcb223d756"
+      "derivativeChecksum": "sha256:2a5372a052e28b248ceb9249160587bf2142f06bea010a28e4ca05b777c5b036"
     },
     {
       "id": "janus.blender.v1.s1.earth",
       "href": "/assets/blender/v1/s1/earth.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "derivativeChecksum": "sha256:538c3310f34318ac61531a3c6e381f8b598be440965c8f566bd825ef24e2a6c0"
+      "derivativeChecksum": "sha256:359b9526d3763a93b16dddcb2037f6157bac5de92ff89f277aa8a2e4d2d5a8d9"
     },
     {
       "id": "janus.blender.v1.s1.mars",
@@ -95,31 +95,31 @@
       "id": "janus.blender.v1.s1.outer",
       "href": "/assets/blender/v1/s1/outer.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "derivativeChecksum": "sha256:147fa6e8e3316abe8615a6f80a9cc410a6f01a187d604867e2d15656d60c012b"
+      "derivativeChecksum": "sha256:3eb71e36985441b85c743e9d769f568309d55d32a4e48f763a5c2fe76dd173d4"
     },
     {
       "id": "janus.blender.v1.s1.venus",
       "href": "/assets/blender/v1/s1/Venus.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "derivativeChecksum": "sha256:8e46e4d8f004c6837edac058411dda13e799c34e1ecee3fee65e270e094ffd30"
+      "derivativeChecksum": "sha256:35e7a5af4e8ca98ab8debe111576c50001a1886966b809e34018fbd158ab43ac"
     },
     {
       "id": "janus.blender.v1.s2.asteroids",
       "href": "/assets/blender/v1/s2/asteroids.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "derivativeChecksum": "sha256:de599e86e389c9c86da199d4ce00a5b54e6855b6e7fd7b414d2b777dc8adab11"
+      "derivativeChecksum": "sha256:f50847f387383318f678751012f1f7695fb0bf062b69fde2bd8542c3fe0e6fc5"
     },
     {
       "id": "janus.blender.v1.s2.earth-mobile",
       "href": "/assets/blender/v1/s2/earth-mobile.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "derivativeChecksum": "sha256:81ef58c48a2d75097724b5f9a35ba08c934f592cb9f72c9345752a60a6b9b0e1"
+      "derivativeChecksum": "sha256:1b5a9afe3667f16547afd5601b59e09ad86e933df30d32dca57b4777650d94ba"
     },
     {
       "id": "janus.blender.v1.s2.earth",
       "href": "/assets/blender/v1/s2/earth.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "derivativeChecksum": "sha256:4ef2a20ea9c2b24306f2c777c8014ec75211bc61f4563e4069e4bb10720b6bec"
+      "derivativeChecksum": "sha256:92876c8f4d8f0a1d40687bd3f037e3c40cb1de26702e34f7108b54df46af60f2"
     },
     {
       "id": "janus.blender.v1.s2.mars",
@@ -137,19 +137,19 @@
       "id": "janus.blender.v1.s3.asteroids",
       "href": "/assets/blender/v1/s3/asteroids.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "derivativeChecksum": "sha256:b4341560bfd0e9ef79bb47ca4efa43e3dbc247650bbb840332dd834d7d50a8d8"
+      "derivativeChecksum": "sha256:b4c243862e084f39ecd2a8b86548a4f9d5afddddf817be4aa3f277219f317ae4"
     },
     {
       "id": "janus.blender.v1.s3.earth-mobile",
       "href": "/assets/blender/v1/s3/earth-mobile.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "derivativeChecksum": "sha256:38361bd5db449eb89b1af6e4dcf188e42b72aeec5d45a358b147f0128e871dc7"
+      "derivativeChecksum": "sha256:1b4949d9e9a43f8592d8f118cd5ab7ee08a995fe5fd375bae378fd704e768d04"
     },
     {
       "id": "janus.blender.v1.s3.earth",
       "href": "/assets/blender/v1/s3/earth.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "derivativeChecksum": "sha256:9b858784da70aee56b90d4e14934805404f386c4c3f27563f76fcb6779933f84"
+      "derivativeChecksum": "sha256:133ec6660ac808d8694f2a8af361fb3c4b92b724971db2c22ad1cdd619568a01"
     },
     {
       "id": "janus.blender.v1.s3.mars",
@@ -167,37 +167,37 @@
       "id": "janus.blender.v1.s3.outer",
       "href": "/assets/blender/v1/s3/outer.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "derivativeChecksum": "sha256:da8eb2426715f02ec35404e24326468bf5b7cf9791158886f6cf0819f9099a8b"
+      "derivativeChecksum": "sha256:82a95da8f5ebb05354eb048c440636b12ab63f66f2ef13132ba87651b37a8aba"
     },
     {
       "id": "janus.blender.v1.s4.earth-mobile",
       "href": "/assets/blender/v1/s4/earth-mobile.glb",
       "sourcePath": "assets/blender/s4.blend",
-      "derivativeChecksum": "sha256:f9d6fa97980249102d46c9bc575cb22dd15fd9573f5b23b9670868636fbbd213"
+      "derivativeChecksum": "sha256:bef4adbc394438e6fdb6903c5cc7fa904532aa9e5ade78dffeff7637a7bda808"
     },
     {
       "id": "janus.blender.v1.s4.earth",
       "href": "/assets/blender/v1/s4/earth.glb",
       "sourcePath": "assets/blender/s4.blend",
-      "derivativeChecksum": "sha256:a38b173cf06defe796e970ec0d9f53c8442329bf3a5c1dbf813f55e5398b6108"
+      "derivativeChecksum": "sha256:1f918ae0070c037c17365fc998e0f6b99928d28d3a70c00be9d21ed3e55fa4fc"
     },
     {
       "id": "janus.blender.v1.s5.asteroids",
       "href": "/assets/blender/v1/s5/asteroids.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:e9ce6965b69f78ee6aaf72d1ecfef3c3d75dc49ba27533db049907dc4b71115c"
+      "derivativeChecksum": "sha256:9f920fa971871a321c9a84682450fca329a56dfe921fe8794165835217a3ed3d"
     },
     {
       "id": "janus.blender.v1.s5.earth-mobile",
       "href": "/assets/blender/v1/s5/earth-mobile.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:4ad83c4e9a92cec51726cb7b0806209c365d13739fc9cfbe12d03940ff47448e"
+      "derivativeChecksum": "sha256:899efa6cc4b71d79e0d7b4c73c3da89f652465f7aba77064ba140c528ae8e24f"
     },
     {
       "id": "janus.blender.v1.s5.earth",
       "href": "/assets/blender/v1/s5/earth.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:c8767715324fd0e9d933ea08e8a1bb2a81363bc12d49c1625e60ef797697a663"
+      "derivativeChecksum": "sha256:a7a3c1f2c02a5cd8440b14124a92c5028ab01c14c05ce9a05872c307ac0c7f40"
     },
     {
       "id": "janus.blender.v1.s5.kuiper",
@@ -221,31 +221,31 @@
       "id": "janus.blender.v1.s5.outer",
       "href": "/assets/blender/v1/s5/outer.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:9052e48340fc8885617b495717dbbcc44277a697de3cf2d7914f48322b804491"
+      "derivativeChecksum": "sha256:b9f23ba60a75e1a13a220c54dbdbe1bcfc8b86da1110ddaaffac782df4d7d9eb"
     },
     {
       "id": "janus.blender.v1.s5.venus",
       "href": "/assets/blender/v1/s5/Venus.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:e3cad99fddac091586e4b6a4f218463511c8607c6d43515989827d2bda370f8e"
+      "derivativeChecksum": "sha256:53f47cbcc414ae59eac5f918d096fd2657bf8421737807925a8a50d01518b1b7"
     },
     {
       "id": "janus.blender.v1.s6.asteroids",
       "href": "/assets/blender/v1/s6/asteroids.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "derivativeChecksum": "sha256:2f022566e0036ce480d2d66e389eb99d7a42e7bd5775d6e8cce8d1cf9801eca9"
+      "derivativeChecksum": "sha256:cfb7f50e2589971fe76a6f6749b69e60876ba6242c97790d8c491437c0b55743"
     },
     {
       "id": "janus.blender.v1.s6.earth-mobile",
       "href": "/assets/blender/v1/s6/earth-mobile.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "derivativeChecksum": "sha256:885f79a9b06c1977c146c030076747d705eb7b867b9f1df8d417e88005dfe96a"
+      "derivativeChecksum": "sha256:aea8d60ff3757fd78bcd5cab8f418da9f7316c07d0f4265e5e601943548ecda7"
     },
     {
       "id": "janus.blender.v1.s6.earth",
       "href": "/assets/blender/v1/s6/earth.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "derivativeChecksum": "sha256:df7c69d384cb6e8f46e2079767709518a73d8798cfce239e99c6aa249f78fa9f"
+      "derivativeChecksum": "sha256:ab261d5a0750e6b084284c3cb11557dfabcc3e8a698661d057a4b3224bacb1aa"
     },
     {
       "id": "janus.blender.v1.s6.kuiper",
@@ -269,31 +269,31 @@
       "id": "janus.blender.v1.s6.venus",
       "href": "/assets/blender/v1/s6/Venus.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "derivativeChecksum": "sha256:731fe73e8367e0cbf1ee9eadc43b9ef2a0d7c530f875cff2563be0011bde3b73"
+      "derivativeChecksum": "sha256:b25004c2dd11e389230acc38aee173dc5b0568cceaa3253931e40d3d3ab862ad"
     },
     {
       "id": "janus.blender.v1.s7.earth-mobile",
       "href": "/assets/blender/v1/s7/earth-mobile.glb",
       "sourcePath": "assets/blender/s7.blend",
-      "derivativeChecksum": "sha256:ec9bb1258f86309fc92207b951d3518d6985071ef4070136dccee6dcf3e6a975"
+      "derivativeChecksum": "sha256:f2ef09d424ff64cec3ef4cd041e54eeb18fdfc39c2911b4866b1e5affe5f228b"
     },
     {
       "id": "janus.blender.v1.s7.earth",
       "href": "/assets/blender/v1/s7/earth.glb",
       "sourcePath": "assets/blender/s7.blend",
-      "derivativeChecksum": "sha256:cccc292317cbd8787d38b63b7c65ce7326bed3252a441c7077740b9946747ea3"
+      "derivativeChecksum": "sha256:c7a87a62b91e75d00b2a2e86201c629b82844d341f3583c26d85e98e40f19874"
     },
     {
       "id": "janus.blender.v1.s8.earth-mobile",
       "href": "/assets/blender/v1/s8/earth-mobile.glb",
       "sourcePath": "assets/blender/s8.blend",
-      "derivativeChecksum": "sha256:ecc81502e792faa9fc7311c26e70f4c4535794a15a99e5b14326f0f4461dbd1b"
+      "derivativeChecksum": "sha256:04dc3d6e2c983596eee0382a3b105ff24008f015f7b23c64ca1d647198a287b6"
     },
     {
       "id": "janus.blender.v1.s8.earth",
       "href": "/assets/blender/v1/s8/earth.glb",
       "sourcePath": "assets/blender/s8.blend",
-      "derivativeChecksum": "sha256:808b52be56c01dccfd601840fea2b4c45b7fac8be85807f22d1057b6f75ceab3"
+      "derivativeChecksum": "sha256:2f67df8a745083804d2102fec23a63009ea1ae82d0f7292389333a6132014c76"
     },
     {
       "id": "janus.blender.v1.s8.moon",
@@ -305,19 +305,19 @@
       "id": "janus.blender.v1.s9.asteroids",
       "href": "/assets/blender/v1/s9/asteroids.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:bf1b1e4f0c8a5d89fde0163943052184e329526586e6b772833720e19fe0be4c"
+      "derivativeChecksum": "sha256:fd76a2200cd41f938df4d329658209d094e6e5922f31653414b5b5a2923a336c"
     },
     {
       "id": "janus.blender.v1.s9.earth-mobile",
       "href": "/assets/blender/v1/s9/earth-mobile.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:66859db529ddbc0698ffc66b6a990c2fdd554d4d6feafbf4ce0a3907043ca500"
+      "derivativeChecksum": "sha256:44c55ebb1d0d4914c07c98c4cbb71493c51bfe58080dceffcb6aaed9ea3f5607"
     },
     {
       "id": "janus.blender.v1.s9.earth",
       "href": "/assets/blender/v1/s9/earth.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:a9c2c721e24f458ac5d9d839a8f67d60d159c72f7b2c399c373f9c9525a89a7b"
+      "derivativeChecksum": "sha256:0172ef963018bd09211c70f24738ef3fae2d260959755374d5559f872567b7eb"
     },
     {
       "id": "janus.blender.v1.s9.kuiper",
@@ -341,7 +341,7 @@
       "id": "janus.blender.v1.s9.outer",
       "href": "/assets/blender/v1/s9/outer.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:80711a84627787eb1ad50a6e36b06c4cab179430aa3a3908a08784ff44e31f6e"
+      "derivativeChecksum": "sha256:365fd8d394d4b2b88cfaa3d8dc6e03bfd0ffd721e121a2a58e40a8ccc13a9eae"
     },
     {
       "id": "janus.blender.v1.s9.solar",
@@ -353,25 +353,25 @@
       "id": "janus.blender.v1.s9.venus",
       "href": "/assets/blender/v1/s9/Venus.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:9a38c617edae1c9d7404516db15c3940bea7a3fc04b57ec69ca788cba408f8e0"
+      "derivativeChecksum": "sha256:672acefb567cd1c6680cbdcc32becdb28aa837d1c43a267f370f2d847eb460a6"
     },
     {
       "id": "janus.blender.v1.s10.asteroids",
       "href": "/assets/blender/v1/s10/asteroids.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:7bdd6c2231d220722ad954955c05007ef280c576cf283baec318bd5437eeac90"
+      "derivativeChecksum": "sha256:e685c71688c2c4c0d188bc8b40eb5021ac447943532bb750364c57dc19378c56"
     },
     {
       "id": "janus.blender.v1.s10.earth-mobile",
       "href": "/assets/blender/v1/s10/earth-mobile.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:d5b73b9220f0cb6a4aaebf8ae2e3bd334ae52317dabb47fe9a943493311e7e57"
+      "derivativeChecksum": "sha256:48ca7ce3da98b47313bacba221c6bb69be054767f7e2135def6b17525573eb04"
     },
     {
       "id": "janus.blender.v1.s10.earth",
       "href": "/assets/blender/v1/s10/earth.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:6c303d92bbc5d0f04b579c30b34b65fe89a5009938d748a11f8e812f03d5e919"
+      "derivativeChecksum": "sha256:33a67ef372b1e9f945e2a8348c18a94ecc71aebaede6ee3be41a087f4f15db49"
     },
     {
       "id": "janus.blender.v1.s10.kuiper",
@@ -395,13 +395,13 @@
       "id": "janus.blender.v1.s10.outer",
       "href": "/assets/blender/v1/s10/outer.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:e722850c30e4c3b6323349a9964c1bbaec7d1890461a6aab324ba919395b9ff5"
+      "derivativeChecksum": "sha256:24dc180a45bfd70009f76afd8e9b33021c5cb7b010f2d91f7806803c618ec9b6"
     },
     {
       "id": "janus.blender.v1.s10.venus",
       "href": "/assets/blender/v1/s10/Venus.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:9d5064f3fa837612a474235669196e50034998c95e86776c68d58d938f292880"
+      "derivativeChecksum": "sha256:b1462a1bc4dd5743bb05f01c39b7c09231b3c50a64afc5ca1df71856f4735c85"
     }
   ]
 }

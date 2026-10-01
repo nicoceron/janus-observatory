@@ -1698,7 +1698,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "inspector-text-v24-2026-09-21",
+      "sourceVersion": "planet-polish-v25-2026-09-30",
       "retrievedAt": "2026-09-08",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -1717,7 +1717,7 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:9a62794fed2441e92549aa45e222109043bf39528d833cc42439ba12dfff40b8",
+      "sourceChecksum": "sha256:5d1ac070637c6945c0adc3a6771a309905556894355bfb936c4cc0062ae8a698",
       "maxDisplaySize": null,
       "transformations": [
         "Original faceted Three.js geometry, articulated activity on prepared routes between modeled entrances, independently moving clouds, simultaneously visible source-selected Solar System bodies and original star field in the story, and a single-canvas interactive explorer. Background props respect road corridors and stay merged; selectable focal objects retain separate meshes. No external model or texture is reproduced."
@@ -1746,7 +1746,8 @@
         "Deep space v21 replaces sha256:562dd4be2968b2c185cfdc295e4b9fd93a7176c2173d0bfc47d39bafc046e817. Black sky with independently composited star layers and restrained chapter lighting. GSAP ScrollToPlugin unifies interruptible anchor navigation; deep links and history align to the measured chapter anchors. Quintic portrait handoffs retain behind-Earth companions. No geometry, canonical data, resolution or Blender export changes. Evidence: docs/qa/deep-space/.",
         "Galactic settle v22 replaces sha256:61c7b89d43656c9cffdf7025060de087f9d0f36398094f4416034c08a3d0980a. Original SVG galactic dust, concentrated stars and restrained halos add spatial structure. Native wheel and touch scrolling settle only near chapter portraits after input ends, release departed anchors, and leave articles and reduced motion free. No new media, dependencies, resolution or model changes. Evidence: docs/qa/galactic-settle/.",
         "Chapter sync v23 replaces sha256:75120ebb8fc4efa9544c09257f1afaa2ef559c434855f88bc0bb97f5708ff340. Narrative, planets and sky consume one absolute chapter presentation. Single semantic copy nodes stage in measured desktop slots; flow layouts hold their world through reading. Independent renderer and sky easing removed. Geometry, full resolution, canonical data and source rights remain unchanged. Evidence: docs/qa/chapter-sync/.",
-        "Inspector text v24 replaces sha256:b0dea3ce163a0a42652cc1dbe306bf5182861e7a651082bd7f2a79c74f0f0b29. The inert story layer is hidden as one composited group during model inspection, preventing explicitly visible anchored narrative from appearing behind enlarged planets or assets. Layout, scroll position, focus restoration, sky, models, resolution and canonical data remain unchanged. Evidence: docs/qa/inspector-text/."
+        "Inspector text v24 replaces sha256:b0dea3ce163a0a42652cc1dbe306bf5182861e7a651082bd7f2a79c74f0f0b29. The inert story layer is hidden as one composited group during model inspection, preventing explicitly visible anchored narrative from appearing behind enlarged planets or assets. Layout, scroll position, focus restoration, sky, models, resolution and canonical data remain unchanged. Evidence: docs/qa/inspector-text/.",
+        "Planet polish v25 replaces sha256:9a62794fed2441e92549aa45e222109043bf39528d833cc42439ba12dfff40b8. Coastlines follow the terrain contour instead of stepped facets, with a beach rim and one cliff face per segment. Clouds sit closer to the land. S1 land reads as a grey city plate with low-rise blocks; S2 benches, fence and excavator are wrapped onto the globe over a carved pit; S7 and S8 ruins stand on grounded piers. Venus is a pale cloud deck and asteroids are lobed bodies. Routes were re-planned offline; canonical data, resolution and rights are unchanged. Evidence: docs/qa/planet-polish-2026-09-30/."
       ]
     },
     {
@@ -1886,7 +1887,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -1907,12 +1908,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:b94540bdb4b31955154e112e855e09bfaaa32f8ffa6481a3b6ab8e317b511371",
-      "derivativeChecksum": "sha256:f1741609f25d8942c8dbd8e397c217585a61d8ce3c595531943ae4526041f91d",
+      "sourceChecksum": "sha256:c3d9bf3982c019233242d8b08688eb5320b49539899f7cf3328c808c2f471b54",
+      "derivativeChecksum": "sha256:18d553a447b0e0b6138fc8d81600e810b5f1080256e121a6e0b18fc90f533c20",
       "derivativePublicPath": "/assets/blender/v1/origin/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/origin.json (sha256:912728ad42a75a056bdcefcdbeb646c7bdfeb4ed16c897f8385e495d92abc459) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/origin.json (sha256:ba6580087ec6ea0896478e4721617b0ae1cbd47784fd38acd9e862fa10019f28) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/origin.blend → apps/web/public/assets/blender/v1/origin/earth-mobile.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -1932,7 +1933,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -1953,12 +1954,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:b94540bdb4b31955154e112e855e09bfaaa32f8ffa6481a3b6ab8e317b511371",
-      "derivativeChecksum": "sha256:9cb7b59e107a03c09c144c8535d9032c2e498b646312e0090751cfab7d1be7ad",
+      "sourceChecksum": "sha256:c3d9bf3982c019233242d8b08688eb5320b49539899f7cf3328c808c2f471b54",
+      "derivativeChecksum": "sha256:eb2177913541356191eb17d4cb5e85a1dbe7ed80ed2ad1f4c62f0b8b1b6cf97b",
       "derivativePublicPath": "/assets/blender/v1/origin/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/origin.json (sha256:912728ad42a75a056bdcefcdbeb646c7bdfeb4ed16c897f8385e495d92abc459) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/origin.json (sha256:ba6580087ec6ea0896478e4721617b0ae1cbd47784fd38acd9e862fa10019f28) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/origin.blend → apps/web/public/assets/blender/v1/origin/earth.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -1978,7 +1979,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -1999,12 +2000,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
-      "derivativeChecksum": "sha256:367796326a5f56bb265ebf2d4bb1ab0947b5c9a7c4a2a22c0a260387a8d45a55",
+      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
+      "derivativeChecksum": "sha256:49089a2a01f7178d4f125aba3be0b802afb61f88cc4c89c86c54578c21308f0c",
       "derivativePublicPath": "/assets/blender/v1/s1/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:32aa5eaa910f1d5da0317615443d39b0f94375c7c46507ec13045c0f78c276e6) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s1.blend → apps/web/public/assets/blender/v1/s1/asteroids.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2024,7 +2025,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2045,12 +2046,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
-      "derivativeChecksum": "sha256:f80a8330eae1f34dbc86df5c54a5dd66ccb3151886c17a0c165d42dcb223d756",
+      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
+      "derivativeChecksum": "sha256:2a5372a052e28b248ceb9249160587bf2142f06bea010a28e4ca05b777c5b036",
       "derivativePublicPath": "/assets/blender/v1/s1/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:32aa5eaa910f1d5da0317615443d39b0f94375c7c46507ec13045c0f78c276e6) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s1.blend → apps/web/public/assets/blender/v1/s1/earth-mobile.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2070,7 +2071,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2091,12 +2092,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
-      "derivativeChecksum": "sha256:538c3310f34318ac61531a3c6e381f8b598be440965c8f566bd825ef24e2a6c0",
+      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
+      "derivativeChecksum": "sha256:359b9526d3763a93b16dddcb2037f6157bac5de92ff89f277aa8a2e4d2d5a8d9",
       "derivativePublicPath": "/assets/blender/v1/s1/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:32aa5eaa910f1d5da0317615443d39b0f94375c7c46507ec13045c0f78c276e6) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s1.blend → apps/web/public/assets/blender/v1/s1/earth.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2116,7 +2117,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2137,12 +2138,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
+      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
       "derivativeChecksum": "sha256:c3026e5e52b979976744a0b2d89f0c7387ae422e65a5c38d6ea5e9de21d731a0",
       "derivativePublicPath": "/assets/blender/v1/s1/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:32aa5eaa910f1d5da0317615443d39b0f94375c7c46507ec13045c0f78c276e6) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s1.blend → apps/web/public/assets/blender/v1/s1/Mars.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2162,7 +2163,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2183,12 +2184,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
+      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
       "derivativeChecksum": "sha256:0915b6f0fa760f6f9db98a86a32d117799cf839a0cff3908516edadea4381dd1",
       "derivativePublicPath": "/assets/blender/v1/s1/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:32aa5eaa910f1d5da0317615443d39b0f94375c7c46507ec13045c0f78c276e6) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s1.blend → apps/web/public/assets/blender/v1/s1/Moon.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2208,7 +2209,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2229,12 +2230,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
-      "derivativeChecksum": "sha256:147fa6e8e3316abe8615a6f80a9cc410a6f01a187d604867e2d15656d60c012b",
+      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
+      "derivativeChecksum": "sha256:3eb71e36985441b85c743e9d769f568309d55d32a4e48f763a5c2fe76dd173d4",
       "derivativePublicPath": "/assets/blender/v1/s1/outer.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:32aa5eaa910f1d5da0317615443d39b0f94375c7c46507ec13045c0f78c276e6) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s1.blend → apps/web/public/assets/blender/v1/s1/outer.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2254,7 +2255,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2275,12 +2276,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f228063897c4626035d61f1a64aa4958b5263ad3efe69f47c72e0805b7519020",
-      "derivativeChecksum": "sha256:8e46e4d8f004c6837edac058411dda13e799c34e1ecee3fee65e270e094ffd30",
+      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
+      "derivativeChecksum": "sha256:35e7a5af4e8ca98ab8debe111576c50001a1886966b809e34018fbd158ab43ac",
       "derivativePublicPath": "/assets/blender/v1/s1/Venus.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:32aa5eaa910f1d5da0317615443d39b0f94375c7c46507ec13045c0f78c276e6) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s1.blend → apps/web/public/assets/blender/v1/s1/Venus.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2300,7 +2301,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2321,12 +2322,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3ab7260736ac1d046da6c531ca78e77a9e291ea3aef3516571a19cf6fc15dafb",
-      "derivativeChecksum": "sha256:de599e86e389c9c86da199d4ce00a5b54e6855b6e7fd7b414d2b777dc8adab11",
+      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
+      "derivativeChecksum": "sha256:f50847f387383318f678751012f1f7695fb0bf062b69fde2bd8542c3fe0e6fc5",
       "derivativePublicPath": "/assets/blender/v1/s2/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s2.json (sha256:5ae8e3dab6de3119f8035c5c86d0f92de0b1a8c15161cdc9e945abf6065b3cf8) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s2.json (sha256:a22cfc9536ac3ff8422dcded0a721416287f8e77061a3933c277f30e9b5726ea) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s2.blend → apps/web/public/assets/blender/v1/s2/asteroids.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2346,7 +2347,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2367,12 +2368,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3ab7260736ac1d046da6c531ca78e77a9e291ea3aef3516571a19cf6fc15dafb",
-      "derivativeChecksum": "sha256:81ef58c48a2d75097724b5f9a35ba08c934f592cb9f72c9345752a60a6b9b0e1",
+      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
+      "derivativeChecksum": "sha256:1b5a9afe3667f16547afd5601b59e09ad86e933df30d32dca57b4777650d94ba",
       "derivativePublicPath": "/assets/blender/v1/s2/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s2.json (sha256:5ae8e3dab6de3119f8035c5c86d0f92de0b1a8c15161cdc9e945abf6065b3cf8) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s2.json (sha256:a22cfc9536ac3ff8422dcded0a721416287f8e77061a3933c277f30e9b5726ea) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s2.blend → apps/web/public/assets/blender/v1/s2/earth-mobile.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2392,7 +2393,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2413,12 +2414,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3ab7260736ac1d046da6c531ca78e77a9e291ea3aef3516571a19cf6fc15dafb",
-      "derivativeChecksum": "sha256:4ef2a20ea9c2b24306f2c777c8014ec75211bc61f4563e4069e4bb10720b6bec",
+      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
+      "derivativeChecksum": "sha256:92876c8f4d8f0a1d40687bd3f037e3c40cb1de26702e34f7108b54df46af60f2",
       "derivativePublicPath": "/assets/blender/v1/s2/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s2.json (sha256:5ae8e3dab6de3119f8035c5c86d0f92de0b1a8c15161cdc9e945abf6065b3cf8) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s2.json (sha256:a22cfc9536ac3ff8422dcded0a721416287f8e77061a3933c277f30e9b5726ea) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s2.blend → apps/web/public/assets/blender/v1/s2/earth.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2438,7 +2439,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2459,12 +2460,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3ab7260736ac1d046da6c531ca78e77a9e291ea3aef3516571a19cf6fc15dafb",
+      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
       "derivativeChecksum": "sha256:e3cb828e551172e6ae392f2b27e094c9a29662b7c99766e2722e98f3a4da31bf",
       "derivativePublicPath": "/assets/blender/v1/s2/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s2.json (sha256:5ae8e3dab6de3119f8035c5c86d0f92de0b1a8c15161cdc9e945abf6065b3cf8) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s2.json (sha256:a22cfc9536ac3ff8422dcded0a721416287f8e77061a3933c277f30e9b5726ea) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s2.blend → apps/web/public/assets/blender/v1/s2/Mars.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2484,7 +2485,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2505,12 +2506,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3ab7260736ac1d046da6c531ca78e77a9e291ea3aef3516571a19cf6fc15dafb",
+      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
       "derivativeChecksum": "sha256:ca23430fe5ace9f1eb99dc11ac65eb69bc3ef84002d20d0ade6a7a2fb8469882",
       "derivativePublicPath": "/assets/blender/v1/s2/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s2.json (sha256:5ae8e3dab6de3119f8035c5c86d0f92de0b1a8c15161cdc9e945abf6065b3cf8) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s2.json (sha256:a22cfc9536ac3ff8422dcded0a721416287f8e77061a3933c277f30e9b5726ea) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s2.blend → apps/web/public/assets/blender/v1/s2/Moon.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2530,7 +2531,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2551,12 +2552,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
-      "derivativeChecksum": "sha256:b4341560bfd0e9ef79bb47ca4efa43e3dbc247650bbb840332dd834d7d50a8d8",
+      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
+      "derivativeChecksum": "sha256:b4c243862e084f39ecd2a8b86548a4f9d5afddddf817be4aa3f277219f317ae4",
       "derivativePublicPath": "/assets/blender/v1/s3/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s3.json (sha256:10c2b8b06373713f478957c5a7af64a6e695e7dfebcc19b2541a1a5362f93a6f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s3.json (sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s3.blend → apps/web/public/assets/blender/v1/s3/asteroids.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2576,7 +2577,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2597,12 +2598,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
-      "derivativeChecksum": "sha256:38361bd5db449eb89b1af6e4dcf188e42b72aeec5d45a358b147f0128e871dc7",
+      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
+      "derivativeChecksum": "sha256:1b4949d9e9a43f8592d8f118cd5ab7ee08a995fe5fd375bae378fd704e768d04",
       "derivativePublicPath": "/assets/blender/v1/s3/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s3.json (sha256:10c2b8b06373713f478957c5a7af64a6e695e7dfebcc19b2541a1a5362f93a6f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s3.json (sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s3.blend → apps/web/public/assets/blender/v1/s3/earth-mobile.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2622,7 +2623,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2643,12 +2644,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
-      "derivativeChecksum": "sha256:9b858784da70aee56b90d4e14934805404f386c4c3f27563f76fcb6779933f84",
+      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
+      "derivativeChecksum": "sha256:133ec6660ac808d8694f2a8af361fb3c4b92b724971db2c22ad1cdd619568a01",
       "derivativePublicPath": "/assets/blender/v1/s3/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s3.json (sha256:10c2b8b06373713f478957c5a7af64a6e695e7dfebcc19b2541a1a5362f93a6f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s3.json (sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s3.blend → apps/web/public/assets/blender/v1/s3/earth.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2668,7 +2669,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2689,12 +2690,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
+      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
       "derivativeChecksum": "sha256:39138573228d03a54b91644558958c9e015a0c44bcb0b121e505c8660010cb24",
       "derivativePublicPath": "/assets/blender/v1/s3/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s3.json (sha256:10c2b8b06373713f478957c5a7af64a6e695e7dfebcc19b2541a1a5362f93a6f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s3.json (sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s3.blend → apps/web/public/assets/blender/v1/s3/Mars.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2714,7 +2715,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2735,12 +2736,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
+      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
       "derivativeChecksum": "sha256:0f76b01a022c7dba85fbfb93424fe4c05fad97159c99af36d7c293f53264c2b2",
       "derivativePublicPath": "/assets/blender/v1/s3/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s3.json (sha256:10c2b8b06373713f478957c5a7af64a6e695e7dfebcc19b2541a1a5362f93a6f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s3.json (sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s3.blend → apps/web/public/assets/blender/v1/s3/Moon.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2760,7 +2761,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2781,12 +2782,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:91c982e990f7de6814385d4382ec087ce251fc4161e1f143b7bfe515f54eac26",
-      "derivativeChecksum": "sha256:da8eb2426715f02ec35404e24326468bf5b7cf9791158886f6cf0819f9099a8b",
+      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
+      "derivativeChecksum": "sha256:82a95da8f5ebb05354eb048c440636b12ab63f66f2ef13132ba87651b37a8aba",
       "derivativePublicPath": "/assets/blender/v1/s3/outer.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s3.json (sha256:10c2b8b06373713f478957c5a7af64a6e695e7dfebcc19b2541a1a5362f93a6f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s3.json (sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s3.blend → apps/web/public/assets/blender/v1/s3/outer.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2806,7 +2807,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2827,12 +2828,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:88327dc545f1571578b7126d516f30903168606218af571b4dc945fb59d3aec9",
-      "derivativeChecksum": "sha256:f9d6fa97980249102d46c9bc575cb22dd15fd9573f5b23b9670868636fbbd213",
+      "sourceChecksum": "sha256:00c6855e5e7be9a231b4bf9464ebaec6f898f959b9c4ee1acef9ea8bcfcce9c3",
+      "derivativeChecksum": "sha256:bef4adbc394438e6fdb6903c5cc7fa904532aa9e5ade78dffeff7637a7bda808",
       "derivativePublicPath": "/assets/blender/v1/s4/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s4.json (sha256:9c9ea26a618eef55a2af951a0a6022f72071296a15f92e35fe2364fe7a85b064) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s4.json (sha256:a82d08f03364814fd48283a9a3e4033fd61e52e4c39dfa32ee26a38046637d91) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s4.blend → apps/web/public/assets/blender/v1/s4/earth-mobile.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2852,7 +2853,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2873,12 +2874,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:88327dc545f1571578b7126d516f30903168606218af571b4dc945fb59d3aec9",
-      "derivativeChecksum": "sha256:a38b173cf06defe796e970ec0d9f53c8442329bf3a5c1dbf813f55e5398b6108",
+      "sourceChecksum": "sha256:00c6855e5e7be9a231b4bf9464ebaec6f898f959b9c4ee1acef9ea8bcfcce9c3",
+      "derivativeChecksum": "sha256:1f918ae0070c037c17365fc998e0f6b99928d28d3a70c00be9d21ed3e55fa4fc",
       "derivativePublicPath": "/assets/blender/v1/s4/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s4.json (sha256:9c9ea26a618eef55a2af951a0a6022f72071296a15f92e35fe2364fe7a85b064) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s4.json (sha256:a82d08f03364814fd48283a9a3e4033fd61e52e4c39dfa32ee26a38046637d91) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s4.blend → apps/web/public/assets/blender/v1/s4/earth.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2898,7 +2899,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2919,12 +2920,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
-      "derivativeChecksum": "sha256:e9ce6965b69f78ee6aaf72d1ecfef3c3d75dc49ba27533db049907dc4b71115c",
+      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
+      "derivativeChecksum": "sha256:9f920fa971871a321c9a84682450fca329a56dfe921fe8794165835217a3ed3d",
       "derivativePublicPath": "/assets/blender/v1/s5/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:373929212c55a475afcff678d0405e2c02de6ba1bd611f42f68acf38d6040d9f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s5.blend → apps/web/public/assets/blender/v1/s5/asteroids.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2944,7 +2945,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -2965,12 +2966,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
-      "derivativeChecksum": "sha256:4ad83c4e9a92cec51726cb7b0806209c365d13739fc9cfbe12d03940ff47448e",
+      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
+      "derivativeChecksum": "sha256:899efa6cc4b71d79e0d7b4c73c3da89f652465f7aba77064ba140c528ae8e24f",
       "derivativePublicPath": "/assets/blender/v1/s5/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:373929212c55a475afcff678d0405e2c02de6ba1bd611f42f68acf38d6040d9f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s5.blend → apps/web/public/assets/blender/v1/s5/earth-mobile.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -2990,7 +2991,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3011,12 +3012,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
-      "derivativeChecksum": "sha256:c8767715324fd0e9d933ea08e8a1bb2a81363bc12d49c1625e60ef797697a663",
+      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
+      "derivativeChecksum": "sha256:a7a3c1f2c02a5cd8440b14124a92c5028ab01c14c05ce9a05872c307ac0c7f40",
       "derivativePublicPath": "/assets/blender/v1/s5/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:373929212c55a475afcff678d0405e2c02de6ba1bd611f42f68acf38d6040d9f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s5.blend → apps/web/public/assets/blender/v1/s5/earth.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3036,7 +3037,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3057,12 +3058,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
+      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
       "derivativeChecksum": "sha256:5df422221f02005504328776303032228250726f86a750c11679b4285d30a956",
       "derivativePublicPath": "/assets/blender/v1/s5/kuiper.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:373929212c55a475afcff678d0405e2c02de6ba1bd611f42f68acf38d6040d9f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s5.blend → apps/web/public/assets/blender/v1/s5/kuiper.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3082,7 +3083,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3103,12 +3104,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
+      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
       "derivativeChecksum": "sha256:5a619ea3bbadf89da72df83e388f04dd76088c528e0a0cd5fa76c1ab59a61dd4",
       "derivativePublicPath": "/assets/blender/v1/s5/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:373929212c55a475afcff678d0405e2c02de6ba1bd611f42f68acf38d6040d9f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s5.blend → apps/web/public/assets/blender/v1/s5/Mars.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3128,7 +3129,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3149,12 +3150,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
+      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
       "derivativeChecksum": "sha256:8c9855b7385482e751cb348a6a479d41ddbdaac8182cd342a2fe9366a3c84b9e",
       "derivativePublicPath": "/assets/blender/v1/s5/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:373929212c55a475afcff678d0405e2c02de6ba1bd611f42f68acf38d6040d9f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s5.blend → apps/web/public/assets/blender/v1/s5/Moon.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3174,7 +3175,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3195,12 +3196,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
-      "derivativeChecksum": "sha256:9052e48340fc8885617b495717dbbcc44277a697de3cf2d7914f48322b804491",
+      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
+      "derivativeChecksum": "sha256:b9f23ba60a75e1a13a220c54dbdbe1bcfc8b86da1110ddaaffac782df4d7d9eb",
       "derivativePublicPath": "/assets/blender/v1/s5/outer.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:373929212c55a475afcff678d0405e2c02de6ba1bd611f42f68acf38d6040d9f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s5.blend → apps/web/public/assets/blender/v1/s5/outer.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3220,7 +3221,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3241,12 +3242,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:3dd1d7581b674bf1f095f26c1a4a5734dbf7f3710e358f90e18b53119cee2e4b",
-      "derivativeChecksum": "sha256:e3cad99fddac091586e4b6a4f218463511c8607c6d43515989827d2bda370f8e",
+      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
+      "derivativeChecksum": "sha256:53f47cbcc414ae59eac5f918d096fd2657bf8421737807925a8a50d01518b1b7",
       "derivativePublicPath": "/assets/blender/v1/s5/Venus.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:373929212c55a475afcff678d0405e2c02de6ba1bd611f42f68acf38d6040d9f) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s5.blend → apps/web/public/assets/blender/v1/s5/Venus.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3266,7 +3267,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3287,12 +3288,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
-      "derivativeChecksum": "sha256:2f022566e0036ce480d2d66e389eb99d7a42e7bd5775d6e8cce8d1cf9801eca9",
+      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
+      "derivativeChecksum": "sha256:cfb7f50e2589971fe76a6f6749b69e60876ba6242c97790d8c491437c0b55743",
       "derivativePublicPath": "/assets/blender/v1/s6/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:f3280f034b281c45061c98c82301bef68d12a7053bc342ed5610f9ebd3938ff3) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s6.blend → apps/web/public/assets/blender/v1/s6/asteroids.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3312,7 +3313,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3333,12 +3334,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
-      "derivativeChecksum": "sha256:885f79a9b06c1977c146c030076747d705eb7b867b9f1df8d417e88005dfe96a",
+      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
+      "derivativeChecksum": "sha256:aea8d60ff3757fd78bcd5cab8f418da9f7316c07d0f4265e5e601943548ecda7",
       "derivativePublicPath": "/assets/blender/v1/s6/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:f3280f034b281c45061c98c82301bef68d12a7053bc342ed5610f9ebd3938ff3) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s6.blend → apps/web/public/assets/blender/v1/s6/earth-mobile.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3358,7 +3359,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3379,12 +3380,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
-      "derivativeChecksum": "sha256:df7c69d384cb6e8f46e2079767709518a73d8798cfce239e99c6aa249f78fa9f",
+      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
+      "derivativeChecksum": "sha256:ab261d5a0750e6b084284c3cb11557dfabcc3e8a698661d057a4b3224bacb1aa",
       "derivativePublicPath": "/assets/blender/v1/s6/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:f3280f034b281c45061c98c82301bef68d12a7053bc342ed5610f9ebd3938ff3) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s6.blend → apps/web/public/assets/blender/v1/s6/earth.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3404,7 +3405,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3425,12 +3426,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
+      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
       "derivativeChecksum": "sha256:dbd2078a6f6eb465d885b277cb9eedac63686091458db1ef68415ee3fe050729",
       "derivativePublicPath": "/assets/blender/v1/s6/kuiper.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:f3280f034b281c45061c98c82301bef68d12a7053bc342ed5610f9ebd3938ff3) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s6.blend → apps/web/public/assets/blender/v1/s6/kuiper.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3450,7 +3451,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3471,12 +3472,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
+      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
       "derivativeChecksum": "sha256:be3ee853ca857a2bf41edc3ee6c86efae0aa3267704f76fbdbe64748df17a753",
       "derivativePublicPath": "/assets/blender/v1/s6/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:f3280f034b281c45061c98c82301bef68d12a7053bc342ed5610f9ebd3938ff3) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s6.blend → apps/web/public/assets/blender/v1/s6/Mars.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3496,7 +3497,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3517,12 +3518,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
+      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
       "derivativeChecksum": "sha256:e0b32a0be67e1484c1724c5b4fd85cd993ff084cd506b2f1637efc8ecdf5134b",
       "derivativePublicPath": "/assets/blender/v1/s6/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:f3280f034b281c45061c98c82301bef68d12a7053bc342ed5610f9ebd3938ff3) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s6.blend → apps/web/public/assets/blender/v1/s6/Moon.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3542,7 +3543,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3563,12 +3564,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:f3e0491c77c4267b50b85f02e8c82b511678042a0c004b4e2cedd1de7883b3a9",
-      "derivativeChecksum": "sha256:731fe73e8367e0cbf1ee9eadc43b9ef2a0d7c530f875cff2563be0011bde3b73",
+      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
+      "derivativeChecksum": "sha256:b25004c2dd11e389230acc38aee173dc5b0568cceaa3253931e40d3d3ab862ad",
       "derivativePublicPath": "/assets/blender/v1/s6/Venus.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:f3280f034b281c45061c98c82301bef68d12a7053bc342ed5610f9ebd3938ff3) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s6.blend → apps/web/public/assets/blender/v1/s6/Venus.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3588,7 +3589,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3609,12 +3610,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:acc146fa5f6528571c96c937d4b807f4a2d365dce3c3af5863925514f6caeb00",
-      "derivativeChecksum": "sha256:ec9bb1258f86309fc92207b951d3518d6985071ef4070136dccee6dcf3e6a975",
+      "sourceChecksum": "sha256:f4d8b7cb1a0e0db65479b5d5429ad9829b0bb478276ff8cb446412af3ebcd454",
+      "derivativeChecksum": "sha256:f2ef09d424ff64cec3ef4cd041e54eeb18fdfc39c2911b4866b1e5affe5f228b",
       "derivativePublicPath": "/assets/blender/v1/s7/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s7.json (sha256:5de87af0593ed1899cdfa0ae95a85a3cfc5e99ca055b162dce8c1303401708dd) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s7.json (sha256:5d9ff3ae2bad44c761eae79caa5b646756a40dbd0dba28c5100cacec9d72b756) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s7.blend → apps/web/public/assets/blender/v1/s7/earth-mobile.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3634,7 +3635,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3655,12 +3656,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:acc146fa5f6528571c96c937d4b807f4a2d365dce3c3af5863925514f6caeb00",
-      "derivativeChecksum": "sha256:cccc292317cbd8787d38b63b7c65ce7326bed3252a441c7077740b9946747ea3",
+      "sourceChecksum": "sha256:f4d8b7cb1a0e0db65479b5d5429ad9829b0bb478276ff8cb446412af3ebcd454",
+      "derivativeChecksum": "sha256:c7a87a62b91e75d00b2a2e86201c629b82844d341f3583c26d85e98e40f19874",
       "derivativePublicPath": "/assets/blender/v1/s7/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s7.json (sha256:5de87af0593ed1899cdfa0ae95a85a3cfc5e99ca055b162dce8c1303401708dd) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s7.json (sha256:5d9ff3ae2bad44c761eae79caa5b646756a40dbd0dba28c5100cacec9d72b756) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s7.blend → apps/web/public/assets/blender/v1/s7/earth.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3680,7 +3681,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3701,12 +3702,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:d22f6a6dbc4b9c51c63827d2dfcb6820d7a865846219c8996555e0e032e52c85",
-      "derivativeChecksum": "sha256:ecc81502e792faa9fc7311c26e70f4c4535794a15a99e5b14326f0f4461dbd1b",
+      "sourceChecksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
+      "derivativeChecksum": "sha256:04dc3d6e2c983596eee0382a3b105ff24008f015f7b23c64ca1d647198a287b6",
       "derivativePublicPath": "/assets/blender/v1/s8/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s8.json (sha256:00d59fc9bcedf6827a865cbe6c60db393a4d5023560b3313502cdfa9e0f7addb) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s8.json (sha256:cec67d135c446fab439ee575ea94c5f5f03f0b6d7d5eab86469d44d1704bacec) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s8.blend → apps/web/public/assets/blender/v1/s8/earth-mobile.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3726,7 +3727,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3747,12 +3748,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:d22f6a6dbc4b9c51c63827d2dfcb6820d7a865846219c8996555e0e032e52c85",
-      "derivativeChecksum": "sha256:808b52be56c01dccfd601840fea2b4c45b7fac8be85807f22d1057b6f75ceab3",
+      "sourceChecksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
+      "derivativeChecksum": "sha256:2f67df8a745083804d2102fec23a63009ea1ae82d0f7292389333a6132014c76",
       "derivativePublicPath": "/assets/blender/v1/s8/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s8.json (sha256:00d59fc9bcedf6827a865cbe6c60db393a4d5023560b3313502cdfa9e0f7addb) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s8.json (sha256:cec67d135c446fab439ee575ea94c5f5f03f0b6d7d5eab86469d44d1704bacec) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s8.blend → apps/web/public/assets/blender/v1/s8/earth.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3772,7 +3773,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3793,12 +3794,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:d22f6a6dbc4b9c51c63827d2dfcb6820d7a865846219c8996555e0e032e52c85",
+      "sourceChecksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
       "derivativeChecksum": "sha256:0999cbccb7cfe546ad6c2bc20893b96d93be7c54c72439c93439cbfcfbc9a255",
       "derivativePublicPath": "/assets/blender/v1/s8/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s8.json (sha256:00d59fc9bcedf6827a865cbe6c60db393a4d5023560b3313502cdfa9e0f7addb) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s8.json (sha256:cec67d135c446fab439ee575ea94c5f5f03f0b6d7d5eab86469d44d1704bacec) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s8.blend → apps/web/public/assets/blender/v1/s8/Moon.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3818,7 +3819,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3839,12 +3840,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
-      "derivativeChecksum": "sha256:bf1b1e4f0c8a5d89fde0163943052184e329526586e6b772833720e19fe0be4c",
+      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
+      "derivativeChecksum": "sha256:fd76a2200cd41f938df4d329658209d094e6e5922f31653414b5b5a2923a336c",
       "derivativePublicPath": "/assets/blender/v1/s9/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:3fa20ebaddebdb30379111b93945fdb4f2144875b4547f3f14aea37b0eb2ce29) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s9.blend → apps/web/public/assets/blender/v1/s9/asteroids.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3864,7 +3865,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3885,12 +3886,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
-      "derivativeChecksum": "sha256:66859db529ddbc0698ffc66b6a990c2fdd554d4d6feafbf4ce0a3907043ca500",
+      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
+      "derivativeChecksum": "sha256:44c55ebb1d0d4914c07c98c4cbb71493c51bfe58080dceffcb6aaed9ea3f5607",
       "derivativePublicPath": "/assets/blender/v1/s9/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:3fa20ebaddebdb30379111b93945fdb4f2144875b4547f3f14aea37b0eb2ce29) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s9.blend → apps/web/public/assets/blender/v1/s9/earth-mobile.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3910,7 +3911,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3931,12 +3932,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
-      "derivativeChecksum": "sha256:a9c2c721e24f458ac5d9d839a8f67d60d159c72f7b2c399c373f9c9525a89a7b",
+      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
+      "derivativeChecksum": "sha256:0172ef963018bd09211c70f24738ef3fae2d260959755374d5559f872567b7eb",
       "derivativePublicPath": "/assets/blender/v1/s9/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:3fa20ebaddebdb30379111b93945fdb4f2144875b4547f3f14aea37b0eb2ce29) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s9.blend → apps/web/public/assets/blender/v1/s9/earth.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -3956,7 +3957,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -3977,12 +3978,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
+      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:361fbd7757e6673fe80557ed45e1a14a7a823e0c54eb2465b0d9bef86a03cf8c",
       "derivativePublicPath": "/assets/blender/v1/s9/kuiper.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:3fa20ebaddebdb30379111b93945fdb4f2144875b4547f3f14aea37b0eb2ce29) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s9.blend → apps/web/public/assets/blender/v1/s9/kuiper.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4002,7 +4003,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4023,12 +4024,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
+      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:b1fd74409f0e32b39646544b2f60b513f3cde1bf66eac8041283fe1571250412",
       "derivativePublicPath": "/assets/blender/v1/s9/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:3fa20ebaddebdb30379111b93945fdb4f2144875b4547f3f14aea37b0eb2ce29) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s9.blend → apps/web/public/assets/blender/v1/s9/Mars.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4048,7 +4049,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4069,12 +4070,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
+      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:31f080b65c5a2be1575b4daab8d775a709862805fcc82e9adac7bb97417e4975",
       "derivativePublicPath": "/assets/blender/v1/s9/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:3fa20ebaddebdb30379111b93945fdb4f2144875b4547f3f14aea37b0eb2ce29) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s9.blend → apps/web/public/assets/blender/v1/s9/Moon.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4094,7 +4095,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4115,12 +4116,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
-      "derivativeChecksum": "sha256:80711a84627787eb1ad50a6e36b06c4cab179430aa3a3908a08784ff44e31f6e",
+      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
+      "derivativeChecksum": "sha256:365fd8d394d4b2b88cfaa3d8dc6e03bfd0ffd721e121a2a58e40a8ccc13a9eae",
       "derivativePublicPath": "/assets/blender/v1/s9/outer.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:3fa20ebaddebdb30379111b93945fdb4f2144875b4547f3f14aea37b0eb2ce29) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s9.blend → apps/web/public/assets/blender/v1/s9/outer.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4140,7 +4141,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4161,12 +4162,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
+      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:e0adf970111ae3fa8f2c213d9e1a1a221febff535769b7625974203809b5b6d5",
       "derivativePublicPath": "/assets/blender/v1/s9/solar.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:3fa20ebaddebdb30379111b93945fdb4f2144875b4547f3f14aea37b0eb2ce29) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s9.blend → apps/web/public/assets/blender/v1/s9/solar.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4186,7 +4187,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4207,12 +4208,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:b70814395a836af1ca2f5d109526a3af947c9eada77b4c96f436674bb7137bf5",
-      "derivativeChecksum": "sha256:9a38c617edae1c9d7404516db15c3940bea7a3fc04b57ec69ca788cba408f8e0",
+      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
+      "derivativeChecksum": "sha256:672acefb567cd1c6680cbdcc32becdb28aa837d1c43a267f370f2d847eb460a6",
       "derivativePublicPath": "/assets/blender/v1/s9/Venus.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:3fa20ebaddebdb30379111b93945fdb4f2144875b4547f3f14aea37b0eb2ce29) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s9.blend → apps/web/public/assets/blender/v1/s9/Venus.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4232,7 +4233,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4253,12 +4254,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
-      "derivativeChecksum": "sha256:7bdd6c2231d220722ad954955c05007ef280c576cf283baec318bd5437eeac90",
+      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
+      "derivativeChecksum": "sha256:e685c71688c2c4c0d188bc8b40eb5021ac447943532bb750364c57dc19378c56",
       "derivativePublicPath": "/assets/blender/v1/s10/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:1ae5565e7d806cf04c234e9817e70c1ad752e3dffdc09672086e119c1a5aa5ab) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s10.blend → apps/web/public/assets/blender/v1/s10/asteroids.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4278,7 +4279,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4299,12 +4300,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
-      "derivativeChecksum": "sha256:d5b73b9220f0cb6a4aaebf8ae2e3bd334ae52317dabb47fe9a943493311e7e57",
+      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
+      "derivativeChecksum": "sha256:48ca7ce3da98b47313bacba221c6bb69be054767f7e2135def6b17525573eb04",
       "derivativePublicPath": "/assets/blender/v1/s10/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:1ae5565e7d806cf04c234e9817e70c1ad752e3dffdc09672086e119c1a5aa5ab) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s10.blend → apps/web/public/assets/blender/v1/s10/earth-mobile.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4324,7 +4325,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4345,12 +4346,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
-      "derivativeChecksum": "sha256:6c303d92bbc5d0f04b579c30b34b65fe89a5009938d748a11f8e812f03d5e919",
+      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
+      "derivativeChecksum": "sha256:33a67ef372b1e9f945e2a8348c18a94ecc71aebaede6ee3be41a087f4f15db49",
       "derivativePublicPath": "/assets/blender/v1/s10/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:1ae5565e7d806cf04c234e9817e70c1ad752e3dffdc09672086e119c1a5aa5ab) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s10.blend → apps/web/public/assets/blender/v1/s10/earth.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4370,7 +4371,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4391,12 +4392,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
+      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
       "derivativeChecksum": "sha256:b5825cb820ec52419a87ca2b853a4182a676cf09985bea460f2516904da1a43b",
       "derivativePublicPath": "/assets/blender/v1/s10/kuiper.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:1ae5565e7d806cf04c234e9817e70c1ad752e3dffdc09672086e119c1a5aa5ab) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s10.blend → apps/web/public/assets/blender/v1/s10/kuiper.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4416,7 +4417,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4437,12 +4438,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
+      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
       "derivativeChecksum": "sha256:9834aae4f040aac0ac58bdc2d1aa4daab5c1387ec578b87d9cbeae0d851e7a1c",
       "derivativePublicPath": "/assets/blender/v1/s10/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:1ae5565e7d806cf04c234e9817e70c1ad752e3dffdc09672086e119c1a5aa5ab) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s10.blend → apps/web/public/assets/blender/v1/s10/Mars.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4462,7 +4463,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4483,12 +4484,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
+      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
       "derivativeChecksum": "sha256:7fa905c8792c6744408cbe66619ca43f3e715f226c114f93cff8fa20e85bf906",
       "derivativePublicPath": "/assets/blender/v1/s10/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:1ae5565e7d806cf04c234e9817e70c1ad752e3dffdc09672086e119c1a5aa5ab) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s10.blend → apps/web/public/assets/blender/v1/s10/Moon.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4508,7 +4509,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4529,12 +4530,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
-      "derivativeChecksum": "sha256:e722850c30e4c3b6323349a9964c1bbaec7d1890461a6aab324ba919395b9ff5",
+      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
+      "derivativeChecksum": "sha256:24dc180a45bfd70009f76afd8e9b33021c5cb7b010f2d91f7806803c618ec9b6",
       "derivativePublicPath": "/assets/blender/v1/s10/outer.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:1ae5565e7d806cf04c234e9817e70c1ad752e3dffdc09672086e119c1a5aa5ab) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s10.blend → apps/web/public/assets/blender/v1/s10/outer.glb. Blender Z-up coordinates return to glTF Y-up."
       ],
@@ -4554,7 +4555,7 @@
       "sourceUrl": "https://github.com/nicoceron/janus-observatory",
       "sourceAgency": "Janus Observatory original procedural artwork",
       "directFileUrls": [],
-      "sourceVersion": "blender-orbit-crops-v11-2026-09-20",
+      "sourceVersion": "blender-planet-polish-v12-2026-09-30",
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
@@ -4575,12 +4576,12 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:60aef378a4a70cc016c34e16690aad7ab08cd9cee87bfdac52ae98d902d65d38",
-      "derivativeChecksum": "sha256:9d5064f3fa837612a474235669196e50034998c95e86776c68d58d938f292880",
+      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
+      "derivativeChecksum": "sha256:b1462a1bc4dd5743bb05f01c39b7c09231b3c50a64afc5ca1df71856f4735c85",
       "derivativePublicPath": "/assets/blender/v1/s10/Venus.glb",
       "maxDisplaySize": null,
       "transformations": [
-        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:1ae5565e7d806cf04c234e9817e70c1ad752e3dffdc09672086e119c1a5aa5ab) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
+        "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
         "Waterways reserve full hull turning envelopes; shore-facing piers remain outside every swept route. Airfields, roads and piers retain named editable semantic groups; cumulus lobes use a bounded Blender remesh modifier; lunar craters and Martian valleys are integrated into the body mesh. A disposable export copy combines editable components into compact semantic-part meshes. Local actor, mechanism and inspection pivots are retained; the website preserves its R3F motion controller.",
         "Official Blender glTF 2.0 exporter with verified EXT_meshopt_compression; source assets/blender/s10.blend → apps/web/public/assets/blender/v1/s10/Venus.glb. Blender Z-up coordinates return to glTF Y-up."
       ],

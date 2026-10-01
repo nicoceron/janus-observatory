@@ -1,6 +1,7 @@
 import { originRiver } from './origin-world';
 import * as THREE from 'three';
-import { Sculpture, surface, type Vec } from './sculpture';
+import { Sculpture, surface, wrapOnGlobe, type Vec } from './sculpture';
+import { quarryBase, quarrySite } from './terrain';
 import { Ground } from './planet-surface';
 import { addWorldBiomes } from './WorldBiomes';
 import type { WorldArt } from './worlds';
@@ -125,32 +126,39 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
         // Streets are assembled only from connected activity routes.
         break;
       case 'extraction': {
-        const m = surface(-8, 19, 1.025);
-        for (let i = 0; i < 6; i++) {
-          const a = (i / 6) * Math.PI * 2 + Math.PI / 6,
-            b = a + Math.PI / 3;
-          s.bar(
-            [Math.cos(a) * 0.51, 0.136, Math.sin(a) * 0.51],
-            [Math.cos(b) * 0.51, 0.136, Math.sin(b) * 0.51],
-            0.009,
-            '#756a58',
-            m,
-          );
-          s.bar(
-            [Math.cos(a) * 0.51, 0.09, Math.sin(a) * 0.51],
-            [Math.cos(a) * 0.51, 0.17, Math.sin(a) * 0.51],
-            0.009,
-            gold,
-            m,
-          );
-        }
-        // Excavator on the upper bench, with tracks, cabin, boom and bucket.
-        s.box([0.12, 0.022, 0.085], ink, [0.3, 0.139, -0.19], m);
-        s.box([0.067, 0.05, 0.065], gold, [0.3, 0.17, -0.19], m);
-        s.box([0.032, 0.024, 0.004], '#577f87', [0.3, 0.18, -0.154], m);
-        s.bar([0.27, 0.19, -0.19], [0.13, 0.26, -0.11], 0.014, gold, m);
-        s.bar([0.13, 0.26, -0.11], [0.085, 0.09, -0.04], 0.011, '#d7bd8f', m);
-        s.box([0.051, 0.027, 0.033], ink, [0.083, 0.083, -0.035], m);
+        const frame = surface(...quarrySite, 1.025);
+        const origin = new THREE.Vector3().setFromMatrixPosition(frame),
+          ex = new THREE.Vector3().setFromMatrixColumn(frame, 0).normalize(),
+          ez = new THREE.Vector3().setFromMatrixColumn(frame, 2).normalize();
+        // Perimeter posts stand on the actual ground beyond the benches; the rails follow the
+        // globe between them and leave an open gate where the haul ramp reaches the rim.
+        const posts = Array.from({ length: 12 }, (_, k) => {
+          const a = ((k + 0.5) / 12) * Math.PI * 2;
+          const n = origin
+            .clone()
+            .addScaledVector(ex, Math.cos(a) * 0.62)
+            .addScaledVector(ez, Math.sin(a) * 0.52)
+            .normalize();
+          const ground = g.project(n, 0);
+          const at = (lift: number) => ground.clone().addScaledVector(n, lift).toArray() as Vec;
+          return { foot: at(-0.015), mid: at(0.04), top: at(0.075) };
+        });
+        posts.forEach((post, k) => {
+          s.bar(post.foot, post.top, 0.008, gold);
+          if (k === posts.length - 1) return;
+          s.bar(post.top, posts[k + 1].top, 0.007, '#756a58');
+          s.bar(post.mid, posts[k + 1].mid, 0.006, '#756a58');
+        });
+        // Excavator working the pit floor beside the foot of the ramp.
+        wrapOnGlobe(s, frame, quarryBase(art), (q) => {
+          const floor = -0.159;
+          q.box([0.12, 0.022, 0.085], ink, [-0.02, floor + 0.011, -0.05]);
+          q.box([0.067, 0.05, 0.065], gold, [-0.02, floor + 0.047, -0.05]);
+          q.box([0.032, 0.024, 0.004], '#577f87', [-0.02, floor + 0.057, -0.016]);
+          q.bar([0.005, floor + 0.068, -0.05], [0.075, floor + 0.13, -0.03], 0.012, gold);
+          q.bar([0.075, floor + 0.13, -0.03], [0.11, floor + 0.035, -0.01], 0.01, '#d7bd8f');
+          q.box([0.045, 0.024, 0.03], ink, [0.112, floor + 0.022, -0.008]);
+        });
         const crane = g.pose(33, 15);
         s.bar([0, 0, 0], [0, 0.3, 0], 0.014, ink, crane);
         s.bar([-0.13, 0.31, 0], [0.14, 0.31, 0], 0.018, gold, crane);
