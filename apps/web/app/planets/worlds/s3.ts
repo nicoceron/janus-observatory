@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { claim, type EarthBrief } from '../earth';
-import { coveredFaces, decades, hazeStrength, lightShare, satelliteCount } from '../encoding';
+import { type EarthBrief } from '../earth';
+import { coveredFaces, hazeStrength, lightShare, satelliteCount } from '../encoding';
 import { frame, local } from '../kit';
 import type { LayerBuilder } from '../model';
 import { orderedSwarm } from '../orbits';
@@ -123,7 +123,13 @@ export const s3: EarthBrief = {
   fauna: {
     herds: [
       { kind: 'deer', biomes: ['forest', 'upland'], count: 16, size: [3, 6] },
-      { kind: 'horse', biomes: ['lowland'], count: 8, size: [3, 5], tints: ['#7a4a2a', '#efe8dc', '#3a2a20'] },
+      {
+        kind: 'horse',
+        biomes: ['lowland'],
+        count: 8,
+        size: [3, 5],
+        tints: ['#7a4a2a', '#efe8dc', '#3a2a20'],
+      },
       { kind: 'bison', biomes: ['lowland', 'tundra'], count: 5, size: [5, 9], roam: true },
     ],
     flocks: { count: 18 },
@@ -146,7 +152,15 @@ export const s3: EarthBrief = {
     const { faces, random } = world;
     const lit = lightShare(earth.artificial_illumination);
     const land = faces.filter((f) => f.land && !['ice', 'peak', 'mountain'].includes(f.biome));
-    const bright: Tone[] = ['#f2efe6', '#e0a830', '#4f9fd0', '#7fbf5a', '#e07aa0', '#f6d36a', '#ffffff'];
+    const bright: Tone[] = [
+      '#f2efe6',
+      '#e0a830',
+      '#4f9fd0',
+      '#7fbf5a',
+      '#e07aa0',
+      '#f6d36a',
+      '#ffffff',
+    ];
 
     // Decentralized: every town is the same size and towns keep an even spacing everywhere.
     const garden: TownStyle = {
@@ -154,7 +168,14 @@ export const s3: EarthBrief = {
       radius: 0.05,
       streets: 5,
       street: { width: 1.3 * U, tone: '#d8cfb4' },
-      plaza: { radius: 3 * U, tone: '#e8e0c8', centre: [['fountain', 2, [1.3, 1.6]], ['statue', 1, [1.4, 1.6], ['#e3b84b']]] },
+      plaza: {
+        radius: 3 * U,
+        tone: '#e8e0c8',
+        centre: [
+          ['fountain', 2, [1.3, 1.6]],
+          ['statue', 1, [1.4, 1.6], ['#e3b84b']],
+        ],
+      },
       lot: { spacing: 2.4 * U },
       core: [
         ['hall', 1, [1, 1.1], ['#f6f4ee']],
@@ -171,37 +192,95 @@ export const s3: EarthBrief = {
         ['bench', 0.6, [1, 1.1]],
       ],
       people: { standing: 16, walking: 5, ...citizens, tints: bright },
-      cars: { count: 1, kinds: ['bicycle', 'bicycle', 'tram'], tints: ['#3d6fb5', '#e0a830', '#2e9e6e'], speed: 0.003 },
-      trees: { count: 22, kinds: ['oak', 'cypress', 'birch', 'flowers', 'bush'], tints: ['#4f9a4a', '#3f8f44', '#6aa84f'], size: [1, 1.4] },
+      cars: {
+        count: 1,
+        kinds: ['bicycle', 'bicycle', 'tram'],
+        tints: ['#3d6fb5', '#e0a830', '#2e9e6e'],
+        speed: 0.003,
+      },
+      trees: {
+        count: 22,
+        kinds: ['oak', 'cypress', 'birch', 'flowers', 'bush'],
+        tints: ['#4f9a4a', '#3f8f44', '#6aa84f'],
+        size: [1, 1.4],
+      },
       lamps: 'lamp',
     };
-    const sites = world.scatter(land.filter((f) => f.elevation < 0.42), coveredFaces(earth.surface_modification, faces.length), 9);
+    const sites = world.scatter(
+      land.filter((f) => f.elevation < 0.42),
+      coveredFaces(earth.surface_modification, faces.length),
+      9,
+    );
     const towns = sites.map((face) => buildTown(world, face.up, garden));
-    if (sites[0]) gardenTown(world.layer('garden-town', 'surface', { landmark: 'garden-town' }), world.on(sites[0], random() * 6, 1, -0.001), 0.05, lit, random, true);
+    if (sites[0])
+      gardenTown(
+        world.layer('garden-town', 'surface', { landmark: 'garden-town' }),
+        world.on(sites[0], random() * 6, 1, -0.001),
+        0.05,
+        lit,
+        random,
+        true,
+      );
 
     // Orchards and fields close to every town.
     for (const town of towns)
-      farmland(world, town.centre, town.radius * 1.9, ['#c7d77a', '#a6c86a', '#d8d48a'], [['vine', 1, [1.4, 1.4], ['#6aa04a']], ['crop', 1, [1.3, 1.3], ['#c9d77a']]], 0.4);
+      farmland(
+        world,
+        town.centre,
+        town.radius * 1.9,
+        ['#c7d77a', '#a6c86a', '#d8d48a'],
+        [
+          ['vine', 1, [1.4, 1.4], ['#6aa04a']],
+          ['crop', 1, [1.3, 1.3], ['#c9d77a']],
+        ],
+        0.4,
+      );
 
     const windy = land.filter((f) => ['upland', 'shore', 'tundra'].includes(f.biome) && !f.used);
     world.scatter(windy, Math.round(26 * world.quality.density), 8).forEach((face, i) => {
       face.used = true;
-      const layer = i === 0 ? world.layer('wind-commons', 'surface', { landmark: 'wind-commons' }) : null;
+      const layer =
+        i === 0 ? world.layer('wind-commons', 'surface', { landmark: 'wind-commons' }) : null;
       const count = 5;
       for (let k = 0; k < count; k++) {
         const dir = offset(face.up, (k / count) * Math.PI * 2, 0.012);
-        if (layer && k < 3) turbine(layer.solid, frame(world.surface.point(dir, -0.0004), dir, 0.3), 0.045);
-        else world.props.add('turbine', world.surface.point(dir, -0.0004), offset(dir, 0.3, 0.01).sub(dir), 1.1);
+        if (layer && k < 3)
+          turbine(layer.solid, frame(world.surface.point(dir, -0.0004), dir, 0.3), 0.045);
+        else
+          world.props.add(
+            'turbine',
+            world.surface.point(dir, -0.0004),
+            offset(dir, 0.3, 0.01).sub(dir),
+            1.1,
+          );
       }
     });
 
     // Shared transit: maglev between neighbouring towns, quiet lanes and the sea.
-    const links = roads(world, towns, { width: 1.2 * U, tone: '#d8cfb4', neighbours: 2, reach: 0.35, traffic: { kinds: ['bus', 'bicycle'], per: 1, speed: 0.006, tints: ['#2e9e6e', '#f2efe6'] } });
-    rails(world, links.filter((_, i) => i % 2 === 0), { tone: '#e3b84b', pylon: 'lamp', train: 'maglev' });
-    const ports = towns.map((t) => harbour(world, t.centre, { light: random() < 0.3, boats: ['sailboat'] })).filter((p): p is THREE.Vector3 => !!p);
+    const links = roads(world, towns, {
+      width: 1.2 * U,
+      tone: '#d8cfb4',
+      neighbours: 2,
+      reach: 0.35,
+      traffic: { kinds: ['bus', 'bicycle'], per: 1, speed: 0.006, tints: ['#2e9e6e', '#f2efe6'] },
+    });
+    rails(
+      world,
+      links.filter((_, i) => i % 2 === 0),
+      { tone: '#e3b84b', pylon: 'lamp', train: 'maglev' },
+    );
+    const ports = towns
+      .map((t) => harbour(world, t.centre, { light: random() < 0.3, boats: ['sailboat'] }))
+      .filter((p): p is THREE.Vector3 => !!p);
     seaLanes(world, ports, { kinds: ['ferry', 'sailboat'], per: 1, speed: 0.004 });
     harbourLoops(world, ports, { kinds: ['sailboat', 'fishing'], per: 2, speed: 0.003 });
-    flights(world, towns.map((t) => t.centre), { kinds: ['airship'], per: 1, speed: 0.006, size: 1.6 }, 8, 0.03);
+    flights(
+      world,
+      towns.map((t) => t.centre),
+      { kinds: ['airship'], per: 1, speed: 0.006, size: 1.6 },
+      8,
+      0.03,
+    );
 
     // One tether from the equator to a transfer hub: Earth stays the hub.
     const hub = world.faceAt(0, 8);

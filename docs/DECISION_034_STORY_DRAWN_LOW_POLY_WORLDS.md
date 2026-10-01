@@ -39,6 +39,47 @@ Companion bodies and system features follow the same rule: styles come from the 
 (for example S5's terraformed Mars, S6's first foothold on Venus, S8's single lunar hatch); only
 bodies and features with positive published cells appear, exactly as before.
 
+## Inhabited worlds (revision 2)
+
+The first pass read as painted globes with a few landmarks. The user asked for citizens, assets,
+plants, buildings and detail everywhere. Every world is now a populated diorama:
+
+- **Asset library** (`apps/web/app/planets/props/`): over 160 original low-poly models built in
+  one person-unit scale: citizens (four skin tones, standing and walking, workers, guards, robed
+  walkers, porters, enhanced S5 citizens, astronauts), animals (deer, bison, cows, sheep, horses,
+  birds, whales, fish), plants (broadleaf, conifer, birch, cypress, palm, bushes, grass, flowers,
+  reeds, cactus, dead trees, crops, vines, S5 bio-flora, coral), buildings (houses, cottages,
+  apartments, towers, skyscrapers, factories, barns, silos, halls, markets, greenhouses, domes,
+  shanties, bunkers, ruins, yurts, tents, huts, totems, wells, lighthouses, docks, cranes,
+  pylons, masts, turbines, windmills, rigs, derricks, billboards, checkpoints, surveillance poles,
+  screens, worker blocks, life-support plant, space habitats, pads, rockets, dishes, drills,
+  crystals, eco-domes) and vehicles (cars, taxis, vans, trucks, haul trucks, buses, trams,
+  maglev, bicycles, carts, ships, tankers, ferries, sailboats, fishing boats, canoes, bio-skiffs,
+  planes, airships, gliders, drones, rovers, machine walkers). Parts take per-instance colours.
+- **Settlements** (`scene/towns.ts`): radial, grid or camp layouts with streets, plazas, lots that
+  face the street and never overlap a street or a neighbour, lamps, parks, standing and walking
+  citizens and street traffic. Each scenario has its own building vocabulary, crowds and vehicles.
+- **Networks and nature** (`scene/network.ts`, `scene/wilds.ts`, `scene/sites.ts`): roads with
+  pylons and bridges, elevated rail, sea lanes, harbours, flights, furrowed fields, biome forests,
+  roaming herds, flocks and whales. Companion bodies get stations, suited walkers and rovers.
+- **Rendering**: props are GPU instances (one draw per prop part); movers are advanced along routes
+  each frame while their world is visible. The focused story world keeps animating; the ten-world
+  overview omits citizens and traffic. The explorer can zoom to street level.
+- **Loading and power**: models build in idle time, several per idle period, around the reader's
+  chapter. Only the world the reader is looking at may build during a frame, and then at overview
+  detail, upgrading to its full tier when the idle queue finishes it; background and neighbouring
+  worlds appear as soon as the queue has built them. Every world material is compiled once when the
+  scene mounts and kept alive, so the first frame that shows a new kind of surface does not stall.
+  Anchor travel and fast scrolling therefore never wait on a build or a shader. Idle animation of the focused world backs off when frames run long. When WebGL runs on a
+  software rasterizer (SwiftShader, llvmpipe), worlds and bodies, in the story and the explorer,
+  use a `minimal` tier (terrain, landmarks and light, no instanced props) and do not animate while
+  idle: there every triangle is CPU work that blocks input. Landmark studies keep full detail.
+  Hardware GPUs always get the full tiers.
+
+The published values still decide extent and intensity (built fraction, light, traffic in orbit,
+haze, fields). Crowds, vehicles and wildlife are interpretive illustration of each narrative,
+labelled as original interpretive artwork, and never presented as measured quantities.
+
 ## Published values drive the drawing
 
 Magnitudes are never typed into components. `apps/web/lib/world-signals.ts` copies the relevant
@@ -61,7 +102,8 @@ activity is absent. All artwork and descriptions are labelled original interpret
   into flat-shaded, vertex-coloured geometry: one draw call per material per layer. There are no
   textures, GLBs, decoder workers or downloads, so the guided path fetches no 3D assets.
 - Quality tiers keep the overview grid light and give the focused chapter, portrait and explorer
-  more faces. Built models are shared across mounts and released 20 s after their last use.
+  more faces. Built models are shared across mounts and released 20 s after their last use
+  (90 s for models built ahead and not yet shown).
 - Motion (planet sway, orbits, clouds, searchlight, migrating camps, pulses) only advances while
   a frame is drawn. Wherever the site's reduced-motion setting applies (Atlas and Observatory
   portraits), every world rests at its pose; the homepage story keeps its existing full-motion

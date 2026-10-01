@@ -2,7 +2,6 @@ import * as THREE from 'three';
 import { claim, type EarthBrief } from '../earth';
 import { decades, lightShare, satelliteCount } from '../encoding';
 import { local } from '../kit';
-import type { Face } from '../globe';
 import { onOrbit, orbitMatrix, type LayerBuilder } from '../model';
 import { house, mast, tree, windmill, windmillSails } from '../parts';
 import type { Tone } from '../kit';
@@ -118,19 +117,48 @@ export const s7: EarthBrief = {
   decorate(world, signals) {
     const earth = signals.bodies.Earth;
     const { faces, random } = world;
-    const land = faces.filter((f) => f.land && ['lowland', 'forest', 'upland', 'shore', 'jungle'].includes(f.biome));
+    const land = faces.filter(
+      (f) => f.land && ['lowland', 'forest', 'upland', 'shore', 'jungle'].includes(f.biome),
+    );
     const lit = lightShare(earth.artificial_illumination);
-    const homespun: Tone[] = ['#8a6a44', '#b3824f', '#6a7a4a', '#d8c39a', '#7d8f6a', '#c9a06a', '#4f6f8a'];
+    const homespun: Tone[] = [
+      '#8a6a44',
+      '#b3824f',
+      '#6a7a4a',
+      '#d8c39a',
+      '#7d8f6a',
+      '#c9a06a',
+      '#4f6f8a',
+    ];
 
     // Regions, each with its own villages, lanes and one radio mast. No links between regions.
     const village = villageStyle(0.04, 'cottage');
-    village.people = { standing: 10, walking: 4, ...citizens, kinds: [...citizens.kinds, 'porter'], tints: homespun };
-    village.cars = { count: 1, kinds: ['cart', 'bicycle'], tints: ['#9a7a5a', '#3d6fb5'], speed: 0.002 };
-    village.trees = { count: 12, kinds: ['oak', 'oak-small', 'cypress', 'flowers'], size: [1, 1.4] };
+    village.people = {
+      standing: 10,
+      walking: 4,
+      ...citizens,
+      kinds: [...citizens.kinds, 'porter'],
+      tints: homespun,
+    };
+    village.cars = {
+      count: 1,
+      kinds: ['cart', 'bicycle'],
+      tints: ['#9a7a5a', '#3d6fb5'],
+      speed: 0.002,
+    };
+    village.trees = {
+      count: 12,
+      kinds: ['oak', 'oak-small', 'cypress', 'flowers'],
+      size: [1, 1.4],
+    };
     const regions = world.scatter(land, 8, 30);
     const towns: Town[] = [];
     regions.forEach((centre, r) => {
-      const sites = world.scatter(world.around(centre, 12).filter((f) => land.includes(f) && f.elevation < 0.42), 5, 5);
+      const sites = world.scatter(
+        world.around(centre, 12).filter((f) => land.includes(f) && f.elevation < 0.42),
+        5,
+        5,
+      );
       const local_: Town[] = sites.map((face) => buildTown(world, face.up, village));
       towns.push(...local_);
       // Lanes within the region only: knowledge and trade move regionally.
@@ -139,17 +167,55 @@ export const s7: EarthBrief = {
         tone: '#b8a37a',
         neighbours: 2,
         reach: 0.3,
-        traffic: { kinds: ['cart', 'cart', 'bicycle'], per: 1, speed: 0.003, tints: ['#9a7a5a', '#7a5a3a'] },
+        traffic: {
+          kinds: ['cart', 'cart', 'bicycle'],
+          per: 1,
+          speed: 0.003,
+          tints: ['#9a7a5a', '#7a5a3a'],
+        },
       });
       for (const town of local_) {
-        farmland(world, town.centre, town.radius * 2.2, ['#c8cf6f', '#a6c160', '#d8c878', '#b9a65a'], [['crop', 2, [1.3, 1.3], ['#d8c35a']], ['vine', 1, [1.3, 1.3], ['#6aa04a']]], 0.55);
-        sprinkle(world, offset(town.centre, random() * 6, town.radius * 1.5), 0.01, [['sheep', 3, [1, 1.2]], ['cow', 1, [1, 1.1], ['#efe8dc', '#5a3f2c']]], 6);
-        if (random() < lit * 2) world.ground.glow.box(world.on(world.surface.face(town.centre), 0, 1, -0.001), 0.0015, 0.0015, 0.0015, '#ffd28a');
+        farmland(
+          world,
+          town.centre,
+          town.radius * 2.2,
+          ['#c8cf6f', '#a6c160', '#d8c878', '#b9a65a'],
+          [
+            ['crop', 2, [1.3, 1.3], ['#d8c35a']],
+            ['vine', 1, [1.3, 1.3], ['#6aa04a']],
+          ],
+          0.55,
+        );
+        sprinkle(
+          world,
+          offset(town.centre, random() * 6, town.radius * 1.5),
+          0.01,
+          [
+            ['sheep', 3, [1, 1.2]],
+            ['cow', 1, [1, 1.1], ['#efe8dc', '#5a3f2c']],
+          ],
+          6,
+        );
+        if (random() < lit * 2)
+          world.ground.glow.box(
+            world.on(world.surface.face(town.centre), 0, 1, -0.001),
+            0.0015,
+            0.0015,
+            0.0015,
+            '#ffd28a',
+          );
       }
       const hub = sites[0];
       if (!hub) return;
-      const tower = r === 0 ? world.layer('radio-mast', 'surface', { landmark: 'radio-mast' }) : world.ground;
-      radioMast(tower, world.on(hub, random() * 6, 1, -0.0004).multiply(new THREE.Matrix4().makeTranslation(0.012, 0, 0.012)), r === 0 ? 0.03 : 0.024);
+      const tower =
+        r === 0 ? world.layer('radio-mast', 'surface', { landmark: 'radio-mast' }) : world.ground;
+      radioMast(
+        tower,
+        world
+          .on(hub, random() * 6, 1, -0.0004)
+          .multiply(new THREE.Matrix4().makeTranslation(0.012, 0, 0.012)),
+        r === 0 ? 0.03 : 0.024,
+      );
       const mill = world.around(hub, 6).find((f) => land.includes(f) && !f.used) ?? hub;
       if (r === 0) {
         mill.used = true;
@@ -159,7 +225,9 @@ export const s7: EarthBrief = {
         windmill(layer.solid, at, s, '#efe6d2', '#8a5a3a', false);
         const sails = world.layer('windmill-sails', 'surface', {
           landmark: 'windmill',
-          matrix: local(at, 0, s * 0.78, s * 0.22).multiply(new THREE.Matrix4().makeRotationX(Math.PI / 2)),
+          matrix: local(at, 0, s * 0.78, s * 0.22).multiply(
+            new THREE.Matrix4().makeRotationX(Math.PI / 2),
+          ),
           motion: { kind: 'spin', speed: 0.8 },
         });
         windmillSails(sails.solid, new THREE.Matrix4().makeRotationX(-Math.PI / 2), s, '#e9dcc0');
@@ -167,19 +235,39 @@ export const s7: EarthBrief = {
     });
 
     const fields = Math.round(land.length * decades(earth.agricultural_pollution, 0.1, 100) * 0.15);
-    claim(faces, fields, (f) => (land.includes(f) && !f.used ? -Math.min(...regions.map((c) => 1 - c.up.dot(f.up))) * 8 + random() * 0.2 : null)).forEach((face, i) => {
+    claim(faces, fields, (f) =>
+      land.includes(f) && !f.used
+        ? -Math.min(...regions.map((c) => 1 - c.up.dot(f.up))) * 8 + random() * 0.2
+        : null,
+    ).forEach((face, i) => {
       furrows(world, face, i % 2 ? '#c8cf6f' : '#a6c160', tangents(face.up).north);
-      if (i === 0) terraces(world.layer('terraces', 'surface', { landmark: 'terraces' }), world.on(face), 0.025);
+      if (i === 0)
+        terraces(
+          world.layer('terraces', 'surface', { landmark: 'terraces' }),
+          world.on(face),
+          0.025,
+        );
     });
 
-    const ports = towns.map((t) => harbour(world, t.centre, { boats: ['sailboat', 'fishing'] })).filter((p): p is THREE.Vector3 => !!p);
+    const ports = towns
+      .map((t) => harbour(world, t.centre, { boats: ['sailboat', 'fishing'] }))
+      .filter((p): p is THREE.Vector3 => !!p);
     harbourLoops(world, ports, { kinds: ['sailboat', 'fishing', 'canoe'], per: 2, speed: 0.003 });
 
-    const relic = world.layer('relic-satellite', 'orbit', { matrix: orbitMatrix(-1.0, 2.1), motion: { kind: 'spin', speed: 0.025 } });
+    const relic = world.layer('relic-satellite', 'orbit', {
+      matrix: orbitMatrix(-1.0, 2.1),
+      motion: { kind: 'spin', speed: 0.025 },
+    });
     for (let i = 0; i < satelliteCount(earth.satellite_belt); i++) {
       const m = onOrbit(1.26, i * 2.1 + 2).multiply(new THREE.Matrix4().makeRotationZ(1.1));
       relic.solid.box(m, 0.012, 0.016, 0.012, '#7b7670');
-      relic.solid.panel(local(m, 0.028, 0.008, 0, 0, 1, [1.2, 0.4]), 0.011, 0.036, '#3a4150', '#6b6560');
+      relic.solid.panel(
+        local(m, 0.028, 0.008, 0, 0, 1, [1.2, 0.4]),
+        0.011,
+        0.036,
+        '#3a4150',
+        '#6b6560',
+      );
     }
   },
 };

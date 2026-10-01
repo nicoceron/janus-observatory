@@ -95,7 +95,14 @@ export const s9: EarthBrief = {
     herds: [
       { kind: 'bison', biomes: ['lowland', 'tundra'], count: 16, size: [6, 12], roam: true },
       { kind: 'deer', biomes: ['forest', 'upland', 'jungle'], count: 26, size: [3, 7] },
-      { kind: 'horse', biomes: ['lowland'], count: 8, size: [4, 9], roam: true, tints: ['#7a4a2a', '#d8c39a', '#3a2a20'] },
+      {
+        kind: 'horse',
+        biomes: ['lowland'],
+        count: 8,
+        size: [4, 9],
+        roam: true,
+        tints: ['#7a4a2a', '#d8c39a', '#3a2a20'],
+      },
     ],
     flocks: { count: 26 },
     whales: 10,
@@ -118,30 +125,86 @@ export const s9: EarthBrief = {
       radius: 0.026,
       plaza: { radius: 2.2 * U, tone: '#c9dcb0', centre: [['crystal', 1, [0.9, 1.1]]] },
       lot: { spacing: 2 * U },
-      core: [['eco-dome', 3, [1, 1.1], ['#e8dcc4', '#d8e6d0']], ['greenhouse-dark', 1, [0.9, 1]]],
-      edge: [['eco-dome', 2, [0.9, 1.1], ['#e8dcc4']], ['cottage-dark', 2, [1, 1.1], ['#efe6d2']], ['well', 0.5, [1, 1.2]], ['bench', 0.5, [1, 1.1]]],
+      core: [
+        ['eco-dome', 3, [1, 1.1], ['#e8dcc4', '#d8e6d0']],
+        ['greenhouse-dark', 1, [0.9, 1]],
+      ],
+      edge: [
+        ['eco-dome', 2, [0.9, 1.1], ['#e8dcc4']],
+        ['cottage-dark', 2, [1, 1.1], ['#efe6d2']],
+        ['well', 0.5, [1, 1.2]],
+        ['bench', 0.5, [1, 1.1]],
+      ],
       people: { standing: 10, walking: 4, ...citizens, tints: linen },
-      trees: { count: 10, kinds: ['oak', 'flowers', 'cypress'], tints: ['#3f8f4a', '#f0a8c8'], size: [1, 1.4] },
+      trees: {
+        count: 10,
+        kinds: ['oak', 'flowers', 'cypress'],
+        tints: ['#3f8f4a', '#f0a8c8'],
+        size: [1, 1.4],
+      },
     };
-    const land = faces.filter((f) => f.land && ['lowland', 'forest', 'upland', 'shore'].includes(f.biome));
-    const towns = world.scatter(land.filter((f) => f.elevation < 0.4), 16, 16).map((face) => buildTown(world, face.up, hamlet));
-    for (const town of towns) farmland(world, town.centre, town.radius * 2, ['#a8c87a', '#c9d68a'], [['vine', 1, [1.3, 1.3], ['#5f9a4a']]], 0.35);
-    for (const [a, b] of roads(world, towns, { width: 0.5 * U, tone: '#c9b994', neighbours: 1, reach: 0.4 }))
+    const land = faces.filter(
+      (f) => f.land && ['lowland', 'forest', 'upland', 'shore'].includes(f.biome),
+    );
+    const towns = world
+      .scatter(
+        land.filter((f) => f.elevation < 0.4),
+        16,
+        16,
+      )
+      .map((face) => buildTown(world, face.up, hamlet));
+    for (const town of towns)
+      farmland(
+        world,
+        town.centre,
+        town.radius * 2,
+        ['#a8c87a', '#c9d68a'],
+        [['vine', 1, [1.3, 1.3], ['#5f9a4a']]],
+        0.35,
+      );
+    for (const [a, b] of roads(world, towns, {
+      width: 0.5 * U,
+      tone: '#c9b994',
+      neighbours: 1,
+      reach: 0.4,
+    }))
       if (world.quality.life)
-        world.traffic.add('walker-1', makeRoute(arc(a.centre, b.centre, 0.004).map((d) => world.surface.point(d, 0.0003))), { count: 2, speed: 0.001, tints: linen, random });
-    const shores = towns.map((t) => harbour(world, t.centre, { boats: ['canoe'] })).filter((p): p is THREE.Vector3 => !!p);
+        world.traffic.add(
+          'walker-1',
+          makeRoute(arc(a.centre, b.centre, 0.004).map((d) => world.surface.point(d, 0.0003))),
+          { count: 2, speed: 0.001, tints: linen, random },
+        );
+    const shores = towns
+      .map((t) => harbour(world, t.centre, { boats: ['canoe'] }))
+      .filter((p): p is THREE.Vector3 => !!p);
     harbourLoops(world, shores, { kinds: ['sailboat', 'canoe'], per: 1, speed: 0.0025 });
 
     // The gifts: quiet crystals, one of them the explorer's study.
-    world.scatter(land.filter((f) => !f.used), 7, 28).forEach((face, i) => {
-      face.used = true;
-      gift(i === 0 ? world.layer('gift', 'surface', { landmark: 'gift' }) : world.ground, world.on(face, random() * 6), i === 0 ? 0.035 : 0.025);
-    });
+    world
+      .scatter(
+        land.filter((f) => !f.used),
+        7,
+        28,
+      )
+      .forEach((face, i) => {
+        face.used = true;
+        gift(
+          i === 0 ? world.layer('gift', 'surface', { landmark: 'gift' }) : world.ground,
+          world.on(face, random() * 6),
+          i === 0 ? 0.035 : 0.025,
+        );
+      });
 
     // Sparse machine nodes high above, on one inclined ring.
-    const nodes = world.layer('machine-node', 'orbit', { landmark: 'machine-node', matrix: orbitMatrix(0.5, 0.8), motion: { kind: 'spin', speed: 0.02 } });
+    const nodes = world.layer('machine-node', 'orbit', {
+      landmark: 'machine-node',
+      matrix: orbitMatrix(0.5, 0.8),
+      motion: { kind: 'spin', speed: 0.02 },
+    });
     const count = satelliteCount(earth.satellite_belt);
-    world.layer('halo', 'orbit', { matrix: orbitMatrix(0.5, 0.8) }).glow.torus(new THREE.Matrix4(), 1.42, 0.0022, '#6ff6ff', 128, 3);
+    world
+      .layer('halo', 'orbit', { matrix: orbitMatrix(0.5, 0.8) })
+      .glow.torus(new THREE.Matrix4(), 1.42, 0.0022, '#6ff6ff', 128, 3);
     for (let i = 0; i < count; i++) {
       const hero = i % Math.max(1, Math.round(count / 6)) === 0;
       machineNode(nodes, onOrbit(1.42, (i / count) * Math.PI * 2), hero ? 0.05 : 0.022);

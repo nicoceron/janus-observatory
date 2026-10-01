@@ -103,8 +103,8 @@ export function mast(mesh: Mesher, m: THREE.Matrix4, h: number, tone: Tone) {
   leg(-1, 1);
   leg(-1, -1);
   leg(1, -1);
-  for (let s = 1; s < 4; s++) {
-    const t = s / 4,
+  for (let s = 1; s < 3; s++) {
+    const t = s / 3,
       k = w * (1 - t * 0.75);
     const y = h * t;
     const c = [

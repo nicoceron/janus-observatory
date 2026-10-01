@@ -23,20 +23,18 @@ function figure(p: PropMeshers, f: Figure) {
   } else {
     for (const side of [-1, 1]) {
       const leg = local(o, side * 0.085, 0.45, 0, 0, 1, [side * stride, 0]);
-      p.base.box(local(leg, 0, -0.45, 0), 0.13, 0.45, 0.15, f.legs ?? '#3b3d47');
-      p.base.box(local(leg, 0, -0.45, 0.03), 0.13, 0.06, 0.2, '#2a2420');
+      p.base.box(local(leg, 0, -0.45, 0), 0.13, 0.45, 0.16, f.legs ?? '#3b3d47');
     }
     p.tint.box(local(o, 0, 0.43, 0), 0.34, 0.36, 0.2, '#ffffff');
   }
   for (const side of [-1, 1]) {
     const arm = local(o, side * 0.215, 0.78, 0, 0, 1, [-side * stride * 0.8, side * 0.08]);
-    p.tint.box(local(arm, 0, -0.34, 0), 0.09, 0.34, 0.1, '#f2f2f2');
-    p.base.box(local(arm, 0, -0.4, 0), 0.08, 0.07, 0.09, f.skin);
+    p.tint.box(local(arm, 0, -0.38, 0), 0.09, 0.38, 0.1, '#f2f2f2');
   }
-  p.base.box(local(o, 0, 0.78, 0), 0.1, 0.06, 0.1, f.skin);
-  p.base.gem(local(o, 0, 0.82, 0), 0.12, 0.2, f.skin, 6, 0.5);
-  if (f.hair) p.base.dome(local(o, 0, 0.92, -0.01), 0.11, f.hair, 6, 1, 0.7);
-  if (f.hat) p.base.prism(local(o, 0, 0.93, 0), 0.15, 0.1, 0.06, 7, f.hat, f.hat);
+  p.base.gem(local(o, 0, 0.79, 0), 0.12, 0.23, f.skin, 4, 0.5);
+  if (f.hair)
+    p.base.prism(local(o, 0, 0.92, -0.01), 0.1, 0.06, 0.08, 4, f.hair, f.hair, Math.PI / 4);
+  if (f.hat) p.base.prism(local(o, 0, 0.93, 0), 0.15, 0.1, 0.06, 5, f.hat, f.hat);
   if (f.carry) p.base.box(local(o, 0, 0.5, -0.17), 0.24, 0.3, 0.12, f.carry);
 }
 
@@ -92,7 +90,8 @@ Object.assign(people, {
         p.tint.box(local(o, side * 0.1, 0, 0), 0.16, 0.45, 0.18, '#ffffff');
       p.tint.box(local(o, 0, 0.43, 0), 0.4, 0.4, 0.26, '#ffffff');
       p.base.box(local(o, 0, 0.45, -0.2), 0.3, 0.34, 0.14, '#9aa0a6');
-      for (const side of [-1, 1]) p.tint.box(local(o, side * 0.25, 0.48, 0), 0.11, 0.32, 0.12, '#ffffff');
+      for (const side of [-1, 1])
+        p.tint.box(local(o, side * 0.25, 0.48, 0), 0.11, 0.32, 0.12, '#ffffff');
       p.tint.dome(local(o, 0, 0.82, 0), 0.17, '#ffffff', 8, 2);
       p.tint.prism(local(o, 0, 0.8, 0), 0.17, 0.17, 0.05, 8, '#ffffff');
       p.glass.box(local(o, 0, 0.86, 0.13), 0.2, 0.1, 0.06, '#e0a640');
@@ -118,7 +117,13 @@ function quadruped(
     p.base.box(local(o, x * width * 0.3, 0, z * length * 0.38), 0.08, leg + 0.04, 0.08, '#3a2a20');
   const head = local(o, 0, leg + height * 0.7, length * 0.45, 0, 1, [0.5, 0]);
   p.tint.box(head, width * 0.45, neck, width * 0.45, '#ffffff');
-  p.tint.box(local(head, 0, neck, 0, 0, 1, [1.0, 0]), width * 0.4, length * 0.32, width * 0.4, '#ffffff');
+  p.tint.box(
+    local(head, 0, neck, 0, 0, 1, [1.0, 0]),
+    width * 0.4,
+    length * 0.32,
+    width * 0.4,
+    '#ffffff',
+  );
   extra?.(p);
 }
 
@@ -175,7 +180,12 @@ Object.assign(people, {
       const o = at();
       p.tint.gem(local(o, 0, 0, 0, 0, 1, [Math.PI / 2, 0]), 0.08, 0.4, '#ffffff', 4, 0.4);
       for (const side of [-1, 1])
-        p.tint.panel(local(o, side * 0.28, 0.08, 0.02, 0, 1, [0, side * 0.35]), 0.5, 0.16, '#ffffff');
+        p.tint.panel(
+          local(o, side * 0.28, 0.08, 0.02, 0, 1, [0, side * 0.35]),
+          0.5,
+          0.16,
+          '#ffffff',
+        );
     },
   },
   whale: {

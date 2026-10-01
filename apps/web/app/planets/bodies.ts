@@ -14,6 +14,11 @@ import {
   type WorldModel,
 } from './model';
 import { orderedSwarm } from './orbits';
+import { U } from './props/library';
+import { makeRoute } from './scene/collect';
+import { sprinkle } from './scene/sites';
+import { offset } from './scene/surface';
+import { buildTown, type Pick, type TownStyle } from './scene/towns';
 import { fbm, rng } from './random';
 
 export type Companion = Exclude<SignalBody, 'Earth'>;
@@ -216,56 +221,26 @@ function furnish(
             '#a2a4a9',
             '#686b72',
           );
-        if (random() < lit) lamp(world, face, light, face.size * 0.08);
+        if (random() < lit) lamp(world, face, light, face.size * 0.025);
       }
       break;
     case 'resort':
     case 'outpost':
-    case 'mining': {
-      const sites = built.length ? built : [world.faceAt(20, 15)];
-      sites.forEach((face, i) => {
+    case 'mining':
+      for (const face of built.length ? built : [world.faceAt(20, 15)])
         mark(face, style === 'mining' ? '#8a4a30' : '#b9b8b2');
-        const m = world.on(face, random() * 6);
-        const s = style === 'resort' ? 0.16 : 0.1;
-        world.ground.sheen.dome(m, s * 0.5, '#bfe8f0', 8, 2);
-        world.ground.solid.box(local(m, s * 0.7, 0, 0), s * 0.35, s * 0.2, s * 0.25, '#d9d6cc');
-        world.ground.sheen.panel(
-          local(m, -s * 0.8, s * 0.25, 0, 0, 1, [0.5, 0]),
-          s * 0.5,
-          s * 0.25,
-          '#2f5d9a',
-          '#c9cdd2',
-        );
-        if (style === 'mining' && i === 0)
-          world.ground.solid.prism(
-            local(m, 0, 0, s * 0.9),
-            s * 0.4,
-            s * 0.32,
-            s * 0.04,
-            8,
-            '#6a3a26',
-            '#4e2a1c',
-          );
-        if (i === 0 || random() < lit)
-          world.ground.glow.dome(local(m, 0, s * 0.02, 0), s * 0.18, light, 6, 1);
-      });
       break;
-    }
     case 'bloom':
       for (const face of built) {
         mark(face, random.pick(['#8fd9c8', '#c9a7e8', '#a9e0a0', '#e8b0d8']));
-        if (world.thin(0.1))
-          world.ground.sheen.dome(world.within(face), face.size * 0.25, '#efe6f5', 6, 1, 1.4);
         if (random() < lit * 0.4)
-          lamp(world, face, random.pick(['#b8fff0', '#ffb8f0']), face.size * 0.08);
+          lamp(world, face, random.pick(['#b8fff0', '#ffb8f0']), face.size * 0.025);
       }
       break;
     case 'terraform':
       for (const face of built.filter((f) => f.land)) {
-        if (world.thin(0.08))
-          world.ground.sheen.dome(world.within(face), face.size * 0.22, '#efe6f5', 6, 1, 1.5);
         if (random() < lit * 0.25)
-          lamp(world, face, random.pick(['#b8fff0', '#ffb8f0', '#e8ffa8']), face.size * 0.08);
+          lamp(world, face, random.pick(['#b8fff0', '#ffb8f0', '#e8ffa8']), face.size * 0.025);
       }
       break;
     case 'industrial':
@@ -287,7 +262,7 @@ function furnish(
             6,
             '#9aa6b1',
           );
-        if (random() < lit * 0.3) lamp(world, face, light, face.size * 0.07);
+        if (random() < lit * 0.3) lamp(world, face, light, face.size * 0.025);
       }
       break;
     case 'works':
@@ -301,7 +276,7 @@ function furnish(
           '#6f7a86',
           '#8a949e',
         );
-        if (random() < 0.4) lamp(world, face, light, face.size * 0.08);
+        if (random() < 0.4) lamp(world, face, light, face.size * 0.025);
       }
       break;
     case 'hatch': {
@@ -388,6 +363,268 @@ function atmosphereFor(
   };
 }
 
+/** Bases drawn larger than on Earth so their life reads on a small body. */
+const BODY = 2.2;
+const suits: Tone[] = ['#eef0f2', '#e0a830', '#c9cdd2', '#d0493a', '#4f7fbf'];
+
+type Kit = {
+  layout: TownStyle['layout'];
+  radius: number;
+  core: Pick[];
+  edge: Pick[];
+  people?: { kinds: string[]; tints: Tone[] };
+  rovers?: { kind: string; tints?: Tone[] };
+  sites: number;
+};
+
+const kits: Partial<Record<Style, Kit>> = {
+  grid: {
+    layout: 'grid',
+    radius: 0.22,
+    core: [
+      ['block-tall', 3, [1, 1.1]],
+      ['hab-dome', 1, [0.8, 1]],
+      ['screen', 0.3, [1, 1.1]],
+    ],
+    edge: [
+      ['block', 4, [1, 1.1]],
+      ['landing-pad', 0.4, [0.8, 1]],
+      ['dish', 0.5, [0.9, 1]],
+    ],
+    people: { kinds: ['astronaut'], tints: ['#9aa0a6', '#7d8188'] },
+    rovers: { kind: 'rover', tints: ['#8d9096'] },
+    sites: 2,
+  },
+  resort: {
+    layout: 'camp',
+    radius: 0.12,
+    core: [
+      ['hab-dome', 4, [1.1, 1.3]],
+      ['greenhouse', 1, [1, 1.1]],
+    ],
+    edge: [
+      ['hab-module', 2, [1, 1.1]],
+      ['landing-pad', 1, [1, 1.1]],
+      ['rocket', 1, [1, 1.2]],
+      ['solar-array', 1, [1, 1.1]],
+      ['billboard', 0.5, [1, 1.1]],
+    ],
+    people: { kinds: ['astronaut'], tints: suits },
+    rovers: { kind: 'rover', tints: ['#e6e8ea', '#d0493a'] },
+    sites: 2,
+  },
+  outpost: {
+    layout: 'camp',
+    radius: 0.09,
+    core: [['hab-dome', 3, [1, 1.1]]],
+    edge: [
+      ['hab-module', 3, [1, 1.1]],
+      ['solar-array', 2, [1, 1.1]],
+      ['dish', 1, [1, 1.1]],
+      ['landing-pad', 1, [1, 1]],
+      ['rocket', 0.6, [1, 1.1]],
+    ],
+    people: { kinds: ['astronaut'], tints: suits },
+    rovers: { kind: 'rover' },
+    sites: 1,
+  },
+  mining: {
+    layout: 'camp',
+    radius: 0.11,
+    core: [
+      ['hab-dome', 2, [1, 1.1]],
+      ['warehouse', 1, [1, 1.1]],
+    ],
+    edge: [
+      ['drill', 3, [1, 1.2]],
+      ['hab-module', 2, [1, 1.1]],
+      ['solar-array', 1, [1, 1.1]],
+      ['oil-tank', 1, [0.9, 1]],
+    ],
+    people: { kinds: ['astronaut'], tints: ['#e0a830', '#eef0f2'] },
+    rovers: { kind: 'haul-truck', tints: ['#e0a830'] },
+    sites: 2,
+  },
+  bloom: {
+    layout: 'camp',
+    radius: 0.12,
+    core: [
+      ['bio-tower', 2, [1, 1.2]],
+      ['hab-dome', 1, [1, 1.1]],
+    ],
+    edge: [
+      ['bio-pod', 3, [1, 1.2]],
+      ['bio-tree', 2, [1.2, 1.5]],
+      ['bio-shroom', 1, [1.2, 1.5]],
+    ],
+    people: { kinds: ['enhanced'], tints: ['#e9e2f5', '#d9f2ec'] },
+    rovers: { kind: 'glider', tints: ['#d35fc4', '#3cc9a8'] },
+    sites: 3,
+  },
+  terraform: {
+    layout: 'radial',
+    radius: 0.12,
+    core: [
+      ['bio-tower', 3, [1, 1.3]],
+      ['bio-pod', 2, [1, 1.2]],
+    ],
+    edge: [
+      ['bio-pod', 3, [1, 1.2]],
+      ['dome-house', 2, [1, 1.1]],
+      ['bio-tree', 2, [1.2, 1.6]],
+    ],
+    people: { kinds: ['enhanced'], tints: ['#e9e2f5', '#d9f2ec'] },
+    rovers: { kind: 'glider', tints: ['#d35fc4', '#3cc9a8'] },
+    sites: 4,
+  },
+  industrial: {
+    layout: 'grid',
+    radius: 0.2,
+    core: [
+      ['pressure-tank', 3, [1, 1.1]],
+      ['cooling-tower', 2, [0.8, 1]],
+      ['worker-block', 2, [1, 1.1]],
+    ],
+    edge: [
+      ['pipe-rack', 2, [1, 1.1]],
+      ['crane', 1, [0.9, 1]],
+      ['hab-dome', 1, [0.9, 1]],
+      ['solar-array', 1, [1, 1.1]],
+    ],
+    people: { kinds: ['astronaut'], tints: ['#e08a2e', '#d0702a'] },
+    rovers: { kind: 'haul-truck', tints: ['#e0a830', '#8a949e'] },
+    sites: 2,
+  },
+  works: {
+    layout: 'camp',
+    radius: 0.07,
+    core: [['pressure-tank', 2, [1, 1.1]]],
+    edge: [
+      ['crane', 1, [0.9, 1]],
+      ['hab-module', 2, [1, 1.1]],
+      ['pipe-rack', 1, [1, 1.1]],
+    ],
+    people: { kinds: ['astronaut'], tints: ['#e08a2e'] },
+    sites: 1,
+  },
+  hatch: {
+    layout: 'camp',
+    radius: 0.04,
+    core: [['bunker-dark', 1, [1.2, 1.4]]],
+    edge: [
+      ['fence', 2, [1, 1.1], ['#5a5a60']],
+      ['dish', 1, [0.8, 0.9]],
+    ],
+    people: { kinds: ['astronaut'], tints: ['#5a5a60'] },
+    sites: 1,
+  },
+  'machine-dark': {
+    layout: 'camp',
+    radius: 0.1,
+    core: [['crystal', 1, [1.4, 1.8]]],
+    edge: [['crystal', 1, [1, 1.4]]],
+    rovers: { kind: 'machine-walker', tints: ['#1f2230', '#2a2f42'] },
+    sites: 4,
+  },
+  'machine-gold': {
+    layout: 'camp',
+    radius: 0.1,
+    core: [['crystal', 1, [1.4, 1.8]]],
+    edge: [['crystal', 1, [1, 1.4]]],
+    rovers: { kind: 'machine-walker', tints: ['#3a2f1c', '#5a4728'] },
+    sites: 4,
+  },
+  'machine-light': {
+    layout: 'camp',
+    radius: 0.1,
+    core: [['hab-dome', 1, [1, 1.2]]],
+    edge: [
+      ['solar-array', 2, [1, 1.1]],
+      ['dish', 1, [1, 1.1]],
+    ],
+    rovers: { kind: 'machine-walker', tints: ['#e8e6df', '#d6b34f'] },
+    sites: 4,
+  },
+};
+
+/** Inhabited and working sites on a companion: buildings, walkers in suits and moving vehicles. */
+function stations(world: WorldContext, body: Companion, style: Style) {
+  const kit = kits[style];
+  if (!kit) return;
+  const { random } = world;
+  const scale = (picks: Pick[]): Pick[] =>
+    picks.map(([k, w, size, t]) => [k, w, [(size?.[0] ?? 1) * BODY, (size?.[1] ?? 1) * BODY], t]);
+  const facing = new THREE.Vector3(0.3, 0.4, 0.86).normalize();
+  const sites = world.faces
+    .filter((f) => f.land && f.up.dot(facing) > 0.2)
+    .sort((a, b) => b.up.dot(facing) - a.up.dot(facing));
+  // Sites may sit on modified ground, so spacing is checked directly rather than by free faces.
+  const chosen: Face[] = [];
+  for (const face of sites.slice(0, Math.max(40, sites.length >> 1))) {
+    if (chosen.length >= kit.sites) break;
+    if (random() < 0.5 && chosen.length) continue;
+    if (chosen.every((other) => other.up.angleTo(face.up) > 0.42)) chosen.push(face);
+  }
+  for (const face of chosen) {
+    const town = buildTown(world, face.up, {
+      layout: kit.layout,
+      radius: kit.radius,
+      block: 9 * U * BODY,
+      streets: 4,
+      street:
+        kit.layout === 'camp'
+          ? undefined
+          : {
+              width: 1.4 * U * BODY,
+              tone: style === 'terraform' ? '#b9a8d0' : body === 'Mars' ? '#7a4a30' : '#6c6f76',
+            },
+      plaza: kit.layout === 'camp' ? undefined : { radius: 2.4 * U * BODY, tone: '#8a8d93' },
+      lot: { spacing: 2.6 * U * BODY },
+      core: scale(kit.core),
+      edge: scale(kit.edge),
+      people: kit.people
+        ? {
+            standing: 6,
+            walking: 3,
+            kinds: kit.people.kinds,
+            walkers: kit.people.kinds,
+            tints: kit.people.tints,
+          }
+        : undefined,
+    });
+    if (kit.rovers && world.quality.life) {
+      const loop: THREE.Vector3[] = [];
+      for (let i = 0; i < 16; i++)
+        loop.push(
+          world.surface.point(
+            offset(town.centre, (i / 16) * Math.PI * 2, town.radius * 1.15),
+            kit.rovers.kind === 'glider' ? 0.03 : 0.001,
+          ),
+        );
+      world.traffic.add(kit.rovers.kind, makeRoute(loop, true), {
+        count: 3,
+        speed: 0.01,
+        size: BODY,
+        tints: kit.rovers.tints,
+        pingpong: false,
+        random,
+      });
+    }
+    if (style === 'terraform')
+      sprinkle(
+        world,
+        town.centre,
+        town.radius * 2.2,
+        [
+          ['bio-tree', 2, [BODY, BODY * 1.3], ['#4fae6a', '#c46ad0']],
+          ['oak', 2, [BODY, BODY * 1.4], ['#3f9a5e']],
+          ['flowers', 1, [BODY, BODY]],
+        ],
+        40,
+      );
+  }
+}
+
 export function buildCompanion(
   body: Companion,
   scenario: string,
@@ -399,6 +636,25 @@ export function buildCompanion(
   const world = new WorldContext(faces, quality, body.length * 97 + scenario.length * 13);
   const cells = signals.bodies[body];
   if (style) furnish(world, body, style, scenario, signals);
+  if (style) stations(world, body, style);
+  if (style === 'aerostat' && world.quality.life) {
+    const loop: THREE.Vector3[] = [];
+    for (let i = 0; i < 24; i++)
+      loop.push(
+        offset(
+          new THREE.Vector3(0.2, 0.3, 0.93).normalize(),
+          (i / 24) * Math.PI * 2,
+          0.5,
+        ).multiplyScalar(1.1),
+      );
+    world.traffic.add('airship', makeRoute(loop, true), {
+      count: 5,
+      speed: 0.02,
+      size: BODY * 1.4,
+      pingpong: false,
+      random: world.random,
+    });
+  }
 
   if (style === 'aerostat')
     for (let i = 0; i < 5; i++) {
@@ -442,7 +698,7 @@ export function buildCompanion(
           { inclination: -0.7, node: 2, speed: -0.05, radius: 1.36 },
         ],
     {
-      size: 0.028,
+      size: 0.013,
       body: scenario === 'S9' ? '#1f2230' : '#c9cdd2',
       wings: scenario === 'S9' ? '#6ff6ff' : '#34465f',
       light: accent[scenario],

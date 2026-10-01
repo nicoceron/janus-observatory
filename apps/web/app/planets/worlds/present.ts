@@ -71,7 +71,13 @@ export const present: EarthBrief = {
   fauna: {
     herds: [
       { kind: 'deer', biomes: ['forest', 'upland'], count: 14, size: [3, 6] },
-      { kind: 'cow', biomes: ['lowland'], count: 12, size: [3, 6], tints: ['#efe8dc', '#5a3f2c', '#2a2420'] },
+      {
+        kind: 'cow',
+        biomes: ['lowland'],
+        count: 12,
+        size: [3, 6],
+        tints: ['#efe8dc', '#5a3f2c', '#2a2420'],
+      },
       { kind: 'bison', biomes: ['lowland', 'tundra'], count: 4, size: [4, 7], roam: true },
     ],
     flocks: { count: 14 },
@@ -95,13 +101,26 @@ export const present: EarthBrief = {
       const crowded = towns.some((t) => t.centre.angleTo(site.up) < 0.12);
       const town = buildTown(world, site.up, cityStyle(0.095), crowded ? 0.65 : 1);
       towns.push(town);
-      const port = harbour(world, site.up, { crane: true, light: world.random() < 0.5, boats: ['fishing', 'sailboat'] });
+      const port = harbour(world, site.up, {
+        crane: true,
+        light: world.random() < 0.5,
+        boats: ['fishing', 'sailboat'],
+      });
       if (port) ports.push(port);
     }
     for (const face of world.scatter(settleable(world, ['lowland', 'forest', 'shore']), 40, 7)) {
       const town = buildTown(world, face.up, villageStyle(0.036), 1);
       towns.push(town);
-      farmland(world, face.up, 0.045, ['#c9b65a', '#a8b64a', '#d8c878', '#8fa84a'], [['crop', 1, [1.4, 1.4], ['#d8c35a']], ['crop', 1, [1.4, 1.4], ['#8fb04a']]]);
+      farmland(
+        world,
+        face.up,
+        0.045,
+        ['#c9b65a', '#a8b64a', '#d8c878', '#8fa84a'],
+        [
+          ['crop', 1, [1.4, 1.4], ['#d8c35a']],
+          ['crop', 1, [1.4, 1.4], ['#8fb04a']],
+        ],
+      );
     }
     roads(world, towns, {
       width: 0.0024,
@@ -112,8 +131,18 @@ export const present: EarthBrief = {
       traffic: { kinds: ['truck', 'car', 'van', 'bus'], per: 1, speed: 0.01, size: 1 },
     });
     seaLanes(world, ports, { kinds: ['ship', 'tanker', 'ship'], per: 2, speed: 0.006, size: 1 });
-    harbourLoops(world, ports, { kinds: ['fishing', 'sailboat', 'ferry'], per: 2, speed: 0.003, size: 1 });
-    flights(world, towns.slice(0, 28).map((t) => t.centre), { kinds: ['plane'], per: 2, speed: 0.02, size: 0.9 }, 10);
+    harbourLoops(world, ports, {
+      kinds: ['fishing', 'sailboat', 'ferry'],
+      per: 2,
+      speed: 0.003,
+      size: 1,
+    });
+    flights(
+      world,
+      towns.slice(0, 28).map((t) => t.centre),
+      { kinds: ['plane'], per: 2, speed: 0.02, size: 0.9 },
+      10,
+    );
 
     const orbit = world.layer('satellites', 'orbit', {
       matrix: orbitMatrix(0.9, 0.4),

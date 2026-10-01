@@ -20,7 +20,14 @@ function wheels(p: PropMeshers, m: THREE.Matrix4, width: number, axles: number[]
       );
 }
 
-function lights(p: PropMeshers, m: THREE.Matrix4, width: number, front: number, back: number, y: number) {
+function lights(
+  p: PropMeshers,
+  m: THREE.Matrix4,
+  width: number,
+  front: number,
+  back: number,
+  y: number,
+) {
   for (const side of [-1, 1]) {
     p.glow.box(local(m, side * width * 0.32, y, front), 0.14, 0.08, 0.03, '#fff6d8');
     p.glow.box(local(m, side * width * 0.32, y, back), 0.14, 0.08, 0.03, '#ff3b30');
@@ -28,12 +35,31 @@ function lights(p: PropMeshers, m: THREE.Matrix4, width: number, front: number, 
 }
 
 /** A hull pointed toward +z, open deck at `deck`. */
-function hull(p: PropMeshers, m: THREE.Matrix4, length: number, beam: number, deck: number, tone: Tone) {
+function hull(
+  p: PropMeshers,
+  m: THREE.Matrix4,
+  length: number,
+  beam: number,
+  deck: number,
+  tone: Tone,
+) {
   const q = (x: number, y: number, z: number) => v(x, y, z).applyMatrix4(m);
   const L = length / 2,
     B = beam / 2;
-  const top = [q(-B, deck, -L), q(B, deck, -L), q(B, deck, L * 0.55), q(0, deck, L), q(-B, deck, L * 0.55)];
-  const keel = [q(-B * 0.6, 0, -L * 0.9), q(B * 0.6, 0, -L * 0.9), q(B * 0.5, 0, L * 0.45), q(0, 0.1, L * 0.92), q(-B * 0.5, 0, L * 0.45)];
+  const top = [
+    q(-B, deck, -L),
+    q(B, deck, -L),
+    q(B, deck, L * 0.55),
+    q(0, deck, L),
+    q(-B, deck, L * 0.55),
+  ];
+  const keel = [
+    q(-B * 0.6, 0, -L * 0.9),
+    q(B * 0.6, 0, -L * 0.9),
+    q(B * 0.5, 0, L * 0.45),
+    q(0, 0.1, L * 0.92),
+    q(-B * 0.5, 0, L * 0.45),
+  ];
   for (let i = 0; i < 5; i++) {
     const j = (i + 1) % 5;
     p.tint.quad(keel[i], keel[j], top[j], top[i], tone);
@@ -99,7 +125,8 @@ export const vehicles: Record<string, PropDef> = {
     build: (p) => {
       const o = at();
       p.tint.box(local(o, 0, 0.2, 0), 0.95, 1.1, 3.2, '#ffffff');
-      for (let i = 0; i < 6; i++) p.glass.box(local(o, 0, 0.75, -1.3 + i * 0.5), 0.97, 0.35, 0.38, '#3d5068');
+      for (let i = 0; i < 6; i++)
+        p.glass.box(local(o, 0, 0.75, -1.3 + i * 0.5), 0.97, 0.35, 0.38, '#3d5068');
       wheels(p, o, 0.95, [-1.1, 1.1], 0.22);
       lights(p, o, 0.95, 1.61, -1.61, 0.4);
     },
@@ -110,7 +137,8 @@ export const vehicles: Record<string, PropDef> = {
       const o = at();
       p.tint.box(local(o, 0, 0.15, 0), 1.0, 1.1, 3.6, '#ffffff');
       p.base.box(local(o, 0, 0.15, 0), 1.02, 0.25, 3.62, '#3d6fb5');
-      for (let i = 0; i < 6; i++) p.glass.box(local(o, 0, 0.75, -1.4 + i * 0.56), 1.02, 0.35, 0.4, '#3d5068');
+      for (let i = 0; i < 6; i++)
+        p.glass.box(local(o, 0, 0.75, -1.4 + i * 0.56), 1.02, 0.35, 0.4, '#3d5068');
       lights(p, o, 1, 1.81, -1.81, 0.4);
     },
   },
@@ -143,7 +171,9 @@ export const vehicles: Record<string, PropDef> = {
       p.tint.box(local(o, 0, 0.45, -0.3), 0.9, 0.35, 1.3, '#ffffff');
       for (const side of [-1, 1])
         p.base.prism(
-          local(o, side * 0.5, 0.4, -0.3, 0, 1, [0, Math.PI / 2]).multiply(new THREE.Matrix4().makeTranslation(0, -0.05, 0)),
+          local(o, side * 0.5, 0.4, -0.3, 0, 1, [0, Math.PI / 2]).multiply(
+            new THREE.Matrix4().makeTranslation(0, -0.05, 0),
+          ),
           0.4,
           0.4,
           0.08,
@@ -154,7 +184,12 @@ export const vehicles: Record<string, PropDef> = {
       p.base.beam(v(0.2, 0.55, 0.35), v(0.2, 0.55, 1.1), 0.03, '#6a4a2a');
       const horse = local(o, 0, 0, 1.35);
       p.base.box(local(horse, 0, 0.55, 0), 0.3, 0.38, 0.9, '#7a4a2a');
-      for (const [x, z] of [[-0.1, -0.35], [0.1, -0.35], [-0.1, 0.35], [0.1, 0.35]])
+      for (const [x, z] of [
+        [-0.1, -0.35],
+        [0.1, -0.35],
+        [-0.1, 0.35],
+        [0.1, 0.35],
+      ])
         p.base.box(local(horse, x, 0, z), 0.07, 0.56, 0.07, '#3a2a20');
       p.base.box(local(horse, 0, 0.8, 0.45, 0, 1, [0.6, 0]), 0.16, 0.4, 0.16, '#7a4a2a');
     },
@@ -164,7 +199,14 @@ export const vehicles: Record<string, PropDef> = {
     build: (p) => {
       const o = at();
       for (const z of [-0.35, 0.35])
-        p.base.torus(local(o, 0, 0.25, z, 0, 1, [0, Math.PI / 2]), 0.22, 0.025, '#1e1f24', 8, 3);
+        p.base.prism(
+          local(o, -0.02, 0.25, z, 0, 1, [0, Math.PI / 2]),
+          0.22,
+          0.22,
+          0.04,
+          6,
+          '#1e1f24',
+        );
       p.tint.beam(v(0, 0.3, -0.35), v(0, 0.55, 0.2), 0.03, '#ffffff');
       p.tint.beam(v(0, 0.55, 0.2), v(0, 0.3, 0.35), 0.03, '#ffffff');
     },
@@ -176,7 +218,18 @@ export const vehicles: Record<string, PropDef> = {
       hull(p, o, 7, 1.6, 0.9, '#ffffff');
       const tones = ['#3d6fb5', '#e0a830', '#2e9e6e', '#c4452f', '#8a8f96'];
       for (let i = 0; i < 8; i++)
-        p.base.box(local(o, (i % 2) * 0.7 - 0.35, 0.9 + Math.floor(i / 4) * 0.4, -1.8 + (Math.floor(i / 2) % 2) * 1.6), 0.6, 0.4, 1.4, tones[i % 5]);
+        p.base.box(
+          local(
+            o,
+            (i % 2) * 0.7 - 0.35,
+            0.9 + Math.floor(i / 4) * 0.4,
+            -1.8 + (Math.floor(i / 2) % 2) * 1.6,
+          ),
+          0.6,
+          0.4,
+          1.4,
+          tones[i % 5],
+        );
       p.base.box(local(o, 0, 0.9, -2.9), 1.3, 1.6, 0.8, '#f2efe6');
       p.glass.box(local(o, 0, 2.1, -2.48), 1.2, 0.25, 0.02, '#3d5068');
       p.base.prism(local(o, 0, 2.5, -3.0), 0.15, 0.12, 0.8, 6, '#3a3d44');
@@ -201,7 +254,8 @@ export const vehicles: Record<string, PropDef> = {
       hull(p, o, 5, 1.6, 0.7, '#ffffff');
       p.base.box(local(o, 0, 0.7, -0.4), 1.3, 0.8, 2.8, '#f2efe6');
       p.base.box(local(o, 0, 1.5, -0.6), 1.1, 0.6, 1.6, '#e6e8ea');
-      for (let i = 0; i < 5; i++) p.glow.box(local(o, 0, 1.05, -1.6 + i * 0.6), 1.32, 0.2, 0.3, '#ffe6a8');
+      for (let i = 0; i < 5; i++)
+        p.glow.box(local(o, 0, 1.05, -1.6 + i * 0.6), 1.32, 0.2, 0.3, '#ffe6a8');
       p.base.prism(local(o, 0, 2.1, -0.8), 0.15, 0.15, 0.5, 6, '#3d6fb5');
     },
   },
@@ -256,11 +310,25 @@ export const vehicles: Record<string, PropDef> = {
       p.tint.gem(local(o, 0, 0, -2.2, 0, 1, [Math.PI / 2, 0]), 0.32, 4.6, '#ffffff', 8, 0.55);
       for (const side of [-1, 1]) {
         p.tint.panel(local(o, side * 1.2, 0, -0.3, side * 0.28), 2.4, 0.85, '#ffffff');
-        p.glow.box(local(o, side * 2.35, 0.05, -0.75), 0.1, 0.1, 0.1, side > 0 ? '#3aff6a' : '#ff3b30');
+        p.glow.box(
+          local(o, side * 2.35, 0.05, -0.75),
+          0.1,
+          0.1,
+          0.1,
+          side > 0 ? '#3aff6a' : '#ff3b30',
+        );
       }
       p.tint.box(local(o, 0, 0, -2.0), 1.6, 0.05, 0.5, '#ffffff');
       p.base.box(local(o, 0, 0.1, -2.0), 0.06, 0.8, 0.5, '#c4452f');
-      for (const side of [-1, 1]) p.base.prism(local(o, side * 1.0, -0.35, -0.2, 0, 1, [Math.PI / 2, 0]), 0.16, 0.16, 0.6, 6, '#9aa0a6');
+      for (const side of [-1, 1])
+        p.base.prism(
+          local(o, side * 1.0, -0.35, -0.2, 0, 1, [Math.PI / 2, 0]),
+          0.16,
+          0.16,
+          0.6,
+          6,
+          '#9aa0a6',
+        );
     },
   },
   airship: {
@@ -270,7 +338,8 @@ export const vehicles: Record<string, PropDef> = {
       p.tint.gem(local(o, 0, 1.4, -2.4, 0, 1, [Math.PI / 2, 0]), 1.0, 4.8, '#ffffff', 10, 0.5);
       p.base.box(local(o, 0, 0.2, 0), 0.6, 0.45, 1.4, '#8a6a4a');
       for (const z of [-0.5, 0.5]) p.base.beam(v(0, 0.65, z), v(0, 0.9, z), 0.02, '#3a3d44');
-      for (const side of [-1, 1]) p.base.panel(local(o, side * 0.7, 1.4, -2.1, 0, 1, [0, Math.PI / 2]), 0.7, 0.6, '#c4452f');
+      for (const side of [-1, 1])
+        p.base.panel(local(o, side * 0.7, 1.4, -2.1, 0, 1, [0, Math.PI / 2]), 0.7, 0.6, '#c4452f');
       p.glow.box(local(o, 0, 0.4, 0.71), 0.3, 0.12, 0.02, '#ffe2a0');
     },
   },
@@ -293,8 +362,18 @@ export const vehicles: Record<string, PropDef> = {
       p.tint.gem(local(o, 0, 1.4, 0), 0.6, 1.0, '#ffffff', 4, 0.5);
       for (let i = 0; i < 4; i++) {
         const a = (i / 4) * Math.PI * 2 + Math.PI / 4;
-        p.base.beam(v(Math.cos(a) * 0.3, 1.6, Math.sin(a) * 0.3), v(Math.cos(a) * 1.0, 0.9, Math.sin(a) * 1.0), 0.06, '#2a2f42');
-        p.base.beam(v(Math.cos(a) * 1.0, 0.9, Math.sin(a) * 1.0), v(Math.cos(a) * 1.2, 0, Math.sin(a) * 1.2), 0.05, '#2a2f42');
+        p.base.beam(
+          v(Math.cos(a) * 0.3, 1.6, Math.sin(a) * 0.3),
+          v(Math.cos(a) * 1.0, 0.9, Math.sin(a) * 1.0),
+          0.06,
+          '#2a2f42',
+        );
+        p.base.beam(
+          v(Math.cos(a) * 1.0, 0.9, Math.sin(a) * 1.0),
+          v(Math.cos(a) * 1.2, 0, Math.sin(a) * 1.2),
+          0.05,
+          '#2a2f42',
+        );
       }
       p.glow.box(local(o, 0, 1.75, 0.45), 0.25, 0.08, 0.02, '#6ff6ff');
     },

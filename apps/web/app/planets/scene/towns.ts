@@ -33,7 +33,12 @@ export type TownStyle = {
   ground?: Tone;
 };
 
-export type Town = { centre: THREE.Vector3; radius: number; lots: THREE.Vector3[]; style: TownStyle };
+export type Town = {
+  centre: THREE.Vector3;
+  radius: number;
+  lots: THREE.Vector3[];
+  style: TownStyle;
+};
 
 export function choose(picks: Pick[], random: () => number) {
   const total = picks.reduce((sum, p) => sum + p[1], 0);
@@ -48,7 +53,12 @@ export function choose(picks: Pick[], random: () => number) {
 const STEP = 0.0025;
 
 /** Lay out one settlement around a unit direction and fill it with buildings, people and traffic. */
-export function buildTown(world: WorldContext, centre: THREE.Vector3, style: TownStyle, scale = 1): Town {
+export function buildTown(
+  world: WorldContext,
+  centre: THREE.Vector3,
+  style: TownStyle,
+  scale = 1,
+): Town {
   const { surface, props, traffic, random } = world;
   const up = centre.clone().normalize();
   const R = style.radius * scale;
@@ -108,7 +118,11 @@ export function buildTown(world: WorldContext, centre: THREE.Vector3, style: Tow
         if (span < g * 0.6) continue;
         let dirs: THREE.Vector3[] = [];
         for (let d = -span; d <= span; d += STEP) {
-          const dir = up.clone().addScaledVector(axis, d).addScaledVector(across, k * g).normalize();
+          const dir = up
+            .clone()
+            .addScaledVector(axis, d)
+            .addScaledVector(across, k * g)
+            .normalize();
           if (surface.land(dir)) dirs.push(dir);
           else {
             if (dirs.length > 3) streets.push(dirs);
@@ -120,12 +134,15 @@ export function buildTown(world: WorldContext, centre: THREE.Vector3, style: Tow
   }
   for (const dirs of streets) pathPoints.push(...dirs.filter((_, i) => i % 2 === 0));
 
+  // Distances are compared as chord lengths, which match angles closely at these scales.
   const clearOfStreets = (dir: THREE.Vector3, r: number) => {
-    for (const q of pathPoints) if (q.angleTo(dir) < half + r * 0.85) return false;
+    const limit = (half + r * 0.85) ** 2;
+    for (const q of pathPoints) if (q.distanceToSquared(dir) < limit) return false;
     return true;
   };
   const clearOfLots = (dir: THREE.Vector3, r: number) => {
-    for (const other of placed) if (other.dir.angleTo(dir) < (other.r + r) * 0.92) return false;
+    for (const other of placed)
+      if (other.dir.distanceToSquared(dir) < ((other.r + r) * 0.92) ** 2) return false;
     return true;
   };
   const place = (pick: Pick, dir: THREE.Vector3, facing: THREE.Vector3, sizeScale = 1) => {
@@ -143,13 +160,19 @@ export function buildTown(world: WorldContext, centre: THREE.Vector3, style: Tow
     if (style.street) ribbon(world.ground.solid, points, style.street.width, style.street.tone);
     for (let i = Math.max(1, Math.round(stride / 2)); i < dirs.length - 1; i += stride) {
       const here = dirs[i];
-      const along = dirs[i + 1].clone().sub(dirs[i - 1]).normalize();
+      const along = dirs[i + 1]
+        .clone()
+        .sub(dirs[i - 1])
+        .normalize();
       const side = along.clone().cross(here).normalize();
       for (const s of [-1, 1]) {
         const r = here.angleTo(up) / R;
         const pick = choose(r < 0.45 ? style.core : style.edge, random);
         const fp = footprint(pick);
-        const lot = here.clone().addScaledVector(side, s * (half + fp + 0.4 * U)).normalize();
+        const lot = here
+          .clone()
+          .addScaledVector(side, s * (half + fp + 0.4 * U))
+          .normalize();
         if (lot.angleTo(up) > R * 1.05 || !surface.land(lot)) continue;
         if (!clearOfLots(lot, fp) || !clearOfStreets(lot, fp)) continue;
         placed.push({ dir: lot, r: fp });
@@ -157,14 +180,26 @@ export function buildTown(world: WorldContext, centre: THREE.Vector3, style: Tow
         if (style.lamps && random() < 0.4)
           props.add(
             style.lamps,
-            ground(here.clone().addScaledVector(side, s * (half + 0.3 * U)).normalize(), 0),
+            ground(
+              here
+                .clone()
+                .addScaledVector(side, s * (half + 0.3 * U))
+                .normalize(),
+              0,
+            ),
             side.clone().multiplyScalar(-s),
             1,
           );
         if (style.people && life && random() < 0.45)
           props.add(
             world.random.pick(style.people.kinds),
-            ground(here.clone().addScaledVector(side, s * (half + 0.6 * U)).normalize(), 0),
+            ground(
+              here
+                .clone()
+                .addScaledVector(side, s * (half + 0.6 * U))
+                .normalize(),
+              0,
+            ),
             along.clone().multiplyScalar(random() < 0.5 ? 1 : -1),
             1,
             world.random.pick(style.people.tints),
@@ -177,7 +212,13 @@ export function buildTown(world: WorldContext, centre: THREE.Vector3, style: Tow
         const next = dirs[Math.min(dirs.length - 1, i + 1)],
           prev = dirs[Math.max(0, i - 1)];
         const side = next.clone().sub(prev).normalize().cross(dir).normalize();
-        return ground(dir.clone().addScaledVector(side, half + 0.5 * U).normalize(), 0.0002);
+        return ground(
+          dir
+            .clone()
+            .addScaledVector(side, half + 0.5 * U)
+            .normalize(),
+          0.0002,
+        );
       });
       traffic.add(world.random.pick(style.people.walkers), makeRoute(sidewalk), {
         count: Math.max(1, Math.round((style.people.walking * dirs.length) / 24)),
@@ -187,26 +228,42 @@ export function buildTown(world: WorldContext, centre: THREE.Vector3, style: Tow
       });
     }
     if (style.cars && dirs.length > 8)
-      traffic.add(world.random.pick(style.cars.kinds), makeRoute(dirs.map((dir) => ground(dir, 0.0014))), {
-        count: Math.max(1, Math.round((style.cars.count * dirs.length) / 40)),
-        speed: style.cars.speed ?? 0.004,
-        size: style.cars.size ?? 1,
-        tints: style.cars.tints,
-        random,
-      });
+      traffic.add(
+        world.random.pick(style.cars.kinds),
+        makeRoute(dirs.map((dir) => ground(dir, 0.0014))),
+        {
+          count: Math.max(1, Math.round((style.cars.count * dirs.length) / 40)),
+          speed: style.cars.speed ?? 0.004,
+          size: style.cars.size ?? 1,
+          tints: style.cars.tints,
+          random,
+        },
+      );
   }
 
   if (style.plaza) {
-    disc(world.ground.solid, up, (dir) => ground(dir, 0.0014), style.plaza.radius * scale, style.plaza.tone, 12);
+    disc(
+      world.ground.solid,
+      up,
+      (dir) => ground(dir, 0.0014),
+      style.plaza.radius * scale,
+      style.plaza.tone,
+      12,
+    );
     placed.push({ dir: up, r: style.plaza.radius * scale });
-    if (style.plaza.centre) place(choose(style.plaza.centre, random), up, offset(up, 0, 0.01).sub(up));
+    if (style.plaza.centre)
+      place(choose(style.plaza.centre, random), up, offset(up, 0, 0.01).sub(up));
   }
 
   // Camps and loose settlements: dwellings in rings around a shared centre.
   if (style.layout === 'camp')
     for (const ringR of [0.4, 0.7, 0.95])
       for (let i = 0; i < 12; i++) {
-        const dir = offset(up, (i / 12) * Math.PI * 2 + random() * 0.3 + ringR * 3, R * ringR * (0.9 + random() * 0.2));
+        const dir = offset(
+          up,
+          (i / 12) * Math.PI * 2 + random() * 0.3 + ringR * 3,
+          R * ringR * (0.9 + random() * 0.2),
+        );
         if (!surface.land(dir)) continue;
         const pick = choose(ringR < 0.5 ? style.core : style.edge, random);
         const fp = footprint(pick);
@@ -222,19 +279,39 @@ export function buildTown(world: WorldContext, centre: THREE.Vector3, style: Tow
       const a = (i / count) * Math.PI * 2;
       const dir = offset(up, a, R * 1.08);
       if (!surface.land(dir)) continue;
-      props.add(style.perimeter.kind, ground(dir, -0.0004), offset(up, a + 0.05, R * 1.08).sub(dir), style.perimeter.size ?? 1, style.perimeter.tint);
+      props.add(
+        style.perimeter.kind,
+        ground(dir, -0.0004),
+        offset(up, a + 0.05, R * 1.08).sub(dir),
+        style.perimeter.size ?? 1,
+        style.perimeter.tint,
+      );
     }
   }
 
   if (style.people && life) {
     for (let i = 0; i < style.people.standing; i++) {
-      const spot = offset(up, random() * Math.PI * 2, (style.plaza?.radius ?? R * 0.25) * scale * (0.3 + random() * 0.8));
+      const spot = offset(
+        up,
+        random() * Math.PI * 2,
+        (style.plaza?.radius ?? R * 0.25) * scale * (0.3 + random() * 0.8),
+      );
       if (!surface.land(spot)) continue;
-      props.add(world.random.pick(style.people.kinds), ground(spot, 0), up.clone().sub(spot).add(offset(spot, random() * 6, 0.003).sub(spot)), 1, world.random.pick(style.people.tints));
+      props.add(
+        world.random.pick(style.people.kinds),
+        ground(spot, 0),
+        up
+          .clone()
+          .sub(spot)
+          .add(offset(spot, random() * 6, 0.003).sub(spot)),
+        1,
+        world.random.pick(style.people.tints),
+      );
     }
     if (style.layout === 'camp' && style.people.walking) {
       const loop: THREE.Vector3[] = [];
-      for (let i = 0; i < 18; i++) loop.push(ground(offset(up, (i / 18) * Math.PI * 2, R * 0.55), 0.0002));
+      for (let i = 0; i < 18; i++)
+        loop.push(ground(offset(up, (i / 18) * Math.PI * 2, R * 0.55), 0.0002));
       traffic.add(world.random.pick(style.people.walkers), makeRoute(loop, true), {
         count: style.people.walking,
         speed: 0.0009,
@@ -248,7 +325,12 @@ export function buildTown(world: WorldContext, centre: THREE.Vector3, style: Tow
     const count = Math.round(style.trees.count * scale * scale * world.quality.density);
     for (let i = 0; i < count; i++) {
       const spot = offset(up, random() * Math.PI * 2, R * Math.sqrt(random()) * 1.05);
-      const pick: Pick = [world.random.pick(style.trees.kinds), 1, style.trees.size ?? [0.9, 1.3], style.trees.tints];
+      const pick: Pick = [
+        world.random.pick(style.trees.kinds),
+        1,
+        style.trees.size ?? [0.9, 1.3],
+        style.trees.tints,
+      ];
       const fp = footprint(pick) * 0.6;
       if (!surface.land(spot) || !clearOfLots(spot, fp) || !clearOfStreets(spot, fp)) continue;
       placed.push({ dir: spot, r: fp });

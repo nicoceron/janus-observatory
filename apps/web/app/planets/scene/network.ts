@@ -11,7 +11,14 @@ type Fleet = { kinds: string[]; tints?: Tone[]; per: number; speed: number; size
 export function roads(
   world: WorldContext,
   towns: Town[],
-  options: { width: number; tone: Tone; neighbours: number; reach: number; traffic?: Fleet; pylons?: string },
+  options: {
+    width: number;
+    tone: Tone;
+    neighbours: number;
+    reach: number;
+    traffic?: Fleet;
+    pylons?: string;
+  },
 ) {
   const { surface, traffic, random } = world;
   const done = new Set<string>();
@@ -29,56 +36,96 @@ export function roads(
       done.add(key);
       // Roads run between town edges; inside, the town's own streets take over.
       const dirs = arc(town.centre, other.centre, 0.004).filter(
-        (dir) => dir.angleTo(town.centre) > town.radius * 0.7 && dir.angleTo(other.centre) > other.radius * 0.7,
+        (dir) =>
+          dir.angleTo(town.centre) > town.radius * 0.7 &&
+          dir.angleTo(other.centre) > other.radius * 0.7,
       );
       if (dirs.length < 3) continue;
       const wet = dirs.filter((dir) => !surface.land(dir)).length;
       if (wet > dirs.length * 0.18) continue;
-      const points = dirs.map((dir) => (surface.land(dir) ? surface.point(dir, 0.0016) : dir.clone().multiplyScalar(1.006)));
+      const points = dirs.map((dir) =>
+        surface.land(dir) ? surface.point(dir, 0.0016) : dir.clone().multiplyScalar(1.006),
+      );
       ribbon(world.ground.solid, points, options.width, options.tone);
       dirs.forEach((dir, i) => {
         if (i % 3 === 0) world.occupy(dir, options.width * 1.5);
         if (!surface.land(dir) && i % 4 === 0)
-          world.ground.solid.beam(dir.clone().multiplyScalar(0.995), dir.clone().multiplyScalar(1.006), 0.0012, '#8a8580');
+          world.ground.solid.beam(
+            dir.clone().multiplyScalar(0.995),
+            dir.clone().multiplyScalar(1.006),
+            0.0012,
+            '#8a8580',
+          );
         else if (options.pylons && world.quality.life && i % 16 === 8 && surface.land(dir))
           world.props.add(
             options.pylons,
-            surface.point(dir.clone().add(points[Math.min(points.length - 1, i + 1)].clone().sub(points[i]).cross(dir).normalize().multiplyScalar(0.005)).normalize(), -0.0004),
+            surface.point(
+              dir
+                .clone()
+                .add(
+                  points[Math.min(points.length - 1, i + 1)]
+                    .clone()
+                    .sub(points[i])
+                    .cross(dir)
+                    .normalize()
+                    .multiplyScalar(0.005),
+                )
+                .normalize(),
+              -0.0004,
+            ),
             points[Math.min(points.length - 1, i + 1)].clone().sub(points[i]),
             0.7,
           );
       });
       links.push([town, other]);
       if (options.traffic && world.quality.life)
-        traffic.add(world.random.pick(options.traffic.kinds), makeRoute(points.map((p) => p.clone().multiplyScalar(1 + 0.0004))), {
-          count: options.traffic.per,
-          speed: options.traffic.speed,
-          size: options.traffic.size,
-          tints: options.traffic.tints,
-          random,
-        });
+        traffic.add(
+          world.random.pick(options.traffic.kinds),
+          makeRoute(points.map((p) => p.clone().multiplyScalar(1 + 0.0004))),
+          {
+            count: options.traffic.per,
+            speed: options.traffic.speed,
+            size: options.traffic.size,
+            tints: options.traffic.tints,
+            random,
+          },
+        );
     }
   }
   return links;
 }
 
 /** Elevated rail between towns, with pylons and trains. */
-export function rails(world: WorldContext, links: [Town, Town][], options: { tone: Tone; pylon: string; train: string; tints?: Tone[] }) {
+export function rails(
+  world: WorldContext,
+  links: [Town, Town][],
+  options: { tone: Tone; pylon: string; train: string; tints?: Tone[] },
+) {
   for (const [a, b] of links) {
     const dirs = arc(a.centre, b.centre, 0.006);
     const points = dirs.map((dir) => world.surface.point(dir, 0.012));
     ribbon(world.ground.sheen, points, 0.003, options.tone);
     dirs.forEach((dir, i) => {
-      if (i % 4 === 2) world.props.add(options.pylon, world.surface.point(dir, -0.0004), points[Math.min(points.length - 1, i + 1)].clone().sub(points[i]), 1);
+      if (i % 4 === 2)
+        world.props.add(
+          options.pylon,
+          world.surface.point(dir, -0.0004),
+          points[Math.min(points.length - 1, i + 1)].clone().sub(points[i]),
+          1,
+        );
     });
     if (world.quality.life)
-      world.traffic.add(options.train, makeRoute(points.map((p) => p.clone().multiplyScalar(1.0008))), {
-        count: 1,
-        speed: 0.012,
-        size: 1.1,
-        tints: options.tints,
-        random: world.random,
-      });
+      world.traffic.add(
+        options.train,
+        makeRoute(points.map((p) => p.clone().multiplyScalar(1.0008))),
+        {
+          count: 1,
+          speed: 0.012,
+          size: 1.1,
+          tints: options.tints,
+          random: world.random,
+        },
+      );
   }
 }
 
@@ -103,13 +150,17 @@ export function seaLanes(world: WorldContext, ports: THREE.Vector3[], fleet: Fle
       }
       const run = runs.sort((a, b) => b.length - a.length)[0];
       if (run.length < 6) continue;
-      traffic.add(world.random.pick(fleet.kinds), makeRoute(run.map((d) => d.clone().multiplyScalar(1.0004))), {
-        count: fleet.per,
-        speed: fleet.speed,
-        size: fleet.size,
-        tints: fleet.tints,
-        random,
-      });
+      traffic.add(
+        world.random.pick(fleet.kinds),
+        makeRoute(run.map((d) => d.clone().multiplyScalar(1.0004))),
+        {
+          count: fleet.per,
+          speed: fleet.speed,
+          size: fleet.size,
+          tints: fleet.tints,
+          random,
+        },
+      );
     }
   }
 }
@@ -128,7 +179,11 @@ export function harbourLoops(world: WorldContext, ports: THREE.Vector3[], fleet:
     const loop: THREE.Vector3[] = [];
     for (let i = 0; i < 14; i++) {
       const a = (i / 14) * Math.PI * 2;
-      const dir = centre.clone().addScaledVector(east, Math.cos(a) * 0.02).addScaledVector(north, Math.sin(a) * 0.014).normalize();
+      const dir = centre
+        .clone()
+        .addScaledVector(east, Math.cos(a) * 0.02)
+        .addScaledVector(north, Math.sin(a) * 0.014)
+        .normalize();
       if (world.surface.land(dir)) continue;
       loop.push(dir.multiplyScalar(1.0004));
     }
@@ -145,7 +200,13 @@ export function harbourLoops(world: WorldContext, ports: THREE.Vector3[], fleet:
 }
 
 /** Aircraft on arcs between large towns. */
-export function flights(world: WorldContext, hubs: THREE.Vector3[], fleet: Fleet, routes = 6, altitude = 0.045) {
+export function flights(
+  world: WorldContext,
+  hubs: THREE.Vector3[],
+  fleet: Fleet,
+  routes = 6,
+  altitude = 0.045,
+) {
   if (!world.quality.life || hubs.length < 2) return;
   for (let r = 0; r < routes; r++) {
     const a = world.random.pick(hubs),

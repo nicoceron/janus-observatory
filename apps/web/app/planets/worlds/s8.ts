@@ -4,7 +4,6 @@ import { coveredFaces, decades, hazeStrength, lightShare, satelliteCount } from 
 import { local } from '../kit';
 import type { LayerBuilder } from '../model';
 import { chaoticSwarm } from '../orbits';
-import { tent } from '../parts';
 import type { Tone } from '../kit';
 import { U } from '../props/library';
 import { harbourLoops, roads } from '../scene/network';
@@ -111,7 +110,10 @@ export const s8: EarthBrief = {
   clouds: { count: 22, tone: '#b9b4ad', speed: 0.012 },
   flora: bareFlora(['#6a7a4a', '#7a7a5a', '#5a6a45'], 1.4),
   fauna: {
-    herds: [{ kind: 'cow', biomes: ['lowland'], count: 6, size: [3, 6], tints: ['#5a3f2c', '#6a6560'] }, { kind: 'deer', biomes: ['forest'], count: 8, size: [2, 4] }],
+    herds: [
+      { kind: 'cow', biomes: ['lowland'], count: 6, size: [3, 6], tints: ['#5a3f2c', '#6a6560'] },
+      { kind: 'deer', biomes: ['forest'], count: 8, size: [2, 4] },
+    ],
     flocks: { count: 6, tints: ['#3a3d44'] },
     whales: 3,
   },
@@ -142,14 +144,30 @@ export const s8: EarthBrief = {
       face.used = true;
     }
     const heart = world.faceAt(scar.lat, scar.lon);
-    silentCore(world.layer('silent-core', 'surface', { landmark: 'silent-core' }), world.on(heart), 0.06);
-    sprinkle(world, heart.up, 0.05, [['scrap', 2, [1, 1.4]], ['broken-pylon', 1, [0.8, 1.1]], ['ruin-wall', 1, [1, 1.2], ['#3f3638']]], 14);
+    silentCore(
+      world.layer('silent-core', 'surface', { landmark: 'silent-core' }),
+      world.on(heart),
+      0.06,
+    );
+    sprinkle(
+      world,
+      heart.up,
+      0.05,
+      [
+        ['scrap', 2, [1, 1.4]],
+        ['broken-pylon', 1, [0.8, 1.1]],
+        ['ruin-wall', 1, [1, 1.2], ['#3f3638']],
+      ],
+      14,
+    );
 
     // The surface-modification fraction becomes ruins; survivors camp in their shadow.
     const ruins = claim(faces, coveredFaces(earth.surface_modification, faces.length), (f) =>
       f.land && f.biome !== 'ice' ? random() + (f.coastal ? 0.5 : 0) : null,
     );
-    const cycle = world.layer('survivors', 'surface', { motion: { kind: 'pulse', period: 22, floor: 0.08 } });
+    const cycle = world.layer('survivors', 'surface', {
+      motion: { kind: 'pulse', period: 22, floor: 0.08 },
+    });
     const ruinStyle: TownStyle = {
       layout: 'grid',
       radius: 0.06,
@@ -157,41 +175,110 @@ export const s8: EarthBrief = {
       street: { width: 1.6 * U, tone: '#4a4646' },
       plaza: { radius: 2.6 * U, tone: '#6a6560', centre: [['campfire', 1, [1.4, 1.6]]] },
       lot: { spacing: 2.6 * U },
-      core: [['ruin-tower', 3, [0.9, 1.2]], ['ruin-wall', 2, [1, 1.3]], ['scrap', 1, [1, 1.3]]],
-      edge: [['ruin-wall', 3, [1, 1.2]], ['shanty-dark', 3, [1, 1.1], drab], ['tent', 2, [1, 1.1], ['#8a7a62', '#7a6a55']], ['scrap', 1, [1, 1.2]]],
-      people: { standing: 12, walking: 4, kinds: ['porter', ...citizens.kinds], walkers: ['porter', ...citizens.walkers], tints: drab },
+      core: [
+        ['ruin-tower', 3, [0.9, 1.2]],
+        ['ruin-wall', 2, [1, 1.3]],
+        ['scrap', 1, [1, 1.3]],
+      ],
+      edge: [
+        ['ruin-wall', 3, [1, 1.2]],
+        ['shanty-dark', 3, [1, 1.1], drab],
+        ['tent', 2, [1, 1.1], ['#8a7a62', '#7a6a55']],
+        ['scrap', 1, [1, 1.2]],
+      ],
+      people: {
+        standing: 12,
+        walking: 4,
+        kinds: ['porter', ...citizens.kinds],
+        walkers: ['porter', ...citizens.walkers],
+        tints: drab,
+      },
       cars: { count: 1, kinds: ['cart'], tints: ['#7a6a55'], speed: 0.002 },
       lamps: 'broken-pylon',
     };
-    const sites = world.scatter(ruins.filter((f) => f.elevation < 0.42), 14, 14);
+    const sites = world.scatter(
+      ruins.filter((f) => f.elevation < 0.42),
+      14,
+      14,
+    );
     const towns = sites.map((face) => buildTown(world, face.up, ruinStyle));
     for (const town of towns)
       for (let k = 0; k < 4; k++)
-        if (random() < lit * 2.5) cycle.glow.gem(world.on(world.surface.face(offset(town.centre, random() * 6, town.radius * random())), 0, 1, -0.0005), 0.0012, 0.003, '#ffb45a', 4);
+        if (random() < lit * 2.5)
+          cycle.glow.gem(
+            world.on(
+              world.surface.face(offset(town.centre, random() * 6, town.radius * random())),
+              0,
+              1,
+              -0.0005,
+            ),
+            0.0012,
+            0.003,
+            '#ffb45a',
+            4,
+          );
     ruins.forEach((face, i) => {
       face.used = true;
       face.tone = '#6a6560';
-      if (i === 0) ruin(world.layer('ruin', 'surface', { landmark: 'ruin' }), world.on(face), 0.03, random);
-      else if (world.thin(0.4)) sprinkle(world, face.up, face.size * 0.4, [['ruin-wall', 3, [1, 1.3]], ['ruin-tower', 1, [0.8, 1.1]], ['scrap', 1, [1, 1.3]]], 3);
+      if (i === 0)
+        ruin(world.layer('ruin', 'surface', { landmark: 'ruin' }), world.on(face), 0.03, random);
+      else if (world.thin(0.4))
+        sprinkle(
+          world,
+          face.up,
+          face.size * 0.4,
+          [
+            ['ruin-wall', 3, [1, 1.3]],
+            ['ruin-tower', 1, [0.8, 1.1]],
+            ['scrap', 1, [1, 1.3]],
+          ],
+          3,
+        );
     });
-    roads(world, towns, { width: 1.4 * U, tone: '#5a524a', neighbours: 1, reach: 0.5, traffic: { kinds: ['cart', 'porter'], per: 1, speed: 0.002, tints: drab } });
+    roads(world, towns, {
+      width: 1.4 * U,
+      tone: '#5a524a',
+      neighbours: 1,
+      reach: 0.5,
+      traffic: { kinds: ['cart', 'porter'], per: 1, speed: 0.002, tints: drab },
+    });
 
     const fields = Math.round(land.length * decades(earth.agricultural_pollution, 0.1, 100) * 0.2);
-    for (const face of claim(faces, fields, (f) => (f.land && ['lowland', 'forest'].includes(f.biome) ? random() : null)))
+    for (const face of claim(faces, fields, (f) =>
+      f.land && ['lowland', 'forest'].includes(f.biome) ? random() : null,
+    ))
       furrows(world, face, random() < 0.5 ? '#9a8a5a' : '#8a7f55', tangents(face.up).east);
 
     // Sealed bunkers in the hills: guards, a perimeter and a dim light. Elites shelter below.
     const hills = land.filter((f) => ['mountain', 'upland'].includes(f.biome) && !f.used);
     world.scatter(hills, 6, 22).forEach((face, i) => {
       face.used = true;
-      bunker(i === 0 ? world.layer('bunker', 'surface', { landmark: 'bunker' }) : world.ground, world.on(face, random() * 6), i === 0 ? 0.03 : 0.022);
+      bunker(
+        i === 0 ? world.layer('bunker', 'surface', { landmark: 'bunker' }) : world.ground,
+        world.on(face, random() * 6),
+        i === 0 ? 0.03 : 0.022,
+      );
       ring(world, face.up, 0.02, 'fence', 10, 1.2, '#5a5a60');
-      for (let k = 0; k < 3; k++) world.props.add('guard', world.surface.point(offset(face.up, k * 2, 0.012), 0), offset(face.up, k * 2, 0.02).sub(face.up), 1);
+      for (let k = 0; k < 3; k++)
+        world.props.add(
+          'guard',
+          world.surface.point(offset(face.up, k * 2, 0.012), 0),
+          offset(face.up, k * 2, 0.02).sub(face.up),
+          1,
+        );
       world.props.add('dish', world.surface.point(offset(face.up, 1, 0.014), -0.0004), null, 1);
     });
-    const ports = towns.map((t) => harbour(world, t.centre, { boats: ['fishing'] })).filter((p): p is THREE.Vector3 => !!p);
+    const ports = towns
+      .map((t) => harbour(world, t.centre, { boats: ['fishing'] }))
+      .filter((p): p is THREE.Vector3 => !!p);
     harbourLoops(world, ports, { kinds: ['fishing', 'canoe'], per: 1, speed: 0.0025, tints: drab });
 
-    chaoticSwarm(world, satelliteCount(earth.satellite_belt), [1.14, 1.32], { size: 0.01, body: '#7b7670', wings: ['#3a4150', '#4a4a4a'], broken: 0.4 }, 2);
+    chaoticSwarm(
+      world,
+      satelliteCount(earth.satellite_belt),
+      [1.14, 1.32],
+      { size: 0.01, body: '#7b7670', wings: ['#3a4150', '#4a4a4a'], broken: 0.4 },
+      2,
+    );
   },
 };

@@ -153,18 +153,41 @@ export const s6: EarthBrief = {
       street: { width: 1.6 * U, tone: '#3d434a' },
       plaza: { radius: 2.6 * U, tone: '#5f6874', centre: [['pressure-tank', 1, [1, 1.2]]] },
       lot: { spacing: 2.2 * U },
-      core: [['worker-block', 4, [1, 1.1]], ['hab-dome', 1, [0.7, 0.8]], ['warehouse', 1, [1, 1.1], ['#7d8894']]],
-      edge: [['worker-block', 4, [1, 1.1]], ['pipe-rack', 1, [1, 1.1]], ['greenhouse-dark', 1, [1, 1.1]]],
-      people: { standing: 18, walking: 7, kinds: ['worker', 'worker', ...citizens.kinds], walkers: ['worker-walk'], tints: overalls },
+      core: [
+        ['worker-block', 4, [1, 1.1]],
+        ['hab-dome', 1, [0.7, 0.8]],
+        ['warehouse', 1, [1, 1.1], ['#7d8894']],
+      ],
+      edge: [
+        ['worker-block', 4, [1, 1.1]],
+        ['pipe-rack', 1, [1, 1.1]],
+        ['greenhouse-dark', 1, [1, 1.1]],
+      ],
+      people: {
+        standing: 18,
+        walking: 7,
+        kinds: ['worker', 'worker', ...citizens.kinds],
+        walkers: ['worker-walk'],
+        tints: overalls,
+      },
       cars: { count: 2, kinds: ['van', 'haul-truck'], tints: ['#e0a830', '#8a949e'] },
       lamps: 'lamp',
+      // The regulated biosphere: planters and trees tended inside the works.
+      trees: {
+        count: 8,
+        kinds: ['bush', 'oak-small'],
+        tints: ['#5f8a4a', '#6f9a50'],
+        size: [0.9, 1.2],
+      },
     };
     const landShell = shell.filter((f) => f.land && f.elevation < 0.4);
     const sites = world.scatter(landShell, 12, 13);
     const clearing = (face: Face) => sites.some((s) => s.up.angleTo(face.up) < 0.07);
     const towns = sites.map((face) => buildTown(world, face.up, works));
 
-    const warnings = world.layer('warnings', 'surface', { motion: { kind: 'pulse', period: 3.2, floor: 0.2 } });
+    const warnings = world.layer('warnings', 'surface', {
+      motion: { kind: 'pulse', period: 3.2, floor: 0.2 },
+    });
     const machines: [string, number, number][] = [
       ['pressure-tank', 4, 1.1],
       ['cooling-tower', 2, 1],
@@ -185,14 +208,26 @@ export const s6: EarthBrief = {
         if (world.surface.face(dir) !== face) continue;
         let r = random() * total,
           pick = machines[0];
-        for (const m of machines) if ((r -= m[1]) <= 0) {
-          pick = m;
-          break;
-        }
-        world.props.add(pick[0], world.surface.point(dir, lift - 0.0003), offset(dir, random() * 6, 0.01).sub(dir), pick[2]);
+        for (const m of machines)
+          if ((r -= m[1]) <= 0) {
+            pick = m;
+            break;
+          }
+        world.props.add(
+          pick[0],
+          world.surface.point(dir, lift - 0.0003),
+          offset(dir, random() * 6, 0.01).sub(dir),
+          pick[2],
+        );
       }
       if (random() < lit * 0.25)
-        warnings.glow.box(world.on(face, random() * 6, 1, -lift), 0.002, 0.0012, 0.002, random() < 0.8 ? '#ffb03a' : '#ff4a3a');
+        warnings.glow.box(
+          world.on(face, random() * 6, 1, -lift),
+          0.002,
+          0.0012,
+          0.002,
+          random() < 0.8 ? '#ffb03a' : '#ff4a3a',
+        );
     }
     // Pipes between neighbouring plates carry the planet's regulated flows.
     for (const face of shell)
@@ -212,21 +247,49 @@ export const s6: EarthBrief = {
       tone: '#3d434a',
       neighbours: 2,
       reach: 0.5,
-      traffic: { kinds: ['haul-truck', 'truck', 'van'], per: 2, speed: 0.008, tints: ['#e0a830', '#8a949e', '#5f6874'] },
+      traffic: {
+        kinds: ['haul-truck', 'truck', 'van'],
+        per: 2,
+        speed: 0.008,
+        tints: ['#e0a830', '#8a949e', '#5f6874'],
+      },
     });
-    const ports = towns.map((t) => harbour(world, t.centre, { crane: true })).filter((p): p is THREE.Vector3 => !!p);
-    seaLanes(world, ports, { kinds: ['tanker', 'ship'], per: 2, speed: 0.005, tints: ['#3a3d44', '#5f6874'] });
+    const ports = towns
+      .map((t) => harbour(world, t.centre, { crane: true }))
+      .filter((p): p is THREE.Vector3 => !!p);
+    seaLanes(world, ports, {
+      kinds: ['tanker', 'ship'],
+      per: 2,
+      speed: 0.005,
+      tints: ['#3a3d44', '#5f6874'],
+    });
     if (world.quality.life)
       for (const town of towns) {
         const loop: THREE.Vector3[] = [];
-        for (let i = 0; i < 16; i++) loop.push(offset(town.centre, (i / 16) * Math.PI * 2, town.radius).multiplyScalar(1.02));
-        world.traffic.add('drone', makeRoute(loop, true), { count: 3, speed: 0.006, size: 1.4, tints: ['#e0a830'], pingpong: false, random });
+        for (let i = 0; i < 16; i++)
+          loop.push(offset(town.centre, (i / 16) * Math.PI * 2, town.radius).multiplyScalar(1.02));
+        world.traffic.add('drone', makeRoute(loop, true), {
+          count: 3,
+          speed: 0.006,
+          size: 1.4,
+          tints: ['#e0a830'],
+          pingpong: false,
+          random,
+        });
       }
 
     const core = world.faceAt(heart.lat, heart.lon);
-    regulator(world.layer('regulator', 'surface', { landmark: 'regulator' }), world.on(core, 0, 1, -core.size * 0.08), 0.05);
+    regulator(
+      world.layer('regulator', 'surface', { landmark: 'regulator' }),
+      world.on(core, 0, 1, -core.size * 0.08),
+      0.05,
+    );
     const vent = world.around(core, 12).find((f) => f !== core && f.land) ?? core;
-    thermalStack(world.layer('thermal-stack', 'surface', { landmark: 'thermal-stack' }), world.on(vent, 0, 1, -vent.size * 0.08), 0.05);
+    thermalStack(
+      world.layer('thermal-stack', 'surface', { landmark: 'thermal-stack' }),
+      world.on(vent, 0, 1, -vent.size * 0.08),
+      0.05,
+    );
 
     // Hangs over the heart of the machine, turning with it: the suspended regulator.
     const sword = world.layer('hanging-regulator', 'surface', { landmark: 'hanging-regulator' });

@@ -45,8 +45,16 @@ export function standing(point: THREE.Vector3, forward: THREE.Vector3 | null, sc
     .setPosition(point);
 }
 
+/** Citizens and animals: skipped where a quality tier has no life layer. */
+const living =
+  /^(person|walker|worker|guard|robed|porter|enhanced|astronaut|deer|bison|cow|sheep|horse|bird|whale|fish)/;
+
 export class Props {
   private groups = new Map<string, { matrices: number[]; tints: number[] }>();
+  constructor(
+    private life = true,
+    private furnish = true,
+  ) {}
 
   /** Place a prop: `size` is in person units (1 = one citizen tall). */
   add(kind: string, point: THREE.Vector3, forward: THREE.Vector3 | null, size = 1, tint?: Tone) {
@@ -54,6 +62,7 @@ export class Props {
   }
 
   addMatrix(kind: string, matrix: THREE.Matrix4, tint?: Tone) {
+    if (!this.furnish || (!this.life && living.test(kind))) return;
     let group = this.groups.get(kind);
     if (!group) this.groups.set(kind, (group = { matrices: [], tints: [] }));
     group.matrices.push(...matrix.elements);
@@ -111,14 +120,29 @@ export class Traffic {
   add(
     kind: string,
     route: Route,
-    options: { count?: number; speed: number; size?: number; tints?: Tone[]; pingpong?: boolean; random?: () => number },
+    options: {
+      count?: number;
+      speed: number;
+      size?: number;
+      tints?: Tone[];
+      pingpong?: boolean;
+      random?: () => number;
+    },
   ) {
     if (route.length < 1e-4) return;
     let group = this.groups.get(kind);
     if (!group)
       this.groups.set(
         kind,
-        (group = { routes: [], route: [], speed: [], phase: [], scale: [], pingpong: [], tints: [] }),
+        (group = {
+          routes: [],
+          route: [],
+          speed: [],
+          phase: [],
+          scale: [],
+          pingpong: [],
+          tints: [],
+        }),
       );
     let index = group.routes.indexOf(route);
     if (index < 0) index = group.routes.push(route) - 1;
@@ -126,11 +150,19 @@ export class Traffic {
     const count = options.count ?? 1;
     for (let i = 0; i < count; i++) {
       group.route.push(index);
-      group.speed.push(options.speed * (0.8 + random() * 0.4) * (random() < 0.5 && options.pingpong !== false ? -1 : 1));
-      group.phase.push(((i + random() * 0.6) / count) * route.length * (options.pingpong === false ? 1 : 2));
+      group.speed.push(
+        options.speed *
+          (0.8 + random() * 0.4) *
+          (random() < 0.5 && options.pingpong !== false ? -1 : 1),
+      );
+      group.phase.push(
+        ((i + random() * 0.6) / count) * route.length * (options.pingpong === false ? 1 : 2),
+      );
       group.scale.push((options.size ?? 1) * U * (0.92 + random() * 0.16));
       group.pingpong.push(options.pingpong === false ? 0 : 1);
-      const tint = options.tints?.length ? options.tints[Math.floor(random() * options.tints.length)] : propTint(kind);
+      const tint = options.tints?.length
+        ? options.tints[Math.floor(random() * options.tints.length)]
+        : propTint(kind);
       colour.set(tint);
       group.tints.push(colour.r, colour.g, colour.b);
     }
@@ -200,15 +232,26 @@ export function ribbon(mesh: Mesher, points: THREE.Vector3[], width: number, ton
       b = points[Math.min(points.length - 1, i + 1)];
     tangent.subVectors(b, a).normalize();
     up.copy(p).normalize();
-    side.crossVectors(tangent, up).normalize().multiplyScalar(width / 2);
+    side
+      .crossVectors(tangent, up)
+      .normalize()
+      .multiplyScalar(width / 2);
     left.push(p.clone().add(side));
     right.push(p.clone().sub(side));
   });
-  for (let i = 0; i < points.length - 1; i++) mesh.quad(left[i], left[i + 1], right[i + 1], right[i], tone);
+  for (let i = 0; i < points.length - 1; i++)
+    mesh.quad(left[i], left[i + 1], right[i + 1], right[i], tone);
 }
 
 /** A flat disc on the ground, e.g. a plaza or a pad. */
-export function disc(mesh: Mesher, centre: THREE.Vector3, ground: (dir: THREE.Vector3) => THREE.Vector3, radius: number, tone: Tone, sides = 10) {
+export function disc(
+  mesh: Mesher,
+  centre: THREE.Vector3,
+  ground: (dir: THREE.Vector3) => THREE.Vector3,
+  radius: number,
+  tone: Tone,
+  sides = 10,
+) {
   const up = centre.clone().normalize();
   const east = new THREE.Vector3(0, 1, 0).cross(up);
   if (east.lengthSq() < 1e-8) east.set(1, 0, 0);
@@ -217,7 +260,14 @@ export function disc(mesh: Mesher, centre: THREE.Vector3, ground: (dir: THREE.Ve
   const rim: THREE.Vector3[] = [];
   for (let i = 0; i < sides; i++) {
     const a = (i / sides) * Math.PI * 2;
-    rim.push(ground(up.clone().addScaledVector(east, Math.cos(a) * radius).addScaledVector(north, Math.sin(a) * radius)));
+    rim.push(
+      ground(
+        up
+          .clone()
+          .addScaledVector(east, Math.cos(a) * radius)
+          .addScaledVector(north, Math.sin(a) * radius),
+      ),
+    );
   }
   const middle = ground(up);
   for (let i = 0; i < sides; i++) mesh.tri(middle, rim[i], rim[(i + 1) % sides], tone);

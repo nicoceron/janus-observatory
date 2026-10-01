@@ -46,7 +46,20 @@ function Gallery() {
   );
   const groups = useMemo(() => {
     const columns = 14;
-    const leafy = ['oak', 'pine', 'spruce', 'birch', 'bush', 'palm', 'grass', 'cypress', 'shrub', 'cactus', 'vine', 'crop'];
+    const leafy = [
+      'oak',
+      'pine',
+      'spruce',
+      'birch',
+      'bush',
+      'palm',
+      'grass',
+      'cypress',
+      'shrub',
+      'cactus',
+      'vine',
+      'crop',
+    ];
     return propKinds.map((kind, i) => {
       const box = new THREE.Box3();
       for (const geometry of Object.values(propGeometry(kind))) {
@@ -57,7 +70,11 @@ function Gallery() {
       const scale = 1.15 / Math.max(size.x, size.y, size.z);
       const m = new THREE.Matrix4()
         .makeScale(scale, scale, scale)
-        .setPosition(((i % columns) - (columns - 1) / 2) * 1.35, 4.4 - Math.floor(i / columns) * 1.5, 0);
+        .setPosition(
+          ((i % columns) - (columns - 1) / 2) * 1.35,
+          4.4 - Math.floor(i / columns) * 1.5,
+          0,
+        );
       const tint = new THREE.Color(leafy.some((k) => kind.startsWith(k)) ? '#4f8f3e' : '#d0b090');
       return {
         kind,
@@ -146,7 +163,12 @@ export default function LabCanvas({ signals }: { signals: WorldSignals[] }) {
   const columns = query?.get('system') ? 4 : 4;
   return (
     <Canvas
-      camera={{ position: [0, Number(query?.get('lift') ?? 0), Number(query?.get('dist') ?? 11)], fov: 43, near: 0.02, far: 100 }}
+      camera={{
+        position: [0, Number(query?.get('lift') ?? 0), Number(query?.get('dist') ?? 11)],
+        fov: 43,
+        near: 0.02,
+        far: 100,
+      }}
       dpr={[1, 2]}
       frameloop="demand"
       gl={{ antialias: true }}

@@ -99,8 +99,8 @@ export function Inspector({
         </button>
         <button
           aria-label="Zoom in"
-          disabled={view.zoom >= 1.6}
-          onClick={() => onView({ ...view, zoom: Math.min(1.6, view.zoom + 0.2) })}
+          disabled={view.zoom >= 2.6}
+          onClick={() => onView({ ...view, zoom: Math.min(2.6, view.zoom + 0.3) })}
         >
           +
         </button>

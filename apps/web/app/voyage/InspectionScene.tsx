@@ -58,7 +58,8 @@ export function InspectionScene({
         enablePan={false}
         enableDamping={!reduced}
         dampingFactor={0.12}
-        minDistance={3.5}
+        // Worlds and bodies allow a close approach, down to street level.
+        minDistance={(id === 'Earth' ? 1.62 : body ? 1.9 : 3.5) * Math.max(1, view.zoom)}
         maxDistance={16}
         minPolarAngle={0.24}
         maxPolarAngle={Math.PI - 0.24}

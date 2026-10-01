@@ -10,7 +10,15 @@ import { choose, type Pick } from './towns';
 export type Flora = Partial<Record<Biome, { per: number; picks: Pick[] }>>;
 
 export type Fauna = {
-  herds?: { kind: string; biomes: Biome[]; count: number; size: [number, number]; tints?: Tone[]; roam?: boolean; scale?: number }[];
+  herds?: {
+    kind: string;
+    biomes: Biome[];
+    count: number;
+    size: [number, number];
+    tints?: Tone[];
+    roam?: boolean;
+    scale?: number;
+  }[];
   flocks?: { count: number; kind?: string; tints?: Tone[]; size?: number };
   whales?: number;
   fish?: { count: number; tints: Tone[] };
@@ -45,7 +53,13 @@ export function plant(world: WorldContext, flora: Flora) {
       const pick = choose(rule.picks, random);
       const [lo, hi] = pick[2] ?? [0.8, 1.2];
       const tint = pick[3]?.length ? pick[3][Math.floor(random() * pick[3].length)] : undefined;
-      props.add(pick[0], surface.point(dir, -0.0005), offset(dir, random() * 6, 0.01).sub(dir), lo + (hi - lo) * random(), tint);
+      props.add(
+        pick[0],
+        surface.point(dir, -0.0005),
+        offset(dir, random() * 6, 0.01).sub(dir),
+        lo + (hi - lo) * random(),
+        tint,
+      );
     }
   }
 }
@@ -80,16 +94,25 @@ export function animals(world: WorldContext, fauna: Fauna) {
         for (let i = 0; i < members; i++) {
           const dir = offset(centre, random() * Math.PI * 2, random() * 0.014);
           if (!surface.land(dir)) continue;
-          props.add(herd.kind, surface.point(dir, 0), offset(dir, random() * 6, 0.01).sub(dir), (herd.scale ?? 1) * (0.85 + random() * 0.3), herd.tints ? world.random.pick(herd.tints) : undefined);
+          props.add(
+            herd.kind,
+            surface.point(dir, 0),
+            offset(dir, random() * 6, 0.01).sub(dir),
+            (herd.scale ?? 1) * (0.85 + random() * 0.3),
+            herd.tints ? world.random.pick(herd.tints) : undefined,
+          );
         }
     }
   }
   if (fauna.flocks) {
-    const land = world.faces.filter((f) => f.land && ['forest', 'jungle', 'lowland', 'shore', 'upland'].includes(f.biome));
+    const land = world.faces.filter(
+      (f) => f.land && ['forest', 'jungle', 'lowland', 'shore', 'upland'].includes(f.biome),
+    );
     for (const home of world.scatter(land, fauna.flocks.count, 12)) {
       const loop: THREE.Vector3[] = [];
       const height = 1.03 + random() * 0.02;
-      for (let i = 0; i < 18; i++) loop.push(offset(home.up, (i / 18) * Math.PI * 2, 0.025).multiplyScalar(height));
+      for (let i = 0; i < 18; i++)
+        loop.push(offset(home.up, (i / 18) * Math.PI * 2, 0.025).multiplyScalar(height));
       traffic.add(fauna.flocks.kind ?? 'bird', makeRoute(loop, true), {
         count: 5 + Math.floor(random() * 5),
         speed: 0.01,
@@ -103,15 +126,30 @@ export function animals(world: WorldContext, fauna: Fauna) {
   const deep = world.faces.filter((f) => !f.land && (f.biome === 'deep' || f.biome === 'ocean'));
   for (const home of world.scatter(deep, fauna.whales ?? 0, 20)) {
     const loop: THREE.Vector3[] = [];
-    for (let i = 0; i < 16; i++) loop.push(offset(home.up, (i / 16) * Math.PI * 2, 0.03).multiplyScalar(0.9995));
-    traffic.add('whale', makeRoute(loop, true), { count: 1 + Math.floor(random() * 2), speed: 0.003, size: 1.6, pingpong: false, random });
+    for (let i = 0; i < 16; i++)
+      loop.push(offset(home.up, (i / 16) * Math.PI * 2, 0.03).multiplyScalar(0.9995));
+    traffic.add('whale', makeRoute(loop, true), {
+      count: 1 + Math.floor(random() * 2),
+      speed: 0.003,
+      size: 1.6,
+      pingpong: false,
+      random,
+    });
   }
   if (fauna.fish) {
     const shallow = world.faces.filter((f) => !f.land && f.biome === 'shallows');
     for (const home of world.scatter(shallow, fauna.fish.count, 10)) {
       const loop: THREE.Vector3[] = [];
-      for (let i = 0; i < 12; i++) loop.push(offset(home.up, (i / 12) * Math.PI * 2, 0.008).multiplyScalar(1.0003));
-      traffic.add('fish', makeRoute(loop, true), { count: 6, speed: 0.003, size: 1, tints: fauna.fish.tints, pingpong: false, random });
+      for (let i = 0; i < 12; i++)
+        loop.push(offset(home.up, (i / 12) * Math.PI * 2, 0.008).multiplyScalar(1.0003));
+      traffic.add('fish', makeRoute(loop, true), {
+        count: 6,
+        speed: 0.003,
+        size: 1,
+        tints: fauna.fish.tints,
+        pingpong: false,
+        random,
+      });
     }
   }
 }

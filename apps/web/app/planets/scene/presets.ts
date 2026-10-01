@@ -74,7 +74,14 @@ export function earthFlora(leaves: Leaves, lush = 1): Flora {
         ['dead-tree', 0.6, [0.9, 1.3]],
       ],
     },
-    mountain: { per: 1.4, picks: [['rocks', 2, [1.2, 2]], ['boulder', 1.5, [1.2, 2]], ['pine', 1, [0.9, 1.2], conifer]] },
+    mountain: {
+      per: 1.4,
+      picks: [
+        ['rocks', 2, [1.2, 2]],
+        ['boulder', 1.5, [1.2, 2]],
+        ['pine', 1, [0.9, 1.2], conifer],
+      ],
+    },
     peak: { per: 0.5, picks: [['boulder', 1, [1.2, 2], ['#e8eaec']]] },
     ice: { per: 0.3, picks: [['ice-block', 1, [1.5, 2.5]]] },
   };
@@ -83,20 +90,87 @@ export function earthFlora(leaves: Leaves, lush = 1): Flora {
 /** A depleted biosphere: dead trees, scrub and bare rock. */
 export function bareFlora(scrub: Tone[], lush = 1): Flora {
   return {
-    forest: { per: 1.6 * lush, picks: [['dead-tree', 3, [1, 1.5]], ['shrub', 2, [0.8, 1.2], scrub], ['oak-small', 1, [0.9, 1.2], scrub]] },
-    jungle: { per: 2 * lush, picks: [['dead-tree', 2, [1, 1.5]], ['bush', 2, [0.9, 1.3], scrub]] },
-    lowland: { per: 1 * lush, picks: [['shrub', 3, [0.8, 1.2], scrub], ['stump', 1, [1, 1.3]], ['grass', 2, [1, 1.4], scrub]] },
-    upland: { per: 1 * lush, picks: [['rocks', 2, [1, 1.6]], ['dead-tree', 1, [0.9, 1.3]]] },
-    tundra: { per: 0.6, picks: [['rocks', 1, [1, 1.5]], ['shrub', 1, [0.8, 1.1], scrub]] },
-    desert: { per: 0.8, picks: [['rocks', 2, [1, 1.8]], ['dead-tree', 1, [0.9, 1.3]]] },
-    shore: { per: 0.5, picks: [['reeds', 1, [1, 1.3], scrub], ['rocks', 1, [1, 1.4]]] },
-    mountain: { per: 1.2, picks: [['rocks', 2, [1.2, 2]], ['boulder', 1, [1.2, 2]]] },
+    forest: {
+      per: 1.6 * lush,
+      picks: [
+        ['dead-tree', 3, [1, 1.5]],
+        ['shrub', 2, [0.8, 1.2], scrub],
+        ['oak-small', 1, [0.9, 1.2], scrub],
+      ],
+    },
+    jungle: {
+      per: 2 * lush,
+      picks: [
+        ['dead-tree', 2, [1, 1.5]],
+        ['bush', 2, [0.9, 1.3], scrub],
+      ],
+    },
+    lowland: {
+      per: 1 * lush,
+      picks: [
+        ['shrub', 3, [0.8, 1.2], scrub],
+        ['stump', 1, [1, 1.3]],
+        ['grass', 2, [1, 1.4], scrub],
+      ],
+    },
+    upland: {
+      per: 1 * lush,
+      picks: [
+        ['rocks', 2, [1, 1.6]],
+        ['dead-tree', 1, [0.9, 1.3]],
+      ],
+    },
+    tundra: {
+      per: 0.6,
+      picks: [
+        ['rocks', 1, [1, 1.5]],
+        ['shrub', 1, [0.8, 1.1], scrub],
+      ],
+    },
+    desert: {
+      per: 0.8,
+      picks: [
+        ['rocks', 2, [1, 1.8]],
+        ['dead-tree', 1, [0.9, 1.3]],
+      ],
+    },
+    shore: {
+      per: 0.5,
+      picks: [
+        ['reeds', 1, [1, 1.3], scrub],
+        ['rocks', 1, [1, 1.4]],
+      ],
+    },
+    mountain: {
+      per: 1.2,
+      picks: [
+        ['rocks', 2, [1.2, 2]],
+        ['boulder', 1, [1.2, 2]],
+      ],
+    },
   };
 }
 
-export const casual: Tone[] = ['#4f7fbf', '#c4452f', '#e0a830', '#2e9e6e', '#8a62e0', '#f2efe6', '#3a3d44', '#e07aa0'];
+export const casual: Tone[] = [
+  '#4f7fbf',
+  '#c4452f',
+  '#e0a830',
+  '#2e9e6e',
+  '#8a62e0',
+  '#f2efe6',
+  '#3a3d44',
+  '#e07aa0',
+];
 export const earthy: Tone[] = ['#8a6a44', '#b3824f', '#6a7a4a', '#a8744a', '#d8c39a', '#5a4a3a'];
-export const carColours: Tone[] = ['#c4452f', '#3d6fb5', '#e6e8ea', '#2a2d33', '#e0a830', '#2e9e6e', '#8a8f96'];
+export const carColours: Tone[] = [
+  '#c4452f',
+  '#3d6fb5',
+  '#e6e8ea',
+  '#2a2d33',
+  '#e0a830',
+  '#2e9e6e',
+  '#8a8f96',
+];
 
 export const citizens = { kinds: citizenKinds, walkers: walkerKinds };
 
@@ -107,7 +181,14 @@ export function cityStyle(radius = 0.075): TownStyle {
     radius,
     block: 11 * U,
     street: { width: 1.7 * U, tone: '#4a4d54' },
-    plaza: { radius: 3 * U, tone: '#c9c3b5', centre: [['fountain', 1, [1.4, 1.8]], ['statue', 1, [1.4, 1.8]]] },
+    plaza: {
+      radius: 3 * U,
+      tone: '#c9c3b5',
+      centre: [
+        ['fountain', 1, [1.4, 1.8]],
+        ['statue', 1, [1.4, 1.8]],
+      ],
+    },
     lot: { spacing: 2.6 * U },
     core: [
       ['skyscraper', 3, [0.9, 1.3]],
@@ -140,10 +221,32 @@ export function villageStyle(radius = 0.04, roofs: 'mixed' | 'cottage' = 'mixed'
     street: { width: 1.2 * U, tone: '#a89a7a' },
     plaza: { radius: 2 * U, tone: '#c9b994', centre: [['well', 1, [1.3, 1.6]]] },
     lot: { spacing: 2.4 * U },
-    core: roofs === 'cottage' ? [['cottage-dark', 3, [1, 1.2]], ['house-dark', 1, [1, 1.1]], ['market', 1, [1, 1.2]]] : [['house', 3, [1, 1.2]], ['house-brown', 2, [1, 1.1]], ['hall', 0.4, [0.8, 0.9]]],
-    edge: roofs === 'cottage'
-      ? [['cottage-dark', 3, [1, 1.2]], ['barn-dark', 1.5, [1, 1.2]], ['haystack', 1, [1, 1.4]], ['windmill', 0.5, [0.9, 1.1]]]
-      : [['house-brown', 2, [1, 1.2]], ['barn', 1.5, [1, 1.2]], ['silo', 1, [0.9, 1.1]], ['haystack', 1, [1, 1.4]]],
+    core:
+      roofs === 'cottage'
+        ? [
+            ['cottage-dark', 3, [1, 1.2]],
+            ['house-dark', 1, [1, 1.1]],
+            ['market', 1, [1, 1.2]],
+          ]
+        : [
+            ['house', 3, [1, 1.2]],
+            ['house-brown', 2, [1, 1.1]],
+            ['hall', 0.4, [0.8, 0.9]],
+          ],
+    edge:
+      roofs === 'cottage'
+        ? [
+            ['cottage-dark', 3, [1, 1.2]],
+            ['barn-dark', 1.5, [1, 1.2]],
+            ['haystack', 1, [1, 1.4]],
+            ['windmill', 0.5, [0.9, 1.1]],
+          ]
+        : [
+            ['house-brown', 2, [1, 1.2]],
+            ['barn', 1.5, [1, 1.2]],
+            ['silo', 1, [0.9, 1.1]],
+            ['haystack', 1, [1, 1.4]],
+          ],
     people: { standing: 6, walking: 2, ...citizens, tints: earthy },
     trees: { count: 8, kinds: ['oak', 'oak-small'], size: [1.1, 1.5] },
   };

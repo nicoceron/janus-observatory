@@ -44,6 +44,14 @@ export function ModelView({
     [materials],
   );
   const invalidate = useThree((state) => state.invalidate);
+  const wake = useRef<number | null>(null);
+  const pace = useRef(33);
+  useEffect(
+    () => () => {
+      if (wake.current !== null) window.clearTimeout(wake.current);
+    },
+    [],
+  );
   const atmosphere = useMemo(
     () => (model.atmosphere ? atmosphereMaterial(model.atmosphere) : null),
     [model.atmosphere],
@@ -83,7 +91,16 @@ export function ModelView({
   const clock = useRef(0);
   useFrame((_, delta) => {
     if (!visible(planet.current)) return;
-    if (live && !still && !document.hidden) invalidate();
+    if (live && !still && !document.hidden && wake.current === null) {
+      // Idle life runs at up to ~30 fps and backs off when frames run long, so a slow device
+      // (or software WebGL) keeps the page responsive to scrolling and input.
+      if (delta * 1000 > pace.current + 60) pace.current = Math.min(600, pace.current * 2);
+      else pace.current = Math.max(33, pace.current * 0.85);
+      wake.current = window.setTimeout(() => {
+        wake.current = null;
+        invalidate();
+      }, pace.current);
+    }
     if (!still) clock.current += Math.min(delta, 0.05);
     const t = still ? 0 : clock.current;
     if (planet.current && sway)

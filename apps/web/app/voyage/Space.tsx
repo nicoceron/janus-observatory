@@ -13,7 +13,15 @@ import {
 } from 'react';
 import * as THREE from 'three';
 import { presentEarth } from './origin-world';
-import { LowPolyBody, LowPolyWorld, WORLD_ENVELOPE } from '../planets/LowPoly';
+import {
+  LowPolyBody,
+  LowPolyWorld,
+  lowPower,
+  prewarmBody,
+  prewarmWorld,
+  useWarmShaders,
+  WORLD_ENVELOPE,
+} from '../planets/LowPoly';
 import { presentSignals, type WorldSignals } from '../../lib/world-signals';
 import { ObserverLife } from './ObserverLife';
 import { smooth, chapterFrame, type FlightState } from './scroll';
@@ -109,6 +117,7 @@ function Scene({
   onReady,
 }: Omit<Props, 'onFailure'>) {
   const { size, invalidate, gl, camera } = useThree();
+  useWarmShaders();
   const mobile = size.width <= 760;
   const layouts = useMemo(
     () => systems.map((system) => systemLayout(size.width, size.height, systemSelections(system))),
@@ -162,6 +171,25 @@ function Scene({
   useEffect(() => {
     onReady();
   }, [onReady]);
+  // Build ahead in idle time: the overview first, then the chapters around the reader.
+  useEffect(() => {
+    const low = lowPower(gl);
+    const quality = low ? 'minimal' : mobile ? 'compact' : 'story';
+    const grid = low ? 'minimal' : 'overview';
+    if (chapter <= 1) signals.forEach((s, i) => prewarmWorld(worlds[i].id, s, grid));
+    for (const next of [chapter, chapter + 1, chapter - 1, chapter + 2]) {
+      const i = next - 2;
+      if (i < 0 || i >= signals.length) continue;
+      prewarmWorld(worlds[i].id, signals[i], quality);
+      for (const id of systemSelections(systems[i]).slice(1))
+        prewarmBody(
+          worlds[i].id,
+          signals[i],
+          id,
+          low ? 'minimal' : mobile ? 'overview' : 'compact',
+        );
+    }
+  }, [chapter, mobile, signals, systems, gl]);
   useEffect(() => {
     const frame = () => {
       if (flight.current.progress > 0.02) setExpedition(true);
@@ -445,6 +473,8 @@ function Scene({
               (Math.abs(chapter - (i + 1)) <= 1 ||
                 (chapter >= 12 && chapter <= 13 && i === 9)))) && (
             <LowPolyWorld
+              live={i === 0 ? chapter === 0 || chapter === 16 : chapter === i + 1}
+              eager={i === 0 ? chapter === 0 || chapter === 16 : chapter === i + 1}
               id={i === 0 ? 'present' : art.id}
               signals={i === 0 ? presentSignals : signals[i - 1]}
               reduced={reduced}
@@ -476,6 +506,8 @@ function Scene({
                   visible={false}
                 >
                   <LowPolyBody
+                    live={chapter === i + 1}
+                    eager={chapter === i + 1}
                     scenario={art.id}
                     signals={signals[i - 1]}
                     selection={place.id}

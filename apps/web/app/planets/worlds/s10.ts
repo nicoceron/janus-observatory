@@ -125,7 +125,14 @@ export const s10: EarthBrief = {
     herds: [
       { kind: 'deer', biomes: ['forest', 'upland', 'jungle'], count: 24, size: [3, 7] },
       { kind: 'bison', biomes: ['lowland', 'tundra'], count: 12, size: [6, 11], roam: true },
-      { kind: 'horse', biomes: ['lowland'], count: 8, size: [3, 7], roam: true, tints: ['#7a4a2a', '#efe8dc'] },
+      {
+        kind: 'horse',
+        biomes: ['lowland'],
+        count: 8,
+        size: [3, 7],
+        roam: true,
+        tints: ['#7a4a2a', '#efe8dc'],
+      },
     ],
     flocks: { count: 24, tints: ['#ffffff', '#f6d36a'] },
     whales: 9,
@@ -156,22 +163,79 @@ export const s10: EarthBrief = {
       radius: 0.03,
       streets: 3,
       street: { width: 1 * U, tone: '#c9b994' },
-      plaza: { radius: 2 * U, tone: '#d8c8a0', centre: [['well', 1, [1.2, 1.4]], ['totem', 1, [1, 1.2]]] },
+      plaza: {
+        radius: 2 * U,
+        tone: '#d8c8a0',
+        centre: [
+          ['well', 1, [1.2, 1.4]],
+          ['totem', 1, [1, 1.2]],
+        ],
+      },
       lot: { spacing: 2.4 * U },
-      core: [['longhouse', 2, [0.9, 1]], ['eco-dome', 2, [1, 1.1]], ['market', 0.5, [1, 1.1], ['#e0a830', '#7fbf5a']]],
-      edge: [['yurt', 2, [1, 1.1]], ['eco-dome', 2, [0.9, 1]], ['barn-dark', 1, [0.9, 1]], ['haystack', 1, [0.9, 1.2]]],
-      people: { standing: 9, walking: 3, ...citizens, kinds: [...citizens.kinds, 'robed'], tints: wool },
+      core: [
+        ['longhouse', 2, [0.9, 1]],
+        ['eco-dome', 2, [1, 1.1]],
+        ['market', 0.5, [1, 1.1], ['#e0a830', '#7fbf5a']],
+      ],
+      edge: [
+        ['yurt', 2, [1, 1.1]],
+        ['eco-dome', 2, [0.9, 1]],
+        ['barn-dark', 1, [0.9, 1]],
+        ['haystack', 1, [0.9, 1.2]],
+      ],
+      people: {
+        standing: 9,
+        walking: 3,
+        ...citizens,
+        kinds: [...citizens.kinds, 'robed'],
+        tints: wool,
+      },
       cars: { count: 1, kinds: ['cart', 'bicycle'], tints: ['#9a7a5a'], speed: 0.002 },
       trees: { count: 12, kinds: ['oak', 'flowers', 'birch'], size: [1, 1.5] },
     };
-    const land = faces.filter((f) => f.land && ['lowland', 'forest', 'upland', 'shore'].includes(f.biome));
-    const towns = world.scatter(land.filter((f) => f.elevation < 0.4 && !f.used), 18, 14).map((face) => buildTown(world, face.up, steading));
+    const land = faces.filter(
+      (f) => f.land && ['lowland', 'forest', 'upland', 'shore'].includes(f.biome),
+    );
+    const towns = world
+      .scatter(
+        land.filter((f) => f.elevation < 0.4 && !f.used),
+        18,
+        14,
+      )
+      .map((face) => buildTown(world, face.up, steading));
     for (const town of towns) {
-      farmland(world, town.centre, town.radius * 2.2, ['#c9d68a', '#d8c878', '#a8c87a'], [['crop', 1, [1.3, 1.3], ['#d8c35a']], ['vine', 1, [1.3, 1.3], ['#6aa04a']]], 0.4);
-      sprinkle(world, offset(town.centre, random() * 6, town.radius * 1.6), 0.01, [['sheep', 2, [1, 1.2]], ['cow', 1, [1, 1.1], ['#efe8dc']]], 5);
+      farmland(
+        world,
+        town.centre,
+        town.radius * 2.2,
+        ['#c9d68a', '#d8c878', '#a8c87a'],
+        [
+          ['crop', 1, [1.3, 1.3], ['#d8c35a']],
+          ['vine', 1, [1.3, 1.3], ['#6aa04a']],
+        ],
+        0.4,
+      );
+      sprinkle(
+        world,
+        offset(town.centre, random() * 6, town.radius * 1.6),
+        0.01,
+        [
+          ['sheep', 2, [1, 1.2]],
+          ['cow', 1, [1, 1.1], ['#efe8dc']],
+        ],
+        5,
+      );
     }
-    roads(world, towns, { width: 0.8 * U, tone: '#c9b994', neighbours: 1, reach: 0.35, traffic: { kinds: ['cart', 'robed-walk'], per: 1, speed: 0.002, tints: wool } });
-    const shores = towns.map((t) => harbour(world, t.centre, { boats: ['sailboat'] })).filter((p): p is THREE.Vector3 => !!p);
+    roads(world, towns, {
+      width: 0.8 * U,
+      tone: '#c9b994',
+      neighbours: 1,
+      reach: 0.35,
+      traffic: { kinds: ['cart', 'robed-walk'], per: 1, speed: 0.002, tints: wool },
+    });
+    const shores = towns
+      .map((t) => harbour(world, t.centre, { boats: ['sailboat'] }))
+      .filter((p): p is THREE.Vector3 => !!p);
     harbourLoops(world, shores, { kinds: ['sailboat', 'canoe', 'fishing'], per: 1, speed: 0.0025 });
 
     // The schism made visible: a ring of habitats on one rail, apart from the garden below.
@@ -179,16 +243,36 @@ export const s10: EarthBrief = {
     const ringMatrix = orbitMatrix(0.32, 0.4);
     const rail = world.layer('rail', 'orbit', { matrix: ringMatrix });
     rail.sheen.torus(new THREE.Matrix4(), 1.42, 0.004, '#d9dde2', 96, 3);
-    const ring = world.layer('habitat-ring', 'orbit', { landmark: 'habitat-ring', matrix: ringMatrix, motion: { kind: 'spin', speed: 0.035 } });
+    const ring = world.layer('habitat-ring', 'orbit', {
+      landmark: 'habitat-ring',
+      matrix: ringMatrix,
+      motion: { kind: 'spin', speed: 0.035 },
+    });
     const habitats = 12;
-    for (let i = 0; i < habitats; i++) habitat(ring, onOrbit(1.42, (i / habitats) * Math.PI * 2), 0.12);
-    const drones = world.layer('autonomy', 'orbit', { matrix: ringMatrix, motion: { kind: 'spin', speed: 0.05 } });
+    for (let i = 0; i < habitats; i++)
+      habitat(ring, onOrbit(1.42, (i / habitats) * Math.PI * 2), 0.12);
+    const drones = world.layer('autonomy', 'orbit', {
+      matrix: ringMatrix,
+      motion: { kind: 'spin', speed: 0.05 },
+    });
     for (let i = 0; i < Math.max(0, count - habitats); i++) {
-      const m = onOrbit(1.36 + (i % 3) * 0.04, (i / (count - habitats)) * Math.PI * 2 + 0.13, ((i % 5) - 2) * 0.015);
+      const m = onOrbit(
+        1.36 + (i % 3) * 0.04,
+        (i / (count - habitats)) * Math.PI * 2 + 0.13,
+        ((i % 5) - 2) * 0.015,
+      );
       drones.sheen.gem(m, 0.006, 0.02, '#eef1f4', 3);
       if (i % 4 === 0) drones.glow.box(m, 0.004, 0.004, 0.004, '#9fe0ff');
     }
-    const sail = world.layer('departure', 'orbit', { landmark: 'departure', matrix: orbitMatrix(-0.5, 2.4), motion: { kind: 'spin', speed: 0.02 } });
-    lightSail(sail, onOrbit(1.55, 0.6).multiply(new THREE.Matrix4().makeRotationX(Math.PI / 2)), 0.12);
+    const sail = world.layer('departure', 'orbit', {
+      landmark: 'departure',
+      matrix: orbitMatrix(-0.5, 2.4),
+      motion: { kind: 'spin', speed: 0.02 },
+    });
+    lightSail(
+      sail,
+      onOrbit(1.55, 0.6).multiply(new THREE.Matrix4().makeRotationX(Math.PI / 2)),
+      0.12,
+    );
   },
 };

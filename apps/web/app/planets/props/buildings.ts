@@ -14,7 +14,7 @@ function windows(
   h: number,
   d: number,
   lit: boolean,
-  options: { floor?: number; base?: number; size?: number; colour?: Tone } = {},
+  options: { floor?: number; base?: number; size?: number; colour?: Tone; band?: boolean } = {},
 ) {
   const floor = options.floor ?? 0.9,
     size = options.size ?? 0.34,
@@ -28,11 +28,16 @@ function windows(
       [Math.PI / 2, d, w / 2],
       [-Math.PI / 2, d, w / 2],
     ] as const) {
-      const count = Math.max(1, Math.floor(span / 0.75));
+      const wall = local(m, 0, 0, 0, face);
+      // Flat quads, one per window or one band per floor: facades stay cheap at city scale.
+      if (options.band) {
+        mesh.plate(local(wall, 0, y, offset + 0.012), span * 0.82, size, tone);
+        continue;
+      }
+      const count = Math.max(1, Math.min(4, Math.floor(span / 0.75)));
       for (let i = 0; i < count; i++) {
         const x = -span / 2 + (span / count) * (i + 0.5);
-        const wall = local(m, 0, 0, 0, face);
-        mesh.box(local(wall, x, y, offset + 0.005), size, size, 0.02, tone);
+        mesh.plate(local(wall, x, y, offset + 0.012), size, size, tone);
       }
     }
 }
@@ -63,11 +68,19 @@ function house(p: PropMeshers, roof: Tone, lit: boolean, w = 2.6, d = 2.2, h = 1
   p.base.box(local(o, w * 0.28, h + 0.3, -0.3), 0.3, 0.8, 0.3, '#8a5a44');
 }
 
-function block(p: PropMeshers, w: number, h: number, d: number, lit: boolean, roof = '#6c6f76') {
+function block(
+  p: PropMeshers,
+  w: number,
+  h: number,
+  d: number,
+  lit: boolean,
+  roof = '#6c6f76',
+  band = false,
+) {
   const o = at();
   p.tint.box(o, w, h, d, '#ffffff', '#ffffff');
   p.base.box(local(o, 0, h, 0), w * 0.98, 0.12, d * 0.98, roof);
-  windows(p, o, w, h, d, lit);
+  windows(p, o, w, h, d, lit, { band });
   door(p, o, d / 2, '#2e3138');
 }
 
@@ -97,8 +110,8 @@ pair('cottage', '#efe6d2', (p, lit) => {
 });
 pair('apartment', '#d9d4c8', (p, lit) => block(p, 3, 5, 3, lit));
 pair('apartment-wide', '#c9cdd2', (p, lit) => block(p, 5, 3.6, 3, lit));
-pair('block', '#9a9ca1', (p, lit) => block(p, 3, 3.2, 3, lit, '#5d6068'));
-pair('block-tall', '#8d9096', (p, lit) => block(p, 3, 6.4, 3, lit, '#5d6068'));
+pair('block', '#9a9ca1', (p, lit) => block(p, 3, 3.2, 3, lit, '#5d6068', true));
+pair('block-tall', '#8d9096', (p, lit) => block(p, 3, 6.4, 3, lit, '#5d6068', true));
 pair('tower', '#c9ccd2', (p, lit) => {
   const o = at();
   block(p, 3.2, 5.5, 3.2, lit);
@@ -150,17 +163,20 @@ pair('hall', '#ece4d4', (p, lit) => {
   const o = at();
   p.base.box(o, 5, 0.3, 4, '#c9c3b5');
   p.tint.box(local(o, 0, 0.3, -0.4), 4.2, 2.6, 3, '#ffffff');
-  for (let i = 0; i < 5; i++) p.tint.prism(local(o, -1.8 + i * 0.9, 0.3, 1.5), 0.14, 0.14, 2.6, 6, '#ffffff');
+  for (let i = 0; i < 5; i++)
+    p.tint.prism(local(o, -1.8 + i * 0.9, 0.3, 1.5), 0.14, 0.14, 2.6, 6, '#ffffff');
   gable(p, local(o, 0, 2.9, 0.1), 4.4, 3.8, 1.0, '#8a8f96');
   p.metal.dome(local(o, 0, 3.6, -0.4), 0.9, '#d9b24a', 8, 2);
-  if (lit) windows(p, local(o, 0, 0.3, -0.4), 4.2, 2.6, 3, true, { floor: 3, base: 0.8, size: 0.5 });
+  if (lit)
+    windows(p, local(o, 0, 0.3, -0.4), 4.2, 2.6, 3, true, { floor: 3, base: 0.8, size: 0.5 });
 });
 pair('greenhouse', '#ffffff', (p, lit) => {
   const o = at();
   p.base.box(o, 3.2, 0.3, 4.2, '#c9c3b5');
   p.glass.box(local(o, 0, 0.3, 0), 3, 1.2, 4, '#bfe3ea', '#cdeef2');
   gable(p, local(o, 0, 1.5, 0, Math.PI / 2), 4, 3, 0.8, '#cdeef2');
-  for (let i = 0; i < 4; i++) p.tint.blob(local(o, -0.8 + (i % 2) * 1.6, 0.6, -1.2 + i * 0.8), 0.35, '#5fa84a', 0.3, i);
+  for (let i = 0; i < 4; i++)
+    p.tint.blob(local(o, -0.8 + (i % 2) * 1.6, 0.6, -1.2 + i * 0.8), 0.35, '#5fa84a', 0.3, i);
   if (lit) p.glow.box(local(o, 0, 1.4, 0), 0.2, 0.1, 3, '#fff2c8');
 });
 pair('dome-house', '#f2efe6', (p, lit) => {
@@ -238,7 +254,8 @@ Object.assign(buildingDefs, {
     tint: '#9a6a3a',
     build: (p) => {
       const o = at();
-      for (let i = 0; i < 3; i++) p.tint.box(local(o, 0, i * 0.7, 0, i * 0.3), 0.45, 0.68, 0.45, '#ffffff');
+      for (let i = 0; i < 3; i++)
+        p.tint.box(local(o, 0, i * 0.7, 0, i * 0.3), 0.45, 0.68, 0.45, '#ffffff');
       p.base.box(local(o, 0, 2.1, 0), 1.2, 0.12, 0.25, '#c4955f');
       p.base.box(local(o, 0, 1.6, 0.23), 0.3, 0.12, 0.04, '#e8dcc4');
     },
@@ -250,7 +267,12 @@ Object.assign(buildingDefs, {
       for (let i = 0; i < 3; i++) {
         const s = local(o, (i - 1) * 1.4, 0, 0);
         p.base.box(s, 1.1, 0.7, 0.8, '#8a6a4a');
-        for (const [x, z] of [[-0.5, -0.4], [0.5, -0.4], [0.5, 0.4], [-0.5, 0.4]])
+        for (const [x, z] of [
+          [-0.5, -0.4],
+          [0.5, -0.4],
+          [0.5, 0.4],
+          [-0.5, 0.4],
+        ])
           p.base.prism(local(s, x, 0, z), 0.03, 0.03, 1.4, 3, '#5a3d28');
         p.tint.prism(local(s, 0, 1.4, 0, Math.PI / 4), 0.85, 0, 0.45, 4, '#ffffff');
         p.base.box(local(s, 0, 0.7, 0), 0.9, 0.12, 0.6, ['#e0a52e', '#7fbf5a', '#d0493a'][i]);
@@ -331,7 +353,12 @@ Object.assign(buildingDefs, {
     tint: '#c9cdd2',
     build: (p) => {
       const o = at();
-      for (const [x, z] of [[-0.6, -0.6], [0.6, -0.6], [0.6, 0.6], [-0.6, 0.6]])
+      for (const [x, z] of [
+        [-0.6, -0.6],
+        [0.6, -0.6],
+        [0.6, 0.6],
+        [-0.6, 0.6],
+      ])
         p.base.beam(v(x, 0, z), v(x * 0.6, 3, z * 0.6), 0.06, '#6c6f76');
       p.metal.prism(local(o, 0, 3, 0), 1.0, 1.0, 1.4, 10, '#ffffff');
       p.metal.prism(local(o, 0, 4.4, 0), 1.0, 0, 0.5, 10, '#ffffff');
@@ -353,14 +380,20 @@ Object.assign(buildingDefs, {
       const o = at();
       p.base.box(local(o, 0, 0.25, 0), 1.6, 0.12, 6, '#8a6a4a');
       for (let i = 0; i < 4; i++)
-        for (const x of [-0.7, 0.7]) p.base.prism(local(o, x, -0.6, -2.6 + i * 1.7), 0.08, 0.08, 0.95, 4, '#5a3d28');
+        for (const x of [-0.7, 0.7])
+          p.base.prism(local(o, x, -0.6, -2.6 + i * 1.7), 0.08, 0.08, 0.95, 4, '#5a3d28');
     },
   },
   'harbor-crane': {
     tint: '#e0a830',
     build: (p) => {
       const o = at();
-      for (const [x, z] of [[-0.8, -0.8], [0.8, -0.8], [0.8, 0.8], [-0.8, 0.8]])
+      for (const [x, z] of [
+        [-0.8, -0.8],
+        [0.8, -0.8],
+        [0.8, 0.8],
+        [-0.8, 0.8],
+      ])
         p.metal.beam(v(x, 0, z), v(x * 0.5, 4, z * 0.5), 0.08, '#ffffff');
       p.metal.box(local(o, 0, 4, 0), 1.2, 0.8, 1.2, '#ffffff');
       p.metal.beam(v(0, 4.6, -1.5), v(0, 4.6, 5.5), 0.12, '#ffffff');
@@ -373,7 +406,13 @@ Object.assign(buildingDefs, {
       const o = at();
       const tones = ['#c4452f', '#3d6fb5', '#e0a830', '#2e9e6e', '#8a8f96'];
       for (let i = 0; i < 9; i++)
-        p.base.box(local(o, (i % 3) * 1.1 - 1.1, Math.floor(i / 3) * 0.55, 0), 1.0, 0.5, 2.4, tones[i % 5]);
+        p.base.box(
+          local(o, (i % 3) * 1.1 - 1.1, Math.floor(i / 3) * 0.55, 0),
+          1.0,
+          0.5,
+          2.4,
+          tones[i % 5],
+        );
     },
   },
   pylon: {
@@ -476,7 +515,12 @@ Object.assign(buildingDefs, {
     build: (p) => {
       const o = at();
       p.tint.box(o, 0.5, 0.18, 0.5, '#ffffff');
-      for (const [x, z] of [[-0.4, -0.4], [0.4, -0.4], [0.4, 0.4], [-0.4, 0.4]])
+      for (const [x, z] of [
+        [-0.4, -0.4],
+        [0.4, -0.4],
+        [0.4, 0.4],
+        [-0.4, 0.4],
+      ])
         p.base.prism(local(o, x, 0.18, z), 0.22, 0.22, 0.02, 6, '#9aa0a6');
       p.glow.box(local(o, 0, -0.05, 0.26), 0.1, 0.06, 0.02, '#ff3b30');
     },
@@ -528,7 +572,8 @@ Object.assign(buildingDefs, {
       p.tint.box(local(o, -0.8, 0, 0), 1.4, 1.8, 0.3, '#ffffff');
       p.tint.box(local(o, 0.6, 0, 0), 1.0, 0.9, 0.3, '#ffffff');
       p.tint.box(local(o, 1.3, 0, 0.8, Math.PI / 2), 1.6, 1.3, 0.3, '#ffffff');
-      for (let i = 0; i < 4; i++) p.base.blob(local(o, -1 + i * 0.7, 0.05, 0.6), 0.22, '#8a857d', 0.4, i);
+      for (let i = 0; i < 4; i++)
+        p.base.blob(local(o, -1 + i * 0.7, 0.05, 0.6), 0.22, '#8a857d', 0.4, i);
     },
   },
   'ruin-tower': {
@@ -539,7 +584,14 @@ Object.assign(buildingDefs, {
       p.tint.box(lean, 2.6, 5, 2.6, '#ffffff');
       p.tint.box(local(lean, 0.3, 5, 0, 0.4, 1, [0.3, 0.2]), 1.6, 1.2, 1.8, '#ffffff');
       windows(p, lean, 2.6, 5, 2.6, false);
-      for (let i = 0; i < 5; i++) p.base.blob(local(o, -1.5 + i * 0.8, 0.1, 1.8), 0.35, i % 2 ? '#8a4a32' : '#7a7570', 0.4, i);
+      for (let i = 0; i < 5; i++)
+        p.base.blob(
+          local(o, -1.5 + i * 0.8, 0.1, 1.8),
+          0.35,
+          i % 2 ? '#8a4a32' : '#7a7570',
+          0.4,
+          i,
+        );
     },
   },
   scrap: {
@@ -564,7 +616,8 @@ Object.assign(buildingDefs, {
       const o = at();
       p.tint.prism(o, 2.2, 2.2, 0.4, 12, '#ffffff');
       p.glass.dome(local(o, 0, 0.4, 0), 2.0, '#9fd6e8', 12, 3);
-      for (let i = 0; i < 4; i++) p.base.box(local(o, -0.9 + i * 0.6, 0.4, 0.2), 0.4, 0.6 + (i % 2) * 0.4, 0.4, '#d9d6cc');
+      for (let i = 0; i < 4; i++)
+        p.base.box(local(o, -0.9 + i * 0.6, 0.4, 0.2), 0.4, 0.6 + (i % 2) * 0.4, 0.4, '#d9d6cc');
       p.glow.prism(local(o, 0, 0.38, 0), 2.25, 2.25, 0.05, 12, '#fff2c8');
     },
   },
@@ -584,7 +637,13 @@ Object.assign(buildingDefs, {
       p.base.prism(local(o, 0, 0.15, 0), 1.6, 1.6, 0.01, 12, '#e0a830', '#e0a830');
       for (let i = 0; i < 8; i++) {
         const a = (i / 8) * Math.PI * 2;
-        p.glow.box(local(o, Math.cos(a) * 2.8, 0.15, Math.sin(a) * 2.8), 0.15, 0.08, 0.15, '#9fe0ff');
+        p.glow.box(
+          local(o, Math.cos(a) * 2.8, 0.15, Math.sin(a) * 2.8),
+          0.15,
+          0.08,
+          0.15,
+          '#9fe0ff',
+        );
       }
     },
   },
@@ -597,7 +656,13 @@ Object.assign(buildingDefs, {
       p.base.prism(local(o, 0, 3.6, 0), 0.52, 0.52, 0.3, 10, '#2a2d33');
       for (let i = 0; i < 4; i++) {
         const a = (i / 4) * Math.PI * 2;
-        p.base.box(local(o, Math.cos(a) * 0.55, 0, Math.sin(a) * 0.55, -a), 0.06, 1.4, 0.6, '#c4452f');
+        p.base.box(
+          local(o, Math.cos(a) * 0.55, 0, Math.sin(a) * 0.55, -a),
+          0.06,
+          1.4,
+          0.6,
+          '#c4452f',
+        );
       }
       p.base.prism(o, 0.35, 0.45, 0.6, 8, '#3a3d44');
     },
@@ -643,7 +708,8 @@ Object.assign(buildingDefs, {
     build: (p) => {
       const o = at();
       p.base.prism(o, 0.9, 0.35, 6, 8, '#efe6f5');
-      for (const y of [2.2, 3.6, 5.0]) p.tint.dome(local(o, 0, y, 0), 1.0 - y * 0.08, '#ffffff', 8, 2, 0.5);
+      for (const y of [2.2, 3.6, 5.0])
+        p.tint.dome(local(o, 0, y, 0), 1.0 - y * 0.08, '#ffffff', 8, 2, 0.5);
       p.tint.dome(local(o, 0, 6, 0), 0.8, '#ffffff', 8, 2, 1.4);
       p.glow.gem(local(o, 0, 7.0, 0), 0.15, 0.8, '#b8fff0', 5);
     },
@@ -654,7 +720,8 @@ Object.assign(buildingDefs, {
     build: (p) => {
       const o = at();
       p.tint.box(o, 4, 2.4, 2, '#ffffff');
-      for (let i = 0; i < 5; i++) p.glass.box(local(o, -1.6 + i * 0.8, 1.2, 1.01), 0.3, 0.3, 0.02, '#3d5068');
+      for (let i = 0; i < 5; i++)
+        p.glass.box(local(o, -1.6 + i * 0.8, 1.2, 1.01), 0.3, 0.3, 0.02, '#3d5068');
       p.base.box(local(o, 0, 2.4, 0), 4.1, 0.15, 2.1, '#454c55');
       p.glow.box(local(o, 1.9, 2.2, 1.02), 0.15, 0.15, 0.02, '#ffb03a');
     },

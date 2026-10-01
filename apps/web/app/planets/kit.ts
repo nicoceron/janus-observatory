@@ -141,6 +141,12 @@ export class Mesher {
         this.quad(point(u, v), point(u, v + 1), point(u + 1, v + 1), point(u + 1, v), tone);
   }
 
+  /** A single quad standing in the local xy plane, facing +z: a window, sign or band. */
+  plate(m: THREE.Matrix4, w: number, h: number, tone: Tone) {
+    const p = (x: number, y: number) => new THREE.Vector3(x, y, 0).applyMatrix4(m);
+    this.quad(p(-w / 2, 0), p(w / 2, 0), p(w / 2, h), p(-w / 2, h), tone);
+  }
+
   /** A thin two-sided plate in the local xz plane. */
   panel(m: THREE.Matrix4, w: number, d: number, tone: Tone, back: Tone = tone) {
     const p = (x: number, z: number) => new THREE.Vector3(x, 0, z).applyMatrix4(m);

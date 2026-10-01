@@ -67,11 +67,15 @@ export type Quality = {
   density: number;
   /** Citizens, animals and traffic. Off for the ten-world overview, where they cannot be seen. */
   life: boolean;
+  /** Instanced props (buildings, plants, machinery). Off only for software rasterizers. */
+  furnish?: boolean;
 };
 
 export const qualities = {
+  /** Terrain, landmarks and light only: the tier for software WebGL, where every triangle is CPU work. */
+  minimal: { detail: 9, density: 0.35, life: false, furnish: false },
   overview: { detail: 9, density: 0.35, life: false },
-  story: { detail: 14, density: 1, life: true },
+  story: { detail: 14, density: 0.75, life: true },
   compact: { detail: 11, density: 0.6, life: true },
   inspect: { detail: 16, density: 1, life: true },
 } satisfies Record<string, Quality>;
@@ -117,7 +121,7 @@ export class WorldContext {
   /** Merged ground detail that turns with the planet: streets, plazas, fields, plating. */
   ground: LayerBuilder;
   surface: Surface;
-  props = new Props();
+  props: Props;
   traffic = new Traffic();
   private taken = new Map<string, { dir: THREE.Vector3; cos: number }[]>();
   constructor(
@@ -128,6 +132,7 @@ export class WorldContext {
     this.random = rng(seed);
     this.ground = this.layer('ground', 'surface');
     this.surface = new Surface(faces);
+    this.props = new Props(quality.life, quality.furnish !== false);
   }
 
   /** Reserve a disc of ground (radius in radians) so wild plants keep out of settlements. */

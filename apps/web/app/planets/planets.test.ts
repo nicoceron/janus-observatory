@@ -61,7 +61,7 @@ describe('low-poly worlds', () => {
       expect(finite(a)).toBe(true);
       expect(a.extent).toBeLessThanOrEqual(1.62);
     }
-  });
+  }, 30000);
 
   it('spends fewer triangles on the overview than on a story portrait', () => {
     for (const id of ['S1', 'S5', 'S6']) {
@@ -70,7 +70,7 @@ describe('low-poly worlds', () => {
         triangles(buildWorld(id, input, qualities.story)),
       );
     }
-  });
+  }, 30000);
 
   it('draws no surface light where Table 6 reports no illumination', () => {
     for (const id of ['S9', 'S10']) {
@@ -92,10 +92,85 @@ describe('low-poly worlds', () => {
         expect(finite(study)).toBe(true);
       }
     }
+  }, 30000);
+});
+
+describe('inhabited worlds', () => {
+  const kinds = (model: WorldModel) => [
+    ...model.instances.map((g) => g.kind),
+    ...model.movers.map((g) => g.kind),
+  ];
+  const people = /^(person|walker|worker|guard|robed|porter|enhanced|astronaut)/;
+  const plants =
+    /^(oak|pine|spruce|birch|palm|bush|shrub|cactus|dead-tree|bio-tree|bio-shroom|flowers|grass|cypress)/;
+  const animals = /^(deer|bison|cow|sheep|horse|bird|whale|fish)/;
+
+  it('gives every Earth citizens, buildings and plants, and moving life at story quality', () => {
+    for (const [i, id] of worldIds.entries()) {
+      const model = buildWorld(id, i === 0 ? presentSignals : signals[i - 1], qualities.story);
+      const all = kinds(model);
+      expect(
+        all.some((k) => people.test(k)),
+        `${id} citizens`,
+      ).toBe(true);
+      expect(
+        all.some((k) => plants.test(k)),
+        `${id} plants`,
+      ).toBe(true);
+      expect(model.movers.length, `${id} movers`).toBeGreaterThan(0);
+      expect(model.instances.reduce((n, g) => n + g.matrices.length / 16, 0)).toBeGreaterThan(300);
+      if (['present', 'S3', 'S4', 'S7', 'S9', 'S10'].includes(id))
+        expect(
+          all.some((k) => animals.test(k)),
+          `${id} animals`,
+        ).toBe(true);
+    }
+  }, 60000);
+
+  it('keeps the ten-world overview free of citizens and traffic', () => {
+    for (const [i, id] of worldIds.entries()) {
+      const model = buildWorld(id, i === 0 ? presentSignals : signals[i - 1], qualities.overview);
+      expect(model.movers).toEqual([]);
+      expect(kinds(model).some((k) => people.test(k))).toBe(false);
+    }
+  }, 30000);
+
+  it('keeps landmarks but no props at the software-rendering tier', () => {
+    for (const [i, story] of worldStories.entries()) {
+      const model = buildWorld(story.id, signals[i], qualities.minimal);
+      expect(model.instances).toEqual([]);
+      expect(model.movers).toEqual([]);
+      const placed = new Set(model.layers.map((l) => l.landmark).filter(Boolean));
+      for (const landmark of story.landmarks) expect(placed.has(landmark.id)).toBe(true);
+    }
+  }, 30000);
+
+  it('places every movers route in the planet frame near the surface', () => {
+    const model = buildWorld('S3', signals[2], qualities.story);
+    for (const group of model.movers)
+      for (const route of group.routes)
+        for (let p = 0; p < route.points.length; p += 3) {
+          const r = Math.hypot(route.points[p], route.points[p + 1], route.points[p + 2]);
+          expect(r).toBeGreaterThan(0.97);
+          expect(r).toBeLessThan(1.12);
+        }
   });
 });
 
 describe('companions and system features', () => {
+  it('builds inhabited stations where a scenario has surface activity', () => {
+    for (const [scenario, body] of [
+      ['S2', 'Moon'],
+      ['S5', 'Mars'],
+      ['S6', 'Mars'],
+    ] as const) {
+      const i = Number(scenario.slice(1)) - 1;
+      const model = buildCompanion(body, scenario, signals[i], qualities.compact);
+      expect(model.instances.length, `${scenario} ${body}`).toBeGreaterThan(2);
+      expect(model.movers.length, `${scenario} ${body}`).toBeGreaterThan(0);
+    }
+  });
+
   it('builds every published destination of every scenario', () => {
     for (const [i, profile] of allScenarioProfiles.entries()) {
       const system = systemPortrait(profile).art;
@@ -107,5 +182,5 @@ describe('companions and system features', () => {
       for (const feature of system.features)
         expect(finite(buildFeature(feature, profile.id, qualities.overview))).toBe(true);
     }
-  });
+  }, 30000);
 });

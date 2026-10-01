@@ -120,7 +120,16 @@ export const s1: EarthBrief = {
     });
     const seat = world.faceAt(capital.lat, capital.lon);
     // Detailed districts replace the far-field block texture where the camera can get close.
-    const districts = [seat.up.clone(), ...world.scatter(built.filter((f) => f.land && f.elevation < 0.4 && f.biome !== 'ice'), 9, 16).map((f) => f.up.clone())];
+    const districts = [
+      seat.up.clone(),
+      ...world
+        .scatter(
+          built.filter((f) => f.land && f.elevation < 0.4 && f.biome !== 'ice'),
+          9,
+          16,
+        )
+        .map((f) => f.up.clone()),
+    ];
     const inDistrict = (face: Face) => districts.some((d) => d.angleTo(face.up) < 0.09);
     // The blocks beside the tower are one selectable study; the rest share the ground mesh.
     const study = world.layer('allocation-blocks', 'surface', { landmark: 'allocation-blocks' });
@@ -132,18 +141,39 @@ export const s1: EarthBrief = {
       // Identical blocks on one street grid, taller only where power concentrates.
       const power = Math.exp(-world.distance(face, capital.lat, capital.lon) / 0.28);
       const { east, north } = tangents(face.up);
-      const step = face.size * 0.26;
-      const reach = world.quality.density < 0.6 ? 0 : 1;
-      for (let x = -reach; x <= reach; x++)
-        for (let z = -reach; z <= reach; z++) {
-          const dir = face.up.clone().addScaledVector(east, x * step).addScaledVector(north, z * step).normalize();
+      const step = face.size * 0.34;
+      const grid = world.quality.density < 0.6 ? [0] : [-0.5, 0.5];
+      for (const x of grid)
+        for (const z of grid) {
+          const dir = face.up
+            .clone()
+            .addScaledVector(east, x * step)
+            .addScaledVector(north, z * step)
+            .normalize();
           if (world.surface.face(dir) !== face) continue;
           const kind = power > 0.45 && world.random() < power ? 'block-tall' : 'block';
           const tint = face.land ? '#9a9ca1' : '#7d868c';
-          world.props.add(world.random() < lit ? kind : `${kind}-dark`, world.surface.point(dir, -0.0005), north, face.land ? 1 : 0.8, tint);
+          world.props.add(
+            world.random() < lit ? kind : `${kind}-dark`,
+            world.surface.point(dir, -0.0005),
+            north,
+            face.land ? 1 : 0.8,
+            tint,
+          );
         }
       if (world.random() < 0.12)
-        world.props.add('surveillance', world.surface.point(face.up.clone().addScaledVector(east, step * 0.5).normalize(), -0.0003), north, 1);
+        world.props.add(
+          'surveillance',
+          world.surface.point(
+            face.up
+              .clone()
+              .addScaledVector(east, step * 0.5)
+              .normalize(),
+            -0.0003,
+          ),
+          north,
+          1,
+        );
       if (face === studyFace) allocationBlock(study, world.aligned(face), 3 * U, 3.4 * U, true);
     }
 
@@ -186,18 +216,55 @@ export const s1: EarthBrief = {
       people: { standing: 22, walking: 6, kinds: citizenKinds, walkers: walkerKinds, tints: grey },
       cars: { count: 2, kinds: ['bus', 'van'], tints: ['#5d6168', '#4a4e55', '#6c7078'] },
       lamps: 'surveillance',
+      // What remains of the biosphere: a few rationed planters and dead street trees.
+      trees: {
+        count: 6,
+        kinds: ['dead-tree', 'shrub', 'bush'],
+        tints: ['#6f7a5a', '#5f6a50'],
+        size: [0.9, 1.2],
+      },
     };
-    const towns = districts.map((centre, k) => buildTown(world, centre, district, k === 0 ? 1.15 : 1));
+    const towns = districts.map((centre, k) =>
+      buildTown(world, centre, district, k === 0 ? 1.15 : 1),
+    );
     for (const town of towns) {
       // Ration lines outside the distribution depots, and drones over every district.
-      queue(world, offset(town.centre, 0.8, 5 * U), 0.8 + Math.PI / 2, 9, citizenKinds[world.random.int(0, 3)], grey);
-      queue(world, offset(town.centre, 2.9, 6 * U), 2.9 - Math.PI / 2, 7, citizenKinds[world.random.int(0, 3)], grey);
+      queue(
+        world,
+        offset(town.centre, 0.8, 5 * U),
+        0.8 + Math.PI / 2,
+        9,
+        citizenKinds[world.random.int(0, 3)],
+        grey,
+      );
+      queue(
+        world,
+        offset(town.centre, 2.9, 6 * U),
+        2.9 - Math.PI / 2,
+        7,
+        citizenKinds[world.random.int(0, 3)],
+        grey,
+      );
       for (const k of [0, 1, 2])
-        world.props.add('guard', world.surface.point(offset(town.centre, k * 2.1, 4.4 * U), 0), null, 1);
+        world.props.add(
+          'guard',
+          world.surface.point(offset(town.centre, k * 2.1, 4.4 * U), 0),
+          null,
+          1,
+        );
       if (world.quality.life) {
         const loop: THREE.Vector3[] = [];
-        for (let i = 0; i < 20; i++) loop.push(offset(town.centre, (i / 20) * Math.PI * 2, town.radius * 0.7).multiplyScalar(1.022));
-        world.traffic.add('drone', makeRoute(loop, true), { count: 6, speed: 0.008, size: 1.6, pingpong: false, random: world.random });
+        for (let i = 0; i < 20; i++)
+          loop.push(
+            offset(town.centre, (i / 20) * Math.PI * 2, town.radius * 0.7).multiplyScalar(1.022),
+          );
+        world.traffic.add('drone', makeRoute(loop, true), {
+          count: 6,
+          speed: 0.008,
+          size: 1.6,
+          pingpong: false,
+          random: world.random,
+        });
       }
     }
     roads(world, towns, {
@@ -206,11 +273,28 @@ export const s1: EarthBrief = {
       neighbours: 2,
       reach: 0.7,
       pylons: 'pylon',
-      traffic: { kinds: ['truck', 'bus', 'van'], per: 2, speed: 0.01, tints: ['#5d6168', '#4a4e55', '#8d9096'] },
+      traffic: {
+        kinds: ['truck', 'bus', 'van'],
+        per: 2,
+        speed: 0.01,
+        tints: ['#5d6168', '#4a4e55', '#8d9096'],
+      },
     });
-    const ports = towns.map((t) => harbour(world, t.centre, { crane: true })).filter((p): p is THREE.Vector3 => !!p);
-    seaLanes(world, ports, { kinds: ['tanker', 'ship'], per: 1, speed: 0.005, tints: ['#3a3d44', '#5d6168'] });
-    flights(world, towns.map((t) => t.centre), { kinds: ['plane'], per: 1, speed: 0.02, size: 0.9, tints: ['#e6e8ea'] }, 4);
+    const ports = towns
+      .map((t) => harbour(world, t.centre, { crane: true }))
+      .filter((p): p is THREE.Vector3 => !!p);
+    seaLanes(world, ports, {
+      kinds: ['tanker', 'ship'],
+      per: 1,
+      speed: 0.005,
+      tints: ['#3a3d44', '#5d6168'],
+    });
+    flights(
+      world,
+      towns.map((t) => t.centre),
+      { kinds: ['plane'], per: 1, speed: 0.02, size: 0.9, tints: ['#e6e8ea'] },
+      4,
+    );
 
     const elite = world.layer('elite-settlement', 'orbit', {
       landmark: 'elite-settlement',
