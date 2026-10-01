@@ -78,15 +78,15 @@ export function buildEarthWorld(
   const sky = world.layer('clouds', 'surface', {
     motion: { kind: 'spin', speed: brief.clouds.speed },
   });
-  const clouds = Math.round(brief.clouds.count * 1.7 * (0.5 + quality.density * 0.5));
+  const clouds = Math.round(brief.clouds.count * 0.8 * (0.5 + quality.density * 0.5));
   for (let i = 0; i < clouds; i++) {
     const up = fibonacci(clouds, i, 0.6, world.random).normalize();
     // Keep weather out of the polar caps, where puffs would read as floating ice.
     if (Math.abs(up.y) > 0.86) continue;
-    const size = (brief.clouds.size ?? 0.05) * 0.62 * world.random.range(0.7, 1.35);
+    const size = (brief.clouds.size ?? 0.05) * 1.05 * world.random.range(0.7, 1.3);
     cloud(
       sky,
-      frame(up.clone().multiplyScalar(1.036 + world.random() * 0.018), up, world.random() * 6),
+      frame(up.clone().multiplyScalar(1.1 + world.random() * 0.05), up, world.random() * 6),
       size,
       brief.clouds.tone,
       world.random,
@@ -106,8 +106,7 @@ export function buildEarthWorld(
     tilt: brief.tilt,
     pitch: brief.pitch ?? 0.2,
     extent: extentOf(layers),
-    instances: world.props.finish(),
-    movers: world.traffic.finish(),
+    ...world.population(layers),
   };
 }
 

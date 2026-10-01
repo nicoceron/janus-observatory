@@ -156,7 +156,7 @@ export const s4: EarthBrief = {
     // Seasonal camps: tents, yurts and huts in rings around a fire, a totem at the edge.
     const campStyle: TownStyle = {
       layout: 'camp',
-      radius: 0.022,
+      radius: 0.065,
       plaza: { radius: 1.6 * U, tone: '#8a7a5a', centre: [['campfire', 1, [1.4, 1.6]]] },
       lot: { spacing: 2 * U },
       core: [
@@ -170,21 +170,21 @@ export const s4: EarthBrief = {
         ['haystack', 0.3, [0.6, 0.8]],
       ],
       people: {
-        standing: 10,
-        walking: 4,
+        standing: 5,
+        walking: 2,
         kinds: ['robed', 'robed', 'porter', ...citizens.kinds],
         walkers: ['robed-walk', 'porter'],
         tints: cloth,
       },
-      trees: { count: 4, kinds: ['oak-small', 'bush'], size: [1, 1.3] },
+      trees: { count: 3, kinds: ['oak-small', 'bush'], size: [1, 1.3] },
     };
     const land = faces.filter(
       (f) => f.land && ['lowland', 'forest', 'tundra', 'upland', 'shore'].includes(f.biome),
     );
     const sites = world.scatter(
       land.filter((f) => f.elevation < 0.4),
-      26,
       9,
+      21,
     );
     const camps = sites.map((face) => buildTown(world, face.up, campStyle));
     camp(
@@ -193,7 +193,7 @@ export const s4: EarthBrief = {
         motion: { kind: 'sway', amplitude: 0.02, period: 70 },
       }),
       world.on(sites[0], random() * 6),
-      0.03,
+      0.09,
       random,
       random() < lit * 1.4,
     );
@@ -202,9 +202,9 @@ export const s4: EarthBrief = {
       sprinkle(
         world,
         offset(town.centre, random() * 6, town.radius * 1.6),
-        0.008,
+        2 * U,
         [['horse', 1, [1, 1.1], ['#7a4a2a', '#3a2a20', '#d8c39a']]],
-        3,
+        2,
       );
       if (random() < 0.5)
         farmland(
@@ -227,14 +227,14 @@ export const s4: EarthBrief = {
       if (world.quality.life) {
         const path = arc(a.centre, b.centre, 0.004).map((dir) => world.surface.point(dir, 0.0004));
         world.traffic.add('porter', makeRoute(path), {
-          count: 3,
-          speed: 0.0012,
+          count: 1,
+          speed: 0.003,
           tints: cloth,
           random,
         });
         world.traffic.add('horse', makeRoute(path), {
-          count: 2,
-          speed: 0.0012,
+          count: 1,
+          speed: 0.003,
           tints: ['#7a4a2a', '#3a2a20'],
           random,
         });
@@ -244,33 +244,34 @@ export const s4: EarthBrief = {
     const shores = camps
       .map((t) => harbour(world, t.centre, {}))
       .filter((p): p is THREE.Vector3 => !!p);
-    harbourLoops(world, shores, { kinds: ['canoe'], per: 2, speed: 0.0025, size: 1.1 });
+    harbourLoops(world, shores, { kinds: ['canoe'], per: 1, speed: 0.004, size: 1.1 });
 
     // Ruins of the former high-technology age, reclaimed by forest.
     const forest = faces.filter(
       (f) => f.land && !f.used && ['forest', 'jungle', 'upland'].includes(f.biome),
     );
-    for (const face of world.scatter(forest, 18, 10)) {
+    for (const face of world.scatter(forest, 6, 22)) {
       sprinkle(
         world,
         face.up,
-        0.012,
+        3 * U,
         [
           ['ruin-wall', 2, [1, 1.3], ['#7a8a6a', '#8a8d84']],
           ['ruin-tower', 1, [0.8, 1.1], ['#7d8a70', '#8a8d84']],
           ['broken-pylon', 0.6, [0.8, 1]],
+          ['robot-wreck', 1.2, [1, 1.3], ['#7a6a52', '#6a7a5a']],
         ],
-        4,
+        2,
       );
       sprinkle(
         world,
         face.up,
-        0.014,
+        4 * U,
         [
           ['oak', 1, [1.1, 1.5], ['#3a7a3a']],
           ['bush', 1, [1, 1.4], ['#4f8a3a']],
         ],
-        6,
+        3,
       );
     }
     const ruin = world.faceAt(8, 30);
@@ -278,7 +279,7 @@ export const s4: EarthBrief = {
     relicTower(
       world.layer('relic-tower', 'surface', { landmark: 'relic-tower' }),
       world.on(ruin),
-      0.07,
+      0.18,
     );
 
     // The published surface modification is tiny: a few ritual grounds.
@@ -294,14 +295,14 @@ export const s4: EarthBrief = {
           ? world.layer('stone-circle', 'surface', { landmark: 'stone-circle' })
           : world.ground,
         world.on(face),
-        0.03,
+        0.08,
       );
       if (world.quality.life)
-        for (let k = 0; k < 6; k++)
+        for (let k = 0; k < 3; k++)
           world.props.add(
             'robed',
-            world.surface.point(offset(face.up, (k / 6) * Math.PI * 2, 0.006), 0),
-            face.up.clone().sub(offset(face.up, (k / 6) * Math.PI * 2, 0.006)),
+            world.surface.point(offset(face.up, (k / 3) * Math.PI * 2, 2.4 * U), 0),
+            face.up.clone().sub(offset(face.up, (k / 3) * Math.PI * 2, 2.4 * U)),
             1,
             world.random.pick(cloth),
           );

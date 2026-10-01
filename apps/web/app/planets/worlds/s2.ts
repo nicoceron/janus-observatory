@@ -210,31 +210,38 @@ export const s2: EarthBrief = {
         seat.up,
         {
           layout: 'radial',
-          radius: 0.07,
-          streets: 6,
+          radius: 0.15,
+          streets: 4,
           street: { width: 1.7 * U, tone: '#55504a' },
           plaza: { radius: 3 * U, tone: '#b9b2a6', centre: [['statue', 1, [1.4, 1.6], [colour]]] },
           lot: { spacing: 2.6 * U },
           core: [
             ['skyscraper', 3, [1, 1.25]],
-            ['tower', 3, [1, 1.2], [colour, '#d9dde2']],
+            ['tower', 2, [1, 1.2], [colour, '#d9dde2']],
+            ['arcology', 1.2, [0.9, 1], [colour, '#d9dde2']],
           ],
           edge: [
             ['apartment', 3, [1, 1.1], [colour, '#d9d4c8']],
             ['warehouse', 1, [1, 1.1], ['#a7b0b8']],
+            ['hologram', 0.6, [1, 1.1]],
             ['oil-tank', 0.6, [0.8, 1]],
           ],
           rise: (r) => (r < 0.3 ? 1.25 : 1),
-          people: { standing: 14, walking: 4, ...citizens, tints: [colour, '#2a2d33', '#e6e8ea'] },
-          cars: { count: 3, kinds: ['car', 'van', 'car'], tints: [colour, '#2a2d33', '#e6e8ea'] },
+          people: { standing: 6, walking: 2, ...citizens, tints: [colour, '#2a2d33', '#e6e8ea'] },
+          cars: {
+            count: 3,
+            kinds: ['hover-car', 'car', 'hover-car', 'van'],
+            tints: [colour, '#2a2d33', '#e6e8ea'],
+          },
           lamps: 'lamp',
           perimeter: { kind: 'wall', size: 1.1 },
         },
         i === 0 ? 1.15 : 1,
       );
-      for (let k = 0; k < 4; k++)
+      // Company security at the gates: a mech and an armed guard.
+      for (let k = 0; k < 2; k++)
         world.props.add(
-          'guard',
+          k === 0 ? 'mech' : 'sentinel',
           world.surface.point(offset(seat.up, k * 1.6, town.radius * 1.02), 0),
           null,
           1,
@@ -243,11 +250,22 @@ export const s2: EarthBrief = {
       return town;
     });
     const hq = seats[0];
+    // The spaceport that ships industry and tourists to the Moon and Mars.
+    const port =
+      hq && world.around(hq, 16).find((f) => f.land && !f.used && f.up.angleTo(hq.up) > 0.2);
+    if (port) {
+      port.used = true;
+      const east = tangents(port.up).east;
+      world.props.add('landing-pad', world.surface.point(port.up, -0.0004), east, 1.6);
+      world.props.add('shuttle', world.surface.point(port.up, 0.0006), east, 1);
+      world.props.add('lander', world.surface.point(offset(port.up, 2, 3.4 * U), -0.0004), east, 1);
+      world.props.add('beacon', world.surface.point(offset(port.up, 4, 3.2 * U), -0.0004), null, 1);
+    }
     if (hq)
       enclave(
         world.layer('enclave', 'surface', { landmark: 'enclave' }),
         world.on(hq, random() * 6, 1, -0.002),
-        0.06,
+        0.14,
         companies[0],
         lit,
         random,
@@ -255,12 +273,12 @@ export const s2: EarthBrief = {
 
     // Outside the walls: shanty towns, markets and tent lines.
     const shanties = world
-      .scatter(settleable(world, ['lowland', 'desert', 'shore', 'forest']), 14, 10)
+      .scatter(settleable(world, ['lowland', 'desert', 'shore', 'forest']), 6, 22)
       .map((face) =>
         buildTown(world, face.up, {
           layout: 'radial',
-          radius: 0.045,
-          streets: 4,
+          radius: 0.1,
+          streets: 3,
           street: { width: 1.3 * U, tone: '#9a8466' },
           plaza: { radius: 2.6 * U, tone: '#b39a72', centre: [['market', 1, [1, 1.2], companies]] },
           lot: { spacing: 2 * U },
@@ -273,7 +291,7 @@ export const s2: EarthBrief = {
             ['tent', 2, [0.9, 1.1], ['#c4955f', '#8a8f96']],
             ['billboard', 0.3, [1, 1.1], companies],
           ],
-          people: { standing: 16, walking: 5, ...citizens, tints: earthy },
+          people: { standing: 6, walking: 2, ...citizens, tints: earthy },
           cars: { count: 1, kinds: ['car', 'van'], tints: ['#8a4a32', '#6a6a70', '#a89a84'] },
         }),
       );
@@ -285,9 +303,9 @@ export const s2: EarthBrief = {
     );
     for (const face of fields) {
       furrows(world, face, random() < 0.5 ? '#d8c25c' : '#b9b04a', tangents(face.up).east);
-      if (random() < 0.15)
+      if (random() < 0.05)
         world.props.add('silo', world.surface.point(face.up, -0.0004), null, 1.2);
-      else if (random() < 0.1)
+      else if (random() < 0.04)
         world.props.add('barn', world.surface.point(face.up, -0.0004), tangents(face.up).east, 1);
     }
 
@@ -303,26 +321,32 @@ export const s2: EarthBrief = {
       face.tone = '#8d5b39';
       const layer =
         i === 0 ? world.layer('pit-mine', 'surface', { landmark: 'pit-mine' }) : world.ground;
-      if (i === 0 || world.thin(0.5)) {
-        pitMine(layer, world.on(face, random() * 6), i === 0 ? 0.06 : 0.04);
+      if (i === 0 || world.thin(0.15)) {
+        pitMine(layer, world.on(face, random() * 6), i === 0 ? 0.15 : 0.09);
         if (world.quality.life && (i === 0 || random() < 0.35)) {
           const loop: THREE.Vector3[] = [];
           for (let k = 0; k < 14; k++)
             loop.push(
               world.surface.point(
-                offset(face.up, (k / 14) * Math.PI * 2, i === 0 ? 0.04 : 0.028),
+                offset(face.up, (k / 14) * Math.PI * 2, i === 0 ? 0.1 : 0.06),
                 0.001,
               ),
             );
-          world.traffic.add('haul-truck', makeRoute(loop, true), {
-            count: 2,
+          world.props.add(
+            i === 0 ? 'robot-arm' : 'spider-bot',
+            world.surface.point(offset(face.up, 0.7, i === 0 ? 0.13 : 0.08), -0.0004),
+            face.up.clone().sub(offset(face.up, 0.7, 0.1)),
+            1.1,
+          );
+          world.traffic.add(i % 2 ? 'spider-bot' : 'haul-truck', makeRoute(loop, true), {
+            count: 1,
             speed: 0.003,
             size: 1.1,
             pingpong: false,
             random,
           });
         }
-      } else if (random() < 0.6) {
+      } else if (random() < 0.2) {
         world.props.add(
           'derrick',
           world.surface.point(face.up, -0.0004),
@@ -331,33 +355,33 @@ export const s2: EarthBrief = {
         );
         world.props.add(
           'oil-tank',
-          world.surface.point(offset(face.up, 1, 0.012), -0.0004),
+          world.surface.point(offset(face.up, 1, 2.2 * U), -0.0004),
           null,
           1,
         );
-        world.props.add('worker', world.surface.point(offset(face.up, 2, 0.006), 0), null, 1);
+        world.props.add('worker', world.surface.point(offset(face.up, 2, 1.4 * U), 0), null, 1);
       }
     });
 
     const shelf = faces.filter((f) => !f.land && f.biome === 'shallows' && !f.used);
-    const rigs = world.scatter(shelf, 10, 14);
+    const rigs = world.scatter(shelf, 5, 24);
     rigs.forEach((face, i) => {
       face.used = true;
       const layer =
         i === 0 ? world.layer('platform', 'surface', { landmark: 'platform' }) : world.ground;
-      offshoreRig(layer, world.on(face, random() * 6, 1, 0), i === 0 ? 0.05 : 0.035);
+      offshoreRig(layer, world.on(face, random() * 6, 1, 0), i === 0 ? 0.12 : 0.08);
     });
 
     const towns = [...enclaves, ...shanties];
     roads(world, towns, {
-      width: 2.2 * U,
+      width: 1.3 * U,
       tone: '#6a5a48',
       neighbours: 2,
-      reach: 0.6,
+      reach: 0.8,
       pylons: 'pylon',
       traffic: {
         kinds: ['haul-truck', 'truck', 'car', 'van'],
-        per: 2,
+        per: 1,
         speed: 0.009,
         tints: [...companies, '#8a8f96'],
       },
@@ -375,16 +399,16 @@ export const s2: EarthBrief = {
       .filter((p): p is THREE.Vector3 => !!p);
     seaLanes(world, [...ports, ...rigs.map((r) => r.up.clone())], {
       kinds: ['tanker', 'ship'],
-      per: 2,
-      speed: 0.005,
+      per: 1,
+      speed: 0.007,
       tints: ['#2a2d33', '#c4452f'],
     });
     harbourLoops(world, ports, { kinds: ['fishing', 'ferry'], per: 1, speed: 0.003 });
     flights(
       world,
       enclaves.map((t) => t.centre),
-      { kinds: ['plane'], per: 1, speed: 0.02, size: 0.9, tints: companies },
-      6,
+      { kinds: ['plane', 'cargo-drone'], per: 1, speed: 0.03, size: 0.9, tints: companies },
+      3,
     );
 
     chaoticSwarm(world, satelliteCount(earth.satellite_belt), [1.1, 1.3], {

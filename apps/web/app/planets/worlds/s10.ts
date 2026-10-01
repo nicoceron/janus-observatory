@@ -154,13 +154,13 @@ export const s10: EarthBrief = {
         face.tone = random() < 0.55 ? '#f0a8c8' : '#f6d36a';
     const valley = world.faceAt(-24, 146);
     valley.used = true;
-    grove(world.layer('grove', 'surface', { landmark: 'grove' }), world.on(valley), 0.05, random);
+    grove(world.layer('grove', 'surface', { landmark: 'grove' }), world.on(valley), 0.12, random);
 
     // Those who stayed: small timber villages under growth limits, horse carts and footpaths.
     const wool: Tone[] = ['#b3824f', '#8f9a6a', '#d8c39a', '#6a7a8a', '#c9a06a'];
     const steading: TownStyle = {
       layout: 'radial',
-      radius: 0.03,
+      radius: 0.075,
       streets: 3,
       street: { width: 1 * U, tone: '#c9b994' },
       plaza: {
@@ -184,14 +184,14 @@ export const s10: EarthBrief = {
         ['haystack', 1, [0.9, 1.2]],
       ],
       people: {
-        standing: 9,
-        walking: 3,
+        standing: 5,
+        walking: 2,
         ...citizens,
         kinds: [...citizens.kinds, 'robed'],
         tints: wool,
       },
       cars: { count: 1, kinds: ['cart', 'bicycle'], tints: ['#9a7a5a'], speed: 0.002 },
-      trees: { count: 12, kinds: ['oak', 'flowers', 'birch'], size: [1, 1.5] },
+      trees: { count: 5, kinds: ['oak', 'flowers', 'birch'], size: [1, 1.5] },
     };
     const land = faces.filter(
       (f) => f.land && ['lowland', 'forest', 'upland', 'shore'].includes(f.biome),
@@ -199,8 +199,8 @@ export const s10: EarthBrief = {
     const towns = world
       .scatter(
         land.filter((f) => f.elevation < 0.4 && !f.used),
-        18,
-        14,
+        8,
+        22,
       )
       .map((face) => buildTown(world, face.up, steading));
     for (const town of towns) {
@@ -218,19 +218,19 @@ export const s10: EarthBrief = {
       sprinkle(
         world,
         offset(town.centre, random() * 6, town.radius * 1.6),
-        0.01,
+        3 * U,
         [
           ['sheep', 2, [1, 1.2]],
           ['cow', 1, [1, 1.1], ['#efe8dc']],
         ],
-        5,
+        3,
       );
     }
     roads(world, towns, {
       width: 0.8 * U,
       tone: '#c9b994',
       neighbours: 1,
-      reach: 0.35,
+      reach: 0.55,
       traffic: { kinds: ['cart', 'robed-walk'], per: 1, speed: 0.002, tints: wool },
     });
     const shores = towns

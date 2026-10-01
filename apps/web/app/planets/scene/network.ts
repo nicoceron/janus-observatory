@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import type { Tone } from '../kit';
 import type { WorldContext } from '../model';
+import { U } from '../props/library';
 import { makeRoute, ribbon } from './collect';
 import { arc } from './surface';
 import type { Town } from './towns';
@@ -56,7 +57,7 @@ export function roads(
             0.0012,
             '#8a8580',
           );
-        else if (options.pylons && world.quality.life && i % 16 === 8 && surface.land(dir))
+        else if (options.pylons && world.quality.life && i % 24 === 12 && surface.land(dir))
           world.props.add(
             options.pylons,
             surface.point(
@@ -68,7 +69,7 @@ export function roads(
                     .sub(points[i])
                     .cross(dir)
                     .normalize()
-                    .multiplyScalar(0.005),
+                    .multiplyScalar(1.6 * U),
                 )
                 .normalize(),
               -0.0004,
@@ -103,8 +104,8 @@ export function rails(
 ) {
   for (const [a, b] of links) {
     const dirs = arc(a.centre, b.centre, 0.006);
-    const points = dirs.map((dir) => world.surface.point(dir, 0.012));
-    ribbon(world.ground.sheen, points, 0.003, options.tone);
+    const points = dirs.map((dir) => world.surface.point(dir, 2.2 * U));
+    ribbon(world.ground.sheen, points, 0.5 * U, options.tone);
     dirs.forEach((dir, i) => {
       if (i % 4 === 2)
         world.props.add(
@@ -169,7 +170,9 @@ export function seaLanes(world: WorldContext, ports: THREE.Vector3[], fleet: Fle
 export function harbourLoops(world: WorldContext, ports: THREE.Vector3[], fleet: Fleet) {
   if (!world.quality.life) return;
   for (const port of ports) {
-    const water = world.around(world.surface.face(port), 7).find((f) => !f.land && f.coastal);
+    const water = world
+      .around(world.surface.face(port), 9)
+      .find((f) => !f.land && f.coastal && f.up.angleTo(port) > 4 * U);
     if (!water) continue;
     const centre = water.up.clone();
     const { east, north } = (() => {
@@ -181,8 +184,8 @@ export function harbourLoops(world: WorldContext, ports: THREE.Vector3[], fleet:
       const a = (i / 14) * Math.PI * 2;
       const dir = centre
         .clone()
-        .addScaledVector(east, Math.cos(a) * 0.02)
-        .addScaledVector(north, Math.sin(a) * 0.014)
+        .addScaledVector(east, Math.cos(a) * 4 * U)
+        .addScaledVector(north, Math.sin(a) * 3 * U)
         .normalize();
       if (world.surface.land(dir)) continue;
       loop.push(dir.multiplyScalar(1.0004));
@@ -205,7 +208,7 @@ export function flights(
   hubs: THREE.Vector3[],
   fleet: Fleet,
   routes = 6,
-  altitude = 0.045,
+  altitude = 0.12,
 ) {
   if (!world.quality.life || hubs.length < 2) return;
   for (let r = 0; r < routes; r++) {
@@ -215,7 +218,7 @@ export function flights(
     const dirs = arc(a, b, 0.01);
     const points = dirs.map((dir, i) => {
       const t = i / (dirs.length - 1);
-      return dir.clone().multiplyScalar(1.01 + altitude * Math.sin(Math.PI * t) ** 0.6);
+      return dir.clone().multiplyScalar(1.03 + altitude * Math.sin(Math.PI * t) ** 0.6);
     });
     world.traffic.add(world.random.pick(fleet.kinds), makeRoute(points), {
       count: fleet.per,

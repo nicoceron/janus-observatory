@@ -177,7 +177,7 @@ export function buildTown(
         if (!clearOfLots(lot, fp) || !clearOfStreets(lot, fp)) continue;
         placed.push({ dir: lot, r: fp });
         place(pick, lot, here.clone().sub(lot), style.rise?.(r) ?? 1);
-        if (style.lamps && random() < 0.4)
+        if (style.lamps && random() < 0.15)
           props.add(
             style.lamps,
             ground(
@@ -190,7 +190,7 @@ export function buildTown(
             side.clone().multiplyScalar(-s),
             1,
           );
-        if (style.people && life && random() < 0.45)
+        if (style.people && life && random() < 0.2)
           props.add(
             world.random.pick(style.people.kinds),
             ground(
@@ -257,11 +257,14 @@ export function buildTown(
 
   // Camps and loose settlements: dwellings in rings around a shared centre.
   if (style.layout === 'camp')
-    for (const ringR of [0.4, 0.7, 0.95])
-      for (let i = 0; i < 12; i++) {
+    for (const [ringR, around] of [
+      [0.4, 4],
+      [0.75, 6],
+    ])
+      for (let i = 0; i < around; i++) {
         const dir = offset(
           up,
-          (i / 12) * Math.PI * 2 + random() * 0.3 + ringR * 3,
+          (i / around) * Math.PI * 2 + random() * 0.3 + ringR * 3,
           R * ringR * (0.9 + random() * 0.2),
         );
         if (!surface.land(dir)) continue;
@@ -290,7 +293,7 @@ export function buildTown(
   }
 
   if (style.people && life) {
-    for (let i = 0; i < style.people.standing; i++) {
+    for (let i = 0; i < Math.ceil(style.people.standing * 0.35); i++) {
       const spot = offset(
         up,
         random() * Math.PI * 2,
@@ -322,7 +325,7 @@ export function buildTown(
     }
   }
   if (style.trees) {
-    const count = Math.round(style.trees.count * scale * scale * world.quality.density);
+    const count = Math.round(style.trees.count * 0.35 * scale * scale * world.quality.density);
     for (let i = 0; i < count; i++) {
       const spot = offset(up, random() * Math.PI * 2, R * Math.sqrt(random()) * 1.05);
       const pick: Pick = [

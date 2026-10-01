@@ -220,30 +220,32 @@ export const s5: EarthBrief = {
     const enhanced: Tone[] = ['#e9e2f5', '#d9f2ec', '#f5e2ef', '#e2f0d9'];
     const bio: TownStyle = {
       layout: 'radial',
-      radius: 0.06,
-      streets: 6,
+      radius: 0.13,
+      streets: 4,
       street: { width: 1.3 * U, tone: '#9a8ab8' },
       plaza: { radius: 3 * U, tone: '#d9f2ec', centre: [['bio-tree', 1, [1.6, 2]]] },
       lot: { spacing: 2.4 * U },
       core: [
         ['bio-tower', 3, [1, 1.3], cellTones],
+        ['spire', 1.2, [0.9, 1.1], cellTones],
         ['bio-pod', 2, [1, 1.2], cellTones],
       ],
       edge: [
         ['bio-pod', 4, [0.9, 1.2], cellTones],
         ['dome-house', 1, [1, 1.1], ['#efe6f5', '#d9f2ec']],
+        ['pod-house', 1.5, [0.9, 1.1], ['#efe6f5', '#d9f2ec', '#f5e2ef']],
         ['bio-shroom', 1, [1.4, 1.8], ['#6fe0c8', '#d35fc4']],
       ],
       rise: (r) => (r < 0.35 ? 1.25 : 1),
       people: {
-        standing: 14,
-        walking: 6,
-        kinds: ['enhanced'],
-        walkers: ['enhanced'],
+        standing: 6,
+        walking: 2,
+        kinds: ['enhanced', 'enhanced', 'robot'],
+        walkers: ['enhanced', 'robot-walk'],
         tints: enhanced,
       },
       trees: {
-        count: 18,
+        count: 8,
         kinds: ['bio-tree', 'bio-shroom', 'flowers'],
         tints: ['#c46ad0', '#6fe0c8', '#f6d36a'],
         size: [1.1, 1.5],
@@ -252,17 +254,17 @@ export const s5: EarthBrief = {
     };
     const land = modified.filter((f) => f.land && f.elevation < 0.45);
     const towns = world
-      .scatter(land, Math.round(30 * Math.max(0.5, world.quality.density)), 11)
+      .scatter(land, Math.round(10 * Math.max(0.5, world.quality.density)), 24)
       .map((face) => buildTown(world, face.up, bio));
     if (world.quality.life)
       for (const town of towns) {
         const loop: THREE.Vector3[] = [];
         for (let i = 0; i < 18; i++)
           loop.push(
-            offset(town.centre, (i / 18) * Math.PI * 2, town.radius * 0.9).multiplyScalar(1.03),
+            offset(town.centre, (i / 18) * Math.PI * 2, town.radius * 0.9).multiplyScalar(1.13),
           );
         world.traffic.add('glider', makeRoute(loop, true), {
-          count: 3,
+          count: 1,
           speed: 0.006,
           size: 1.5,
           tints: cellTones,
@@ -273,9 +275,9 @@ export const s5: EarthBrief = {
     flights(
       world,
       towns.map((t) => t.centre),
-      { kinds: ['glider'], per: 2, speed: 0.012, size: 1.6, tints: cellTones },
-      10,
-      0.02,
+      { kinds: ['glider'], per: 1, speed: 0.02, size: 1.4, tints: cellTones },
+      3,
+      0.1,
     );
 
     const centre = world.faceAt(28, 112);
@@ -283,49 +285,49 @@ export const s5: EarthBrief = {
     bloomSpire(
       world.layer('bloom-spire', 'surface', { landmark: 'bloom-spire' }),
       world.on(centre),
-      0.11,
+      0.24,
       '#d35fc4',
     );
     const pods =
       world.around(centre, 14).find((f) => f.land && f !== centre && !f.used) ??
       faces[centre.neighbours[0]];
-    seedPods(world.layer('seed-pods', 'surface', { landmark: 'seed-pods' }), world.on(pods), 0.04);
+    seedPods(world.layer('seed-pods', 'surface', { landmark: 'seed-pods' }), world.on(pods), 0.1);
     const cell = world.around(centre, 20).find((f) => f.land && !f.used && f !== pods) ?? pods;
     gardenCell(
       world.layer('garden-cell', 'surface', { landmark: 'garden-cell' }),
       world.on(cell, random() * 6),
-      0.035,
+      0.09,
       '#96d64a',
     );
     for (const face of world.scatter(
       land.filter((f) => !f.used),
-      Math.round(40 * world.quality.density),
-      6,
+      Math.round(10 * world.quality.density),
+      18,
     ))
       gardenCell(
         world.ground,
         world.on(face, random() * 6),
-        0.025,
+        0.06,
         cellTones[cellOf(face.up) % cellTones.length],
       );
 
     // Luminous reefs: coral, light and skiffs across engineered seas, scaled by illumination.
     const seas = modified.filter((f) => !f.land);
     for (const face of seas) {
-      if (random() < lit * 0.06 * world.quality.density) {
+      if (random() < lit * 0.02 * world.quality.density) {
         const m = world.on(face, random() * 6, 1, 0);
-        world.ground.solid.prism(m, 0.005, 0.0045, 0.0015, 6, '#efe6f5', '#7fe0d0');
+        world.ground.solid.prism(m, 0.012, 0.011, 0.004, 6, '#efe6f5', '#7fe0d0');
         world.ground.glow.prism(
-          local(m, 0, 0.0015, 0),
+          local(m, 0, 0.004, 0),
+          0.005,
+          0.005,
           0.002,
-          0.002,
-          0.0008,
           6,
           random.pick(glowTones),
         );
       }
-      if (face.biome === 'shallows' && random() < 0.5 * world.quality.density)
-        for (let k = 0; k < 3; k++)
+      if (face.biome === 'shallows' && random() < 0.1 * world.quality.density)
+        for (let k = 0; k < 1; k++)
           world.props.add(
             'coral',
             offset(face.up, random() * 6, random() * face.size * 0.3).multiplyScalar(0.9995),
@@ -337,17 +339,17 @@ export const s5: EarthBrief = {
     const shores = towns
       .map((t) => harbour(world, t.centre, { boats: ['bio-skiff'] }))
       .filter((p): p is THREE.Vector3 => !!p);
-    harbourLoops(world, shores, { kinds: ['bio-skiff'], per: 3, speed: 0.004, tints: cellTones });
+    harbourLoops(world, shores, { kinds: ['bio-skiff'], per: 1, speed: 0.005, tints: cellTones });
     seaLanes(world, shores, {
       kinds: ['bio-skiff'],
-      per: 2,
+      per: 1,
       speed: 0.006,
       size: 1.4,
       tints: cellTones,
     });
     for (const face of land)
-      if (random() < lit * 0.2 * world.quality.density)
-        world.ground.glow.gem(world.within(face), 0.002, 0.006, random.pick(glowTones), 4);
+      if (random() < lit * 0.05 * world.quality.density)
+        world.ground.glow.gem(world.within(face), 0.005, 0.014, random.pick(glowTones), 4);
 
     orderedSwarm(
       world,

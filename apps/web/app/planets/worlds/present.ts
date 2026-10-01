@@ -4,6 +4,7 @@ import { onOrbit, orbitMatrix, satellite } from '../model';
 import { flights, harbourLoops, roads, seaLanes } from '../scene/network';
 import { cityStyle, earthFlora, villageStyle } from '../scene/presets';
 import { farmland, harbour, landNear, settleable } from '../scene/sites';
+import { U } from '../props/library';
 import { buildTown, type Town } from '../scene/towns';
 
 /** Today's largest cities: real places, drawn as illustrative clusters rather than footprints. */
@@ -98,8 +99,9 @@ export const present: EarthBrief = {
     for (const [lat, lon] of cities) {
       const site = landNear(world, lat, lon);
       if (!site) continue;
-      const crowded = towns.some((t) => t.centre.angleTo(site.up) < 0.12);
-      const town = buildTown(world, site.up, cityStyle(0.095), crowded ? 0.65 : 1);
+      // At toy scale a city spans a region, so neighbouring megacities share one cluster.
+      if (towns.some((t) => t.centre.angleTo(site.up) < 0.36)) continue;
+      const town = buildTown(world, site.up, cityStyle(0.17));
       towns.push(town);
       const port = harbour(world, site.up, {
         crane: true,
@@ -108,13 +110,13 @@ export const present: EarthBrief = {
       });
       if (port) ports.push(port);
     }
-    for (const face of world.scatter(settleable(world, ['lowland', 'forest', 'shore']), 40, 7)) {
-      const town = buildTown(world, face.up, villageStyle(0.036), 1);
+    for (const face of world.scatter(settleable(world, ['lowland', 'forest', 'shore']), 14, 17)) {
+      const town = buildTown(world, face.up, villageStyle(0.08), 1);
       towns.push(town);
       farmland(
         world,
         face.up,
-        0.045,
+        0.12,
         ['#c9b65a', '#a8b64a', '#d8c878', '#8fa84a'],
         [
           ['crop', 1, [1.4, 1.4], ['#d8c35a']],
@@ -123,25 +125,25 @@ export const present: EarthBrief = {
       );
     }
     roads(world, towns, {
-      width: 0.0024,
+      width: 1.1 * U,
       tone: '#55585f',
       neighbours: 2,
-      reach: 0.45,
+      reach: 0.6,
       pylons: 'pylon',
       traffic: { kinds: ['truck', 'car', 'van', 'bus'], per: 1, speed: 0.01, size: 1 },
     });
-    seaLanes(world, ports, { kinds: ['ship', 'tanker', 'ship'], per: 2, speed: 0.006, size: 1 });
+    seaLanes(world, ports, { kinds: ['ship', 'tanker', 'ship'], per: 1, speed: 0.008, size: 1 });
     harbourLoops(world, ports, {
       kinds: ['fishing', 'sailboat', 'ferry'],
-      per: 2,
+      per: 1,
       speed: 0.003,
       size: 1,
     });
     flights(
       world,
       towns.slice(0, 28).map((t) => t.centre),
-      { kinds: ['plane'], per: 2, speed: 0.02, size: 0.9 },
-      10,
+      { kinds: ['plane'], per: 1, speed: 0.03, size: 0.9 },
+      4,
     );
 
     const orbit = world.layer('satellites', 'orbit', {

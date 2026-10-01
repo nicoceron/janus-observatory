@@ -364,7 +364,7 @@ function atmosphereFor(
 }
 
 /** Bases drawn larger than on Earth so their life reads on a small body. */
-const BODY = 2.2;
+const BODY = 1;
 const suits: Tone[] = ['#eef0f2', '#e0a830', '#c9cdd2', '#d0493a', '#4f7fbf'];
 
 type Kit = {
@@ -405,11 +405,11 @@ const kits: Partial<Record<Style, Kit>> = {
     edge: [
       ['hab-module', 2, [1, 1.1]],
       ['landing-pad', 1, [1, 1.1]],
-      ['rocket', 1, [1, 1.2]],
+      ['shuttle', 1, [1, 1.1]],
       ['solar-array', 1, [1, 1.1]],
-      ['billboard', 0.5, [1, 1.1]],
+      ['hologram', 0.5, [1, 1.1]],
     ],
-    people: { kinds: ['astronaut'], tints: suits },
+    people: { kinds: ['astronaut', 'astronaut', 'robot'], tints: suits },
     rovers: { kind: 'rover', tints: ['#e6e8ea', '#d0493a'] },
     sites: 2,
   },
@@ -422,9 +422,10 @@ const kits: Partial<Record<Style, Kit>> = {
       ['solar-array', 2, [1, 1.1]],
       ['dish', 1, [1, 1.1]],
       ['landing-pad', 1, [1, 1]],
+      ['lander', 1, [1, 1.1]],
       ['rocket', 0.6, [1, 1.1]],
     ],
-    people: { kinds: ['astronaut'], tints: suits },
+    people: { kinds: ['astronaut', 'robot'], tints: suits },
     rovers: { kind: 'rover' },
     sites: 1,
   },
@@ -437,11 +438,13 @@ const kits: Partial<Record<Style, Kit>> = {
     ],
     edge: [
       ['drill', 3, [1, 1.2]],
+      ['robot-arm', 1, [1, 1.1]],
+      ['lander', 1, [1, 1.1]],
       ['hab-module', 2, [1, 1.1]],
       ['solar-array', 1, [1, 1.1]],
       ['oil-tank', 1, [0.9, 1]],
     ],
-    people: { kinds: ['astronaut'], tints: ['#e0a830', '#eef0f2'] },
+    people: { kinds: ['astronaut', 'spider-bot', 'robot'], tints: ['#e0a830', '#eef0f2'] },
     rovers: { kind: 'haul-truck', tints: ['#e0a830'] },
     sites: 2,
   },
@@ -466,10 +469,12 @@ const kits: Partial<Record<Style, Kit>> = {
     radius: 0.12,
     core: [
       ['bio-tower', 3, [1, 1.3]],
+      ['spire', 1, [0.9, 1.1]],
       ['bio-pod', 2, [1, 1.2]],
     ],
     edge: [
       ['bio-pod', 3, [1, 1.2]],
+      ['pod-house', 2, [0.9, 1.1]],
       ['dome-house', 2, [1, 1.1]],
       ['bio-tree', 2, [1.2, 1.6]],
     ],
@@ -483,15 +488,17 @@ const kits: Partial<Record<Style, Kit>> = {
     core: [
       ['pressure-tank', 3, [1, 1.1]],
       ['cooling-tower', 2, [0.8, 1]],
+      ['reactor', 1, [0.7, 0.8]],
       ['worker-block', 2, [1, 1.1]],
     ],
     edge: [
       ['pipe-rack', 2, [1, 1.1]],
       ['crane', 1, [0.9, 1]],
+      ['robot-arm', 1.5, [1, 1.1]],
       ['hab-dome', 1, [0.9, 1]],
       ['solar-array', 1, [1, 1.1]],
     ],
-    people: { kinds: ['astronaut'], tints: ['#e08a2e', '#d0702a'] },
+    people: { kinds: ['astronaut', 'robot', 'spider-bot'], tints: ['#e08a2e', '#d0702a'] },
     rovers: { kind: 'haul-truck', tints: ['#e0a830', '#8a949e'] },
     sites: 2,
   },
@@ -504,7 +511,7 @@ const kits: Partial<Record<Style, Kit>> = {
       ['hab-module', 2, [1, 1.1]],
       ['pipe-rack', 1, [1, 1.1]],
     ],
-    people: { kinds: ['astronaut'], tints: ['#e08a2e'] },
+    people: { kinds: ['astronaut', 'robot'], tints: ['#e08a2e'] },
     sites: 1,
   },
   hatch: {
@@ -513,35 +520,57 @@ const kits: Partial<Record<Style, Kit>> = {
     core: [['bunker-dark', 1, [1.2, 1.4]]],
     edge: [
       ['fence', 2, [1, 1.1], ['#5a5a60']],
+      ['turret', 1, [0.9, 1]],
       ['dish', 1, [0.8, 0.9]],
     ],
-    people: { kinds: ['astronaut'], tints: ['#5a5a60'] },
+    people: { kinds: ['astronaut', 'sentinel'], tints: ['#5a5a60'] },
     sites: 1,
   },
   'machine-dark': {
     layout: 'camp',
     radius: 0.1,
-    core: [['crystal', 1, [1.4, 1.8]]],
-    edge: [['crystal', 1, [1, 1.4]]],
+    core: [
+      ['crystal', 1, [1.4, 1.8]],
+      ['spire', 1, [0.9, 1.1], ['#1f2230']],
+    ],
+    edge: [
+      ['crystal', 1, [1, 1.4]],
+      ['reactor', 0.6, [0.7, 0.8], ['#2a2f42']],
+      ['beacon', 1, [1, 1.1]],
+    ],
+    people: { kinds: ['spider-bot', 'mech', 'robot'], tints: ['#1f2230', '#2a2f42'] },
     rovers: { kind: 'machine-walker', tints: ['#1f2230', '#2a2f42'] },
     sites: 4,
   },
   'machine-gold': {
     layout: 'camp',
     radius: 0.1,
-    core: [['crystal', 1, [1.4, 1.8]]],
-    edge: [['crystal', 1, [1, 1.4]]],
+    core: [
+      ['crystal', 1, [1.4, 1.8]],
+      ['spire', 1, [0.9, 1.1], ['#5a4728']],
+    ],
+    edge: [
+      ['crystal', 1, [1, 1.4]],
+      ['reactor', 0.6, [0.7, 0.8], ['#5a4728']],
+      ['beacon', 1, [1, 1.1]],
+    ],
+    people: { kinds: ['spider-bot', 'mech', 'robot'], tints: ['#3a2f1c', '#5a4728'] },
     rovers: { kind: 'machine-walker', tints: ['#3a2f1c', '#5a4728'] },
     sites: 4,
   },
   'machine-light': {
     layout: 'camp',
     radius: 0.1,
-    core: [['hab-dome', 1, [1, 1.2]]],
+    core: [
+      ['hab-dome', 1, [1, 1.2]],
+      ['spire', 0.6, [0.9, 1.1], ['#e8e6df']],
+    ],
     edge: [
       ['solar-array', 2, [1, 1.1]],
       ['dish', 1, [1, 1.1]],
+      ['lander', 0.8, [1, 1.1]],
     ],
+    people: { kinds: ['robot', 'spider-bot'], tints: ['#e8e6df', '#d6b34f'] },
     rovers: { kind: 'machine-walker', tints: ['#e8e6df', '#d6b34f'] },
     sites: 4,
   },
@@ -717,8 +746,7 @@ export function buildCompanion(
     tilt: body === 'Mars' ? 0.44 : body === 'Venus' ? 0.05 : 0.12,
     pitch: 0.15,
     extent: extentOf(layers),
-    instances: world.props.finish(),
-    movers: world.traffic.finish(),
+    ...world.population(layers),
   };
 }
 

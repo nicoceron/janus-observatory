@@ -147,18 +147,19 @@ export const s8: EarthBrief = {
     silentCore(
       world.layer('silent-core', 'surface', { landmark: 'silent-core' }),
       world.on(heart),
-      0.06,
+      0.15,
     );
     sprinkle(
       world,
       heart.up,
-      0.05,
+      0.16,
       [
-        ['scrap', 2, [1, 1.4]],
+        ['robot-wreck', 2, [1, 1.3], ['#5a4a42', '#3f3638']],
+        ['mech', 1, [1, 1.1], ['#2d2a2f', '#3f3638']],
+        ['scrap', 1, [1, 1.4]],
         ['broken-pylon', 1, [0.8, 1.1]],
-        ['ruin-wall', 1, [1, 1.2], ['#3f3638']],
       ],
-      14,
+      6,
     );
 
     // The surface-modification fraction becomes ruins; survivors camp in their shadow.
@@ -170,14 +171,15 @@ export const s8: EarthBrief = {
     });
     const ruinStyle: TownStyle = {
       layout: 'grid',
-      radius: 0.06,
-      block: 10 * U,
-      street: { width: 1.6 * U, tone: '#4a4646' },
+      radius: 0.13,
+      block: 5 * U,
+      street: { width: 1.3 * U, tone: '#4a4646' },
       plaza: { radius: 2.6 * U, tone: '#6a6560', centre: [['campfire', 1, [1.4, 1.6]]] },
       lot: { spacing: 2.6 * U },
       core: [
         ['ruin-tower', 3, [0.9, 1.2]],
         ['ruin-wall', 2, [1, 1.3]],
+        ['robot-wreck', 1, [1, 1.2], ['#6a5a4a', '#5a4a42']],
         ['scrap', 1, [1, 1.3]],
       ],
       edge: [
@@ -187,8 +189,8 @@ export const s8: EarthBrief = {
         ['scrap', 1, [1, 1.2]],
       ],
       people: {
-        standing: 12,
-        walking: 4,
+        standing: 5,
+        walking: 2,
         kinds: ['porter', ...citizens.kinds],
         walkers: ['porter', ...citizens.walkers],
         tints: drab,
@@ -198,12 +200,12 @@ export const s8: EarthBrief = {
     };
     const sites = world.scatter(
       ruins.filter((f) => f.elevation < 0.42),
-      14,
-      14,
+      6,
+      24,
     );
     const towns = sites.map((face) => buildTown(world, face.up, ruinStyle));
     for (const town of towns)
-      for (let k = 0; k < 4; k++)
+      for (let k = 0; k < 2; k++)
         if (random() < lit * 2.5)
           cycle.glow.gem(
             world.on(
@@ -212,8 +214,8 @@ export const s8: EarthBrief = {
               1,
               -0.0005,
             ),
-            0.0012,
-            0.003,
+            0.004,
+            0.01,
             '#ffb45a',
             4,
           );
@@ -221,8 +223,8 @@ export const s8: EarthBrief = {
       face.used = true;
       face.tone = '#6a6560';
       if (i === 0)
-        ruin(world.layer('ruin', 'surface', { landmark: 'ruin' }), world.on(face), 0.03, random);
-      else if (world.thin(0.4))
+        ruin(world.layer('ruin', 'surface', { landmark: 'ruin' }), world.on(face), 0.08, random);
+      else if (world.thin(0.06))
         sprinkle(
           world,
           face.up,
@@ -232,7 +234,7 @@ export const s8: EarthBrief = {
             ['ruin-tower', 1, [0.8, 1.1]],
             ['scrap', 1, [1, 1.3]],
           ],
-          3,
+          1,
         );
     });
     roads(world, towns, {
@@ -251,22 +253,28 @@ export const s8: EarthBrief = {
 
     // Sealed bunkers in the hills: guards, a perimeter and a dim light. Elites shelter below.
     const hills = land.filter((f) => ['mountain', 'upland'].includes(f.biome) && !f.used);
-    world.scatter(hills, 6, 22).forEach((face, i) => {
+    world.scatter(hills, 4, 30).forEach((face, i) => {
       face.used = true;
       bunker(
         i === 0 ? world.layer('bunker', 'surface', { landmark: 'bunker' }) : world.ground,
         world.on(face, random() * 6),
-        i === 0 ? 0.03 : 0.022,
+        i === 0 ? 0.08 : 0.06,
       );
-      ring(world, face.up, 0.02, 'fence', 10, 1.2, '#5a5a60');
-      for (let k = 0; k < 3; k++)
+      ring(world, face.up, 0.075, 'fence', 8, 1.2, '#5a5a60');
+      world.props.add(
+        'turret',
+        world.surface.point(offset(face.up, 3.5, 0.05), -0.0004),
+        offset(face.up, 3.5, 0.09).sub(face.up),
+        1,
+      );
+      for (let k = 0; k < 1; k++)
         world.props.add(
-          'guard',
-          world.surface.point(offset(face.up, k * 2, 0.012), 0),
-          offset(face.up, k * 2, 0.02).sub(face.up),
+          'sentinel',
+          world.surface.point(offset(face.up, k * 2, 0.05), 0),
+          offset(face.up, k * 2, 0.08).sub(face.up),
           1,
         );
-      world.props.add('dish', world.surface.point(offset(face.up, 1, 0.014), -0.0004), null, 1);
+      world.props.add('dish', world.surface.point(offset(face.up, 1, 0.055), -0.0004), null, 1);
     });
     const ports = towns
       .map((t) => harbour(world, t.centre, { boats: ['fishing'] }))

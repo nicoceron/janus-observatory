@@ -125,15 +125,18 @@ export const s1: EarthBrief = {
       ...world
         .scatter(
           built.filter((f) => f.land && f.elevation < 0.4 && f.biome !== 'ice'),
-          9,
-          16,
+          5,
+          26,
         )
         .map((f) => f.up.clone()),
     ];
-    const inDistrict = (face: Face) => districts.some((d) => d.angleTo(face.up) < 0.09);
+    const inDistrict = (face: Face) => districts.some((d) => d.angleTo(face.up) < 0.17);
     // The blocks beside the tower are one selectable study; the rest share the ground mesh.
     const study = world.layer('allocation-blocks', 'surface', { landmark: 'allocation-blocks' });
     const studyFace = built.find((f) => f.land && !inDistrict(f));
+    // Field blocks are placed after the districts, so the districts keep their buildings when
+    // the world's prop budget thins the city evenly.
+    const fieldBlocks: (() => void)[] = [];
     for (const face of built) {
       face.used = true;
       face.tone = face.land ? '#8d8f94' : '#56646b';
@@ -141,48 +144,40 @@ export const s1: EarthBrief = {
       // Identical blocks on one street grid, taller only where power concentrates.
       const power = Math.exp(-world.distance(face, capital.lat, capital.lon) / 0.28);
       const { east, north } = tangents(face.up);
-      const step = face.size * 0.34;
-      const grid = world.quality.density < 0.6 ? [0] : [-0.5, 0.5];
-      for (const x of grid)
-        for (const z of grid) {
-          const dir = face.up
-            .clone()
-            .addScaledVector(east, x * step)
-            .addScaledVector(north, z * step)
-            .normalize();
-          if (world.surface.face(dir) !== face) continue;
-          const kind = power > 0.45 && world.random() < power ? 'block-tall' : 'block';
-          const tint = face.land ? '#9a9ca1' : '#7d868c';
-          world.props.add(
-            world.random() < lit ? kind : `${kind}-dark`,
-            world.surface.point(dir, -0.0005),
-            north,
-            face.land ? 1 : 0.8,
-            tint,
-          );
-        }
-      if (world.random() < 0.12)
+      const kind = power > 0.45 && world.random() < power ? 'block-tall' : 'block';
+      const variant = world.random() < lit ? kind : `${kind}-dark`;
+      const watched = world.random() < 0.05;
+      fieldBlocks.push(() => {
         world.props.add(
-          'surveillance',
-          world.surface.point(
-            face.up
-              .clone()
-              .addScaledVector(east, step * 0.5)
-              .normalize(),
-            -0.0003,
-          ),
+          variant,
+          world.surface.point(face.up, -0.0005),
           north,
-          1,
+          face.land ? 1 : 0.8,
+          face.land ? '#9a9ca1' : '#7d868c',
         );
+        if (watched)
+          world.props.add(
+            'surveillance',
+            world.surface.point(
+              face.up
+                .clone()
+                .addScaledVector(east, face.size * 0.17)
+                .normalize(),
+              -0.0003,
+            ),
+            north,
+            1,
+          );
+      });
       if (face === studyFace) allocationBlock(study, world.aligned(face), 3 * U, 3.4 * U, true);
     }
 
     seat.used = true;
     const tower = world.layer('watchtower', 'surface', { landmark: 'watchtower' });
     const base = world.on(seat);
-    watchtower(tower, base, 0.18);
+    watchtower(tower, base, 0.3);
     const beam = world.layer('searchlight', 'surface', {
-      matrix: local(base, 0, 0.18 * 0.84, 0),
+      matrix: local(base, 0, 0.3 * 0.84, 0),
       motion: { kind: 'spin', speed: 0.45 },
     });
     beam.beam.prism(
@@ -197,24 +192,30 @@ export const s1: EarthBrief = {
     const grey: Tone[] = ['#7d8188', '#737780', '#858a91', '#6c7078'];
     const district: TownStyle = {
       layout: 'grid',
-      radius: 0.085,
-      block: 9 * U,
-      street: { width: 1.8 * U, tone: '#3a3d44' },
-      plaza: { radius: 3.4 * U, tone: '#5d6168', centre: [['screen', 1, [1.3, 1.5]]] },
+      radius: 0.16,
+      block: 4.5 * U,
+      street: { width: 1.3 * U, tone: '#3a3d44' },
+      plaza: { radius: 2.6 * U, tone: '#5d6168', centre: [['hologram', 1, [1.3, 1.5]]] },
       lot: { spacing: 2.3 * U },
       core: [
         ['block-tall', 5, [1, 1.15]],
-        ['screen', 0.5, [1, 1.2]],
+        ['screen', 0.4, [1, 1.2]],
+        ['hologram', 0.5, [1, 1.2]],
         ['checkpoint', 0.4, [1, 1]],
       ],
       edge: [
         ['block', 6, [1, 1.1]],
         ['warehouse', 0.7, [1, 1.1], ['#8d9096']],
         ['checkpoint', 0.4, [1, 1]],
+        ['turret', 0.25, [1, 1.1]],
       ],
       rise: (r) => (r < 0.3 ? 1.25 : 1),
-      people: { standing: 22, walking: 6, kinds: citizenKinds, walkers: walkerKinds, tints: grey },
-      cars: { count: 2, kinds: ['bus', 'van'], tints: ['#5d6168', '#4a4e55', '#6c7078'] },
+      people: { standing: 10, walking: 3, kinds: citizenKinds, walkers: walkerKinds, tints: grey },
+      cars: {
+        count: 2,
+        kinds: ['bus', 'van', 'hover-car'],
+        tints: ['#5d6168', '#4a4e55', '#6c7078'],
+      },
       lamps: 'surveillance',
       // What remains of the biosphere: a few rationed planters and dead street trees.
       trees: {
@@ -227,13 +228,14 @@ export const s1: EarthBrief = {
     const towns = districts.map((centre, k) =>
       buildTown(world, centre, district, k === 0 ? 1.15 : 1),
     );
+    fieldBlocks.forEach((place) => place());
     for (const town of towns) {
       // Ration lines outside the distribution depots, and drones over every district.
       queue(
         world,
         offset(town.centre, 0.8, 5 * U),
         0.8 + Math.PI / 2,
-        9,
+        4,
         citizenKinds[world.random.int(0, 3)],
         grey,
       );
@@ -241,13 +243,13 @@ export const s1: EarthBrief = {
         world,
         offset(town.centre, 2.9, 6 * U),
         2.9 - Math.PI / 2,
-        7,
+        3,
         citizenKinds[world.random.int(0, 3)],
         grey,
       );
-      for (const k of [0, 1, 2])
+      for (const k of [0, 1])
         world.props.add(
-          'guard',
+          k === 0 ? 'sentinel' : 'guard',
           world.surface.point(offset(town.centre, k * 2.1, 4.4 * U), 0),
           null,
           1,
@@ -256,10 +258,18 @@ export const s1: EarthBrief = {
         const loop: THREE.Vector3[] = [];
         for (let i = 0; i < 20; i++)
           loop.push(
-            offset(town.centre, (i / 20) * Math.PI * 2, town.radius * 0.7).multiplyScalar(1.022),
+            offset(town.centre, (i / 20) * Math.PI * 2, town.radius * 0.7).multiplyScalar(1.12),
           );
+        // Robot enforcers walk the district's ring; drones watch from above.
+        const ring = loop.map((p) => world.surface.point(p.clone().normalize(), 0.0004));
+        world.traffic.add('sentinel', makeRoute(ring, true), {
+          count: 1,
+          speed: 0.004,
+          pingpong: false,
+          random: world.random,
+        });
         world.traffic.add('drone', makeRoute(loop, true), {
-          count: 6,
+          count: 2,
           speed: 0.008,
           size: 1.6,
           pingpong: false,
@@ -268,14 +278,14 @@ export const s1: EarthBrief = {
       }
     }
     roads(world, towns, {
-      width: 2.6 * U,
+      width: 1.3 * U,
       tone: '#3a3d44',
       neighbours: 2,
-      reach: 0.7,
+      reach: 0.8,
       pylons: 'pylon',
       traffic: {
         kinds: ['truck', 'bus', 'van'],
-        per: 2,
+        per: 1,
         speed: 0.01,
         tints: ['#5d6168', '#4a4e55', '#8d9096'],
       },

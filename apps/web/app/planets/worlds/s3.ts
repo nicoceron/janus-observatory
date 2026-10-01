@@ -10,7 +10,7 @@ import { U } from '../props/library';
 import { flights, harbourLoops, rails, roads, seaLanes } from '../scene/network';
 import { citizens, earthFlora } from '../scene/presets';
 import { farmland, harbour } from '../scene/sites';
-import { offset } from '../scene/surface';
+import { offset, tangents } from '../scene/surface';
 import { buildTown, type TownStyle } from '../scene/towns';
 
 /**
@@ -165,8 +165,8 @@ export const s3: EarthBrief = {
     // Decentralized: every town is the same size and towns keep an even spacing everywhere.
     const garden: TownStyle = {
       layout: 'radial',
-      radius: 0.05,
-      streets: 5,
+      radius: 0.11,
+      streets: 4,
       street: { width: 1.3 * U, tone: '#d8cfb4' },
       plaza: {
         radius: 3 * U,
@@ -183,23 +183,32 @@ export const s3: EarthBrief = {
         ['greenhouse', 1.2, [0.9, 1.1]],
         ['dome-house', 1, [1, 1.1]],
         ['market', 0.6, [1, 1.1], ['#e0a830', '#7fbf5a', '#4f9fd0']],
+        ['spire', 0.7, [0.8, 1], ['#f6f4ee', '#e3b84b']],
       ],
       edge: [
         ['solar-house', 3, [1, 1.1]],
         ['house-flat', 2, [1, 1.1], ['#f6f4ee', '#eef2e8']],
         ['dome-house', 1.5, [1, 1.1]],
         ['greenhouse', 1, [0.9, 1.1]],
+        ['pod-house', 1.2, [0.9, 1.1], ['#f6f4ee', '#eef2e8']],
         ['bench', 0.6, [1, 1.1]],
       ],
-      people: { standing: 16, walking: 5, ...citizens, tints: bright },
+      // Post-scarcity: service robots walk among the citizens.
+      people: {
+        standing: 6,
+        walking: 2,
+        kinds: [...citizens.kinds, 'robot'],
+        walkers: [...citizens.walkers, 'robot-walk'],
+        tints: bright,
+      },
       cars: {
         count: 1,
-        kinds: ['bicycle', 'bicycle', 'tram'],
+        kinds: ['hover-car', 'bicycle', 'hover-bus'],
         tints: ['#3d6fb5', '#e0a830', '#2e9e6e'],
         speed: 0.003,
       },
       trees: {
-        count: 22,
+        count: 10,
         kinds: ['oak', 'cypress', 'birch', 'flowers', 'bush'],
         tints: ['#4f9a4a', '#3f8f44', '#6aa84f'],
         size: [1, 1.4],
@@ -209,14 +218,14 @@ export const s3: EarthBrief = {
     const sites = world.scatter(
       land.filter((f) => f.elevation < 0.42),
       coveredFaces(earth.surface_modification, faces.length),
-      9,
+      21,
     );
     const towns = sites.map((face) => buildTown(world, face.up, garden));
     if (sites[0])
       gardenTown(
         world.layer('garden-town', 'surface', { landmark: 'garden-town' }),
         world.on(sites[0], random() * 6, 1, -0.001),
-        0.05,
+        0.12,
         lit,
         random,
         true,
@@ -237,21 +246,20 @@ export const s3: EarthBrief = {
       );
 
     const windy = land.filter((f) => ['upland', 'shore', 'tundra'].includes(f.biome) && !f.used);
-    world.scatter(windy, Math.round(26 * world.quality.density), 8).forEach((face, i) => {
+    world.scatter(windy, Math.round(8 * world.quality.density), 24).forEach((face, i) => {
       face.used = true;
       const layer =
         i === 0 ? world.layer('wind-commons', 'surface', { landmark: 'wind-commons' }) : null;
-      const count = 5;
+      const count = 3;
       for (let k = 0; k < count; k++) {
-        const dir = offset(face.up, (k / count) * Math.PI * 2, 0.012);
-        if (layer && k < 3)
-          turbine(layer.solid, frame(world.surface.point(dir, -0.0004), dir, 0.3), 0.045);
+        const dir = offset(face.up, (k / count) * Math.PI * 2, 2.6 * U);
+        if (layer) turbine(layer.solid, frame(world.surface.point(dir, -0.0004), dir, 0.3), 0.16);
         else
           world.props.add(
             'turbine',
             world.surface.point(dir, -0.0004),
             offset(dir, 0.3, 0.01).sub(dir),
-            1.1,
+            0.8,
           );
       }
     });
@@ -261,8 +269,13 @@ export const s3: EarthBrief = {
       width: 1.2 * U,
       tone: '#d8cfb4',
       neighbours: 2,
-      reach: 0.35,
-      traffic: { kinds: ['bus', 'bicycle'], per: 1, speed: 0.006, tints: ['#2e9e6e', '#f2efe6'] },
+      reach: 0.6,
+      traffic: {
+        kinds: ['hover-bus', 'hover-car'],
+        per: 1,
+        speed: 0.008,
+        tints: ['#2e9e6e', '#f2efe6', '#e0a830'],
+      },
     });
     rails(
       world,
@@ -273,13 +286,13 @@ export const s3: EarthBrief = {
       .map((t) => harbour(world, t.centre, { light: random() < 0.3, boats: ['sailboat'] }))
       .filter((p): p is THREE.Vector3 => !!p);
     seaLanes(world, ports, { kinds: ['ferry', 'sailboat'], per: 1, speed: 0.004 });
-    harbourLoops(world, ports, { kinds: ['sailboat', 'fishing'], per: 2, speed: 0.003 });
+    harbourLoops(world, ports, { kinds: ['sailboat', 'fishing'], per: 1, speed: 0.004 });
     flights(
       world,
       towns.map((t) => t.centre),
-      { kinds: ['airship'], per: 1, speed: 0.006, size: 1.6 },
-      8,
-      0.03,
+      { kinds: ['airship', 'cargo-drone'], per: 1, speed: 0.01, size: 1.4 },
+      3,
+      0.1,
     );
 
     // One tether from the equator to a transfer hub: Earth stays the hub.
@@ -287,9 +300,23 @@ export const s3: EarthBrief = {
     hub.used = true;
     const tether = world.layer('tether', 'surface', { landmark: 'tether' });
     const top = hub.up.clone().multiplyScalar(1.5);
-    tether.sheen.prism(world.on(hub), 0.05, 0.035, 0.03, 8, '#e3b84b');
-    tether.sheen.beam(hub.centre, top, 0.004, '#f2d27a', 6);
-    tetherHub(tether, frame(top, hub.up), 0.16);
+    tether.sheen.prism(world.on(hub), 0.12, 0.08, 0.07, 8, '#e3b84b');
+    tether.sheen.beam(hub.centre, top, 0.009, '#f2d27a', 6);
+    tetherHub(tether, frame(top, hub.up), 0.22);
+    // Beside the tether: fusion power and a spaceport for the Moon, Mars and the outer system.
+    const yard = world
+      .around(hub, 14)
+      .filter((f) => f.land && !f.used && f.up.angleTo(hub.up) > 0.16);
+    if (yard[0]) {
+      yard[0].used = true;
+      world.props.add('reactor', world.surface.point(yard[0].up, -0.0004), null, 0.9);
+    }
+    if (yard[1]) {
+      yard[1].used = true;
+      const east = tangents(yard[1].up).east;
+      world.props.add('landing-pad', world.surface.point(yard[1].up, -0.0004), east, 1.6);
+      world.props.add('shuttle', world.surface.point(yard[1].up, 0.0006), east, 1, '#f6f4ee');
+    }
 
     orderedSwarm(
       world,

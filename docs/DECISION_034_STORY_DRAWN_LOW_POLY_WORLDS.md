@@ -44,8 +44,8 @@ bodies and features with positive published cells appear, exactly as before.
 The first pass read as painted globes with a few landmarks. The user asked for citizens, assets,
 plants, buildings and detail everywhere. Every world is now a populated diorama:
 
-- **Asset library** (`apps/web/app/planets/props/`): over 160 original low-poly models built in
-  one person-unit scale: citizens (four skin tones, standing and walking, workers, guards, robed
+- **Asset library** (`apps/web/app/planets/props/`): over 160 original low-poly models (over 180 with
+  revision 3's sci-fi set) built in one person-unit scale: citizens (four skin tones, standing and walking, workers, guards, robed
   walkers, porters, enhanced S5 citizens, astronauts), animals (deer, bison, cows, sheep, horses,
   birds, whales, fish), plants (broadleaf, conifer, birch, cypress, palm, bushes, grass, flowers,
   reeds, cactus, dead trees, crops, vines, S5 bio-flora, coral), buildings (houses, cottages,
@@ -73,8 +73,40 @@ plants, buildings and detail everywhere. Every world is now a populated diorama:
   Anchor travel and fast scrolling therefore never wait on a build or a shader. Idle animation of the focused world backs off when frames run long. When WebGL runs on a
   software rasterizer (SwiftShader, llvmpipe), worlds and bodies, in the story and the explorer,
   use a `minimal` tier (terrain, landmarks and light, no instanced props) and do not animate while
-  idle: there every triangle is CPU work that blocks input. Landmark studies keep full detail.
-  Hardware GPUs always get the full tiers.
+  idle: there every triangle is CPU work that blocks input. Landmark studies keep full detail,
+  and while an anchor travel scrolls the page the scene holds still and draws once on arrival, so
+  the travel stays interruptible. Hardware GPUs always get the full tiers and every frame.
+
+## Toy scale (revision 3)
+
+At story distance revision 2 was unreadable: thousands of person-sized props blurred into
+texture. The user asked for drastically fewer, bigger assets, in the spirit of the original's
+few large models. Every world is now a toy diorama:
+
+- One person unit is 0.026 planet radii (was 0.0075): a house stands about 0.07 radii tall and a
+  pine about 0.07–0.1. Citizens and animals are drawn 1.5× and vehicles 1.3× life size so they
+  stay legible beside the buildings.
+- At story quality a world keeps at most 90 buildings and structures, 70 plants, 28 citizens,
+  22 small details, 16 animals and 10 parked vehicles, plus 46 movers; other tiers scale these
+  budgets by their density. When a recipe offers more, a declutter pass widens the spacing
+  between same-group props evenly, so every settlement keeps a few buildings rather than some
+  vanishing. Props never overlap each other or a landmark's ground footprint.
+- Settlements, regions, mines, rigs, camps and ruins are fewer and wider; landmarks are about
+  2.5× larger; clouds float higher; aircraft and drones fly above the rooftops.
+- Per world: 100–215 static props and 30–42 movers (were 1,200–6,000 and 260–2,200), and
+  20k–54k triangles at story quality (were 105k–432k).
+- A sci-fi set (`props/scifi.ts`, 19 models) gives the high-technology futures their machines:
+  service robots, security sentinels, mechs, six-legged maintenance crawlers, hover cars and
+  buses, cargo drones, shuttles, landers, light-ringed spires, arcologies, fusion reactors,
+  hologram pillars, industrial arms, turrets, beacons, pod homes and overgrown robot wrecks.
+  They follow each narrative: sentinels and holograms police S1; mechs guard S2's enclaves while
+  crawlers work its mines beside a shuttle port; robots serve S3's garden towns, which travel by
+  hover transit and launch from a spaceport by the tether; androids and pod homes join S5; S6's
+  plating is tended by crawlers, arms and reactors; S8's silent core is ringed by wrecked and
+  dormant machines. S4 and S7 keep only relic wrecks from before the collapse; present-day Earth,
+  S9's Earth (the machines have left) and S10's restored Earth get none. Companion stations gain
+  landers, shuttles and robots, and S9's machined Mars and Venus gain crawlers, mechs and spires.
+  Robots share a budget of 14 standing and 10 moving per world.
 
 The published values still decide extent and intensity (built fraction, light, traffic in orbit,
 haze, fields). Crowds, vehicles and wildlife are interpretive illustration of each narrative,

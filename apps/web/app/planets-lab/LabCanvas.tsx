@@ -10,7 +10,7 @@ import { ModelView } from '../planets/ModelView';
 import { qualities, type WorldModel } from '../planets/model';
 import { InstanceView, type PropMaterials } from '../planets/Instances';
 import { createMaterials } from '../planets/materials';
-import { propGeometry, propKinds } from '../planets/props/library';
+import { propGeometry, propKinds, propTint } from '../planets/props/library';
 
 function Model({
   build,
@@ -32,7 +32,7 @@ function Model({
 }
 
 /** Every library prop on a grid, scaled up so its construction can be reviewed. */
-function Gallery() {
+function Gallery({ only }: { only?: string }) {
   const materials = useMemo(() => createMaterials(), []);
   const parts = useMemo<PropMaterials>(
     () => ({
@@ -45,7 +45,9 @@ function Gallery() {
     [materials],
   );
   const groups = useMemo(() => {
-    const columns = 14;
+    const shown = only ? propKinds.filter((k) => only.split(',').includes(k)) : propKinds;
+    const columns = Math.min(14, Math.ceil(Math.sqrt(shown.length * 1.6)));
+    const rows = Math.ceil(shown.length / columns);
     const leafy = [
       'oak',
       'pine',
@@ -60,7 +62,7 @@ function Gallery() {
       'vine',
       'crop',
     ];
-    return propKinds.map((kind, i) => {
+    return shown.map((kind, i) => {
       const box = new THREE.Box3();
       for (const geometry of Object.values(propGeometry(kind))) {
         geometry!.computeBoundingBox();
@@ -72,10 +74,12 @@ function Gallery() {
         .makeScale(scale, scale, scale)
         .setPosition(
           ((i % columns) - (columns - 1) / 2) * 1.35,
-          4.4 - Math.floor(i / columns) * 1.5,
+          ((rows - 1) / 2) * 1.5 - Math.floor(i / columns) * 1.5,
           0,
         );
-      const tint = new THREE.Color(leafy.some((k) => kind.startsWith(k)) ? '#4f8f3e' : '#d0b090');
+      const tint = new THREE.Color(
+        leafy.some((k) => kind.startsWith(k)) ? '#4f8f3e' : propTint(kind),
+      );
       return {
         kind,
         frame: 'surface' as const,
@@ -83,7 +87,7 @@ function Gallery() {
         tints: new Float32Array(tint.toArray()),
       };
     });
-  }, []);
+  }, [only]);
   return (
     <group rotation={[0.3, -0.5, 0]}>
       {groups.map((group) => (
@@ -184,7 +188,11 @@ export default function LabCanvas({ signals }: { signals: WorldSignals[] }) {
       <directionalLight position={[-6, 7, 4]} intensity={2.3} color="#fff1d8" />
       <directionalLight position={[4, 2, -2]} intensity={2.0} color="#87dfef" />
       {single && <OrbitControls enablePan={false} />}
-      {query?.get('props') && <Gallery />}
+      {query?.get('props') && (
+        <Gallery
+          only={query.get('props') === '1' ? undefined : (query.get('props') ?? undefined)}
+        />
+      )}
       {items.map((item, i) =>
         single ? (
           <Model key={item.key} build={item.build} x={0} y={0} size={4.2 * zoom} />

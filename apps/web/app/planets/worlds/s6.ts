@@ -148,41 +148,43 @@ export const s6: EarthBrief = {
     const overalls: Tone[] = ['#e08a2e', '#d0702a', '#c4a030', '#8a949e'];
     const works: TownStyle = {
       layout: 'grid',
-      radius: 0.06,
-      block: 8 * U,
-      street: { width: 1.6 * U, tone: '#3d434a' },
+      radius: 0.13,
+      block: 4.5 * U,
+      street: { width: 1.3 * U, tone: '#3d434a' },
       plaza: { radius: 2.6 * U, tone: '#5f6874', centre: [['pressure-tank', 1, [1, 1.2]]] },
       lot: { spacing: 2.2 * U },
       core: [
         ['worker-block', 4, [1, 1.1]],
+        ['reactor', 0.5, [0.7, 0.8]],
         ['hab-dome', 1, [0.7, 0.8]],
         ['warehouse', 1, [1, 1.1], ['#7d8894']],
       ],
       edge: [
         ['worker-block', 4, [1, 1.1]],
         ['pipe-rack', 1, [1, 1.1]],
+        ['robot-arm', 1, [1, 1.1]],
         ['greenhouse-dark', 1, [1, 1.1]],
       ],
       people: {
-        standing: 18,
-        walking: 7,
-        kinds: ['worker', 'worker', ...citizens.kinds],
-        walkers: ['worker-walk'],
+        standing: 6,
+        walking: 2,
+        kinds: ['worker', 'worker', 'robot', ...citizens.kinds],
+        walkers: ['worker-walk', 'robot-walk'],
         tints: overalls,
       },
       cars: { count: 2, kinds: ['van', 'haul-truck'], tints: ['#e0a830', '#8a949e'] },
       lamps: 'lamp',
       // The regulated biosphere: planters and trees tended inside the works.
       trees: {
-        count: 8,
+        count: 12,
         kinds: ['bush', 'oak-small'],
         tints: ['#5f8a4a', '#6f9a50'],
         size: [0.9, 1.2],
       },
     };
     const landShell = shell.filter((f) => f.land && f.elevation < 0.4);
-    const sites = world.scatter(landShell, 12, 13);
-    const clearing = (face: Face) => sites.some((s) => s.up.angleTo(face.up) < 0.07);
+    const sites = world.scatter(landShell, 6, 24);
+    const clearing = (face: Face) => sites.some((s) => s.up.angleTo(face.up) < 0.15);
     const towns = sites.map((face) => buildTown(world, face.up, works));
 
     const warnings = world.layer('warnings', 'surface', {
@@ -195,6 +197,9 @@ export const s6: EarthBrief = {
       ['crane', 0.6, 1],
       ['solar-array', 1, 1.1],
       ['hab-dome', 0.8, 0.8],
+      ['robot-arm', 1.5, 1],
+      ['reactor', 0.4, 0.8],
+      ['spider-bot', 1.2, 1],
     ];
     const total = machines.reduce((sum, m) => sum + m[1], 0);
     for (const face of shell) {
@@ -202,7 +207,8 @@ export const s6: EarthBrief = {
       face.tone = face.land ? '#4b525b' : '#3a4a4f';
       if (clearing(face)) continue;
       const lift = plate(world, face, random.pick(steel));
-      const count = Math.round((face.land ? 3 : 1.5) * world.quality.density * random());
+      // One machine on a few plates: the painted shell carries the extent, props the character.
+      const count = random() < (face.land ? 0.2 : 0.06) * world.quality.density ? 1 : 0;
       for (let k = 0; k < count; k++) {
         const dir = offset(face.up, random() * 6, random() * face.size * 0.3);
         if (world.surface.face(dir) !== face) continue;
@@ -220,18 +226,18 @@ export const s6: EarthBrief = {
           pick[2],
         );
       }
-      if (random() < lit * 0.25)
+      if (random() < lit * 0.08)
         warnings.glow.box(
           world.on(face, random() * 6, 1, -lift),
-          0.002,
-          0.0012,
-          0.002,
+          0.006,
+          0.003,
+          0.006,
           random() < 0.8 ? '#ffb03a' : '#ff4a3a',
         );
     }
     // Pipes between neighbouring plates carry the planet's regulated flows.
     for (const face of shell)
-      if (world.thin(0.06) && !clearing(face)) {
+      if (world.thin(0.03) && !clearing(face)) {
         const next = faces[face.neighbours[0]];
         if (next.used && !clearing(next))
           world.ground.solid.beam(
@@ -243,13 +249,13 @@ export const s6: EarthBrief = {
       }
 
     roads(world, towns, {
-      width: 2 * U,
+      width: 1.3 * U,
       tone: '#3d434a',
       neighbours: 2,
-      reach: 0.5,
+      reach: 0.75,
       traffic: {
         kinds: ['haul-truck', 'truck', 'van'],
-        per: 2,
+        per: 1,
         speed: 0.008,
         tints: ['#e0a830', '#8a949e', '#5f6874'],
       },
@@ -259,20 +265,38 @@ export const s6: EarthBrief = {
       .filter((p): p is THREE.Vector3 => !!p);
     seaLanes(world, ports, {
       kinds: ['tanker', 'ship'],
-      per: 2,
-      speed: 0.005,
+      per: 1,
+      speed: 0.007,
       tints: ['#3a3d44', '#5f6874'],
     });
     if (world.quality.life)
       for (const town of towns) {
         const loop: THREE.Vector3[] = [];
         for (let i = 0; i < 16; i++)
-          loop.push(offset(town.centre, (i / 16) * Math.PI * 2, town.radius).multiplyScalar(1.02));
+          loop.push(offset(town.centre, (i / 16) * Math.PI * 2, town.radius).multiplyScalar(1.12));
         world.traffic.add('drone', makeRoute(loop, true), {
-          count: 3,
+          count: 1,
           speed: 0.006,
           size: 1.4,
           tints: ['#e0a830'],
+          pingpong: false,
+          random,
+        });
+      }
+
+    // Spider crawlers patrol the plating, checking seams.
+    if (world.quality.life)
+      for (const face of world.scatter(
+        shell.filter((f) => f.land && !clearing(f)),
+        5,
+        18,
+      )) {
+        const loop: THREE.Vector3[] = [];
+        for (let i = 0; i < 14; i++)
+          loop.push(world.surface.point(offset(face.up, (i / 14) * Math.PI * 2, 4 * U), 0.0006));
+        world.traffic.add('spider-bot', makeRoute(loop, true), {
+          count: 1,
+          speed: 0.004,
           pingpong: false,
           random,
         });
@@ -282,13 +306,13 @@ export const s6: EarthBrief = {
     regulator(
       world.layer('regulator', 'surface', { landmark: 'regulator' }),
       world.on(core, 0, 1, -core.size * 0.08),
-      0.05,
+      0.13,
     );
     const vent = world.around(core, 12).find((f) => f !== core && f.land) ?? core;
     thermalStack(
       world.layer('thermal-stack', 'surface', { landmark: 'thermal-stack' }),
       world.on(vent, 0, 1, -vent.size * 0.08),
-      0.05,
+      0.13,
     );
 
     // Hangs over the heart of the machine, turning with it: the suspended regulator.

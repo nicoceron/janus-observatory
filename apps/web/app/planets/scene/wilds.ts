@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { Biome, Face } from '../globe';
 import type { Tone } from '../kit';
 import type { WorldContext } from '../model';
+import { U } from '../props/library';
 import { makeRoute } from './collect';
 import { offset } from './surface';
 import { choose, type Pick } from './towns';
@@ -45,7 +46,9 @@ export function plant(world: WorldContext, flora: Flora) {
   for (const face of world.faces) {
     const rule = flora[face.biome];
     if (!rule || face.used) continue;
-    const count = rule.per * world.quality.density * (0.6 + random() * 0.8);
+    // `per` is authored for a dense forest; at toy scale about one plant in ten keeps the
+    // landscape readable, and the world's plant budget trims the rest evenly.
+    const count = rule.per * 0.1 * world.quality.density * (0.6 + random() * 0.8);
     const n = Math.floor(count) + (random() < count % 1 ? 1 : 0);
     for (let i = 0; i < n; i++) {
       const dir = inside(face, random);
@@ -73,18 +76,21 @@ export function animals(world: WorldContext, fauna: Fauna) {
     for (const home of world.scatter(homes, herd.count, 6)) {
       const centre = home.up.clone();
       if (world.occupied(centre)) continue;
-      const members = herd.size[0] + Math.floor(random() * (herd.size[1] - herd.size[0] + 1));
+      const members = Math.max(
+        1,
+        Math.round((herd.size[0] + random() * (herd.size[1] - herd.size[0])) / 2),
+      );
       if (herd.roam) {
         const loop: THREE.Vector3[] = [];
         for (let i = 0; i < 14; i++) {
-          const dir = offset(centre, (i / 14) * Math.PI * 2, 0.018 + random() * 0.006);
+          const dir = offset(centre, (i / 14) * Math.PI * 2, 4 * U + random() * U);
           if (!surface.land(dir)) continue;
           loop.push(surface.point(dir, 0));
         }
         if (loop.length > 5)
           traffic.add(herd.kind, makeRoute(loop, true), {
             count: members,
-            speed: 0.0012,
+            speed: 0.003,
             size: herd.scale ?? 1,
             tints: herd.tints,
             pingpong: false,
@@ -92,7 +98,7 @@ export function animals(world: WorldContext, fauna: Fauna) {
           });
       } else
         for (let i = 0; i < members; i++) {
-          const dir = offset(centre, random() * Math.PI * 2, random() * 0.014);
+          const dir = offset(centre, random() * Math.PI * 2, (1 + random() * 2) * U);
           if (!surface.land(dir)) continue;
           props.add(
             herd.kind,
@@ -110,11 +116,11 @@ export function animals(world: WorldContext, fauna: Fauna) {
     );
     for (const home of world.scatter(land, fauna.flocks.count, 12)) {
       const loop: THREE.Vector3[] = [];
-      const height = 1.03 + random() * 0.02;
+      const height = 1.12 + random() * 0.05;
       for (let i = 0; i < 18; i++)
-        loop.push(offset(home.up, (i / 18) * Math.PI * 2, 0.025).multiplyScalar(height));
+        loop.push(offset(home.up, (i / 18) * Math.PI * 2, 4 * U).multiplyScalar(height));
       traffic.add(fauna.flocks.kind ?? 'bird', makeRoute(loop, true), {
-        count: 5 + Math.floor(random() * 5),
+        count: 2 + Math.floor(random() * 2),
         speed: 0.01,
         size: fauna.flocks.size ?? 1.3,
         tints: fauna.flocks.tints,
@@ -127,10 +133,10 @@ export function animals(world: WorldContext, fauna: Fauna) {
   for (const home of world.scatter(deep, fauna.whales ?? 0, 20)) {
     const loop: THREE.Vector3[] = [];
     for (let i = 0; i < 16; i++)
-      loop.push(offset(home.up, (i / 16) * Math.PI * 2, 0.03).multiplyScalar(0.9995));
+      loop.push(offset(home.up, (i / 16) * Math.PI * 2, 5 * U).multiplyScalar(0.9995));
     traffic.add('whale', makeRoute(loop, true), {
-      count: 1 + Math.floor(random() * 2),
-      speed: 0.003,
+      count: 1,
+      speed: 0.006,
       size: 1.6,
       pingpong: false,
       random,
@@ -141,10 +147,10 @@ export function animals(world: WorldContext, fauna: Fauna) {
     for (const home of world.scatter(shallow, fauna.fish.count, 10)) {
       const loop: THREE.Vector3[] = [];
       for (let i = 0; i < 12; i++)
-        loop.push(offset(home.up, (i / 12) * Math.PI * 2, 0.008).multiplyScalar(1.0003));
+        loop.push(offset(home.up, (i / 12) * Math.PI * 2, 2.5 * U).multiplyScalar(1.0003));
       traffic.add('fish', makeRoute(loop, true), {
-        count: 6,
-        speed: 0.003,
+        count: 3,
+        speed: 0.005,
         size: 1,
         tints: fauna.fish.tints,
         pingpong: false,

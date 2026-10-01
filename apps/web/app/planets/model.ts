@@ -3,7 +3,7 @@ import { frame, Mesher, type Tone } from './kit';
 import type { Face } from './globe';
 import { direction } from './continents';
 import { rng, type Random } from './random';
-import { Props, Traffic, type InstanceGroup, type MoverGroup } from './scene/collect';
+import { Props, Traffic, type InstanceGroup, type KeepOut, type MoverGroup } from './scene/collect';
 import { Surface } from './scene/surface';
 
 export type Motion =
@@ -253,6 +253,47 @@ export class WorldContext {
   finish() {
     return this.layers.map((layer) => layer.finish());
   }
+
+  /**
+   * The world's props and movers within the quality's budgets, kept off every landmark so each
+   * landmark stands clear on its own ground.
+   */
+  population(layers: Layer[]) {
+    const density = this.quality.density / qualities.story.density;
+    const keepOut: KeepOut[] = [];
+    const v = new THREE.Vector3(),
+      centre = new THREE.Vector3();
+    for (const layer of layers) {
+      if (!layer.landmark || layer.frame !== 'surface' || layer.matrix) continue;
+      const geometries = [layer.solid, layer.sheen, layer.glow].filter((g) => !!g);
+      // The landmark's axis: the mean direction of its vertices.
+      centre.set(0, 0, 0);
+      for (const geometry of geometries) {
+        const position = geometry.getAttribute('position');
+        for (let i = 0; i < position.count; i++) centre.add(v.fromBufferAttribute(position, i));
+      }
+      if (centre.lengthSq() < 1e-12) continue;
+      centre.normalize();
+      // Its ground footprint: the widest point within a little of the surface.
+      let radius = 0;
+      for (const geometry of geometries) {
+        const position = geometry.getAttribute('position');
+        for (let i = 0; i < position.count; i++) {
+          v.fromBufferAttribute(position, i);
+          const along = v.dot(centre);
+          if (along > 1.04) continue;
+          radius = Math.max(radius, v.addScaledVector(centre, -along).length());
+        }
+      }
+      // Orbital and planet-wide structures are not ground to keep clear.
+      if (radius > 0 && radius < 0.3)
+        keepOut.push({ centre: centre.clone(), radius: radius * 1.05 });
+    }
+    return {
+      instances: this.props.finish('surface', { density, keepOut }),
+      movers: this.traffic.finish(density),
+    };
+  }
 }
 
 /** Orientation for an orbit inclined by `inclination` around an ascending node longitude. */
@@ -276,6 +317,8 @@ export function satellite(
   wings: Tone,
   light?: Tone,
 ) {
+  // Toy scale: satellites are drawn well above life size so they read beside the larger props.
+  size *= 1.6;
   layer.sheen.box(m, size, size * 1.2, size, body);
   const wing = (x: number) =>
     m

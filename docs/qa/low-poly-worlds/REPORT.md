@@ -87,6 +87,36 @@ After the fixes:
   The earlier two-worker run without that load passed them (66 of 68). Timing-sensitive specs on
   SwiftShader remain load-sensitive.
 
+## Revision 3: toy scale
+
+- Person unit 0.026 planet radii; per-group prop budgets with an even-spacing declutter; landmarks
+  about 2.5× larger. See Decision 034.
+- `pnpm test`: 42 files, 166 tests. The inhabited-worlds test now bounds each world to 61–236
+  static props and at most 46 movers, and a new test checks that no two props overlap on present,
+  S1, S3 and S6. Lint, typecheck and Prettier pass.
+- Per world at story quality: 100–215 static props, 30–42 movers, 20k–54k triangles.
+- Sci-fi set: 19 models in `props/scifi.ts`, reviewed in the lab gallery and in S2, S3 and S6
+  explorer close-ups and on the S2 Moon. Robots have their own budget (14 standing, 10 moving),
+  so the inhabited-worlds bounds are now 61–250 props and at most 56 movers per world.
+- `cinematic.spec.ts` "observer continues moving": the shared `indexJump` helper read `scrollY`
+  as soon as the chapter turned active, before the anchor travel eased to rest; under load the
+  last ~19 px landed afterwards. It now also waits for `data-anchor-travel="idle"`.
+- `deep-space.spec.ts` "anchor travel is interruptible" still failed about one run in five under
+  external load: software-rendered frames of 200–450 ms (below GSAP's 500 ms lag-smoothing
+  threshold) let the ~1.4 s travel finish in a few frames, before the queued wheel event ran. On
+  software rasterizers the story scene now holds while `data-anchor-travel="moving"` and redraws
+  when travel ends, keeping the main thread free for input.
+- Final checks: `pnpm test` 42 files and 166 tests; lint, typecheck, Prettier, `assets:validate`,
+  `links:validate`, `data:validate` and the production build pass. `pnpm bundle:check`: home
+  initial JavaScript 202,048 B gzip; deferred 3D chunk 287,382 B gzip; guided-path upper bound
+  935,296 B, with no 3D downloads.
+- Full Chromium suite on one worker: 67 of 68 passed; the one failure is the pre-existing
+  `story.spec.ts` "complete before WebGL". `deep-space.spec.ts` anchor travel then passed 6 of 6
+  repeats with no external load; it had failed about one run in four while another session's
+  Blender job held three to five CPU cores.
+- Reviewed with hardware WebGL: the opening Earth, the ten-world overview, S1, S2, S3, S5, S6,
+  S7, S8 and S10 chapters, and explorer close-ups of S1, S3 and S7.
+
 ## Data and rights
 
 - Magnitudes come from `data/generated/runtime/{planetary,system,growth,morphology}.json`

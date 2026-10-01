@@ -4,6 +4,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import {
   Component,
   Suspense,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -190,16 +191,32 @@ function Scene({
         );
     }
   }, [chapter, mobile, signals, systems, gl]);
+  // On a software rasterizer every drawn frame blocks input until it is rasterized. While an
+  // anchor travel scrolls the page, hold the scene and draw once on arrival, so the travel stays
+  // interruptible by the next wheel or touch.
+  const held = useCallback(
+    () =>
+      lowPower(gl) &&
+      document.querySelector<HTMLElement>('[data-voyage]')?.dataset.anchorTravel === 'moving',
+    [gl],
+  );
+  useEffect(() => {
+    const root = document.querySelector('[data-voyage]');
+    if (!root || !lowPower(gl)) return;
+    const observer = new MutationObserver(() => invalidate());
+    observer.observe(root, { attributes: true, attributeFilter: ['data-anchor-travel'] });
+    return () => observer.disconnect();
+  }, [gl, invalidate]);
   useEffect(() => {
     const frame = () => {
       if (flight.current.progress > 0.02) setExpedition(true);
       setChapter(Math.round(flight.current.progress));
-      invalidate();
+      if (!held()) invalidate();
     };
     frame();
     window.addEventListener('janus:flight', frame);
     return () => window.removeEventListener('janus:flight', frame);
-  }, [invalidate, flight]);
+  }, [invalidate, flight, held]);
   useFrame((_, delta) => {
     if (inspection) {
       hideSpatialTargets();
@@ -437,7 +454,7 @@ function Scene({
         aScene >= 2 && aScene <= 11 ? 'system' : 'Earth',
       );
     }
-    if (!reduced && flight.current.active) invalidate();
+    if (!reduced && flight.current.active && !held()) invalidate();
   });
   return (
     <>

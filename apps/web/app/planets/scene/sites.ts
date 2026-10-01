@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { Face } from '../globe';
 import type { Tone } from '../kit';
 import type { WorldContext } from '../model';
+import { U } from '../props/library';
 import { ribbon } from './collect';
 import { offset, tangents } from './surface';
 import type { Pick } from './towns';
@@ -88,17 +89,17 @@ export function harbour(
   const shore = coast.neighbours.map((n) => world.faces[n]).find((f) => f.land)!;
   const seaward = coast.up.clone().sub(shore.up);
   const edge = shore.up.clone().lerp(coast.up, 0.5).normalize();
-  world.props.add('dock', world.surface.point(edge, -0.0015), seaward, 1.2);
+  world.props.add('dock', world.surface.point(edge, -0.0015), seaward, 0.55);
   if (kit.crane) {
     world.props.add(
       'harbor-crane',
-      world.surface.point(offset(shore.up, 0.5, 0.004), -0.0004),
+      world.surface.point(offset(shore.up, 0.5, 2.5 * U), -0.0004),
       seaward,
       1.1,
     );
     world.props.add(
       'containers',
-      world.surface.point(offset(shore.up, 2.5, 0.006), -0.0004),
+      world.surface.point(offset(shore.up, 2.5, 3 * U), -0.0004),
       seaward,
       1,
     );
@@ -106,12 +107,12 @@ export function harbour(
   if (kit.light)
     world.props.add(
       'lighthouse',
-      world.surface.point(offset(shore.up, 4, 0.006), -0.0004),
+      world.surface.point(offset(shore.up, 4, 3 * U), -0.0004),
       null,
       1.2,
     );
   if (kit.boats && world.quality.life)
-    for (let i = 0; i < 2; i++)
+    for (let i = 0; i < 1; i++)
       world.props.add(
         world.random.pick(kit.boats),
         coast.up
@@ -121,7 +122,7 @@ export function harbour(
             seaward
               .clone()
               .normalize()
-              .multiplyScalar(0.004 * (i + 1)),
+              .multiplyScalar(3 * U * (i + 1)),
           ),
         seaward.clone().cross(coast.up),
         1,
@@ -158,8 +159,8 @@ export function queue(
   tints: Tone[],
 ) {
   for (let i = 0; i < length; i++) {
-    const dir = offset(start, heading, 0.0028 * i);
-    const ahead = offset(start, heading, 0.0028 * (i - 1));
+    const dir = offset(start, heading, 0.9 * U * i);
+    const ahead = offset(start, heading, 0.9 * U * (i - 1));
     world.props.add(kind, world.surface.point(dir, 0), ahead.sub(dir), 1, world.random.pick(tints));
   }
 }

@@ -2,11 +2,13 @@ import { describe, expect, it } from 'vitest';
 import { allScenarioProfiles } from '../../lib/canonical-core';
 import { systemPortrait } from '../../lib/system-portrait';
 import { presentSignals, worldSignals } from '../../lib/world-signals';
+import * as THREE from 'three';
 import { buildCompanion, buildFeature } from './bodies';
 import { buildLandmark, buildWorld, landmarkIds, worldIds } from './catalog';
 import { coveredFaces, decades, lightShare, satelliteCount } from './encoding';
 import { surfaces } from './materials';
 import { qualities, type WorldModel } from './model';
+import { propFootprint } from './props/library';
 import { worldStories } from './stories';
 
 const signals = allScenarioProfiles.map(worldSignals);
@@ -118,7 +120,12 @@ describe('inhabited worlds', () => {
         `${id} plants`,
       ).toBe(true);
       expect(model.movers.length, `${id} movers`).toBeGreaterThan(0);
-      expect(model.instances.reduce((n, g) => n + g.matrices.length / 16, 0)).toBeGreaterThan(300);
+      // A diorama of a few large models, not a crowd of specks.
+      const statics = model.instances.reduce((n, g) => n + g.matrices.length / 16, 0);
+      const moving = model.movers.reduce((n, g) => n + g.route.length, 0);
+      expect(statics, `${id} props`).toBeGreaterThan(60);
+      expect(statics, `${id} props`).toBeLessThanOrEqual(250);
+      expect(moving, `${id} movers`).toBeLessThanOrEqual(56);
       if (['present', 'S3', 'S4', 'S7', 'S9', 'S10'].includes(id))
         expect(
           all.some((k) => animals.test(k)),
@@ -145,6 +152,29 @@ describe('inhabited worlds', () => {
     }
   }, 30000);
 
+  it('never lets two props overlap', () => {
+    for (const id of ['present', 'S1', 'S3', 'S6']) {
+      const i = worldIds.indexOf(id);
+      const model = buildWorld(id, i === 0 ? presentSignals : signals[i - 1], qualities.story);
+      const placed: { at: THREE.Vector3; r: number }[] = [];
+      const m = new THREE.Matrix4();
+      for (const group of model.instances)
+        for (let k = 0; k < group.matrices.length; k += 16) {
+          m.fromArray(group.matrices, k);
+          const scale = new THREE.Vector3().setFromMatrixColumn(m, 0).length();
+          placed.push({
+            at: new THREE.Vector3().setFromMatrixPosition(m),
+            r: propFootprint(group.kind) * scale,
+          });
+        }
+      for (let a = 0; a < placed.length; a++)
+        for (let b = a + 1; b < placed.length; b++)
+          expect(placed[a].at.distanceTo(placed[b].at)).toBeGreaterThanOrEqual(
+            (placed[a].r + placed[b].r) * 0.8 - 1e-9,
+          );
+    }
+  }, 30000);
+
   it('places every movers route in the planet frame near the surface', () => {
     const model = buildWorld('S3', signals[2], qualities.story);
     for (const group of model.movers)
@@ -152,7 +182,7 @@ describe('inhabited worlds', () => {
         for (let p = 0; p < route.points.length; p += 3) {
           const r = Math.hypot(route.points[p], route.points[p + 1], route.points[p + 2]);
           expect(r).toBeGreaterThan(0.97);
-          expect(r).toBeLessThan(1.12);
+          expect(r).toBeLessThan(1.2);
         }
   });
 });

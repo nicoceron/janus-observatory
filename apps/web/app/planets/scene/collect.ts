@@ -1,6 +1,14 @@
 import * as THREE from 'three';
 import type { Mesher, Tone } from '../kit';
-import { propTint, U } from '../props/library';
+import {
+  living,
+  propFootprint,
+  propGroup,
+  propScale,
+  propTint,
+  U,
+  type PropGroup,
+} from '../props/library';
 
 const colour = new THREE.Color();
 const basis = { x: new THREE.Vector3(), y: new THREE.Vector3(), z: new THREE.Vector3() };
@@ -45,12 +53,85 @@ export function standing(point: THREE.Vector3, forward: THREE.Vector3 | null, sc
     .setPosition(point);
 }
 
-/** Citizens and animals: skipped where a quality tier has no life layer. */
-const living =
-  /^(person|walker|worker|guard|robed|porter|enhanced|astronaut|deer|bison|cow|sheep|horse|bird|whale|fish)/;
+/**
+ * How many props of each group a world keeps at story density. Worlds are dioramas of a few large
+ * models, not crowds: when a recipe offers more, spacing between same-group props grows evenly
+ * until the budget fits, so every settlement keeps a few buildings rather than some vanishing.
+ */
+const budgets: Record<PropGroup, number> = {
+  structure: 90,
+  vehicle: 10,
+  person: 28,
+  robot: 14,
+  animal: 16,
+  plant: 70,
+  decor: 22,
+};
+const order: PropGroup[] = ['structure', 'vehicle', 'robot', 'person', 'animal', 'plant', 'decor'];
+/** Footprints are half-widths of bounding boxes, so a little overlap still reads as touching. */
+const TOUCH = 0.8;
+
+/** A sphere that props keep out of, e.g. a landmark drawn as its own layer. */
+export type KeepOut = { centre: THREE.Vector3; radius: number };
+
+type Entry = {
+  kind: string;
+  group: PropGroup;
+  matrix: THREE.Matrix4;
+  tint: [number, number, number];
+  position: THREE.Vector3;
+  radius: number;
+};
+
+function clear(entry: Entry, pool: Entry[], spacing: number) {
+  for (const other of pool) {
+    const limit = (other.radius + entry.radius) * spacing;
+    if (other.position.distanceToSquared(entry.position) < limit * limit) return false;
+  }
+  return true;
+}
+
+/** Keep props from overlapping each other or a landmark, within each group's budget. */
+function declutter(entries: Entry[], density: number, keepOut: KeepOut[]) {
+  const kept: Entry[] = [];
+  for (const group of order) {
+    const budget = Math.max(1, Math.round(budgets[group] * density));
+    const free = entries.filter(
+      (e) =>
+        e.group === group &&
+        keepOut.every((k) => k.centre.distanceToSquared(e.position) > k.radius * k.radius) &&
+        clear(e, kept, TOUCH),
+    );
+    // Accept in recipe order with a given spacing; stop early once the budget is exceeded.
+    const run = (spacing: number) => {
+      const mine: Entry[] = [];
+      for (const e of free) {
+        if (!clear(e, mine, spacing)) continue;
+        mine.push(e);
+        if (mine.length > budget) break;
+      }
+      return mine;
+    };
+    let chosen = run(TOUCH);
+    if (chosen.length > budget) {
+      let lo = TOUCH,
+        hi = TOUCH * 2;
+      chosen = run(hi);
+      while (chosen.length > budget && hi < 400) chosen = run((hi *= 2));
+      for (let i = 0; i < 10; i++) {
+        const mid = (lo + hi) / 2;
+        const trial = run(mid);
+        if (trial.length > budget) lo = mid;
+        else [hi, chosen] = [mid, trial];
+      }
+    }
+    kept.push(...chosen.slice(0, budget));
+  }
+  return kept;
+}
 
 export class Props {
-  private groups = new Map<string, { matrices: number[]; tints: number[] }>();
+  private entries: Entry[] = [];
   constructor(
     private life = true,
     private furnish = true,
@@ -58,26 +139,47 @@ export class Props {
 
   /** Place a prop: `size` is in person units (1 = one citizen tall). */
   add(kind: string, point: THREE.Vector3, forward: THREE.Vector3 | null, size = 1, tint?: Tone) {
-    this.addMatrix(kind, standing(point, forward, size * U), tint);
+    this.addMatrix(kind, standing(point, forward, size * U * propScale(kind)), tint);
   }
 
   addMatrix(kind: string, matrix: THREE.Matrix4, tint?: Tone) {
     if (!this.furnish || (!this.life && living.test(kind))) return;
-    let group = this.groups.get(kind);
-    if (!group) this.groups.set(kind, (group = { matrices: [], tints: [] }));
-    group.matrices.push(...matrix.elements);
     colour.set(tint ?? propTint(kind));
-    group.tints.push(colour.r, colour.g, colour.b);
+    const scale = new THREE.Vector3().setFromMatrixColumn(matrix, 0).length();
+    this.entries.push({
+      kind,
+      group: propGroup(kind),
+      matrix,
+      tint: [colour.r, colour.g, colour.b],
+      position: new THREE.Vector3().setFromMatrixPosition(matrix),
+      radius: propFootprint(kind) * scale,
+    });
   }
 
   get count() {
-    let n = 0;
-    for (const group of this.groups.values()) n += group.matrices.length / 16;
-    return n;
+    return this.entries.length;
   }
 
-  finish(frame: InstanceGroup['frame'] = 'surface'): InstanceGroup[] {
-    return [...this.groups].map(([kind, group]) => ({
+  /**
+   * Group the kept props by kind. Surface props are decluttered against each other, the group
+   * budgets scaled by `density` (1 at story quality) and any landmark keep-out spheres.
+   */
+  finish(
+    frame: InstanceGroup['frame'] = 'surface',
+    options: { density?: number; keepOut?: KeepOut[] } = {},
+  ): InstanceGroup[] {
+    const kept =
+      frame === 'surface'
+        ? declutter(this.entries, options.density ?? 1, options.keepOut ?? [])
+        : this.entries;
+    const groups = new Map<string, { matrices: number[]; tints: number[] }>();
+    for (const e of kept) {
+      let group = groups.get(e.kind);
+      if (!group) groups.set(e.kind, (group = { matrices: [], tints: [] }));
+      group.matrices.push(...e.matrix.elements);
+      group.tints.push(...e.tint);
+    }
+    return [...groups].map(([kind, group]) => ({
       kind,
       frame,
       matrices: new Float32Array(group.matrices),
@@ -158,7 +260,7 @@ export class Traffic {
       group.phase.push(
         ((i + random() * 0.6) / count) * route.length * (options.pingpong === false ? 1 : 2),
       );
-      group.scale.push((options.size ?? 1) * U * (0.92 + random() * 0.16));
+      group.scale.push((options.size ?? 1) * U * propScale(kind) * (0.92 + random() * 0.16));
       group.pingpong.push(options.pingpong === false ? 0 : 1);
       const tint = options.tints?.length
         ? options.tints[Math.floor(random() * options.tints.length)]
@@ -168,18 +270,62 @@ export class Traffic {
     }
   }
 
-  finish(): MoverGroup[] {
-    return [...this.groups].map(([kind, g]) => ({
-      kind,
-      routes: g.routes,
-      route: new Uint16Array(g.route),
-      speed: new Float32Array(g.speed),
-      phase: new Float32Array(g.phase),
-      scale: new Float32Array(g.scale),
-      pingpong: new Uint8Array(g.pingpong),
-      tints: new Float32Array(g.tints),
-    }));
+  /**
+   * Keep at most a group budget of movers (scaled by `density`, 1 at story quality), taking turns
+   * between kinds so a world keeps its variety: a few walkers, a few vehicles, a few animals.
+   */
+  finish(density = 1): MoverGroup[] {
+    const keep = new Map<string, Set<number>>();
+    const byGroup = new Map<PropGroup, { kind: string; i: number; rank: number; hash: number }[]>();
+    for (const [kind, g] of this.groups) {
+      const order = g.route
+        .map((_, i) => ({ i, hash: hash(kind, i) }))
+        .sort((a, b) => a.hash - b.hash);
+      const list = byGroup.get(propGroup(kind)) ?? [];
+      order.forEach((m, rank) => list.push({ kind, i: m.i, rank, hash: m.hash }));
+      byGroup.set(propGroup(kind), list);
+    }
+    for (const [group, list] of byGroup) {
+      const budget = Math.round((moverBudgets[group] ?? 0) * density);
+      list.sort((a, b) => a.rank - b.rank || a.hash - b.hash);
+      for (const m of list.slice(0, budget)) {
+        if (!keep.has(m.kind)) keep.set(m.kind, new Set());
+        keep.get(m.kind)!.add(m.i);
+      }
+    }
+    return [...this.groups]
+      .filter(([kind]) => keep.has(kind))
+      .map(([kind, g]) => {
+        const indices = [...keep.get(kind)!].sort((a, b) => a - b);
+        const pick = (values: number[]) => indices.map((i) => values[i]);
+        return {
+          kind,
+          routes: g.routes,
+          route: new Uint16Array(pick(g.route)),
+          speed: new Float32Array(pick(g.speed)),
+          phase: new Float32Array(pick(g.phase)),
+          scale: new Float32Array(pick(g.scale)),
+          pingpong: new Uint8Array(pick(g.pingpong)),
+          tints: new Float32Array(indices.flatMap((i) => g.tints.slice(i * 3, i * 3 + 3))),
+        };
+      });
   }
+}
+
+const moverBudgets: Partial<Record<PropGroup, number>> = {
+  person: 14,
+  robot: 10,
+  vehicle: 16,
+  animal: 12,
+  structure: 4,
+};
+
+/** A stable pseudo-random number for the i-th mover of a kind. */
+function hash(kind: string, i: number) {
+  let h = 2166136261 ^ i;
+  for (let c = 0; c < kind.length; c++) h = Math.imul(h ^ kind.charCodeAt(c), 16777619);
+  h = Math.imul(h ^ (h >>> 15), 2246822507);
+  return (h ^ (h >>> 13)) >>> 0;
 }
 
 const p0 = new THREE.Vector3(),

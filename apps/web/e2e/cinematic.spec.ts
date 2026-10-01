@@ -13,6 +13,8 @@ async function indexJump(page: import('@playwright/test').Page, label: string, i
     .getByRole('button', { name: label })
     .click();
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', id);
+  // The chapter becomes active before the travel eases to rest; measure from the resting state.
+  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-anchor-travel', 'idle');
 }
 
 test('one canvas survives every world, reverse jumps, and the observer', async ({

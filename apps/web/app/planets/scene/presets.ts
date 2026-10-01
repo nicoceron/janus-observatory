@@ -175,11 +175,11 @@ export const carColours: Tone[] = [
 export const citizens = { kinds: citizenKinds, walkers: walkerKinds };
 
 /** A modern city with a rising core, mixed edge, traffic, lamps, parks and a plaza. */
-export function cityStyle(radius = 0.075): TownStyle {
+export function cityStyle(radius = 0.16): TownStyle {
   return {
     layout: 'grid',
     radius,
-    block: 11 * U,
+    block: 5.5 * U,
     street: { width: 1.7 * U, tone: '#4a4d54' },
     plaza: {
       radius: 3 * U,
@@ -213,7 +213,7 @@ export function cityStyle(radius = 0.075): TownStyle {
 }
 
 /** A farming village: a lane or three, houses, barns, silos and haystacks. */
-export function villageStyle(radius = 0.04, roofs: 'mixed' | 'cottage' = 'mixed'): TownStyle {
+export function villageStyle(radius = 0.09, roofs: 'mixed' | 'cottage' = 'mixed'): TownStyle {
   return {
     layout: 'radial',
     radius,

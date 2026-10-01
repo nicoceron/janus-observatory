@@ -122,7 +122,7 @@ export const s9: EarthBrief = {
     // No Table 6 surface value: people live lightly, without lights, roads or engines.
     const hamlet: TownStyle = {
       layout: 'camp',
-      radius: 0.026,
+      radius: 0.07,
       plaza: { radius: 2.2 * U, tone: '#c9dcb0', centre: [['crystal', 1, [0.9, 1.1]]] },
       lot: { spacing: 2 * U },
       core: [
@@ -135,9 +135,9 @@ export const s9: EarthBrief = {
         ['well', 0.5, [1, 1.2]],
         ['bench', 0.5, [1, 1.1]],
       ],
-      people: { standing: 10, walking: 4, ...citizens, tints: linen },
+      people: { standing: 5, walking: 2, ...citizens, tints: linen },
       trees: {
-        count: 10,
+        count: 5,
         kinds: ['oak', 'flowers', 'cypress'],
         tints: ['#3f8f4a', '#f0a8c8'],
         size: [1, 1.4],
@@ -149,8 +149,8 @@ export const s9: EarthBrief = {
     const towns = world
       .scatter(
         land.filter((f) => f.elevation < 0.4),
-        16,
-        16,
+        7,
+        24,
       )
       .map((face) => buildTown(world, face.up, hamlet));
     for (const town of towns)
@@ -166,13 +166,13 @@ export const s9: EarthBrief = {
       width: 0.5 * U,
       tone: '#c9b994',
       neighbours: 1,
-      reach: 0.4,
+      reach: 0.6,
     }))
       if (world.quality.life)
         world.traffic.add(
           'walker-1',
           makeRoute(arc(a.centre, b.centre, 0.004).map((d) => world.surface.point(d, 0.0003))),
-          { count: 2, speed: 0.001, tints: linen, random },
+          { count: 1, speed: 0.003, tints: linen, random },
         );
     const shores = towns
       .map((t) => harbour(world, t.centre, { boats: ['canoe'] }))
@@ -183,15 +183,15 @@ export const s9: EarthBrief = {
     world
       .scatter(
         land.filter((f) => !f.used),
-        7,
-        28,
+        5,
+        34,
       )
       .forEach((face, i) => {
         face.used = true;
         gift(
           i === 0 ? world.layer('gift', 'surface', { landmark: 'gift' }) : world.ground,
           world.on(face, random() * 6),
-          i === 0 ? 0.035 : 0.025,
+          i === 0 ? 0.09 : 0.065,
         );
       });
 
