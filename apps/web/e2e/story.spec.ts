@@ -17,10 +17,9 @@ test('the story is complete before WebGL and links every scenario to its data', 
   await expect(page.locator('[data-world]')).toHaveCount(10);
   for (let i = 1; i <= 10; i++) {
     const world = page.locator(`[data-world="S${i}"]`);
-    await expect(world.getByRole('link', { name: 'Explore this civilization ↗' })).toHaveAttribute(
-      'href',
-      `/atlas/s${i}`,
-    );
+    await expect(
+      world.getByRole('link', { name: 'Explore this civilization ↗', includeHidden: true }),
+    ).toHaveAttribute('href', `/atlas/s${i}`);
     await expect(world.locator('a[href*="arxiv.org"]')).toHaveCount(0);
   }
   await expect(

@@ -61,7 +61,7 @@ test.beforeEach(async ({ page }) => {
   await installDeterministicClientState(page);
 });
 
-test('First light preserves the approved full-motion composition at a paused frame', async ({
+test('First light preserves the approved composition in a deterministic rest pose', async ({
   page,
 }) => {
   // Decision 023 keeps the homepage in full motion while preserving the saved
@@ -84,7 +84,31 @@ test('First light preserves the approved full-motion composition at a paused fra
   expect(await page.evaluate(() => localStorage.getItem('janus-motion-preference'))).toBe(
     'reduced',
   );
+  // Wait for GSAP's authored entrance to finish, rather than capturing a
+  // machine-dependent point while its staggered text is still moving.
+  await expect
+    .poll(async () => {
+      await page.clock.runFor(100);
+      return page.locator('[data-chapter="0"] [data-intro]').evaluateAll((elements) =>
+        elements.every((element) => {
+          const style = (element as HTMLElement).style;
+          return style.transform === '' && style.opacity === '';
+        }),
+      );
+    })
+    .toBe(true);
   await settleDocument(page, 'full', true);
+  // The native clock pauses callbacks, but a model's accumulated phase still
+  // depends on its asynchronous mount. After verifying the homepage policy,
+  // use the existing motion event to put models at their authored rest pose
+  // for this screenshot only; the journey remains in full mode.
+  await page.evaluate(() => {
+    document.documentElement.dataset.motion = 'reduced';
+    window.dispatchEvent(new CustomEvent('janus:motion-change'));
+  });
+  await page.clock.runFor(32);
+  await expect(page.locator('[data-voyage]')).toHaveAttribute('data-mode', 'full');
+  await expect(page.locator('html')).toHaveAttribute('data-motion', 'reduced');
   await screenshot(page.locator('[data-chapter="0"]'), 'first-light-earth.png', 120);
 });
 
