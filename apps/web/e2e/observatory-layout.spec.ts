@@ -1,3 +1,4 @@
+import { observingMissionIds } from '@janus/domain/scientific-dataset';
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
@@ -33,16 +34,16 @@ function expectStable(actual: Awaited<ReturnType<typeof geometry>>, baseline: ty
   }
 }
 
-test('all ten planets keep their stage and selectors stationary with every instrument', async ({
-  page,
-}) => {
-  test.setTimeout(90_000);
-  await page.goto('/observatory?scenario=S3');
-  await page.evaluate(() => document.fonts.ready);
-  const futures = page.getByRole('group', { name: '01 · Select future' });
-  const methods = page.getByRole('group', { name: '02 · Select observing concept' });
-  for (const method of await methods.getByRole('button').all()) {
-    await method.click();
+for (const instrument of observingMissionIds) {
+  test(`all ten planets keep their stage and selectors stationary with ${instrument}`, async ({
+    page,
+  }) => {
+    test.setTimeout(90_000);
+    await page.goto(`/observatory?scenario=S3&instrument=${instrument}`);
+    await page.evaluate(() => document.fonts.ready);
+    const futures = page.getByRole('group', { name: '01 · Select future' });
+    const methods = page.getByRole('group', { name: '02 · Select observing concept' });
+    const method = methods.locator(`[data-telemetry-value="${instrument}"]`);
     await expect(method).toHaveAttribute('aria-pressed', 'true');
     await futures.evaluate((element) =>
       element.scrollIntoView({ block: 'center', behavior: 'instant' }),
@@ -75,9 +76,11 @@ test('all ten planets keep their stage and selectors stationary with every instr
       });
       expect(bounds, 'all evidence must fit without clipping').toBe(true);
     }
-  }
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-});
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+  });
+}
 
 test('320px keyboard switching stays stable with reduced motion and no WebGL', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 740 });

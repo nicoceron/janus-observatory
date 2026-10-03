@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { activateSpatialTarget } from './helpers/spatial-input';
 import { allScenarioProfiles } from '../lib/canonical-core';
 import { systemPortrait } from '../lib/system-portrait';
 import { selectionName, systemSelections } from '../app/planets/explore';
@@ -57,7 +58,7 @@ test('every published destination is visible together and opens its own inspecto
       exact: true,
     });
     const scrollBefore = await page.evaluate(() => scrollY);
-    await button.click();
+    await activateSpatialTarget(page, button, isMobile);
     await expect(
       page.getByRole('dialog').getByRole('heading', { name: selectionName(target), exact: true }),
     ).toBeVisible();

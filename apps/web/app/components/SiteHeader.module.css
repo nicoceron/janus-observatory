@@ -9,6 +9,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  /* Empty fixed-header space must not intercept the spatial targets beneath it. */
+  pointer-events: none;
+}
+.brand,
+.navigation a,
+.navigation button,
+.menu {
+  pointer-events: auto;
 }
 /* A longer, softer fade lets scrolled copy dissolve under the bar instead of reappearing at
    full brightness beside the wordmark. Paint only: no blur over the WebGL stage. */

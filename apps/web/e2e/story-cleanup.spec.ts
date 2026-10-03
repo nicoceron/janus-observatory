@@ -1,7 +1,9 @@
 import { expect, test } from '@playwright/test';
+import { activateSpatialTarget } from './helpers/spatial-input';
 
 test('story cleanup keeps full animation, spatial exploration and a quiet interface', async ({
   page,
+  isMobile,
 }, info) => {
   test.setTimeout(90000);
   const errors: string[] = [];
@@ -39,7 +41,7 @@ test('story cleanup keeps full animation, spatial exploration and a quiet interf
   await expect(region.getByRole('button')).toHaveCount(5);
   await page.screenshot({ path: `docs/qa/story-cleanup/${info.project.name}-s3.png` });
   const luna = region.getByRole('button', { name: 'Inspect Luna', exact: true });
-  await luna.click();
+  await activateSpatialTarget(page, luna, isMobile);
   await expect(
     page.getByRole('dialog').getByRole('heading', { name: 'Luna', exact: true }),
   ).toBeVisible();

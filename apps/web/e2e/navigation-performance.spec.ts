@@ -1,40 +1,44 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
-test('every main route uses the same navigation and a working story index', async ({ page }) => {
-  let reference: unknown;
-  for (const route of [
-    '/',
-    '/atlas',
-    '/observatory',
-    '/atlas/s6',
-    '/methods',
-    '/sources',
-    '/this-route-does-not-exist',
-  ]) {
-    await page.goto(route);
-    await page.evaluate(() => document.fonts.ready);
+async function headerAppearance(page: Page) {
+  await page.evaluate(() => document.fonts.ready);
+  const header = page.locator('[data-site-header]');
+  await expect(header).toBeVisible();
+  return header.evaluate((element) => {
+    const r = element.getBoundingClientRect();
+    const css = getComputedStyle(element);
+    return {
+      x: r.x,
+      y: r.y,
+      width: r.width,
+      height: r.height,
+      padding: css.padding,
+      background: css.backgroundImage,
+      links: [...element.querySelectorAll('nav[aria-label="Primary navigation"] a')].map((a) => ({
+        text: a.textContent,
+        href: a.getAttribute('href'),
+        font: getComputedStyle(a).font,
+        x: Math.round(a.getBoundingClientRect().x),
+      })),
+    };
+  });
+}
+
+for (const route of [
+  '/',
+  '/atlas',
+  '/observatory',
+  '/atlas/s6',
+  '/methods',
+  '/sources',
+  '/this-route-does-not-exist',
+]) {
+  test(`navigation and story index stay consistent on ${route}`, async ({ page }) => {
+    await page.goto('/');
+    const reference = await headerAppearance(page);
+    if (route !== '/') await page.goto(route);
+    expect(await headerAppearance(page)).toEqual(reference);
     const header = page.locator('[data-site-header]');
-    await expect(header).toBeVisible();
-    const appearance = await header.evaluate((element) => {
-      const r = element.getBoundingClientRect();
-      const css = getComputedStyle(element);
-      return {
-        x: r.x,
-        y: r.y,
-        width: r.width,
-        height: r.height,
-        padding: css.padding,
-        background: css.backgroundImage,
-        links: [...element.querySelectorAll('nav[aria-label="Primary navigation"] a')].map((a) => ({
-          text: a.textContent,
-          href: a.getAttribute('href'),
-          font: getComputedStyle(a).font,
-          x: Math.round(a.getBoundingClientRect().x),
-        })),
-      };
-    });
-    if (!reference) reference = appearance;
-    expect(appearance).toEqual(reference);
     await header.getByRole('button', { name: 'Index +', exact: true }).click();
     const index = page.getByRole('navigation', { name: 'Story index' });
     await expect(index).toBeVisible();
@@ -45,7 +49,13 @@ test('every main route uses the same navigation and a working story index', asyn
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(
       false,
     );
-  }
+  });
+}
+
+test('primary navigation and the story index return from a research route to S3', async ({
+  page,
+}) => {
+  await page.goto('/this-route-does-not-exist');
   await page
     .getByRole('navigation', { name: 'Primary navigation' })
     .getByRole('link', { name: 'Atlas', exact: true })

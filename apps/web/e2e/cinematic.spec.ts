@@ -104,47 +104,59 @@ test('observer continues moving while scroll stays still', async ({ page }, test
   expect(await page.evaluate(() => scrollY)).toBe(y);
 });
 
-test('desktop and mobile compositions have no page overflow and retain readable profiles', async ({
-  page,
-}, testInfo) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/');
-  await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
-    timeout: 30000,
-  });
-  await mkdir('docs/qa/spatial-systems', { recursive: true });
-  const entries: [string, string][] = [
-    ['first-light', '00 First light ↗'],
-    ['possibilities', '01 Ten possible worlds ↗'],
-    ...Array.from({ length: 10 }, (_, i): [string, string] => [
-      `s${i + 1}`,
-      `${String(i + 2).padStart(2, '0')} S${i + 1} ↗`,
-    ]),
-    ['observer', '12 The other side ↗'],
-    ['invisible', '13 Hidden in plain sight ↗'],
-    ['signals', '14 Ways of seeing ↗'],
-    ['endurance', '15 Civilizations breathe ↗'],
-  ];
-  for (const [id, label] of entries) {
-    await indexJump(page, label, id);
-    if (/^s\d+$/.test(id)) {
-      await expect(page.locator('canvas')).toHaveAttribute(
-        'data-scene',
-        `${Number(id.slice(1)) + 1}.000`,
-      );
-      const portrait = systemPortrait(allScenarioProfiles[Number(id.slice(1)) - 1]).art;
-      const explore = page.locator(`[aria-label="Explore ${id.toUpperCase()} models"]`);
-      await expect(
-        explore.getByRole('button', { name: 'Inspect Earth', exact: true }),
-      ).toBeVisible();
-      const destinations = 1 + portrait.bodies.length + portrait.features.length;
-      await expect(explore.getByRole('button')).toHaveCount(destinations);
-    }
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
-      true,
+const compositionEntries: [string, string][] = [
+  ['first-light', '00 First light ↗'],
+  ['possibilities', '01 Ten possible worlds ↗'],
+  ...Array.from({ length: 10 }, (_, i): [string, string] => [
+    `s${i + 1}`,
+    `${String(i + 2).padStart(2, '0')} S${i + 1} ↗`,
+  ]),
+  ['observer', '12 The other side ↗'],
+  ['invisible', '13 Hidden in plain sight ↗'],
+  ['signals', '14 Ways of seeing ↗'],
+  ['endurance', '15 Civilizations breathe ↗'],
+];
+
+// Keep each sweep bounded on software-rendered Safari while retaining all
+// chapter, canonical portrait, overflow, and native index-jump assertions.
+for (let start = 0; start < compositionEntries.length; start += 4) {
+  const entries = compositionEntries.slice(start, start + 4);
+  test(`desktop and mobile compositions stay readable from ${entries[0][0]} to ${entries.at(-1)![0]}`, async ({
+    page,
+  }, testInfo) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/');
+    await expect(page.locator('[data-stage-status]')).toHaveAttribute(
+      'data-stage-status',
+      'ready',
+      {
+        timeout: 30000,
+      },
     );
-    if (testInfo.project.name === 'chromium' || testInfo.project.name === 'mobile-chromium') {
-      await page.screenshot({ path: `docs/qa/spatial-systems/${testInfo.project.name}-${id}.png` });
+    await mkdir('docs/qa/spatial-systems', { recursive: true });
+    for (const [id, label] of entries) {
+      await indexJump(page, label, id);
+      if (/^s\d+$/.test(id)) {
+        await expect(page.locator('canvas')).toHaveAttribute(
+          'data-scene',
+          `${Number(id.slice(1)) + 1}.000`,
+        );
+        const portrait = systemPortrait(allScenarioProfiles[Number(id.slice(1)) - 1]).art;
+        const explore = page.locator(`[aria-label="Explore ${id.toUpperCase()} models"]`);
+        await expect(
+          explore.getByRole('button', { name: 'Inspect Earth', exact: true }),
+        ).toBeVisible();
+        const destinations = 1 + portrait.bodies.length + portrait.features.length;
+        await expect(explore.getByRole('button')).toHaveCount(destinations);
+      }
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+        true,
+      );
+      if (testInfo.project.name === 'chromium' || testInfo.project.name === 'mobile-chromium') {
+        await page.screenshot({
+          path: `docs/qa/spatial-systems/${testInfo.project.name}-${id}.png`,
+        });
+      }
     }
-  }
-});
+  });
+}
