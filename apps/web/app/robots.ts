@@ -8,6 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
       disallow: ['/api/'],
+      other: { 'Content-signal': 'search=yes, ai-input=yes' },
     },
     sitemap: `${siteOrigin}/sitemap.xml`,
   };
