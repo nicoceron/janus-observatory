@@ -52,7 +52,7 @@ jobs:
         project: [chromium, firefox, webkit, mobile-chromium, mobile-webkit]
     container:
       image: mcr.microsoft.com/playwright:v1.62.1-noble@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac
-      options: --ipc=host
+      options: --ipc=host --user 1001
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
