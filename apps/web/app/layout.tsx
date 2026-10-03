@@ -71,6 +71,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        <link rel="describedby" href={`${siteOrigin}/llms.txt`} type="text/markdown" />
+      </head>
       <body className={`${body.variable} ${mono.variable} ${display.variable}`}>
         {children}
         <MotionPreference />
