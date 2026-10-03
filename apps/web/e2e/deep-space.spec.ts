@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 test('anchor travel is interruptible, lands accurately and survives browser history', async ({
   page,
 }, info) => {
+  await page.clock.install();
   await page.goto('/');
   const root = page.locator('[data-voyage]');
   await expect(page.locator('canvas')).toHaveAttribute('data-planet-state', 'ready', {
@@ -13,12 +14,17 @@ test('anchor travel is interruptible, lands accurately and survives browser hist
     await page.getByRole('button', { name: 'Index +', exact: true }).click();
     await page.getByRole('button', { name: label, exact: true }).click();
   };
-  await jump('04 S3 ↗');
+  await page.getByRole('button', { name: 'Index +', exact: true }).click();
+  // Hold the tween while sending input so a slow software renderer cannot
+  // complete the trip between the moving assertion and the interrupt gesture.
+  await page.clock.pauseAt(await page.evaluate(() => Date.now() + 60_000));
+  await page.getByRole('button', { name: '04 S3 ↗', exact: true }).click();
   await expect(root).toHaveAttribute('data-anchor-travel', 'moving');
   if (info.project.name === 'chromium') await page.mouse.wheel(0, 150);
   else await page.evaluate(() => window.dispatchEvent(new Event('touchstart')));
   await expect(root).toHaveAttribute('data-anchor-travel', 'idle');
   expect(await page.evaluate(() => location.hash)).toBe('');
+  await page.clock.resume();
   await jump('04 S3 ↗');
   await expect(page).toHaveURL(/#s3$/);
   await expect(page.locator('canvas')).toHaveAttribute('data-scene', '4.000');
