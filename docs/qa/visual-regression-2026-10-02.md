@@ -14,7 +14,7 @@ References: [Decision 023](../DECISION_023_STORY_CLEANUP.md), [current master pl
 
 ## Broader browser CI repair
 
-The previous main run timed out after forty minutes. Headless Linux Firefox could not create WebGL, while 3D-specific checks required a ready canvas. Following Playwright's documented Linux headed setup, CI now uses Xvfb and the same pinned Noble browser image. Each of the five existing browser projects runs in its own job with one worker; no browser, assertion, or fallback coverage was removed. Reports and retained failure traces are uploaded per project. Superseded runs are cancelled through native workflow concurrency.
+The previous main run timed out after forty minutes. Headless Linux Firefox could not create WebGL, while 3D-specific checks required a ready canvas. Following Playwright's documented Linux headed setup, CI now uses Xvfb and the same pinned Noble browser image. Each of the five existing browser projects runs in its own job with one worker, independently of the source-verification job (each browser job builds its own production server); no browser, assertion, or fallback coverage was removed. Reports and retained failure traces are uploaded per project. Superseded runs are cancelled through native workflow concurrency.
 
 The fifty Observatory selections are now five independently bounded tests, one per canonical observing mission with the same ten scenarios, stable geometry, clipping, and data assertions. The pre-WebGL story-link assertion includes inactive chapters, whose semantic links intentionally become inert during the animated journey. Production navigation and artwork remain unchanged.
 
