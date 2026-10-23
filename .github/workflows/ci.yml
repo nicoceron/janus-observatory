@@ -86,6 +86,17 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+  # One stable check for branch protection, whatever the browser matrix or shard count.
+  browser-smoke-gate:
+    name: browser-smoke
+    if: always() && github.event_name != 'schedule'
+    needs: browser-smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Every browser job passed
+        run: test "${{ needs.browser-smoke.result }}" = success
+
   provider-canary:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
