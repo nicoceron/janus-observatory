@@ -51,18 +51,15 @@ jobs:
       fail-fast: false
       matrix:
         # WebKit renders WebGL in software on hosted runners; split it so each job stays bounded.
+        # The long 3D journeys are excluded from WebKit in CI (see playwright.config.ts).
         include:
           - { project: chromium, shard: 1/1 }
           - { project: firefox, shard: 1/1 }
           - { project: mobile-chromium, shard: 1/1 }
-          - { project: webkit, shard: 1/4 }
-          - { project: webkit, shard: 2/4 }
-          - { project: webkit, shard: 3/4 }
-          - { project: webkit, shard: 4/4 }
-          - { project: mobile-webkit, shard: 1/4 }
-          - { project: mobile-webkit, shard: 2/4 }
-          - { project: mobile-webkit, shard: 3/4 }
-          - { project: mobile-webkit, shard: 4/4 }
+          - { project: webkit, shard: 1/2 }
+          - { project: webkit, shard: 2/2 }
+          - { project: mobile-webkit, shard: 1/2 }
+          - { project: mobile-webkit, shard: 2/2 }
     container:
       image: mcr.microsoft.com/playwright:v1.62.1-noble@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac
       options: --ipc=host --user 1001

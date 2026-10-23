@@ -3,6 +3,21 @@ import { defineConfig, devices } from '@playwright/test';
 const port = 3100;
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${port}`;
 
+// Hosted Linux runners give WebKit only software WebGL, where these long 3D journeys stall for
+// minutes. In CI they run in Chromium, Firefox and mobile Chromium; WebKit runs them locally.
+const webkitCiIgnore = process.env.CI
+  ? [
+      '**/cinematic.spec.ts',
+      '**/chapter-sync.spec.ts',
+      '**/deep-space.spec.ts',
+      '**/organic-reveal.spec.ts',
+      '**/spatial-system.spec.ts',
+      '**/story-system.spec.ts',
+      '**/telescope-flow.spec.ts',
+      '**/world-explorer.spec.ts',
+    ]
+  : [];
+
 export default defineConfig({
   testDir: './apps/web/e2e',
   fullyParallel: true,
@@ -42,6 +57,7 @@ export default defineConfig({
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+      testIgnore: webkitCiIgnore,
     },
     {
       name: 'mobile-chromium',
@@ -50,6 +66,7 @@ export default defineConfig({
     {
       name: 'mobile-webkit',
       use: { ...devices['iPhone 15'] },
+      testIgnore: webkitCiIgnore,
     },
   ],
 });

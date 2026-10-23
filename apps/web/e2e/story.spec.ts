@@ -32,7 +32,12 @@ test('the story is complete before WebGL and links every scenario to its data', 
   ).toBeAttached();
 });
 
-test('keyboard jumps and fast reversals reconcile to the final chapter', async ({ page }) => {
+test('keyboard jumps and fast reversals reconcile to the final chapter', async ({
+  page,
+  browserName,
+}) => {
+  // Anchor travel needs a live WebGL frame loop; see the WebKit note in playwright.config.ts.
+  test.skip(Boolean(process.env.CI) && browserName === 'webkit', 'software WebGL in CI WebKit');
   await page.goto('/');
   await jump(page, '10 S9 Deus Ex Machina', 's9');
   await page.locator('#s9').press('ArrowUp');

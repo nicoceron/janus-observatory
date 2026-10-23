@@ -31,8 +31,12 @@ export function Inspector({
   const { world, selection } = inspection,
     art = worlds[world];
   useEffect(() => {
-    const overflow = document.body.style.overflow;
+    const { overflow, paddingRight } = document.body.style;
+    const width = document.documentElement.clientWidth;
     document.body.style.overflow = 'hidden';
+    // Engines that drop the scrollbar on lock widen the page; pad it back so text never reflows.
+    const gutter = document.documentElement.clientWidth - width;
+    if (gutter > 0) document.body.style.paddingRight = `${gutter}px`;
     close.current?.focus({ preventScroll: true });
     const keyboard = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -60,6 +64,7 @@ export function Inspector({
     document.addEventListener('keydown', keyboard);
     return () => {
       document.body.style.overflow = overflow;
+      document.body.style.paddingRight = paddingRight;
       document.removeEventListener('keydown', keyboard);
     };
   }, [onClose]);

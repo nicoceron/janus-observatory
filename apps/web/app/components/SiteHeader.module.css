@@ -156,13 +156,12 @@
   border: 1px solid #2c383e;
   border-radius: 16px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
-  transform-origin: top right;
-  animation: menu-in 220ms var(--ease-out) both;
+  animation: menu-in 180ms ease-out both;
 }
+/* Fade only: the list never moves, so its buttons are hit-testable from the first frame. */
 @keyframes menu-in {
   from {
     opacity: 0;
-    transform: translateY(-6px) scale(0.98);
   }
 }
 .menu ol {

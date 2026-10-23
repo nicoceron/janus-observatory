@@ -8,7 +8,8 @@ test('every published destination is visible together and opens its own inspecto
   page,
   isMobile,
 }, info) => {
-  test.setTimeout(180000);
+  // Ten worlds rendered by WebKit's software WebGL in CI need more than three minutes.
+  test.setTimeout(info.project.name.includes('webkit') ? 360000 : 180000);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));

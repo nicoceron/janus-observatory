@@ -62,6 +62,22 @@ text with tabular figures; minimum label size is 12px. License texts live in
   inner pages fade and rise on enter and fade on exit; the header and backdrop do not animate.
   Reduced motion shortens the transition to 1 ms. GSAP remains the only tweening library.
 
+## CI
+
+CI had been red or cancelled on `main` since 2026-09-28, and `main` has no branch protection, so
+PRs merged anyway. This branch merges the unmerged visual-CI repair (PR #6): per-browser jobs in the
+pinned Playwright container under xvfb, and its story, chapter-sync and spatial test fixes. On top
+of that:
+
+- WebKit runs in two shards per project. Hosted Linux runners give WebKit only software WebGL,
+  where animation frames stall long enough that Playwright's stability checks time out. The eight
+  long 3D-journey specs (and the story keyboard-jump test) therefore run in Chromium, Firefox and
+  mobile Chromium in CI, and in every browser locally, where WebKit passes all of them.
+- Opening the 3D inspector locks scrolling; WebKit then drops its scrollbar and the page widened by
+  its width, reflowing text. The lock now pads the page by the lost gutter.
+- The chapter menu fades in without moving, so its buttons are stable from the first frame.
+- Visual baselines were re-rendered by the pinned container in CI and reviewed before adoption.
+
 ## Verification
 
 Prettier, ESLint, type checks, Vitest, data/asset/link/source validators, the production build
