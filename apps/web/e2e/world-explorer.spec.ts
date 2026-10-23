@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { activateSpatialTarget } from './helpers/spatial-input';
 import AxeBuilder from '@axe-core/playwright';
 import { allScenarioProfiles } from '../lib/canonical-core';
 import { systemPortrait } from '../lib/system-portrait';
@@ -51,26 +52,28 @@ test('full-motion story text stays out of planet and asset inspection and return
   await expect(canvas).toHaveCount(1);
 });
 
-async function enter(page: import('@playwright/test').Page, index = 0) {
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
+async function enter(page: import('@playwright/test').Page, index = 0, isMobile = false) {
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
   await page
-    .getByRole('navigation', { name: 'Story index' })
+    .getByRole('navigation', { name: 'Story chapters' })
     .getByRole('button', {
-      name: `${String(index + 2).padStart(2, '0')} S${index + 1} ↗`,
-      exact: true,
+      name: new RegExp(`^${String(index + 2).padStart(2, '0')} S${index + 1} `),
     })
     .click();
   const trigger = page
     .locator(`[aria-label="Explore S${index + 1} models"]`)
     .getByRole('button', { name: 'Inspect Earth', exact: true });
-  await trigger.click();
+  // The Earth target follows a turning model, so it never reports a perfectly stable box.
+  await activateSpatialTarget(page, trigger, isMobile);
   await expect(page.getByRole('dialog')).toBeVisible();
   return trigger;
 }
 test('every world can be inspected independently and closing restores the same story canvas and focus', async ({
   page,
-}) => {
-  test.setTimeout(180000);
+  isMobile,
+}, info) => {
+  // Ten worlds rendered by WebKit's software WebGL in CI need more than three minutes.
+  test.setTimeout(info.project.name.includes('webkit') ? 360000 : 180000);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
@@ -80,7 +83,7 @@ test('every world can be inspected independently and closing restores the same s
   page.on('pageerror', (e) => errors.push(e.message));
   const canvas = await page.locator('canvas').elementHandle();
   for (let i = 0; i < 10; i++) {
-    const trigger = await enter(page, i),
+    const trigger = await enter(page, i, isMobile),
       dialog = page.getByRole('dialog'),
       system = systemPortrait(allScenarioProfiles[i]).art;
     for (const id of [...systemSelections(system), ...objectSelections(i)]) {
@@ -103,13 +106,14 @@ test('every world can be inspected independently and closing restores the same s
 });
 test('explorer keyboard loop, model controls and accessible dialog work', async ({
   page,
+  isMobile,
 }, info) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
     timeout: 30000,
   });
-  await enter(page, 3);
+  await enter(page, 3, isMobile);
   const dialog = page.getByRole('dialog');
   const close = dialog.getByRole('button', { name: 'Close world explorer', exact: true });
   await expect(close).toBeFocused();

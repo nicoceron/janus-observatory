@@ -1,9 +1,9 @@
 import { expect, test, type Page } from '@playwright/test';
 
 export async function jump(page: Page, label: string, id: string) {
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
   await page
-    .getByRole('navigation', { name: 'Story index' })
+    .getByRole('navigation', { name: 'Story chapters' })
     .getByRole('button', { name: label })
     .click();
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', id);
@@ -17,25 +17,29 @@ test('the story is complete before WebGL and links every scenario to its data', 
   await expect(page.locator('[data-world]')).toHaveCount(10);
   for (let i = 1; i <= 10; i++) {
     const world = page.locator(`[data-world="S${i}"]`);
-    await expect(world.getByRole('link', { name: 'Explore this civilization ↗' })).toHaveAttribute(
-      'href',
-      `/atlas/s${i}`,
-    );
+    await expect(
+      world.getByRole('link', { name: 'Explore this civilization ↗', includeHidden: true }),
+    ).toHaveAttribute('href', `/atlas/s${i}`);
     await expect(world.locator('a[href*="arxiv.org"]')).toHaveCount(0);
   }
   await expect(
-    page.getByText('These are possibilities, not forecasts.', { exact: false }),
+    page.getByText('These are possibilities, not predictions', { exact: false }),
   ).toBeAttached();
   await expect(
-    page.getByText('No detected signature by this method does not mean no technology.', {
+    page.getByText('Seeing nothing with one instrument doesn’t mean nothing is there.', {
       exact: true,
     }),
   ).toBeAttached();
 });
 
-test('keyboard jumps and fast reversals reconcile to the final chapter', async ({ page }) => {
+test('keyboard jumps and fast reversals reconcile to the final chapter', async ({
+  page,
+  browserName,
+}) => {
+  // Anchor travel needs a live WebGL frame loop; see the WebKit note in playwright.config.ts.
+  test.skip(Boolean(process.env.CI) && browserName === 'webkit', 'software WebGL in CI WebKit');
   await page.goto('/');
-  await jump(page, '10 S9 ↗', 's9');
+  await jump(page, '10 S9 Deus Ex Machina', 's9');
   await page.locator('#s9').press('ArrowUp');
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 's8');
   await page.locator('#s8').press('ArrowDown');
@@ -44,7 +48,7 @@ test('keyboard jumps and fast reversals reconcile to the final chapter', async (
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 's10');
   await page.locator('#s10').press('PageUp');
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 's9');
-  await jump(page, '00 First light ↗', 'first-light');
+  await jump(page, '00 First light', 'first-light');
   await page.locator('#first-light').press('ArrowUp');
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 'first-light');
 });
@@ -53,11 +57,11 @@ test('the complete story retains its native data table without a reading-mode to
   page,
 }) => {
   await page.goto('/');
-  await jump(page, '15 Civilizations breathe ↗', 'endurance');
+  await jump(page, '15 Civilizations breathe', 'endurance');
   await page.getByText('Read the data table', { exact: true }).click();
   await expect(
     page
-      .getByRole('table', { name: 'Published scenario population and annual energy use' })
+      .getByRole('table', { name: 'Population and energy use per year in each future' })
       .getByRole('row'),
   ).toHaveCount(11);
   await expect(page.getByLabel('Story controls')).toHaveCount(0);
@@ -65,12 +69,12 @@ test('the complete story retains its native data table without a reading-mode to
 
 test('matrix preserves blanks and reports the selected canonical signatures', async ({ page }) => {
   await page.goto('/');
-  await jump(page, '14 Ways of seeing ↗', 'signals');
+  await jump(page, '14 Ways of seeing', 'signals');
   const matrix = page.locator('#signals table');
   await expect(matrix.getByRole('row')).toHaveCount(11);
   await expect(matrix.locator('tbody td')).toHaveCount(50);
   await expect(
-    matrix.getByRole('link', { name: /S9, Habitable Worlds Observatory: no signature listed/ }),
+    matrix.getByRole('link', { name: /S9, Optical space telescope: nothing listed/ }),
   ).toHaveText('—');
   await matrix.getByRole('button', { name: 'S1', exact: false }).first().click();
   await expect(page.locator('[class*="signalReadout"]')).toContainText('CO2 + NO2');
@@ -79,31 +83,31 @@ test('matrix preserves blanks and reports the selected canonical signatures', as
 
 test('log chart selection exposes exact canonical values', async ({ page }) => {
   await page.goto('/');
-  await jump(page, '15 Civilizations breathe ↗', 'endurance');
+  await jump(page, '15 Civilizations breathe', 'endurance');
   await page
     .getByRole('group', { name: 'Inspect a civilization' })
     .getByRole('button', { name: 'S4', exact: true })
     .click();
   await expect(page.locator('[class*="chartReadout"]')).toContainText('400M');
-  await expect(page.locator('[class*="chartReadout"]')).toContainText('3e+19 J');
+  await expect(page.locator('[class*="chartReadout"]')).toContainText('3 × 10¹⁹ J');
   await page
     .getByRole('group', { name: 'Inspect a civilization' })
     .getByRole('button', { name: 'S9', exact: true })
     .click();
   await expect(page.locator('[class*="chartReadout"]')).toContainText('200T');
-  await expect(page.locator('[class*="chartReadout"]')).toContainText('1e+25 J');
+  await expect(page.locator('[class*="chartReadout"]')).toContainText('1 × 10²⁵ J');
 });
 
 test('index closes with Escape and restores focus', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
   await page
-    .getByRole('navigation', { name: 'Story index' })
-    .getByRole('button', { name: '10 S9 ↗' })
+    .getByRole('navigation', { name: 'Story chapters' })
+    .getByRole('button', { name: '10 S9 Deus Ex Machina' })
     .focus();
   await page.keyboard.press('Escape');
-  await expect(page.getByRole('navigation', { name: 'Story index' })).toHaveCount(0);
-  await expect(page.getByRole('button', { name: 'Index +', exact: true })).toBeFocused();
+  await expect(page.getByRole('navigation', { name: 'Story chapters' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Chapters', exact: true })).toBeFocused();
 });
 
 test('the homepage uses full motion without changing the saved preference for research pages', async ({
@@ -139,7 +143,7 @@ test('WebGL failure preserves story and offers a retry', async ({ page }) => {
     { timeout: 20000 },
   );
   await expect(page.locator('[data-space-backdrop]')).toBeVisible();
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Retry 3D' })).toBeVisible();
   await page.getByRole('button', { name: 'Retry 3D' }).click();
   await expect(page.locator('[data-stage-status]')).toHaveAttribute(
@@ -147,7 +151,7 @@ test('WebGL failure preserves story and offers a retry', async ({ page }) => {
     'fallback',
   );
   await page.keyboard.press('Escape');
-  await jump(page, '10 S9 ↗', 's9');
+  await jump(page, '10 S9 Deus Ex Machina', 's9');
   await expect(page.locator('#s9')).toContainText('200T');
 });
 

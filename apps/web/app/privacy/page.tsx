@@ -1,95 +1,82 @@
 import type { Metadata } from 'next';
 
+import { readResearchRuntimeConfig } from '@janus/agent';
+
+import { telemetryEnabled } from '../../lib/telemetry-shared';
 import { InnerPage } from '../components/InnerPage';
 import styles from '../components/InformationPages.module.css';
 
 export const metadata: Metadata = {
   title: 'Privacy',
-  description:
-    'What Janus Observatory stores, what optional operational telemetry contains, and how the Research Companion handles questions.',
+  description: 'What Janus Observatory stores about visitors: no accounts, no ads, no cookies.',
   alternates: { canonical: '/privacy' },
   openGraph: {
     title: 'Privacy · Janus Observatory',
-    description:
-      'A cookieless core experience with bounded operational metrics and no default storage of Research questions.',
+    description: 'No accounts, no ads, no cookies.',
     url: '/privacy',
   },
 };
 
 export default function PrivacyPage() {
+  const research = readResearchRuntimeConfig(process.env);
+
   return (
-    <InnerPage
-      eyebrow="Privacy · minimal collection"
-      lede="The core experience has no account or advertising profile and remains usable without third-party runtime services."
-      title="Observe the scenarios—not the visitor."
-    >
+    <InnerPage lede="No accounts, no ads, no cookies." title="Your visit stays yours.">
       <section className={styles.section}>
-        <h2>Core experience</h2>
+        <h2>What we store</h2>
         <div className={styles.sectionBody}>
           <p>
-            Story, Observatory, Atlas, Methods, Sources, and Accessibility work without signing in.
-            Janus Observatory does not set analytics cookies. The Motion control stores only one
-            preference—System, Reduced, or Full—in this browser&apos;s local storage.
+            Nothing that identifies you, and no cookies. If you pick a motion setting on the
+            Accessibility page, your browser remembers that one choice on your own device.
+          </p>
+          <p>
+            Like any website, our host handles basic request details, such as your network address,
+            to deliver pages and block abuse.
           </p>
         </div>
       </section>
 
       <section className={styles.section}>
-        <h2>Optional operational telemetry</h2>
+        <h2>Analytics</h2>
         <div className={styles.sectionBody}>
-          <p>
-            A deployment may explicitly enable cookieless telemetry to measure Core Web Vitals,
-            route-level use, chapter completion, instrument selection, comparison use, fallback
-            mode, and source-link engagement. Records contain only bounded identifiers from a fixed
-            allowlist plus device tier, reduced-motion state, and WebGL fallback state.
-          </p>
-          <p>
-            The telemetry endpoint rejects arbitrary text and query strings. It does not accept page
-            prose, Research questions, provider reasoning, account identifiers, or persistent user
-            IDs. Network addresses may be hashed ephemerally for abuse control and are not written
-            into the event record.
-          </p>
+          {telemetryEnabled ? (
+            <p>
+              We count anonymous page views, loading speed and which features get used—such as which
+              instrument people pick—to improve the site. These counts never include anything you
+              type or anything that identifies you, and your network address isn’t stored with them.
+            </p>
+          ) : (
+            <p>We don’t run analytics on this site.</p>
+          )}
         </div>
       </section>
+
+      {research.previewEnabled ? (
+        <section className={styles.section}>
+          <h2>Research questions</h2>
+          <div className={styles.sectionBody}>
+            <p>
+              If you ask the research assistant a question, it goes to our server so it can find an
+              answer in the papers.
+              {research.liveCallsEnabled || research.hybridRetrievalEnabled
+                ? ' To search and write the answer, it is also sent to an outside AI service.'
+                : ''}{' '}
+              Questions aren’t stored.
+            </p>
+          </div>
+        </section>
+      ) : null}
 
       <section className={styles.section}>
-        <h2>Research Companion</h2>
+        <h2>Other sites</h2>
         <div className={styles.sectionBody}>
           <p>
-            The core site never depends on AI. When the Research preview is enabled, a question is
-            sent to the Janus server so it can retrieve bounded evidence and produce a cited answer.
-            Live provider calls remain separately gated; if enabled, the question and selected
-            evidence are transmitted to the configured provider to generate the answer.
-          </p>
-          <p>
-            Questions are not stored by default. Operational traces may retain model and data
-            versions, stage and allowlisted tool names, source IDs, token counts, latency, cache
-            status, and error codes. Raw provider reasoning is never returned to the browser or
-            intentionally logged.
+            Fonts, 3D models and data all load from this site. Links to papers, datasets and
+            artworks open other sites, which have their own privacy practices; we link to them
+            rather than embed them, so they learn nothing about your visit unless you click.
           </p>
         </div>
       </section>
-
-      <section className={styles.section}>
-        <h2>External services and sources</h2>
-        <div className={styles.sectionBody}>
-          <p>
-            The home-page spatial scene is rendered locally and does not request the original Spline
-            host. It does not load a temporary poster before the Earth scene. Reduced motion
-            preserves the copy and every scientific control.
-          </p>
-          <p>
-            Source and artifact links open other third-party sites with their own privacy practices.
-            Janus Observatory does not embed rights-restricted artifacts merely to keep visitors on
-            this site.
-          </p>
-        </div>
-      </section>
-
-      <aside className={styles.notice}>
-        Deployment operators must disclose any additional hosting, logging, or analytics service
-        before enabling it; this page describes the repository implementation only.
-      </aside>
     </InnerPage>
   );
 }

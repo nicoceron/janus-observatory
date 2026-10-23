@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { storyHandoff } from './helpers/story-handoff';
 
 test.setTimeout(60000);
 
@@ -10,8 +11,8 @@ test('names appear only on demand and interaction follows the scene through moti
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
     timeout: 45000,
   });
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
-  await page.getByRole('button', { name: '04 S3 ↗', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
+  await page.getByRole('button', { name: '04 S3 Golden Age', exact: true }).click();
   const region = page.getByLabel('Explore S3 models', { exact: true });
   const earth = region.getByRole('button', { name: 'Inspect Earth', exact: true });
   const moon = region.getByRole('button', { name: 'Inspect Luna', exact: true });
@@ -43,12 +44,21 @@ test('names appear only on demand and interaction follows the scene through moti
   ).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(moon).toBeFocused();
+  const canvas = page.locator('canvas');
+  await expect(canvas).toHaveAttribute('data-scene', '4.000');
   const original = await earth.boundingBox();
   const scroll = await page.evaluate(() => scrollY);
-  const travel = await page
-    .locator('#s3')
-    .evaluate((el) => el.getBoundingClientRect().height * 0.25);
-  await page.evaluate((distance) => window.scrollBy(0, distance), travel);
+  const [start, end] = await storyHandoff(page, 's3', 's4');
+  // Mobile keeps the planet stationary until the narrative has been read.
+  // Sample the actual spatial handoff, with the same driver as companion reveal.
+  await page.evaluate(
+    (y) => window.scrollTo({ top: y, behavior: 'instant' }),
+    start + (end - start) * 0.25,
+  );
+  // Native scrolling rounds the fractional CSS position to a device pixel.
+  await expect
+    .poll(async () => Number(await canvas.getAttribute('data-scene')))
+    .toBeCloseTo(4.25, 2);
   await expect
     .poll(async () => {
       const current = (await earth.boundingBox())!;

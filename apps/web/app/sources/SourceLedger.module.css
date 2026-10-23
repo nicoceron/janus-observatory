@@ -11,11 +11,11 @@
   color: #afc2cc;
   display: flex;
   flex-direction: column;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
   gap: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 .searchLabel input {
@@ -26,7 +26,7 @@
   color: #dce5eb;
   font-family: var(--font-body);
   font-size: clamp(1.4rem, 3vw, 2.6rem);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   padding: 5px 0 11px;
   width: 100%;
 }
@@ -43,10 +43,10 @@
   border: 1px solid rgba(186, 212, 227, 0.2);
   color: #afc2cc;
   cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
   padding: 11px 13px;
-  text-transform: uppercase;
 }
 
 .filters button[aria-pressed='true'] {
@@ -56,10 +56,10 @@
 
 .resultCount {
   color: #afc2cc;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
   margin: 17px 0 0;
-  text-transform: uppercase;
 }
 
 .ledger {
@@ -85,14 +85,14 @@
 .entryMeta dd,
 .entry > a,
 .locator {
-  font-family: var(--font-mono);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
 }
 
 .index {
   color: #afc2cc;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .entryIdentity {
@@ -102,21 +102,21 @@
 .kind {
   color: #afc2cc;
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   margin-bottom: 10px;
 }
 
 .entryIdentity h3 {
   font-size: clamp(1rem, 1.8vw, 1.5rem);
   font-weight: 520;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
   line-height: 1.25;
   margin: 0;
 }
 
 .entryIdentity p {
   color: #afc2cc;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.55;
   margin: 9px 0 0;
 }
@@ -137,12 +137,12 @@
 
 .entryMeta dt {
   color: #afc2cc;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .entryMeta dd {
   color: #afc2cc;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.45;
   margin: 5px 0 0;
   overflow-wrap: anywhere;
@@ -162,7 +162,7 @@
 
 .locator {
   color: #afc2cc;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.55;
   margin: 0;
   overflow-wrap: anywhere;
@@ -183,10 +183,10 @@
 .provenance summary {
   color: #afc2cc;
   cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
 }
 
 .provenance details dl {
@@ -202,17 +202,17 @@
 
 .provenance details dt {
   color: #afc2cc;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
 }
 
 .provenance details dd,
 .provenance details li,
 .provenance details p {
   color: #afc2cc;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
@@ -233,7 +233,7 @@
 .entry > a {
   background: #0d1721;
   color: #afc2cc;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   height: fit-content;
   white-space: nowrap;
 }

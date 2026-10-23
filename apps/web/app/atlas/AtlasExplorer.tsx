@@ -8,10 +8,10 @@ import { useMemo, type CSSProperties } from 'react';
 
 import {
   allScenarioProfiles,
+  instrumentCopy,
   scientificNotation,
   sourceRefHref,
   sourceRefLabel,
-  sourcedDisplay,
 } from '../../lib/canonical-core';
 import styles from './atlas.module.css';
 import {
@@ -19,6 +19,7 @@ import {
   ReferenceEarthNote,
   readableNumber,
 } from '../components/QuantityComparison';
+import { growthLabel, morphologyRows, plainReading } from '../../lib/plain-labels';
 
 type ScenarioId = (typeof allScenarioProfiles)[number]['id'];
 type LensKey = 'population' | 'energy' | 'observability' | 'system';
@@ -29,23 +30,23 @@ const maxComparisons = 3;
 const lensCopy: Record<LensKey, { button: string; label: string; note: string }> = {
   population: {
     button: 'Population',
-    label: 'Population after 1,000 years',
-    note: 'Reported total across all bodies. Logarithmic visual scale.',
+    label: 'Population in 1,000 years',
+    note: 'Everyone, on every world they live on. Bars use a log scale: each step is ten times the last.',
   },
   energy: {
-    button: 'Annual energy',
-    label: 'Annual energy use',
-    note: 'Reported joules per year across all bodies. Logarithmic visual scale.',
+    button: 'Energy use',
+    label: 'Energy used per year',
+    note: 'Total energy used each year, in joules, across every world. Bars use a log scale.',
   },
   observability: {
-    button: 'Observing matrix',
-    label: 'Five mission cells, kept separate',
-    note: 'Every Figure 6 cell is shown independently. A blank cell remains “no signature listed,” not a lower score and not evidence of no technology.',
+    button: 'What telescopes see',
+    label: 'What each instrument could detect',
+    note: '“Nothing listed” means the observing study lists no sign for that instrument—not that the civilization has no technology.',
   },
   system: {
-    button: 'System signatures',
-    label: 'Listed system technosignature categories',
-    note: 'Category labels are reproduced from Table 8. They are not collapsed into a capability or reach score.',
+    button: 'Signs beyond Earth',
+    label: 'Signs of technology across the Solar System',
+    note: 'The kinds of off-world signs the scenario study lists for each future, in its own words. Not a score.',
   },
 };
 
@@ -64,7 +65,7 @@ function numericLensValue(lens: NumericLensKey, profile: (typeof allScenarioProf
 function numericLensDisplay(lens: NumericLensKey, value: number) {
   return lens === 'population'
     ? scientificNotation(value)
-    : `${scientificNotation(value)} J / year`;
+    : `${scientificNotation(value)} joules a year`;
 }
 
 function categoricalLensDisplay(
@@ -74,18 +75,14 @@ function categoricalLensDisplay(
   if (lens === 'observability') {
     return profile.observations
       .map(
-        ({ result, short }) =>
-          `${short}: ${
-            result.signatures.length > 0
-              ? result.signatures.join(', ')
-              : 'no signature listed in Figure 6'
+        ({ result, name }) =>
+          `${name}: ${
+            result.signatures.length > 0 ? result.signatures.join(', ') : 'nothing listed'
           }`,
       )
       .join('; ');
   }
-  return (
-    profile.system.map(({ label }) => label).join('; ') || 'No system signature listed in Table 8'
-  );
+  return profile.system.map(({ label }) => label).join('; ') || 'None listed';
 }
 
 function lensSourceRefs(lens: LensKey, profile: (typeof allScenarioProfiles)[number]): SourceRef[] {
@@ -110,30 +107,22 @@ function validScenarioIds(value: string | null): ScenarioId[] {
   return [...unique].slice(0, maxComparisons);
 }
 
-function sourceLink(dataset: string, label: string) {
-  return (
-    <a className={styles.fieldSource} href={`/sources#${dataset}`}>
-      {label} <span aria-hidden="true">↗</span>
-    </a>
-  );
-}
-
 function ExactLocator({ sourceRefs }: { sourceRefs: SourceRef[] }) {
   const first = sourceRefs[0];
-  if (!first) return <span>Missing locator</span>;
+  if (!first) return null;
   return (
     <a className={styles.fieldSource} href={sourceRefHref(first)} rel="noreferrer" target="_blank">
-      {sourceRefLabel(first)}
-      {sourceRefs.length > 1 ? ` +${sourceRefs.length - 1} source rows` : ''}{' '}
-      <span aria-hidden="true">↗</span>
+      {sourceRefLabel(first)} <span aria-hidden="true">↗</span>
     </a>
   );
 }
 
 function SourcedCell({ field }: { field: Sourced<unknown> }) {
+  const reading = plainReading(field);
   return (
     <>
-      <span>{sourcedDisplay(field)}</span>
+      <span>{reading.value}</span>
+      {reading.paper ? <small>In the paper: {reading.paper}</small> : null}
       <ExactLocator sourceRefs={field.sourceRefs} />
     </>
   );
@@ -190,12 +179,11 @@ export function AtlasExplorer() {
     <>
       <section className={styles.indexSection} aria-labelledby="atlas-picker-title">
         <header className={styles.sectionHeader}>
-          <p>Scenario index · Table 5 + Table 9</p>
-          <h2 id="atlas-picker-title">Select up to three futures.</h2>
+          <h2 id="atlas-picker-title">Pick up to three futures to compare.</h2>
           <div className={styles.headerAside}>
             <p>
-              This is an editorial index, not a deck of scores. Scenario order follows S1–S10;
-              trajectory labels reproduce the reported 1,000-year endpoint state.
+              Listed in the study’s own order, S1 to S10. The order isn’t a ranking, and nothing
+              here is a score.
             </p>
             <span aria-live="polite">
               {selectedIds.length} of {maxComparisons} selected
@@ -205,10 +193,9 @@ export function AtlasExplorer() {
 
         <div className={styles.scenarioIndex}>
           <div className={styles.indexLabels} aria-hidden="true">
-            <span>Scenario</span>
-            <span>Reported endpoint</span>
-            <span>Construction</span>
-            <span>Compare / record</span>
+            <span>Future</span>
+            <span>In 1,000 years</span>
+            <span />
           </div>
           {allScenarioProfiles.map((profile, index) => {
             const isSelected = selectedIds.includes(profile.id);
@@ -229,15 +216,8 @@ export function AtlasExplorer() {
                   </div>
                 </div>
                 <div className={styles.scenarioTrajectory}>
-                  <strong>{profile.growth.growthState.replace('_', ' ')}</strong>
-                  <span>{readableNumber(profile.growth.population)} total population</span>
-                </div>
-                <div className={styles.scenarioConstruction}>
-                  <strong>{profile.morphology.globalFactor}</strong>
-                  <span>
-                    Cluster {profile.morphology.technologyCluster} ·{' '}
-                    {profile.morphology.technologyFactors.join(', ')}
-                  </span>
+                  <strong>{growthLabel(profile.growth.growthState)}</strong>
+                  <span>{readableNumber(profile.growth.population)} people</span>
                 </div>
                 <div className={styles.scenarioActions}>
                   <button
@@ -250,7 +230,7 @@ export function AtlasExplorer() {
                   >
                     {isSelected ? 'Remove' : disabled ? 'Three selected' : 'Compare'}
                   </button>
-                  <Link href={`/atlas/${profile.id.toLowerCase()}`}>Open record</Link>
+                  <Link href={`/atlas/${profile.id.toLowerCase()}`}>Explore</Link>
                 </div>
               </article>
             );
@@ -260,16 +240,15 @@ export function AtlasExplorer() {
 
       <section className={styles.metricSection} aria-labelledby="metric-explorer-title">
         <header className={styles.sectionHeader}>
-          <p>Analytical lens · shareable view</p>
           <h2 id="metric-explorer-title">One dimension at a time.</h2>
           <div className={styles.headerAside}>
             <p>
-              The lens keeps source dimensions separate. It deliberately refuses to calculate an
-              overall civilization, resilience, risk, or detectability rank.
+              Look at the ten futures one measure at a time. We never fold them into an overall
+              score or rank.
             </p>
           </div>
         </header>
-        <div className={styles.metricControls} role="group" aria-label="Comparison lens">
+        <div className={styles.metricControls} role="group" aria-label="Measure">
           {(Object.keys(lensCopy) as LensKey[]).map((key) => (
             <button
               aria-pressed={lens === key}
@@ -318,13 +297,13 @@ export function AtlasExplorer() {
                     <strong>{profile.morphology.mythMetaphor}</strong>
                   </Link>
                   <div className={styles.missionCells}>
-                    {profile.observations.map(({ id, result, short }) => (
+                    {profile.observations.map(({ id, result }) => (
                       <div className={styles.missionCell} data-state={result.status} key={id}>
-                        <strong>{short}</strong>
+                        <strong>{instrumentCopy[id].name}</strong>
                         <span>
                           {result.signatures.length > 0
-                            ? result.signatures.join(' · ')
-                            : 'No signature listed'}
+                            ? result.signatures.join(', ')
+                            : 'Nothing listed'}
                         </span>
                       </div>
                     ))}
@@ -344,7 +323,7 @@ export function AtlasExplorer() {
                     {profile.system.length > 0 ? (
                       profile.system.map(({ id, label }) => <span key={id}>{label}</span>)
                     ) : (
-                      <span>No system signature listed in Table 8</span>
+                      <span>None listed</span>
                     )}
                   </div>
                 </li>
@@ -354,16 +333,15 @@ export function AtlasExplorer() {
         </div>
         {(lens === 'population' || lens === 'energy') && <ReferenceEarthNote />}
         <details className={styles.metricDataTable}>
-          <summary>Open structured lens table</summary>
+          <summary>Show as a table</summary>
           <div className={styles.tableScroller} tabIndex={0}>
             <table>
-              <caption>{lensCopy[lens].label} for all scenarios</caption>
+              <caption>{lensCopy[lens].label}, all ten futures</caption>
               <thead>
                 <tr>
-                  <th scope="col">Scenario</th>
-                  <th scope="col">Source field(s)</th>
-                  <th scope="col">Interpretation note</th>
-                  <th scope="col">Exact locator</th>
+                  <th scope="col">Future</th>
+                  <th scope="col">Value</th>
+                  <th scope="col">Source</th>
                 </tr>
               </thead>
               <tbody>
@@ -378,7 +356,6 @@ export function AtlasExplorer() {
                         {profile.id} · {profile.morphology.mythMetaphor}
                       </th>
                       <td>{value}</td>
-                      <td>{lensCopy[lens].note}</td>
                       <td>
                         <ExactLocator sourceRefs={lensSourceRefs(lens, profile)} />
                       </td>
@@ -393,18 +370,19 @@ export function AtlasExplorer() {
 
       <section className={styles.comparisonSection} aria-labelledby="comparison-title">
         <header className={styles.sectionHeader}>
-          <p>Aligned canonical fields</p>
-          <h2 id="comparison-title">Side-by-side, without a rank.</h2>
+          <h2 id="comparison-title">Side by side.</h2>
         </header>
         {selected.length === 0 ? (
-          <p className={styles.emptyComparison}>Select at least one scenario in the index.</p>
+          <p className={styles.emptyComparison}>Pick a future in the list above to see it here.</p>
         ) : (
           <div className={styles.tableScroller} tabIndex={0}>
             <table className={styles.comparisonTable}>
-              <caption>Canonical comparison for {selectedIds.join(', ')}</caption>
+              <caption>Comparing {selectedIds.join(', ')}</caption>
               <thead>
                 <tr>
-                  <th scope="col">Field</th>
+                  <th scope="col">
+                    <span className="srOnly">Trait</span>
+                  </th>
                   {selected.map((profile) => (
                     <th scope="col" key={profile.id}>
                       <span>{profile.id}</span>
@@ -415,63 +393,47 @@ export function AtlasExplorer() {
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">{sourceLink('dataset-morphology-table-5', 'Global factor')}</th>
-                  {selected.map((profile) => (
-                    <td key={profile.id}>
-                      <ProvenancedCell
-                        sourceRefs={profile.morphology.fieldProvenance.globalFactor}
-                        value={profile.morphology.globalFactor}
-                      />
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row">
-                    {sourceLink('dataset-morphology-table-5', 'Technology cluster')}
-                  </th>
-                  {selected.map((profile) => (
-                    <td key={profile.id}>
-                      <ProvenancedCell
-                        sourceRefs={profile.morphology.fieldProvenance.technologyCluster}
-                        value={String(profile.morphology.technologyCluster)}
-                      />
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row">
-                    {sourceLink('dataset-morphology-table-5', 'Technology factors')}
-                  </th>
-                  {selected.map((profile) => (
-                    <td key={profile.id}>
-                      <ProvenancedCell
-                        sourceRefs={profile.morphology.fieldProvenance.technologyFactors}
-                        value={profile.morphology.technologyFactors.join(', ')}
-                      />
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row">Canonical summary</th>
+                  <th scope="row">In short</th>
                   {selected.map((profile) => (
                     <td key={profile.id}>
                       <SourcedCell field={profile.morphology.canonicalSummary} />
                     </td>
                   ))}
                 </tr>
-                {(
-                  [
-                    ['Economy', 'economy'],
-                    ['Politics', 'politics'],
-                    ['Society', 'society'],
-                    ['Technosphere / biosphere relation', 'technosphere'],
-                    ['Biosphere distribution', 'biosphere'],
-                    ['Spatial distribution', 'spatialDistribution'],
-                    ['Development', 'development'],
-                    ['Connectivity / highest order', 'connectivity'],
-                    ['Smallest scale', 'smallestScale'],
-                  ] as const
-                ).map(([label, field]) => (
+                <tr>
+                  <th scope="row">Population in 1,000 years</th>
+                  {selected.map((profile) => (
+                    <td key={profile.id}>
+                      <ProvenancedCell
+                        sourceRefs={profile.growth.fieldProvenance.population}
+                        value={`${readableNumber(profile.growth.population)} people`}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th scope="row">Energy used per year</th>
+                  {selected.map((profile) => (
+                    <td key={profile.id}>
+                      <ProvenancedCell
+                        sourceRefs={profile.growth.fieldProvenance.annualEnergyUseJ}
+                        value={`${scientificNotation(profile.growth.annualEnergyUseJ)} joules`}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th scope="row">Growth</th>
+                  {selected.map((profile) => (
+                    <td key={profile.id}>
+                      <ProvenancedCell
+                        sourceRefs={profile.growth.fieldProvenance.growthState}
+                        value={growthLabel(profile.growth.growthState)}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                {morphologyRows.map(([label, field]) => (
                   <tr key={field}>
                     <th scope="row">{label}</th>
                     {selected.map((profile) => (
@@ -482,71 +444,33 @@ export function AtlasExplorer() {
                   </tr>
                 ))}
                 <tr>
-                  <th scope="row">{sourceLink('dataset-growth-table-9', 'Population')}</th>
-                  {selected.map((profile) => (
-                    <td key={profile.id}>
-                      <ProvenancedCell
-                        sourceRefs={profile.growth.fieldProvenance.population}
-                        value={scientificNotation(profile.growth.population)}
-                      />
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row">{sourceLink('dataset-growth-table-9', 'Annual energy use')}</th>
-                  {selected.map((profile) => (
-                    <td key={profile.id}>
-                      <ProvenancedCell
-                        sourceRefs={profile.growth.fieldProvenance.annualEnergyUseJ}
-                        value={`${scientificNotation(profile.growth.annualEnergyUseJ)} J / year`}
-                      />
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row">{sourceLink('dataset-growth-table-9', 'Growth state')}</th>
-                  {selected.map((profile) => (
-                    <td key={profile.id}>
-                      <ProvenancedCell
-                        sourceRefs={profile.growth.fieldProvenance.growthState}
-                        value={profile.growth.growthState}
-                      />
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row">{sourceLink('dataset-atmosphere-table-1', 'CO₂')}</th>
+                  <th scope="row">Carbon dioxide in the air</th>
                   {selected.map((profile) => (
                     <td key={profile.id}>
                       <ProvenancedCell
                         sourceRefs={profile.atmosphere.co2?.sourceRefs ?? []}
                         value={
                           profile.atmosphere.co2?.value === null
-                            ? 'Published ellipsis'
-                            : String(profile.atmosphere.co2?.value) + ' ppm'
+                            ? 'Not given'
+                            : `${profile.atmosphere.co2?.value?.toLocaleString('en')} ppm`
                         }
                       />
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <th scope="row">{sourceLink('dataset-system-table-8', 'System signatures')}</th>
+                  <th scope="row">Signs beyond Earth</th>
                   {selected.map((profile) => (
                     <td key={profile.id}>
                       <ProvenancedCell
                         sourceRefs={profile.systemCellProvenance}
-                        value={
-                          profile.system.map(({ label }) => label).join(', ') ||
-                          'None listed in Table 8'
-                        }
+                        value={profile.system.map(({ label }) => label).join(', ') || 'None listed'}
                       />
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <th scope="row">
-                    {sourceLink('dataset-observability-figure-6', 'Mission cells')}
-                  </th>
+                  <th scope="row">What telescopes see</th>
                   {selected.map((profile) => (
                     <td key={profile.id}>
                       <ProvenancedCell
@@ -557,7 +481,7 @@ export function AtlasExplorer() {
                   ))}
                 </tr>
                 <tr>
-                  <th scope="row">{sourceLink('dataset-collapse-table-4', 'Collapse outcome')}</th>
+                  <th scope="row">Collapse and recovery</th>
                   {selected.map((profile) => (
                     <td key={profile.id}>
                       <ProvenancedCell
@@ -572,9 +496,7 @@ export function AtlasExplorer() {
           </div>
         )}
         <p className={styles.comparisonNote}>
-          “Published ellipsis,” numeric zero, “none listed,” and “not evaluated” remain distinct.
-          Mission cells and system categories remain separate source fields; they are never reduced
-          to scenario scores.
+          “Not given” means the paper leaves that value out. It isn’t zero.
         </p>
       </section>
     </>

@@ -59,25 +59,25 @@
   max-width: 515px;
 }
 .copy > p {
-  font-size: 15px;
-  line-height: 1.85;
-  color: #b5bab8;
-  max-width: 430px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #bcc3bf;
+  max-width: 440px;
   margin: 24px 0;
 }
 .copy h2,
 .sectionIntro h2 {
-  font-size: clamp(44px, 5.1vw, 78px);
-  font-weight: 450;
-  line-height: 1.04;
-  letter-spacing: -0.064em;
+  font-size: clamp(46px, 5.4vw, 84px);
+  font-weight: 350;
+  line-height: 1;
+  letter-spacing: -0.02em;
   margin: 32px 0;
 }
 .experience em {
   font-family: var(--font-display);
   font-style: normal;
   font-weight: 400;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
 }
 .copy h2 em {
   color: var(--world-color, var(--cream));
@@ -85,31 +85,32 @@
 .copy .kicker,
 .sectionIntro .kicker,
 .kicker {
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
   line-height: 1.6;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.01em;
   color: #bcc9b5;
   margin: 0 0 32px;
 }
 .copy .lede {
   font-size: 21px;
-  line-height: 1.55;
+  line-height: 1.5;
   color: var(--cream);
-  letter-spacing: -0.025em;
 }
 .copy .highlight {
   padding-left: 18px;
   border-left: 1px solid #b2c2a2;
-  font-size: 13px;
-  line-height: 1.8;
+  font-size: 15px;
+  line-height: 1.7;
   color: #c9cfc4;
   margin-top: 30px;
 }
 .source {
   display: block;
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
   line-height: 1.8;
   color: #a0a8a6;
   margin-top: 24px;
@@ -130,25 +131,24 @@
   width: 64%;
 }
 .hero h1 {
-  font-size: clamp(68px, 7.8vw, 124px);
-  font-weight: 450;
-  letter-spacing: -0.07em;
-  line-height: 1.02;
+  font-size: clamp(64px, 7.6vw, 122px);
+  font-weight: 330;
+  letter-spacing: -0.025em;
+  line-height: 0.96;
   margin: 28px 0 36px;
 }
 .hero h1 em {
   color: var(--signal);
 }
 .heroQuestion {
-  font-size: clamp(19px, 1.8vw, 27px);
-  line-height: 1.45;
-  letter-spacing: -0.03em;
+  font-size: clamp(20px, 1.8vw, 27px);
+  line-height: 1.4;
   margin: 25px 0 18px;
 }
 .heroDescription {
-  font-size: 13px;
-  line-height: 1.8;
-  max-width: 300px;
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 330px;
   color: #b8bebb;
 }
 .liveDot {
@@ -166,7 +166,7 @@
   gap: 18px;
   margin-top: 25px;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 15px;
 }
 .beginCircle {
   display: grid;
@@ -188,9 +188,10 @@
 }
 .begin small {
   display: block;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  letter-spacing: 0.01em;
   color: var(--dim);
   margin-top: 7px;
 }
@@ -201,9 +202,10 @@
   display: flex;
   gap: 20px;
   color: #a7afb0;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  letter-spacing: 0.01em;
 }
 .heroCaption {
   position: absolute;
@@ -213,8 +215,9 @@
   align-items: center;
   gap: 14px;
   color: #adb8bc;
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
   line-height: 1.7;
 }
 .heroCaption i {
@@ -226,9 +229,10 @@
   position: absolute;
   bottom: 13%;
   right: 9%;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.09em;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  letter-spacing: 0.01em;
   color: #a4afae;
 }
 .worldIndex {
@@ -237,8 +241,9 @@
   gap: 18px;
 }
 .worldIndex > span {
-  font-family: var(--font-mono);
-  font-size: 12px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
   border: 1px solid var(--world-color);
   color: var(--world-color);
   height: 42px;
@@ -249,14 +254,15 @@
 }
 .worldIndex p {
   margin: 0;
-  font-size: 12px;
+  font-size: 15px;
   color: var(--world-color);
 }
 .worldIndex small {
   display: block;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.13em;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  letter-spacing: 0.01em;
   color: #a7afac;
   margin-top: 7px;
 }
@@ -270,18 +276,15 @@
   margin: 30px 0 18px;
 }
 .worldStats dt {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-size: 13px;
   color: #aab2af;
-  text-transform: uppercase;
   margin-bottom: 9px;
 }
 .worldStats dd {
   margin: 0;
   font-size: 32px;
   font-weight: 400;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.02em;
 }
 /* The display figure is tightly tracked; its scientific-notation tail must not inherit that. */
 .worldStats dd span {
@@ -290,7 +293,7 @@
   margin-left: 0.12em;
 }
 .worldStats sup {
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.02em;
   line-height: 0;
   margin-left: 1px;
@@ -303,14 +306,13 @@
   gap: 12px;
 }
 .worldLinks a {
-  font-size: 10px;
+  font-size: 13px;
   text-decoration: none;
   color: var(--world-color);
 }
 .worldLinks a:last-child {
-  color: #b7c1bb;
-  font-size: 11px;
-  font-family: var(--font-mono);
+  color: #c4cdc8;
+  font-size: 15px;
 }
 .worldAnnotation {
   position: absolute;
@@ -321,9 +323,10 @@
 }
 .worldAnnotation > span {
   color: var(--world-color, #b2c5bf);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  letter-spacing: 0.01em;
 }
 .worldAnnotation p {
   font-size: 14px;
@@ -333,9 +336,10 @@
   margin: 14px 0;
 }
 .worldAnnotation small {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  letter-spacing: 0.01em;
   color: #a7afad;
 }
 .systemLabels {
@@ -350,9 +354,8 @@
   left: 0;
   opacity: 0;
   color: #c0ccc3;
-  font: 7px var(--font-mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   text-shadow:
     0 1px 5px #050709,
@@ -372,12 +375,13 @@
   border-top: 1px solid #c1c6b51f;
   margin-top: 18px;
   padding-top: 12px;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
 }
 .systemFootprint > span {
   color: #a7b2a5;
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-size: 13px;
+  letter-spacing: 0.01em;
 }
 .systemFootprint p,
 .systemFootprint small {
@@ -389,12 +393,12 @@
 }
 .systemFootprint p a {
   color: var(--world-color);
-  font-size: 10px;
+  font-size: 13px;
   text-decoration: none;
 }
 .systemFootprint small a {
   color: #a8b6b0;
-  font-size: 10px;
+  font-size: 13px;
   text-decoration: none;
 }
 .systemFootprint a {
@@ -418,7 +422,7 @@
 }
 .textLink {
   display: inline-block;
-  font-size: 12px;
+  font-size: 15px;
   color: var(--signal);
   text-decoration: none;
   padding: 13px 0;
@@ -448,8 +452,8 @@
   margin: 0;
 }
 .sectionIntro > p:last-child {
-  font-size: 13px;
-  line-height: 1.85;
+  font-size: 17px;
+  line-height: 1.7;
   color: #aeb8b5;
   margin: 0 0 4px;
 }
@@ -461,8 +465,9 @@
   display: flex;
   gap: 30px;
   color: #aebba9;
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
   padding-bottom: 25px;
 }
 .tableScroll {
@@ -471,13 +476,14 @@
 .matrix {
   border-collapse: collapse;
   width: 100%;
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
 }
 .matrix thead th {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 400;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.01em;
   color: #b9c4be;
   padding: 16px 0;
   border-top: 1px solid var(--fine);
@@ -508,13 +514,14 @@
   text-align: left;
   display: flex;
   gap: 26px;
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
 }
 .matrix tbody button span {
   color: #aeb8b4;
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 13px;
 }
 .matrix td {
   text-align: center;
@@ -550,20 +557,21 @@
   color: var(--signal);
 }
 .signalReadout strong {
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
   font-weight: 400;
   display: block;
   margin-bottom: 10px;
   color: #d4ddd4;
 }
 .signalReadout span {
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.7;
   color: #aab5b1;
 }
 .finePrint {
-  font-size: 10px;
+  font-size: 13px;
   line-height: 1.9;
   color: #a3aeaa;
   margin-top: 30px;
@@ -578,10 +586,11 @@
   gap: 15px;
   border-top: 1px solid var(--fine);
   padding-top: 22px;
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
   color: #b6c3b6;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.01em;
 }
 .chart svg {
   width: 100%;
@@ -591,8 +600,9 @@
 }
 .chart svg text {
   fill: #a9b4b1;
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
 }
 .gridLine {
   stroke: #afbeb215;
@@ -612,8 +622,9 @@
   margin: 15px 0 30px;
 }
 .chartSelector button {
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
   color: #a8b6b0;
   background: transparent;
   border: 1px solid transparent;
@@ -643,21 +654,21 @@
 }
 .chartReadout > span {
   font-size: 24px;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.02em;
 }
 .chartReadout small {
-  font-size: 10px;
-  letter-spacing: 0.05em;
+  font-size: 14px;
+  letter-spacing: 0.01em;
   display: block;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
   color: #a6b1a9;
   margin-top: 8px;
-  text-transform: uppercase;
 }
 .dataDetails {
   margin-top: 24px;
   color: #b3beb7;
-  font-size: 11px;
+  font-size: 13px;
 }
 .dataDetails summary {
   cursor: pointer;
@@ -667,7 +678,7 @@
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
-  font-size: 12px;
+  font-size: 14px;
 }
 .dataDetails td,
 .dataDetails th {
@@ -687,24 +698,25 @@
   margin: 110px 0 0 auto;
 }
 .enduranceNote > span {
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
   color: #b6c5ad;
 }
 .enduranceNote h3 {
   font-weight: 400;
-  font-size: 32px;
-  letter-spacing: -0.04em;
+  font-size: 36px;
+  letter-spacing: -0.02em;
   margin: 20px 0;
 }
 .enduranceNote p {
-  font-size: 14px;
-  line-height: 1.85;
+  font-size: 16px;
+  line-height: 1.7;
   color: #b3bdb8;
 }
 .enduranceNote a {
   display: inline-block;
-  font-size: 10px;
+  font-size: 15px;
   margin: 10px 25px 0 0;
   color: #c4d4b8;
 }
@@ -724,7 +736,7 @@
   border-bottom: 1px solid #c2d5b377;
   padding: 22px 0;
   font-size: 27px;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.02em;
   text-decoration: none;
   color: var(--signal);
   margin-top: 30px;
@@ -751,22 +763,25 @@
   color: #adb6b2;
 }
 .footerBrand {
-  font-size: 65px;
-  font-family: var(--font-body);
-  letter-spacing: -0.04em;
+  font-size: clamp(44px, 5vw, 72px);
+  font-family: var(--font-display);
+  font-weight: 330;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   color: #e5e8df;
 }
 .footerBrand > span {
   display: block;
-  font-size: 10px;
-  font-family: var(--font-mono);
-  letter-spacing: 0.2em;
+  font-size: 14px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
   margin-top: 12px;
   color: #a6b99c;
 }
 .footer p {
-  font-size: 11px;
-  line-height: 1.9;
+  font-size: 15px;
+  line-height: 1.7;
   max-width: 590px;
 }
 .footer nav {
@@ -776,13 +791,14 @@
   margin: 28px 0;
 }
 .footer nav a {
-  font-size: 10px;
+  font-size: 15px;
   color: #cad7c3;
   text-decoration: none;
 }
 .footer .releaseNote {
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
   margin: 25px 0;
 }
 
@@ -853,10 +869,10 @@
   }
   .heroCoordinates {
     gap: 15px;
-    font-size: 10px;
+    font-size: 13px;
   }
   .worldLinks a {
-    font-size: 10px;
+    font-size: 13px;
   }
   .sectionIntro {
     column-gap: 30px;
@@ -896,7 +912,7 @@
     font-size: 48px;
     line-height: 1.06;
     margin: 22px 0;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.02em;
   }
   .copy > p {
     font-size: 13px;
@@ -908,10 +924,10 @@
     font-size: 19px;
   }
   .copy .kicker {
-    font-size: 10px;
+    font-size: 13px;
   }
   .copy .highlight {
-    font-size: 12px;
+    font-size: 14px;
     margin-top: 20px;
   }
   .hero {
@@ -928,8 +944,8 @@
     margin-top: 22px;
   }
   .hero .kicker {
-    font-size: 10px;
-    letter-spacing: 0.12em;
+    font-size: 13px;
+    letter-spacing: 0.01em;
   }
   .heroQuestion {
     font-size: 20px;
@@ -938,7 +954,7 @@
   }
   .heroDescription {
     max-width: 265px;
-    font-size: 12px;
+    font-size: 14px;
   }
   .heroCaption {
     display: none;
@@ -948,14 +964,14 @@
     left: 25px;
     right: auto;
     gap: 18px;
-    font-size: 10px;
+    font-size: 13px;
   }
   .heroCoordinates span:last-child {
     display: none;
   }
   .begin {
     margin-top: 20px;
-    font-size: 11px;
+    font-size: 13px;
   }
   .beginCircle {
     height: 42px;
@@ -970,13 +986,13 @@
   .worldIndex > span {
     height: 36px;
     width: 36px;
-    font-size: 10px;
+    font-size: 13px;
   }
   .worldIndex p {
-    font-size: 11px;
+    font-size: 13px;
   }
   .worldIndex small {
-    font-size: 10px;
+    font-size: 13px;
   }
   .worldStats {
     padding: 16px 0;
@@ -986,11 +1002,11 @@
     font-size: 30px;
   }
   .source {
-    font-size: 10px;
+    font-size: 13px;
     line-height: 1.7;
   }
   .worldLinks a {
-    font-size: 10px;
+    font-size: 13px;
   }
   .worldAnnotation {
     position: relative;
@@ -1004,7 +1020,7 @@
     bottom: auto;
     right: 25px;
     top: 43svh;
-    font-size: 10px;
+    font-size: 13px;
   }
   .worldChapter,
   .observerChapter,
@@ -1025,7 +1041,7 @@
     margin-bottom: 45px;
   }
   .sectionIntro .kicker {
-    font-size: 10px;
+    font-size: 13px;
     margin-bottom: 24px;
   }
   .sectionIntro h2 {
@@ -1034,11 +1050,11 @@
   }
   .sectionIntro > p:last-child {
     margin-top: 25px;
-    font-size: 12px;
+    font-size: 14px;
     max-width: 400px;
   }
   .matrixLegend {
-    font-size: 10px;
+    font-size: 13px;
     gap: 15px;
     line-height: 1.8;
   }
@@ -1046,12 +1062,12 @@
     min-width: 330px;
   }
   .matrix thead th {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0;
   }
   .matrix tbody button {
     padding: 14px 8px;
-    font-size: 10px;
+    font-size: 13px;
     gap: 0;
   }
   .matrix tbody button span {
@@ -1071,13 +1087,13 @@
     font-size: 13px;
   }
   .signalReadout span {
-    font-size: 10px;
+    font-size: 13px;
   }
   .finePrint {
-    font-size: 10px;
+    font-size: 13px;
   }
   .chartHeading {
-    font-size: 10px;
+    font-size: 13px;
     gap: 10px;
     line-height: 1.8;
   }
@@ -1091,7 +1107,7 @@
     justify-content: space-between;
   }
   .chartSelector button {
-    font-size: 10px;
+    font-size: 13px;
     min-width: 27px;
     min-height: 33px;
   }
@@ -1107,10 +1123,10 @@
     font-size: 23px;
   }
   .chartReadout small {
-    font-size: 10px;
+    font-size: 13px;
   }
   .dataDetails table {
-    font-size: 10px;
+    font-size: 13px;
     min-width: 430px;
   }
   .enduranceNote {
@@ -1121,10 +1137,10 @@
     font-size: 27px;
   }
   .enduranceNote p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .enduranceNote a {
-    font-size: 10px;
+    font-size: 13px;
   }
   .epilogue .copy {
     width: 100%;
@@ -1144,16 +1160,16 @@
     margin-bottom: 38px;
   }
   .footer p {
-    font-size: 10px;
+    font-size: 13px;
   }
   .footer nav {
     gap: 18px;
   }
   .footer nav a {
-    font-size: 10px;
+    font-size: 13px;
   }
   .footer .releaseNote {
-    font-size: 10px;
+    font-size: 13px;
   }
 
   .reading .chapter,
@@ -1240,8 +1256,8 @@
 }
 .worldDestinations > span {
   display: block;
-  font: 7px var(--font-mono);
-  letter-spacing: 0.13em;
+  font-size: 11px;
+  letter-spacing: 0.01em;
   color: #a9b5af;
   margin: 0 0 7px;
 }
@@ -1255,7 +1271,7 @@
   border-bottom: 1px solid transparent;
   background: none;
   color: #c4d3c8;
-  font: 10px var(--font-mono);
+  font: 12px var(--font-body);
   min-height: 32px;
   padding: 6px 7px;
 }
@@ -1276,7 +1292,7 @@
 }
 .chapter[data-world] .exploreMain .exploreSubject small {
   display: inline;
-  font: 10px var(--font-body);
+  font: 12px var(--font-body);
   color: #b5c2b5;
 }
 .chapter[data-world] .worldAnnotation {
@@ -1342,11 +1358,11 @@
 }
 .inspectorHeader span,
 .inspectorHeader strong {
-  font: 9px var(--font-mono);
-  letter-spacing: 0.16em;
+  font: 12px var(--font-body);
+  letter-spacing: 0.01em;
 }
 .inspectorHeader strong {
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.03em;
   font-weight: 400;
 }
@@ -1363,7 +1379,7 @@
   border: 1px solid #a4b4b24d;
   color: #e2e7dd;
   padding: 10px 15px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .inspectorHeader button span {
   font: 22px var(--font-body);
@@ -1381,18 +1397,18 @@
 .inspectKicker {
   display: flex;
   justify-content: space-between;
-  font: 8px var(--font-mono);
-  letter-spacing: 0.13em;
+  font: 12px var(--font-body);
+  letter-spacing: 0.01em;
   color: #c0cfa9;
 }
 .inspectorPanel h2 {
   font: clamp(29px, 3vw, 43px)/1.08 var(--font-body);
   font-weight: 400;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.02em;
   margin: 25px 0 18px;
 }
 .inspectDescription {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.8;
   color: #aebdc0;
 }
@@ -1410,7 +1426,7 @@
   background: #12212a66;
   color: #c4d4d1;
   padding: 10px 11px;
-  font: 10px var(--font-mono);
+  font: 12px var(--font-body);
 }
 .inspectWorlds button[aria-pressed='true'],
 .inspectObjects button[aria-pressed='true'] {
@@ -1429,14 +1445,14 @@
   background: transparent;
   color: #d2e1bf;
   padding: 15px 0;
-  font-size: 11px;
+  font-size: 13px;
 }
 .inspectObjects {
   margin-top: 29px;
 }
 .inspectObjects > p {
-  font: 8px var(--font-mono);
-  letter-spacing: 0.12em;
+  font: 12px var(--font-body);
+  letter-spacing: 0.01em;
   color: #9aaeb1;
   margin-bottom: 15px;
 }
@@ -1450,15 +1466,15 @@
   color: #bdcbc8;
   background: transparent;
   padding: 9px 10px;
-  font-size: 10px;
+  font-size: 13px;
 }
 .inspectCredit {
-  font: 9px/1.7 var(--font-mono);
+  font: 12px/1.6 var(--font-body);
   color: #8fa3a7;
   margin: 27px 0 16px;
 }
 .inspectSource {
-  font-size: 11px;
+  font-size: 13px;
   color: #c9d9c1;
   text-decoration: none;
   display: inline-block;
@@ -1483,7 +1499,7 @@
   font: 14px var(--font-body);
 }
 .inspectorTools button:last-child {
-  font-size: 10px;
+  font-size: 13px;
   padding-inline: 16px;
 }
 .inspectorTools button:disabled {
@@ -1496,8 +1512,8 @@
   left: calc((100% - 375px) / 2);
   transform: translateX(-50%);
   white-space: nowrap;
-  font: 7px var(--font-mono);
-  letter-spacing: 0.1em;
+  font-size: 11px;
+  letter-spacing: 0.01em;
   color: #9db1b4;
 }
 .inspectHint span {
@@ -1529,19 +1545,19 @@
   }
   .exploreMain {
     padding: 9px 0;
-    font-size: 11px;
+    font-size: 13px;
   }
   .worldDestinations {
     display: block;
     margin-bottom: 4px;
   }
   .worldDestinations button {
-    font-size: 10px;
+    font-size: 13px;
     min-height: 32px;
     padding: 6px;
   }
   .worldDestinations > span {
-    font-size: 10px;
+    font-size: 13px;
     margin-bottom: 5px;
   }
   .worldChapter:has([data-has-system='true']) {
@@ -1562,15 +1578,15 @@
     gap: 8px;
   }
   .inspectorHeader > div > span {
-    font-size: 10px;
+    font-size: 13px;
   }
   .inspectorHeader strong {
-    font-size: 10px;
+    font-size: 13px;
   }
   .inspectorHeader button {
     padding: 6px 11px;
     gap: 11px;
-    font-size: 10px;
+    font-size: 13px;
   }
   .inspectorPanel {
     inset: max(54dvh, 300px) 0 0;
@@ -1588,7 +1604,7 @@
     margin: 14px 0 10px;
   }
   .inspectDescription {
-    font-size: 12px;
+    font-size: 14px;
   }
   .inspectWorlds {
     margin: 22px 0 17px;
@@ -1609,7 +1625,7 @@
     bottom: auto;
     top: calc(max(54dvh, 300px) - 78px);
     left: 50%;
-    font-size: 10px;
+    font-size: 13px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1647,13 +1663,13 @@
   visibility: hidden;
 }
 .inspectorTools button:nth-last-child(2) {
-  font-size: 10px;
+  font-size: 13px;
   padding-inline: 12px;
 }
 @media (max-width: 760px) {
   .inspectorTools button:last-child,
   .inspectorTools button:nth-last-child(2) {
-    font-size: 10px;
+    font-size: 13px;
     padding-inline: 8px;
   }
 }
@@ -1668,7 +1684,7 @@
     margin-bottom: 22px;
   }
   .chapter[data-world] .copy > p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.75;
   }
   .chapter[data-world] .worldStats {
@@ -1680,7 +1696,7 @@
   }
   .chapter[data-world] .source {
     margin-top: 19px;
-    font-size: 10px;
+    font-size: 13px;
   }
   .chapter[data-world] .worldAnnotation {
     top: calc(50% + 25svh);
@@ -1789,7 +1805,7 @@
   max-width: 160px;
   padding: 5px 9px;
   border-radius: 3px;
-  font: 10px var(--font-mono);
+  font: 12px var(--font-body);
   color: #eff1e7;
   background: #06101cbb;
   opacity: 0;
@@ -1871,7 +1887,7 @@
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 500;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.02em;
 }
 
 :global(html):has(.experience) {

@@ -54,7 +54,7 @@ test('all ten records serve the current portrait and remain available without Ja
     const response = await page.goto(`/atlas/s${i}`);
     expect(response?.status()).toBe(200);
     await expect(page.locator(`[data-world-portrait="S${i}"]`)).toBeVisible();
-    await expect(page.getByRole('region', { name: `S${i} canonical overview` })).toBeVisible();
+    await expect(page.getByRole('region', { name: `S${i} at a glance` })).toBeVisible();
     await expect(page.getByRole('heading', { level: 1 })).not.toBeEmpty();
   }
   await context.close();
@@ -75,13 +75,13 @@ test('the new explorers retain usable controls when WebGL is unavailable', async
   await expect(page).toHaveURL(/\/atlas\/s6$/);
   await page.goto('/observatory?scenario=S4&instrument=habitable_worlds_observatory');
   await page
-    .getByRole('group', { name: /Select future/ })
+    .getByRole('group', { name: /Pick a future/ })
     .getByRole('button', { name: /^S9:/ })
     .click();
   await expect(page.locator('[data-world-portrait="S9"]')).toBeVisible();
-  await page.getByRole('button', { name: 'Open data view' }).click();
+  await page.getByRole('button', { name: 'Show as a table' }).click();
   await expect(
-    page.getByRole('table', { name: 'Five-method Figure 6 result for S9' }),
+    page.getByRole('table', { name: 'What each instrument could detect in S9' }),
   ).toBeVisible();
 });
 

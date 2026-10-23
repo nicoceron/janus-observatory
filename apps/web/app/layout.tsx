@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { IBM_Plex_Mono, Space_Grotesk, Chakra_Petch } from 'next/font/google';
+import { Hanken_Grotesk, Newsreader } from 'next/font/google';
 import type { ReactNode } from 'react';
 
 import { MotionPreference } from './components/MotionPreference';
@@ -7,23 +7,18 @@ import { OperationalTelemetry } from './components/OperationalTelemetry';
 import { siteDescription, siteOrigin } from '../lib/site';
 import './globals.css';
 
-const body = Space_Grotesk({
+// Text and interface: a quiet, open grotesque that stays legible at small sizes.
+const body = Hanken_Grotesk({
   subsets: ['latin'],
   variable: '--font-body',
   display: 'swap',
 });
 
-const mono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  weight: ['400'],
-  display: 'swap',
-});
-
-const display = Chakra_Petch({
+// Headlines: an optical-size serif in the tradition of astronomy books and almanacs.
+const display = Newsreader({
   subsets: ['latin'],
   variable: '--font-display',
-  weight: ['400', '500', '600'],
+  axes: ['opsz'],
   display: 'swap',
 });
 
@@ -53,12 +48,12 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: 'Janus Observatory',
-    title: 'Janus Observatory · Ten futures, one system',
+    title: 'Janus Observatory · Ten futures, one question',
     description: siteDescription,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Janus Observatory · Ten futures, one system',
+    title: 'Janus Observatory · Ten futures, one question',
     description: siteDescription,
   },
 };
@@ -74,7 +69,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <head>
         <link rel="describedby" href={`${siteOrigin}/llms.txt`} type="text/markdown" />
       </head>
-      <body className={`${body.variable} ${mono.variable} ${display.variable}`}>
+      <body className={`${body.variable} ${display.variable}`}>
         {children}
         <MotionPreference />
         <OperationalTelemetry />

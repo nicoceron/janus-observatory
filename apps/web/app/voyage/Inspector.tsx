@@ -31,8 +31,12 @@ export function Inspector({
   const { world, selection } = inspection,
     art = worlds[world];
   useEffect(() => {
-    const overflow = document.body.style.overflow;
+    const { overflow, paddingRight } = document.body.style;
+    const width = document.documentElement.clientWidth;
     document.body.style.overflow = 'hidden';
+    // Engines that drop the scrollbar on lock widen the page; pad it back so text never reflows.
+    const gutter = document.documentElement.clientWidth - width;
+    if (gutter > 0) document.body.style.paddingRight = `${gutter}px`;
     close.current?.focus({ preventScroll: true });
     const keyboard = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -60,6 +64,7 @@ export function Inspector({
     document.addEventListener('keydown', keyboard);
     return () => {
       document.body.style.overflow = overflow;
+      document.body.style.paddingRight = paddingRight;
       document.removeEventListener('keydown', keyboard);
     };
   }, [onClose]);
@@ -116,11 +121,11 @@ export function Inspector({
         </button>
       </div>
       <p className={s.inspectHint}>
-        DRAG TO ROTATE <span>·</span> CLICK A LANDMARK TO INSPECT
+        Drag to rotate <span>·</span> Pick a landmark to look closer
       </p>
       <aside className={s.inspectorPanel}>
         <p className={s.inspectKicker}>
-          {systemSelections(system).includes(selection) ? 'WORLD STUDY' : 'OBJECT STUDY'}{' '}
+          {systemSelections(system).includes(selection) ? 'World' : 'Landmark'}{' '}
           <span>/{art.id}</span>
         </p>
         <h2 id="inspector-title">{selectionName(selection)}</h2>
@@ -137,7 +142,7 @@ export function Inspector({
         </nav>
         {(selection === 'Earth' || objects.includes(selection)) && (
           <div className={s.inspectObjects}>
-            <p>LANDMARKS</p>
+            <p>Landmarks</p>
             <div>
               {objects.map((id) => (
                 <button key={id} aria-pressed={id === selection} onClick={() => onSelect(id)}>

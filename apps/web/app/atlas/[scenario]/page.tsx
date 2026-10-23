@@ -5,13 +5,8 @@ import Link from '../../components/AppLink';
 import { notFound } from 'next/navigation';
 
 import assetLedger from '../../../../../data/assets/ledger.json';
-import {
-  getScenarioProfile,
-  scientificNotation,
-  sourceRefHref,
-  sourceRefLabel,
-  sourcedDisplay,
-} from '../../../lib/canonical';
+import { getScenarioProfile, sourceRefHref, sourceRefLabel } from '../../../lib/canonical';
+import { growthLabel, morphologyRows, plainReading } from '../../../lib/plain-labels';
 import { WorldPortrait } from '../../components/WorldPortrait';
 import { worldSignals } from '../../../lib/world-signals';
 import { QuantityComparison, ReferenceEarthNote } from '../../components/QuantityComparison';
@@ -28,25 +23,31 @@ function parseScenario(value: string): ScenarioId | null {
 }
 
 function displayNullable(value: number | null, unit?: string) {
-  return value === null ? 'Published ellipsis' : `${value}${unit ? ` ${unit}` : ''}`;
+  return value === null ? 'Not given' : `${value}${unit ? ` ${unit}` : ''}`;
 }
+
+const precisionLabels: Record<string, string> = {
+  exact_text: 'Exact, from the paper’s text',
+  approximate_text: 'Approximate, from the paper’s text',
+  figure_only: 'Only shown in a chart',
+};
 
 function ExactSource({ sourceRefs }: { sourceRefs: SourceRef[] }) {
   const first = sourceRefs[0];
-  if (!first) return <span>Missing source locator</span>;
+  if (!first) return null;
   return (
     <a className={styles.recordSource} href={sourceRefHref(first)} rel="noreferrer" target="_blank">
-      {sourceRefLabel(first)}
-      {sourceRefs.length > 1 ? ` +${sourceRefs.length - 1} contributing rows` : ''} ↗
+      {sourceRefLabel(first)} ↗
     </a>
   );
 }
 
 function FieldValue({ field }: { field: Sourced<unknown> }) {
+  const reading = plainReading(field);
   return (
     <>
-      <span>{sourcedDisplay(field)}</span>
-      {field.note ? <small>{field.note}</small> : null}
+      <span>{reading.value}</span>
+      {reading.paper ? <small>In the paper: {reading.paper}</small> : null}
       <ExactSource sourceRefs={field.sourceRefs} />
     </>
   );
@@ -61,7 +62,7 @@ export async function generateMetadata({ params }: ScenarioPageProps): Promise<M
   if (!scenarioId) return {};
   const profile = getScenarioProfile(scenarioId);
   const title = `${scenarioId} · ${profile.morphology.mythMetaphor}`;
-  const description = `Canonical morphology, trajectory, planetary traces, observability, collapse results, artifacts, and source locators for Project Janus scenario ${scenarioId}.`;
+  const description = `${profile.morphology.mythMetaphor}, Project Janus future ${scenarioId}: what it is like, how large it grows, what telescopes could see, and how it weathers collapse, with sources.`;
   return {
     title,
     description,
@@ -82,21 +83,18 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
     ({ kind, scenarioId: artifactScenario }) =>
       kind === 'artifact' && artifactScenario === scenarioId,
   );
-  const growthLabel =
+  const growthRate =
     profile.growth.annualGrowthRate === null
-      ? `${profile.growth.growthState} · no numeric rate printed`
-      : `${(profile.growth.annualGrowthRate * 100).toFixed(2)}% / year`;
+      ? 'No rate given'
+      : `${(profile.growth.annualGrowthRate * 100).toFixed(2)}% a year`;
 
   return (
     <InnerPage
-      eyebrow={`Atlas record · ${profile.id}`}
-      lede={
-        profile.morphology.canonicalSummary.value ??
-        `Explore ${profile.id} and its source-linked scenario data.`
-      }
+      eyebrow={profile.id}
+      lede={profile.morphology.canonicalSummary.value ?? `Explore ${profile.id}.`}
       title={profile.morphology.mythMetaphor}
     >
-      <nav className={styles.recordNav} aria-label="Scenario records">
+      <nav className={styles.recordNav} aria-label="Other futures">
         {scenarioIds.map((id) => (
           <Link
             aria-current={id === profile.id ? 'page' : undefined}
@@ -108,39 +106,28 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
         ))}
       </nav>
 
-      <section className={styles.recordHero} aria-label={`${profile.id} canonical overview`}>
+      <section className={styles.recordHero} aria-label={`${profile.id} at a glance`}>
         <WorldPortrait world={Number(profile.id.slice(1)) - 1} signals={worldSignals(profile)} />
         <dl className={styles.recordLedger}>
           <div>
-            <dt>Scenario</dt>
-            <dd>{profile.id}</dd>
-          </div>
-          <div>
-            <dt>Morphology</dt>
-            <dd>
-              {profile.morphology.globalFactor} · technology cluster{' '}
-              {profile.morphology.technologyCluster}
-            </dd>
-          </div>
-          <div>
-            <dt>Population · +1,000 yr</dt>
+            <dt>Population in 1,000 years</dt>
             <dd>
               <QuantityComparison dimension="population" value={profile.growth.population} />
             </dd>
           </div>
           <div>
-            <dt>Annual energy</dt>
+            <dt>Energy used per year</dt>
             <dd>
               <QuantityComparison dimension="energy" value={profile.growth.annualEnergyUseJ} />
             </dd>
           </div>
           <div>
-            <dt>Reported endpoint</dt>
-            <dd>{profile.growth.growthState}</dd>
+            <dt>Trend</dt>
+            <dd>{growthLabel(profile.growth.growthState)}</dd>
           </div>
           <div>
             <dt>Growth rate</dt>
-            <dd>{growthLabel}</dd>
+            <dd>{growthRate}</dd>
           </div>
         </dl>
       </section>
@@ -149,133 +136,33 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
         className={styles.recordSource}
         data-telemetry-event="source_link"
         data-telemetry-value="JANUS-PAPER-01"
-        href="https://arxiv.org/pdf/2409.00067v3#page=8"
+        href="https://arxiv.org/pdf/2409.00067v3#page=18"
         rel="noreferrer"
         target="_blank"
       >
-        Morphology source · Table 5 · page 8 ↗
+        Source: the scenario study, Table 9 ↗
       </a>
 
       <section className={styles.recordSection} aria-labelledby="morphology-record-title">
         <header className={styles.recordSectionHeader}>
-          <div>
-            <p className={styles.recordKicker}>Tables 2, 4, 5 · Section 3.2.1</p>
-            <h2 id="morphology-record-title">Complete sourced morphology.</h2>
-          </div>
+          <h2 id="morphology-record-title">What this future is like.</h2>
           <p>
-            Every cell below names its exact field, source row, and source column. Cluster
-            alternatives remain alternatives; graphical biosphere distributions remain explicitly
-            not transcribed.
+            How the scenario study describes this civilization. Where it offers more than one
+            option, both are shown. Each line links to the table it came from.
           </p>
         </header>
-        <div className={styles.twoColumnRecord}>
-          <div>
-            <h3>Canonical source summary</h3>
-            <p>
-              <FieldValue field={profile.morphology.canonicalSummary} />
-            </p>
-          </div>
-          <div>
-            <h3>Construction identifiers</h3>
-            <dl>
-              <div>
-                <dt>Global factor</dt>
-                <dd>
-                  {profile.morphology.globalFactor}
-                  <ExactSource sourceRefs={profile.morphology.fieldProvenance.globalFactor} />
-                </dd>
-              </div>
-              <div>
-                <dt>Technology cluster</dt>
-                <dd>
-                  {profile.morphology.technologyCluster}
-                  <ExactSource sourceRefs={profile.morphology.fieldProvenance.technologyCluster} />
-                </dd>
-              </div>
-              <div>
-                <dt>Technology factors</dt>
-                <dd>
-                  {profile.morphology.technologyFactors.join(', ')}
-                  <ExactSource sourceRefs={profile.morphology.fieldProvenance.technologyFactors} />
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
         <div className={styles.tableScroller} tabIndex={0}>
           <table>
-            <caption>Field-level morphology for {profile.id}</caption>
-            <thead>
-              <tr>
-                <th scope="col">Field</th>
-                <th scope="col">Value / capture state</th>
-                <th scope="col">Evidence</th>
-              </tr>
-            </thead>
+            <caption>Profile of {profile.id}</caption>
             <tbody>
-              {(
-                [
-                  ['Economy', 'economy'],
-                  ['Politics', 'politics'],
-                  ['Society', 'society'],
-                  ['Technosphere / biosphere relation', 'technosphere'],
-                  ['Biosphere distribution', 'biosphere'],
-                  ['Spatial distribution', 'spatialDistribution'],
-                  ['Development', 'development'],
-                  ['Connectivity / highest order', 'connectivity'],
-                  ['Smallest scale', 'smallestScale'],
-                ] as const
-              ).map(([label, key]) => (
+              {morphologyRows.map(([label, key]) => (
                 <tr key={key}>
                   <th scope="row">{label}</th>
                   <td>
                     <FieldValue field={profile.morphology[key]} />
                   </td>
-                  <td>{profile.morphology[key].evidenceKind}</td>
                 </tr>
               ))}
-            </tbody>
-          </table>
-        </div>
-        <div className={styles.tableScroller} tabIndex={0}>
-          <table>
-            <caption>Reported 1,000-year trajectory fields for {profile.id}</caption>
-            <thead>
-              <tr>
-                <th scope="col">Field</th>
-                <th scope="col">Value</th>
-                <th scope="col">Exact locator</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Population</th>
-                <td>{scientificNotation(profile.growth.population)}</td>
-                <td>
-                  <ExactSource sourceRefs={profile.growth.fieldProvenance.population} />
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Annual energy use</th>
-                <td>{scientificNotation(profile.growth.annualEnergyUseJ)} J / year</td>
-                <td>
-                  <ExactSource sourceRefs={profile.growth.fieldProvenance.annualEnergyUseJ} />
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Growth state</th>
-                <td>{profile.growth.growthState}</td>
-                <td>
-                  <ExactSource sourceRefs={profile.growth.fieldProvenance.growthState} />
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Annual growth rate</th>
-                <td>{growthLabel}</td>
-                <td>
-                  <ExactSource sourceRefs={profile.growth.fieldProvenance.annualGrowthRate} />
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -283,20 +170,17 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
 
       <section className={styles.recordSection} aria-labelledby="observation-record-title">
         <header className={styles.recordSectionHeader}>
-          <div>
-            <p className={styles.recordKicker}>Published observability · Figure 6</p>
-            <h2 id="observation-record-title">What each method lists.</h2>
-          </div>
+          <h2 id="observation-record-title">What a telescope could see.</h2>
           <p>
-            Each row is a categorical source cell. A blank remains “no signature listed by this
-            method”; it does not become an absence-of-technology claim.
+            Five instruments, from the observing study. “Nothing listed” means the study lists no
+            sign for that instrument—not that this civilization has no technology.
           </p>
         </header>
         <div className={styles.observationList}>
           {profile.observations.map((observation, index) => (
             <article className={styles.observationRow} key={observation.id}>
               <span className={styles.observationIndex}>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{observation.label}</h3>
+              <h3>{observation.plainLabel}</h3>
               {observation.result.signatures.length > 0 ? (
                 <ul>
                   {observation.result.signatures.map((signature) => (
@@ -304,14 +188,13 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
                   ))}
                 </ul>
               ) : (
-                <p>Blank Figure 6 cell · no signature listed by this method.</p>
+                <p>Nothing listed for this instrument.</p>
               )}
               <span className={styles.observationState}>
-                reported · transcribed
+                {observation.label}
                 <br />
-                {observation.short} · {observation.mode}
+                {observation.mode}
               </span>
-              <ExactSource sourceRefs={observation.result.sourceRefs} />
             </article>
           ))}
         </div>
@@ -323,92 +206,41 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
           rel="noreferrer"
           target="_blank"
         >
-          Exact matrix source · Figure 6 · page 10 ↗
-        </a>
-      </section>
-
-      <section className={styles.recordSection} aria-labelledby="atmosphere-record-title">
-        <header className={styles.recordSectionHeader}>
-          <div>
-            <p className={styles.recordKicker}>Future Earth atmosphere · Table 1</p>
-            <h2 id="atmosphere-record-title">Canonical atmospheric inputs.</h2>
-          </div>
-          <p>
-            Published ellipses remain null. They never silently become numeric zero, and no
-            PDF-digitized spectrum is presented as authoritative raw data.
-          </p>
-        </header>
-        <div className={styles.tableScroller} tabIndex={0}>
-          <table>
-            <caption>Published future-Earth atmosphere values for {profile.id}</caption>
-            <thead>
-              <tr>
-                <th scope="col">Property</th>
-                <th scope="col">Value</th>
-                <th scope="col">Unit</th>
-                <th scope="col">Evidence</th>
-                <th scope="col">Exact locator</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.entries(profile.atmosphere).map(([id, row]) => (
-                <tr key={id}>
-                  <th scope="row">{row.label}</th>
-                  <td>{row.value ?? 'Published ellipsis'}</td>
-                  <td>{row.unit}</td>
-                  <td>reported · transcribed</td>
-                  <td>
-                    <ExactSource sourceRefs={row.sourceRefs} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <a
-          className={styles.recordSource}
-          data-telemetry-event="source_link"
-          data-telemetry-value="JANUS-PAPER-03"
-          href="https://arxiv.org/pdf/2511.20329v2#page=4"
-          rel="noreferrer"
-          target="_blank"
-        >
-          Exact atmosphere source · Table 1 · page 4 ↗
+          Source: the observing study, Figure 6 ↗
         </a>
       </section>
 
       <section className={styles.recordSection} aria-labelledby="planetary-record-title">
         <header className={styles.recordSectionHeader}>
-          <div>
-            <p className={styles.recordKicker}>Earth · Moon · Mars · Venus</p>
-            <h2 id="planetary-record-title">Planetary reach stays multidimensional.</h2>
-          </div>
+          <h2 id="planetary-record-title">Marks on each world.</h2>
           <p>
-            Pollution, illumination, surface modification, satellite belts, and aerosols use their
-            own source units. The Atlas does not compress them onto a misleading common scale.
+            Pollution, night lights, reshaped land, satellites and haze on Earth, the Moon, Mars and
+            Venus, compared with Earth today. Each kind of mark keeps its own units; we don’t squash
+            them onto one scale.
           </p>
         </header>
         <div className={styles.tableScroller} tabIndex={0}>
           <table>
-            <caption>Planetary technosignature magnitudes for {profile.id}</caption>
+            <caption>Marks on each world in {profile.id}</caption>
             <thead>
               <tr>
-                <th scope="col">Body</th>
-                <th scope="col">Signature</th>
-                <th scope="col">Value</th>
-                <th scope="col">Unit</th>
-                <th scope="col">Source note</th>
-                <th scope="col">Exact locator</th>
+                <th scope="col">World</th>
+                <th scope="col">Mark</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Measured as</th>
+                <th scope="col">Source</th>
               </tr>
             </thead>
             <tbody>
               {profile.planetary.map((row) => (
                 <tr key={`${row.signatureId}-${row.body}`}>
                   <th scope="row">{row.body}</th>
-                  <td>{row.signatureLabel}</td>
+                  <td>
+                    {row.signatureLabel}
+                    {row.annotations?.length ? <small>{row.annotations.join(' ')}</small> : null}
+                  </td>
                   <td>{displayNullable(row.value)}</td>
                   <td>{row.unit}</td>
-                  <td>{row.annotations?.join(' ') || 'No additional table annotation'}</td>
                   <td>
                     <ExactSource sourceRefs={row.sourceRefs} />
                   </td>
@@ -417,96 +249,107 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
             </tbody>
           </table>
         </div>
-        <a
-          className={styles.recordSource}
-          data-telemetry-event="source_link"
-          data-telemetry-value="JANUS-PAPER-01"
-          href="https://arxiv.org/pdf/2409.00067v3#page=14"
-          rel="noreferrer"
-          target="_blank"
-        >
-          Exact planetary source · Table 6 · page 14 ↗
-        </a>
       </section>
 
       <section className={styles.recordSection} aria-labelledby="trajectory-record-title">
         <header className={styles.recordSectionHeader}>
-          <div>
-            <p className={styles.recordKicker}>System evidence + reported trajectory</p>
-            <h2 id="trajectory-record-title">Different evidence classes.</h2>
-          </div>
+          <h2 id="trajectory-record-title">Beyond Earth, and over time.</h2>
           <p>
-            System signatures are reported in Table 8. Collapse values below are reported outcomes
-            from an independent published model; they are not a timeline inferred from Table 9.
+            Signs of technology across the Solar System come from the scenario study. Collapse and
+            recovery come from a separate study that simulates each future for 1,000 years.
           </p>
         </header>
         <div className={styles.twoColumnRecord}>
           <div>
-            <h3>System signatures listed</h3>
+            <h3>Signs beyond Earth</h3>
             {profile.system.length > 0 ? (
               <ul>
                 {profile.system.map((item) => (
-                  <li key={item.id}>
-                    {item.label}
-                    <ExactSource sourceRefs={item.sourceRefs} />
-                  </li>
+                  <li key={item.id}>{item.label}</li>
                 ))}
               </ul>
             ) : (
-              <p>
-                None listed in Table 8.
-                <ExactSource sourceRefs={profile.systemCellProvenance} />
-              </p>
+              <p>None listed.</p>
             )}
+            <ExactSource sourceRefs={profile.systemCellProvenance} />
           </div>
           <div>
-            <h3>Reported collapse/recovery outcome</h3>
+            <h3>Collapse and recovery</h3>
             <p>{profile.collapse.reportedResults.summary}</p>
-            <ExactSource sourceRefs={profile.collapse.fieldProvenance.reportedResults.summary} />
             <dl>
               <div>
-                <dt>Mean duty cycle</dt>
+                <dt>Time spent active</dt>
                 <dd>
-                  {profile.collapse.reportedResults.meanDutyCycle ?? 'Not transcribed from prose'}
-                  <ExactSource
-                    sourceRefs={profile.collapse.fieldProvenance.reportedResults.meanDutyCycle}
-                  />
+                  {profile.collapse.reportedResults.meanDutyCycle === null
+                    ? 'Not stated in the text'
+                    : `${Math.round(profile.collapse.reportedResults.meanDutyCycle * 100)}% on average`}
                 </dd>
               </div>
               <div>
-                <dt>Mean collapse count</dt>
+                <dt>Collapses</dt>
                 <dd>
-                  {profile.collapse.reportedResults.meanCollapseCount ??
-                    'Figure-only / not transcribed'}
-                  <ExactSource
-                    sourceRefs={profile.collapse.fieldProvenance.reportedResults.meanCollapseCount}
-                  />
+                  {profile.collapse.reportedResults.meanCollapseCount === null
+                    ? 'Only shown in a chart'
+                    : `About ${profile.collapse.reportedResults.meanCollapseCount} on average`}
                 </dd>
               </div>
               <div>
-                <dt>Precision</dt>
+                <dt>How precise</dt>
                 <dd>
-                  {profile.collapse.reportedResults.precision.replaceAll('_', ' ')}
-                  <ExactSource
-                    sourceRefs={profile.collapse.fieldProvenance.reportedResults.precision}
-                  />
+                  {precisionLabels[profile.collapse.reportedResults.precision] ??
+                    profile.collapse.reportedResults.precision}
                 </dd>
               </div>
             </dl>
+            <ExactSource sourceRefs={profile.collapse.fieldProvenance.reportedResults.summary} />
           </div>
         </div>
       </section>
 
+      <section className={styles.recordSection} aria-labelledby="atmosphere-record-title">
+        <header className={styles.recordSectionHeader}>
+          <h2 id="atmosphere-record-title">The air on this Earth.</h2>
+          <p>
+            The gases and temperature the observing study gives this future’s Earth. Where the paper
+            leaves a value out, we show “Not given” rather than zero.
+          </p>
+        </header>
+        <details className={styles.recordDetails}>
+          <summary>Show the atmosphere table</summary>
+          <div className={styles.tableScroller} tabIndex={0}>
+            <table>
+              <caption>Atmosphere of Earth in {profile.id}</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Gas or property</th>
+                  <th scope="col">Value</th>
+                  <th scope="col">Unit</th>
+                  <th scope="col">Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(profile.atmosphere).map(([id, row]) => (
+                  <tr key={id}>
+                    <th scope="row">{row.label}</th>
+                    <td>{row.value ?? 'Not given'}</td>
+                    <td>{row.unit}</td>
+                    <td>
+                      <ExactSource sourceRefs={row.sourceRefs} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+
       <section className={styles.recordSection} aria-labelledby="artifact-record-title">
         <header className={styles.recordSectionHeader}>
-          <div>
-            <p className={styles.recordKicker}>Artifact museum · fictional</p>
-            <h2 id="artifact-record-title">In-world objects, rights intact.</h2>
-          </div>
+          <h2 id="artifact-record-title">Objects from this world.</h2>
           <p>
-            These creative works are not scientific evidence. Rights-restricted works stay
-            link-only; open-license works remain attributed and are not silently repurposed as
-            scenario textures.
+            Stories and objects artists made inside this future. They’re fiction, not evidence.
+            Works whose creators reserve all rights are linked, never copied here.
           </p>
         </header>
         {artifacts.length > 0 ? (
@@ -517,16 +360,11 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
               return (
                 <article className={styles.museumItem} key={artifact.id}>
                   <span className={styles.museumIndex}>{String(index + 1).padStart(2, '0')}</span>
-                  <span className={styles.artifactId}>{artifact.artifactId}</span>
+                  <span className={styles.artifactId}>{artifact.scenarioId}</span>
                   <h3>{artifact.title}</h3>
                   <p>{artifact.creator}</p>
-                  <p>
-                    {open ? artifact.requiredCreditText : 'All rights reserved · no local copy.'}
-                  </p>
                   <span className={styles.rightsBadge}>
-                    {open
-                      ? `${artifact.license} · linked exhibit`
-                      : 'Link only · rights restricted'}
+                    {open ? artifact.license : 'All rights reserved'}
                   </span>
                   <a
                     data-telemetry-event="source_link"
@@ -535,7 +373,7 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
                     rel="noreferrer"
                     target="_blank"
                   >
-                    Open public record ↗
+                    View the original ↗
                   </a>
                 </article>
               );
@@ -543,8 +381,7 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
           </div>
         ) : (
           <p className={styles.emptyComparison}>
-            No creative artifact record is currently admitted for {profile.id}. The Atlas leaves the
-            museum position empty instead of inventing one.
+            No artists’ objects are listed for {profile.id} yet.
           </p>
         )}
       </section>
@@ -553,29 +390,29 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
         <a
           data-telemetry-event="source_link"
           data-telemetry-value="JANUS-PAPER-01"
-          href="https://arxiv.org/pdf/2409.00067v3#page=8"
+          href="https://arxiv.org/abs/2409.00067v3"
           rel="noreferrer"
           target="_blank"
         >
-          Scenario paper · Tables 5, 6, 8, 9 ↗
+          The scenario study ↗
         </a>
         <a
           data-telemetry-event="source_link"
           data-telemetry-value="JANUS-PAPER-03"
-          href="https://arxiv.org/pdf/2511.20329v2#page=4"
+          href="https://arxiv.org/abs/2511.20329v2"
           rel="noreferrer"
           target="_blank"
         >
-          Observing paper · Table 1, Figure 6 ↗
+          The observing study ↗
         </a>
         <a
           data-telemetry-event="source_link"
           data-telemetry-value="JANUS-PAPER-05"
-          href="https://arxiv.org/pdf/2604.13774v1#page=7"
+          href="https://arxiv.org/abs/2604.13774v1"
           rel="noreferrer"
           target="_blank"
         >
-          Collapse paper · Table 4, reported outcomes ↗
+          The collapse study ↗
         </a>
       </div>
     </InnerPage>

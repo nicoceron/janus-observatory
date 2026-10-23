@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { activateSpatialTarget } from './helpers/spatial-input';
 import { allScenarioProfiles } from '../lib/canonical-core';
 import { systemPortrait } from '../lib/system-portrait';
 import { selectionName, systemSelections } from '../app/planets/explore';
@@ -7,7 +8,8 @@ test('every published destination is visible together and opens its own inspecto
   page,
   isMobile,
 }, info) => {
-  test.setTimeout(180000);
+  // Ten worlds rendered by WebKit's software WebGL in CI need more than three minutes.
+  test.setTimeout(info.project.name.includes('webkit') ? 360000 : 180000);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
@@ -18,9 +20,9 @@ test('every published destination is visible together and opens its own inspecto
   const canvas = page.locator('canvas');
   const original = await canvas.elementHandle();
   for (let i = 0; i < 10; i++) {
-    await page.getByRole('button', { name: 'Index +', exact: true }).click();
+    await page.getByRole('button', { name: 'Chapters', exact: true }).click();
     await page
-      .getByRole('button', { name: `${String(i + 2).padStart(2, '0')} S${i + 1} ↗`, exact: true })
+      .getByRole('button', { name: new RegExp(`^${String(i + 2).padStart(2, '0')} S${i + 1} `) })
       .click();
     await expect(canvas).toHaveAttribute('data-scene', `${i + 2}.000`);
     await expect(canvas).toHaveAttribute('data-story-body', 'system');
@@ -57,7 +59,7 @@ test('every published destination is visible together and opens its own inspecto
       exact: true,
     });
     const scrollBefore = await page.evaluate(() => scrollY);
-    await button.click();
+    await activateSpatialTarget(page, button, isMobile);
     await expect(
       page.getByRole('dialog').getByRole('heading', { name: selectionName(target), exact: true }),
     ).toBeVisible();

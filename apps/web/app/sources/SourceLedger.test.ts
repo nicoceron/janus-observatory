@@ -55,9 +55,9 @@ describe('source ledger search', () => {
     expect(
       canonicalDatasetEntries.find(({ id }) => id === 'dataset-atmosphere-table-2'),
     ).toMatchObject({
-      subtitle: 'janus.atmosphere.venus.apjl-table-2',
+      subtitle: 'From the observing study',
       version: 'arXiv:2511.20329v2',
-      locator: 'Table 2 · page 6 · reported/transcribed',
+      locator: 'Table 2, page 6',
       href: 'https://arxiv.org/pdf/2511.20329v2#page=6',
       telemetryId: 'JANUS-PAPER-03',
     });

@@ -1,122 +1,132 @@
 import type { Metadata } from 'next';
 
 import independentValidation from '../../../../data/generated/collapse/independent-validation.json';
-import { collapseDataset, observabilityDataset } from '../../lib/canonical';
+import { collapseDataset } from '../../lib/canonical';
+import Link from '../components/AppLink';
 import { InnerPage } from '../components/InnerPage';
 import styles from '../components/InformationPages.module.css';
 
 export const metadata: Metadata = {
   title: 'Methods',
   description:
-    'Evidence labels, canonical data flow, observatory boundaries, collapse-model status, rights, and release limitations for Janus Observatory.',
+    'Where every number on Janus Observatory comes from, what the Observatory can and can’t tell you, and where the evidence runs out.',
   alternates: { canonical: '/methods' },
   openGraph: {
     title: 'Methods · Janus Observatory',
-    description:
-      'How Janus Observatory separates reported facts, transcriptions, derived outputs, interpretations, and fictional artifacts.',
+    description: 'How Janus Observatory turns published research into a story you can check.',
     url: '/methods',
   },
 };
 
-const validationRows = independentValidation.scenarios.map((scenario) => {
-  const comparisonsWithTargets = scenario.comparisons.filter(
-    (comparison) => comparison.reported !== null,
-  );
-  const comparisonsWithoutTargets = scenario.comparisons.filter(
-    (comparison) => comparison.verdict === 'not_validated',
-  );
-
-  return {
-    scenarioId: scenario.scenarioId,
-    passed: comparisonsWithTargets.filter((comparison) => comparison.verdict === 'pass').length,
-    withTargets: comparisonsWithTargets.length,
-    withoutTargets: comparisonsWithoutTargets.length,
-  };
-});
-
-const comparisonCount = validationRows.reduce((total, row) => total + row.withTargets, 0);
-const passedComparisonCount = validationRows.reduce((total, row) => total + row.passed, 0);
-const notValidatedCount = validationRows.reduce((total, row) => total + row.withoutTargets, 0);
+const comparisons = independentValidation.scenarios.flatMap((scenario) => scenario.comparisons);
+const comparisonCount = comparisons.filter((comparison) => comparison.reported !== null).length;
+const passedComparisonCount = comparisons.filter(
+  (comparison) => comparison.reported !== null && comparison.verdict === 'pass',
+).length;
+const notValidatedCount = comparisons.filter(
+  (comparison) => comparison.verdict === 'not_validated',
+).length;
 
 export default function MethodsPage() {
   return (
     <InnerPage
-      eyebrow="Methods · version 0.2"
-      lede="What the Observatory knows, how it knows it, and where the evidence stops."
-      title="Transparent before spectacular."
+      lede="Where every number on this site comes from, what the Observatory can and can’t tell you, and where the evidence runs out."
+      title="How we know what we show."
     >
       <section className={styles.section}>
-        <h2>Scenario status</h2>
+        <h2>Possibilities, not predictions</h2>
         <div className={styles.sectionBody}>
           <p>
-            Project Janus scenarios are self-consistent possibilities for the technosphere—not
-            forecasts, probabilities, or a ranking. Spatial layout, color, and order in this site do
-            not encode likelihood.
+            Project Janus describes ten futures for human civilization, each worked through so its
+            economy, politics, technology and environment fit together. They are possibilities, not
+            forecasts. The researchers don’t say how likely any of them is, and nothing on this
+            site—order, color or layout—hints at it either.
           </p>
         </div>
       </section>
 
       <section className={styles.section}>
-        <h2>Canonical data path</h2>
+        <h2>Where the numbers come from</h2>
         <div className={styles.sectionBody}>
           <ol className={styles.flow}>
             <li>
-              <strong>Reported source</strong>
-              <span>Versioned scholarly paper, exact table or figure locator.</span>
-            </li>
-            <li>
-              <strong>Transcription</strong>
-              <span>Normalized JSON preserves units, significant digits, ellipses, and notes.</span>
-            </li>
-            <li>
-              <strong>Runtime validation</strong>
+              <strong>A published paper</strong>
               <span>
-                Zod schemas reject missing records, malformed cells, and incomplete provenance.
+                Every value starts at a specific table or figure in a Project Janus paper.
               </span>
             </li>
             <li>
-              <strong>Presentation</strong>
+              <strong>Careful copying</strong>
               <span>
-                Components consume canonical records; scientific values are not component literals.
+                We copy each value with its units and precision, and keep blanks blank instead of
+                turning them into zeros.
+              </span>
+            </li>
+            <li>
+              <strong>Automatic checks</strong>
+              <span>
+                Before the site is built, checks reject any value that is missing, malformed or
+                without a source.
+              </span>
+            </li>
+            <li>
+              <strong>The site</strong>
+              <span>
+                Pages draw every scientific number from that checked dataset. None are typed into
+                the design by hand.
               </span>
             </li>
           </ol>
+          <div className={styles.actions}>
+            <Link href="/atlas#downloads">Download the data</Link>
+            <Link href="/sources">See every source</Link>
+          </div>
         </div>
       </section>
 
       <section className={styles.section}>
-        <h2>Observatory model</h2>
+        <h2>What the Observatory shows</h2>
         <div className={styles.sectionBody}>
           <p>
-            This release is a categorical lookup, not a speculative telescope simulator. It resolves
-            all ten scenarios across five observing concepts from {observabilityDataset.title}. A
-            blank figure cell is displayed as “no signature listed.” It never becomes “no
-            technology.”
+            The Observatory doesn’t simulate a telescope. For each of the ten futures, it shows what
+            the{' '}
+            <a
+              data-telemetry-event="source_link"
+              data-telemetry-value="JANUS-PAPER-03"
+              href="https://arxiv.org/abs/2511.20329v2"
+              rel="noreferrer"
+              target="_blank"
+            >
+              observing study
+            </a>{' '}
+            found five proposed instruments could detect, looking at a world like ours from another
+            star.
           </p>
           <p>
-            Distance and integration remain locked to the source study preset because no validated
-            continuous model is available. Atmosphere values come from Table 1. No PDF-digitized
-            spectrum is presented as raw spectral data.
+            When an instrument has nothing listed, that only means the study lists no sign it could
+            pick up. It never means the civilization has no technology.
+          </p>
+          <p>
+            Distance and observing time stay fixed at the study’s own choices, because there’s no
+            tested way to vary them. Atmosphere values come straight from the study’s tables; we
+            don’t show spectra traced from figures in the PDF.
           </p>
           <div className={styles.factStrip}>
             <div>
-              <span>Scenarios</span>
+              <span>Futures</span>
               <strong>10</strong>
             </div>
             <div>
-              <span>Mission concepts</span>
+              <span>Instruments</span>
               <strong>5</strong>
             </div>
             <div>
-              <span>Output type</span>
-              <strong>Categorical</strong>
+              <span>Each result</span>
+              <strong>Listed or not</strong>
             </div>
           </div>
           <div className={styles.actions}>
-            <a href="/observatory">Open Observatory</a>
-            <a href="/atlas/data?format=json" download>
-              Download provenance JSON
-            </a>
+            <Link href="/observatory">Open the Observatory</Link>
           </div>
         </div>
       </section>
@@ -125,146 +135,89 @@ export default function MethodsPage() {
         <h2>Collapse and recovery</h2>
         <div className={styles.sectionBody}>
           <p>
-            The repository contains the paper’s reported parameters and selected aggregate outcomes:
-            {` ${collapseDataset.simulation.monteCarloRunsPerScenario}`} runs per scenario over{' '}
-            {collapseDataset.simulation.windowYears} years. The paper links the authors’ public{' '}
+            A separate Janus study runs each future{' '}
+            {collapseDataset.simulation.monteCarloRunsPerScenario.toLocaleString('en')} times over{' '}
+            {collapseDataset.simulation.windowYears.toLocaleString('en')} years to see how often it
+            collapses and how it recovers. The authors published their{' '}
             <a
               data-telemetry-event="source_link"
               data-telemetry-value="JANUS-CODE-01"
               href="https://github.com/celiablanco/technocycles/tree/910770dbe9224a9f7b1e003fdc7c000c2d78a5c2"
             >
-              technocycles repository at audited commit 910770d
+              code
             </a>
-            . Its notebook fixes the main Monte Carlo seed at 12345, uses 54321 for sensitivity
-            batches, and commits an aggregate CSV. It does not commit per-run trajectories or
-            declare a software/data license, so neither code nor CSV is bundled or used as canonical
-            runtime data. The Observatory implementation remains independent and must never be
-            labeled official Janus code.
+            , but without a license that would let us reuse it, so we link to it rather than copy
+            it.
           </p>
-          <div className={styles.validationPanel}>
-            <p className={styles.validationEyebrow}>Independent validation report</p>
-            <h3>Reimplemented evidence, outside the canonical release.</h3>
-            <p>
-              The generated experiment report is explicitly <code>reimplemented</code> and{' '}
-              <code>noncanonical</code>. Its overall{' '}
-              <code>{independentValidation.overallVerdict}</code> means that {passedComparisonCount}{' '}
-              of {comparisonCount} metric/scenario comparisons with a published target met the
-              recorded tolerance. It does not turn an absent source target into evidence:{' '}
-              {notValidatedCount} comparisons remain <code>not_validated</code>.
-            </p>
-            <div className={styles.factStrip}>
-              <div>
-                <span>Evidence kind</span>
-                <strong>{independentValidation.evidenceKind}</strong>
-              </div>
-              <div>
-                <span>Canonical status</span>
-                <strong>{independentValidation.canonicalStatus}</strong>
-              </div>
-              <div>
-                <span>Large ensemble</span>
-                <strong>
-                  {independentValidation.ensembleSizes.large.toLocaleString('en')} runs
-                </strong>
-              </div>
-            </div>
-            <p>
-              This is an independent check against published comparison targets—not an official
-              author replication. The authors’ code and aggregate data remain unbundled, and no
-              unavailable per-run source trajectories are implied.
-            </p>
-            <div
-              className={styles.tableScroller}
-              role="region"
-              aria-label="Independent collapse validation by scenario"
-              tabIndex={0}
+          <p>
+            To explore the model ourselves, we rebuilt it from the equations in the paper. Our
+            version matches {passedComparisonCount} of the {comparisonCount} results the paper
+            states in its text, within set tolerances. For {notValidatedCount} more, the paper only
+            shows a chart, so there is no exact number to check against. It’s our own rebuild, not
+            the authors’ code, and it never replaces the paper’s numbers.
+          </p>
+          <div className={styles.actions}>
+            <Link href="/research/resilience">See the rebuild</Link>
+            <a href="/api/downloads/independent-validation" download>
+              Download the full check
+            </a>
+            <a
+              data-telemetry-event="source_link"
+              data-telemetry-value="JANUS-PAPER-05"
+              href="https://arxiv.org/abs/2604.13774v1"
+              rel="noreferrer"
+              target="_blank"
             >
-              <table className={styles.accessTable}>
-                <thead>
-                  <tr>
-                    <th scope="col">Scenario</th>
-                    <th scope="col">Published targets</th>
-                    <th scope="col">No published target</th>
-                    <th scope="col">Bounded result</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {validationRows.map((row) => (
-                    <tr key={row.scenarioId}>
-                      <th scope="row">{row.scenarioId}</th>
-                      <td>{row.withTargets}</td>
-                      <td>{row.withoutTargets}</td>
-                      <td>
-                        {row.passed === row.withTargets
-                          ? `${row.passed}/${row.withTargets} pass`
-                          : `${row.passed}/${row.withTargets} pass · review required`}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className={styles.actions}>
-              <a href="/api/downloads/independent-validation" download>
-                Download independent report
-              </a>
-              <a
-                data-telemetry-event="source_link"
-                data-telemetry-value="JANUS-PAPER-05"
-                href="https://arxiv.org/pdf/2604.13774v1#page=7"
-                rel="noreferrer"
-                target="_blank"
-              >
-                Published targets · Table 4, p.7 ↗
-              </a>
-            </div>
+              Read the collapse study ↗
+            </a>
           </div>
         </div>
       </section>
 
       <section className={styles.section}>
-        <h2>Evidence vocabulary</h2>
+        <h2>Labels in the data</h2>
         <div className={styles.sectionBody}>
+          <p>In the downloads, every value carries a label saying where it came from.</p>
           <dl className={styles.glossary}>
             <div>
               <dt>reported</dt>
-              <dd>Directly stated in a source.</dd>
+              <dd>Stated directly in a paper.</dd>
             </div>
             <div>
               <dt>transcribed</dt>
-              <dd>Normalized from a source into canonical data.</dd>
+              <dd>Copied from a paper into our dataset, with units and precision kept.</dd>
             </div>
             <div>
               <dt>derived</dt>
-              <dd>Deterministic calculation from sourced inputs.</dd>
+              <dd>Calculated by us from published numbers, the same way every time.</dd>
             </div>
             <div>
               <dt>reimplemented</dt>
-              <dd>Independent model based on a published method.</dd>
+              <dd>Produced by our own rebuild of a published model.</dd>
             </div>
             <div>
               <dt>editorial</dt>
-              <dd>Observatory explanation or classification.</dd>
+              <dd>Our explanation or grouping.</dd>
             </div>
             <div>
               <dt>interpretive</dt>
-              <dd>Art-directed extrapolation from scenario prose.</dd>
+              <dd>Artwork imagined from a scenario’s description.</dd>
             </div>
             <div>
               <dt>fictional</dt>
-              <dd>In-world artifact or narrative content.</dd>
+              <dd>A creative work set inside a scenario.</dd>
             </div>
             <div>
               <dt>model_generated</dt>
-              <dd>AI output; never canonical.</dd>
+              <dd>Written by an AI. Never used as fact.</dd>
             </div>
           </dl>
         </div>
       </section>
 
       <aside className={styles.notice}>
-        Scientific review artifacts and reviewer sign-off remain a release gate for treating this
-        implementation as a reviewed canonical data release.
+        An independent scientific review of our transcription is still to come. Until then, check
+        any number that matters to you against the paper it links to.
       </aside>
     </InnerPage>
   );

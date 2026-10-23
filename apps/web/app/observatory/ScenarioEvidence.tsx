@@ -25,11 +25,11 @@ export function ScenarioEvidence({
             key={profile.id}
           >
             <span className={styles.epistemic}>
-              reported · transcribed · {observation.result.status.replaceAll('_', ' ')}
+              {observation.result.signatures.length > 0 ? 'Detectable' : 'Nothing listed'}
             </span>
             <h3>{profile.morphology.mythMetaphor}</h3>
             <p className={styles.instrumentLabel}>
-              {observation.plainLabel} · {observation.short} · {observation.mode}
+              {observation.plainLabel}, {observation.mode.toLowerCase()}
             </p>
             {observation.result.signatures.length > 0 ? (
               <ul className={styles.signalList}>
@@ -38,7 +38,7 @@ export function ScenarioEvidence({
                 ))}
               </ul>
             ) : (
-              <p className={styles.quietResult}>No signature listed for this method.</p>
+              <p className={styles.quietResult}>Nothing listed for this instrument.</p>
             )}
             <p className={styles.caveat}>{observation.result.caveat}</p>
             <a
@@ -49,7 +49,7 @@ export function ScenarioEvidence({
               rel="noreferrer"
               target="_blank"
             >
-              {sourceRefLabel(observation.result.sourceRefs[0]!)} · source exact ↗
+              Source: {sourceRefLabel(observation.result.sourceRefs[0]!)} ↗
             </a>
           </div>
         );

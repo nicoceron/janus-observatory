@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Janus Observatory',
     short_name: 'Janus',
     description:
-      'Explore ten self-consistent technological futures through source-backed story, observatory, and atlas views.',
+      'Ten possible futures of human civilization, and what an observer on another star could see.',
     start_url: '/',
     display: 'standalone',
     background_color: '#07100e',
