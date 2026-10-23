@@ -7,9 +7,9 @@ import { systemPortrait } from '../lib/system-portrait';
 test.setTimeout(90000);
 
 async function indexJump(page: import('@playwright/test').Page, label: string, id: string) {
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
   await page
-    .getByRole('navigation', { name: 'Story index' })
+    .getByRole('navigation', { name: 'Story chapters' })
     .getByRole('button', { name: label })
     .click();
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', id);
@@ -47,7 +47,7 @@ test('one canvas survives every world, reverse jumps, and the observer', async (
         : id === 'invisible'
           ? 'Hidden in plain sight'
           : id.toUpperCase();
-    await indexJump(page, `${String(index).padStart(2, '0')} ${label} ↗`, id);
+    await indexJump(page, `${String(index).padStart(2, '0')} ${label}`, id);
     await expect(page.locator('canvas')).toHaveAttribute('data-scene', `${index}.000`);
     expect(await canvas?.evaluate((el) => el === document.querySelector('canvas'))).toBe(true);
   }
@@ -61,7 +61,7 @@ test('the telescope can be entered, exited, and reversed during travel', async (
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
     timeout: 30000,
   });
-  await indexJump(page, '12 The other side ↗', 'observer');
+  await indexJump(page, '12 The other side', 'observer');
   const enter = page.getByRole('link', { name: 'Look through the telescope', exact: true });
   await enter.focus();
   await page.keyboard.press('Enter');
@@ -71,14 +71,14 @@ test('the telescope can be entered, exited, and reversed during travel', async (
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', 'observer');
   await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'exterior');
   await enter.click();
-  await indexJump(page, '12 The other side ↗', 'observer');
+  await indexJump(page, '12 The other side', 'observer');
   await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'exterior');
   await enter.click();
   await expect
     .poll(async () => Number(await page.locator('canvas').getAttribute('data-scene')))
     .toBeCloseTo(13, 2);
   await expect(page.locator('canvas')).toHaveAttribute('data-optical-view', 'eyepiece');
-  await indexJump(page, '12 The other side ↗', 'observer');
+  await indexJump(page, '12 The other side', 'observer');
   await expect
     .poll(async () => Number(await page.locator('canvas').getAttribute('data-scene')))
     .toBeCloseTo(12, 2);
@@ -95,7 +95,7 @@ test('observer continues moving while scroll stays still', async ({ page }, test
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
     timeout: 30000,
   });
-  await indexJump(page, '12 The other side ↗', 'observer');
+  await indexJump(page, '12 The other side', 'observer');
   const y = await page.evaluate(() => scrollY);
   const first = await page.locator('canvas').screenshot();
   await page.waitForTimeout(1300);
@@ -114,16 +114,16 @@ test('desktop and mobile compositions have no page overflow and retain readable 
   });
   await mkdir('docs/qa/spatial-systems', { recursive: true });
   const entries: [string, string][] = [
-    ['first-light', '00 First light ↗'],
-    ['possibilities', '01 Ten possible worlds ↗'],
+    ['first-light', '00 First light'],
+    ['possibilities', '01 Ten possible worlds'],
     ...Array.from({ length: 10 }, (_, i): [string, string] => [
       `s${i + 1}`,
-      `${String(i + 2).padStart(2, '0')} S${i + 1} ↗`,
+      `${String(i + 2).padStart(2, '0')} S${i + 1} `,
     ]),
-    ['observer', '12 The other side ↗'],
-    ['invisible', '13 Hidden in plain sight ↗'],
-    ['signals', '14 Ways of seeing ↗'],
-    ['endurance', '15 Civilizations breathe ↗'],
+    ['observer', '12 The other side'],
+    ['invisible', '13 Hidden in plain sight'],
+    ['signals', '14 Ways of seeing'],
+    ['endurance', '15 Civilizations breathe'],
   ];
   for (const [id, label] of entries) {
     await indexJump(page, label, id);

@@ -12,7 +12,13 @@ import type { LedgerEntry } from './SourceLedger';
 
 const ccByLicenseUrl = 'https://creativecommons.org/licenses/by/4.0/';
 
-export const canonicalDatasetEntries: LedgerEntry[] = [
+const studyNames: Record<string, string> = {
+  'JANUS-PAPER-01': 'From the scenario study',
+  'JANUS-PAPER-03': 'From the observing study',
+  'JANUS-PAPER-05': 'From the collapse study',
+};
+
+const datasetEntries: LedgerEntry[] = [
   {
     id: 'dataset-morphology-table-5',
     title: morphologyDataset.title,
@@ -21,8 +27,8 @@ export const canonicalDatasetEntries: LedgerEntry[] = [
     version: morphologyDataset.source.sourceVersion,
     rights: morphologyDataset.sourceLicense,
     licenseHref: ccByLicenseUrl,
-    use: 'Canonical scenario morphology and construction fields.',
-    locator: 'Table 5 · page 8 · reported/transcribed',
+    use: 'How each of the ten futures is described: economy, politics, society and more.',
+    locator: 'Table 5, page 8',
     href: 'https://arxiv.org/pdf/2409.00067v3#page=8',
     telemetryId: 'JANUS-PAPER-01',
   },
@@ -34,8 +40,8 @@ export const canonicalDatasetEntries: LedgerEntry[] = [
     version: growthDataset.source.sourceVersion,
     rights: growthDataset.sourceLicense,
     licenseHref: ccByLicenseUrl,
-    use: 'Canonical population, annual energy, growth state, and printed rate.',
-    locator: 'Table 9 · page 18 · reported/transcribed',
+    use: 'Population, yearly energy use and growth for each future after 1,000 years.',
+    locator: 'Table 9, page 18',
     href: 'https://arxiv.org/pdf/2409.00067v3#page=18',
     telemetryId: 'JANUS-PAPER-01',
   },
@@ -47,8 +53,8 @@ export const canonicalDatasetEntries: LedgerEntry[] = [
     version: earthAtmosphere.source.sourceVersion,
     rights: earthAtmosphere.sourceLicense,
     licenseHref: ccByLicenseUrl,
-    use: 'Canonical future-Earth atmosphere inputs; null preserves published ellipses.',
-    locator: 'Table 1 · page 4 · reported/transcribed',
+    use: 'The atmosphere of Earth in each future. Values the paper leaves out stay blank.',
+    locator: 'Table 1, page 4',
     href: 'https://arxiv.org/pdf/2511.20329v2#page=4',
     telemetryId: 'JANUS-PAPER-03',
   },
@@ -60,8 +66,8 @@ export const canonicalDatasetEntries: LedgerEntry[] = [
     version: venusAtmosphere.source.sourceVersion,
     rights: venusAtmosphere.sourceLicense,
     licenseHref: ccByLicenseUrl,
-    use: 'Canonical future-Venus atmosphere inputs with grouped scenario columns preserved.',
-    locator: 'Table 2 · page 6 · reported/transcribed',
+    use: 'The atmosphere of Venus in the futures that reshape it.',
+    locator: 'Table 2, page 6',
     href: 'https://arxiv.org/pdf/2511.20329v2#page=6',
     telemetryId: 'JANUS-PAPER-03',
   },
@@ -73,8 +79,8 @@ export const canonicalDatasetEntries: LedgerEntry[] = [
     version: planetaryDataset.source.sourceVersion,
     rights: planetaryDataset.sourceLicense,
     licenseHref: ccByLicenseUrl,
-    use: 'Canonical Earth, Moon, Mars, and Venus technosignature magnitudes.',
-    locator: 'Table 6 · page 14 · reported/transcribed',
+    use: 'Pollution, lights, reshaped land, satellites and haze on Earth, the Moon, Mars and Venus.',
+    locator: 'Table 6, page 14',
     href: 'https://arxiv.org/pdf/2409.00067v3#page=14',
     telemetryId: 'JANUS-PAPER-01',
   },
@@ -86,8 +92,8 @@ export const canonicalDatasetEntries: LedgerEntry[] = [
     version: systemDataset.source.sourceVersion,
     rights: systemDataset.sourceLicense,
     licenseHref: ccByLicenseUrl,
-    use: 'Canonical categorical system-technosignature presence by scenario.',
-    locator: 'Table 8 · page 17 · reported/transcribed',
+    use: 'Which signs of technology appear across the Solar System in each future.',
+    locator: 'Table 8, page 17',
     href: 'https://arxiv.org/pdf/2409.00067v3#page=17',
     telemetryId: 'JANUS-PAPER-01',
   },
@@ -99,8 +105,8 @@ export const canonicalDatasetEntries: LedgerEntry[] = [
     version: observabilityDataset.source.sourceVersion,
     rights: observabilityDataset.sourceLicense,
     licenseHref: ccByLicenseUrl,
-    use: 'Canonical categorical mission/scenario observability matrix.',
-    locator: 'Figure 6 · page 10 · reported/transcribed',
+    use: 'What each of five instruments could detect in each future.',
+    locator: 'Figure 6, page 10',
     href: 'https://arxiv.org/pdf/2511.20329v2#page=10',
     telemetryId: 'JANUS-PAPER-03',
   },
@@ -112,9 +118,14 @@ export const canonicalDatasetEntries: LedgerEntry[] = [
     version: collapseDataset.source.sourceVersion,
     rights: collapseDataset.sourceLicense,
     licenseHref: ccByLicenseUrl,
-    use: 'Reported model parameters and selected aggregate outcomes; no author-run trajectories.',
-    locator: 'Table 4 + Sections 3.2–4.1 · page 7',
+    use: 'The collapse model’s settings and the results the paper states in its text.',
+    locator: 'Table 4 and Sections 3.2–4.1, page 7',
     href: 'https://arxiv.org/pdf/2604.13774v1#page=7',
     telemetryId: 'JANUS-PAPER-05',
   },
 ];
+
+export const canonicalDatasetEntries: LedgerEntry[] = datasetEntries.map((entry) => ({
+  ...entry,
+  subtitle: studyNames[entry.telemetryId] ?? entry.subtitle,
+}));

@@ -27,12 +27,20 @@ export type LedgerEntry = {
 export type LedgerFilter = 'all' | 'scholarship' | 'data' | 'artifacts' | 'assets';
 
 const filters: Array<{ id: LedgerFilter; label: string }> = [
-  { id: 'all', label: 'All records' },
+  { id: 'all', label: 'All' },
   { id: 'scholarship', label: 'Papers' },
-  { id: 'data', label: 'Data + code' },
-  { id: 'artifacts', label: 'Artifacts' },
-  { id: 'assets', label: 'Production assets' },
+  { id: 'data', label: 'Data and code' },
+  { id: 'artifacts', label: 'Fiction' },
+  { id: 'assets', label: 'Artwork and media' },
 ];
+
+const kindLabels: Record<LedgerKind, string> = {
+  paper: 'Paper',
+  dataset: 'Dataset',
+  'linked resource': 'Linked resource',
+  artifact: 'Fiction',
+  asset: 'Artwork and media',
+};
 
 function matchesFilter(kind: LedgerKind, filter: LedgerFilter) {
   if (filter === 'all') return true;
@@ -78,10 +86,10 @@ export function SourceLedger({ entries }: { entries: LedgerEntry[] }) {
     <div>
       <div className={styles.controls}>
         <label className={styles.searchLabel}>
-          Search the evidence and rights ledger
+          Search sources
           <input
             onChange={(event) => setQuery(event.currentTarget.value)}
-            placeholder="Title, evidence ID, creator, version…"
+            placeholder="Title, creator, license…"
             type="search"
             value={query}
           />
@@ -100,7 +108,7 @@ export function SourceLedger({ entries }: { entries: LedgerEntry[] }) {
         </div>
       </div>
       <p className={styles.resultCount} aria-live="polite">
-        {visibleEntries.length} of {entries.length} records shown
+        Showing {visibleEntries.length} of {entries.length}
       </p>
       {visibleEntries.length > 0 ? (
         <ol className={styles.ledger}>
@@ -108,7 +116,7 @@ export function SourceLedger({ entries }: { entries: LedgerEntry[] }) {
             <li className={styles.entry} id={entry.id} key={entry.id}>
               <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
               <div className={styles.entryIdentity}>
-                <span className={styles.kind}>{entry.kind}</span>
+                <span className={styles.kind}>{kindLabels[entry.kind]}</span>
                 <h3>{entry.title}</h3>
                 <p>{entry.subtitle}</p>
               </div>
@@ -118,14 +126,14 @@ export function SourceLedger({ entries }: { entries: LedgerEntry[] }) {
                   <dd>{entry.version}</dd>
                 </div>
                 <div>
-                  <dt>Rights</dt>
+                  <dt>License</dt>
                   <dd>
                     {entry.rights}
                     {entry.licenseHref ? (
                       <>
                         {' · '}
                         <a href={entry.licenseHref} rel="noreferrer" target="_blank">
-                          License terms ↗
+                          Terms ↗
                         </a>
                       </>
                     ) : null}
@@ -140,23 +148,23 @@ export function SourceLedger({ entries }: { entries: LedgerEntry[] }) {
                 </p>
                 {entry.sourceAgency || entry.retrievedAt || entry.modifications ? (
                   <details>
-                    <summary>Provenance + modifications</summary>
+                    <summary>Where it came from</summary>
                     <dl>
                       {entry.sourceAgency ? (
                         <div>
-                          <dt>Source agency</dt>
+                          <dt>From</dt>
                           <dd>{entry.sourceAgency}</dd>
                         </div>
                       ) : null}
                       {entry.retrievedAt ? (
                         <div>
-                          <dt>Retrieved</dt>
+                          <dt>Downloaded</dt>
                           <dd>{entry.retrievedAt}</dd>
                         </div>
                       ) : null}
                       {entry.displaySize ? (
                         <div>
-                          <dt>Maximum display size</dt>
+                          <dt>Largest size shown</dt>
                           <dd>{entry.displaySize}</dd>
                         </div>
                       ) : null}
@@ -168,7 +176,7 @@ export function SourceLedger({ entries }: { entries: LedgerEntry[] }) {
                         ))}
                       </ol>
                     ) : (
-                      <p>No local derivative; no modification history applies.</p>
+                      <p>Not modified.</p>
                     )}
                   </details>
                 ) : null}
@@ -180,13 +188,13 @@ export function SourceLedger({ entries }: { entries: LedgerEntry[] }) {
                 rel="noreferrer"
                 target="_blank"
               >
-                Open source ↗
+                Open ↗
               </a>
             </li>
           ))}
         </ol>
       ) : (
-        <p className={styles.empty}>No admitted record matches this search and filter.</p>
+        <p className={styles.empty}>Nothing matches. Try another word or filter.</p>
       )}
     </div>
   );

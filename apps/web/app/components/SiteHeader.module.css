@@ -1,172 +1,256 @@
 .header {
   position: fixed;
   z-index: 60;
+  font-family: var(--font-body);
   inset: 0 auto auto 0;
   width: 100vw;
-  height: 94px;
-  padding: 0 4.5vw;
+  height: 76px;
+  padding: 0 clamp(20px, 4.5vw, 72px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
 }
-/* A longer, softer fade lets scrolled copy dissolve under the bar instead of reappearing at
+/* A long, soft fade lets scrolled copy dissolve under the bar instead of reappearing at
    full brightness beside the wordmark. Paint only: no blur over the WebGL stage. */
 .header::before {
   content: '';
   position: absolute;
-  inset: 0 0 -24px;
+  inset: 0 0 -28px;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(
-    #000000f5 0%,
-    #000000ec 62%,
-    #000000a8 80%,
-    #00000047 91%,
-    #00000000 100%
-  );
+  background: linear-gradient(#000000ee 0%, #000000d6 58%, #00000070 82%, #00000000 100%);
 }
 .brand {
   display: flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: #e9e7df;
+  color: var(--ink);
   flex-shrink: 0;
 }
+/* Janus faces both ways: a disc lit on one side. */
 .symbol {
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border: 1px solid #d3e7bc;
   border-radius: 50%;
   background: linear-gradient(60deg, transparent 48%, #d3e7bc 49%);
+  transition: transform 600ms var(--ease-out);
+}
+.brand:hover .symbol {
+  transform: rotate(180deg);
 }
 .wordmark {
   font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  line-height: 1;
-}
-.wordmark small {
-  display: block;
-  font-family: var(--font-mono);
+  font-size: 22px;
   font-weight: 400;
-  font-size: 7px;
-  letter-spacing: 0.25em;
-  margin-top: 7px;
+  letter-spacing: -0.01em;
+  line-height: 1;
 }
 .navigation {
   display: flex;
   align-items: center;
-  gap: clamp(18px, 2.8vw, 40px);
+  gap: clamp(20px, 2.6vw, 36px);
 }
-.navigation a,
-.navigation button {
-  font-family: var(--font-body);
-  font-size: 13px;
+.navigation a {
+  position: relative;
+  font-size: 15px;
   line-height: 1.4;
   text-decoration: none;
-  color: #c4ced1;
-  padding: 12px 0;
+  color: #c3ccc7;
+  padding: 10px 0;
   white-space: nowrap;
+  transition: color 160ms ease;
 }
-.navigation button {
-  border: 0;
-  background: none;
+/* The current page is marked by a small star under its name. */
+.navigation a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--acid);
+  opacity: 0;
+  transform: scale(0.2);
+  transition:
+    opacity 200ms ease,
+    transform 300ms var(--ease-out);
+}
+.navigation a:hover {
+  color: var(--ink);
+}
+.navigation a[aria-current] {
+  color: var(--ink);
+}
+.navigation a[aria-current]::after {
+  opacity: 1;
+  transform: none;
+}
+.chaptersButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid rgba(211, 231, 188, 0.32);
+  border-radius: 999px;
+  background: rgba(8, 12, 16, 0.6);
+  color: var(--ink);
+  font-size: 15px;
   cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
 }
-.navigation button span {
-  margin-left: 7px;
+.chaptersButton:hover,
+.chaptersButton[aria-expanded='true'] {
+  border-color: var(--acid);
+  background: rgba(208, 223, 190, 0.08);
 }
-.navigation a:hover,
-.navigation button:hover,
-.navigation a[aria-current] {
-  color: #d3e7bc;
+.chaptersIcon {
+  position: relative;
+  width: 10px;
+  height: 10px;
 }
-.navigation a[aria-current] {
-  text-decoration: underline;
-  text-underline-offset: 7px;
-  text-decoration-thickness: 1px;
+.chaptersIcon::before,
+.chaptersIcon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4.5px;
+  width: 10px;
+  height: 1px;
+  background: currentColor;
+  transition: transform 260ms var(--ease-out);
+}
+.chaptersIcon::after {
+  transform: rotate(90deg);
+}
+.chaptersIcon[data-open='true']::before {
+  transform: rotate(180deg);
+}
+.chaptersIcon[data-open='true']::after {
+  transform: rotate(180deg);
 }
 .menu {
   position: absolute;
-  top: 86px;
-  right: 4.5vw;
-  width: 340px;
-  max-height: 75svh;
+  top: 70px;
+  right: clamp(20px, 4.5vw, 72px);
+  width: 360px;
+  max-height: calc(100svh - 96px);
   overflow: auto;
-  padding: 18px 28px;
-  background: #0d1214;
-  border: 1px solid #35434a;
+  padding: 10px;
+  background: #0b1014;
+  border: 1px solid #2c383e;
+  border-radius: 16px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  transform-origin: top right;
+  animation: menu-in 220ms var(--ease-out) both;
 }
-.menu > button,
-.menu > a {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+}
+.menu ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu ol button,
+.menu ol a {
+  display: grid;
+  grid-template-columns: 30px auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 10px;
   width: 100%;
-  text-align: left;
+  padding: 9px 12px;
   border: 0;
-  border-bottom: 1px solid #2a353b;
+  border-radius: 10px;
   background: none;
-  color: #e9e7df;
-  padding: 12px 0;
-  font-size: 12px;
+  color: var(--ink);
+  font-size: 15px;
+  text-align: left;
   text-decoration: none;
   cursor: pointer;
 }
-.menu > button span:first-child,
-.menu > a span:first-child {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: #a4a9a9;
+.menu ol button:hover,
+.menu ol a:hover {
+  background: rgba(208, 223, 190, 0.07);
 }
-.menu > button span:last-child,
-.menu > a span:last-child {
-  margin-left: auto;
+.menu ol button[aria-current] {
+  background: rgba(208, 223, 190, 0.12);
 }
-.menu > [aria-current],
-.menu > :hover {
-  color: #d3e7bc;
+.chapterNumber {
+  color: var(--muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
 }
-.menu .credits {
-  margin-top: 12px;
-  border-bottom: 0;
+.menu ol button[aria-current] .chapterNumber {
+  color: var(--acid);
+}
+.chapterLabel {
+  min-width: 2.2em;
+  white-space: nowrap;
+}
+.chapterTitle {
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.menuFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 12px 12px 6px;
+  border-top: 1px solid #222c31;
+}
+.menuFooter a,
+.menuFooter button {
+  border: 0;
+  background: none;
+  color: var(--ink-soft);
+  font-size: 14px;
+  padding: 0;
+  cursor: pointer;
+}
+.menuFooter a:hover,
+.menuFooter button:hover {
+  color: var(--ink);
 }
 @media (max-width: 760px) {
   .header {
-    height: 112px;
-    padding: 16px 22px 10px;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .header::before {
-    inset: 0 0 -28px;
-    background: linear-gradient(#000000f5 0%, #000000f0 78%, #00000080 90%, #00000000 100%);
-  }
-  .symbol {
-    width: 28px;
-    height: 28px;
+    height: 64px;
+    padding: 0 16px;
+    gap: 12px;
   }
   .wordmark {
-    font-size: 21px;
+    display: none;
   }
   .navigation {
-    width: 100%;
-    justify-content: space-between;
-    gap: 14px;
+    gap: 16px;
   }
-  .navigation a,
-  .navigation button {
-    font-size: 12px;
-    padding: 8px 0;
+  .navigation a {
+    font-size: 14px;
+  }
+  .chaptersButton {
+    height: 34px;
+    padding: 0 12px;
+    font-size: 14px;
+    gap: 8px;
   }
   .menu {
-    top: 108px;
-    left: 22px;
-    right: 22px;
+    top: 60px;
+    left: 12px;
+    right: 12px;
     width: auto;
-    max-height: calc(100svh - 132px);
+    max-height: calc(100svh - 76px);
   }
 }

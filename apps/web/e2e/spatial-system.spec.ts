@@ -10,8 +10,8 @@ test('names appear only on demand and interaction follows the scene through moti
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
     timeout: 45000,
   });
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
-  await page.getByRole('button', { name: '04 S3 ↗', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
+  await page.getByRole('button', { name: '04 S3 Golden Age', exact: true }).click();
   const region = page.getByLabel('Explore S3 models', { exact: true });
   const earth = region.getByRole('button', { name: 'Inspect Earth', exact: true });
   const moon = region.getByRole('button', { name: 'Inspect Luna', exact: true });

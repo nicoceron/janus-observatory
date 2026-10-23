@@ -32,10 +32,12 @@ export function Voyage({
   children,
   systems,
   signals,
+  chapterTitles,
 }: {
   children: ReactNode;
   systems: SystemPortrait[];
   signals: WorldSignals[];
+  chapterTitles: Record<string, string>;
 }) {
   const [inspection, setInspection] = useState<Inspection | null>(null);
   const [view, setView] = useState<ViewAdjustment>({ yaw: 0, zoom: 1, reset: 0 });
@@ -138,6 +140,7 @@ export function Voyage({
         <SiteHeader
           inert={!!inspection}
           activeChapter={active}
+          chapterTitles={chapterTitles}
           onJump={jump}
           onRetry={
             failed

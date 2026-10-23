@@ -7,8 +7,8 @@ test('companions emerge continuously behind Earth across the old midpoint and re
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
     timeout: 45000,
   });
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
-  await page.getByRole('button', { name: '03 S2 ↗', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
+  await page.getByRole('button', { name: '03 S2 Wild West', exact: true }).click();
   const anchors = await page.evaluate(() => {
     const positions = ['s2', 's3'].map((id) => {
       const el = document.getElementById(id)!;
@@ -60,8 +60,8 @@ test('companions emerge continuously behind Earth across the old midpoint and re
   expect(samples[2].reveal - samples[1].reveal).toBeLessThan(0.08);
   expect(samples[4].reveal).toBe(1);
   for (let i = 0; i < 4; i++) expect(samples[i].reveal).toBeCloseTo(samples[8 - i].reveal, 1);
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
-  await page.getByRole('button', { name: '04 S3 ↗', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
+  await page.getByRole('button', { name: '04 S3 Golden Age', exact: true }).click();
   await expect.poll(async () => Number(await canvas.getAttribute('data-scene'))).toBeCloseTo(4, 2);
   await expect(
     page.getByLabel('Explore S3 models', { exact: true }).getByRole('button'),

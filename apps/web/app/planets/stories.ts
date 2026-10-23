@@ -246,7 +246,7 @@ export const worldStories: WorldStory[] = [
   {
     id: 'S9',
     depiction:
-      'Earth looks almost untouched, like a world before farming, and Table 6 reports no surface technosignature for it. A few crystalline gifts stand quietly in the landscape and sparse machine nodes circle high above. The machine civilization’s works are elsewhere: on Mars, Venus and around the Sun.',
+      'Earth looks almost untouched, like a world before farming, and the scenario study lists no changes to its surface. A few crystalline gifts stand quietly in the landscape and sparse machine nodes circle high above. The machine civilization’s works are elsewhere: on Mars, Venus and around the Sun.',
     landmarks: [
       {
         id: 'gift',
@@ -271,7 +271,7 @@ export const worldStories: WorldStory[] = [
   {
     id: 'S10',
     depiction:
-      'A restored, flowering Earth lives within growth limits, and Table 6 reports no surface technosignature for it. Above it, a ring of autonomous habitats marks the schism: the part of the commonwealth that embraced technology has moved into orbit and beyond.',
+      'A restored, flowering Earth lives within growth limits, and the scenario study lists no changes to its surface. Above it, a ring of autonomous habitats marks the schism: the part of the commonwealth that embraced technology has moved into orbit and beyond.',
     landmarks: [
       {
         id: 'habitat-ring',

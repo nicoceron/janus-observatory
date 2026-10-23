@@ -39,8 +39,8 @@ test('all ten planets keep their stage and selectors stationary with every instr
   test.setTimeout(90_000);
   await page.goto('/observatory?scenario=S3');
   await page.evaluate(() => document.fonts.ready);
-  const futures = page.getByRole('group', { name: '01 · Select future' });
-  const methods = page.getByRole('group', { name: '02 · Select observing concept' });
+  const futures = page.getByRole('group', { name: '1. Pick a future' });
+  const methods = page.getByRole('group', { name: '2. Pick an instrument' });
   for (const method of await methods.getByRole('button').all()) {
     await method.click();
     await expect(method).toHaveAttribute('aria-pressed', 'true');
@@ -87,7 +87,7 @@ test('320px keyboard switching stays stable with reduced motion and no WebGL', a
   });
   await page.goto('/observatory?scenario=S3');
   await page.evaluate(() => document.fonts.ready);
-  const futures = page.getByRole('group', { name: '01 · Select future' });
+  const futures = page.getByRole('group', { name: '1. Pick a future' });
   await futures.evaluate((element) =>
     element.scrollIntoView({ block: 'center', behavior: 'instant' }),
   );

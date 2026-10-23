@@ -7,7 +7,8 @@ import {
 
 describe('public telemetry route allowlist', () => {
   it('keeps only named product surfaces and canonical scenario routes', () => {
-    expect(normalizePublicTelemetryRoute('/research/concordia')).toBe('/research/concordia');
+    expect(normalizePublicTelemetryRoute('/research/resilience')).toBe('/research/resilience');
+    expect(normalizePublicTelemetryRoute('/research/concordia')).toBe('/other');
     expect(normalizePublicTelemetryRoute('/atlas/S10/')).toBe('/atlas/s10');
     expect(isNormalizedPublicTelemetryRoute('/atlas/s3')).toBe(true);
   });

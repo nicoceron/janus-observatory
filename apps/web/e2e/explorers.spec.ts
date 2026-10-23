@@ -5,8 +5,8 @@ test.describe('Observatory URL state', () => {
     await page.goto('/observatory?scenario=S9&instrument=deep_space_probes');
 
     const console = page.getByRole('region', { name: 'Choose how to look' });
-    const scenario = console.getByRole('group', { name: /Select future/ });
-    const instrument = console.getByRole('group', { name: /Select observing concept/ });
+    const scenario = console.getByRole('group', { name: /Pick a future/ });
+    const instrument = console.getByRole('group', { name: /Pick an instrument/ });
     await expect(scenario.getByRole('button', { name: /^S9:/ })).toHaveAttribute(
       'aria-pressed',
       'true',
@@ -28,10 +28,10 @@ test.describe('Observatory URL state', () => {
     await carbonDioxideRow.focus();
     await expect(carbonDioxideRow).toBeFocused();
 
-    await page.getByText('Open exact atmosphere values and locators').click();
+    await page.getByText('Show exact values and sources').click();
     await expect(
       page.getByRole('table', {
-        name: 'Table 1 atmospheric inputs for S9 and reference Earth cases',
+        name: 'Atmosphere values for S9 and the reference Earths',
       }),
     ).toBeVisible();
 
@@ -43,8 +43,8 @@ test.describe('Observatory URL state', () => {
     await expect.poll(() => new URL(page.url()).searchParams.get('scenario')).toBe('S4');
     await expect(page.getByRole('img', { name: 'Atmospheric fingerprint for S4' })).toBeVisible();
     await expect(page.locator('[aria-labelledby~="modality-svg-title"]')).toHaveCount(1);
-    await instrument.getByRole('button', { name: /LIFE/i }).click();
-    await expect(instrument.getByRole('button', { name: /LIFE/i })).toHaveAttribute(
+    await instrument.getByRole('button', { name: /Infrared/i }).click();
+    await expect(instrument.getByRole('button', { name: /Infrared/i })).toHaveAttribute(
       'aria-pressed',
       'true',
     );
@@ -57,19 +57,19 @@ test.describe('Observatory URL state', () => {
       'aria-pressed',
       'true',
     );
-    await expect(instrument.getByRole('button', { name: /LIFE/i })).toHaveAttribute(
+    await expect(instrument.getByRole('button', { name: /Infrared/i })).toHaveAttribute(
       'aria-pressed',
       'true',
     );
 
-    await console.getByRole('button', { name: 'Open data view' }).click();
+    await console.getByRole('button', { name: 'Show as a table' }).click();
     await expect.poll(() => new URL(page.url()).searchParams.get('view')).toBe('data');
     await expect(
-      page.getByRole('table', { name: 'Five-method Figure 6 result for S4' }),
+      page.getByRole('table', { name: 'What each instrument could detect in S4' }),
     ).toBeVisible();
 
     await page.reload();
-    await expect(page.getByRole('button', { name: 'Close data view' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Hide the table' })).toBeVisible();
   });
 });
 
@@ -78,9 +78,7 @@ test.describe('Atlas analytical controls', () => {
     await page.goto('/atlas?compare=S1,S1,S4,UNKNOWN,S9,S10');
 
     await expect(page.getByText('3 of 3 selected')).toBeVisible();
-    await expect(
-      page.getByRole('table', { name: 'Canonical comparison for S1, S4, S9' }),
-    ).toBeVisible();
+    await expect(page.getByRole('table', { name: 'Comparing S1, S4, S9' })).toBeVisible();
     await expect(page.getByRole('columnheader', { name: /S1/ })).toHaveCount(1);
   });
 
@@ -106,9 +104,7 @@ test.describe('Atlas analytical controls', () => {
     await expect(s1.getByRole('button', { name: 'Compare' })).toBeEnabled();
 
     await page.reload();
-    await expect(
-      page.getByRole('table', { name: 'Canonical comparison for S5, S4' }),
-    ).toBeVisible();
+    await expect(page.getByRole('table', { name: 'Comparing S5, S4' })).toBeVisible();
   });
 
   test('switches among sourced analytical dimensions without ranking scenarios', async ({
@@ -118,10 +114,10 @@ test.describe('Atlas analytical controls', () => {
 
     const analysis = page.getByRole('region', { name: 'One dimension at a time.' });
     const metrics = {
-      Population: 'Population after 1,000 years',
-      'Annual energy': 'Annual energy use',
-      'Observing matrix': 'Five mission cells, kept separate',
-      'System signatures': 'Listed system technosignature categories',
+      Population: 'Population in 1,000 years',
+      'Energy use': 'Energy used per year',
+      'What telescopes see': 'What each instrument could detect',
+      'Signs beyond Earth': 'Signs of technology across the Solar System',
     } as const;
     for (const [metric, output] of Object.entries(metrics)) {
       const control = analysis.getByRole('button', { name: metric, exact: true });
@@ -134,9 +130,9 @@ test.describe('Atlas analytical controls', () => {
     await expect(analysis).not.toContainText('Count of filled Figure 6 cells');
     await expect.poll(() => new URL(page.url()).searchParams.get('lens')).toBe('system');
 
-    await analysis.getByText('Open structured lens table').click();
+    await analysis.getByText('Show as a table').click();
     const table = analysis.getByRole('table', {
-      name: 'Listed system technosignature categories for all scenarios',
+      name: 'Signs of technology across the Solar System, all ten futures',
     });
     await expect(table).toBeVisible();
     await expect(table.getByRole('row')).toHaveCount(11);
@@ -146,22 +142,19 @@ test.describe('Atlas analytical controls', () => {
     await expect(
       page
         .getByRole('region', { name: 'One dimension at a time.' })
-        .getByRole('button', { name: 'System signatures', exact: true }),
+        .getByRole('button', { name: 'Signs beyond Earth', exact: true }),
     ).toHaveAttribute('aria-pressed', 'true');
   });
 
-  test('keeps chronology, downloads, museum rights, and record detail evidence distinct', async ({
+  test('keeps downloads, museum rights, and record detail evidence distinct', async ({
     page,
     request,
   }) => {
     await page.goto('/atlas?compare=S1,S4,S9');
 
-    await expect(
-      page.getByRole('region', { name: 'These dates do not mean the same thing.' }),
-    ).toContainText('Date not supplied');
     const museum = page.getByRole('region', { name: 'Objects from possible worlds.' });
-    await expect(museum).toContainText('Link only · rights restricted');
-    await expect(museum).toContainText('CC BY 4.0 · linked exhibit');
+    await expect(museum).toContainText('All rights reserved');
+    await expect(museum).toContainText('CC BY 4.0');
 
     const json = await request.get('/atlas/data?format=json');
     expect(json.ok()).toBeTruthy();
@@ -177,13 +170,11 @@ test.describe('Atlas analytical controls', () => {
     );
 
     await page.goto('/atlas/s9');
+    await expect(page.getByRole('table', { name: 'Marks on each world in S9' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Objects from this world.' })).toBeVisible();
     await expect(
-      page.getByRole('table', { name: 'Planetary technosignature magnitudes for S9' }),
+      page.getByText('Nothing listed for this instrument.', { exact: true }).first(),
     ).toBeVisible();
-    await expect(
-      page.getByRole('heading', { name: 'In-world objects, rights intact.' }),
-    ).toBeVisible();
-    await expect(page.getByText('reported · transcribed', { exact: true }).first()).toBeVisible();
   });
 });
 
@@ -194,16 +185,13 @@ test.describe('Methods validation disclosure', () => {
   }) => {
     await page.goto('/methods');
 
-    await expect(
-      page.getByRole('heading', { name: 'Reimplemented evidence, outside the canonical release.' }),
-    ).toBeVisible();
-    await expect(page.getByText(/29 of 29 metric\/scenario comparisons/)).toBeVisible();
-    await expect(page.getByText(/11 comparisons remain/)).toBeVisible();
-    await expect(
-      page
-        .getByRole('region', { name: 'Independent collapse validation by scenario' })
-        .getByRole('table'),
-    ).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Collapse and recovery' })).toBeVisible();
+    await expect(page.getByText(/matches 29 of the 29 results/)).toBeVisible();
+    await expect(page.getByText(/For 11 more, the paper only/)).toBeVisible();
+    await expect(page.getByRole('link', { name: 'See the rebuild' })).toHaveAttribute(
+      'href',
+      '/research/resilience',
+    );
 
     const report = await request.get('/api/downloads/independent-validation');
     expect(report.ok()).toBeTruthy();

@@ -35,13 +35,13 @@ test('every main route uses the same navigation and a working story index', asyn
     });
     if (!reference) reference = appearance;
     expect(appearance).toEqual(reference);
-    await header.getByRole('button', { name: 'Index +', exact: true }).click();
-    const index = page.getByRole('navigation', { name: 'Story index' });
+    await header.getByRole('button', { name: 'Chapters', exact: true }).click();
+    const index = page.getByRole('navigation', { name: 'Story chapters' });
     await expect(index).toBeVisible();
     await expect(index.getByText('Ten possible worlds', { exact: false })).toBeVisible();
     await page.keyboard.press('Escape');
     await expect(index).toHaveCount(0);
-    await expect(header.getByRole('button', { name: 'Index +', exact: true })).toBeFocused();
+    await expect(header.getByRole('button', { name: 'Chapters', exact: true })).toBeFocused();
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(
       false,
     );
@@ -51,10 +51,10 @@ test('every main route uses the same navigation and a working story index', asyn
     .getByRole('link', { name: 'Atlas', exact: true })
     .click();
   await expect(page).toHaveURL(/\/atlas$/);
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
   await page
-    .getByRole('navigation', { name: 'Story index' })
-    .getByRole('link', { name: '04 S3 ↗', exact: true })
+    .getByRole('navigation', { name: 'Story chapters' })
+    .getByRole('link', { name: '04 S3 Golden Age', exact: true })
     .click();
   await expect(page).toHaveURL(/\/#s3$/);
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready');

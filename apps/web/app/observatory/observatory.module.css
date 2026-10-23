@@ -23,45 +23,26 @@
   padding: clamp(22px, 3vw, 36px);
 }
 
-.kicker,
-.consoleHeader dt,
-.consoleHeader dd,
 .kicker {
   color: var(--signal);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   margin: 0 0 10px;
 }
 
 .consoleHeader h2 {
-  font-size: clamp(1.7rem, 3.2vw, 3.2rem);
-  font-weight: 470;
-  letter-spacing: -0.055em;
+  font-size: clamp(2rem, 3.4vw, 3.4rem);
+  font-weight: 350;
+  letter-spacing: -0.02em;
   line-height: 1;
   margin: 0;
 }
 
-.consoleHeader dl {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.consoleHeader p {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.6;
   margin: 0;
-}
-
-.consoleHeader dl div {
-  border-left: 1px solid var(--line);
-  min-height: 58px;
-  padding-left: 18px;
-}
-
-.consoleHeader dt {
-  color: #7f9388;
-  font-size: 0.75rem;
-}
-
-.consoleHeader dd {
-  color: #d9e5de;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  margin: 8px 0 0;
+  max-width: 34rem;
 }
 
 .viewport {
@@ -97,13 +78,13 @@
 
 .epistemic {
   color: var(--signal);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .evidencePanel h3 {
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 460;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   line-height: 1.1;
   margin: 18px 0;
   overflow-wrap: anywhere;
@@ -111,7 +92,7 @@
 
 .instrumentLabel {
   color: #a8bab0;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.55;
   margin: 0 0 26px;
 }
@@ -129,8 +110,9 @@
 .signalList li {
   border: 1px solid color-mix(in srgb, var(--signal) 58%, transparent);
   color: #e5efe9;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
   line-height: 1.45;
   padding: 9px 11px;
 }
@@ -146,14 +128,14 @@
 
 .caveat {
   color: #9bada3;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.68;
   margin: 0;
 }
 
 .sourceLink {
   color: var(--signal);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   margin-top: 28px;
   width: fit-content;
 }
@@ -175,7 +157,7 @@
 
 .controlLegend {
   color: #8ca096;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   margin-bottom: 13px;
 }
 
@@ -196,8 +178,9 @@
 }
 
 .scenarioChoices button {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
   height: 42px;
   width: 46px;
 }
@@ -221,12 +204,12 @@
 }
 
 .instrumentChoices strong {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .instrumentChoices span {
   color: #80948a;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   margin-top: 4px;
 }
 
@@ -245,10 +228,10 @@
 
 .actions button,
 .actions a {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
   padding: 9px 10px;
-  text-transform: uppercase;
 }
 
 .actions a {
@@ -272,14 +255,14 @@
 
 .assumptionsHeader strong {
   color: var(--signal);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
 }
 
 .assumptionsHeader span {
   color: #84988d;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .assumptionGrid {
@@ -300,13 +283,13 @@
 
 .assumptionGrid dt {
   color: #7f9489;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .assumptionGrid dd {
   color: #c9d7cf;
   display: grid;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   gap: 6px;
   justify-items: start;
   line-height: 1.55;
@@ -326,8 +309,9 @@
 
 .assumptionGrid dd > a {
   color: #aebfb5;
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
   text-underline-offset: 3px;
 }
 
@@ -354,11 +338,11 @@
   align-items: center;
   color: #afc2cc;
   display: inline-flex;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
   gap: 9px;
-  letter-spacing: 0.035em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 .atmosphereLegend i {
@@ -442,8 +426,9 @@
 .modalityMode,
 .modalityState,
 .modalitySignature {
-  font-family: var(--font-mono);
-  letter-spacing: 0.06em;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
 }
 
 .chartColumnLabel {
@@ -472,8 +457,7 @@
 
 .rowUnit {
   fill: #71877c;
-  font-size: 10px;
-  text-transform: uppercase;
+  font-size: 12px;
 }
 
 .scaleTrack {
@@ -526,11 +510,11 @@
 .chartData summary {
   color: #afc2cc;
   cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
   padding: 14px 0;
-  text-transform: uppercase;
   width: fit-content;
 }
 
@@ -644,16 +628,16 @@
 
 .sectionHeader p:first-child {
   color: #afc2cc;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
 }
 
 .sectionHeader h2 {
   font-size: clamp(2.6rem, 6vw, 6.5rem);
   font-weight: 460;
-  letter-spacing: -0.07em;
+  letter-spacing: -0.02em;
   line-height: 0.91;
   margin: 14px 0 22px;
 }
@@ -681,18 +665,18 @@
 
 .tableScroller caption {
   color: #afc2cc;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
   padding: 0 0 16px;
   text-align: left;
-  text-transform: uppercase;
 }
 
 .tableScroller th,
 .tableScroller td {
   border-bottom: 1px solid rgba(186, 212, 227, 0.14);
   color: #afc2cc;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.55;
   padding: 13px 12px;
   text-align: left;
@@ -701,10 +685,10 @@
 
 .tableScroller thead th {
   color: #afc2cc;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
 }
 
 .tableScroller tbody th a {
@@ -715,7 +699,7 @@
 
 .tableScroller tbody th span {
   color: #afc2cc;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 400;
   margin-top: 4px;
 }
@@ -753,7 +737,7 @@
 .legend span {
   color: #afc2cc;
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.5;
   margin-top: 7px;
 }
@@ -873,11 +857,11 @@
   .chartHint {
     color: #afc2cc;
     display: block;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
+    font-family: var(--font-body);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.8125rem;
+    letter-spacing: 0.01em;
     margin: 18px 0 -8px;
-    text-transform: uppercase;
   }
 
   .modalityPanel {
@@ -926,13 +910,14 @@
 
   .modalityText span {
     color: #bad0c3;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-family: var(--font-body);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.8125rem;
   }
 
   .modalityText small {
     color: #82988c;
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     line-height: 1.55;
   }
 }
@@ -973,7 +958,7 @@
 }
 .consoleHeader h2 {
   font-size: 24px;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
 }
 .controls {
   border-top: 1px solid var(--line);

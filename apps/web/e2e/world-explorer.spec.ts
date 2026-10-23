@@ -52,12 +52,11 @@ test('full-motion story text stays out of planet and asset inspection and return
 });
 
 async function enter(page: import('@playwright/test').Page, index = 0) {
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
   await page
-    .getByRole('navigation', { name: 'Story index' })
+    .getByRole('navigation', { name: 'Story chapters' })
     .getByRole('button', {
-      name: `${String(index + 2).padStart(2, '0')} S${index + 1} ↗`,
-      exact: true,
+      name: new RegExp(`^${String(index + 2).padStart(2, '0')} S${index + 1} `),
     })
     .click();
   const trigger = page

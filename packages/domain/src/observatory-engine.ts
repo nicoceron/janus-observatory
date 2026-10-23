@@ -43,8 +43,8 @@ export function createPublishedObservationResolver(input: unknown) {
       signatures,
       caveat:
         signatures.length > 0
-          ? "Figure 6 lists these signatures for this mission concept under the paper's assumptions."
-          : 'A blank Figure 6 cell is not evidence of no technology; it means the figure lists no signature for this mission concept.',
+          ? 'The observing study lists these signs for this instrument, under its assumptions.'
+          : 'The observing study lists nothing for this instrument. That is not evidence of no technology.',
       sourceRefs: record.detectionProvenance[instrumentId],
       assumptions: dataset.missionAssumptions[instrumentId],
     };

@@ -20,7 +20,6 @@ for (const path of [
   '/accessibility',
   '/privacy',
   '/research',
-  '/research/concordia',
   '/research/resilience',
   ...Array.from({ length: 10 }, (_, i) => `/atlas/s${i + 1}`),
 ]) {

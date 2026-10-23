@@ -33,7 +33,6 @@ const routes = [
   '/accessibility',
   '/research',
   '/research/resilience',
-  '/research/concordia',
   '/privacy',
   '/this-route-does-not-exist',
 ] as const;

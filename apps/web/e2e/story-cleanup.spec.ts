@@ -30,8 +30,8 @@ test('story cleanup keeps full animation, spatial exploration and a quiet interf
     await expect(page.getByText(text, { exact: true })).toHaveCount(0);
   }
   await page.screenshot({ path: `docs/qa/story-cleanup/${info.project.name}-hero.png` });
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
-  await page.getByRole('button', { name: '04 S3 ↗', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
+  await page.getByRole('button', { name: '04 S3 Golden Age', exact: true }).click();
   await expect
     .poll(async () => Number(await page.locator('canvas').getAttribute('data-scene')))
     .toBeCloseTo(4, 2);
@@ -47,8 +47,8 @@ test('story cleanup keeps full animation, spatial exploration and a quiet interf
   await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
   await page.keyboard.press('Escape');
   await expect(luna).toBeFocused();
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
-  await page.getByRole('button', { name: '12 The other side ↗', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
+  await page.getByRole('button', { name: '12 The other side', exact: true }).click();
   await expect
     .poll(async () => Number(await page.locator('canvas').getAttribute('data-scene')))
     .toBeCloseTo(12, 2);

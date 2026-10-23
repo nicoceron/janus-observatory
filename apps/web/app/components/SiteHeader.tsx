@@ -9,11 +9,25 @@ import s from './SiteHeader.module.css';
 type Props = {
   inert?: boolean;
   activeChapter?: number;
+  /** Scenario names keyed by chapter id, shown beside each world in the chapter list. */
+  chapterTitles?: Record<string, string>;
   onJump?: (id: string) => void;
   onRetry?: () => void;
 };
 
-export function SiteHeader({ inert = false, activeChapter, onJump, onRetry }: Props) {
+const primary = [
+  ['/', 'Story'],
+  ['/atlas', 'Atlas'],
+  ['/observatory', 'Observatory'],
+] as const;
+
+export function SiteHeader({
+  inert = false,
+  activeChapter,
+  chapterTitles,
+  onJump,
+  onRetry,
+}: Props) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
@@ -45,18 +59,10 @@ export function SiteHeader({ inert = false, activeChapter, onJump, onRetry }: Pr
         onClick={() => setOpen(false)}
       >
         <span className={s.symbol} aria-hidden="true" />
-        <span className={s.wordmark}>
-          JANUS<small>OBSERVATORY</small>
-        </span>
+        <span className={s.wordmark}>Janus Observatory</span>
       </Link>
       <nav className={s.navigation} aria-label="Primary navigation">
-        {(
-          [
-            ['/', 'Story'],
-            ['/atlas', 'Atlas'],
-            ['/observatory', 'Observatory'],
-          ] as const
-        ).map(([href, label]) => (
+        {primary.map(([href, label]) => (
           <Link
             key={href}
             href={href}
@@ -70,53 +76,64 @@ export function SiteHeader({ inert = false, activeChapter, onJump, onRetry }: Pr
         ))}
         <button
           ref={trigger}
+          className={s.chaptersButton}
           aria-expanded={open}
           aria-controls="chapter-menu"
           onClick={() => setOpen(!open)}
         >
-          Index <span>{open ? '−' : '+'}</span>
+          Chapters
+          <span className={s.chaptersIcon} data-open={open} aria-hidden="true" />
         </button>
       </nav>
       {open && (
-        <nav id="chapter-menu" className={s.menu} aria-label="Story index">
-          {chapters.map((chapter, i) => {
-            const content = (
-              <>
-                <span>{String(i).padStart(2, '0')}</span>
-                {chapter.label}
-                <span>↗</span>
-              </>
-            );
-            return onJump ? (
+        <nav id="chapter-menu" className={s.menu} aria-label="Story chapters">
+          <ol>
+            {chapters.map((chapter, i) => {
+              const content = (
+                <>
+                  <span className={s.chapterNumber}>{String(i).padStart(2, '0')}</span>
+                  <span className={s.chapterLabel}>{chapter.label}</span>
+                  {chapterTitles?.[chapter.id] ? (
+                    <span className={s.chapterTitle}>{chapterTitles[chapter.id]}</span>
+                  ) : null}
+                </>
+              );
+              return (
+                <li key={chapter.id}>
+                  {onJump ? (
+                    <button
+                      aria-current={i === activeChapter ? 'step' : undefined}
+                      onClick={() => {
+                        onJump(chapter.id);
+                        setOpen(false);
+                      }}
+                    >
+                      {content}
+                    </button>
+                  ) : (
+                    <Link href={`/#${chapter.id}`} onClick={() => setOpen(false)}>
+                      {content}
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+          <div className={s.menuFooter}>
+            {onRetry && (
               <button
-                key={chapter.id}
-                aria-current={i === activeChapter ? 'step' : undefined}
                 onClick={() => {
-                  onJump(chapter.id);
+                  onRetry();
                   setOpen(false);
                 }}
               >
-                {content}
+                Retry 3D
               </button>
-            ) : (
-              <Link key={chapter.id} href={`/#${chapter.id}`} onClick={() => setOpen(false)}>
-                {content}
-              </Link>
-            );
-          })}
-          {onRetry && (
-            <button
-              onClick={() => {
-                onRetry();
-                setOpen(false);
-              }}
-            >
-              Retry 3D
-            </button>
-          )}
-          <Link className={s.credits} href="/sources" onClick={() => setOpen(false)}>
-            Sources &amp; credits ↗
-          </Link>
+            )}
+            <Link href="/sources" onClick={() => setOpen(false)}>
+              Sources &amp; credits
+            </Link>
+          </div>
         </nav>
       )}
     </header>

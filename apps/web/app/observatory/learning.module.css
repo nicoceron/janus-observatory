@@ -10,7 +10,7 @@
 .lesson h2 {
   font-size: clamp(1.8rem, 4vw, 3.8rem);
   line-height: 1.1;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
   margin: 16px 0;
 }
 .intro p,
@@ -23,8 +23,7 @@
 .eyebrow {
   color: var(--signal, var(--acid)) !important;
   font: 0.7rem var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.01em;
 }
 .actions,
 .guesses > div,
@@ -176,7 +175,7 @@
   margin: 4px 0 16px;
 }
 .evidence {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 .takeaway {
   border-left: 2px solid var(--signal, var(--acid));

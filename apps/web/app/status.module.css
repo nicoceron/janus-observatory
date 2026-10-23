@@ -17,11 +17,11 @@
 
 .eyebrow {
   color: #d3e7bc;
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
   font-size: 0.75rem;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.01em;
   margin: 0;
-  text-transform: uppercase;
 }
 
 .message {
@@ -31,19 +31,19 @@
 
 .code {
   color: rgba(237, 243, 239, 0.15);
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-display), serif;
   font-size: clamp(5rem, 22vw, 16rem);
-  font-weight: 500;
-  letter-spacing: -0.04em;
+  font-weight: 300;
+  letter-spacing: -0.02em;
   line-height: 0.75;
   margin: 0 0 48px;
 }
 
 .title {
-  font-family: var(--font-display), sans-serif;
-  font-size: clamp(2.2rem, 6vw, 5.4rem);
-  font-weight: 500;
-  letter-spacing: -0.045em;
+  font-family: var(--font-display), serif;
+  font-size: clamp(2.6rem, 6vw, 5.6rem);
+  font-weight: 350;
+  letter-spacing: -0.02em;
   line-height: 0.96;
   margin: 0;
 }
@@ -69,13 +69,11 @@
   color: #07100e;
   cursor: pointer;
   display: inline-flex;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  border-radius: 999px;
+  font-size: 1rem;
   min-height: 44px;
   padding: 14px 18px;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 .actionSecondary {

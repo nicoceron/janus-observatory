@@ -14,7 +14,7 @@ function normalizedOrigin(value: string | undefined) {
 export const siteOrigin = normalizedOrigin(process.env.JANUS_PUBLIC_BASE_URL);
 
 export const siteDescription =
-  'A source-backed interactive atlas of ten self-consistent technological-civilization scenarios and the incomplete evidence an alien observer might detect.';
+  'Ten possible futures of human civilization from the Project Janus research, and what an observer on another star could—and couldn’t—see of each.';
 
 export const publicRoutes = [
   '/',
@@ -22,7 +22,6 @@ export const publicRoutes = [
   '/atlas',
   '/research',
   '/research/resilience',
-  '/research/concordia',
   '/methods',
   '/sources',
   '/accessibility',

@@ -12,10 +12,8 @@ import {
   earthAtmosphere,
   getScenarioProfile,
   instrumentCopy,
-  observabilityDataset,
   sourceRefHref,
   sourceRefLabel,
-  sourcedDisplay,
 } from '../../lib/canonical-core';
 import { useReducedMotionPreference } from '../components/MotionPreference';
 import styles from './observatory.module.css';
@@ -25,6 +23,7 @@ import { GuidedObservation, isLessonStep } from './GuidedObservation';
 import { InstrumentExplanation } from './InstrumentExplanation';
 import { ScenarioEvidence } from './ScenarioEvidence';
 import learningStyles from './learning.module.css';
+import { plainReading } from '../../lib/plain-labels';
 
 type ScenarioId = (typeof allScenarioProfiles)[number]['id'];
 
@@ -52,7 +51,7 @@ function isInstrumentId(value: string | null): value is ObservingMissionId {
 }
 
 function formatAtmosphereValue(value: number | null, unit: string) {
-  if (value === null) return 'Not listed';
+  if (value === null) return 'Not given';
   return `${new Intl.NumberFormat('en', { maximumSignificantDigits: 4 }).format(value)} ${unit}`;
 }
 
@@ -84,12 +83,11 @@ function AtmosphereView({ accent, scenarioId }: { accent: string; scenarioId: Sc
       style={{ '--signal': accent } as CSSProperties}
     >
       <header className={styles.sectionHeader}>
-        <p>Atmospheric input table · {scenarioId}</p>
-        <h2 id="atmosphere-title">One atmosphere. Fourteen separate measures.</h2>
+        <h2 id="atmosphere-title">One atmosphere. Fourteen measures.</h2>
         <p>
-          This is a fingerprint of published atmospheric inputs—not a spectrum and not a shared
-          detectability score. Temperature uses a linear row scale; every constituent uses its own
-          logarithmic row scale. Exact values and source locators follow the chart.
+          The air the observing study gives this future’s Earth, next to its two reference Earths.
+          Each row has its own scale, so compare positions within a row, not across rows. This is
+          not a spectrum and not a score.
         </p>
       </header>
 
@@ -107,16 +105,12 @@ function AtmosphereView({ accent, scenarioId }: { accent: string; scenarioId: Sc
           </span>
         ))}
         <span>
-          <i className={styles.nullMarker} aria-hidden="true" /> Not listed in Table 1
+          <i className={styles.nullMarker} aria-hidden="true" /> Not given
         </span>
       </div>
-      <p className={styles.chartHint}>Swipe horizontally to inspect the complete row domain.</p>
+      <p className={styles.chartHint}>Swipe sideways to see each full row.</p>
 
-      <div
-        aria-label="Scrollable atmospheric fingerprint"
-        className={styles.chartScroller}
-        tabIndex={0}
-      >
+      <div aria-label="Atmosphere chart" className={styles.chartScroller} tabIndex={0}>
         <svg
           aria-labelledby="atmosphere-svg-title atmosphere-svg-description"
           className={styles.atmosphereChart}
@@ -125,12 +119,12 @@ function AtmosphereView({ accent, scenarioId }: { accent: string; scenarioId: Sc
         >
           <title id="atmosphere-svg-title">{`Atmospheric fingerprint for ${scenarioId}`}</title>
           <desc id="atmosphere-svg-description">
-            Fourteen independently scaled rows compare {scenarioId} with the two source reference
-            Earth cases. Every row is keyboard focusable and announces exact values. A cross means
-            the source table did not list a value, not numeric zero.
+            Fourteen rows, each on its own scale, compare {scenarioId} with the study’s two
+            reference Earths. Every row can be focused with the keyboard and reads out exact values.
+            A cross means the paper gives no value, not zero.
           </desc>
           <text className={styles.chartColumnLabel} x="0" y="28">
-            PROPERTY / UNIT
+            Gas or property
           </text>
           <text
             className={styles.chartColumnLabel}
@@ -138,7 +132,7 @@ function AtmosphereView({ accent, scenarioId }: { accent: string; scenarioId: Sc
             x={atmosphereChart.plotEnd}
             y="28"
           >
-            INDEPENDENT ROW DOMAIN
+            Each row has its own scale
           </text>
           {earthAtmosphere.rows.map((row, index) => {
             const y = atmosphereChart.top + index * atmosphereChart.rowHeight;
@@ -155,7 +149,7 @@ function AtmosphereView({ accent, scenarioId }: { accent: string; scenarioId: Sc
               .join('. ');
             return (
               <g
-                aria-label={`${row.label}. ${selectedColumn.label}: ${formatAtmosphereValue(value, row.unit)}. ${announcedReferences}. Independently scaled row.`}
+                aria-label={`${row.label}. ${selectedColumn.label}: ${formatAtmosphereValue(value, row.unit)}. ${announcedReferences}.`}
                 className={styles.atmosphereRow}
                 key={row.id}
                 role="group"
@@ -218,7 +212,7 @@ function AtmosphereView({ accent, scenarioId }: { accent: string; scenarioId: Sc
                       y2={y - 5}
                     />
                     <text x={atmosphereChart.labelWidth + 14} y={y + 4}>
-                      NOT LISTED
+                      Not given
                     </text>
                   </g>
                 ) : (
@@ -244,13 +238,13 @@ function AtmosphereView({ accent, scenarioId }: { accent: string; scenarioId: Sc
       </div>
 
       <details className={styles.chartData}>
-        <summary>Open exact atmosphere values and locators</summary>
+        <summary>Show exact values and sources</summary>
         <div className={styles.tableScroller} tabIndex={0}>
           <table>
-            <caption>Table 1 atmospheric inputs for {scenarioId} and reference Earth cases</caption>
+            <caption>Atmosphere values for {scenarioId} and the reference Earths</caption>
             <thead>
               <tr>
-                <th scope="col">Property</th>
+                <th scope="col">Gas or property</th>
                 <th scope="col">Unit</th>
                 <th scope="col">{scenarioId}</th>
                 {referenceColumns.map((column) => (
@@ -258,7 +252,7 @@ function AtmosphereView({ accent, scenarioId }: { accent: string; scenarioId: Sc
                     {column.label}
                   </th>
                 ))}
-                <th scope="col">Exact locator</th>
+                <th scope="col">Source</th>
               </tr>
             </thead>
             <tbody>
@@ -310,11 +304,11 @@ function ModalityView({
         role="img"
         viewBox={`0 0 ${modalityChart.width} ${modalityChart.height}`}
       >
-        <title id="modality-svg-title">{`Five observing modalities for ${scenarioId}`}</title>
+        <title id="modality-svg-title">{`What five instruments could detect in ${scenarioId}`}</title>
         <desc id="modality-svg-description">
-          Five categorical mission channels. A filled channel means Figure 6 lists one or more
-          signatures. A hollow channel means the source cell is blank, not that the scenario has no
-          technology. The highlighted channel is the selected instrument.
+          Five instruments. A filled circle means the observing study lists at least one sign for
+          that instrument. A hollow circle means it lists none, not that the future has no
+          technology. The marked circle is your selected instrument.
         </desc>
         <line
           className={styles.modalitySpine}
@@ -329,7 +323,7 @@ function ModalityView({
           const isSelected = item.id === instrumentId;
           return (
             <g
-              aria-label={`${item.label}. ${hasSignatures ? `${item.result.signatures.length} signature entries listed: ${item.result.signatures.join('; ')}` : 'Blank Figure 6 cell; not evidence of no technology'}.${isSelected ? ' Selected instrument.' : ''}`}
+              aria-label={`${item.plainLabel}. ${hasSignatures ? `Listed: ${item.result.signatures.join('; ')}` : 'Nothing listed; not evidence of no technology'}.${isSelected ? ' Selected instrument.' : ''}`}
               className={isSelected ? styles.modalitySelected : styles.modalityNode}
               key={item.id}
               role="group"
@@ -355,13 +349,13 @@ function ModalityView({
                 </>
               )}
               <text className={styles.modalityName} textAnchor="middle" y="201">
-                {item.short}
+                {item.name}
               </text>
               <text className={styles.modalityMode} textAnchor="middle" y="219">
                 {item.mode}
               </text>
               <text className={styles.modalityState} textAnchor="middle" y="254">
-                {hasSignatures ? 'SIGNATURE LISTED' : 'BLANK SOURCE CELL'}
+                {hasSignatures ? 'Signs listed' : 'Nothing listed'}
               </text>
               {item.result.signatures.slice(0, 2).map((signature, signatureIndex) => (
                 <text
@@ -379,12 +373,12 @@ function ModalityView({
       </svg>
       <ol
         className={styles.modalityText}
-        aria-label={`Structured modality results for ${scenarioId}`}
+        aria-label={`What each instrument could detect in ${scenarioId}`}
       >
         {profile.observations.map((item) => (
           <li data-selected={item.id === instrumentId} key={item.id}>
-            <strong>{item.label}</strong>
-            <span>{item.result.signatures.join('; ') || 'Blank source cell'}</span>
+            <strong>{item.plainLabel}</strong>
+            <span>{item.result.signatures.join('; ') || 'Nothing listed'}</span>
             <small>{item.result.caveat}</small>
           </li>
         ))}
@@ -397,8 +391,7 @@ function AssumptionValue({ field }: { field: Sourced<string> }) {
   const sourceRef = field.sourceRefs[0];
   return (
     <>
-      <span>{sourcedDisplay(field)}</span>
-      {field.note ? <small>{field.note}</small> : null}
+      <span>{plainReading(field).value}</span>
       {sourceRef ? (
         <a href={sourceRefHref(sourceRef)} rel="noreferrer" target="_blank">
           {sourceRefLabel(sourceRef)} ↗
@@ -470,11 +463,10 @@ export function ObservatoryExplorer() {
   return (
     <>
       <section className={learningStyles.intro} aria-labelledby="guided-intro-title">
-        <p className={learningStyles.eyebrow}>A short guided investigation</p>
         <h2 id="guided-intro-title">Would you recognize a civilization?</h2>
         <p>
-          Choose a possible world, make an observation guess, then compare what two instruments can
-          reveal. Learn why a quiet observation can leave a bigger story untold.
+          Pick a future, guess what a telescope would see, then compare two instruments. It takes
+          about a minute, and it shows why a quiet sky can hide a busy civilization.
         </p>
         <div className={learningStyles.actions}>
           <button
@@ -509,25 +501,15 @@ export function ObservatoryExplorer() {
               Choose how to look
             </h2>
           </div>
-          <dl>
-            <div>
-              <dt>Target</dt>
-              <dd>Sol system · {scenarioId}</dd>
-            </div>
-            <div>
-              <dt>Evidence basis</dt>
-              <dd>Reported Figure 6 cell</dd>
-            </div>
-            <div>
-              <dt>Output class</dt>
-              <dd>Categorical · no ranking</dd>
-            </div>
-          </dl>
+          <p>
+            Looking at our Solar System in future {scenarioId}, from another star. Results come from
+            the observing study; there are no scores.
+          </p>
         </header>
 
         <div className={styles.controls}>
           <fieldset>
-            <legend className={styles.controlLegend}>01 · Select future</legend>
+            <legend className={styles.controlLegend}>1. Pick a future</legend>
             <div className={styles.scenarioChoices}>
               {allScenarioProfiles.map((candidate) => (
                 <button
@@ -544,7 +526,7 @@ export function ObservatoryExplorer() {
             </div>
           </fieldset>
           <fieldset>
-            <legend className={styles.controlLegend}>02 · Select observing concept</legend>
+            <legend className={styles.controlLegend}>2. Pick an instrument</legend>
             <div className={styles.instrumentChoices}>
               {observingMissionIds.map((id) => (
                 <button
@@ -556,9 +538,7 @@ export function ObservatoryExplorer() {
                   type="button"
                 >
                   <strong>{instrumentCopy[id].plainLabel}</strong>
-                  <span>
-                    {instrumentCopy[id].short} · {instrumentCopy[id].mode}
-                  </span>
+                  <span>{instrumentCopy[id].mode}</span>
                 </button>
               ))}
             </div>
@@ -570,9 +550,9 @@ export function ObservatoryExplorer() {
               onClick={() => replaceParam('view', showData ? undefined : 'data')}
               type="button"
             >
-              {showData ? 'Close data view' : 'Open data view'}
+              {showData ? 'Hide the table' : 'Show as a table'}
             </button>
-            <Link href={`/atlas/${scenarioId.toLowerCase()}`}>Open scenario record →</Link>
+            <Link href={`/atlas/${scenarioId.toLowerCase()}`}>More about this future</Link>
           </div>
         </div>
 
@@ -587,8 +567,8 @@ export function ObservatoryExplorer() {
 
         <aside className={styles.assumptions} aria-labelledby="assumption-title">
           <div className={styles.assumptionsHeader}>
-            <strong id="assumption-title">Published-preset assumptions</strong>
-            <span>Unsupported continuous controls remain intentionally absent.</span>
+            <strong id="assumption-title">What the study assumes</strong>
+            <span>These are fixed to the study’s own choices.</span>
           </div>
           <dl className={styles.assumptionGrid}>
             <div>
@@ -598,19 +578,19 @@ export function ObservatoryExplorer() {
               </dd>
             </div>
             <div>
-              <dt>Integration time</dt>
+              <dt>Observing time</dt>
               <dd>
                 <AssumptionValue field={observation.result.assumptions.integrationTime} />
               </dd>
             </div>
             <div>
-              <dt>Host / target</dt>
+              <dt>Target system</dt>
               <dd>
                 <AssumptionValue field={observation.result.assumptions.host} />
               </dd>
             </div>
             <div>
-              <dt>Instrument concept</dt>
+              <dt>Instrument</dt>
               <dd>
                 <AssumptionValue field={observation.result.assumptions.concept} />
               </dd>
@@ -624,31 +604,28 @@ export function ObservatoryExplorer() {
       {showData && (
         <section className={styles.dataView} id="observatory-data" aria-labelledby="data-title">
           <header className={styles.sectionHeader}>
-            <p>Structured equivalent · {scenarioId}</p>
-            <h2 id="data-title">Evidence behind the ocular.</h2>
+            <h2 id="data-title">The same results, as a table.</h2>
             <p>
-              The observer and target art are interpretive. This table is the authoritative,
-              keyboard-reachable equivalent and preserves blanks instead of turning them into zeros.
+              The artwork above is an illustration. This table is the exact record from the
+              observing study.
             </p>
           </header>
           <div className={styles.tableScroller} tabIndex={0}>
             <table>
-              <caption>Five-method Figure 6 result for {scenarioId}</caption>
+              <caption>What each instrument could detect in {scenarioId}</caption>
               <thead>
                 <tr>
-                  <th scope="col">Method</th>
-                  <th scope="col">Epistemic state</th>
-                  <th scope="col">Published cell</th>
-                  <th scope="col">Meaning</th>
-                  <th scope="col">Exact locator</th>
+                  <th scope="col">Instrument</th>
+                  <th scope="col">Listed signs</th>
+                  <th scope="col">What it means</th>
+                  <th scope="col">Source</th>
                 </tr>
               </thead>
               <tbody>
                 {profile.observations.map((item) => (
                   <tr key={item.id}>
-                    <th scope="row">{item.label}</th>
-                    <td>reported · transcribed</td>
-                    <td>{item.result.signatures.join('; ') || 'Blank source cell'}</td>
+                    <th scope="row">{item.plainLabel}</th>
+                    <td>{item.result.signatures.join('; ') || 'Nothing listed'}</td>
                     <td>{item.result.caveat}</td>
                     <td>
                       <a
@@ -669,39 +646,31 @@ export function ObservatoryExplorer() {
 
       <section className={styles.matrixSection} aria-labelledby="matrix-title">
         <header className={styles.sectionHeader}>
-          <p>All ten scenarios · all five methods</p>
-          <h2 id="matrix-title">One matrix. Different evidence.</h2>
-          <p>
-            Categories are not plotted on a shared numeric scale. Filled cells name listed
-            signatures; blank cells retain their source meaning.
-          </p>
+          <h2 id="matrix-title">All ten futures, all five instruments.</h2>
+          <p>Each cell is a yes-or-no from the observing study, not a score.</p>
         </header>
-        <div className={styles.legend} aria-label="Evidence-state legend">
+        <div className={styles.legend} aria-label="Legend">
           <div>
-            <strong>Signature listed</strong>
-            <span>Reported as observable under the source method and assumptions.</span>
+            <strong>Signs listed</strong>
+            <span>The study says this instrument could pick these up, under its assumptions.</span>
           </div>
           <div>
-            <strong>Blank source cell</strong>
-            <span>No signature listed by this method; never translated to “no technology.”</span>
-          </div>
-          <div>
-            <strong>Not evaluated</strong>
+            <strong>Nothing listed</strong>
             <span>
-              Reserved for combinations outside the transcribed matrix; none are fabricated.
+              The study lists no sign for this instrument. That doesn’t mean no technology.
             </span>
           </div>
         </div>
         <ModalityView instrumentId={instrumentId} scenarioId={scenarioId} />
         <div className={styles.tableScroller} tabIndex={0}>
           <table>
-            <caption>Technosignatures listed by future mission concept · Figure 6</caption>
+            <caption>What each instrument could detect, for every future</caption>
             <thead>
               <tr>
-                <th scope="col">Scenario</th>
+                <th scope="col">Future</th>
                 {observingMissionIds.map((id) => (
                   <th scope="col" key={id}>
-                    {instrumentCopy[id].short}
+                    {instrumentCopy[id].name}
                   </th>
                 ))}
               </tr>
@@ -720,7 +689,7 @@ export function ObservatoryExplorer() {
                       className={item.result.signatures.length > 0 ? styles.filled : styles.blank}
                       key={item.id}
                     >
-                      {item.result.signatures.join('; ') || 'Blank source cell'}
+                      {item.result.signatures.join('; ') || 'Nothing listed'}
                     </td>
                   ))}
                 </tr>
@@ -736,9 +705,8 @@ export function ObservatoryExplorer() {
           rel="noreferrer"
           target="_blank"
         >
-          Open exact matrix source · Figure 6 · page 10 ↗
+          Source: the observing study, Figure 6 ↗
         </a>
-        <span className="srOnly">{observabilityDataset.assumptions.join(' ')}</span>
       </section>
     </>
   );

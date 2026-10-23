@@ -1,7 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt =
-  'Janus Observatory — ten futures, one system, explored through incomplete evidence';
+export const alt = 'Janus Observatory: ten futures, one question. Would anyone know we were here?';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -32,13 +31,12 @@ export default function OpenGraphImage() {
       />
       <div
         style={{
-          borderRight: '1px solid rgba(207,231,215,.16)',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '58px 64px',
           position: 'relative',
-          width: '64%',
+          width: '70%',
         }}
       >
         <div style={{ alignItems: 'center', display: 'flex', fontSize: 22, gap: 16 }}>
@@ -56,45 +54,29 @@ export default function OpenGraphImage() {
           >
             J
           </div>
-          <span style={{ fontWeight: 700, letterSpacing: 3 }}>JANUS OBSERVATORY</span>
+          <span style={{ fontWeight: 600 }}>Janus Observatory</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span style={{ color: '#b8f15c', fontSize: 20, letterSpacing: 4 }}>
-            AN INTERACTIVE ATLAS OF POSSIBILITIES
-          </span>
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
               fontSize: 84,
               fontWeight: 500,
-              letterSpacing: -6,
-              lineHeight: 0.92,
+              letterSpacing: -3,
+              lineHeight: 0.98,
             }}
           >
             <span>Ten futures.</span>
-            <span>One system.</span>
+            <span>One question.</span>
           </div>
+          <span style={{ color: '#d0dfbe', fontSize: 30, marginTop: 28 }}>
+            Would anyone know we were here?
+          </span>
         </div>
-        <span style={{ color: '#92a299', fontSize: 19, letterSpacing: 2 }}>
-          POSSIBILITIES · NOT FORECASTS · EVIDENCE DEPENDS ON THE INSTRUMENT
+        <span style={{ color: '#92a299', fontSize: 22 }}>
+          Possible futures of our civilization, seen from another star.
         </span>
-      </div>
-      <div
-        style={{
-          alignItems: 'center',
-          color: '#b8f15c',
-          display: 'flex',
-          fontFamily: 'monospace',
-          fontSize: 18,
-          justifyContent: 'center',
-          letterSpacing: 5,
-          position: 'relative',
-          width: '36%',
-          writingMode: 'vertical-rl',
-        }}
-      >
-        STORY · OBSERVATORY · ATLAS
       </div>
     </div>,
     size,

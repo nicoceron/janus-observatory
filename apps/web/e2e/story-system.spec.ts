@@ -18,9 +18,9 @@ test('every published destination is visible together and opens its own inspecto
   const canvas = page.locator('canvas');
   const original = await canvas.elementHandle();
   for (let i = 0; i < 10; i++) {
-    await page.getByRole('button', { name: 'Index +', exact: true }).click();
+    await page.getByRole('button', { name: 'Chapters', exact: true }).click();
     await page
-      .getByRole('button', { name: `${String(i + 2).padStart(2, '0')} S${i + 1} ↗`, exact: true })
+      .getByRole('button', { name: new RegExp(`^${String(i + 2).padStart(2, '0')} S${i + 1} `) })
       .click();
     await expect(canvas).toHaveAttribute('data-scene', `${i + 2}.000`);
     await expect(canvas).toHaveAttribute('data-story-body', 'system');
