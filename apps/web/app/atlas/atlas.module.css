@@ -62,7 +62,7 @@
   font-size: clamp(2.6rem, 5.6vw, 5.8rem);
   font-weight: 350;
   letter-spacing: -0.02em;
-  line-height: 0.98;
+  line-height: 0.86;
   margin: 0;
   text-wrap: balance;
 }
@@ -174,7 +174,7 @@
   font-size: clamp(1.4rem, 2.2vw, 2.2rem);
   font-weight: 400;
   letter-spacing: -0.02em;
-  line-height: 1.08;
+  line-height: 0.95;
   margin: 7px 0 0;
   overflow-wrap: anywhere;
 }
@@ -280,7 +280,7 @@
   font-size: clamp(1.65rem, 3.2vw, 3.2rem);
   font-weight: 350;
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: 0.95;
   margin: 0;
 }
 
@@ -585,7 +585,10 @@
   font-size: 0.8125rem;
 }
 
+/* Object titles come from the source papers and cannot be shortened, so they stay in the text
+   face; long all-caps names would run four or five lines on a phone. */
 .museumItem h3 {
+  font-family: var(--font-body);
   font-size: clamp(1rem, 1.8vw, 1.55rem);
   font-weight: 520;
   letter-spacing: -0.02em;
@@ -708,7 +711,7 @@
   font-size: clamp(2.4rem, 4.6vw, 4.4rem);
   font-weight: 350;
   letter-spacing: -0.02em;
-  line-height: 1;
+  line-height: 0.86;
   margin: 0;
 }
 
@@ -1018,7 +1021,7 @@
 }
 .galleryCopy h2 {
   font-size: clamp(38px, 4.4vw, 64px);
-  line-height: 1.02;
+  line-height: 0.86;
   font-weight: 350;
   letter-spacing: -0.02em;
   margin: 22px 0;
@@ -1064,7 +1067,7 @@
   font-size: clamp(36px, 4.6vw, 64px);
   font-weight: 350;
   letter-spacing: -0.02em;
-  line-height: 1.02;
+  line-height: 0.86;
 }
 .scenarioRow {
   border-color: var(--line);

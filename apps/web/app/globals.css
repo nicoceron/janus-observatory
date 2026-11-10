@@ -9,8 +9,20 @@
   --paper: #0d1721;
   --paper-ink: #e3eaf0;
   --font-body: 'Hanken Grotesk', system-ui, sans-serif;
-  --font-display: 'Newsreader', Georgia, serif;
+  --font-display: 'Janus Display Fallback', Arial, sans-serif;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Arial stretched to Nostromo's width at the 70% size-adjust set in layout.tsx (average advance
+   1.544 × Arial's, × 0.70), with matching ascent and descent, so titles barely move when the
+   display face arrives. */
+@font-face {
+  font-family: 'Janus Display Fallback';
+  src: local('Arial');
+  size-adjust: 108.09%;
+  ascent-override: 64.76%;
+  descent-override: 22.67%;
+  line-gap-override: 0%;
 }
 
 * {
@@ -36,7 +48,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-optical-sizing: auto;
+  font-synthesis: none;
   font-weight: 400;
   text-wrap: balance;
 }
@@ -95,7 +107,7 @@ a {
 h1 {
   font-size: clamp(3.6rem, 9vw, 8.4rem);
   letter-spacing: -0.02em;
-  line-height: 0.95;
+  line-height: 0.82;
   margin: 0;
 }
 table {

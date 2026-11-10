@@ -214,9 +214,9 @@ export default function Home() {
         >
           <div className={s.copy}>
             <h2>
-              A quiet world.
+              Quiet world.
               <br />
-              <em>A vast civilization.</em>
+              <em>Vast civilization.</em>
             </h2>
             <p className={s.lede}>Back to S9, where the machines have moved out beyond Earth.</p>
             <p>
@@ -252,7 +252,7 @@ export default function Home() {
             <h2>
               One sky.
               <br />
-              <em>Different evidence.</em>
+              <em>Different clues.</em>
             </h2>
             <p>
               An atmosphere. A radio beacon. A changed surface. Each instrument picks up different
@@ -273,9 +273,9 @@ export default function Home() {
         >
           <div className={s.sectionIntro}>
             <h2>
-              Growth is only
+              Growth isn’t
               <br />
-              <em>part of the story.</em>
+              <em>everything.</em>
             </h2>
             <p>
               Population and energy use vary enormously between these futures. Bigger isn’t better
@@ -308,9 +308,9 @@ export default function Home() {
             <h2>
               The universe
               <br />
-              doesn’t owe us
+              owes us no
               <br />
-              <em>an obvious answer.</em>
+              <em>obvious answer.</em>
             </h2>
             <p>
               We have one known example of a technological civilization. The Janus scenarios widen

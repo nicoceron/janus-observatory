@@ -33,7 +33,7 @@
   font-size: clamp(2rem, 3.4vw, 3.4rem);
   font-weight: 350;
   letter-spacing: -0.02em;
-  line-height: 1;
+  line-height: 0.9;
   margin: 0;
 }
 
@@ -85,7 +85,7 @@
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 460;
   letter-spacing: -0.02em;
-  line-height: 1.1;
+  line-height: 0.95;
   margin: 18px 0;
   overflow-wrap: anywhere;
 }
@@ -638,7 +638,7 @@
   font-size: clamp(2.6rem, 6vw, 6.5rem);
   font-weight: 460;
   letter-spacing: -0.02em;
-  line-height: 0.91;
+  line-height: 0.84;
   margin: 14px 0 22px;
 }
 

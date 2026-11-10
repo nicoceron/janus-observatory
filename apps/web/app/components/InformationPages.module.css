@@ -12,10 +12,10 @@
 }
 
 .section h2 {
-  font-size: clamp(2rem, 3.4vw, 3.4rem);
+  font-size: clamp(1.75rem, 2.6vw, 2.6rem);
   font-weight: 350;
   letter-spacing: -0.02em;
-  line-height: 1.02;
+  line-height: 0.88;
   margin: 0;
 }
 

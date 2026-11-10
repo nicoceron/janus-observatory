@@ -7,7 +7,7 @@
   font-size: clamp(2rem, 3.6vw, 3.6rem);
   font-weight: 350;
   letter-spacing: -0.02em;
-  line-height: 1.02;
+  line-height: 0.88;
   margin: 0 0 24px;
 }
 
@@ -45,11 +45,12 @@
   background: rgba(208, 223, 190, 0.04);
 }
 
+/* Paper titles stay in the text face: they are the studies' own titles, too long for capitals. */
 .studyTitle {
   color: var(--ink);
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  line-height: 1.2;
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
 .studyRole {

@@ -147,9 +147,9 @@ export default function SourcesPage() {
             instrument results come from the papers’ tables, never from screenshots of their charts.
           </p>
           <p>
-            Type: <a href="/licenses/newsreader-OFL.txt">Newsreader</a> by Production Type and{' '}
-            <a href="/licenses/hanken-grotesk-OFL.txt">Hanken Grotesk</a>, both under the SIL Open
-            Font License 1.1 and served from this site.
+            Type: titles are set in Nostromo by Great Scott (Daniel Feldt), and text in{' '}
+            <a href="/licenses/hanken-grotesk-OFL.txt">Hanken Grotesk</a> under the SIL Open Font
+            License 1.1. Both are served from this site.
           </p>
         </div>
       </section>
