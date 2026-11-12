@@ -1,5 +1,5 @@
 {
-  "note": "The Blender kit packs (Decision 036), staged as built: already gzip-compressed and requested with their checksum in the query string.",
+  "note": "The Blender kit packs (Decision 038), staged as built: already gzip-compressed and requested with their checksum in the query string.",
   "packs": [
     {
       "name": "core",

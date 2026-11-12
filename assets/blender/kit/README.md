@@ -2,7 +2,7 @@
 
 These are the Blender sources of every model the site draws: citizens, creatures, plants,
 buildings, vehicles, robots, scenario landmarks, terrain, satellites, clouds, Solar System bodies,
-the alien observer and the telescope. See [Decision 036](../../../docs/DECISION_036_BLENDER_KIT.md)
+the alien observer and the telescope. See [Decision 038](../../../docs/DECISION_038_BLENDER_KIT.md)
 for the design and [the art direction](../../../docs/KIT_ART_DIRECTION.md) for the look.
 
 Open any file in **Blender 5.3**. Each holds one authoring module: every model is a named object

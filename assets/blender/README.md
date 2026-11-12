@@ -1,6 +1,6 @@
 # Editable Janus worlds
 
-> **Current artwork lives in [kit/](kit/README.md)** ([Decision 036](../../docs/DECISION_036_BLENDER_KIT.md)). The world
+> **Current artwork lives in [kit/](kit/README.md)** ([Decision 038](../../docs/DECISION_038_BLENDER_KIT.md)). The world
 > files described below are the sources of the earlier Blender planets (Decision 020). Their web
 > exports were withdrawn from publication on 2026-11-12: the site no longer loads or serves them,
 > and a build that writes new exports under `apps/web/public/assets/blender/` must not be

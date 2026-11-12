@@ -37,8 +37,8 @@ test('the story sky hydrates without console mismatches across browser engines',
     );
   }, markup!);
   expect(equal).toBe(true);
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
-  await page.getByRole('button', { name: '04 S3 ↗', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
+  await page.getByRole('button', { name: '04 S3 Golden Age', exact: true }).click();
   await expect(page.locator('canvas')).toHaveAttribute('data-scene', '4.000');
   await expect(
     page

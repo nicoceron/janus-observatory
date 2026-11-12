@@ -122,13 +122,10 @@ function Scene({
   const { size, invalidate, gl, camera } = useThree();
   useWarmShaders();
   const mobile = size.width <= 760;
-  const layouts = useMemo(() => {
-    // The header is fixed to the top of the viewport, so its height is where its lower edge sits.
-    const header = document.querySelector<HTMLElement>('[data-site-header]')?.offsetHeight ?? 0;
-    return systems.map((system) =>
-      systemLayout(size.width, size.height, systemSelections(system), header),
-    );
-  }, [systems, size]);
+  const layouts = useMemo(
+    () => systems.map((system) => systemLayout(size.width, size.height, systemSelections(system))),
+    [systems, size],
+  );
   const framing = mobile ? 1 : Math.min(1, size.width / size.height / 1.55);
   const groups = useRef<(THREE.Group | null)[]>([]);
   const companions = useRef(new Map<string, THREE.Group>());

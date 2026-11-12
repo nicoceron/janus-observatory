@@ -8,6 +8,9 @@ export const publicTelemetryEvents = [
 
 export type PublicTelemetryEvent = (typeof publicTelemetryEvents)[number];
 
+/** Build-time switch, readable from server and client modules alike. */
+export const telemetryEnabled = process.env.NEXT_PUBLIC_JANUS_TELEMETRY_ENABLED === 'true';
+
 const staticRoutes = new Set([
   '/',
   '/accessibility',
@@ -16,7 +19,6 @@ const staticRoutes = new Set([
   '/observatory',
   '/privacy',
   '/research',
-  '/research/concordia',
   '/research/resilience',
   '/sources',
 ]);

@@ -18,20 +18,18 @@ export default function GlobalError({
   return (
     <html lang="en">
       <body className={styles.shell}>
-        <title>System fault · Janus Observatory</title>
-        <p className={styles.eyebrow}>Janus Observatory · system fault</p>
+        <title>Something went wrong · Janus Observatory</title>
         <main className={styles.message}>
           <p className={styles.code} aria-hidden="true">
             ERR
           </p>
-          <h1 className={styles.title}>The Observatory could not initialize.</h1>
+          <h1 className={styles.title}>Janus Observatory didn’t load.</h1>
           <p className={styles.copy}>
-            Retry the application shell. If the fault persists, the previous immutable release
-            should be restored using the operations runbook.
+            Something went wrong while starting the site. Try again in a moment.
           </p>
           <div className={styles.actions}>
             <button className={styles.action} onClick={() => retry()} type="button">
-              Retry application
+              Try again
             </button>
           </div>
         </main>

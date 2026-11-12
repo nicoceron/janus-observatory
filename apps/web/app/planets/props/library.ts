@@ -3,7 +3,7 @@ import type { Tone } from '../kit';
 import { kitGeometry, kitInfo, kitKinds, kitParts, type KitGeometry, type KitPart } from './pack';
 
 /**
- * Every prop is a Blender kit model (Decision 036) in person units: a citizen is 1 tall, faces
+ * Every prop is a Blender kit model (Decision 038) in person units: a citizen is 1 tall, faces
  * +z and stands on y = 0. Props are drawn as instances, one draw per material part. `tint` and
  * `metal` take a per-instance colour, so one model serves many palettes; `base`, `glass` and
  * `glow` keep their authored colours. `lit` holds window panes: they glow, or are dark glass on

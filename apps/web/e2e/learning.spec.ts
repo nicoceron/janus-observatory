@@ -22,11 +22,11 @@ test('complete the investigation with the keyboard, reload it, then return to th
   );
   await expect(page.getByRole('region', { name: 'Choose how to look' })).toHaveCount(0);
   await expect(page.locator('canvas')).toHaveCount(0);
-  const guess = page.getByRole('button', { name: 'A signature will be listed', exact: true });
+  const guess = page.getByRole('button', { name: 'Yes, it will pick something up', exact: true });
   await guess.focus();
   await page.keyboard.press('Enter');
   await expect(page.getByRole('heading', { name: 'Now look at the evidence.' })).toBeFocused();
-  await expect(page.getByRole('heading', { name: 'No signature is listed here.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Nothing is listed here.' })).toBeVisible();
   await expect(
     page.getByText('It does not establish that technology is absent.', { exact: false }),
   ).toBeVisible();
@@ -40,12 +40,10 @@ test('complete the investigation with the keyboard, reload it, then return to th
     'deep_space_probes',
   );
   await expect(page.getByRole('article')).toHaveCount(2);
-  await expect(
-    page.getByRole('heading', { name: 'The paper lists these signatures.' }),
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'The study lists these signs.' })).toBeVisible();
   await page.reload();
   await expect(page.getByRole('article')).toHaveCount(2);
-  await expect(page.getByRole('heading', { name: 'No signature is listed here.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Nothing is listed here.' })).toBeVisible();
   const results = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
     .analyze();
@@ -99,20 +97,18 @@ test('quantity tokens explain their model reference and retain the exact values'
   await page.goto('/atlas?lens=population');
   const chart = page.getByRole('region', { name: 'One dimension at a time.' });
   await expect(chart).toContainText('200 trillion');
-  await expect(chart).toContainText('25 thousand × paper Earth population');
-  await chart.getByRole('button', { name: 'Annual energy', exact: true }).click();
-  await expect(chart).toContainText('17 thousand × model Earth energy');
-  await chart.getByText('What does one reference Earth token mean?').click();
+  await expect(chart).toContainText('25 thousand × the study’s Earth population');
+  await chart.getByRole('button', { name: 'Energy use', exact: true }).click();
+  await expect(chart).toContainText('17 thousand × the study’s Earth energy use');
+  await chart.getByText('What is “the study’s Earth”?').click();
   await expect(chart).toContainText('592.5 EJ per year');
-  await expect(chart).toContainText('not measured current consumption');
-  await chart.getByText('Open structured lens table').click();
-  await expect(chart.getByRole('table')).toContainText('1e25 J / year');
+  await expect(chart).toContainText('not a measurement of Earth today');
+  await chart.getByText('Show as a table').click();
+  await expect(chart.getByRole('table')).toContainText('1 × 10²⁵ joules a year');
   await page.goto('/atlas/s4');
-  await expect(page.getByRole('region', { name: 'S4 canonical overview' })).toContainText(
-    '400 million',
-  );
-  await expect(page.getByRole('region', { name: 'S4 canonical overview' })).toContainText(
-    '0.051 × model Earth energy',
+  await expect(page.getByRole('region', { name: 'S4 at a glance' })).toContainText('400 million');
+  await expect(page.getByRole('region', { name: 'S4 at a glance' })).toContainText(
+    '0.051 × the study’s Earth energy use',
   );
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

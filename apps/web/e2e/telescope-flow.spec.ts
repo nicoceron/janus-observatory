@@ -9,8 +9,8 @@ test('telescope passage is continuous and the closing Earth scrolls with its sec
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
     timeout: 45000,
   });
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
-  await page.getByRole('button', { name: '12 The other side ↗', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
+  await page.getByRole('button', { name: '12 The other side', exact: true }).click();
   const anchors = await page.evaluate(() =>
     ['observer', 'invisible'].map((id) => {
       const el = document.getElementById(id)!;
@@ -33,8 +33,8 @@ test('telescope passage is continuous and the closing Earth scrolls with its sec
     if (phase === 13) expect(travel.telescopeVisible).toBe(false);
   }
   await expect(page.locator('[class*="targetReticle"]')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
-  await page.getByRole('button', { name: '16 Keep looking ↗', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
+  await page.getByRole('button', { name: '16 Keep looking', exact: true }).click();
   await expect.poll(async () => Number(await canvas.getAttribute('data-scene'))).toBeCloseTo(16, 2);
   const start = await page.evaluate(() => scrollY);
   const positions: number[] = [];

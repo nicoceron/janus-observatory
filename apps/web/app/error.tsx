@@ -20,22 +20,21 @@ export default function ErrorBoundary({
   return (
     <main className={styles.shell}>
       <SiteHeader />
-      <p className={styles.eyebrow}>Janus Observatory · recoverable fault</p>
+
       <section className={styles.message}>
         <p className={styles.code} aria-hidden="true">
           ERR
         </p>
-        <h1 className={styles.title}>The instrument lost this view.</h1>
+        <h1 className={styles.title}>This view didn’t load.</h1>
         <p className={styles.copy}>
-          The evidence and the rest of the Observatory are unchanged. Retry this route, or return to
-          the static story path.
+          Something went wrong while showing this page. Try again, or head back to the story.
         </p>
         <div className={styles.actions}>
           <button className={styles.action} onClick={() => retry()} type="button">
-            Retry view
+            Try again
           </button>
           <Link className={`${styles.action} ${styles.actionSecondary}`} href="/">
-            Return to the story
+            Back to the story
           </Link>
         </div>
       </section>

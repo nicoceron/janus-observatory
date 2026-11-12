@@ -7,12 +7,11 @@ import { ObservatoryExplorer } from './ObservatoryExplorer';
 export const metadata: Metadata = {
   title: 'Observatory',
   description:
-    'Compare what five observing concepts list across all ten Project Janus scenarios, with categorical evidence states, assumptions, source locators, and structured equivalents.',
+    'Look back at our Solar System from another star. Pick one of ten possible futures and five instruments, and see what each could detect.',
   alternates: { canonical: '/observatory' },
   openGraph: {
     title: 'Observatory · Janus Observatory',
-    description:
-      'Change the observing method, not the civilization: a source-backed categorical alien-observer console.',
+    description: 'Keep the civilization, change the telescope: see what survives the distance.',
     url: '/observatory',
   },
 };
@@ -20,11 +19,10 @@ export const metadata: Metadata = {
 export default function ObservatoryPage() {
   return (
     <InnerPage
-      eyebrow="THE OBSERVATORY"
       lede="Imagine looking back at our Solar System from another star. Keep the same possible civilization in view and change instruments to discover how the available evidence changes."
       title="See what survives the distance."
     >
-      <Suspense fallback={<p>Preparing the observing matrix…</p>}>
+      <Suspense fallback={<p>Loading the observatory…</p>}>
         <ObservatoryExplorer />
       </Suspense>
     </InnerPage>

@@ -1,6 +1,10 @@
 'use client';
 
-import { normalizePublicTelemetryRoute, type PublicTelemetryEvent } from './telemetry-shared';
+import {
+  normalizePublicTelemetryRoute,
+  telemetryEnabled,
+  type PublicTelemetryEvent,
+} from './telemetry-shared';
 
 export { publicTelemetryEvents, type PublicTelemetryEvent } from './telemetry-shared';
 export type DeviceTier = 'low' | 'medium' | 'high' | 'unknown';
@@ -39,7 +43,7 @@ interface WebVitalPayload {
 
 export type PublicTelemetryPayload = InteractionPayload | RoutePayload | WebVitalPayload;
 
-export const telemetryEnabled = process.env.NEXT_PUBLIC_JANUS_TELEMETRY_ENABLED === 'true';
+export { telemetryEnabled };
 
 let cachedWebGlSupport: boolean | undefined;
 

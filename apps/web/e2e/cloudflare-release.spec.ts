@@ -52,7 +52,7 @@ test('idle navigation never starts a speculative prefetch loop', async ({ page }
     if (request.headers()['next-router-prefetch']) prefetches.push(request.url());
   });
   await page.goto('/atlas');
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
   await page.keyboard.press('Escape');
   await page.waitForTimeout(5000);
   expect(prefetches).toEqual([]);

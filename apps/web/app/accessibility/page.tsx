@@ -6,12 +6,11 @@ import { InnerPage } from '../components/InnerPage';
 export const metadata: Metadata = {
   title: 'Accessibility',
   description:
-    'Keyboard controls, motion preferences, WebGL fallbacks, structured equivalents, zoom behavior, and known accessibility limitations for Janus Observatory.',
+    'How to use Janus Observatory with a keyboard, a screen reader or less motion, and what we still need to improve.',
   alternates: { canonical: '/accessibility' },
   openGraph: {
     title: 'Accessibility · Janus Observatory',
-    description:
-      'How every scientific argument remains available without animation, pointer input, color, or WebGL.',
+    description: 'Everything in the story is available as text, without animation or 3D.',
     url: '/accessibility',
   },
 };
@@ -19,88 +18,71 @@ export const metadata: Metadata = {
 export default function AccessibilityPage() {
   return (
     <InnerPage
-      eyebrow="Accessibility · WCAG 2.2 AA target"
-      lede="Controls, nonvisual equivalents, motion behavior, and current limitations."
-      title="The argument does not depend on animation."
+      lede="How to use the site with a keyboard, a screen reader or less motion, and what we still need to improve."
+      title="Built to be read, not just watched."
     >
       <section className={styles.section}>
-        <h2>Story controls</h2>
+        <h2>Moving through the story</h2>
         <div className={styles.sectionBody}>
           <ul>
+            <li>Scroll as usual, or press the arrow and Page keys to move between chapters.</li>
+            <li>Chapters, in the top bar, lists every part of the story. Escape closes it.</li>
             <li>
-              The complete narrative and source tables remain available in document order. Use the
-              Atlas for the scientific content outside the animated journey.
+              Press Tab when the page opens to find Skip story. It goes straight to the Atlas: the
+              same futures, without the animated journey.
             </li>
-            <li>
-              When a story section has focus, Arrow Up/Down or Page Up/Down moves between chapters.
-              Escape closes the Index.
-            </li>
-            <li>
-              “Skip story” opens the Atlas. The Index opens direct navigation to every chapter.
-            </li>
-            <li>The Index’s “First light” returns to the beginning.</li>
           </ul>
         </div>
       </section>
 
       <section className={styles.section}>
-        <h2>Reduced motion and WebGL</h2>
+        <h2>Motion and 3D</h2>
         <div className={styles.sectionBody}>
           <p>
-            The homepage runs in full motion, including when the system requests reduced motion.
-            Research pages respect your saved preference. Change it with the System, Reduced, and
-            Full controls on this page. The Atlas provides the scenario content outside the animated
-            story.
+            The home-page story always animates, even if your device asks for less motion. Every
+            other page follows your device setting, or the choice you make with the Motion control
+            on this page.
           </p>
           <p>
-            The story does not display a temporary image while the 3D scene starts. If WebGL cannot
-            start, all narrative, controls, values, citations, and data tables remain available as
-            semantic HTML.
+            If 3D graphics can’t start on your device, the story shows its text, controls and tables
+            instead. Nothing is lost.
           </p>
         </div>
       </section>
 
       <section className={styles.section}>
-        <h2>Structured alternatives</h2>
+        <h2>Text versions of everything</h2>
         <div className={styles.sectionBody}>
           <p>
-            The story stage exposes a concise live description. The Observatory’s “Open data view”
-            control reveals the five-method result table. Scenario and instrument controls use
-            native buttons with pressed state; meaning is never carried by color alone.
+            Every chart and 3D view has a text or table version, and color is never the only way
+            information is shown. Links remember what you picked, so you can share exactly what
+            you’re looking at.
           </p>
           <div className={styles.tableScroller} tabIndex={0}>
             <table className={styles.accessTable}>
-              <caption className="srOnly">
-                Interactive surfaces and their structured equivalents
-              </caption>
+              <caption className="srOnly">Where to find the text version of each page</caption>
               <thead>
                 <tr>
-                  <th scope="col">Surface</th>
-                  <th scope="col">Keyboard / touch control</th>
-                  <th scope="col">Nonvisual equivalent</th>
-                  <th scope="col">Share state</th>
+                  <th scope="col">Page</th>
+                  <th scope="col">How to control it</th>
+                  <th scope="col">Text version</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">Story</th>
-                  <td>Native scroll, Begin/Skip links, Index and arrow-key chapter navigation</td>
-                  <td>
-                    Semantic narrative, live state description, scenario lists and source tables
-                  </td>
-                  <td>Named chapter and handoff links</td>
+                  <td>Scrolling, arrow keys and the Chapters list</td>
+                  <td>Every chapter is text, and each chart has “Read the data table”</td>
                 </tr>
                 <tr>
                   <th scope="row">Observatory</th>
-                  <td>Pressed-state scenario and instrument buttons</td>
-                  <td>Categorical result prose and five-method table</td>
-                  <td>scenario, instrument, and data-view query parameters</td>
+                  <td>A button for each future and each instrument</td>
+                  <td>“Show as a table” lists every result</td>
                 </tr>
                 <tr>
                   <th scope="row">Atlas</th>
-                  <td>Compare toggles, analytical-lens buttons, native table scrolling</td>
-                  <td>Aligned tables, exact source locators, versioned JSON/CSV</td>
-                  <td>compare and lens query parameters</td>
+                  <td>Compare and measure buttons, and tables that scroll sideways</td>
+                  <td>Every comparison is a table, and the data downloads as JSON or CSV</td>
                 </tr>
               </tbody>
             </table>
@@ -109,19 +91,19 @@ export default function AccessibilityPage() {
       </section>
 
       <section className={styles.section}>
-        <h2>Zoom, focus, and overflow</h2>
+        <h2>Zoom and focus</h2>
         <div className={styles.sectionBody}>
           <p>
-            Focus indicators remain visible against light and dark surfaces. Wide scientific tables
-            sit in keyboard-focusable horizontal scrollers instead of shrinking text. At narrow
-            widths, editorial rows reflow vertically and navigation remains horizontally reachable.
+            Focus outlines stay visible on dark and light surfaces. Wide tables scroll sideways
+            instead of shrinking their text, and pages reflow on narrow screens.
           </p>
         </div>
       </section>
 
       <aside className={styles.notice}>
-        Automated checks supplement, but do not replace, manual VoiceOver, NVDA, zoom/reflow, touch,
-        and keyboard testing. Those full manual passes remain launch-hardening work.
+        We test with automated tools and by keyboard, aiming for WCAG 2.2 AA. Full testing with
+        screen readers such as VoiceOver and NVDA is still to come. If something gets in your way,
+        tell <a href="https://dardo.studio/">Dardo</a>, who built the site.
       </aside>
     </InnerPage>
   );

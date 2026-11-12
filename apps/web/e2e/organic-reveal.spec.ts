@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { storyHandoff } from './helpers/story-handoff';
 test('companions emerge continuously behind Earth across the old midpoint and retrace on backscroll', async ({
   page,
 }, info) => {
@@ -7,30 +8,9 @@ test('companions emerge continuously behind Earth across the old midpoint and re
   await expect(page.locator('[data-stage-status]')).toHaveAttribute('data-stage-status', 'ready', {
     timeout: 45000,
   });
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
-  await page.getByRole('button', { name: '03 S2 ↗', exact: true }).click();
-  const anchors = await page.evaluate(() => {
-    const positions = ['s2', 's3'].map((id) => {
-      const el = document.getElementById(id)!;
-      const inset =
-        innerWidth <= 760
-          ? Math.max(0, parseFloat(getComputedStyle(el).paddingTop) - innerHeight * 0.72)
-          : Math.max(0, (el.offsetHeight - innerHeight) / 2);
-      return el.getBoundingClientRect().top + scrollY + inset;
-    });
-    const slot = document.querySelector<HTMLElement>('#s2 [data-copy-slot]')!;
-    if (slot.dataset.copyLayout === 'flow') {
-      // Sample the spatial handoff after the mobile paragraph's reading hold.
-      positions[0] = Math.max(
-        positions[0],
-        Math.min(
-          positions[1] - innerHeight * 0.25,
-          slot.getBoundingClientRect().bottom + scrollY - innerHeight * 0.45,
-        ),
-      );
-    }
-    return positions;
-  });
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
+  await page.getByRole('button', { name: '03 S2 Wild West', exact: true }).click();
+  const anchors = await storyHandoff(page, 's2', 's3');
   const canvas = page.locator('canvas');
   const samples: { phase: number; reveal: number; position: number[] }[] = [];
   for (const phase of [3.3, 3.49, 3.51, 3.75, 4, 3.75, 3.51, 3.49, 3.3]) {
@@ -60,8 +40,8 @@ test('companions emerge continuously behind Earth across the old midpoint and re
   expect(samples[2].reveal - samples[1].reveal).toBeLessThan(0.08);
   expect(samples[4].reveal).toBe(1);
   for (let i = 0; i < 4; i++) expect(samples[i].reveal).toBeCloseTo(samples[8 - i].reveal, 1);
-  await page.getByRole('button', { name: 'Index +', exact: true }).click();
-  await page.getByRole('button', { name: '04 S3 ↗', exact: true }).click();
+  await page.getByRole('button', { name: 'Chapters', exact: true }).click();
+  await page.getByRole('button', { name: '04 S3 Golden Age', exact: true }).click();
   await expect.poll(async () => Number(await canvas.getAttribute('data-scene'))).toBeCloseTo(4, 2);
   await expect(
     page.getByLabel('Explore S3 models', { exact: true }).getByRole('button'),

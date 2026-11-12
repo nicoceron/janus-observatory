@@ -1,6 +1,6 @@
 # Decision 027: fixed resolution and Cloudflare Free
 
-> Superseded in part by [Decision 036](DECISION_036_BLENDER_KIT.md) (2026-11-12): the 59 GLB exports
+> Superseded in part by [Decision 038](DECISION_038_BLENDER_KIT.md) (2026-11-12): the 59 GLB exports
 > and their gzip transport described below are no longer published; the deployment serves the
 > Blender kit packs instead. The adapter, caching and Free-plan limits below remain current.
 

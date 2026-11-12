@@ -5,19 +5,19 @@
 }
 .quantity strong {
   color: var(--ink);
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 1.125rem;
+  font-weight: 700;
 }
 .quantity small {
-  color: #a8bac8;
-  font-size: 0.72rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
 }
 .comparison {
   align-items: center;
   display: flex;
   gap: 8px;
   color: #c2d6e5;
-  font-size: 0.78rem;
+  font-size: 0.9375rem;
   line-height: 1.5;
 }
 .comparison svg {
@@ -30,8 +30,8 @@
   border-block: 1px solid var(--line);
   padding: 18px 0;
   margin: 24px 0;
-  font-size: 0.85rem;
-  color: #b7c9d8;
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
   line-height: 1.7;
 }
 .reference summary {
@@ -40,7 +40,7 @@
   padding: 8px 0;
 }
 .reference p {
-  max-width: 80ch;
+  max-width: 68ch;
 }
 .reference a {
   display: inline-block;

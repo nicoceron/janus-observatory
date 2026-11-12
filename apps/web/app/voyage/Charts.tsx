@@ -47,14 +47,14 @@ export function CivilizationChart({ worlds }: { worlds: ChartWorld[] }) {
   return (
     <div className={s.chart}>
       <div className={s.chartHeading}>
-        <span>POPULATION × ANNUAL ENERGY USE</span>
-        <span>LOGARITHMIC AXES</span>
+        <span>Population against energy used per year</span>
+        <span>Each gridline is ten times the last</span>
       </div>
       <svg viewBox="0 0 850 440" role="img" aria-labelledby="chart-title chart-description">
         <title id="chart-title">Ten civilizations at very different scales</title>
         <desc id="chart-description">
-          Published population and annual energy use, with logarithmic axes. Select a scenario below
-          for exact values; an equivalent data table follows.
+          Population and yearly energy use from the scenario study, on axes where each step is ten
+          times the last. Pick a future below for exact values; a data table follows.
         </desc>
         {Array.from({ length: maxY - minY + 1 }, (_, i) => minY + i).map((t) => (
           <g key={t}>
@@ -108,7 +108,7 @@ export function CivilizationChart({ worlds }: { worlds: ChartWorld[] }) {
               fill="transparent"
               onMouseEnter={() => setSelected(w.id)}
             >
-              <title>{`${w.id}: ${w.title}. Population ${w.populationDisplay}. Annual energy ${w.energyDisplay} J.`}</title>
+              <title>{`${w.id}: ${w.title}. Population ${w.populationDisplay}. Energy per year ${w.energyDisplay} J.`}</title>
             </circle>
           </g>
         ))}
@@ -142,19 +142,19 @@ export function CivilizationChart({ worlds }: { worlds: ChartWorld[] }) {
           <small>Population</small>
         </span>
         <span>
-          {world.energyDisplay} J<small>Annual energy use</small>
+          {world.energyDisplay} J<small>Energy used per year</small>
         </span>
       </div>
       <details className={s.dataDetails}>
         <summary>Read the data table</summary>
         <div className={s.tableScroll}>
           <table>
-            <caption>Published scenario population and annual energy use</caption>
+            <caption>Population and energy use per year in each future</caption>
             <thead>
               <tr>
                 <th scope="col">Scenario</th>
                 <th scope="col">Population</th>
-                <th scope="col">Energy / year (J)</th>
+                <th scope="col">Energy per year (joules)</th>
               </tr>
             </thead>
             <tbody>
@@ -164,7 +164,7 @@ export function CivilizationChart({ worlds }: { worlds: ChartWorld[] }) {
                     {w.id} · {w.title}
                   </th>
                   <td>{w.population.toLocaleString('en')}</td>
-                  <td>{w.energy.toExponential()}</td>
+                  <td>{w.energyDisplay}</td>
                 </tr>
               ))}
             </tbody>
@@ -194,18 +194,18 @@ export function SignalMatrix({ worlds }: { worlds: SignalWorld[] }) {
   return (
     <div className={s.signalPanel}>
       <div className={s.matrixLegend}>
-        <span>◉ Signature reported</span>
-        <span>— No signature reported by this method</span>
+        <span>◉ Something detectable</span>
+        <span>— Nothing listed for this instrument</span>
       </div>
       <div className={s.tableScroll}>
         <table className={s.matrix}>
           <caption className="srOnly">
-            Published observing strategies. Empty outcomes are method-specific, never proof of no
-            technology.
+            What each instrument could detect in each future, from the observing study. An empty
+            cell means nothing is listed for that instrument, not that there is no technology.
           </caption>
           <thead>
             <tr>
-              <th scope="col">WORLD</th>
+              <th scope="col">Future</th>
               {world.signals.map((m) => (
                 <th scope="col" key={m.id}>
                   <abbr title={m.label}>{m.short}</abbr>
@@ -226,10 +226,8 @@ export function SignalMatrix({ worlds }: { worlds: SignalWorld[] }) {
                   <td key={m.id}>
                     <a
                       href={m.href}
-                      aria-label={`${w.id}, ${m.label}: ${m.status.replaceAll('_', ' ')}. ${m.features.join('; ')}. ${m.source}`}
-                      title={
-                        m.features.length ? m.features.join(' · ') : m.status.replaceAll('_', ' ')
-                      }
+                      aria-label={`${w.id}, ${m.label}: ${m.features.length ? m.features.join('; ') : 'nothing listed'}.`}
+                      title={m.features.length ? m.features.join(', ') : 'Nothing listed'}
                     >
                       {m.features.length ? (
                         <span className={s.detected}>◉</span>
@@ -251,17 +249,15 @@ export function SignalMatrix({ worlds }: { worlds: SignalWorld[] }) {
         {world.signals.map((m) => (
           <div key={m.id}>
             <strong>{m.short}</strong>
-            <span>
-              {m.features.length ? m.features.join(' · ') : m.status.replaceAll('_', ' ')}
-            </span>
+            <span>{m.features.length ? m.features.join(', ') : 'Nothing listed'}</span>
           </div>
         ))}
       </div>
       <p className={s.finePrint}>
-        Published categorical results under the paper’s instrument assumptions. The symbols are not
-        detection probabilities.{' '}
+        Yes-or-no results from the observing study, under its assumptions about each instrument. A
+        dot is not a probability.{' '}
         <a href={`/observatory?scenario=${world.id}&instrument=habitable_worlds_observatory`}>
-          Inspect assumptions and evidence ↗
+          See how each instrument works ↗
         </a>
       </p>
     </div>

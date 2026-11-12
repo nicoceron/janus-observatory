@@ -1,6 +1,6 @@
 # Decision 035 — Story-drawn low-poly worlds
 
-> Superseded in part by [Decision 036](DECISION_036_BLENDER_KIT.md) (2026-11-12): every code-drawn
+> Superseded in part by [Decision 038](DECISION_038_BLENDER_KIT.md) (2026-11-12): every code-drawn
 > model described below is now an authored Blender kit model, and the toy proportions, town
 > layout and lighting rules are revised there. The world recipes and published-value encodings
 > below remain current.

@@ -58,7 +58,7 @@ function localScriptSources(html: string): { modern: Set<string>; legacy: Set<st
 
 /**
  * Audit the relative source graph reachable from the home route, including dynamic imports. The
- * worlds are assembled from the Blender kit (Decision 036), whose packs are named only by the
+ * worlds are assembled from the Blender kit (Decision 038), whose packs are named only by the
  * generated kit manifest; any other public asset reference in a reachable home source fails.
  */
 async function homeAssetSources() {

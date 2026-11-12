@@ -30,10 +30,19 @@ export const systemDataset = SystemTechnosignatureDatasetSchema.parse(systemJson
 
 export const instrumentCopy: Record<
   ObservingMissionId,
-  { short: string; label: string; plainLabel: string; mode: string; explanation: string }
+  {
+    short: string;
+    /** One plain word for tight layouts such as matrix columns. */
+    name: string;
+    label: string;
+    plainLabel: string;
+    mode: string;
+    explanation: string;
+  }
 > = {
   habitable_worlds_observatory: {
     short: 'HWO',
+    name: 'Optical',
     label: 'Habitable Worlds Observatory',
     plainLabel: 'Optical space telescope',
     mode: 'Reflected light',
@@ -42,6 +51,7 @@ export const instrumentCopy: Record<
   },
   radio: {
     short: 'Radio',
+    name: 'Radio',
     label: 'Radio array',
     plainLabel: 'Radio telescope array',
     mode: 'Radio signals',
@@ -50,6 +60,7 @@ export const instrumentCopy: Record<
   },
   large_interferometer_for_exoplanets: {
     short: 'LIFE',
+    name: 'Infrared',
     label: 'Large Interferometer for Exoplanets',
     plainLabel: 'Infrared telescope array',
     mode: 'Thermal glow',
@@ -58,6 +69,7 @@ export const instrumentCopy: Record<
   },
   solar_gravitational_lens: {
     short: 'SGL',
+    name: 'Sun lens',
     label: 'Solar Gravitational Lens',
     plainLabel: 'Sun-as-a-lens telescope',
     mode: 'Resolved surface imaging',
@@ -66,6 +78,7 @@ export const instrumentCopy: Record<
   },
   deep_space_probes: {
     short: 'Probe',
+    name: 'Probe',
     label: 'Deep-space probe',
     plainLabel: 'Visiting space probe',
     mode: 'Close-up exploration',
@@ -96,13 +109,21 @@ function requireRecord<RecordType extends { scenarioId: ScenarioId }>(
   return record;
 }
 
+const superscriptDigits = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+
+/** Scientific notation for readers, e.g. 2 × 10²¹, rounded to one decimal place. */
 export function scientificNotation(value: number): string {
-  return new Intl.NumberFormat('en', {
+  const [mantissa, exponent] = new Intl.NumberFormat('en', {
     notation: 'scientific',
     maximumFractionDigits: 1,
   })
     .format(value)
-    .replace('E', 'e');
+    .split('E');
+  if (!exponent || exponent === '0') return mantissa;
+  const power = [...exponent]
+    .map((character) => (character === '-' ? '⁻' : superscriptDigits[Number(character)]))
+    .join('');
+  return `${mantissa} × 10${power}`;
 }
 
 const sourceDocuments: Record<string, string> = {
@@ -116,16 +137,15 @@ export function sourceRefHref(sourceRef: SourceRef): string {
   return sourceRef.locator.page ? `${base}#page=${sourceRef.locator.page}` : base;
 }
 
+/** A short citation readers can follow, such as "Table 9, p. 18"; the link carries the rest. */
 export function sourceRefLabel(sourceRef: SourceRef): string {
   const locator = sourceRef.locator;
   return [
     locator.table ?? locator.figure ?? locator.section,
-    locator.row ? `row ${locator.row}` : undefined,
-    locator.column ? `column ${locator.column}` : undefined,
-    locator.page ? `page ${locator.page}` : undefined,
+    locator.page ? `p. ${locator.page}` : undefined,
   ]
     .filter(Boolean)
-    .join(' · ');
+    .join(', ');
 }
 
 export function sourcedDisplay(field: Sourced<unknown>): string {

@@ -2,7 +2,7 @@
 
 2026-11-11. The brief for every model in the Blender kit (`scripts/blender/kit/`). It replaces the
 code-drawn box-and-prism props of Decision 035 with designed models; see
-[Decision 036](DECISION_036_BLENDER_KIT.md) for the pipeline.
+[Decision 038](DECISION_038_BLENDER_KIT.md) for the pipeline.
 
 All kit geometry is **original interpretive artwork**. Buildings, creatures, machines, counts and
 dimensions are invented illustrations of the Project Janus narratives. They never encode a

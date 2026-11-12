@@ -2,14 +2,17 @@ import { expect, test } from '@playwright/test';
 
 test('scenario copy and worlds share arrivals, holds and reverse transitions', async ({
   page,
+  isMobile,
 }, info) => {
+  // Eleven forward/reverse samples plus diagnostic captures use one WebGL
+  // context; allow a bounded minute on Safari's software renderer.
+  test.setTimeout(60000);
   await page.goto('/#s3');
   const canvas = page.locator('canvas');
   await expect(canvas).toHaveAttribute('data-scene', '4.000', { timeout: 60000 });
   const copy = page.locator('#s3 [data-chapter-copy]');
   await expect(copy).toHaveCount(1);
-  // Decision 033: on a phone the copy stays in normal document flow, whichever engine draws it.
-  const phone = page.viewportSize()!.width <= 760;
+  const phone = isMobile;
   await expect(page.locator('#s3 [data-copy-slot]')).toHaveAttribute(
     'data-copy-layout',
     phone ? 'flow' : 'staged',

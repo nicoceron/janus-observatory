@@ -1,5 +1,3 @@
-import { MIN_TARGET } from './system-layout';
-
 /** One shared DOM registry; the spatial frame loop supplies camera-projected positions. */
 const targets = new Map<string, HTMLButtonElement>();
 export function bindSpatialTarget(world: number, id: string, button: HTMLButtonElement | null) {
@@ -37,7 +35,7 @@ export function placeSpatialTarget(
 ) {
   const target = targets.get(`${world}:${id}`);
   if (!target) return;
-  const hit = Math.max(MIN_TARGET, diameter);
+  const hit = Math.max(44, diameter);
   target.style.transform = `translate3d(${(x - hit / 2).toFixed(2)}px,${(y - hit / 2).toFixed(2)}px,0)`;
   target.style.width = `${hit.toFixed(2)}px`;
   target.style.height = `${hit.toFixed(2)}px`;

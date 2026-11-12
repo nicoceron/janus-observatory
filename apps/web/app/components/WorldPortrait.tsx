@@ -45,9 +45,8 @@ export function WorldPortrait({ world, signals }: { world: number; signals: Worl
         />
       )}
       <p className={failed ? styles.fallback : 'srOnly'}>
-        {failed ? '3D view unavailable. ' : ''}Original interpretive low-poly model of scenario S
-        {world + 1}. {worldStories[world].depiction} The scenario description and data remain
-        available below.
+        {failed ? '3D view unavailable. ' : ''}Illustration of future S{world + 1}.{' '}
+        {worldStories[world].depiction} The description and data are on this page.
       </p>
     </div>
   );

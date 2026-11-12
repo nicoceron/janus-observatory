@@ -1,4 +1,4 @@
-# Decision 036 — The Blender model kit
+# Decision 038 — The Blender model kit
 
 2026-11-12. Supersedes the code-drawn props, landmarks, globes, system bodies, observer and
 telescope of [Decision 035](DECISION_035_STORY_DRAWN_LOW_POLY_WORLDS.md). Decision 035's world

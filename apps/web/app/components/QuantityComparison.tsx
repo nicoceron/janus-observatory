@@ -38,13 +38,14 @@ export function QuantityComparison({
   dimension: QuantityDimension;
 }) {
   const comparison = compareWithReferenceEarth(value, dimension, growthDataset.referenceEarth);
-  const label = dimension === 'population' ? 'paper Earth population' : 'model Earth energy';
+  const label =
+    dimension === 'population' ? 'the study’s Earth population' : 'the study’s Earth energy use';
   return (
     <span className={styles.quantity}>
       <strong>
         {dimension === 'population'
           ? readableNumber(value)
-          : `${readableNumber(value / 1e18)} EJ / year`}
+          : `${readableNumber(value / 1e18)} EJ a year`}
       </strong>
       {comparison ? (
         <span className={styles.comparison}>
@@ -54,12 +55,9 @@ export function QuantityComparison({
           </span>
         </span>
       ) : (
-        <span>Reference comparison unavailable</span>
+        <span>No Earth comparison available</span>
       )}
-      <small>
-        {scientificNotation(value)}
-        {dimension === 'energy' ? ' J / year' : ' total population'}
-      </small>
+      {dimension === 'energy' ? <small>{scientificNotation(value)} joules a year</small> : null}
     </span>
   );
 }
@@ -69,19 +67,18 @@ export function ReferenceEarthNote() {
   const comparison = compareWithReferenceEarth(1, 'energy', growthDataset.referenceEarth);
   return (
     <details className={styles.reference}>
-      <summary>What does one reference Earth token mean?</summary>
+      <summary>What is “the study’s Earth”?</summary>
       <p>
-        Population: {population.value === null ? 'unavailable' : readableNumber(population.value)},
-        the paper’s fixed Earth reference. Energy: that population × {annualEnergyPerPersonGJ.value}{' '}
-        GJ per person per year, the paper’s model assumption
-        {comparison ? ` (equivalent to ${comparison.referenceValue / 1e18} EJ per year)` : ''}. One
+        The scenario study measures every future against a fixed Earth:{' '}
+        {population.value === null ? 'an unstated number of' : readableNumber(population.value)}{' '}
+        people, each using {annualEnergyPerPersonGJ.value} gigajoules of energy a year
+        {comparison ? ` (${comparison.referenceValue / 1e18} EJ per year in total)` : ''}. An
         exajoule (EJ) is a billion billion joules.
       </p>
       <p>
-        Each symbol is one reference unit; the multiplier gives the scenario’s total across all
-        bodies in the Solar System. Ratios are derived and rounded. Energy tokens represent a model
-        budget, not measured current consumption. Neither token measures ecological carrying
-        capacity. These are fixed paper references, not Earth in 2026.
+        The multipliers are rounded and count every world a civilization lives on. The reference is
+        the study’s model, not a measurement of Earth today, and says nothing about how many people
+        a planet can support.
       </p>
       <p>
         {comparison?.sourceRefs.map((ref, index) => (

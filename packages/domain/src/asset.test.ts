@@ -44,7 +44,7 @@ describe('asset rights ledger', () => {
     const blender = parsed.entries.filter(({ id }) => id.startsWith('janus.blender.v1.'));
     const families = ['origin', ...scenarioIds.map((id) => id.toLowerCase())];
 
-    // Decision 036 replaced these web exports with the kit packs. Their records stay, with
+    // Decision 038 replaced these web exports with the kit packs. Their records stay, with
     // their checksums and history, as excluded entries that publish nothing.
     expect(blender).toHaveLength(59);
     expect(new Set(blender.map(({ id }) => id.split('.')[3]))).toEqual(new Set(families));
@@ -71,7 +71,7 @@ describe('asset rights ledger', () => {
         expect(
           derivative.notes.some(
             (note) =>
-              note.includes('Withdrawn from publication on 2026-11-12 by Decision 036') &&
+              note.includes('Withdrawn from publication on 2026-11-12 by Decision 038') &&
               new RegExp(`/assets/blender/v1/${family}/[^/]+\\.glb`).test(note) &&
               note.includes(`assets/blender/${family}.blend`),
           ),

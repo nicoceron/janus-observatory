@@ -5,7 +5,7 @@ import { U } from '../props/library';
 import { kitInfo } from '../props/pack';
 
 /**
- * Natural relief as Blender kit models (Decision 036): peaks, hills, mesas, dunes, a volcano,
+ * Natural relief as Blender kit models (Decision 038): peaks, hills, mesas, dunes, a volcano,
  * icebergs and craters. They are merged into one static layer and take the colour of the ground
  * they stand on, so each scenario's palette recolours its own mountains. Relief is placed after
  * a world's story, only on ground the story left untouched, and is interpretive scenery.

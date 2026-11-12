@@ -18,9 +18,16 @@ export function isLessonStep(value: string | null): value is LessonStep {
   return lessonSteps.some((step) => step === value);
 }
 
+const assumptionLabels: Record<string, string> = {
+  distance: 'Distance',
+  integrationTime: 'Observing time',
+  host: 'Target system',
+  concept: 'Instrument',
+};
+
 const guesses = {
-  listed: 'A signature will be listed',
-  blank: 'No signature will be listed',
+  listed: 'Yes, it will pick something up',
+  blank: 'No, it won’t pick anything up',
   unsure: 'I’m not sure yet',
 } as const;
 
@@ -31,13 +38,11 @@ function PublishedResult({
 }) {
   return (
     <article className={styles.result}>
-      <p className={styles.eyebrow}>
-        {observation.plainLabel} · {observation.short}
-      </p>
+      <p className={styles.eyebrow}>{observation.plainLabel}</p>
       <h3>
         {observation.result.signatures.length
-          ? 'The paper lists these signatures.'
-          : 'No signature is listed here.'}
+          ? 'The study lists these signs.'
+          : 'Nothing is listed here.'}
       </h3>
       {observation.result.signatures.length > 0 && (
         <ul>
@@ -47,13 +52,12 @@ function PublishedResult({
         </ul>
       )}
       <p>{observation.result.caveat}</p>
-      <p className={styles.evidence}>Reported · transcribed · published assumptions apply</p>
       <details>
-        <summary>Observation assumptions and source</summary>
+        <summary>What the study assumes</summary>
         <dl>
           {Object.entries(observation.result.assumptions).map(([name, field]) => (
             <div key={name}>
-              <dt>{name === 'integrationTime' ? 'Integration time' : name}</dt>
+              <dt>{assumptionLabels[name] ?? name}</dt>
               <dd>
                 {field.value ?? field.note}
                 {field.value && field.note ? ` — ${field.note}` : ''}
@@ -101,7 +105,7 @@ export function GuidedObservation({
       style={{ '--signal': profile.accent } as CSSProperties}
     >
       <div className={styles.lessonTop}>
-        <ol aria-label="Observation exercise progress">
+        <ol aria-label="Steps">
           {lessonSteps.map((phase, index) => (
             <li key={phase} aria-current={phase === step ? 'step' : undefined}>
               {String(index + 1).padStart(2, '0')} ·{' '}
@@ -125,7 +129,7 @@ export function GuidedObservation({
         <strong>
           {profile.id} · {profile.morphology.mythMetaphor}
         </strong>
-        . A possible future, not a forecast.
+        . A possible future, not a prediction.
       </p>
 
       {step === 'predict' ? (
@@ -154,29 +158,28 @@ export function GuidedObservation({
               >
                 {observingMissionIds.map((id) => (
                   <option value={id} key={id}>
-                    {instrumentCopy[id].plainLabel} · {instrumentCopy[id].short}
+                    {instrumentCopy[id].plainLabel}
                   </option>
                 ))}
               </select>
             </label>
           </div>
           <p className={styles.context}>
-            This scenario includes:{' '}
-            {profile.system.map(({ label }) => label).join('; ') ||
-              'no system signature listed in Table 8'}
+            Out in the Solar System, this future has:{' '}
+            {profile.system.map(({ label }) => label.toLowerCase()).join(', ') || 'no signs listed'}
             .{' '}
             <a
               href={sourceRefHref(profile.systemCellProvenance[0]!)}
               target="_blank"
               rel="noreferrer"
             >
-              Scenario context · Table 8 ↗
+              Source ↗
             </a>
           </p>
           <InstrumentExplanation instrumentId={instrumentId} />
           <fieldset className={styles.guesses}>
-            <legend>Will the paper list a technological signature for this method?</legend>
-            <p>Make a guess, then reveal the published cell. There is no score.</p>
+            <legend>Will this instrument pick up any sign of technology?</legend>
+            <p>Make a guess, then see what the study says. There’s no score.</p>
             <div>
               {Object.entries(guesses).map(([value, label]) => (
                 <button
@@ -192,10 +195,10 @@ export function GuidedObservation({
         </>
       ) : step === 'observe' ? (
         <>
-          {guessLabel && <p>Your expectation: {guessLabel.toLowerCase()}.</p>}
+          {guessLabel && <p>Your guess: {guessLabel.toLowerCase()}.</p>}
           <PublishedResult observation={observation} />
           <p className={styles.takeaway}>
-            A blank cell means this method has no signature listed in the paper. It does not
+            If nothing is listed, the study found no sign this instrument could pick up. It does not
             establish that technology is absent.
           </p>
           <div className={styles.actions}>
@@ -232,7 +235,7 @@ export function GuidedObservation({
             >
               {observingMissionIds.map((id) => (
                 <option key={id} value={id} disabled={id === firstInstrumentId}>
-                  {instrumentCopy[id].plainLabel} · {instrumentCopy[id].short}
+                  {instrumentCopy[id].plainLabel}
                 </option>
               ))}
             </select>
@@ -243,9 +246,8 @@ export function GuidedObservation({
             <PublishedResult observation={observation} />
           </div>
           <p className={styles.takeaway}>
-            The civilization stayed the same. Each method examines different evidence under its own
-            assumptions. Matching results do not make the methods equivalent, and a blank cell does
-            not rule out technology.
+            The civilization stayed the same; only the way of looking changed. Each instrument picks
+            up different clues, and an empty result never rules out technology.
           </p>
           <div className={styles.actions}>
             <button type="button" onClick={exit}>

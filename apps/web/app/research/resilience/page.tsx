@@ -6,9 +6,9 @@ import { InnerPage } from '../../components/InnerPage';
 import styles from '../Research.module.css';
 
 export const metadata: Metadata = {
-  title: 'Independent resilience validation',
+  title: 'Our rebuild of the collapse model',
   description:
-    'Inspect the noncanonical independent reimplementation of the published Janus collapse-recovery equations and its validation limits.',
+    'We rebuilt the Project Janus collapse-and-recovery model from the published equations and checked it against the paper. Here is how it compares.',
   alternates: { canonical: '/research/resilience' },
 };
 
@@ -19,8 +19,12 @@ function metric(
   return comparisons.find(({ metric: candidate }) => candidate === id);
 }
 
-function number(value: number | null | undefined, digits = 3) {
-  return value === null || value === undefined ? 'not stated in prose' : value.toFixed(digits);
+function percent(value: number | null | undefined) {
+  return value === null || value === undefined ? 'Chart only' : `${(value * 100).toFixed(1)}%`;
+}
+
+function average(value: number | null | undefined) {
+  return value === null || value === undefined ? 'Chart only' : value.toFixed(1);
 }
 
 export default function ResilienceResearchPage() {
@@ -28,41 +32,42 @@ export default function ResilienceResearchPage() {
 
   return (
     <InnerPage
-      eyebrow="Research appendix · independent reimplementation"
-      lede="A separate experiments-track implementation of the CC BY collapse-recovery equations, validated against only the aggregates the paper reports in prose. It is not author code and it never replaces canonical reported values."
-      title="Collapse results need two labels."
+      lede="We rebuilt the collapse study’s model from the equations in its paper, then checked our results against every number the paper states in its text. It’s our own version—not the authors’ code—and it never replaces their results."
+      title="Our rebuild of the collapse model."
     >
       <aside className={styles.scientificNotice}>
-        <strong>
-          {available ? 'Validation report passed.' : 'Independent output held closed.'}
-        </strong>
+        <strong>{available ? 'It matches the paper.' : 'The check isn’t available.'}</strong>
         <p>
           {available
-            ? 'The current report records ten passing scenario comparisons under its documented tolerances. This supports an appendix, not an “official Janus simulation” claim.'
-            : 'No validated independent report is available in this build.'}
+            ? 'For all ten futures, our results agree with the numbers the paper states, within the tolerances we set. That makes it a useful companion, not an official Janus simulation.'
+            : 'This version of the site doesn’t include a passing check of the rebuild.'}
         </p>
       </aside>
 
       {available ? (
         <section className={styles.validationSection} aria-labelledby="validation-table-title">
           <div className={styles.sectionLead}>
-            <p>Reported versus reimplemented</p>
-            <h2 id="validation-table-title">Null stays null. Approximate stays approximate.</h2>
+            <h2 id="validation-table-title">Side by side with the paper.</h2>
+            <p>
+              “Time active” is the share of the 1,000 years a civilization spends running rather
+              than collapsed; the paper calls it the duty cycle. Where the paper only shows a chart,
+              there’s no exact number to compare.
+            </p>
           </div>
           <div className={styles.tableScroll} tabIndex={0}>
             <table>
               <caption>
-                Large-ensemble independent outputs beside available prose-reported targets. Missing
-                targets are not inferred from figure heights.
+                Averages from our {validation.ensembleSizes.large.toLocaleString('en')} runs of each
+                future, next to the paper’s numbers.
               </caption>
               <thead>
                 <tr>
-                  <th scope="col">Scenario</th>
-                  <th scope="col">Independent duty cycle</th>
-                  <th scope="col">Reported duty cycle</th>
-                  <th scope="col">Independent collapses</th>
-                  <th scope="col">Reported collapses</th>
-                  <th scope="col">Comparison</th>
+                  <th scope="col">Future</th>
+                  <th scope="col">Time active, ours</th>
+                  <th scope="col">Time active, paper</th>
+                  <th scope="col">Collapses, ours</th>
+                  <th scope="col">Collapses, paper</th>
+                  <th scope="col">Match</th>
                 </tr>
               </thead>
               <tbody>
@@ -72,11 +77,11 @@ export default function ResilienceResearchPage() {
                   return (
                     <tr key={scenario.scenarioId}>
                       <th scope="row">{scenario.scenarioId}</th>
-                      <td>{number(scenario.largeEnsemble.mean_duty_cycle)}</td>
-                      <td>{number(duty?.reported)}</td>
-                      <td>{number(scenario.largeEnsemble.mean_collapse_count, 2)}</td>
-                      <td>{number(collapses?.reported, 2)}</td>
-                      <td>{scenario.worstVerdict}</td>
+                      <td>{percent(scenario.largeEnsemble.mean_duty_cycle)}</td>
+                      <td>{percent(duty?.reported)}</td>
+                      <td>{average(scenario.largeEnsemble.mean_collapse_count)}</td>
+                      <td>{average(collapses?.reported)}</td>
+                      <td>{scenario.worstVerdict === 'pass' ? 'Yes' : 'Needs review'}</td>
                     </tr>
                   );
                 })}
@@ -88,37 +93,44 @@ export default function ResilienceResearchPage() {
 
       <section className={styles.twoColumn}>
         <article className={styles.paperPanel}>
-          <p className={styles.kicker}>What is reported</p>
-          <h2>Paper parameters and prose aggregates</h2>
+          <p className={styles.kicker}>From the paper</p>
+          <h2>Settings and results</h2>
           <p>
-            The canonical layer transcribes Table 4 parameters and exact or safely rounded values
-            from the paper prose. Figure-only values remain null.
+            We copy the model’s settings from the paper’s Table 4, and its results from the numbers
+            it states in its text. Results it only shows in charts stay blank.
           </p>
         </article>
         <article className={styles.darkPanel}>
-          <p className={styles.kicker}>What is independent</p>
-          <h2>Equations, step semantics, seeded ensembles</h2>
+          <p className={styles.kicker}>Our own</p>
+          <h2>The rebuilt model</h2>
           <p>
-            The experiment implements Equations 1–3 from the publication. Hazard tie-breaking,
-            recovery timing, uncertainty distributions, and extinction behavior are explicit
-            independent choices covered by its ADR and tests.
+            We coded the paper’s three equations ourselves. Where the paper leaves details open—how
+            ties break, exactly when recovery starts—we made our own documented choices.
           </p>
         </article>
       </section>
 
       <section className={styles.limitations}>
-        <p className={styles.kicker}>Limits that remain</p>
+        <h2>Limits to keep in mind</h2>
         <ul>
-          {validation.limitations.map((limitation) => (
-            <li key={limitation}>{limitation}</li>
-          ))}
+          <li>This is our own version of the published equations, not the authors’ code.</li>
+          <li>
+            Where the paper leaves the timing of each yearly step open, our choices may differ from
+            theirs.
+          </li>
+          <li>We only check numbers the paper states in its text; we never guess from charts.</li>
+          <li>
+            The authors’ code and summary data are linked, not copied, because they have no license.
+          </li>
         </ul>
       </section>
 
       <div className={styles.footerLinks}>
-        <Link href="/research">Return to Research Companion</Link>
-        <Link href="/methods">Read methods and caveats</Link>
-        <Link href="/sources">Resolve canonical sources</Link>
+        <Link href="/research">All the research</Link>
+        <Link href="/methods">How we built this</Link>
+        <a href="/api/downloads/independent-validation" download>
+          Download the full check
+        </a>
       </div>
     </InnerPage>
   );

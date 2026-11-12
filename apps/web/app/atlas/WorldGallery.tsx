@@ -18,7 +18,7 @@ export function WorldGallery() {
       </div>
       <WorldPortrait world={world} signals={worldSignals(profile)} />
       <noscript>
-        <nav aria-label="Scenario records">
+        <nav aria-label="The ten futures">
           {allScenarioProfiles.map((p) => (
             <p key={p.id}>
               <Link href={`/atlas/${p.id.toLowerCase()}`}>

@@ -34,31 +34,41 @@ type StreamEvent =
   | { type: 'answer'; data: Answer }
   | { type: 'error'; error: string; message: string };
 
+const studyNames: Record<string, string> = {
+  'JANUS-PAPER-01': 'Scenario study',
+  'JANUS-PAPER-02': 'Limits-to-growth study',
+  'JANUS-PAPER-03': 'Observing study',
+  'JANUS-PAPER-04': 'Governance study',
+  'JANUS-PAPER-05': 'Collapse study',
+};
+
+const answerLabels: Record<Answer['kind'], string> = {
+  answer: 'Answer',
+  refusal: 'Outside what the studies can answer',
+  no_evidence: 'Not covered by the studies',
+};
+
 export function ResearchCompanion({
-  enabled,
   maximumCharacters,
   suggestions,
 }: {
-  enabled: boolean;
   maximumCharacters: number;
   suggestions: string[];
 }) {
   const questionId = useId();
   const [question, setQuestion] = useState(suggestions[0] ?? '');
-  const [status, setStatus] = useState(
-    enabled ? 'Ready for a bounded question.' : 'Preview disabled.',
-  );
+  const [status, setStatus] = useState('Ask anything about the ten futures.');
   const [answer, setAnswer] = useState<Answer>();
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState(false);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!enabled || loading) return;
+    if (loading) return;
     setLoading(true);
     setAnswer(undefined);
     setError(undefined);
-    setStatus('Bounding request…');
+    setStatus('Searching the studies…');
     try {
       const response = await fetch('/api/research', {
         method: 'POST',
@@ -67,9 +77,9 @@ export function ResearchCompanion({
       });
       if (!response.ok) {
         const body = (await response.json()) as { message?: string };
-        throw new Error(body.message ?? `Research request failed with HTTP ${response.status}.`);
+        throw new Error(body.message ?? 'The question couldn’t be answered. Try again shortly.');
       }
-      if (!response.body) throw new Error('The research response stream was unavailable.');
+      if (!response.body) throw new Error('The answer didn’t arrive. Try again shortly.');
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -85,7 +95,9 @@ export function ResearchCompanion({
           if (item.type === 'answer') {
             setAnswer(item.data);
             setStatus(
-              item.data.audit.passed ? 'Answer and citations audited.' : 'Audit failed closed.',
+              item.data.audit.passed
+                ? 'Answer ready, with sources.'
+                : 'Some of this answer couldn’t be matched to a source.',
             );
           }
           if (item.type === 'error') throw new Error(item.message);
@@ -93,8 +105,10 @@ export function ResearchCompanion({
         if (done) break;
       }
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : 'The request failed closed.');
-      setStatus('No answer released.');
+      setError(
+        caught instanceof Error ? caught.message : 'The question couldn’t be answered. Try again.',
+      );
+      setStatus('No answer this time.');
     } finally {
       setLoading(false);
     }
@@ -103,16 +117,15 @@ export function ResearchCompanion({
   return (
     <section className={styles.companion} aria-labelledby="companion-title">
       <div className={styles.companionIntro}>
-        <p className={styles.kicker}>Ask the corpus</p>
-        <h2 id="companion-title">A cited answer—or an honest stop.</h2>
+        <h2 id="companion-title">Ask the studies.</h2>
         <p>
-          Questions are limited to the approved corpus and deterministic Janus records. The service
-          does not store raw questions by default.
+          Answers come only from the Project Janus papers and cite the pages they use. If the papers
+          don’t cover a question, it says so. Questions aren’t stored.
         </p>
         <div className={styles.suggestions} aria-label="Suggested research questions">
           {suggestions.map((suggestion) => (
             <button
-              disabled={!enabled || loading}
+              disabled={loading}
               key={suggestion}
               onClick={() => setQuestion(suggestion)}
               type="button"
@@ -124,9 +137,9 @@ export function ResearchCompanion({
       </div>
 
       <form className={styles.askForm} onSubmit={submit}>
-        <label htmlFor={questionId}>Research question</label>
+        <label htmlFor={questionId}>Your question</label>
         <textarea
-          disabled={!enabled || loading}
+          disabled={loading}
           id={questionId}
           maxLength={maximumCharacters}
           onChange={(event) => setQuestion(event.target.value)}
@@ -138,8 +151,8 @@ export function ResearchCompanion({
           <span>
             {question.length} / {maximumCharacters}
           </span>
-          <button disabled={!enabled || loading || question.trim().length < 8} type="submit">
-            {loading ? 'Auditing…' : enabled ? 'Search evidence' : 'Preview held closed'}
+          <button disabled={loading || question.trim().length < 8} type="submit">
+            {loading ? 'Searching…' : 'Ask'}
           </button>
         </div>
         <p aria-live="polite" className={styles.liveStatus} role="status">
@@ -149,14 +162,9 @@ export function ResearchCompanion({
       </form>
 
       {answer ? (
-        <article className={styles.answer} aria-label="Cited research answer">
+        <article className={styles.answer} aria-label="Answer">
           <div className={styles.answerHeader}>
-            <span>{answer.kind.replace('_', ' ')}</span>
-            <span>
-              {answer.generationMode}
-              {answer.providerFallback ? ' · safe fallback' : ''}
-              {` · ${answer.toolCalls.length} bounded calls`}
-            </span>
+            <span>{answerLabels[answer.kind]}</span>
           </div>
           <div className={styles.answerCopy}>
             {answer.answer.split(/\n{2,}/).map((paragraph) => (
@@ -169,11 +177,11 @@ export function ResearchCompanion({
                 <li key={citation.chunkId}>
                   {citation.url ? (
                     <a href={citation.url} rel="noreferrer" target="_blank">
-                      {citation.sourceId} · p. {citation.pageStart}
+                      {studyNames[citation.sourceId] ?? citation.sourceId}, p. {citation.pageStart}
                     </a>
                   ) : (
                     <span>
-                      {citation.sourceId} · p. {citation.pageStart}
+                      {studyNames[citation.sourceId] ?? citation.sourceId}, p. {citation.pageStart}
                     </span>
                   )}
                   <small>{citation.heading}</small>
@@ -181,19 +189,6 @@ export function ResearchCompanion({
               ))}
             </ol>
           ) : null}
-          <details className={styles.toolReceipt}>
-            <summary>Inspect deterministic tool receipt</summary>
-            <ol>
-              {answer.toolCalls.map((toolCall) => (
-                <li key={toolCall.callId}>
-                  <span>{toolCall.name.replaceAll('_', ' ')}</span>
-                  <small>
-                    {toolCall.status} · {toolCall.resultHash.slice(0, 21)}…
-                  </small>
-                </li>
-              ))}
-            </ol>
-          </details>
         </article>
       ) : null}
     </section>

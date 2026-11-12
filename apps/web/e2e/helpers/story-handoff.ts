@@ -1,12 +1,10 @@
 import type { Page } from '@playwright/test';
 
-/** Scroll positions where the scene starts to leave chapter `from` and where it rests at `to`.
- * A flow layout (a phone, a short viewport) holds the scene while the chapter's prose is read
- * (Decision 033), so there the handoff starts after that hold, not at the chapter's rest. */
+/** Measure the spatial transition after the naturally flowing narrative has been read. */
 export async function storyHandoff(page: Page, from: string, to: string) {
   return page.evaluate(
     ([from, to]) => {
-      const [start, end] = [from, to].map((id) => {
+      const positions = [from, to].map((id) => {
         const el = document.getElementById(id)!;
         const inset =
           innerWidth <= 760
@@ -15,9 +13,17 @@ export async function storyHandoff(page: Page, from: string, to: string) {
         return el.getBoundingClientRect().top + scrollY + inset;
       });
       const slot = document.querySelector<HTMLElement>(`#${from} [data-copy-slot]`)!;
-      if (slot.dataset.copyLayout !== 'flow') return [start, end];
-      const read = slot.getBoundingClientRect().bottom + scrollY - innerHeight * 0.45;
-      return [Math.max(start, Math.min(end - innerHeight * 0.25, read)), end];
+      if (slot.dataset.copyLayout === 'flow') {
+        // Sample the spatial handoff after the mobile paragraph's reading hold.
+        positions[0] = Math.max(
+          positions[0],
+          Math.min(
+            positions[1] - innerHeight * 0.25,
+            slot.getBoundingClientRect().bottom + scrollY - innerHeight * 0.45,
+          ),
+        );
+      }
+      return positions;
     },
     [from, to],
   );

@@ -37,7 +37,7 @@ export function selectionDescription(world: number, id: string, system: SystemPo
   const story = worldStories[world];
   if (id === 'Earth') return `${story.depiction} Select a landmark to study it on its own.`;
   const landmark = landmarks.get(id);
-  if (landmark) return `${landmark.description} Original interpretive model.`;
+  if (landmark) return `${landmark.description} An illustration.`;
   const body = system.bodies.find((b) => b.body === id);
   if (body)
     return (

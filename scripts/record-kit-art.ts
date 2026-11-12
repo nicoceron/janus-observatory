@@ -9,7 +9,7 @@ import { AssetLedgerSchema } from '@janus/domain/asset';
 import manifest from '../apps/web/app/planets/props/kit.generated.json';
 
 /**
- * Admit the Blender kit packs (Decision 036) to the asset ledger. Run after
+ * Admit the Blender kit packs (Decision 038) to the asset ledger. Run after
  * `python3 scripts/kit.py export`: it records the checksum of the authoring source and of each
  * published pack, replacing any earlier record of the same pack.
  */

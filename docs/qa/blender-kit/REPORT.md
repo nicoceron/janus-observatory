@@ -1,6 +1,6 @@
 # Blender kit QA report
 
-2026-11-12, for [Decision 036](../../DECISION_036_BLENDER_KIT.md). Canonical data is unchanged by
+2026-11-12, for [Decision 038](../../DECISION_038_BLENDER_KIT.md). Canonical data is unchanged by
 this work.
 
 ## What was reviewed
@@ -122,12 +122,12 @@ props, and the ledger entries for the four packs.
 6. **Composition faults exposed by detailed models**: towns of two buildings and a road, props
    standing in roads, walls built across their ring, ships aground in straits, aircraft flying
    through towers, and sawtooth colour borders on the Moon, terraformed Mars and S5. Each is
-   described in Decision 036.
+   described in Decision 038.
 
 ## Second pass
 
 Fifteen models listed here as weaker after the first pass were rebuilt, the observer's pose was
-corrected and S2 was restaged; Decision 036 describes each. Every reworked model was reviewed on
+corrected and S2 was restaged; Decision 038 describes each. Every reworked model was reviewed on
 sheets from the front, back and above and then in the browser, on its world or scene.
 
 ![The observing pose, before and after](observer-pose-before-after.jpg)

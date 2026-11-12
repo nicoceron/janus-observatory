@@ -35,13 +35,13 @@ export function InstrumentExplanation({ instrumentId }: { instrumentId: Observin
         <span>{instrument.mode}</span>
       </div>
       <div>
-        <p className={styles.eyebrow}>How this method works · editorial explanation</p>
+        <p className={styles.eyebrow}>How it works</p>
         <h3>{instrument.plainLabel}</h3>
         <p>{instrument.explanation}</p>
         <details>
-          <summary>{instrument.label} · concept and source</summary>
+          <summary>Based on: {instrument.label}</summary>
           <p>
-            These are observing concepts evaluated in the paper, with different capabilities and
+            A proposed instrument studied in the observing paper. Each one has its own strengths and
             assumptions.
           </p>
           {refs.map((ref, index) => (

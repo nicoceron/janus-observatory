@@ -11,7 +11,7 @@ await writeFile(
   'export const production = {};\nexport const development = {};\nexport const test = {};\n',
 );
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
-// The Blender kit packs (Decision 036) are requested with their checksum in the query string
+// The Blender kit packs (Decision 038) are requested with their checksum in the query string
 // (`kit-core.bin?v=<sha>`), so a pack's URL changes whenever its bytes do and it can be cached
 // for good. They are already gzip-compressed and are staged as they are.
 const kit = JSON.parse(
@@ -51,7 +51,7 @@ await writeFile(
 );
 // Receipt of what this deployment publishes for the artwork: the kit packs, as staged.
 const report = {
-  note: 'The Blender kit packs (Decision 036), staged as built: already gzip-compressed and requested with their checksum in the query string.',
+  note: 'The Blender kit packs (Decision 038), staged as built: already gzip-compressed and requested with their checksum in the query string.',
   packs: Object.entries(kit.packs).map(([name, pack]) => ({
     name,
     path: pack.path,

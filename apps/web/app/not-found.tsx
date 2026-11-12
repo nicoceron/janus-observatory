@@ -2,24 +2,25 @@ import Link from './components/AppLink';
 
 import styles from './status.module.css';
 import { SiteHeader } from './components/SiteHeader';
+import { chapterTitles } from '../lib/chapter-titles';
 
 export default function NotFound() {
   return (
     <main className={styles.shell}>
-      <SiteHeader />
-      <p className={styles.eyebrow}>Janus Observatory · signal absent</p>
+      <SiteHeader chapterTitles={chapterTitles} />
+
       <section className={styles.message}>
         <p className={styles.code} aria-hidden="true">
           404
         </p>
-        <h1 className={styles.title}>This coordinate is outside the atlas.</h1>
+        <h1 className={styles.title}>Nothing out here.</h1>
         <p className={styles.copy}>
-          The requested route is not part of the published Observatory. Return to the guided story
-          or open the ten-scenario index.
+          There’s no page at this address. Head back to the story, or browse the ten futures in the
+          atlas.
         </p>
         <div className={styles.actions}>
           <Link className={styles.action} href="/">
-            Return to the story
+            Back to the story
           </Link>
           <Link className={`${styles.action} ${styles.actionSecondary}`} href="/atlas">
             Open the atlas

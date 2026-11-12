@@ -3,156 +3,102 @@ import Link from '../components/AppLink';
 
 import { readResearchRuntimeConfig } from '@janus/agent';
 
-import collapseValidation from '../../../../data/generated/collapse/independent-validation.json';
-import researchIndex from '../../../../data/generated/research/index.json';
-import releaseIdentity from '../../../../data/generated/runtime/release-identity.json';
+import sourceCatalog from '../../../../data/sources/catalog.json';
 import { InnerPage } from '../components/InnerPage';
 import { ResearchCompanion } from './ResearchCompanion';
 import styles from './Research.module.css';
 
 export const metadata: Metadata = {
-  title: 'Research Companion',
+  title: 'Research',
   description:
-    'Ask bounded questions about Project Janus using an allowlisted corpus, deterministic tools, and paragraph-level source citations.',
+    'The Project Janus studies behind Janus Observatory, and our own rebuild of the collapse-and-recovery model.',
   alternates: { canonical: '/research' },
 };
 
-const supportedQuestions = [
-  'Why can S9 be technologically extensive while HWO lists no signature?',
-  'Which mission concepts list signatures for S4?',
-  'What is reported about collapse and recovery in S4?',
-  'Compare reported S4 collapse metrics with the fixed 20,000-run independent replay.',
-  'Compare the reported population and energy endpoints for S5 and S9.',
+const suggestedQuestions = [
+  'Why would an optical telescope detect nothing in S9?',
+  'Which instruments could detect S4?',
+  'How does S4 collapse and recover?',
+  'Compare population and energy use in S5 and S9.',
 ];
+
+/** What each paper in the series contributes, in a sentence a visitor can use. */
+const paperRoles: Record<string, string> = {
+  '10.1016/j.techfore.2025.124194':
+    'The ten futures themselves: how each civilization works, how large it grows and the marks it leaves.',
+  '10.1016/j.actaastro.2025.01.048':
+    'How far energy use and growth can go before they run into physical limits.',
+  '10.3847/2041-8213/ae23c6':
+    'What five future instruments could detect in each future, seen from another star.',
+  '10.18278/sesa.5.4.12': 'How power and freedom might work as civilization spreads into space.',
+  '10.48550/arXiv.2604.13774':
+    'How often each future collapses, how it recovers, and what that means for being seen.',
+};
+
+function shortTitle(title: string) {
+  return title.replace(/^Projections of Earth.s Technosphere:\s*/, '');
+}
+
+function byline(creators: string[]) {
+  const [first, ...rest] = creators;
+  const surname = first.split(' ').at(-1);
+  return rest.length > 0 ? `${surname} and colleagues` : surname;
+}
 
 export default function ResearchPage() {
   const runtime = readResearchRuntimeConfig(process.env);
 
   return (
     <InnerPage
-      eyebrow="Research companion · bounded evidence workflow"
-      lede="Search the allowlisted Janus corpus, preserve what the instruments did not evaluate, and keep every factual paragraph tied to a resolvable source. The Story, Observatory, and Atlas never depend on this service."
-      title="Evidence first. Answers second."
+      lede="Janus Observatory is built on Project Janus, a series of studies imagining how human civilization might look in 1,000 years—and what it would look like from far away."
+      title="The research behind the story."
     >
-      <div className={styles.releaseStrip} aria-label="Research release status">
-        <div>
-          <span>Lexical corpus</span>
-          <strong>{researchIndex.chunkCount} passage records</strong>
-        </div>
-        <div>
-          <span>Scenario coverage</span>
-          <strong>{researchIndex.scenarioCoverage.length} of 10</strong>
-        </div>
-        <div>
-          <span>Canonical release</span>
-          <strong>
-            {releaseIdentity.independentHumanReview === 'approved'
-              ? 'independently approved'
-              : 'independent review pending'}
-          </strong>
-        </div>
-        <div>
-          <span>Independent replay</span>
-          <strong>
-            {collapseValidation.status === 'validated_experiment_report'
-              ? 'fixed 20,000-run preset verified'
-              : 'held closed'}
-          </strong>
-        </div>
-      </div>
-
-      <ResearchCompanion
-        enabled={runtime.previewEnabled}
-        maximumCharacters={runtime.maxQuestionChars}
-        suggestions={supportedQuestions}
-      />
-
-      <section className={styles.editorialGrid} aria-labelledby="research-boundary-title">
-        <div className={styles.sectionLead}>
-          <p>Runtime boundary</p>
-          <h2 id="research-boundary-title">One short workflow. No autonomous research swarm.</h2>
-        </div>
-        <div className={styles.boundaryList}>
-          <article>
-            <span>01</span>
-            <div>
-              <h3>Route</h3>
-              <p>
-                Reject probability rankings and requests outside the Janus evidence boundary before
-                any provider call.
-              </p>
-            </div>
-          </article>
-          <article>
-            <span>02</span>
-            <div>
-              <h3>Retrieve</h3>
-              <p>
-                Search verified-open papers and candidate canonical summaries. Unknown-rights
-                scenario PDFs never enter the public corpus.
-              </p>
-            </div>
-          </article>
-          <article>
-            <span>03</span>
-            <div>
-              <h3>Audit</h3>
-              <p>
-                Validate every citation marker against retrieved source pages. Invalid or uncited
-                provider output falls back to deterministic evidence.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section className={styles.twoColumn}>
-        <article className={styles.paperPanel}>
-          <p className={styles.kicker}>Allowed at runtime</p>
-          <h2>Small, explicit tools</h2>
-          <p>
-            Corpus search and passage fetch surround six typed domain tools: scenario lookup,
-            two-to-three-scenario comparison, the categorical observability matrix, the published
-            observer lookup, reported collapse metrics, and a fixed 20,000-run independent replay.
-            One bounded round may make at most six domain calls. Each answer carries call names,
-            statuses, and deterministic SHA-256 receipt hashes. There is no arbitrary web, SQL,
-            filesystem, code execution, account mutation, or free-parameter simulation.
-          </p>
-        </article>
-        <article className={styles.darkPanel}>
-          <p className={styles.kicker}>Release gate</p>
-          <h2>{runtime.previewEnabled ? 'Preview enabled' : 'Prompt surface held closed'}</h2>
-          <p>
-            <code>JANUS_RESEARCH_PREVIEW_ENABLED</code> controls the prompt surface; the lexical,
-            deterministic path can run without provider credentials. Live generation separately
-            requires the server-only live-call flag, valid credentials, and deployment canaries.
-            Hybrid retrieval additionally requires a matching prebuilt index and embedding service.
-            Shared multi-replica request budgets remain a deployment gate.
-          </p>
-        </article>
+      <section className={styles.studies} aria-labelledby="studies-title">
+        <h2 id="studies-title">The studies</h2>
+        <ol>
+          {sourceCatalog.papers.map((paper) => (
+            <li key={paper.doi}>
+              <a href={paper.canonicalUrl} rel="noreferrer" target="_blank">
+                <span className={styles.studyTitle}>{shortTitle(paper.title)}</span>
+                <span className={styles.studyRole}>{paperRoles[paper.doi]}</span>
+                <span className={styles.studyMeta}>
+                  {byline(paper.creators)} · {paper.license} ↗
+                </span>
+              </a>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className={styles.appendixBand}>
         <div>
-          <p className={styles.kicker}>Independent research</p>
-          <h2>Reported values and reimplementation never share a label.</h2>
+          <h2>Our rebuild of the collapse model.</h2>
         </div>
-        <p>
-          The resilience experiment independently implements the paper equations and compares its
-          ensembles only with prose-reported aggregates. Its outputs remain noncanonical and its
-          year-step choices remain explicit implementation decisions.
-        </p>
-        <Link className={styles.textLink} href="/research/resilience">
-          Inspect resilience validation →
-        </Link>
+        <div>
+          <p>
+            To explore how the futures collapse and recover, we rebuilt the collapse study’s model
+            from the equations in the paper and checked it against every number the paper states in
+            its text. It’s our own version, not the authors’ code, and it never replaces their
+            results.
+          </p>
+          <Link className={styles.textLink} href="/research/resilience">
+            See how the rebuild compares
+          </Link>
+        </div>
       </section>
 
-      <section className={styles.footerLinks} aria-label="Research documentation links">
-        <Link href="/research/concordia">Concordia deliberation appendix</Link>
-        <Link href="/methods">Methods and limitations</Link>
-        <Link href="/sources">Source and rights ledger</Link>
-        <Link href="/api/health">Release health</Link>
-      </section>
+      {runtime.previewEnabled ? (
+        <ResearchCompanion
+          maximumCharacters={runtime.maxQuestionChars}
+          suggestions={suggestedQuestions}
+        />
+      ) : null}
+
+      <nav className={styles.footerLinks} aria-label="More about the evidence">
+        <Link href="/methods">How we built this</Link>
+        <Link href="/sources">Every source and credit</Link>
+        <Link href="/atlas#downloads">Download the data</Link>
+      </nav>
     </InnerPage>
   );
 }
