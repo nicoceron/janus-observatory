@@ -33,21 +33,41 @@ work-in-progress passes and video are in the uncommitted process archive (`media
 
 ## Checks
 
-| Check                                                                            | Result                                                                                                                                                                                 |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm format:check`                                                              | Passes for this work. It still reports files under `.claude/worktrees/`, which are other checkouts and not part of this change.                                                        |
-| `pnpm lint`                                                                      | Pass                                                                                                                                                                                   |
-| `pnpm typecheck`                                                                 | Pass                                                                                                                                                                                   |
-| `pnpm test` (unit)                                                               | Pass: 46 files, 195 tests                                                                                                                                                              |
-| `pnpm lint:python`, `pnpm test:python`                                           | Pass (pipeline untouched)                                                                                                                                                              |
-| `pnpm source:validate`, `data:generate:check`, `data:validate`, `links:validate` | Pass                                                                                                                                                                                   |
-| `pnpm assets:validate`                                                           | Pass: the four kit packs are admitted as `janus.kit.v1.*` with source and pack checksums                                                                                               |
-| `pnpm build`                                                                     | Pass                                                                                                                                                                                   |
-| `pnpm bundle:check`                                                              | Pass: home JavaScript 202 KB of 256 KB; opening visuals 0.69 MB of 1.5 MB (mobile); guided journey 4.6 MB of 20 MB; no file over 4 MB                                                  |
-| Playwright, Chromium (software WebGL, production build)                          | 67 of 68 pass. The one failure, `story.spec.ts` "the story is complete before WebGL…", fails identically on unmodified `main` ([Decision 035's report](../low-poly-worlds/REPORT.md)). |
-| Playwright, mobile Chromium (Pixel 7 profile)                                    | 64 of 66 pass. The two failures, `chapter-sync.spec.ts:3` and `spatial-system.spec.ts:5`, fail identically on a clean checkout of `main` (`20b797e`), run for comparison.              |
-| Playwright, Firefox, WebKit, mobile WebKit                                       | Not run: those browser builds are not installed on this machine. See "Not validated".                                                                                                  |
-| `lint:resilience`, `test:resilience`, `resilience:validate`, `eval:research`     | Not run: the resilience lab and research evaluation are untouched by this work.                                                                                                        |
+| Check                                                                            | Result                                                                                                                                |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm format:check`                                                              | Passes for this work. It still reports files under `.claude/worktrees/`, which are other checkouts and not part of this change.       |
+| `pnpm lint`                                                                      | Pass                                                                                                                                  |
+| `pnpm typecheck`                                                                 | Pass                                                                                                                                  |
+| `pnpm test` (unit)                                                               | Pass: 46 files, 195 tests                                                                                                             |
+| `pnpm lint:python`, `pnpm test:python`                                           | Pass (pipeline untouched)                                                                                                             |
+| `pnpm source:validate`, `data:generate:check`, `data:validate`, `links:validate` | Pass                                                                                                                                  |
+| `pnpm assets:validate`                                                           | Pass: the four kit packs are admitted as `janus.kit.v1.*` with source and pack checksums                                              |
+| `pnpm build`                                                                     | Pass                                                                                                                                  |
+| `pnpm bundle:check`                                                              | Pass: home JavaScript 202 KB of 256 KB; opening visuals 0.69 MB of 1.5 MB (mobile); guided journey 4.6 MB of 20 MB; no file over 4 MB |
+| `lint:resilience`, `test:resilience`, `resilience:validate`, `eval:research`     | Pass                                                                                                                                  |
+| `pnpm source:reproduce:strict`                                                   | Pass: strict reproducibility from 15 checksum-locked source PDFs                                                                      |
+| `pnpm build:cloudflare`                                                          | Pass: worker 2,770 KiB of the 3,072 KiB Free limit; the staged kit packs match the manifest; credential scan clean                    |
+| Playwright, all five profiles (`pnpm test:e2e`, production build)                | 328 pass, 6 fail, 6 skipped. Every failure also fails on unmodified `main`; see below.                                                |
+| Visual regression (pinned Linux container)                                       | 4 of 4 fail, none on the artwork; see below.                                                                                          |
+
+All of this was run on the authoring machine, not in hosted CI.
+
+**The six end-to-end failures, all present on `main`:**
+
+- `story.spec.ts` "the story is complete before WebGL…" on Chromium, Firefox and WebKit: staged
+  scenario copy is inert until its chapter is active (recorded in
+  [Decision 035's report](../low-poly-worlds/REPORT.md)).
+- `chapter-sync.spec.ts:3` and `spatial-system.spec.ts:5` on mobile Chromium: confirmed on a clean
+  checkout of `main`.
+- `story-system.spec.ts:6` on mobile WebKit: in S9 the "Solar collectors" tap target is projected
+  under the site header (at 176, 112) and cannot be tapped. Confirmed on a clean checkout of
+  `main`, at the same position. This one is a real defect in the phone layout, not only a test.
+
+**The visual-regression suite is stale.** Two tests fail in their own steps before any screenshot
+(one waits for a "Read without animation" button that no longer exists; one expects
+`data-motion="reduced"` and gets `full`), and the two 2D baselines are 1200 px wide where the pages
+now render 1230 px. None of this was introduced here and no baseline was changed; this suite was
+not re-run on `main`.
 
 New tests written with the work: kit pack decoding and bounds, unlit twins, the Earth relief
 blob, the inflate fallback, the loader's listener re-entrancy, lanes that keep props off roads,
@@ -108,12 +128,10 @@ sheets from the front, back and above and then in the browser, on its world or s
 
 ## Not validated
 
-- **Firefox, WebKit and mobile WebKit.** Playwright could not launch them here (their builds are
-  not installed), so the suite ran on desktop and mobile Chromium only. The pack loader's
-  fallback for browsers without `DecompressionStream` is covered by a unit test and by one
-  Chromium end-to-end test that removes the API, not by a real engine that lacks it.
 - **Real phones and low-power GPUs.** Frame rate was checked on one desktop GPU and in software
   rendering only.
 - **Keyboard, reduced-motion and WebGL-fallback behaviour** were exercised by the Chromium
   end-to-end suite (accessibility scans, reduced motion, the fallback article), not by hand.
-- **The deployed Cloudflare build.** `pnpm build:cloudflare` was not run.
+- **The live site beyond a smoke check.** After deploying to
+  `janus-observatory.nicocerond.workers.dev` the home page, one atlas world and the observer
+  chapter were opened in a real browser; the end-to-end suite was not run against the deployment.
