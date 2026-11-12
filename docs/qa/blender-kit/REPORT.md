@@ -39,7 +39,7 @@ work-in-progress passes and video are in the uncommitted process archive (`media
 | `pnpm format:check`                                                              | Passes for this work. It still reports files under `.claude/worktrees/`, which are other checkouts and not part of this change.       |
 | `pnpm lint`                                                                      | Pass                                                                                                                                  |
 | `pnpm typecheck`                                                                 | Pass                                                                                                                                  |
-| `pnpm test` (unit)                                                               | Pass: 47 files, 200 tests                                                                                                             |
+| `pnpm test` (unit)                                                               | Pass: 48 files, 208 tests                                                                                                             |
 | `pnpm lint:python`, `pnpm test:python`                                           | Pass (pipeline untouched)                                                                                                             |
 | `pnpm source:validate`, `data:generate:check`, `data:validate`, `links:validate` | Pass                                                                                                                                  |
 | `pnpm assets:validate`                                                           | Pass: the four kit packs are admitted as `janus.kit.v1.*` with source and pack checksums                                              |
@@ -48,13 +48,19 @@ work-in-progress passes and video are in the uncommitted process archive (`media
 | `lint:resilience`, `test:resilience`, `resilience:validate`, `eval:research`     | Pass                                                                                                                                  |
 | `pnpm source:reproduce:strict`                                                   | Pass: strict reproducibility from 15 checksum-locked source PDFs                                                                      |
 | `pnpm build:cloudflare`                                                          | Pass: worker 2,763 KiB of the 3,072 KiB Free limit; the staged kit packs match the manifest; credential scan clean                    |
-| Playwright, all five profiles (`pnpm test:e2e`, production build)                | 399 pass, 0 fail, 6 skipped (skips written into the tests: desktop-only and Chromium-only cases); see below.                          |
+| Playwright, all five profiles (`pnpm test:e2e`, production build)                | 398 pass, 1 fail, 6 skipped on the last run; the failure is a Firefox page load that hung and passed when repeated; see below.        |
 | Visual regression (pinned Linux container)                                       | 4 of 4 pass. Three baselines are `main`'s, unchanged; the opening Earth was regenerated for the kit; see below.                       |
 
 All of this was run on the authoring machine, not in hosted CI.
 
-**Browser suite.** Chromium, Firefox, WebKit, mobile Chromium (Pixel 7) and mobile WebKit
-(iPhone 15) each pass every test they run: 81, 80, 80, 79 and 79.
+**Browser suite.** On the last full run Chromium, WebKit, mobile Chromium (Pixel 7) and mobile
+WebKit (iPhone 15) passed every test they run (81, 80, 79 and 79) and Firefox passed 79 of 80.
+The six skips are written into the tests (desktop-only and Chromium-only cases).
+
+- The Firefox failure was `cinematic.spec.ts:124` (s7 to s10): the page's load never finished
+  within the test's 90 s. Its three sibling cases passed in 3–4 s in the same run, and the test
+  passed in five repeat runs afterwards. The run before the last code change (defect 8, which
+  does not touch Firefox) passed 399 of 399.
 
 - The first run after the merge had two failures, both `organic-reveal.spec.ts` on desktop and
   mobile Chromium, which draw with software WebGL. They exposed defect 7 below, which was fixed
@@ -66,6 +72,12 @@ All of this was run on the authoring machine, not in hosted CI.
 - Headless Firefox once failed to create a WebGL context when the one test was repeated three
   times in two parallel workers; the page then showed its fallback article, as designed. It did
   not happen in the full runs.
+- WebKit has a real GPU on this machine, which is not what the hosted runner gives it. Defect 8
+  was found there, by the checks that `main`'s branch protection requires. To see it here, the
+  WebKit projects were also run in the pinned Playwright image (its arm64 build, llvmpipe, `CI`
+  set, two CPUs): desktop WebKit 57 of 59 and mobile WebKit 58 of 58. The two failures are that
+  container's WebKit crashing on pages loaded with JavaScript disabled; they pass on the hosted
+  runner and in WebKit on this machine.
 
 **Visual regression.** `main` had repaired this suite and re-rendered its baselines for
 Decisions 036 and 037. Its spec and three of its baselines (the article without WebGL, the
@@ -90,7 +102,8 @@ has the details. After an intended visual change, `scripts/visual-regression.sh
 New tests written with the work: kit pack decoding and bounds, unlit twins, the Earth relief
 blob, the inflate fallback, the loader's listener re-entrancy, lanes that keep props off roads,
 open-water berths, toy proportions, town clusters, aircraft altitude, the unlit-world rule for
-props, the build queue's order, and the ledger entries for the four packs.
+props, the build queue's order, software-renderer detection and its fill measurement, and the
+ledger entries for the four packs.
 
 ## Defects found and fixed during QA
 
@@ -120,6 +133,14 @@ props, the build queue's order, and the ledger entries for the four packs.
    next world's moons and planets on screen for about 2.4 s without their Earth. `main`'s queue
    has the same order; its code-drawn models were cheap enough to hide it. A shown world is now
    built before any shown companion (`planets/queue.ts`), and the Earth arrives in about 0.5 s.
+8. **Full detail on software-rendered WebKit.** The light tier was chosen by the renderer's name,
+   and WebKit reports every renderer as "Apple GPU", so WebKit on a software rasterizer drew the
+   full kit. On the hosted runner that stalled the page until five home-page tests timed out
+   (`story-cleanup.spec.ts:4` and `story.spec.ts:12`, `:56`, `:70`, `:84`); `main`'s lighter
+   models had passed there. A renderer that does not name itself is now measured once per page
+   (`planets/renderer.ts`), and a slow one gets the light tier. Reproduced and checked in the
+   pinned Playwright image's WebKit under a one-CPU limit: four of the five failed before the
+   change and all five pass after it.
 
 ## Second pass
 

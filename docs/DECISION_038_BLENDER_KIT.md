@@ -186,6 +186,18 @@ dozen or the hundred. Three rules keep a world's cost near Decision 035's:
 - **Story quality spends where it shows.** A story-quality world merges 43k–109k triangles of
   terrain, landmarks and orbits and instances 46k–182k of props.
 
+**A renderer that will not name itself is measured.** The light tier was chosen by the renderer's
+name alone (SwiftShader, llvmpipe and the like). WebKit reports every renderer as "Apple GPU", so
+a software rasterizer behind it drew the full tier, which the kit made too heavy for it: the
+required WebKit job on the hosted runner timed out in five home-page tests. Where the name says
+nothing (WebKit, or no name at all), `planets/renderer.ts` now times a fixed fill workload once
+per page on a throwaway context, 25 million fragments, and treats 20 ms or more as software.
+Measured in WebKit: 1 ms on an Apple M-series GPU; with llvmpipe, 38–47 ms on eight fast cores,
+300–490 ms on two and 600–800 ms on one. Renderers that name themselves are judged by name as
+before, so Chrome, Firefox and Edge are unaffected. The canvas reports the tier as `data-power`.
+Not measured: older Apple GPUs (Intel Macs, early iPhones). One slower than the threshold gets
+the light tier.
+
 ## What changed for the reader
 
 - Nothing in the story, the atlas, the data or the wording changed. Every illustration did.
