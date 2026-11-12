@@ -39,39 +39,43 @@ describe('asset rights ledger', () => {
     expect(new Set(kit.map(({ sourceChecksum }) => sourceChecksum)).size).toBe(1);
   });
 
-  it('admits 59 traceable Blender derivatives from the origin and every canonical scenario', () => {
+  it('keeps the 59 withdrawn Blender derivatives traceable without publishing them', () => {
     const parsed = AssetLedgerSchema.parse(ledger);
     const blender = parsed.entries.filter(({ id }) => id.startsWith('janus.blender.v1.'));
     const families = ['origin', ...scenarioIds.map((id) => id.toLowerCase())];
 
+    // Decision 036 replaced these web exports with the kit packs. Their records stay, with
+    // their checksums and history, as excluded entries that publish nothing.
     expect(blender).toHaveLength(59);
     expect(new Set(blender.map(({ id }) => id.split('.')[3]))).toEqual(new Set(families));
-    expect(new Set(blender.map(({ derivativePublicPath }) => derivativePublicPath)).size).toBe(59);
     expect(new Set(blender.map(({ sourceChecksum }) => sourceChecksum)).size).toBe(11);
     for (const family of families) {
       const derivatives = blender.filter(({ id }) => id.startsWith(`janus.blender.v1.${family}.`));
       const sourceChecksums = new Set(derivatives.map(({ sourceChecksum }) => sourceChecksum));
       expect(sourceChecksums.size, family).toBe(1);
       for (const tier of ['earth', 'earth-mobile'])
-        expect(
-          derivatives.some(
-            ({ derivativePublicPath }) =>
-              derivativePublicPath === `/assets/blender/v1/${family}/${tier}.glb`,
-          ),
-        ).toBe(true);
+        expect(derivatives.some(({ id }) => id === `janus.blender.v1.${family}.${tier}`)).toBe(
+          true,
+        );
       for (const derivative of derivatives) {
         expect(derivative).toMatchObject({
           kind: 'model',
           scenarioId: family === 'origin' ? null : family.toUpperCase(),
           rightsStatus: 'permission_granted',
-          admissionStatus: 'approved',
+          admissionStatus: 'excluded',
           maxDisplaySize: null,
         });
+        expect(derivative.derivativePublicPath).toBeUndefined();
         expect(derivative.sourceChecksum).toMatch(/^sha256:[a-f0-9]{64}$/);
         expect(derivative.derivativeChecksum).toMatch(/^sha256:[a-f0-9]{64}$/);
-        expect(derivative.derivativePublicPath).toMatch(
-          new RegExp(`^/assets/blender/v1/${family}/[^/]+\\.glb$`),
-        );
+        expect(
+          derivative.notes.some(
+            (note) =>
+              note.includes('Withdrawn from publication on 2026-11-12 by Decision 036') &&
+              new RegExp(`/assets/blender/v1/${family}/[^/]+\\.glb`).test(note) &&
+              note.includes(`assets/blender/${family}.blend`),
+          ),
+        ).toBe(true);
         expect(derivative.aiAssistanceDisclosure).toContain('interpretive artwork');
         expect(derivative.aiAssistanceDisclosure).toContain(
           'not Project Janus scientific artifacts or measured models',

@@ -154,6 +154,18 @@ reported:
   part is drawn as plain glass in its own colours. Dropping it, as the first pass did, made a
   model that is all light (S9's crystal gift) disappear.
 
+## The earlier web exports are withdrawn
+
+The 59 GLB exports of the earlier Blender planets (Decision 020, `/assets/blender/v1/`, 18 MB) were
+still published although no route had loaded them since Decision 035. They are removed from
+`apps/web/public/` and from the Cloudflare staging. Nothing about their provenance is lost: their
+59 ledger records remain, with source and derivative checksums and transformation history, as
+`excluded` entries that publish no file, each noting where it was last published and that its
+editable source stays in `assets/blender/<world>.blend`. The Cloudflare receipt and the public
+verification script now cover the kit packs instead (`docs/qa/cloudflare-release/kit-packs.json`,
+`scripts/verify-cloudflare.mjs`). The unreachable loader code under `apps/web/app/voyage/` that
+once drew those exports is left for a separate cleanup.
+
 ## Cost and quality tiers
 
 An authored model costs far more than the box it replaced, and worlds repeat some models by the

@@ -1891,7 +1891,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -1910,7 +1910,6 @@
       ],
       "sourceChecksum": "sha256:c3d9bf3982c019233242d8b08688eb5320b49539899f7cf3328c808c2f471b54",
       "derivativeChecksum": "sha256:18d553a447b0e0b6138fc8d81600e810b5f1080256e121a6e0b18fc90f533c20",
-      "derivativePublicPath": "/assets/blender/v1/origin/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/origin.json (sha256:ba6580087ec6ea0896478e4721617b0ae1cbd47784fd38acd9e862fa10019f28) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -1920,7 +1919,8 @@
       "notes": [
         "Editable source: assets/blender/origin.blend. Production receipt: docs/qa/blender-finish/model-origin.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/origin/earth-mobile.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/origin.blend."
       ]
     },
     {
@@ -1937,7 +1937,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -1956,7 +1956,6 @@
       ],
       "sourceChecksum": "sha256:c3d9bf3982c019233242d8b08688eb5320b49539899f7cf3328c808c2f471b54",
       "derivativeChecksum": "sha256:eb2177913541356191eb17d4cb5e85a1dbe7ed80ed2ad1f4c62f0b8b1b6cf97b",
-      "derivativePublicPath": "/assets/blender/v1/origin/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/origin.json (sha256:ba6580087ec6ea0896478e4721617b0ae1cbd47784fd38acd9e862fa10019f28) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -1966,7 +1965,8 @@
       "notes": [
         "Editable source: assets/blender/origin.blend. Production receipt: docs/qa/blender-finish/model-origin.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/origin/earth.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/origin.blend."
       ]
     },
     {
@@ -1983,7 +1983,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2002,7 +2002,6 @@
       ],
       "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
       "derivativeChecksum": "sha256:49089a2a01f7178d4f125aba3be0b802afb61f88cc4c89c86c54578c21308f0c",
-      "derivativePublicPath": "/assets/blender/v1/s1/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2012,7 +2011,8 @@
       "notes": [
         "Editable source: assets/blender/s1.blend. Production receipt: docs/qa/blender-finish/model-s1.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s1/asteroids.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s1.blend."
       ]
     },
     {
@@ -2029,7 +2029,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2048,7 +2048,6 @@
       ],
       "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
       "derivativeChecksum": "sha256:2a5372a052e28b248ceb9249160587bf2142f06bea010a28e4ca05b777c5b036",
-      "derivativePublicPath": "/assets/blender/v1/s1/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2058,7 +2057,8 @@
       "notes": [
         "Editable source: assets/blender/s1.blend. Production receipt: docs/qa/blender-finish/model-s1.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s1/earth-mobile.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s1.blend."
       ]
     },
     {
@@ -2075,7 +2075,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2094,7 +2094,6 @@
       ],
       "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
       "derivativeChecksum": "sha256:359b9526d3763a93b16dddcb2037f6157bac5de92ff89f277aa8a2e4d2d5a8d9",
-      "derivativePublicPath": "/assets/blender/v1/s1/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2104,7 +2103,8 @@
       "notes": [
         "Editable source: assets/blender/s1.blend. Production receipt: docs/qa/blender-finish/model-s1.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s1/earth.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s1.blend."
       ]
     },
     {
@@ -2121,7 +2121,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2140,7 +2140,6 @@
       ],
       "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
       "derivativeChecksum": "sha256:c3026e5e52b979976744a0b2d89f0c7387ae422e65a5c38d6ea5e9de21d731a0",
-      "derivativePublicPath": "/assets/blender/v1/s1/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2150,7 +2149,8 @@
       "notes": [
         "Editable source: assets/blender/s1.blend. Production receipt: docs/qa/blender-finish/model-s1.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s1/Mars.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s1.blend."
       ]
     },
     {
@@ -2167,7 +2167,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2186,7 +2186,6 @@
       ],
       "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
       "derivativeChecksum": "sha256:0915b6f0fa760f6f9db98a86a32d117799cf839a0cff3908516edadea4381dd1",
-      "derivativePublicPath": "/assets/blender/v1/s1/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2196,7 +2195,8 @@
       "notes": [
         "Editable source: assets/blender/s1.blend. Production receipt: docs/qa/blender-finish/model-s1.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s1/Moon.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s1.blend."
       ]
     },
     {
@@ -2213,7 +2213,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2232,7 +2232,6 @@
       ],
       "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
       "derivativeChecksum": "sha256:3eb71e36985441b85c743e9d769f568309d55d32a4e48f763a5c2fe76dd173d4",
-      "derivativePublicPath": "/assets/blender/v1/s1/outer.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2242,7 +2241,8 @@
       "notes": [
         "Editable source: assets/blender/s1.blend. Production receipt: docs/qa/blender-finish/model-s1.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s1/outer.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s1.blend."
       ]
     },
     {
@@ -2259,7 +2259,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2278,7 +2278,6 @@
       ],
       "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
       "derivativeChecksum": "sha256:35e7a5af4e8ca98ab8debe111576c50001a1886966b809e34018fbd158ab43ac",
-      "derivativePublicPath": "/assets/blender/v1/s1/Venus.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s1.json (sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2288,7 +2287,8 @@
       "notes": [
         "Editable source: assets/blender/s1.blend. Production receipt: docs/qa/blender-finish/model-s1.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s1/Venus.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s1.blend."
       ]
     },
     {
@@ -2305,7 +2305,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2324,7 +2324,6 @@
       ],
       "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
       "derivativeChecksum": "sha256:f50847f387383318f678751012f1f7695fb0bf062b69fde2bd8542c3fe0e6fc5",
-      "derivativePublicPath": "/assets/blender/v1/s2/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s2.json (sha256:a22cfc9536ac3ff8422dcded0a721416287f8e77061a3933c277f30e9b5726ea) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2334,7 +2333,8 @@
       "notes": [
         "Editable source: assets/blender/s2.blend. Production receipt: docs/qa/blender-finish/model-s2.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s2/asteroids.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s2.blend."
       ]
     },
     {
@@ -2351,7 +2351,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2370,7 +2370,6 @@
       ],
       "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
       "derivativeChecksum": "sha256:1b5a9afe3667f16547afd5601b59e09ad86e933df30d32dca57b4777650d94ba",
-      "derivativePublicPath": "/assets/blender/v1/s2/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s2.json (sha256:a22cfc9536ac3ff8422dcded0a721416287f8e77061a3933c277f30e9b5726ea) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2380,7 +2379,8 @@
       "notes": [
         "Editable source: assets/blender/s2.blend. Production receipt: docs/qa/blender-finish/model-s2.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s2/earth-mobile.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s2.blend."
       ]
     },
     {
@@ -2397,7 +2397,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2416,7 +2416,6 @@
       ],
       "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
       "derivativeChecksum": "sha256:92876c8f4d8f0a1d40687bd3f037e3c40cb1de26702e34f7108b54df46af60f2",
-      "derivativePublicPath": "/assets/blender/v1/s2/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s2.json (sha256:a22cfc9536ac3ff8422dcded0a721416287f8e77061a3933c277f30e9b5726ea) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2426,7 +2425,8 @@
       "notes": [
         "Editable source: assets/blender/s2.blend. Production receipt: docs/qa/blender-finish/model-s2.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s2/earth.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s2.blend."
       ]
     },
     {
@@ -2443,7 +2443,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2462,7 +2462,6 @@
       ],
       "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
       "derivativeChecksum": "sha256:e3cb828e551172e6ae392f2b27e094c9a29662b7c99766e2722e98f3a4da31bf",
-      "derivativePublicPath": "/assets/blender/v1/s2/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s2.json (sha256:a22cfc9536ac3ff8422dcded0a721416287f8e77061a3933c277f30e9b5726ea) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2472,7 +2471,8 @@
       "notes": [
         "Editable source: assets/blender/s2.blend. Production receipt: docs/qa/blender-finish/model-s2.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s2/Mars.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s2.blend."
       ]
     },
     {
@@ -2489,7 +2489,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2508,7 +2508,6 @@
       ],
       "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
       "derivativeChecksum": "sha256:ca23430fe5ace9f1eb99dc11ac65eb69bc3ef84002d20d0ade6a7a2fb8469882",
-      "derivativePublicPath": "/assets/blender/v1/s2/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s2.json (sha256:a22cfc9536ac3ff8422dcded0a721416287f8e77061a3933c277f30e9b5726ea) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2518,7 +2517,8 @@
       "notes": [
         "Editable source: assets/blender/s2.blend. Production receipt: docs/qa/blender-finish/model-s2.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s2/Moon.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s2.blend."
       ]
     },
     {
@@ -2535,7 +2535,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2554,7 +2554,6 @@
       ],
       "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
       "derivativeChecksum": "sha256:b4c243862e084f39ecd2a8b86548a4f9d5afddddf817be4aa3f277219f317ae4",
-      "derivativePublicPath": "/assets/blender/v1/s3/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s3.json (sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2564,7 +2563,8 @@
       "notes": [
         "Editable source: assets/blender/s3.blend. Production receipt: docs/qa/blender-finish/model-s3.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s3/asteroids.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s3.blend."
       ]
     },
     {
@@ -2581,7 +2581,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2600,7 +2600,6 @@
       ],
       "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
       "derivativeChecksum": "sha256:1b4949d9e9a43f8592d8f118cd5ab7ee08a995fe5fd375bae378fd704e768d04",
-      "derivativePublicPath": "/assets/blender/v1/s3/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s3.json (sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2610,7 +2609,8 @@
       "notes": [
         "Editable source: assets/blender/s3.blend. Production receipt: docs/qa/blender-finish/model-s3.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s3/earth-mobile.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s3.blend."
       ]
     },
     {
@@ -2627,7 +2627,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2646,7 +2646,6 @@
       ],
       "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
       "derivativeChecksum": "sha256:133ec6660ac808d8694f2a8af361fb3c4b92b724971db2c22ad1cdd619568a01",
-      "derivativePublicPath": "/assets/blender/v1/s3/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s3.json (sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2656,7 +2655,8 @@
       "notes": [
         "Editable source: assets/blender/s3.blend. Production receipt: docs/qa/blender-finish/model-s3.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s3/earth.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s3.blend."
       ]
     },
     {
@@ -2673,7 +2673,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2692,7 +2692,6 @@
       ],
       "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
       "derivativeChecksum": "sha256:39138573228d03a54b91644558958c9e015a0c44bcb0b121e505c8660010cb24",
-      "derivativePublicPath": "/assets/blender/v1/s3/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s3.json (sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2702,7 +2701,8 @@
       "notes": [
         "Editable source: assets/blender/s3.blend. Production receipt: docs/qa/blender-finish/model-s3.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s3/Mars.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s3.blend."
       ]
     },
     {
@@ -2719,7 +2719,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2738,7 +2738,6 @@
       ],
       "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
       "derivativeChecksum": "sha256:0f76b01a022c7dba85fbfb93424fe4c05fad97159c99af36d7c293f53264c2b2",
-      "derivativePublicPath": "/assets/blender/v1/s3/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s3.json (sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2748,7 +2747,8 @@
       "notes": [
         "Editable source: assets/blender/s3.blend. Production receipt: docs/qa/blender-finish/model-s3.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s3/Moon.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s3.blend."
       ]
     },
     {
@@ -2765,7 +2765,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2784,7 +2784,6 @@
       ],
       "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
       "derivativeChecksum": "sha256:82a95da8f5ebb05354eb048c440636b12ab63f66f2ef13132ba87651b37a8aba",
-      "derivativePublicPath": "/assets/blender/v1/s3/outer.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s3.json (sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2794,7 +2793,8 @@
       "notes": [
         "Editable source: assets/blender/s3.blend. Production receipt: docs/qa/blender-finish/model-s3.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s3/outer.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s3.blend."
       ]
     },
     {
@@ -2811,7 +2811,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2830,7 +2830,6 @@
       ],
       "sourceChecksum": "sha256:00c6855e5e7be9a231b4bf9464ebaec6f898f959b9c4ee1acef9ea8bcfcce9c3",
       "derivativeChecksum": "sha256:bef4adbc394438e6fdb6903c5cc7fa904532aa9e5ade78dffeff7637a7bda808",
-      "derivativePublicPath": "/assets/blender/v1/s4/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s4.json (sha256:a82d08f03364814fd48283a9a3e4033fd61e52e4c39dfa32ee26a38046637d91) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2840,7 +2839,8 @@
       "notes": [
         "Editable source: assets/blender/s4.blend. Production receipt: docs/qa/blender-finish/model-s4.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s4/earth-mobile.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s4.blend."
       ]
     },
     {
@@ -2857,7 +2857,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2876,7 +2876,6 @@
       ],
       "sourceChecksum": "sha256:00c6855e5e7be9a231b4bf9464ebaec6f898f959b9c4ee1acef9ea8bcfcce9c3",
       "derivativeChecksum": "sha256:1f918ae0070c037c17365fc998e0f6b99928d28d3a70c00be9d21ed3e55fa4fc",
-      "derivativePublicPath": "/assets/blender/v1/s4/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s4.json (sha256:a82d08f03364814fd48283a9a3e4033fd61e52e4c39dfa32ee26a38046637d91) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2886,7 +2885,8 @@
       "notes": [
         "Editable source: assets/blender/s4.blend. Production receipt: docs/qa/blender-finish/model-s4.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s4/earth.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s4.blend."
       ]
     },
     {
@@ -2903,7 +2903,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2922,7 +2922,6 @@
       ],
       "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
       "derivativeChecksum": "sha256:9f920fa971871a321c9a84682450fca329a56dfe921fe8794165835217a3ed3d",
-      "derivativePublicPath": "/assets/blender/v1/s5/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2932,7 +2931,8 @@
       "notes": [
         "Editable source: assets/blender/s5.blend. Production receipt: docs/qa/blender-finish/model-s5.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s5/asteroids.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s5.blend."
       ]
     },
     {
@@ -2949,7 +2949,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -2968,7 +2968,6 @@
       ],
       "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
       "derivativeChecksum": "sha256:899efa6cc4b71d79e0d7b4c73c3da89f652465f7aba77064ba140c528ae8e24f",
-      "derivativePublicPath": "/assets/blender/v1/s5/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -2978,7 +2977,8 @@
       "notes": [
         "Editable source: assets/blender/s5.blend. Production receipt: docs/qa/blender-finish/model-s5.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s5/earth-mobile.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s5.blend."
       ]
     },
     {
@@ -2995,7 +2995,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3014,7 +3014,6 @@
       ],
       "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
       "derivativeChecksum": "sha256:a7a3c1f2c02a5cd8440b14124a92c5028ab01c14c05ce9a05872c307ac0c7f40",
-      "derivativePublicPath": "/assets/blender/v1/s5/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3024,7 +3023,8 @@
       "notes": [
         "Editable source: assets/blender/s5.blend. Production receipt: docs/qa/blender-finish/model-s5.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s5/earth.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s5.blend."
       ]
     },
     {
@@ -3041,7 +3041,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3060,7 +3060,6 @@
       ],
       "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
       "derivativeChecksum": "sha256:5df422221f02005504328776303032228250726f86a750c11679b4285d30a956",
-      "derivativePublicPath": "/assets/blender/v1/s5/kuiper.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3070,7 +3069,8 @@
       "notes": [
         "Editable source: assets/blender/s5.blend. Production receipt: docs/qa/blender-finish/model-s5.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s5/kuiper.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s5.blend."
       ]
     },
     {
@@ -3087,7 +3087,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3106,7 +3106,6 @@
       ],
       "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
       "derivativeChecksum": "sha256:5a619ea3bbadf89da72df83e388f04dd76088c528e0a0cd5fa76c1ab59a61dd4",
-      "derivativePublicPath": "/assets/blender/v1/s5/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3116,7 +3115,8 @@
       "notes": [
         "Editable source: assets/blender/s5.blend. Production receipt: docs/qa/blender-finish/model-s5.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s5/Mars.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s5.blend."
       ]
     },
     {
@@ -3133,7 +3133,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3152,7 +3152,6 @@
       ],
       "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
       "derivativeChecksum": "sha256:8c9855b7385482e751cb348a6a479d41ddbdaac8182cd342a2fe9366a3c84b9e",
-      "derivativePublicPath": "/assets/blender/v1/s5/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3162,7 +3161,8 @@
       "notes": [
         "Editable source: assets/blender/s5.blend. Production receipt: docs/qa/blender-finish/model-s5.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s5/Moon.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s5.blend."
       ]
     },
     {
@@ -3179,7 +3179,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3198,7 +3198,6 @@
       ],
       "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
       "derivativeChecksum": "sha256:b9f23ba60a75e1a13a220c54dbdbe1bcfc8b86da1110ddaaffac782df4d7d9eb",
-      "derivativePublicPath": "/assets/blender/v1/s5/outer.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3208,7 +3207,8 @@
       "notes": [
         "Editable source: assets/blender/s5.blend. Production receipt: docs/qa/blender-finish/model-s5.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s5/outer.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s5.blend."
       ]
     },
     {
@@ -3225,7 +3225,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3244,7 +3244,6 @@
       ],
       "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
       "derivativeChecksum": "sha256:53f47cbcc414ae59eac5f918d096fd2657bf8421737807925a8a50d01518b1b7",
-      "derivativePublicPath": "/assets/blender/v1/s5/Venus.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s5.json (sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3254,7 +3253,8 @@
       "notes": [
         "Editable source: assets/blender/s5.blend. Production receipt: docs/qa/blender-finish/model-s5.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s5/Venus.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s5.blend."
       ]
     },
     {
@@ -3271,7 +3271,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3290,7 +3290,6 @@
       ],
       "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
       "derivativeChecksum": "sha256:cfb7f50e2589971fe76a6f6749b69e60876ba6242c97790d8c491437c0b55743",
-      "derivativePublicPath": "/assets/blender/v1/s6/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3300,7 +3299,8 @@
       "notes": [
         "Editable source: assets/blender/s6.blend. Production receipt: docs/qa/blender-finish/model-s6.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s6/asteroids.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s6.blend."
       ]
     },
     {
@@ -3317,7 +3317,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3336,7 +3336,6 @@
       ],
       "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
       "derivativeChecksum": "sha256:aea8d60ff3757fd78bcd5cab8f418da9f7316c07d0f4265e5e601943548ecda7",
-      "derivativePublicPath": "/assets/blender/v1/s6/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3346,7 +3345,8 @@
       "notes": [
         "Editable source: assets/blender/s6.blend. Production receipt: docs/qa/blender-finish/model-s6.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s6/earth-mobile.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s6.blend."
       ]
     },
     {
@@ -3363,7 +3363,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3382,7 +3382,6 @@
       ],
       "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
       "derivativeChecksum": "sha256:ab261d5a0750e6b084284c3cb11557dfabcc3e8a698661d057a4b3224bacb1aa",
-      "derivativePublicPath": "/assets/blender/v1/s6/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3392,7 +3391,8 @@
       "notes": [
         "Editable source: assets/blender/s6.blend. Production receipt: docs/qa/blender-finish/model-s6.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s6/earth.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s6.blend."
       ]
     },
     {
@@ -3409,7 +3409,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3428,7 +3428,6 @@
       ],
       "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
       "derivativeChecksum": "sha256:dbd2078a6f6eb465d885b277cb9eedac63686091458db1ef68415ee3fe050729",
-      "derivativePublicPath": "/assets/blender/v1/s6/kuiper.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3438,7 +3437,8 @@
       "notes": [
         "Editable source: assets/blender/s6.blend. Production receipt: docs/qa/blender-finish/model-s6.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s6/kuiper.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s6.blend."
       ]
     },
     {
@@ -3455,7 +3455,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3474,7 +3474,6 @@
       ],
       "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
       "derivativeChecksum": "sha256:be3ee853ca857a2bf41edc3ee6c86efae0aa3267704f76fbdbe64748df17a753",
-      "derivativePublicPath": "/assets/blender/v1/s6/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3484,7 +3483,8 @@
       "notes": [
         "Editable source: assets/blender/s6.blend. Production receipt: docs/qa/blender-finish/model-s6.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s6/Mars.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s6.blend."
       ]
     },
     {
@@ -3501,7 +3501,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3520,7 +3520,6 @@
       ],
       "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
       "derivativeChecksum": "sha256:e0b32a0be67e1484c1724c5b4fd85cd993ff084cd506b2f1637efc8ecdf5134b",
-      "derivativePublicPath": "/assets/blender/v1/s6/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3530,7 +3529,8 @@
       "notes": [
         "Editable source: assets/blender/s6.blend. Production receipt: docs/qa/blender-finish/model-s6.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s6/Moon.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s6.blend."
       ]
     },
     {
@@ -3547,7 +3547,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3566,7 +3566,6 @@
       ],
       "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
       "derivativeChecksum": "sha256:b25004c2dd11e389230acc38aee173dc5b0568cceaa3253931e40d3d3ab862ad",
-      "derivativePublicPath": "/assets/blender/v1/s6/Venus.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s6.json (sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3576,7 +3575,8 @@
       "notes": [
         "Editable source: assets/blender/s6.blend. Production receipt: docs/qa/blender-finish/model-s6.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s6/Venus.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s6.blend."
       ]
     },
     {
@@ -3593,7 +3593,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3612,7 +3612,6 @@
       ],
       "sourceChecksum": "sha256:f4d8b7cb1a0e0db65479b5d5429ad9829b0bb478276ff8cb446412af3ebcd454",
       "derivativeChecksum": "sha256:f2ef09d424ff64cec3ef4cd041e54eeb18fdfc39c2911b4866b1e5affe5f228b",
-      "derivativePublicPath": "/assets/blender/v1/s7/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s7.json (sha256:5d9ff3ae2bad44c761eae79caa5b646756a40dbd0dba28c5100cacec9d72b756) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3622,7 +3621,8 @@
       "notes": [
         "Editable source: assets/blender/s7.blend. Production receipt: docs/qa/blender-finish/model-s7.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s7/earth-mobile.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s7.blend."
       ]
     },
     {
@@ -3639,7 +3639,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3658,7 +3658,6 @@
       ],
       "sourceChecksum": "sha256:f4d8b7cb1a0e0db65479b5d5429ad9829b0bb478276ff8cb446412af3ebcd454",
       "derivativeChecksum": "sha256:c7a87a62b91e75d00b2a2e86201c629b82844d341f3583c26d85e98e40f19874",
-      "derivativePublicPath": "/assets/blender/v1/s7/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s7.json (sha256:5d9ff3ae2bad44c761eae79caa5b646756a40dbd0dba28c5100cacec9d72b756) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3668,7 +3667,8 @@
       "notes": [
         "Editable source: assets/blender/s7.blend. Production receipt: docs/qa/blender-finish/model-s7.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s7/earth.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s7.blend."
       ]
     },
     {
@@ -3685,7 +3685,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3704,7 +3704,6 @@
       ],
       "sourceChecksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
       "derivativeChecksum": "sha256:04dc3d6e2c983596eee0382a3b105ff24008f015f7b23c64ca1d647198a287b6",
-      "derivativePublicPath": "/assets/blender/v1/s8/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s8.json (sha256:cec67d135c446fab439ee575ea94c5f5f03f0b6d7d5eab86469d44d1704bacec) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3714,7 +3713,8 @@
       "notes": [
         "Editable source: assets/blender/s8.blend. Production receipt: docs/qa/blender-finish/model-s8.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s8/earth-mobile.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s8.blend."
       ]
     },
     {
@@ -3731,7 +3731,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3750,7 +3750,6 @@
       ],
       "sourceChecksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
       "derivativeChecksum": "sha256:2f67df8a745083804d2102fec23a63009ea1ae82d0f7292389333a6132014c76",
-      "derivativePublicPath": "/assets/blender/v1/s8/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s8.json (sha256:cec67d135c446fab439ee575ea94c5f5f03f0b6d7d5eab86469d44d1704bacec) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3760,7 +3759,8 @@
       "notes": [
         "Editable source: assets/blender/s8.blend. Production receipt: docs/qa/blender-finish/model-s8.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s8/earth.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s8.blend."
       ]
     },
     {
@@ -3777,7 +3777,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3796,7 +3796,6 @@
       ],
       "sourceChecksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
       "derivativeChecksum": "sha256:0999cbccb7cfe546ad6c2bc20893b96d93be7c54c72439c93439cbfcfbc9a255",
-      "derivativePublicPath": "/assets/blender/v1/s8/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s8.json (sha256:cec67d135c446fab439ee575ea94c5f5f03f0b6d7d5eab86469d44d1704bacec) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3806,7 +3805,8 @@
       "notes": [
         "Editable source: assets/blender/s8.blend. Production receipt: docs/qa/blender-finish/model-s8.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s8/Moon.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s8.blend."
       ]
     },
     {
@@ -3823,7 +3823,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3842,7 +3842,6 @@
       ],
       "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:fd76a2200cd41f938df4d329658209d094e6e5922f31653414b5b5a2923a336c",
-      "derivativePublicPath": "/assets/blender/v1/s9/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3852,7 +3851,8 @@
       "notes": [
         "Editable source: assets/blender/s9.blend. Production receipt: docs/qa/blender-finish/model-s9.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s9/asteroids.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s9.blend."
       ]
     },
     {
@@ -3869,7 +3869,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3888,7 +3888,6 @@
       ],
       "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:44c55ebb1d0d4914c07c98c4cbb71493c51bfe58080dceffcb6aaed9ea3f5607",
-      "derivativePublicPath": "/assets/blender/v1/s9/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3898,7 +3897,8 @@
       "notes": [
         "Editable source: assets/blender/s9.blend. Production receipt: docs/qa/blender-finish/model-s9.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s9/earth-mobile.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s9.blend."
       ]
     },
     {
@@ -3915,7 +3915,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3934,7 +3934,6 @@
       ],
       "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:0172ef963018bd09211c70f24738ef3fae2d260959755374d5559f872567b7eb",
-      "derivativePublicPath": "/assets/blender/v1/s9/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3944,7 +3943,8 @@
       "notes": [
         "Editable source: assets/blender/s9.blend. Production receipt: docs/qa/blender-finish/model-s9.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s9/earth.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s9.blend."
       ]
     },
     {
@@ -3961,7 +3961,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -3980,7 +3980,6 @@
       ],
       "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:361fbd7757e6673fe80557ed45e1a14a7a823e0c54eb2465b0d9bef86a03cf8c",
-      "derivativePublicPath": "/assets/blender/v1/s9/kuiper.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -3990,7 +3989,8 @@
       "notes": [
         "Editable source: assets/blender/s9.blend. Production receipt: docs/qa/blender-finish/model-s9.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s9/kuiper.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s9.blend."
       ]
     },
     {
@@ -4007,7 +4007,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4026,7 +4026,6 @@
       ],
       "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:b1fd74409f0e32b39646544b2f60b513f3cde1bf66eac8041283fe1571250412",
-      "derivativePublicPath": "/assets/blender/v1/s9/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4036,7 +4035,8 @@
       "notes": [
         "Editable source: assets/blender/s9.blend. Production receipt: docs/qa/blender-finish/model-s9.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s9/Mars.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s9.blend."
       ]
     },
     {
@@ -4053,7 +4053,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4072,7 +4072,6 @@
       ],
       "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:31f080b65c5a2be1575b4daab8d775a709862805fcc82e9adac7bb97417e4975",
-      "derivativePublicPath": "/assets/blender/v1/s9/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4082,7 +4081,8 @@
       "notes": [
         "Editable source: assets/blender/s9.blend. Production receipt: docs/qa/blender-finish/model-s9.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s9/Moon.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s9.blend."
       ]
     },
     {
@@ -4099,7 +4099,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4118,7 +4118,6 @@
       ],
       "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:365fd8d394d4b2b88cfaa3d8dc6e03bfd0ffd721e121a2a58e40a8ccc13a9eae",
-      "derivativePublicPath": "/assets/blender/v1/s9/outer.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4128,7 +4127,8 @@
       "notes": [
         "Editable source: assets/blender/s9.blend. Production receipt: docs/qa/blender-finish/model-s9.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s9/outer.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s9.blend."
       ]
     },
     {
@@ -4145,7 +4145,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4164,7 +4164,6 @@
       ],
       "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:e0adf970111ae3fa8f2c213d9e1a1a221febff535769b7625974203809b5b6d5",
-      "derivativePublicPath": "/assets/blender/v1/s9/solar.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4174,7 +4173,8 @@
       "notes": [
         "Editable source: assets/blender/s9.blend. Production receipt: docs/qa/blender-finish/model-s9.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s9/solar.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s9.blend."
       ]
     },
     {
@@ -4191,7 +4191,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4210,7 +4210,6 @@
       ],
       "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
       "derivativeChecksum": "sha256:672acefb567cd1c6680cbdcc32becdb28aa837d1c43a267f370f2d847eb460a6",
-      "derivativePublicPath": "/assets/blender/v1/s9/Venus.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s9.json (sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4220,7 +4219,8 @@
       "notes": [
         "Editable source: assets/blender/s9.blend. Production receipt: docs/qa/blender-finish/model-s9.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s9/Venus.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s9.blend."
       ]
     },
     {
@@ -4237,7 +4237,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4256,7 +4256,6 @@
       ],
       "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
       "derivativeChecksum": "sha256:e685c71688c2c4c0d188bc8b40eb5021ac447943532bb750364c57dc19378c56",
-      "derivativePublicPath": "/assets/blender/v1/s10/asteroids.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4266,7 +4265,8 @@
       "notes": [
         "Editable source: assets/blender/s10.blend. Production receipt: docs/qa/blender-finish/model-s10.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s10/asteroids.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s10.blend."
       ]
     },
     {
@@ -4283,7 +4283,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4302,7 +4302,6 @@
       ],
       "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
       "derivativeChecksum": "sha256:48ca7ce3da98b47313bacba221c6bb69be054767f7e2135def6b17525573eb04",
-      "derivativePublicPath": "/assets/blender/v1/s10/earth-mobile.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4312,7 +4311,8 @@
       "notes": [
         "Editable source: assets/blender/s10.blend. Production receipt: docs/qa/blender-finish/model-s10.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s10/earth-mobile.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s10.blend."
       ]
     },
     {
@@ -4329,7 +4329,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4348,7 +4348,6 @@
       ],
       "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
       "derivativeChecksum": "sha256:33a67ef372b1e9f945e2a8348c18a94ecc71aebaede6ee3be41a087f4f15db49",
-      "derivativePublicPath": "/assets/blender/v1/s10/earth.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4358,7 +4357,8 @@
       "notes": [
         "Editable source: assets/blender/s10.blend. Production receipt: docs/qa/blender-finish/model-s10.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s10/earth.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s10.blend."
       ]
     },
     {
@@ -4375,7 +4375,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4394,7 +4394,6 @@
       ],
       "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
       "derivativeChecksum": "sha256:b5825cb820ec52419a87ca2b853a4182a676cf09985bea460f2516904da1a43b",
-      "derivativePublicPath": "/assets/blender/v1/s10/kuiper.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4404,7 +4403,8 @@
       "notes": [
         "Editable source: assets/blender/s10.blend. Production receipt: docs/qa/blender-finish/model-s10.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s10/kuiper.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s10.blend."
       ]
     },
     {
@@ -4421,7 +4421,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4440,7 +4440,6 @@
       ],
       "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
       "derivativeChecksum": "sha256:9834aae4f040aac0ac58bdc2d1aa4daab5c1387ec578b87d9cbeae0d851e7a1c",
-      "derivativePublicPath": "/assets/blender/v1/s10/Mars.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4450,7 +4449,8 @@
       "notes": [
         "Editable source: assets/blender/s10.blend. Production receipt: docs/qa/blender-finish/model-s10.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s10/Mars.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s10.blend."
       ]
     },
     {
@@ -4467,7 +4467,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4486,7 +4486,6 @@
       ],
       "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
       "derivativeChecksum": "sha256:7fa905c8792c6744408cbe66619ca43f3e715f226c114f93cff8fa20e85bf906",
-      "derivativePublicPath": "/assets/blender/v1/s10/Moon.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4496,7 +4495,8 @@
       "notes": [
         "Editable source: assets/blender/s10.blend. Production receipt: docs/qa/blender-finish/model-s10.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s10/Moon.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s10.blend."
       ]
     },
     {
@@ -4513,7 +4513,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4532,7 +4532,6 @@
       ],
       "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
       "derivativeChecksum": "sha256:24dc180a45bfd70009f76afd8e9b33021c5cb7b010f2d91f7806803c618ec9b6",
-      "derivativePublicPath": "/assets/blender/v1/s10/outer.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4542,7 +4541,8 @@
       "notes": [
         "Editable source: assets/blender/s10.blend. Production receipt: docs/qa/blender-finish/model-s10.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s10/outer.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s10.blend."
       ]
     },
     {
@@ -4559,7 +4559,7 @@
       "retrievedAt": "2026-09-11",
       "license": "Original project artwork commissioned for incorporation into Janus Observatory",
       "rightsStatus": "permission_granted",
-      "admissionStatus": "approved",
+      "admissionStatus": "excluded",
       "requiredCreditText": "Original procedural artwork by Janus Observatory, created with AI-assisted code. Fictional and interpretive visualization.",
       "aiAssistanceDisclosure": "OpenAI Codex authored the original geometry exchange and Blender modeling scripts. Exact architecture, terrain, dimensions, materials and motion are interpretive artwork, not Project Janus scientific artifacts or measured models.",
       "allowedTransformations": [
@@ -4578,7 +4578,6 @@
       ],
       "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
       "derivativeChecksum": "sha256:b1462a1bc4dd5743bb05f01c39b7c09231b3c50a64afc5ca1df71856f4735c85",
-      "derivativePublicPath": "/assets/blender/v1/s10/Venus.glb",
       "maxDisplaySize": null,
       "transformations": [
         "Original geometry exchange from assets/blender/seeds/s10.json (sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a) into an editable Blender 5.2.1 LTS source scene, with native scenario-specific constructed details and materials.",
@@ -4588,7 +4587,8 @@
       "notes": [
         "Editable source: assets/blender/s10.blend. Production receipt: docs/qa/blender-finish/model-s10.json. Input and derivative manifest: docs/qa/blender-finish/art-manifest.json.",
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
-        "Earlier original-project artwork ledger entries and their historical checksums are preserved."
+        "Earlier original-project artwork ledger entries and their historical checksums are preserved.",
+        "Withdrawn from publication on 2026-11-12 by Decision 036: the site no longer loads this export and the file is no longer published. It was last published at /assets/blender/v1/s10/Venus.glb; its checksums and transformation history are kept here, and its editable source remains at assets/blender/s10.blend."
       ]
     },
     {
