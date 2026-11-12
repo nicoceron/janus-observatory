@@ -4590,6 +4590,194 @@
         "The selected body/activity footprint follows reviewed canonical data. Model designs, counts, sizes and separations are artistic choices, not scientific encodings. No external image, model, restricted PDF or source illustration is bundled.",
         "Earlier original-project artwork ledger entries and their historical checksums are preserved."
       ]
+    },
+    {
+      "id": "janus.kit.v1.core",
+      "title": "Janus model kit: opening Earth models and shared Earth relief",
+      "creator": "Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "model",
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory original Blender artwork",
+      "directFileUrls": [],
+      "sourceVersion": "blender-kit-v1-2026-11-12",
+      "retrievedAt": "2026-11-12",
+      "license": "Original project artwork commissioned for incorporation into Janus Observatory",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Original Blender artwork by Janus Observatory, created with AI-assisted modeling scripts. Fictional and interpretive visualization.",
+      "aiAssistanceDisclosure": "Claude (Anthropic) authored the Blender modeling scripts that build every model, the hand-drawn Earth relief and the export pipeline. Architecture, creatures, machines, terrain, proportions and counts are interpretive artwork, not Project Janus scientific artifacts or measured models.",
+      "allowedTransformations": [
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "format conversion",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "appliedTransformations": [
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "format conversion",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "sourceChecksum": "sha256:0885a66e6542fa7dda935a9ff44096007feaafa64309b1c6f0f556145917a6f3",
+      "derivativeChecksum": "sha256:9a579b248ff51cddae9ec8d86242cc2e18e21c79509889fe5f1a33514c67a30b",
+      "derivativePublicPath": "/assets/kit/v1/kit-core.bin",
+      "maxDisplaySize": null,
+      "transformations": [
+        "Modeled in Blender 5.3 from the Python authoring modules under scripts/blender/kit/ (bmesh solids with chamfered edges, weighted normals and ambient occlusion baked into vertex colour). Editable sources: assets/blender/kit/*.blend.",
+        "Exported by scripts/blender/kit/export.py to a quantised, gzip-compressed pack of 68 models (572975 bytes; 1643940 decoded). Blender Z-up coordinates are converted to the web Y-up frame. The website instances the models and applies per-instance colour, motion and reflections."
+      ],
+      "notes": [
+        "Source checksum covers the concatenated UTF-8 files, in this order: scripts/blender/kit/__init__.py, scripts/blender/kit/assets/__init__.py, scripts/blender/kit/assets/animals.py, scripts/blender/kit/assets/heroes.py, scripts/blender/kit/assets/houses.py, scripts/blender/kit/assets/housing.py, scripts/blender/kit/assets/industry.py, scripts/blender/kit/assets/landmarks_a.py, scripts/blender/kit/assets/landmarks_b.py, scripts/blender/kit/assets/landmarks_c.py, scripts/blender/kit/assets/observer.py, scripts/blender/kit/assets/people.py, scripts/blender/kit/assets/plants.py, scripts/blender/kit/assets/robots.py, scripts/blender/kit/assets/rural.py, scripts/blender/kit/assets/sky.py, scripts/blender/kit/assets/space.py, scripts/blender/kit/assets/stage.py, scripts/blender/kit/assets/system.py, scripts/blender/kit/assets/terrain.py, scripts/blender/kit/assets/town.py, scripts/blender/kit/assets/vehicles_road.py, scripts/blender/kit/assets/vehicles_sea_air.py, scripts/blender/kit/build.py, scripts/blender/kit/earth.py, scripts/blender/kit/export.py, scripts/blender/kit/jk.py, scripts/blender/kit/palette.py, scripts/blender/kit/parts.py, scripts/blender/kit/review.py.",
+        "Original artwork. No third-party model, texture, photograph, map dataset or illustration is used or reproduced. Continents are a hand-drawn caricature, not a geographic reconstruction; city, creature, vehicle and machine designs are invented illustrations of the Project Janus narratives.",
+        "Supersedes the code-drawn props, landmarks and globes of Decision 035 (janus.low-poly.worlds.v7 lineage) and the code-drawn observer and telescope. Evidence: docs/qa/blender-kit/."
+      ]
+    },
+    {
+      "id": "janus.kit.v1.observer",
+      "title": "Janus model kit: the alien observer and telescope",
+      "creator": "Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "model",
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory original Blender artwork",
+      "directFileUrls": [],
+      "sourceVersion": "blender-kit-v1-2026-11-12",
+      "retrievedAt": "2026-11-12",
+      "license": "Original project artwork commissioned for incorporation into Janus Observatory",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Original Blender artwork by Janus Observatory, created with AI-assisted modeling scripts. Fictional and interpretive visualization.",
+      "aiAssistanceDisclosure": "Claude (Anthropic) authored the Blender modeling scripts that build every model, the hand-drawn Earth relief and the export pipeline. Architecture, creatures, machines, terrain, proportions and counts are interpretive artwork, not Project Janus scientific artifacts or measured models.",
+      "allowedTransformations": [
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "format conversion",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "appliedTransformations": [
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "format conversion",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "sourceChecksum": "sha256:0885a66e6542fa7dda935a9ff44096007feaafa64309b1c6f0f556145917a6f3",
+      "derivativeChecksum": "sha256:c6e690214854cc034011677886b4ac8d8a986050c77b4556fa716b5281b48614",
+      "derivativePublicPath": "/assets/kit/v1/kit-observer.bin",
+      "maxDisplaySize": null,
+      "transformations": [
+        "Modeled in Blender 5.3 from the Python authoring modules under scripts/blender/kit/ (bmesh solids with chamfered edges, weighted normals and ambient occlusion baked into vertex colour). Editable sources: assets/blender/kit/*.blend.",
+        "Exported by scripts/blender/kit/export.py to a quantised, gzip-compressed pack of 14 models (138585 bytes; 309460 decoded). Blender Z-up coordinates are converted to the web Y-up frame. The website instances the models and applies per-instance colour, motion and reflections."
+      ],
+      "notes": [
+        "Source checksum covers the concatenated UTF-8 files, in this order: scripts/blender/kit/__init__.py, scripts/blender/kit/assets/__init__.py, scripts/blender/kit/assets/animals.py, scripts/blender/kit/assets/heroes.py, scripts/blender/kit/assets/houses.py, scripts/blender/kit/assets/housing.py, scripts/blender/kit/assets/industry.py, scripts/blender/kit/assets/landmarks_a.py, scripts/blender/kit/assets/landmarks_b.py, scripts/blender/kit/assets/landmarks_c.py, scripts/blender/kit/assets/observer.py, scripts/blender/kit/assets/people.py, scripts/blender/kit/assets/plants.py, scripts/blender/kit/assets/robots.py, scripts/blender/kit/assets/rural.py, scripts/blender/kit/assets/sky.py, scripts/blender/kit/assets/space.py, scripts/blender/kit/assets/stage.py, scripts/blender/kit/assets/system.py, scripts/blender/kit/assets/terrain.py, scripts/blender/kit/assets/town.py, scripts/blender/kit/assets/vehicles_road.py, scripts/blender/kit/assets/vehicles_sea_air.py, scripts/blender/kit/build.py, scripts/blender/kit/earth.py, scripts/blender/kit/export.py, scripts/blender/kit/jk.py, scripts/blender/kit/palette.py, scripts/blender/kit/parts.py, scripts/blender/kit/review.py.",
+        "Original artwork. No third-party model, texture, photograph, map dataset or illustration is used or reproduced. Continents are a hand-drawn caricature, not a geographic reconstruction; city, creature, vehicle and machine designs are invented illustrations of the Project Janus narratives.",
+        "Supersedes the code-drawn props, landmarks and globes of Decision 035 (janus.low-poly.worlds.v7 lineage) and the code-drawn observer and telescope. Evidence: docs/qa/blender-kit/."
+      ]
+    },
+    {
+      "id": "janus.kit.v1.worlds",
+      "title": "Janus model kit: citizens, creatures, plants, buildings and vehicles of the scenario worlds",
+      "creator": "Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "model",
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory original Blender artwork",
+      "directFileUrls": [],
+      "sourceVersion": "blender-kit-v1-2026-11-12",
+      "retrievedAt": "2026-11-12",
+      "license": "Original project artwork commissioned for incorporation into Janus Observatory",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Original Blender artwork by Janus Observatory, created with AI-assisted modeling scripts. Fictional and interpretive visualization.",
+      "aiAssistanceDisclosure": "Claude (Anthropic) authored the Blender modeling scripts that build every model, the hand-drawn Earth relief and the export pipeline. Architecture, creatures, machines, terrain, proportions and counts are interpretive artwork, not Project Janus scientific artifacts or measured models.",
+      "allowedTransformations": [
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "format conversion",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "appliedTransformations": [
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "format conversion",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "sourceChecksum": "sha256:0885a66e6542fa7dda935a9ff44096007feaafa64309b1c6f0f556145917a6f3",
+      "derivativeChecksum": "sha256:774b60f4fa541e12beb1c6b7066a8e0de885d5626da8d8317988a78cf20ae80c",
+      "derivativePublicPath": "/assets/kit/v1/kit-worlds.bin",
+      "maxDisplaySize": null,
+      "transformations": [
+        "Modeled in Blender 5.3 from the Python authoring modules under scripts/blender/kit/ (bmesh solids with chamfered edges, weighted normals and ambient occlusion baked into vertex colour). Editable sources: assets/blender/kit/*.blend.",
+        "Exported by scripts/blender/kit/export.py to a quantised, gzip-compressed pack of 138 models (1674524 bytes; 4681160 decoded). Blender Z-up coordinates are converted to the web Y-up frame. The website instances the models and applies per-instance colour, motion and reflections."
+      ],
+      "notes": [
+        "Source checksum covers the concatenated UTF-8 files, in this order: scripts/blender/kit/__init__.py, scripts/blender/kit/assets/__init__.py, scripts/blender/kit/assets/animals.py, scripts/blender/kit/assets/heroes.py, scripts/blender/kit/assets/houses.py, scripts/blender/kit/assets/housing.py, scripts/blender/kit/assets/industry.py, scripts/blender/kit/assets/landmarks_a.py, scripts/blender/kit/assets/landmarks_b.py, scripts/blender/kit/assets/landmarks_c.py, scripts/blender/kit/assets/observer.py, scripts/blender/kit/assets/people.py, scripts/blender/kit/assets/plants.py, scripts/blender/kit/assets/robots.py, scripts/blender/kit/assets/rural.py, scripts/blender/kit/assets/sky.py, scripts/blender/kit/assets/space.py, scripts/blender/kit/assets/stage.py, scripts/blender/kit/assets/system.py, scripts/blender/kit/assets/terrain.py, scripts/blender/kit/assets/town.py, scripts/blender/kit/assets/vehicles_road.py, scripts/blender/kit/assets/vehicles_sea_air.py, scripts/blender/kit/build.py, scripts/blender/kit/earth.py, scripts/blender/kit/export.py, scripts/blender/kit/jk.py, scripts/blender/kit/palette.py, scripts/blender/kit/parts.py, scripts/blender/kit/review.py.",
+        "Original artwork. No third-party model, texture, photograph, map dataset or illustration is used or reproduced. Continents are a hand-drawn caricature, not a geographic reconstruction; city, creature, vehicle and machine designs are invented illustrations of the Project Janus narratives.",
+        "Supersedes the code-drawn props, landmarks and globes of Decision 035 (janus.low-poly.worlds.v7 lineage) and the code-drawn observer and telescope. Evidence: docs/qa/blender-kit/."
+      ]
+    },
+    {
+      "id": "janus.kit.v1.landmarks",
+      "title": "Janus model kit: scenario landmarks and Solar System bodies",
+      "creator": "Janus Observatory",
+      "scenarioId": null,
+      "artifactId": null,
+      "kind": "model",
+      "sourceUrl": "https://github.com/nicoceron/janus-observatory",
+      "sourceAgency": "Janus Observatory original Blender artwork",
+      "directFileUrls": [],
+      "sourceVersion": "blender-kit-v1-2026-11-12",
+      "retrievedAt": "2026-11-12",
+      "license": "Original project artwork commissioned for incorporation into Janus Observatory",
+      "rightsStatus": "permission_granted",
+      "admissionStatus": "approved",
+      "requiredCreditText": "Original Blender artwork by Janus Observatory, created with AI-assisted modeling scripts. Fictional and interpretive visualization.",
+      "aiAssistanceDisclosure": "Claude (Anthropic) authored the Blender modeling scripts that build every model, the hand-drawn Earth relief and the export pipeline. Architecture, creatures, machines, terrain, proportions and counts are interpretive artwork, not Project Janus scientific artifacts or measured models.",
+      "allowedTransformations": [
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "format conversion",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "appliedTransformations": [
+        "animation",
+        "material tuning",
+        "posing and staging",
+        "format conversion",
+        "responsive rendering",
+        "web optimization"
+      ],
+      "sourceChecksum": "sha256:0885a66e6542fa7dda935a9ff44096007feaafa64309b1c6f0f556145917a6f3",
+      "derivativeChecksum": "sha256:84b41c809a4e4dad664e0c0ef29ff7008b44fd169f0428c01cf1d30bfbde47d1",
+      "derivativePublicPath": "/assets/kit/v1/kit-landmarks.bin",
+      "maxDisplaySize": null,
+      "transformations": [
+        "Modeled in Blender 5.3 from the Python authoring modules under scripts/blender/kit/ (bmesh solids with chamfered edges, weighted normals and ambient occlusion baked into vertex colour). Editable sources: assets/blender/kit/*.blend.",
+        "Exported by scripts/blender/kit/export.py to a quantised, gzip-compressed pack of 42 models (1159993 bytes; 2819816 decoded). Blender Z-up coordinates are converted to the web Y-up frame. The website instances the models and applies per-instance colour, motion and reflections."
+      ],
+      "notes": [
+        "Source checksum covers the concatenated UTF-8 files, in this order: scripts/blender/kit/__init__.py, scripts/blender/kit/assets/__init__.py, scripts/blender/kit/assets/animals.py, scripts/blender/kit/assets/heroes.py, scripts/blender/kit/assets/houses.py, scripts/blender/kit/assets/housing.py, scripts/blender/kit/assets/industry.py, scripts/blender/kit/assets/landmarks_a.py, scripts/blender/kit/assets/landmarks_b.py, scripts/blender/kit/assets/landmarks_c.py, scripts/blender/kit/assets/observer.py, scripts/blender/kit/assets/people.py, scripts/blender/kit/assets/plants.py, scripts/blender/kit/assets/robots.py, scripts/blender/kit/assets/rural.py, scripts/blender/kit/assets/sky.py, scripts/blender/kit/assets/space.py, scripts/blender/kit/assets/stage.py, scripts/blender/kit/assets/system.py, scripts/blender/kit/assets/terrain.py, scripts/blender/kit/assets/town.py, scripts/blender/kit/assets/vehicles_road.py, scripts/blender/kit/assets/vehicles_sea_air.py, scripts/blender/kit/build.py, scripts/blender/kit/earth.py, scripts/blender/kit/export.py, scripts/blender/kit/jk.py, scripts/blender/kit/palette.py, scripts/blender/kit/parts.py, scripts/blender/kit/review.py.",
+        "Original artwork. No third-party model, texture, photograph, map dataset or illustration is used or reproduced. Continents are a hand-drawn caricature, not a geographic reconstruction; city, creature, vehicle and machine designs are invented illustrations of the Project Janus narratives.",
+        "Supersedes the code-drawn props, landmarks and globes of Decision 035 (janus.low-poly.worlds.v7 lineage) and the code-drawn observer and telescope. Evidence: docs/qa/blender-kit/."
+      ]
     }
   ]
 }

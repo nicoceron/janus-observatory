@@ -2,8 +2,9 @@ import * as THREE from 'three';
 import type { WorldSignals } from '../../lib/world-signals';
 import { buildEarthWorld, extentOf, type EarthBrief } from './earth';
 import { local, type Tone } from './kit';
+import { surfaces } from './materials';
 import { LayerBuilder, type Quality, type WorldModel } from './model';
-import { turbine, windmill } from './parts';
+import { propHeight } from './props/library';
 import { rng, type Random } from './random';
 import { present } from './worlds/present';
 import { allocationBlock, eliteSettlement, s1, watchtower } from './worlds/s1';
@@ -64,13 +65,13 @@ const studies: Record<string, Record<string, Study>> = {
     'elite-settlement': { build: (l) => eliteSettlement(l, at(), 1) },
   },
   S2: {
-    enclave: { build: (l, random) => enclave(l, at(), 1, '#d0493a', 0.8, random), base: '#b39a5c' },
+    enclave: { build: (l) => enclave(l, at(), 1, '#d0493a'), base: '#b39a5c' },
     'pit-mine': { build: (l) => pitMine(l, at(), 1), base: '#d4975a' },
     platform: { build: (l) => offshoreRig(l, at(), 1), base: '#2c5c6a' },
   },
   S3: {
     'garden-town': {
-      build: (l, random) => gardenTown(l, at(), 1, 0.8, random, true),
+      build: (l) => gardenTown(l, at(), 1),
       base: '#86c35f',
     },
     tether: {
@@ -81,14 +82,16 @@ const studies: Record<string, Record<string, Study>> = {
     },
     'wind-commons': {
       build: (l) => {
-        for (let k = 0; k < 5; k++)
-          turbine(l.solid, local(at(), (k - 2) * 0.32, 0, (k % 2) * 0.22), 0.75);
+        for (let k = 0; k < 5; k++) {
+          const m = local(at(), (k - 2) * 0.32, 0, (k % 2) * 0.22);
+          l.kit('turbine', m, 0.75 / propHeight('turbine'));
+        }
       },
       base: '#b4cf78',
     },
   },
   S4: {
-    camp: { build: (l, random) => camp(l, at(), 1, random, true), base: '#a8b45c' },
+    camp: { build: (l) => camp(l, at(), 1, true), base: '#a8b45c' },
     'relic-tower': { build: (l) => relicTower(l, at(), 1), base: '#356f37' },
     'stone-circle': { build: (l) => stoneCircle(l, at(), 1), base: '#a8b45c' },
   },
@@ -103,14 +106,19 @@ const studies: Record<string, Record<string, Study>> = {
     'hanging-regulator': { build: (l) => hangingRegulator(l, at(), 1) },
   },
   S7: {
-    windmill: { build: (l) => windmill(l.solid, at(), 1, '#efe6d2', '#8a5a3a'), base: '#95c56c' },
+    windmill: {
+      build: (l) => {
+        l.kit('windmill', at(), 1 / propHeight('windmill'));
+      },
+      base: '#95c56c',
+    },
     'radio-mast': { build: (l) => radioMast(l, at(), 1), base: '#95c56c' },
     terraces: { build: (l) => terraces(l, at(), 1), base: '#95c56c' },
   },
   S8: {
     'silent-core': { build: (l) => silentCore(l, at(), 1), base: '#3f3638' },
     bunker: { build: (l) => bunker(l, at(), 1), base: '#6f6560' },
-    ruin: { build: (l, random) => ruin(l, at(), 1, random), base: '#6a6560' },
+    ruin: { build: (l) => ruin(l, at(), 1), base: '#6a6560' },
   },
   S9: {
     gift: { build: (l) => gift(l, at(), 1), base: '#86be62' },
@@ -119,7 +127,7 @@ const studies: Record<string, Record<string, Study>> = {
   S10: {
     'habitat-ring': { build: (l) => habitat(l, at(), 1) },
     departure: { build: (l) => lightSail(l, at(), 1) },
-    grove: { build: (l, random) => grove(l, at(), 1, random), base: '#8fd062' },
+    grove: { build: (l) => grove(l, at(), 1), base: '#8fd062' },
   },
 };
 
@@ -132,18 +140,12 @@ export function buildLandmark(scenario: string, id: string): WorldModel {
   if (!study) throw new Error(`No landmark study ${scenario}:${id}.`);
   const layer = new LayerBuilder(id, 'surface', 17, { landmark: id });
   study.build(layer, rng(id.length * 7 + scenario.length));
-  if (study.base) {
-    layer.solid.prism(local(at(), 0, -0.07, 0), 0.72, 0.8, 0.07, 7, '#5d5347', study.base);
-  }
+  // The display base: a kit plinth whose top takes the landmark's ground colour.
+  if (study.base) layer.kit('plinth', at(), 0.095, { tint: study.base });
   const layers = [layer.finish()];
   const box = new THREE.Box3();
-  for (const geometry of [
-    layers[0].solid,
-    layers[0].sheen,
-    layers[0].glow,
-    layers[0].cloud,
-    layers[0].beam,
-  ]) {
+  for (const surface of surfaces) {
+    const geometry = layers[0][surface];
     if (!geometry) continue;
     geometry.computeBoundingBox();
     box.union(geometry.boundingBox!);

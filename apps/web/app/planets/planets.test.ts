@@ -78,7 +78,14 @@ describe('low-poly worlds', () => {
     for (const id of ['S9', 'S10']) {
       const model = buildWorld(id, signals[Number(id.slice(1)) - 1], qualities.overview);
       expect(model.layers.filter((l) => l.frame === 'surface').every((l) => !l.glow)).toBe(true);
+      // Its props are drawn as dark twins without lamps, whatever lights their models carry.
+      expect(model.unlit).toBe(true);
     }
+    for (const [id, input] of [
+      ['present', presentSignals],
+      ['S1', signals[0]],
+    ] as const)
+      expect(buildWorld(id, input, qualities.overview).unlit).toBe(false);
   });
 
   it('places every described landmark on its world and gives it a standalone study', () => {
@@ -182,7 +189,8 @@ describe('inhabited worlds', () => {
         for (let p = 0; p < route.points.length; p += 3) {
           const r = Math.hypot(route.points[p], route.points[p + 1], route.points[p + 2]);
           expect(r).toBeGreaterThan(0.97);
-          expect(r).toBeLessThan(1.2);
+          // Aircraft cruise above the clouds and every skyline, below the orbital layers.
+          expect(r).toBeLessThan(1.27);
         }
   });
 });

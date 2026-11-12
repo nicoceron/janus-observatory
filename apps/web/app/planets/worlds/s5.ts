@@ -22,68 +22,15 @@ const reefTones = ['#1a8fb0', '#22a7b8', '#138aa0', '#2bb5a8'];
 const glowTones = ['#b8fff0', '#ffb8f0', '#e8ffa8'];
 
 export function bloomSpire(layer: LayerBuilder, m: THREE.Matrix4, s: number, tone: string) {
-  layer.solid.prism(m, 0.16 * s, 0.07 * s, 0.35 * s, 7, '#efe6f5');
-  layer.sheen.dome(local(m, 0, 0.3 * s, 0), 0.2 * s, tone, 7, 2, 1.1);
-  layer.solid.prism(local(m, 0, 0.5 * s, 0), 0.06 * s, 0.04 * s, 0.3 * s, 7, '#efe6f5');
-  layer.sheen.dome(local(m, 0, 0.76 * s, 0), 0.13 * s, tone, 7, 2, 1.2);
-  for (let i = 0; i < 6; i++) {
-    const a = (i / 6) * Math.PI * 2;
-    layer.solid.gem(
-      local(m, Math.cos(a) * 0.1 * s, 0.84 * s, Math.sin(a) * 0.1 * s, -a, 1, [0, 0.9]),
-      0.05 * s,
-      0.26 * s,
-      '#f6d9f2',
-      3,
-    );
-  }
-  layer.glow.gem(local(m, 0, 0.9 * s, 0), 0.05 * s, 0.2 * s, '#b8fff0', 5);
-  for (let i = 0; i < 4; i++) {
-    const a = (i / 4) * Math.PI * 2 + 0.4;
-    layer.sheen.dome(
-      local(m, Math.cos(a) * 0.24 * s, 0, Math.sin(a) * 0.24 * s),
-      0.08 * s,
-      tone,
-      6,
-      1,
-      1.3,
-    );
-    layer.glow.box(
-      local(m, Math.cos(a) * 0.24 * s, 0.1 * s, Math.sin(a) * 0.24 * s),
-      0.03 * s,
-      0.03 * s,
-      0.03 * s,
-      '#ffb8f0',
-    );
-  }
+  layer.kit('lm-bloom-spire', m, s / 10, { tint: tone });
 }
 
 export function gardenCell(layer: LayerBuilder, m: THREE.Matrix4, s: number, tone: string) {
-  layer.solid.prism(m, 0.5 * s, 0.48 * s, 0.06 * s, 6, '#efe6f5', tone);
-  for (let i = 0; i < 7; i++) {
-    const a = (i / 6) * Math.PI * 2;
-    const r = i === 6 ? 0 : 0.28 * s;
-    layer.sheen.gem(
-      local(m, Math.cos(a) * r, 0.06 * s, Math.sin(a) * r, a),
-      0.07 * s,
-      0.22 * s,
-      i % 2 ? '#a6e05a' : '#3cc9a8',
-      4,
-      0.6,
-    );
-  }
+  layer.kit('lm-garden-cell', m, s / 10, { tint: tone });
 }
 
 export function seedPods(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  for (let i = 0; i < 5; i++) {
-    const a = (i / 5) * Math.PI * 2;
-    const pod = local(m, Math.cos(a) * 0.25 * s, 0, Math.sin(a) * 0.25 * s, 0, 1, [
-      Math.sin(a) * 0.3,
-      Math.cos(a) * 0.3,
-    ]);
-    layer.solid.prism(pod, 0.03 * s, 0.03 * s, 0.18 * s, 5, '#efe6f5');
-    layer.sheen.gem(local(pod, 0, 0.14 * s, 0), 0.1 * s, 0.3 * s, '#d35fc4', 6, 0.5);
-    layer.glow.gem(local(pod, 0, 0.2 * s, 0), 0.045 * s, 0.14 * s, '#ffb8f0', 5);
-  }
+  layer.kit('lm-seed-pods', m, s / 10);
 }
 
 export const s5: EarthBrief = {
@@ -220,6 +167,8 @@ export const s5: EarthBrief = {
       face.tone = face.land
         ? cellTones[cell % cellTones.length]
         : reefTones[cell % reefTones.length];
+      // Cells shade into their neighbours, so their borders are soft seams, not a sawtooth.
+      face.wild = face.tone;
     }
 
     // Biosynthetic cities: grown towers and pod dwellings along luminous paths.

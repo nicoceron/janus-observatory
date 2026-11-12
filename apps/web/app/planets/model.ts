@@ -3,8 +3,16 @@ import { frame, Mesher, type Tone } from './kit';
 import type { Face } from './globe';
 import { direction } from './continents';
 import { rng, type Random } from './random';
-import { Props, Traffic, type InstanceGroup, type KeepOut, type MoverGroup } from './scene/collect';
+import {
+  Props,
+  Traffic,
+  type InstanceGroup,
+  type KeepOut,
+  type Lane,
+  type MoverGroup,
+} from './scene/collect';
 import { Surface } from './scene/surface';
+import { kitGeometry, kitInfo } from './props/pack';
 
 export type Motion =
   /** Rotate about the layer's local +y axis, in radians per second. */
@@ -24,6 +32,8 @@ export type Layer = {
   landmark?: string;
   solid?: THREE.BufferGeometry;
   sheen?: THREE.BufferGeometry;
+  /** Glossy glazing: windows, visors, solar cells. */
+  glass?: THREE.BufferGeometry;
   glow?: THREE.BufferGeometry;
   cloud?: THREE.BufferGeometry;
   /** Translucent additive light, such as a searchlight cone. */
@@ -58,6 +68,12 @@ export type WorldModel = {
   instances: InstanceGroup[];
   /** Props travelling along routes: walkers, traffic, ships, aircraft, herds and flocks. */
   movers: MoverGroup[];
+  /**
+   * The published table reports no artificial illumination for this body, so nothing on its
+   * surface is drawn alight: props show no lamps or lit windows. Not detected is not absent;
+   * the drawing simply adds no light the source does not report.
+   */
+  unlit?: boolean;
 };
 
 export type Quality = {
@@ -84,6 +100,7 @@ export const qualities = {
 export class LayerBuilder {
   solid: Mesher;
   sheen: Mesher;
+  glass: Mesher;
   glow: Mesher;
   cloud: Mesher;
   beam: Mesher;
@@ -98,7 +115,50 @@ export class LayerBuilder {
     this.glow = new Mesher(seed + 2, 0);
     this.cloud = new Mesher(seed + 3, 0.05);
     this.beam = new Mesher(seed + 4, 0);
+    this.glass = new Mesher(seed + 5, 0);
   }
+
+  /** Set by an unlit world: kit models on its surface are merged without their lights. */
+  dim = false;
+  /**
+   * Set at the light quality tiers (the overview constellation and software rendering): swarms
+   * use their light models throughout, and the shared ground carries no repeats of a landmark,
+   * so a world costs what its hero pieces cost.
+   */
+  lean = false;
+  /** Satellites merged so far: the first few of a belt are drawn in full, the rest light. */
+  satellites = 0;
+
+  /**
+   * Merge a Blender kit model into this layer. `m` is its frame (y up, front toward +z) and
+   * `scale` its size; landmark models are authored ten times life size, so pass `s / 10`.
+   * `tint` colours the model's tint part (default: the model's own colour) and `metal` its
+   * metal part. `dark` draws its window panes unlit. `puff` sends the tint part to the cloud
+   * surface instead of solid.
+   */
+  kit(
+    kind: string,
+    m: THREE.Matrix4,
+    scale: number | [number, number, number] = 1,
+    options: { tint?: Tone; metal?: Tone; dark?: boolean; lights?: boolean; puff?: boolean } = {},
+  ) {
+    if (this.lean && this.name === 'ground' && kind.startsWith('lm-')) return;
+    const parts = kitGeometry(kind);
+    if (!parts) throw new Error(`Kit model ${kind} is not loaded.`);
+    const [sx, sy, sz] = typeof scale === 'number' ? [scale, scale, scale] : scale;
+    const placed = m.clone().scale(new THREE.Vector3(sx, sy, sz));
+    const tint = options.tint ?? kitInfo(kind)!.tint;
+    // On an unlit world nothing on the surface shines, whatever the caller asked for.
+    const dim = this.dim && this.frameKind === 'surface';
+    this.solid.model(parts.base, placed);
+    (options.puff ? this.cloud : this.solid).model(parts.tint, placed, tint);
+    this.sheen.model(parts.metal, placed, options.metal);
+    this.glass.model(parts.glass, placed);
+    if (options.lights !== false && !dim) this.glow.model(parts.glow, placed);
+    if (options.dark || dim) this.glass.model(parts.lit, placed, '#1b2733');
+    else this.glow.model(parts.lit, placed);
+  }
+
   finish(): Layer {
     const pick = (mesh: Mesher) => (mesh.triangles ? mesh.geometry() : undefined);
     return {
@@ -107,6 +167,7 @@ export class LayerBuilder {
       ...this.options,
       solid: pick(this.solid),
       sheen: pick(this.sheen),
+      glass: pick(this.glass),
       glow: pick(this.glow),
       cloud: pick(this.cloud),
       beam: pick(this.beam),
@@ -125,6 +186,21 @@ export class WorldContext {
   traffic = new Traffic();
   /** Direction to the story camera in the planet's own frame, when the recipe knows its pose. */
   view?: THREE.Vector3;
+  /** Ground that instanced props stay off: merged relief such as mountains. */
+  keepOut: KeepOut[] = [];
+  /** Roads, streets and rails: traffic runs here, so standing props keep off. */
+  lanes: Lane[] = [];
+  private unlit = false;
+
+  /** Whether the body's surface is drawn without any artificial light (see `WorldModel.unlit`). */
+  get dim() {
+    return this.unlit;
+  }
+
+  set dim(value: boolean) {
+    this.unlit = value;
+    for (const layer of this.layers) layer.dim = value;
+  }
   private taken = new Map<string, { dir: THREE.Vector3; cos: number }[]>();
   constructor(
     public faces: Face[],
@@ -168,6 +244,8 @@ export class WorldContext {
 
   layer(name: string, kind: Layer['frame'], options: LayerBuilder['options'] = {}) {
     const layer = new LayerBuilder(name, kind, this.random.int(1, 1e6), options);
+    layer.dim = this.unlit;
+    layer.lean = this.quality.detail <= qualities.overview.detail;
     this.layers.push(layer);
     return layer;
   }
@@ -262,7 +340,7 @@ export class WorldContext {
    */
   population(layers: Layer[]) {
     const density = this.quality.density / qualities.story.density;
-    const keepOut: KeepOut[] = [];
+    const keepOut: KeepOut[] = [...this.keepOut];
     const v = new THREE.Vector3(),
       centre = new THREE.Vector3();
     for (const layer of layers) {
@@ -292,7 +370,7 @@ export class WorldContext {
         keepOut.push({ centre: centre.clone(), radius: radius * 1.05 });
     }
     return {
-      instances: this.props.finish('surface', { density, keepOut }),
+      instances: this.props.finish('surface', { density, keepOut, lanes: this.lanes }),
       movers: this.traffic.finish(density),
     };
   }
@@ -310,7 +388,11 @@ export function onOrbit(radius: number, angle: number, lift = 0) {
   return frame(position, outward, 0);
 }
 
-/** A small satellite: a box bus and two panels, oriented with its panels along the orbit. */
+/**
+ * A satellite, oriented with its panels along the orbit. `body` tints its bus; `light` shows its
+ * status lamp. `wings` is kept for callers that vary a fleet's look; the models carry their own
+ * solar cells.
+ */
 export function satellite(
   layer: LayerBuilder,
   m: THREE.Matrix4,
@@ -321,30 +403,24 @@ export function satellite(
 ) {
   // Toy scale: satellites are drawn well above life size so they read beside the larger props.
   size *= 1.6;
-  layer.sheen.box(m, size, size * 1.2, size, body);
-  const wing = (x: number) =>
-    m
-      .clone()
-      .multiply(
-        new THREE.Matrix4().compose(
-          new THREE.Vector3(x, size * 0.6, 0),
-          new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, Math.PI / 2)),
-          new THREE.Vector3(1, 1, 1),
-        ),
-      );
-  layer.sheen.panel(wing(size * 1.6), size * 0.2, size * 2.2, wings, body);
-  layer.sheen.panel(wing(-size * 1.6), size * 0.2, size * 2.2, wings, body);
-  if (light)
-    layer.glow.box(
-      m.clone().multiply(new THREE.Matrix4().makeTranslation(0, size * 1.2, 0)),
-      size * 0.4,
-      size * 0.4,
-      size * 0.4,
-      light,
-    );
+  // Three designs, chosen by where the satellite sits. A belt holds dozens, so only its first
+  // two are drawn in full; the rest are the light model with the same frame and span.
+  const p0 = m.elements;
+  const pick = Math.abs(Math.round((p0[12] * 7.3 + p0[13] * 3.1 + p0[14] * 5.7) * 1000)) % 5;
+  const full = !layer.lean && layer.satellites++ < 2;
+  const kind = layer.lean
+    ? 'sat-speck'
+    : !full
+      ? 'sat-mini'
+      : pick < 2
+        ? 'sat-a'
+        : pick < 4
+          ? 'sat-c'
+          : 'sat-b';
+  layer.kit(kind, m, size, { tint: body, lights: !!light });
 }
 
-/** A puffy cloud of three or four faceted lobes. */
+/** A cloud: one of four shapes, tinted by the world's weather. */
 export function cloud(
   layer: LayerBuilder,
   m: THREE.Matrix4,
@@ -353,21 +429,8 @@ export function cloud(
   random: Random,
   flat = 0.42,
 ) {
-  const lobes = random.int(3, 4);
-  for (let i = 0; i < lobes; i++) {
-    const x = (i - (lobes - 1) / 2) * size * 0.9 + random.range(-0.2, 0.2) * size;
-    const r = size * random.range(0.55, 0.9) * (i === 1 || i === 2 ? 1.2 : 0.9);
-    const lobe = m
-      .clone()
-      .multiply(
-        new THREE.Matrix4().compose(
-          new THREE.Vector3(x, r * 0.2, random.range(-0.3, 0.3) * size),
-          new THREE.Quaternion(),
-          new THREE.Vector3(1, flat, 0.85),
-        ),
-      );
-    layer.cloud.blob(lobe, r, tone, 0.2, random.int(1, 1e6));
-  }
+  const shape = ['cloud-a', 'cloud-b', 'cloud-c', 'cloud-d'][Math.floor(random() * 4) % 4];
+  layer.kit(shape, m, [size, (size * flat) / 0.42, size], { tint: tone, puff: true });
 }
 
 /** Evenly spread directions (Fibonacci sphere), for drifting cloud fields and swarms. */

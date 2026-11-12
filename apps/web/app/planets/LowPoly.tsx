@@ -5,9 +5,19 @@ import type { WorldSignals } from '../../lib/world-signals';
 import { useReducedMotionPreference } from '../components/MotionPreference';
 import { buildCompanion, buildFeature, type Companion, type Feature } from './bodies';
 import { buildLandmark, buildWorld } from './catalog';
-import { atmosphereMaterial, createMaterials, disposeLayers } from './materials';
+import {
+  atmosphereMaterial,
+  createMaterials,
+  createPropMaterials,
+  disposeLayers,
+  reflect,
+} from './materials';
 import { qualities, type WorldModel } from './model';
 import { ModelView } from './ModelView';
+import { lowPower } from './renderer';
+
+export { lowPower };
+import { kitReady, loadKit, subscribeKit } from './props/pack';
 
 export type QualityName = keyof typeof qualities;
 
@@ -60,7 +70,27 @@ function useModel(key: string | null, build: () => WorldModel) {
   return model;
 }
 
-const pending: { key: string; build: () => WorldModel }[] = [];
+type Scope = 'core' | 'all';
+
+/**
+ * Worlds are assembled from the Blender kit, so nothing is built until the packs a model needs
+ * have loaded: the opening Earth needs only `core`, everything else needs all of them.
+ */
+function useKit(scope: Scope) {
+  const ready = useSyncExternalStore(
+    subscribeKit,
+    () => kitReady(scope),
+    () => false,
+  );
+  useEffect(() => {
+    if (!ready) loadKit().catch(() => undefined);
+  }, [ready]);
+  return ready;
+}
+
+const scopeOf = (id: string): Scope => (id === 'present' ? 'core' : 'all');
+
+const pending: { key: string; build: () => WorldModel; scope: Scope }[] = [];
 const listeners = new Map<string, Set<() => void>>();
 let pumping = false;
 
@@ -75,8 +105,23 @@ function subscribe(key: string, listener: () => void) {
  * Build queued models in idle time, several per idle period while time remains, so scrolling never
  * waits on a whole world. A busy page still drains the queue through the callback timeout.
  */
+let waitingForKit = false;
+
 function pump() {
   if (pumping || !pending.length || typeof window === 'undefined') return;
+  if (!pending.some((job) => kitReady(job.scope))) {
+    // Resume when a pack lands.
+    if (!waitingForKit) {
+      waitingForKit = true;
+      const stop = subscribeKit(() => {
+        stop();
+        waitingForKit = false;
+        pump();
+      });
+      loadKit().catch(() => undefined);
+    }
+    return;
+  }
   pumping = true;
   const idle =
     window.requestIdleCallback ??
@@ -90,7 +135,9 @@ function pump() {
       pumping = false;
       let built = 0;
       while (pending.length && (built === 0 || deadline.timeRemaining() > 12)) {
-        const job = pending.shift()!;
+        const next = pending.findIndex((job) => kitReady(job.scope));
+        if (next < 0) break;
+        const [job] = pending.splice(next, 1);
         if (cache.has(job.key)) continue;
         const entry: Entry = { model: job.build(), users: 0 };
         cache.set(job.key, entry);
@@ -104,15 +151,15 @@ function pump() {
   );
 }
 
-function prewarm(key: string, build: () => WorldModel, urgent = false) {
+function prewarm(key: string, build: () => WorldModel, urgent = false, scope: Scope = 'all') {
   if (cache.has(key)) return;
   const queued = pending.findIndex((job) => job.key === key);
   if (queued >= 0) {
     if (urgent) pending.unshift(...pending.splice(queued, 1));
     return;
   }
-  if (urgent) pending.unshift({ key, build });
-  else pending.push({ key, build });
+  if (urgent) pending.unshift({ key, build, scope });
+  else pending.push({ key, build, scope });
   pump();
 }
 
@@ -127,7 +174,9 @@ function useProgressive(
   build: (tier: QualityName) => WorldModel,
   tier: QualityName,
   eager: boolean,
+  scope: Scope,
 ) {
+  const kit = useKit(scope);
   const cheap: QualityName = tier === 'minimal' ? 'minimal' : 'overview';
   const wanted = key(tier),
     fallback = key(cheap);
@@ -148,20 +197,31 @@ function useProgressive(
     () => (cache.has(wanted) ? 2 : cache.has(fallback) ? 1 : 0),
     () => 0,
   );
-  const shown: QualityName | null = ready === 2 ? tier : ready === 1 || eager ? cheap : null;
+  const shown: QualityName | null = !kit
+    ? null
+    : ready === 2
+      ? tier
+      : ready === 1 || eager
+        ? cheap
+        : null;
   useEffect(() => {
     if (ready === 2) return;
-    prewarm(wanted, () => build(tier), true);
+    prewarm(wanted, () => build(tier), true, scope);
     // Queue the cheap tier ahead of the full one so something appears sooner.
-    if (shown === null && cheap !== tier) prewarm(fallback, () => build(cheap), true);
+    if (shown === null && cheap !== tier) prewarm(fallback, () => build(cheap), true, scope);
     // `build` is derived from the keys' inputs.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready, wanted, fallback, tier, cheap, shown]);
+  }, [ready, wanted, fallback, tier, cheap, shown, scope]);
   return useModel(shown && key(shown), () => build(shown!));
 }
 
 export function prewarmWorld(id: string, signals: WorldSignals, quality: QualityName) {
-  prewarm(`world:${id}:${quality}`, () => buildWorld(id, signals, qualities[quality]));
+  prewarm(
+    `world:${id}:${quality}`,
+    () => buildWorld(id, signals, qualities[quality]),
+    false,
+    scopeOf(id),
+  );
 }
 
 export function prewarmBody(
@@ -175,25 +235,6 @@ export function prewarmBody(
       ? buildCompanion(selection as Companion, scenario, signals, qualities[quality])
       : buildFeature(selection as Feature, scenario, qualities[quality]),
   );
-}
-
-const software = new WeakMap<THREE.WebGLRenderer, boolean>();
-
-/**
- * A software rasterizer (SwiftShader, llvmpipe and similar) is the lowest power tier: worlds and
- * bodies draw without instanced props or idle animation, so scrolling and input stay responsive.
- * Landmark studies are single small models and keep their full detail.
- */
-export function lowPower(gl: THREE.WebGLRenderer) {
-  let low = software.get(gl);
-  if (low === undefined) {
-    const context = gl.getContext();
-    const info = context.getExtension('WEBGL_debug_renderer_info');
-    const renderer = info ? String(context.getParameter(info.UNMASKED_RENDERER_WEBGL)) : '';
-    low = /swiftshader|llvmpipe|software|basic render/i.test(renderer);
-    software.set(gl, low);
-  }
-  return low;
 }
 
 function useLowPower() {
@@ -221,19 +262,21 @@ export function useWarmShaders() {
     );
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(new Array(9).fill(1), 3));
     const materials = createMaterials();
+    const props = createPropMaterials();
+    reflect(gl, materials, props);
     const warm = new THREE.Scene();
     for (const material of Object.values(materials)) warm.add(new THREE.Mesh(geometry, material));
     const air = { rim: '#fff', rimStrength: 1, haze: '#fff', hazeOpacity: 0, height: 1 };
     warm.add(new THREE.Mesh(geometry, atmosphereMaterial(air)));
-    // Prop parts: instanced, with and without per-instance tints. Software tiers draw no props.
+    // Prop parts: instanced, with a per-instance tint where the part takes one. Software tiers
+    // draw no props.
     if (!lowPower(gl))
-      for (const part of ['solid', 'sheen', 'glass', 'glow'] as const)
-        for (const tinted of [false, true]) {
-          const mesh = new THREE.InstancedMesh(geometry, materials[part], 1);
-          if (tinted)
-            mesh.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(3), 3);
-          warm.add(mesh);
-        }
+      for (const [part, material] of Object.entries(props)) {
+        const mesh = new THREE.InstancedMesh(geometry, material, 1);
+        if (part === 'tint' || part === 'metal')
+          mesh.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(3), 3);
+        warm.add(mesh);
+      }
     gl.compileAsync(warm, camera, scene).catch(() => undefined);
   }, [gl, scene, camera]);
 }
@@ -295,6 +338,7 @@ export function LowPolyWorld({
     (q) => buildWorld(id, signals, qualities[q]),
     tier,
     eager,
+    scopeOf(id),
   );
   useMounted(`world:${id}`, model !== null);
   if (!model) return null;
@@ -339,6 +383,7 @@ export function LowPolyBody({
         : buildFeature(selection as Feature, scenario, qualities[q]),
     tier,
     eager,
+    'all',
   );
   useMounted(`body:${scenario}:${selection}`, model !== null);
   if (!model) return null;
@@ -361,17 +406,19 @@ export function LowPolyLandmark({
   size: number;
   reduced: boolean;
 }) {
-  const model = useModel(`landmark:${scenario}:${landmark}`, () =>
+  const kit = useKit('all');
+  const model = useModel(kit ? `landmark:${scenario}:${landmark}` : null, () =>
     buildLandmark(scenario, landmark),
   );
-  useMounted(`landmark:${scenario}:${landmark}`);
-  const fit = model.bounds!;
+  useMounted(`landmark:${scenario}:${landmark}`, model !== null);
   // A slow turntable keeps a standalone study alive without moving the camera.
   const turntable = useRef<THREE.Group>(null);
   const still = useReducedMotionPreference() || reduced;
   useFrame((_, delta) => {
     if (!still && turntable.current) turntable.current.rotation.y += Math.min(delta, 0.05) * 0.25;
   });
+  if (!model) return null;
+  const fit = model.bounds!;
   return (
     <group ref={turntable} scale={size / fit.size}>
       <group position={fit.centre.clone().negate()}>

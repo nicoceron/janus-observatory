@@ -1,35 +1,36 @@
 import * as THREE from 'three';
 import type { Atmosphere, Layer } from './model';
+import { lowPower, studioEnvironment } from './renderer';
 
-export type Surface = 'solid' | 'sheen' | 'glow' | 'cloud' | 'beam';
-export type MaterialSet = Record<Surface | 'glass', THREE.Material>;
-export const surfaces: Surface[] = ['solid', 'sheen', 'glow', 'cloud', 'beam'];
+export type Surface = 'solid' | 'sheen' | 'glass' | 'glow' | 'cloud' | 'beam';
+export type MaterialSet = Record<Surface, THREE.Material>;
+export const surfaces: Surface[] = ['solid', 'sheen', 'glass', 'glow', 'cloud', 'beam'];
 
-/** Materials for every world. Colour lives in vertex colours, so a handful of programs serve all. */
+/**
+ * Materials for every world. Colour lives in vertex colours, so a handful of programs serve all.
+ * Geometry carries its own normals: flat for drawn primitives, as authored for kit models.
+ */
 export function createMaterials(): MaterialSet {
   return {
     glass: new THREE.MeshStandardMaterial({
       vertexColors: true,
-      flatShading: true,
       roughness: 0.18,
       metalness: 0.3,
     }),
     solid: new THREE.MeshStandardMaterial({
       vertexColors: true,
-      flatShading: true,
       roughness: 0.88,
       metalness: 0.02,
     }),
     sheen: new THREE.MeshStandardMaterial({
       vertexColors: true,
-      flatShading: true,
       roughness: 0.42,
       metalness: 0.18,
+      envMapIntensity: 0.55,
     }),
     glow: new THREE.MeshBasicMaterial({ vertexColors: true, toneMapped: false }),
     cloud: new THREE.MeshStandardMaterial({
       vertexColors: true,
-      flatShading: true,
       roughness: 1,
       metalness: 0,
       transparent: true,
@@ -46,6 +47,60 @@ export function createMaterials(): MaterialSet {
     }),
   };
 }
+
+/**
+ * Materials for kit props. Models carry their own bevelled normals and baked colour, so these
+ * are smooth-shaded; glass and metal pick up the scene's environment.
+ */
+export function createPropMaterials(): PropMaterialSet {
+  const matte = () =>
+    new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.78, metalness: 0 });
+  const light = () => new THREE.MeshBasicMaterial({ vertexColors: true, toneMapped: false });
+  return {
+    base: matte(),
+    tint: matte(),
+    glass: new THREE.MeshStandardMaterial({
+      vertexColors: true,
+      roughness: 0.12,
+      metalness: 0.35,
+      envMapIntensity: 1.2,
+    }),
+    metal: new THREE.MeshStandardMaterial({
+      vertexColors: true,
+      roughness: 0.34,
+      metalness: 0.72,
+      envMapIntensity: 1.1,
+    }),
+    glow: light(),
+    lit: light(),
+    pane: new THREE.MeshStandardMaterial({
+      color: '#1b2733',
+      roughness: 0.12,
+      metalness: 0.35,
+      envMapIntensity: 1.2,
+    }),
+  };
+}
+
+/**
+ * Give glass, metal and water something to reflect. Software renderers skip it: they draw no
+ * props, and an extra texture lookup per pixel is CPU work there.
+ */
+export function reflect(gl: THREE.WebGLRenderer, world?: MaterialSet, props?: PropMaterialSet) {
+  if (lowPower(gl)) return;
+  const environment = studioEnvironment(gl);
+  const lit = [world?.glass, world?.sheen, props?.glass, props?.metal, props?.pane];
+  for (const material of lit) {
+    if (!material) continue;
+    (material as THREE.MeshStandardMaterial).envMap = environment;
+    material.needsUpdate = true;
+  }
+}
+
+export type PropMaterialSet = Record<
+  'base' | 'tint' | 'glass' | 'metal' | 'glow' | 'lit' | 'pane',
+  THREE.Material
+>;
 
 export function atmosphereMaterial(atmosphere: Atmosphere) {
   return new THREE.ShaderMaterial({

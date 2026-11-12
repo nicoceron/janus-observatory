@@ -58,7 +58,8 @@ function localScriptSources(html: string): { modern: Set<string>; legacy: Set<st
 
 /**
  * Audit the relative source graph reachable from the home route, including dynamic imports. The
- * low-poly worlds are procedural, so no reachable home source may reference a public asset.
+ * worlds are assembled from the Blender kit (Decision 036), whose packs are named only by the
+ * generated kit manifest; any other public asset reference in a reachable home source fails.
  */
 async function homeAssetSources() {
   const pending = ['apps/web/app/page.tsx', 'apps/web/app/layout.tsx'].map((path) => resolve(path));
@@ -96,15 +97,30 @@ async function homeAssetSources() {
         );
     }
   }
-  for (const [path, source] of sources)
-    if (/\/assets\//.test(source))
+  const references: { path: string; asset: string; kind: string }[] = [];
+  for (const [path, source] of sources) {
+    // A public asset URL starts at the site root. A repository path that merely contains an
+    // `assets` folder (scripts/blender/kit/assets/...) is not one.
+    if (!/(?<![\w.-])\/assets\//.test(source)) continue;
+    if (!path.endsWith('/app/planets/props/kit.generated.json'))
       failUnverified(
         `unexpected home asset reference in ${relative('.', path)}; update the guided-path accounting before accepting it.`,
       );
+    const manifest = JSON.parse(source) as { packs: Record<string, { path: string }> };
+    for (const [name, pack] of Object.entries(manifest.packs)) {
+      if (!/^\/assets\/kit\/v\d+\/kit-[a-z]+\.bin$/.test(pack.path))
+        failUnverified(`kit manifest names an unexpected pack path ${pack.path}.`);
+      references.push({ path: relative('.', path), asset: pack.path, kind: `kit:${name}` });
+    }
+    if (source.replace(/"path":\s*"[^"]+"/g, '').includes('/assets/'))
+      failUnverified('the kit manifest references public assets outside its pack list.');
+  }
   if (![...sources.keys()].some((path) => path.endsWith('/app/planets/catalog.ts')))
-    failUnverified('the procedural world catalog is no longer reachable from the home route.');
+    failUnverified('the world catalog is no longer reachable from the home route.');
+  if (!references.some((reference) => reference.kind === 'kit:core'))
+    failUnverified('the home route no longer reaches the kit manifest and its core pack.');
   return {
-    references: [] as { path: string; asset: string; kind: string }[],
+    references,
     files: [...sources.keys()].map((path) => relative('.', path)).sort(),
   };
 }
@@ -228,9 +244,10 @@ if (oversizedAssets.length > 0) {
   throw new Error(`Runtime assets exceed the 4 MiB guardrail:\n${oversizedAssets.join('\n')}`);
 }
 
-// Both journeys build every world, body and study procedurally, so neither downloads public
-// assets. The individual 4 MiB check above still covers every public file, including legacy
-// imagery and retired Blender exports unreachable from this source graph.
+// Both journeys assemble every world, body and study from the Blender kit, so each downloads
+// every kit pack once (already gzip-compressed on disk) and no other public asset. The
+// individual 4 MiB check above still covers every public file, including legacy imagery and
+// retired exports unreachable from this source graph.
 const homeSources = await homeAssetSources();
 const htmlAssets = new Set([
   ...[...homeHtml.matchAll(/\/assets\/[^"'\\<>\s&?]+/g)].map((match) => match[0]),
@@ -238,10 +255,16 @@ const htmlAssets = new Set([
     decodeURIComponent(match[0]),
   ),
 ]);
+// The one public asset the home HTML may name is the preload hint for the core kit pack.
+const corePackPath = homeSources.references.find(
+  (reference) => reference.kind === 'kit:core',
+)!.asset;
+htmlAssets.delete(corePackPath);
 if (htmlAssets.size)
-  failUnverified('the built home HTML unexpectedly preloads public assets outside the 3D loader.');
-const desktopPublic: string[] = [];
-const mobilePublic: string[] = [];
+  failUnverified('the built home HTML unexpectedly preloads public assets outside the kit loader.');
+const kitPacks = homeSources.references.map((reference) => join(publicRoot, reference.asset));
+const desktopPublic: string[] = [...kitPacks];
+const mobilePublic: string[] = [...kitPacks];
 const publicReport = async (files: string[]) => ({
   assetCount: files.length,
   bytes: (await Promise.all(files.map(async (path) => (await stat(path)).size))).reduce(
@@ -298,7 +321,10 @@ if (criticalStyles.size === 0) {
   failUnverified('home HTML did not expose the critical stylesheet.');
 }
 
-let criticalVisualBytes = gzipSync(Buffer.from(homeHtml)).byteLength;
+// The opening Earth is drawn from the core kit pack, so it counts as a critical visual.
+const corePack = homeSources.references.find((reference) => reference.kind === 'kit:core')!;
+let criticalVisualBytes =
+  gzipSync(Buffer.from(homeHtml)).byteLength + (await stat(join(publicRoot, corePack.asset))).size;
 for (const path of [...criticalImages, ...criticalFonts]) {
   criticalVisualBytes += (await stat(path)).size;
 }
@@ -375,7 +401,7 @@ process.stdout.write(
           .map((path) => '/' + relative(publicRoot, path))
           .sort(),
         assumption:
-          'The low-poly worlds, companions and explorer studies are generated in the browser from canonical values, so both journeys download no public 3D assets. Both totals include every emitted client JS/CSS/WOFF2 and home HTML once; the reported upper bound is their maximum. Unreachable legacy public assets are excluded from this Voyage journey but remain subject to the per-file 4 MiB guardrail. Any /assets/ reference in the reachable home source graph fails closed.',
+          'The worlds, companions and explorer studies are assembled in the browser from the Blender kit packs and canonical values. Both journeys download every kit pack once (counted at its stored, gzip-compressed size) and no other public asset; the core pack also counts toward the critical visual budget. Both totals include every emitted client JS/CSS/WOFF2 and home HTML once; the reported upper bound is their maximum. Unreachable legacy public assets are excluded from this Voyage journey but remain subject to the per-file 4 MiB guardrail. Any /assets/ reference in the reachable home source graph other than the kit manifest fails closed.',
       },
     },
     null,

@@ -1,10 +1,8 @@
 import * as THREE from 'three';
 import { claim, type EarthBrief } from '../earth';
-import { coveredFaces, decades, hazeStrength, lightShare, satelliteCount } from '../encoding';
-import { local } from '../kit';
+import { coveredFaces, decades, hazeStrength, satelliteCount } from '../encoding';
 import type { LayerBuilder } from '../model';
 import { chaoticSwarm } from '../orbits';
-import { mast } from '../parts';
 import { U } from '../props/library';
 import { makeRoute } from '../scene/collect';
 import { flights, harbourLoops, roads, seaLanes } from '../scene/network';
@@ -19,118 +17,16 @@ import { buildTown } from '../scene/towns';
  */
 const companies = ['#d0493a', '#3a68d0', '#e0a52e', '#2e9e6e', '#9a4ad0', '#e0689a'];
 
-export function enclave(
-  layer: LayerBuilder,
-  m: THREE.Matrix4,
-  s: number,
-  colour: string,
-  lit: number,
-  random: () => number,
-) {
-  layer.solid.prism(m, 0.5 * s, 0.5 * s, 0.03 * s, 8, '#8c8780', '#77736d', Math.PI / 8);
-  // Perimeter wall with corner guard towers.
-  for (let i = 0; i < 8; i++) {
-    const a = (i / 8) * Math.PI * 2;
-    const m2 = local(m, Math.cos(a) * 0.5 * s, 0, Math.sin(a) * 0.5 * s, -a + Math.PI / 2);
-    layer.solid.box(m2, 0.4 * s, 0.09 * s, 0.035 * s, '#6f6a63');
-    if (i % 2 === 0) layer.solid.box(m2, 0.07 * s, 0.14 * s, 0.07 * s, '#5c5852');
-  }
-  const towers: [number, number, number][] = [
-    [0, 0, 1.25],
-    [0.22, 0.12, 0.7],
-    [-0.2, 0.16, 0.55],
-    [-0.08, -0.24, 0.8],
-    [0.2, -0.18, 0.5],
-  ];
-  for (const [x, z, h] of towers) {
-    const t = local(m, x * s, 0.03 * s, z * s, random() * 0.3);
-    layer.sheen.box(t, 0.12 * s, h * s, 0.12 * s, colour, '#2d3238');
-    if (random() < lit)
-      layer.glow.box(
-        local(t, 0, h * s * 0.55, 0.061 * s),
-        0.08 * s,
-        h * s * 0.3,
-        0.002 * s,
-        '#ffe3a0',
-      );
-  }
-  layer.sheen.gem(local(m, 0, 1.28 * s, 0), 0.07 * s, 0.25 * s, colour);
+export function enclave(layer: LayerBuilder, m: THREE.Matrix4, s: number, colour: string) {
+  layer.kit('lm-enclave', m, s / 10, { tint: colour });
 }
 
 export function pitMine(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.solid.prism(m, 0.55 * s, 0.5 * s, 0.05 * s, 9, '#a06a42', '#7a4e32');
-  layer.solid.prism(
-    local(m, 0, 0.05 * s, 0),
-    0.42 * s,
-    0.38 * s,
-    0.012 * s,
-    9,
-    '#7a4e32',
-    '#643f29',
-  );
-  layer.solid.prism(
-    local(m, 0, 0.062 * s, 0),
-    0.3 * s,
-    0.26 * s,
-    0.01 * s,
-    9,
-    '#643f29',
-    '#4e3122',
-  );
-  layer.solid.prism(local(m, 0, 0.072 * s, 0), 0.16 * s, 0.14 * s, 0.004 * s, 9, '#2f3c3f');
-  layer.solid.prism(local(m, 0.7 * s, 0, 0.1 * s), 0.25 * s, 0, 0.22 * s, 6, '#b27a4d');
-  layer.solid.box(
-    local(m, 0.35 * s, 0.05 * s, -0.3 * s, 0.4),
-    0.14 * s,
-    0.07 * s,
-    0.08 * s,
-    '#e0b030',
-    '#c79a28',
-  );
+  layer.kit('lm-pit-mine', m, s / 10);
 }
 
 export function offshoreRig(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  for (const [x, z] of [
-    [-1, -1],
-    [1, -1],
-    [1, 1],
-    [-1, 1],
-  ])
-    layer.solid.prism(
-      local(m, x * 0.2 * s, 0, z * 0.2 * s),
-      0.035 * s,
-      0.035 * s,
-      0.35 * s,
-      5,
-      '#8f8a82',
-    );
-  layer.solid.box(local(m, 0, 0.35 * s, 0), 0.6 * s, 0.07 * s, 0.6 * s, '#cc5a33', '#6c6c6c');
-  layer.solid.box(
-    local(m, -0.12 * s, 0.42 * s, -0.1 * s),
-    0.25 * s,
-    0.14 * s,
-    0.22 * s,
-    '#e6e0d4',
-    '#bbb4a6',
-  );
-  mast(layer.solid, local(m, 0.15 * s, 0.42 * s, 0.15 * s), 0.55 * s, '#d9c24a');
-  layer.solid.prism(
-    local(m, -0.25 * s, 0.42 * s, 0.25 * s, 0, 1, [0.5, 0]),
-    0.018 * s,
-    0.018 * s,
-    0.4 * s,
-    4,
-    '#6a6a6a',
-  );
-  layer.glow.gem(
-    local(m, -0.25 * s, 0.42 * s, 0.25 * s, 0, 1, [0.5, 0]).multiply(
-      new THREE.Matrix4().makeTranslation(0, 0.4 * s, 0),
-    ),
-    0.05 * s,
-    0.16 * s,
-    '#ff8a2a',
-    5,
-  );
+  layer.kit('lm-offshore-rig', m, s / 10);
 }
 
 export const s2: EarthBrief = {
@@ -206,7 +102,6 @@ export const s2: EarthBrief = {
       4,
       { spacing: 40, escort: ['mech', 1, [1, 1], companies], escorts: 1 },
     );
-    const lit = lightShare(earth.artificial_illumination);
     const land = faces.filter((f) => f.land && f.biome !== 'ice');
 
     // Rival enclaves first: walled company towns, each in its own colour.
@@ -279,8 +174,6 @@ export const s2: EarthBrief = {
         world.on(hq, random() * 6, 1, -0.002),
         0.14,
         companies[0],
-        lit,
-        random,
       );
 
     // Outside the walls: shanty towns, markets and tent lines.

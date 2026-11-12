@@ -1,11 +1,10 @@
 import * as THREE from 'three';
 import { claim, type EarthBrief } from '../earth';
 import { coveredFaces, hazeStrength, lightShare, satelliteCount } from '../encoding';
-import { frame, local } from '../kit';
+import { frame } from '../kit';
 import type { Face } from '../globe';
 import type { LayerBuilder, WorldContext } from '../model';
 import { orderedSwarm } from '../orbits';
-import { stack, tank } from '../parts';
 import type { Tone } from '../kit';
 import { U } from '../props/library';
 import { makeRoute } from '../scene/collect';
@@ -36,63 +35,16 @@ function plate(world: WorldContext, face: Face, tone: string) {
 }
 
 export function regulator(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.solid.prism(m, 0.55 * s, 0.52 * s, 0.05 * s, 8, '#5f6874', '#7d8894');
-  layer.sheen.dome(local(m, 0, 0.05 * s, 0), 0.22 * s, '#b9c6d1', 10, 2);
-  layer.glow.prism(local(m, 0, 0.05 * s, 0), 0.23 * s, 0.23 * s, 0.015 * s, 10, '#ffb03a');
-  for (let i = 0; i < 4; i++) {
-    const a = (i / 4) * Math.PI * 2 + Math.PI / 4;
-    const t = local(m, Math.cos(a) * 0.38 * s, 0.05 * s, Math.sin(a) * 0.38 * s);
-    tank(layer.sheen, t, 0.09 * s, 0.22 * s, '#9aa6b1');
-    layer.solid.beam(
-      new THREE.Vector3(0, 0.12 * s, 0).applyMatrix4(m),
-      new THREE.Vector3(0, 0.12 * s, 0).applyMatrix4(t),
-      0.02 * s,
-      '#b48a4a',
-    );
-    layer.glow.box(local(t, 0, 0.3 * s, 0), 0.03 * s, 0.03 * s, 0.03 * s, '#ff5a3a');
-  }
+  layer.kit('lm-regulator', m, s / 10);
 }
 
 export function thermalStack(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.solid.prism(m, 0.5 * s, 0.5 * s, 0.03 * s, 6, '#5f6874');
-  for (const [x, z, h] of [
-    [-0.2, 0, 0.8],
-    [0.22, 0.12, 0.65],
-    [0.05, -0.28, 0.55],
-  ]) {
-    stack(layer.solid, local(m, x * s, 0.03 * s, z * s), 0.14 * s, h * s, '#a3a9ad');
-    layer.cloud.blob(
-      local(m, x * s, (h + 0.12) * s, z * s),
-      0.12 * s,
-      '#d4d69a',
-      0.3,
-      Math.round(h * 100),
-    );
-    layer.cloud.blob(
-      local(m, (x + 0.05) * s, (h + 0.26) * s, z * s),
-      0.09 * s,
-      '#c9cb8a',
-      0.3,
-      Math.round(h * 200),
-    );
-  }
+  layer.kit('lm-thermal-stack', m, s / 10);
 }
 
 /** A blade-shaped regulator hanging point-down from a single thread. */
 export function hangingRegulator(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.sheen.gem(local(m, 0, 0, 0), 0.06 * s, 0.62 * s, '#d9e2ea', 4, 0.9);
-  layer.glow.gem(local(m, 0, 0.3 * s, 0), 0.02 * s, 0.34 * s, '#ffcf6a', 4, 0.7);
-  layer.sheen.box(local(m, 0, 0.56 * s, 0), 0.34 * s, 0.035 * s, 0.07 * s, '#aeb8c2');
-  layer.sheen.prism(local(m, 0, 0.6 * s, 0), 0.03 * s, 0.03 * s, 0.14 * s, 6, '#8d97a1');
-  layer.sheen.dome(local(m, 0, 0.74 * s, 0), 0.045 * s, '#aeb8c2', 6, 1);
-  layer.glow.beam(
-    new THREE.Vector3(0, 0.78 * s, 0).applyMatrix4(m),
-    new THREE.Vector3(0, 1.08 * s, 0).applyMatrix4(m),
-    0.004 * s,
-    '#fff2c8',
-    4,
-  );
-  layer.sheen.torus(local(m, 0, 1.08 * s, 0), 0.12 * s, 0.022 * s, '#c9d1d8', 16, 4);
+  layer.kit('lm-hanging-regulator', m, s / 10);
 }
 
 export const s6: EarthBrief = {

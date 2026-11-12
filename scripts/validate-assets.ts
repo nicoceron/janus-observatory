@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { readFile, readdir } from 'node:fs/promises';
 import { extname, relative, resolve, sep } from 'node:path';
+import { gunzipSync } from 'node:zlib';
 
 import { AssetLedgerSchema, type AssetLedgerEntry } from '@janus/domain/asset';
 
@@ -118,8 +119,29 @@ function inspectGlb(contents: Buffer): InspectedMedia {
   return { mimeType: 'model/gltf-binary' };
 }
 
+/** A Janus kit pack (scripts/blender/kit/export.py): gzip of "JKIT", version, JSON header. */
+function inspectKitPack(contents: Buffer): InspectedMedia {
+  if (contents[0] !== 0x1f || contents[1] !== 0x8b) throw new Error('Kit pack is not gzip data.');
+  const raw = gunzipSync(contents);
+  if (raw.toString('ascii', 0, 4) !== 'JKIT') throw new Error('Invalid kit pack signature.');
+  if (raw.readUInt32LE(4) !== 1) throw new Error('Unsupported kit pack version.');
+  const header = JSON.parse(raw.toString('utf8', 12, 12 + raw.readUInt32LE(8))) as {
+    kinds: Record<string, { parts: Record<string, [number, number, number]> }>;
+  };
+  const payload = raw.length - 12 - raw.readUInt32LE(8);
+  for (const [kind, { parts }] of Object.entries(header.kinds))
+    for (const [part, [vertices, triangles, offset]] of Object.entries(parts)) {
+      const bytes = vertices * 12 + (vertices % 2) + triangles * 6;
+      if (offset + bytes > payload)
+        throw new Error(`Kit pack model ${kind}/${part} runs past the end of the pack.`);
+    }
+  if (!Object.keys(header.kinds).length) throw new Error('Kit pack holds no models.');
+  return { mimeType: 'application/x-janus-kit' };
+}
+
 function inspectMedia(path: string, contents: Buffer): InspectedMedia {
   const extension = extname(path).toLowerCase();
+  if (extension === '.bin') return inspectKitPack(contents);
   if (extension === '.webp') return inspectWebp(contents);
   if (extension === '.jpg' || extension === '.jpeg') return inspectJpeg(contents);
   if (extension === '.glb') return inspectGlb(contents);
@@ -136,6 +158,7 @@ function assertExpectedMedia(entry: AssetLedgerEntry, media: InspectedMedia) {
   if (
     entry.kind === 'model' &&
     media.mimeType !== 'model/gltf-binary' &&
+    media.mimeType !== 'application/x-janus-kit' &&
     !media.mimeType.startsWith('image/')
   ) {
     throw new Error(

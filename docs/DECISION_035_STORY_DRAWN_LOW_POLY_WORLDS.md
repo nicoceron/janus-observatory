@@ -1,5 +1,10 @@
 # Decision 035 — Story-drawn low-poly worlds
 
+> Superseded in part by [Decision 036](DECISION_036_BLENDER_KIT.md) (2026-11-12): every code-drawn
+> model described below is now an authored Blender kit model, and the toy proportions, town
+> layout and lighting rules are revised there. The world recipes and published-value encodings
+> below remain current.
+
 2026-09-30, merged with `main` on 2026-10-01. Supersedes the planet, companion and
 explorer-study artwork of Decisions 014–020 and 028, and the planet artwork of Decision 034
 (contour coastlines and grounded sites). Decision 034's site and journey polish (labels,

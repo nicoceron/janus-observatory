@@ -2,7 +2,13 @@ import { useFrame, useThree, type ThreeEvent } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { useReducedMotionPreference } from '../components/MotionPreference';
-import { atmosphereMaterial, createMaterials, surfaces } from './materials';
+import {
+  atmosphereMaterial,
+  createMaterials,
+  createPropMaterials,
+  reflect,
+  surfaces,
+} from './materials';
 import type { Layer, WorldModel } from './model';
 import { InstanceView, MoverView, type PropMaterials } from './Instances';
 
@@ -33,17 +39,10 @@ export function ModelView({
   onSelect?: (landmark: string) => void;
 }) {
   const materials = useMemo(() => createMaterials(), []);
-  const propMaterials = useMemo<PropMaterials>(
-    () => ({
-      base: materials.solid,
-      tint: materials.solid,
-      glass: materials.glass,
-      metal: materials.sheen,
-      glow: materials.glow,
-    }),
-    [materials],
-  );
+  const propMaterials = useMemo<PropMaterials>(() => createPropMaterials(), []);
   const invalidate = useThree((state) => state.invalidate);
+  const gl = useThree((state) => state.gl);
+  useEffect(() => reflect(gl, materials, propMaterials), [gl, materials, propMaterials]);
   const wake = useRef<number | null>(null);
   const pace = useRef(33);
   useEffect(
@@ -57,7 +56,7 @@ export function ModelView({
     [model.atmosphere],
   );
   const shell = useMemo(
-    () => (model.atmosphere ? new THREE.IcosahedronGeometry(model.atmosphere.height, 3) : null),
+    () => (model.atmosphere ? new THREE.SphereGeometry(model.atmosphere.height, 64, 32) : null),
     [model.atmosphere],
   );
   const pulses = useMemo(
@@ -72,9 +71,10 @@ export function ModelView({
   useEffect(
     () => () => {
       for (const material of Object.values(materials)) material.dispose();
+      for (const material of Object.values(propMaterials)) material.dispose();
       for (const material of pulses.values()) material.dispose();
     },
-    [materials, pulses],
+    [materials, propMaterials, pulses],
   );
   useEffect(
     () => () => {
@@ -157,10 +157,21 @@ export function ModelView({
       <group ref={planet} rotation={[0, -THREE.MathUtils.degToRad(model.facing), 0]}>
         {model.layers.filter((layer) => layer.frame === 'surface').map(view)}
         {model.instances.map((group) => (
-          <InstanceView key={group.kind} group={group} materials={propMaterials} />
+          <InstanceView
+            key={group.kind}
+            group={group}
+            materials={propMaterials}
+            unlit={model.unlit}
+          />
         ))}
         {model.movers.map((group) => (
-          <MoverView key={group.kind} group={group} materials={propMaterials} clock={clock} />
+          <MoverView
+            key={group.kind}
+            group={group}
+            materials={propMaterials}
+            clock={clock}
+            unlit={model.unlit}
+          />
         ))}
       </group>
       {model.layers.filter((layer) => layer.frame === 'orbit').map(view)}

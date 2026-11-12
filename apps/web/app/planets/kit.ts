@@ -13,9 +13,14 @@ const scratch = new THREE.Color();
  * Accumulates flat, vertex-coloured triangles. Every primitive is authored in a local frame
  * (base on y = 0, up = +y) and placed with a matrix, so one draw call can hold a whole district.
  */
+const normalMatrix = new THREE.Matrix3();
+const tint = new THREE.Color();
+
 export class Mesher {
   private position: number[] = [];
   private color: number[] = [];
+  /** Per-vertex normals: flat for drawn primitives, as authored for kit models. */
+  private normal: number[] = [];
   private random: Random;
   /** Per-triangle lightness jitter, the signature of hand-painted low-poly surfaces. */
   variance: number;
@@ -39,6 +44,25 @@ export class Mesher {
     const colour = this.paint(tone);
     this.position.push(a.x, a.y, a.z, b.x, b.y, b.z, c.x, c.y, c.z);
     for (let i = 0; i < 3; i++) this.color.push(colour.r, colour.g, colour.b);
+    this.face(a, b, c);
+  }
+
+  /** The flat normal of a triangle, written for each of its corners. */
+  private face(a: THREE.Vector3, b: THREE.Vector3, c: THREE.Vector3) {
+    const ux = b.x - a.x,
+      uy = b.y - a.y,
+      uz = b.z - a.z;
+    const vx = c.x - a.x,
+      vy = c.y - a.y,
+      vz = c.z - a.z;
+    let nx = uy * vz - uz * vy,
+      ny = uz * vx - ux * vz,
+      nz = ux * vy - uy * vx;
+    const length = Math.hypot(nx, ny, nz) || 1;
+    nx /= length;
+    ny /= length;
+    nz /= length;
+    this.normal.push(nx, ny, nz, nx, ny, nz, nx, ny, nz);
   }
 
   quad(a: THREE.Vector3, b: THREE.Vector3, c: THREE.Vector3, d: THREE.Vector3, tone: Tone) {
@@ -47,6 +71,32 @@ export class Mesher {
     const [r, g, blue] = this.color.slice(-3);
     this.position.push(a.x, a.y, a.z, c.x, c.y, c.z, d.x, d.y, d.z);
     this.color.push(r, g, blue, r, g, blue, r, g, blue);
+    this.face(a, c, d);
+  }
+
+  /**
+   * Append a kit model part, placed by `m`. Its authored normals and baked colours are kept;
+   * `tone` multiplies the colours, as a per-instance tint does for props.
+   */
+  model(geometry: THREE.BufferGeometry | undefined, m: THREE.Matrix4, tone?: Tone) {
+    if (!geometry) return;
+    const position = geometry.getAttribute('position'),
+      normal = geometry.getAttribute('normal'),
+      colour = geometry.getAttribute('color');
+    const index = geometry.getIndex();
+    const count = index ? index.count : position.count;
+    normalMatrix.getNormalMatrix(m);
+    if (tone !== undefined) tint.set(tone);
+    for (let i = 0; i < count; i++) {
+      const v = index ? index.getX(i) : i;
+      va.fromBufferAttribute(position, v).applyMatrix4(m);
+      vb.fromBufferAttribute(normal, v).applyMatrix3(normalMatrix).normalize();
+      this.position.push(va.x, va.y, va.z);
+      this.normal.push(vb.x, vb.y, vb.z);
+      if (tone !== undefined)
+        this.color.push(colour.getX(v) * tint.r, colour.getY(v) * tint.g, colour.getZ(v) * tint.b);
+      else this.color.push(colour.getX(v), colour.getY(v), colour.getZ(v));
+    }
   }
 
   private ring(m: THREE.Matrix4, radius: number, y: number, sides: number, turn = 0) {
@@ -177,15 +227,16 @@ export class Mesher {
   }
 
   append(other: Mesher) {
-    this.position.push(...other.position);
-    this.color.push(...other.color);
+    for (const v of other.position) this.position.push(v);
+    for (const v of other.color) this.color.push(v);
+    for (const v of other.normal) this.normal.push(v);
   }
 
   geometry() {
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(this.position, 3));
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(this.color, 3));
-    geometry.computeVertexNormals();
+    geometry.setAttribute('normal', new THREE.Float32BufferAttribute(this.normal, 3));
     geometry.computeBoundingSphere();
     return geometry;
   }

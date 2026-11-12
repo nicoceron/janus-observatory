@@ -1,9 +1,7 @@
 import * as THREE from 'three';
 import type { EarthBrief } from '../earth';
 import { satelliteCount } from '../encoding';
-import { local } from '../kit';
 import { onOrbit, orbitMatrix, type LayerBuilder } from '../model';
-import { tree } from '../parts';
 import type { Tone } from '../kit';
 import { U } from '../props/library';
 import { harbourLoops, roads } from '../scene/network';
@@ -17,74 +15,17 @@ import { buildTown, type TownStyle } from '../scene/towns';
  * technological proponents and opponents. Earth is restored under growth limits while autonomous
  * systems expand through orbital and deep space."
  */
-export function habitat(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  const axis = m
-    .clone()
-    .multiply(new THREE.Matrix4().makeRotationZ(Math.PI / 2))
-    .multiply(new THREE.Matrix4().makeTranslation(0, -0.5 * s, 0));
-  layer.sheen.prism(axis, 0.16 * s, 0.16 * s, s, 10, '#eef1f4');
-  for (const y of [0.25, 0.5, 0.75])
-    layer.solid.prism(
-      local(axis, 0, (y - 0.03) * s, 0),
-      0.165 * s,
-      0.165 * s,
-      0.06 * s,
-      10,
-      '#6fcf7a',
-    );
-  layer.glow.prism(local(axis, 0, s, 0), 0.1 * s, 0.1 * s, 0.01 * s, 10, '#fff1c4');
-  layer.glow.prism(local(axis, 0, -0.01 * s, 0), 0.1 * s, 0.1 * s, 0.01 * s, 10, '#fff1c4');
-  for (const side of [-1, 1])
-    layer.sheen.panel(
-      local(m, 0, 0, side * 0.34 * s, 0, 1, [0.2 * side, 0]),
-      0.8 * s,
-      0.3 * s,
-      '#d6b34f',
-      '#eef1f4',
-    );
+/** A habitat cylinder; `far` draws the light model used for the rest of a ring of twelve. */
+export function habitat(layer: LayerBuilder, m: THREE.Matrix4, s: number, far = false) {
+  layer.kit(far ? 'habitat-far' : 'lm-habitat', m, s / 10);
 }
 
 export function lightSail(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.sheen.prism(m, 0.03 * s, 0.015 * s, 0.5 * s, 6, '#eef1f4');
-  layer.glow.gem(local(m, 0, -0.08 * s, 0), 0.03 * s, 0.1 * s, '#9fe0ff', 4);
-  const sail = local(m, 0, 0.55 * s, 0, 0.785, 1, [0.35, 0]);
-  layer.sheen.panel(sail, 0.8 * s, 0.8 * s, '#e8c86a', '#c9a24a');
-  for (const [x, z] of [
-    [-0.4, -0.4],
-    [0.4, -0.4],
-    [0.4, 0.4],
-    [-0.4, 0.4],
-  ])
-    layer.sheen.beam(
-      new THREE.Vector3(0, 0.5 * s, 0).applyMatrix4(m),
-      new THREE.Vector3(x * s, 0, z * s).applyMatrix4(sail),
-      0.004 * s,
-      '#c9cdd2',
-    );
+  layer.kit('lm-light-sail', m, s / 10);
 }
 
-export function grove(layer: LayerBuilder, m: THREE.Matrix4, s: number, random: () => number) {
-  layer.solid.prism(m, 0.5 * s, 0.48 * s, 0.02 * s, 9, '#7fc05a');
-  for (let i = 0; i < 7; i++) {
-    const a = (i / 7) * Math.PI * 2 + random();
-    const r = (i === 0 ? 0 : 0.28) * s;
-    tree(
-      layer.solid,
-      local(m, Math.cos(a) * r, 0.02 * s, Math.sin(a) * r),
-      i === 0 ? 'round' : i % 2 ? 'tall' : 'round',
-      i % 3 ? '#2c8c4f' : '#1f7f47',
-      (i === 0 ? 0.55 : 0.32) * s,
-      '#7a5230',
-    );
-  }
-  for (let i = 0; i < 6; i++)
-    layer.solid.blob(
-      local(m, (random() - 0.5) * 0.8 * s, 0.03 * s, (random() - 0.5) * 0.8 * s),
-      0.04 * s,
-      i % 2 ? '#f0a8c8' : '#f6d36a',
-      0.3,
-      i + 21,
-    );
+export function grove(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
+  layer.kit('lm-grove', m, s / 10);
 }
 
 export const s10: EarthBrief = {
@@ -160,7 +101,7 @@ export const s10: EarthBrief = {
         face.tone = random() < 0.55 ? '#f0a8c8' : '#f6d36a';
     const valley = world.faceAt(-24, 146);
     valley.used = true;
-    grove(world.layer('grove', 'surface', { landmark: 'grove' }), world.on(valley), 0.12, random);
+    grove(world.layer('grove', 'surface', { landmark: 'grove' }), world.on(valley), 0.12);
 
     // Those who stayed: small timber villages under growth limits, horse carts and footpaths.
     const wool: Tone[] = ['#b3824f', '#8f9a6a', '#d8c39a', '#6a7a8a', '#c9a06a'];
@@ -256,7 +197,7 @@ export const s10: EarthBrief = {
     });
     const habitats = 12;
     for (let i = 0; i < habitats; i++)
-      habitat(ring, onOrbit(1.42, (i / habitats) * Math.PI * 2), 0.12);
+      habitat(ring, onOrbit(1.42, (i / habitats) * Math.PI * 2), 0.12, i > 0);
     const drones = world.layer('autonomy', 'orbit', {
       matrix: ringMatrix,
       motion: { kind: 'spin', speed: 0.05 },
@@ -267,8 +208,10 @@ export const s10: EarthBrief = {
         (i / (count - habitats)) * Math.PI * 2 + 0.13,
         ((i % 5) - 2) * 0.015,
       );
-      drones.sheen.gem(m, 0.006, 0.02, '#eef1f4', 3);
-      if (i % 4 === 0) drones.glow.box(m, 0.004, 0.004, 0.004, '#9fe0ff');
+      drones.kit(drones.lean ? 'sat-speck' : 'sat-mini', m, 0.011, {
+        tint: '#eef1f4',
+        lights: i % 4 === 0,
+      });
     }
     const sail = world.layer('departure', 'orbit', {
       landmark: 'departure',

@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import type { Face } from '../globe';
 import type { Tone } from '../kit';
 import type { WorldContext } from '../model';
-import { propFootprint, propHeight, U } from '../props/library';
+import { propFootprint, propHeight, propScale, U } from '../props/library';
 import { ribbon } from './collect';
 import { offset, tangents } from './surface';
 import type { Pick } from './towns';
@@ -90,13 +90,15 @@ export function harbour(
   const seaward = coast.up.clone().sub(shore.up);
   const edge = shore.up.clone().lerp(coast.up, 0.5).normalize();
   if (world.random() < 0.5)
-    world.props.add('dock', world.surface.point(edge, -0.0015), seaward, 0.55);
+    world.props.add('dock', world.surface.point(edge, -0.0015), seaward, 0.55, undefined, true);
   if (kit.crane) {
     world.props.add(
       'harbor-crane',
       world.surface.point(offset(shore.up, 0.5, 2.5 * U), -0.0004),
       seaward,
       1.1,
+      undefined,
+      true,
     );
     world.props.add(
       'containers',
@@ -177,8 +179,11 @@ export function setPieces(
   sites.forEach((face, i) => {
     const pick = picks[i % picks.length];
     const [lo, hi] = pick[2] ?? [1, 1];
-    const extent = Math.max(propHeight(pick[0]), propFootprint(pick[0]));
-    const size = ((options.reach ?? 0.32) / U / extent) * (lo + (hi - lo) * world.random());
+    // `reach` is the drawn size, so the kind's own toy exaggeration is taken out of it; and a
+    // set piece is never blown up past twice its neighbours, or it stops belonging to the world.
+    const extent = Math.max(propHeight(pick[0]), propFootprint(pick[0])) * propScale(pick[0]);
+    const size =
+      Math.min(2, (options.reach ?? 0.32) / U / extent) * (lo + (hi - lo) * world.random());
     world.props.add(
       pick[0],
       world.surface.point(face.up, -0.001),
@@ -220,8 +225,8 @@ export function ring(
     const a = (i / count) * Math.PI * 2;
     const dir = offset(centre, a, radius);
     if (!world.surface.land(dir)) continue;
-    const next = offset(centre, a + 0.1, radius);
-    world.props.add(kind, world.surface.point(dir, -0.0004), next.sub(dir), size, tint);
+    // Each piece runs along the ring, so it faces outward.
+    world.props.add(kind, world.surface.point(dir, -0.0004), dir.clone().sub(centre), size, tint);
   }
 }
 

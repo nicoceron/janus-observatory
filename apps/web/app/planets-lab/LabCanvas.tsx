@@ -1,7 +1,7 @@
 'use client';
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei/core/OrbitControls';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import * as THREE from 'three';
 import type { WorldSignals } from '../../lib/world-signals';
 import { buildCompanion, buildFeature, type Companion, type Feature } from '../planets/bodies';
@@ -9,8 +9,9 @@ import { buildWorld, worldIds } from '../planets/catalog';
 import { ModelView } from '../planets/ModelView';
 import { qualities, type WorldModel } from '../planets/model';
 import { InstanceView, type PropMaterials } from '../planets/Instances';
-import { createMaterials } from '../planets/materials';
-import { propGeometry, propKinds, propTint } from '../planets/props/library';
+import { createPropMaterials, reflect } from '../planets/materials';
+import { propCentre, propKinds, propSize, propTint } from '../planets/props/library';
+import { kitReady, loadKit, subscribeKit } from '../planets/props/pack';
 
 function Model({
   build,
@@ -33,17 +34,9 @@ function Model({
 
 /** Every library prop on a grid, scaled up so its construction can be reviewed. */
 function Gallery({ only }: { only?: string }) {
-  const materials = useMemo(() => createMaterials(), []);
-  const parts = useMemo<PropMaterials>(
-    () => ({
-      base: materials.solid,
-      tint: materials.solid,
-      glass: materials.glass,
-      metal: materials.sheen,
-      glow: materials.glow,
-    }),
-    [materials],
-  );
+  const parts = useMemo<PropMaterials>(() => createPropMaterials(), []);
+  const gl = useThree((state) => state.gl);
+  useEffect(() => reflect(gl, undefined, parts), [gl, parts]);
   const groups = useMemo(() => {
     const shown = only ? propKinds.filter((k) => only.split(',').includes(k)) : propKinds;
     const columns = Math.min(14, Math.ceil(Math.sqrt(shown.length * 1.6)));
@@ -63,19 +56,14 @@ function Gallery({ only }: { only?: string }) {
       'crop',
     ];
     return shown.map((kind, i) => {
-      const box = new THREE.Box3();
-      for (const geometry of Object.values(propGeometry(kind))) {
-        geometry!.computeBoundingBox();
-        box.union(geometry!.boundingBox!);
-      }
-      const size = box.getSize(new THREE.Vector3());
-      const scale = 1.15 / Math.max(size.x, size.y, size.z);
+      const scale = 1.15 / propSize(kind);
+      const centre = propCentre(kind).multiplyScalar(scale);
       const m = new THREE.Matrix4()
         .makeScale(scale, scale, scale)
         .setPosition(
-          ((i % columns) - (columns - 1) / 2) * 1.35,
-          ((rows - 1) / 2) * 1.5 - Math.floor(i / columns) * 1.5,
-          0,
+          ((i % columns) - (columns - 1) / 2) * 1.35 - centre.x,
+          ((rows - 1) / 2) * 1.5 - Math.floor(i / columns) * 1.5 - centre.y,
+          -centre.z,
         );
       const tint = new THREE.Color(
         leafy.some((k) => kind.startsWith(k)) ? '#4f8f3e' : propTint(kind),
@@ -114,6 +102,9 @@ function Animate() {
 type Item = { key: string; build: () => WorldModel };
 
 export default function LabCanvas({ signals }: { signals: WorldSignals[] }) {
+  useEffect(() => {
+    void loadKit();
+  }, []);
   // Rendered client-only, so the query is available on the first render.
   const [query] = useState(() => new URLSearchParams(location.search));
   const items = useMemo<Item[]>(() => {
@@ -162,6 +153,11 @@ export default function LabCanvas({ signals }: { signals: WorldSignals[] }) {
       .filter((s) => worldIds.includes(s.id))
       .map((s) => ({ key: s.id, build: () => buildWorld(s.id, s, qualities.story) }));
   }, [query, signals]);
+  const ready = useSyncExternalStore(
+    subscribeKit,
+    () => kitReady('all'),
+    () => false,
+  );
   const single = items.length === 1;
   const zoom = Number(query?.get('zoom') ?? 1);
   const columns = query?.get('system') ? 4 : 4;
@@ -193,7 +189,8 @@ export default function LabCanvas({ signals }: { signals: WorldSignals[] }) {
           only={query.get('props') === '1' ? undefined : (query.get('props') ?? undefined)}
         />
       )}
-      {items.map((item, i) =>
+      {/* Worlds are assembled from every kit pack, so nothing is built until all have landed. */}
+      {(ready ? items : []).map((item, i) =>
         single ? (
           <Model key={item.key} build={item.build} x={0} y={0} size={4.2 * zoom} />
         ) : (

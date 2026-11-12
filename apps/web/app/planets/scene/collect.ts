@@ -59,7 +59,7 @@ export function standing(point: THREE.Vector3, forward: THREE.Vector3 | null, sc
  * until the budget fits, so every settlement keeps a few buildings rather than some vanishing.
  */
 const budgets: Record<PropGroup, number> = {
-  structure: 45,
+  structure: 60,
   vehicle: 6,
   person: 12,
   robot: 10,
@@ -74,6 +74,64 @@ const TOUCH = 0.8;
 /** A sphere that props keep out of, e.g. a landmark drawn as its own layer. */
 export type KeepOut = { centre: THREE.Vector3; radius: number };
 
+/** A strip of ground that traffic uses: a road, street or rail of half-width `half` (radii). */
+export type Lane = { points: THREE.Vector3[]; half: number };
+
+const LANE_CELL = 0.08;
+const LANE_STEP = 0.004;
+
+/** Lanes as unit-sphere samples in a grid, so each prop only tests the road near it. */
+function laneIndex(lanes: Lane[]) {
+  const cells = new Map<string, number[]>();
+  const add = (p: THREE.Vector3, half: number) => {
+    const key = `${Math.floor(p.x / LANE_CELL)},${Math.floor(p.y / LANE_CELL)},${Math.floor(p.z / LANE_CELL)}`;
+    const list = cells.get(key);
+    if (list) list.push(p.x, p.y, p.z, half);
+    else cells.set(key, [p.x, p.y, p.z, half]);
+  };
+  const a = new THREE.Vector3(),
+    b = new THREE.Vector3(),
+    p = new THREE.Vector3();
+  for (const lane of lanes)
+    for (let i = 0; i < lane.points.length; i++) {
+      a.copy(lane.points[i]).normalize();
+      add(a, lane.half);
+      if (i + 1 === lane.points.length) break;
+      b.copy(lane.points[i + 1]).normalize();
+      const steps = Math.floor(a.distanceTo(b) / LANE_STEP);
+      for (let k = 1; k <= steps; k++)
+        add(p.lerpVectors(a, b, k / (steps + 1)).normalize(), lane.half);
+    }
+  const unit = new THREE.Vector3();
+  /** Whether a prop of footprint `radius` at `position` stands in a lane. */
+  return (position: THREE.Vector3, radius: number) => {
+    if (!cells.size) return false;
+    unit.copy(position).normalize();
+    const reach = Math.ceil((radius + 0.03) / LANE_CELL);
+    const cx = Math.floor(unit.x / LANE_CELL),
+      cy = Math.floor(unit.y / LANE_CELL),
+      cz = Math.floor(unit.z / LANE_CELL);
+    for (let x = -reach; x <= reach; x++)
+      for (let y = -reach; y <= reach; y++)
+        for (let z = -reach; z <= reach; z++) {
+          const list = cells.get(`${cx + x},${cy + y},${cz + z}`);
+          if (!list) continue;
+          for (let i = 0; i < list.length; i += 4) {
+            const limit = list[i + 3] + Math.min(radius, LANE_BODY) * LANE_FIT;
+            const dx = list[i] - unit.x,
+              dy = list[i + 1] - unit.y,
+              dz = list[i + 2] - unit.z;
+            if (dx * dx + dy * dy + dz * dz < limit * limit) return true;
+          }
+        }
+    return false;
+  };
+}
+/** Footprints are bounding half-widths, so only a prop well into the roadway counts as on it. */
+const LANE_FIT = 0.5;
+/** Long props (a crane's boom, a dock) are far narrower than their bounding half-width. */
+const LANE_BODY = 1.4 * U;
+
 type Entry = {
   kind: string;
   group: PropGroup;
@@ -81,6 +139,8 @@ type Entry = {
   tint: [number, number, number];
   position: THREE.Vector3;
   radius: number;
+  /** Placed on purpose where traffic runs, e.g. a rail pylon or a gate. */
+  free: boolean;
 };
 
 function clear(entry: Entry, pool: Entry[], spacing: number) {
@@ -91,15 +151,27 @@ function clear(entry: Entry, pool: Entry[], spacing: number) {
   return true;
 }
 
-/** Keep props from overlapping each other or a landmark, within each group's budget. */
-function declutter(entries: Entry[], density: number, keepOut: KeepOut[]) {
+/** Keep props off roads and from overlapping each other or a landmark, within group budgets. */
+function declutter(entries: Entry[], density: number, keepOut: KeepOut[], lanes: Lane[]) {
   const kept: Entry[] = [];
+  const onLane = laneIndex(lanes);
   for (const group of order) {
     const budget = Math.max(1, Math.round(budgets[group] * density));
+    if ((globalThis as { KIT_DEBUG?: boolean }).KIT_DEBUG) {
+      const mine = entries.filter((e) => e.group === group);
+      const tally: Record<string, string> = {};
+      for (const kind of new Set(mine.map((e) => e.kind)))
+        tally[kind] =
+          `${mine.filter((e) => e.kind === kind && !e.free && onLane(e.position, e.radius)).length}` +
+          `/${mine.filter((e) => e.kind === kind).length}`;
+      console.log('DEBUG', group, 'budget', budget, JSON.stringify(tally));
+    }
     const free = entries.filter(
       (e) =>
         e.group === group &&
         keepOut.every((k) => k.centre.distanceToSquared(e.position) > k.radius * k.radius) &&
+        // People may stand in a street; buildings, trees and herds may not.
+        (e.free || group === 'person' || !onLane(e.position, e.radius)) &&
         clear(e, kept, TOUCH),
     );
     // Accept in recipe order with a given spacing; stop early once the budget is exceeded.
@@ -137,12 +209,22 @@ export class Props {
     private furnish = true,
   ) {}
 
-  /** Place a prop: `size` is in person units (1 = one citizen tall). */
-  add(kind: string, point: THREE.Vector3, forward: THREE.Vector3 | null, size = 1, tint?: Tone) {
-    this.addMatrix(kind, standing(point, forward, size * U * propScale(kind)), tint);
+  /**
+   * Place a prop: `size` is in person units (1 = one citizen tall). `free` lets it stand where
+   * traffic runs (a rail pylon, a gate); everything else is kept off roads and streets.
+   */
+  add(
+    kind: string,
+    point: THREE.Vector3,
+    forward: THREE.Vector3 | null,
+    size = 1,
+    tint?: Tone,
+    free = false,
+  ) {
+    this.addMatrix(kind, standing(point, forward, size * U * propScale(kind)), tint, free);
   }
 
-  addMatrix(kind: string, matrix: THREE.Matrix4, tint?: Tone) {
+  addMatrix(kind: string, matrix: THREE.Matrix4, tint?: Tone, free = false) {
     if (!this.furnish || (!this.life && living.test(kind))) return;
     colour.set(tint ?? propTint(kind));
     const scale = new THREE.Vector3().setFromMatrixColumn(matrix, 0).length();
@@ -153,6 +235,7 @@ export class Props {
       tint: [colour.r, colour.g, colour.b],
       position: new THREE.Vector3().setFromMatrixPosition(matrix),
       radius: propFootprint(kind) * scale,
+      free,
     });
   }
 
@@ -166,11 +249,11 @@ export class Props {
    */
   finish(
     frame: InstanceGroup['frame'] = 'surface',
-    options: { density?: number; keepOut?: KeepOut[] } = {},
+    options: { density?: number; keepOut?: KeepOut[]; lanes?: Lane[] } = {},
   ): InstanceGroup[] {
     const kept =
       frame === 'surface'
-        ? declutter(this.entries, options.density ?? 1, options.keepOut ?? [])
+        ? declutter(this.entries, options.density ?? 1, options.keepOut ?? [], options.lanes ?? [])
         : this.entries;
     const groups = new Map<string, { matrices: number[]; tints: number[] }>();
     for (const e of kept) {
@@ -365,7 +448,82 @@ export function sample(
   return position;
 }
 
-/** A flat strip following surface points, e.g. a road, street, rail or path. */
+/**
+ * A paved way following surface points: the roadway with a kerb line down each side and, on a
+ * `lined` road, a dashed centre line. Dark surfaces get pale markings and pale ones dark edges.
+ */
+export function road(
+  mesh: Mesher,
+  points: THREE.Vector3[],
+  width: number,
+  tone: Tone,
+  lined = false,
+  plain = false,
+) {
+  if (points.length < 2) return;
+  // The light quality tiers draw the roadway alone.
+  if (plain) {
+    ribbon(mesh, points, width, tone);
+    return;
+  }
+  // Paving is even: without this the per-face jitter turns a road into planks.
+  const variance = mesh.variance;
+  mesh.variance = Math.min(variance, 0.006);
+  try {
+    pave(mesh, points, width, tone, lined);
+  } finally {
+    mesh.variance = variance;
+  }
+}
+
+function pave(mesh: Mesher, all: THREE.Vector3[], width: number, tone: Tone, lined: boolean) {
+  ribbon(mesh, all, width, tone);
+  // Markings follow every third point: they lie on the roadway, so they need not trace the
+  // ground as closely as it does.
+  const points = all.filter((_, i) => i % 3 === 0 || i === all.length - 1);
+  const hsl = { h: 0, s: 0, l: 0 };
+  colour.set(tone).getHSL(hsl);
+  const dark = hsl.l < 0.42;
+  const edge = `#${colour
+    .clone()
+    .offsetHSL(0, 0, dark ? 0.16 : -0.1)
+    .getHexString()}`;
+  const side = new THREE.Vector3(),
+    tangent = new THREE.Vector3(),
+    up = new THREE.Vector3();
+  const lift = 0.0005;
+  const across = (i: number) => {
+    const a = points[Math.max(0, i - 1)],
+      b = points[Math.min(points.length - 1, i + 1)];
+    tangent.subVectors(b, a).normalize();
+    up.copy(points[i]).normalize();
+    return side.crossVectors(tangent, up).normalize();
+  };
+  for (const at of [-1, 1]) {
+    const strip = points.map((p, i) =>
+      p
+        .clone()
+        .addScaledVector(across(i), at * width * 0.43)
+        .addScaledVector(up, lift),
+    );
+    ribbon(mesh, strip, width * 0.07, edge);
+  }
+  if (!lined || !dark) return;
+  // Centre dashes about half a road-width long.
+  let run: THREE.Vector3[] = [];
+  let travelled = 0;
+  for (let i = 0; i < points.length; i++) {
+    if (i) travelled += points[i].distanceTo(points[i - 1]);
+    const on = Math.floor(travelled / (width * 0.55)) % 2 === 0;
+    if (on) run.push(points[i].clone().addScaledVector(up.copy(points[i]).normalize(), lift));
+    if (!on || i === points.length - 1) {
+      ribbon(mesh, run, width * 0.07, '#ece5cc');
+      run = [];
+    }
+  }
+}
+
+/** A flat strip following surface points, e.g. a rail, a path or a furrow. */
 export function ribbon(mesh: Mesher, points: THREE.Vector3[], width: number, tone: Tone) {
   if (points.length < 2) return;
   const side = new THREE.Vector3(),

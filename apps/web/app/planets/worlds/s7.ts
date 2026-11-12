@@ -3,64 +3,28 @@ import { claim, type EarthBrief } from '../earth';
 import { decades, lightShare, satelliteCount } from '../encoding';
 import { local } from '../kit';
 import { onOrbit, orbitMatrix, type LayerBuilder } from '../model';
-import { house, mast, tree, windmill, windmillSails } from '../parts';
 import type { Tone } from '../kit';
-import { U } from '../props/library';
+import { propHeight, U } from '../props/library';
 import { harbourLoops, roads } from '../scene/network';
 import { citizens, earthFlora, villageStyle } from '../scene/presets';
 import { farmland, furrows, harbour, setPieces, sprinkle } from '../scene/sites';
 import { offset, tangents } from '../scene/surface';
 import { buildTown, type Town } from '../scene/towns';
 
+/** Where the sails' hub sits on `windmill-body`, in kit units (rural.py `MILL_HUB`). */
+const millHub = [0, 2.496, 0.704];
+
 /**
  * S7 · Restoration. "Collapse and the loss of advanced technologies catalyze alignment with nature.
  * Simple technologies are integrated with planetary cycles, production is local, and knowledge
  * moves through regional networks."
  */
-export function village(layer: LayerBuilder, m: THREE.Matrix4, s: number, random: () => number) {
-  const homes = 4 + Math.floor(random() * 3);
-  for (let i = 0; i < homes; i++) {
-    const a = (i / homes) * Math.PI * 2 + random() * 0.5;
-    const r = (0.18 + random() * 0.2) * s;
-    house(
-      layer.solid,
-      local(m, Math.cos(a) * r, 0, Math.sin(a) * r, -a + random() * 0.4),
-      0.14 * s,
-      0.08 * s,
-      0.1 * s,
-      '#efe6d2',
-      '#c7653d',
-    );
-  }
-  for (let i = 0; i < 3; i++)
-    tree(
-      layer.solid,
-      local(m, (random() - 0.5) * 0.7 * s, 0, (random() - 0.5) * 0.7 * s),
-      'round',
-      '#4f8f3e',
-      0.14 * s,
-    );
-}
-
 export function radioMast(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.solid.box(m, 0.22 * s, 0.1 * s, 0.16 * s, '#efe6d2', '#8a6a4a');
-  mast(layer.solid, local(m, 0.2 * s, 0, 0), s, '#b7b2a6');
-  layer.glow.box(local(m, 0.2 * s, s, 0), 0.03 * s, 0.03 * s, 0.03 * s, '#ff6a4a');
-  layer.solid.beam(
-    new THREE.Vector3(0.2 * s, 0.9 * s, 0).applyMatrix4(m),
-    new THREE.Vector3(0.6 * s, 0, 0.1 * s).applyMatrix4(m),
-    0.004 * s,
-    '#8d887c',
-  );
+  layer.kit('lm-radio-mast', m, s / 10);
 }
 
 export function terraces(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  const tones = ['#b9c96a', '#9fbd5c', '#cfcf78', '#a8c464'];
-  for (let i = 0; i < 4; i++) {
-    const r = (0.5 - i * 0.11) * s;
-    layer.solid.prism(local(m, 0, i * 0.045 * s, 0), r, r, 0.045 * s, 10, '#8a7458', tones[i]);
-  }
-  tree(layer.solid, local(m, 0, 0.18 * s, 0), 'round', '#4f8f3e', 0.14 * s);
+  layer.kit('lm-terraces', m, s / 10);
 }
 
 export const s7: EarthBrief = {
@@ -229,18 +193,19 @@ export const s7: EarthBrief = {
       const mill = world.around(hub, 12).find((f) => land.includes(f) && !f.used) ?? hub;
       if (r === 0) {
         mill.used = true;
-        const s = 0.1;
+        // The mill is two kit models, so its sails can turn on their own layer about the hub.
+        const k = 0.1 / propHeight('windmill');
         const at = world.on(mill, random() * 6);
         const layer = world.layer('windmill', 'surface', { landmark: 'windmill' });
-        windmill(layer.solid, at, s, '#efe6d2', '#8a5a3a', false);
+        layer.kit('windmill-body', at, k);
         const sails = world.layer('windmill-sails', 'surface', {
           landmark: 'windmill',
-          matrix: local(at, 0, s * 0.78, s * 0.22).multiply(
+          matrix: local(at, millHub[0] * k, millHub[1] * k, millHub[2] * k).multiply(
             new THREE.Matrix4().makeRotationX(Math.PI / 2),
           ),
           motion: { kind: 'spin', speed: 0.8 },
         });
-        windmillSails(sails.solid, new THREE.Matrix4().makeRotationX(-Math.PI / 2), s, '#e9dcc0');
+        sails.kit('windmill-sails', new THREE.Matrix4().makeRotationX(-Math.PI / 2), k);
       }
     });
 
@@ -270,14 +235,7 @@ export const s7: EarthBrief = {
     });
     for (let i = 0; i < satelliteCount(earth.satellite_belt); i++) {
       const m = onOrbit(1.26, i * 2.1 + 2).multiply(new THREE.Matrix4().makeRotationZ(1.1));
-      relic.solid.box(m, 0.012, 0.016, 0.012, '#7b7670');
-      relic.solid.panel(
-        local(m, 0.028, 0.008, 0, 0, 1, [1.2, 0.4]),
-        0.011,
-        0.036,
-        '#3a4150',
-        '#6b6560',
-      );
+      relic.kit('sat-wreck', m, 0.02, { tint: '#7b7670' });
     }
   },
 };

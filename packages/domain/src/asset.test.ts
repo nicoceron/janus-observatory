@@ -11,10 +11,32 @@ describe('asset rights ledger', () => {
       ({ rightsStatus }) => rightsStatus === 'all_rights_reserved',
     );
 
-    expect(parsed.entries.filter(({ id }) => !id.startsWith('janus.blender.v1.'))).toHaveLength(48);
-    expect(parsed.entries).toHaveLength(107);
+    expect(parsed.entries.filter(({ id }) => !id.startsWith('janus.blender.v1.'))).toHaveLength(52);
+    expect(parsed.entries).toHaveLength(111);
     expect(reserved).toHaveLength(5);
     expect(reserved.every(({ admissionStatus }) => admissionStatus === 'link_only')).toBe(true);
+  });
+
+  it('admits the four Blender kit packs as original artwork with source and pack checksums', () => {
+    const parsed = AssetLedgerSchema.parse(ledger);
+    const kit = parsed.entries.filter(({ id }) => id.startsWith('janus.kit.v1.'));
+
+    expect(kit.map(({ id }) => id.split('.')[3]).sort()).toEqual([
+      'core',
+      'landmarks',
+      'observer',
+      'worlds',
+    ]);
+    for (const entry of kit) {
+      expect(entry.rightsStatus).toBe('permission_granted');
+      expect(entry.admissionStatus).toBe('approved');
+      expect(entry.derivativePublicPath).toMatch(/^\/assets\/kit\/v1\/kit-[a-z]+\.bin$/);
+      expect(entry.sourceChecksum).toMatch(/^sha256:[0-9a-f]{64}$/);
+      expect(entry.derivativeChecksum).toMatch(/^sha256:[0-9a-f]{64}$/);
+      expect(entry.aiAssistanceDisclosure).toBeTruthy();
+    }
+    // One authoring source builds every pack.
+    expect(new Set(kit.map(({ sourceChecksum }) => sourceChecksum)).size).toBe(1);
   });
 
   it('admits 59 traceable Blender derivatives from the origin and every canonical scenario', () => {

@@ -28,6 +28,10 @@ docs/qa/blender-finish/review-*.json
 docs/qa/blender-finish/seeds.json
 docs/qa/blender-finish/art-manifest.json
 
+# The Blender kit export owns its manifest and core list (scripts/kit.py export, core-kinds.ts).
+apps/web/app/planets/props/kit.generated.json
+scripts/blender/kit/core-kinds.json
+
 # Playwright runtime traces are temporary browser output, not source.
 docs/qa/**/test-artifacts/
 docs/qa/**/*-artifacts/
