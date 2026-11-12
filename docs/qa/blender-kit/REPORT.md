@@ -34,12 +34,12 @@ work-in-progress passes and video are in the uncommitted process archive (`media
 | `pnpm format:check`                                                              | Passes for this work. It still reports files under `.claude/worktrees/`, which are other checkouts and not part of this change.                                                        |
 | `pnpm lint`                                                                      | Pass                                                                                                                                                                                   |
 | `pnpm typecheck`                                                                 | Pass                                                                                                                                                                                   |
-| `pnpm test` (unit)                                                               | Pass: 45 files, 184 tests                                                                                                                                                              |
+| `pnpm test` (unit)                                                               | Pass: 46 files, 195 tests                                                                                                                                                              |
 | `pnpm lint:python`, `pnpm test:python`                                           | Pass (pipeline untouched)                                                                                                                                                              |
 | `pnpm source:validate`, `data:generate:check`, `data:validate`, `links:validate` | Pass                                                                                                                                                                                   |
 | `pnpm assets:validate`                                                           | Pass: the four kit packs are admitted as `janus.kit.v1.*` with source and pack checksums                                                                                               |
 | `pnpm build`                                                                     | Pass                                                                                                                                                                                   |
-| `pnpm bundle:check`                                                              | Pass: home JavaScript 202 KB of 256 KB; opening visuals 0.68 MB of 1.5 MB (mobile); guided journey 4.5 MB of 20 MB; no file over 4 MB                                                  |
+| `pnpm bundle:check`                                                              | Pass: home JavaScript 202 KB of 256 KB; opening visuals 0.69 MB of 1.5 MB (mobile); guided journey 4.6 MB of 20 MB; no file over 4 MB                                                  |
 | Playwright, Chromium (software WebGL, production build)                          | 67 of 68 pass. The one failure, `story.spec.ts` "the story is complete before WebGL…", fails identically on unmodified `main` ([Decision 035's report](../low-poly-worlds/REPORT.md)). |
 | Playwright, mobile Chromium (Pixel 7 profile)                                    | 64 of 66 pass. The two failures, `chapter-sync.spec.ts:3` and `spatial-system.spec.ts:5`, fail identically on a clean checkout of `main` (`20b797e`), run for comparison.              |
 | Playwright, Firefox, WebKit, mobile WebKit                                       | Not run: those browser builds are not installed on this machine. See "Not validated".                                                                                                  |
@@ -73,18 +73,29 @@ props, and the ledger entries for the four packs.
    through towers, and sawtooth colour borders on the Moon, terraformed Mars and S5. Each is
    described in Decision 036.
 
+## Second pass
+
+Fifteen models listed here as weaker after the first pass were rebuilt, the observer's pose was
+corrected and S2 was restaged; Decision 036 describes each. Every reworked model was reviewed on
+sheets from the front, back and above and then in the browser, on its world or scene.
+
+![The observing pose, before and after](observer-pose-before-after.jpg)
+
+![S2, before and after](s2-before-after.jpg)
+
 ## Known limits
 
-- **Weaker models**, as their authors and I judged them on the sheets: `lm-ruin` (its frame is too
-  regular for a collapse), `lm-stone-circle` (plain), `crystal`, `spire`, the towers of
-  `cloud-city`, `shrub`, `vine`, `haystack`, `scrap`, `bio-skiff`, `hover-car`, `sentinel`,
-  `titan-wreck`, `sys-asteroid-b` and `sys-asteroid-d`. All pass the checklist; none is a
+- **Model limits their authors still see**: the ruin's wall panels are unbevelled; `titan-wreck`
+  reads from above and far (how a planet shows it) better than from a low angle; `sys-asteroid-d`'s
+  split is less clear from one side; `sentinel` sits at the edge of its size envelope. None is a
   placeholder.
-- **Observing pose.** In the observer's rest pose at the telescope the eyepiece meets the brow
-  rather than the eye and the left forearm crosses the mouth. This comes from the existing rig
-  and clip, which were kept; it reads correctly from the story camera.
-- **S2 remains dense.** Its recipe scatters many set pieces by design; the layout pass removed
-  overlaps but not the crowding.
+- **Observer's left arm.** The support hand is on the far side of the tube, so the left upper arm
+  crosses the body and sinks slightly into the chest at the shoulder. It does not read as broken
+  in close-ups.
+- **S2 on the light tiers.** Rival compounds are repeats of the landmark, which the overview and
+  minimal tiers do not draw, so there the haul road ends in fields.
+- **The declutter treats each prop as a disc** of its longest half-extent, so long props (a harbour
+  crane by a dock) cannot stand close together and props cannot stack. S2 was staged around this.
 - **The export is not byte-reproducible.** Two exports of the same sources differ by a few bytes
   per pack (the ambient-occlusion bake is not bit-stable), so checksums are recorded after each
   export rather than expected to recur.

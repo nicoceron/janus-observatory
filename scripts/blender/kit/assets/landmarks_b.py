@@ -356,72 +356,296 @@ def camp(a):
         tuft(a, x, y, 0, 1.0, P.OLIVE, seed=i)
 
 
-def megalith(a, w, d, h, seed, level=False, low="#86827a", high="#b4b0a4"):
-    """A hand-hewn standing stone: a chamfered slab, tapered, then roughened and faceted."""
+STONE_LO, STONE_HI = "#7f7a70", "#b9b4a6"
+STONE_DAMP = "#59604c"
+STONE_MOSS = "#6c8a48"
+STONE_LICHEN = "#c2bf8f"
+
+
+def megalith_ring(hw, hd, ch, cx=0.0, cy=0.0, arris=(0.0, 0.0), belly=1.03):
+    """A slab's cross-section: a chamfered rectangle whose two broad faces each break along an
+    off-centre arris (`arris` places it, as a share of the half-width)."""
+    return [
+        (cx + hw - ch, cy - hd), (cx + hw, cy - hd + ch), (cx + hw, cy + hd - ch), (cx + hw - ch, cy + hd), (cx + arris[0] * hw, cy + hd * belly),
+        (cx - hw + ch, cy + hd), (cx - hw, cy + hd - ch), (cx - hw, cy - hd + ch), (cx - hw + ch, cy - hd), (cx + arris[1] * hw, cy - hd * belly),
+    ]
+
+
+def megalith(a, sections, crown=None, seed=1, rough=0.04, closed=False):
+    """A hand-hewn stone through horizontal sections of (z, half-width, half-depth, chamfer[, cx, cy]).
+
+    Width runs along x and depth along y. `crown` (x, y, z) closes it in a faceted peak; without
+    one the last section is a level bed for a lintel. `closed` adds the underside, for a stone
+    that lies on its side. Every corner is knocked about by `rough`, then the stone is faceted.
+    """
     rng = random.Random(seed)
-    piece = a.box(w, d, h, bevel=min(w, d) * 0.17, taper=(rng.uniform(0.7, 0.86), rng.uniform(0.72, 0.9)))
-    piece.subdivide(1)
-    slant = 0.0 if level else rng.uniform(-0.22, 0.22)
-    lean = rng.uniform(-0.05, 0.05)
-    piece.warp(lambda co: (co.x + lean * co.z, co.y, co.z + slant * co.x * (co.z / h) ** 2))
-    piece.jitter(0.075 if not level else 0.055, seed=seed, scale=1.1)
-    if level:
-        piece.warp(lambda co: (co.x, co.y, h if co.z > h - 0.09 else co.z))
-    piece.color(low, high).paint_up(jk.shade(high, 0.12), 0.75)
-    return piece.flat()
+    last = len(sections) - 1
+    arris = (rng.uniform(-0.4, 0.4), rng.uniform(-0.4, 0.4))
+    verts = []
+    for k, sec in enumerate(sections):
+        for x, y in megalith_ring(*sec[1:], arris=(arris[0] + rng.uniform(-0.1, 0.1), arris[1] + rng.uniform(-0.1, 0.1))):
+            j = rough * (0.5 if k == 0 else 1.0)
+            dz = 0.0 if k == 0 or (k == last and crown is None) else rng.uniform(-j, j)
+            verts.append((x + rng.uniform(-j, j), y + rng.uniform(-j, j), sec[0] + dz))
+    n = 10
+    faces = [(k * n + i, k * n + (i + 1) % n, (k + 1) * n + (i + 1) % n, (k + 1) * n + i) for k in range(last) for i in range(n)]
+    top = last * n
+    if crown is None:
+        faces.append(tuple(top + i for i in range(n)))
+    else:
+        verts.append(tuple(crown))
+        faces += [(top + i, top + (i + 1) % n, len(verts) - 1) for i in range(n)]
+    if closed:
+        faces.append(tuple(range(n - 1, -1, -1)))
+    return a.raw(verts, faces).flat()
+
+
+def weather(piece, seed=0, moss=0.5, foot=0.08, side=(-0.55, 0.8, 0.2)):
+    """Paint a placed stone: damp at the foot, pale and lichened on top, moss where the weather sits."""
+    from mathutils import noise
+
+    lo, hi = piece.bounds()
+    span = max(hi.z - lo.z, 1e-3)
+    lee = Vector(side).normalized()
+    drift = Vector((seed * 3.1, seed * 1.7, seed * 0.9))
+    for f in piece.bm.faces:
+        centre = f.calc_center_median()
+        patch = noise.noise(centre * 1.6 + drift)
+        up = f.normal.z
+        mossy = moss > 0 and (up > 0.45 or f.normal.dot(lee) > 0.55) and patch > 0.3 - moss * 0.7
+        for loop in f.loops:
+            co = loop.vert.co
+            c = jk.mix(STONE_LO, STONE_HI, (co.z - lo.z) / span)
+            if up > 0.5:
+                c = jk.shade(c, 0.12)
+            elif patch < -0.32:
+                c = jk.mix(c, STONE_LICHEN, 0.3)
+            if mossy:
+                c = jk.mix(c, STONE_MOSS, 0.72 if up > 0.45 else 0.5)
+            c = jk.mix(c, STONE_DAMP, 0.6 * max(0.0, 1 - (co.z - foot) / 0.42))
+            loop[piece.layer] = (c[0], c[1], c[2], 1.0)
+    return piece
 
 
 @asset(
     "lm-stone-circle",
     tint="#ffffff",
     budget=4500,
-    note="S4: a ritual ring of nine standing stones, two lintels and a low central stone. The gap faces the front.",
+    note="S4: a ritual ring of nine standing stones (one split, one fallen), two seated lintels, a worn path and a low altar with offerings. The gate faces the front.",
 )
 def stone_circle(a):
-    grass, grass_dark, earth, packed = "#9fae62", "#88994f", "#b39d70", "#998560"
-    ground = a.lathe([(4.9, 0), (4.78, 0.07), (4.25, 0.1), (3.5, 0.1), (1.9, 0.1), (1.3, 0.1), (0, 0.12)], 24, cap_bottom=False)
+    RR, N = 3.8, 32
+    grass, grass_deep, rim = "#93aa58", "#7a9346", "#647b38"
+    earth, worn, packed = "#b49d6e", "#c9b588", "#9a8661"
+    gate = -math.pi / 2
+    rng = random.Random(404)
+    ragged = [rng.uniform(-0.05, 0.05) for _ in range(N)]
 
-    def wobble(co):
-        t = math.atan2(co.y, co.x)
-        k = 1 + 0.02 * math.cos(3 * t + 1.0) * (math.hypot(co.x, co.y) / 4.9) ** 3
-        return (co.x * k, co.y * k, co.z)
+    def edge_r(t):
+        return 4.78 + 0.12 * math.cos(3 * t + 1.0) + 0.07 * math.cos(5 * t - 0.6) + 0.04 * math.cos(9 * t + 2.0)
 
-    def turf(co):
-        r = math.hypot(co.x, co.y)
-        if r > 4.85:
-            return grass_dark
-        if r > 4.0:
-            return grass
-        return earth if r > 1.5 else packed
+    def at_gate(t, width):
+        d = math.atan2(math.sin(t - gate), math.cos(t - gate))
+        return math.exp(-((d / width) ** 2))
 
-    paint_by(ground.warp(wobble), turf)
-    top = 0.085
+    def tread_r(t):
+        r = 3.1 + 0.2 * math.cos(4 * t + 0.5) + 0.12 * math.cos(7 * t - 1.0)
+        return r + (edge_r(t) - 0.2 - r) * at_gate(t, 0.22)
 
-    heights = {0: 2.12, 1: 2.12, 8: 2.12, 2: 1.72, 3: 2.42, 4: 1.86, 5: 1.98, 6: 1.36, 7: 2.26}
-    widths = {0: 0.98, 1: 0.9, 8: 0.92, 2: 0.78, 3: 0.82, 4: 0.9, 5: 0.84, 6: 0.94, 7: 0.76}
-    for i in range(9):
-        deg = 90 + i * 40
-        level = i in (0, 1, 8)
-        with a.group() as stone:
-            megalith(a, widths[i], 0.56 if level else 0.5 + 0.04 * (i % 3), heights[i], seed=11 + i * 3, level=level)
-        stone.rot(z=deg - 90 + (0 if level else (i * 37) % 13 - 6)).move(*polar(3.8, deg, top - 0.05))
-        tuft(a, *polar(3.8 - 0.42, deg + 5, top - 0.02)[:2], top - 0.02, 0.9, P.MOSS, seed=i)
-        tuft(a, *polar(3.8 + 0.4, deg - 7, top - 0.02)[:2], top - 0.02, 1.0, grass_dark, seed=i + 4)
-    # Two lintels meet over the tallest back stone.
-    for mid, shift in ((70, -0.07), (110, 0.07)):
-        lintel = a.box(2.74, 0.66, 0.44, bevel=0.085).subdivide(1).jitter(0.05, seed=mid, scale=1.0)
-        lintel.warp(lambda co: (co.x, co.y, max(co.z, 0.0)))
-        lintel.color("#8a867d", "#b9b5a9").paint_up("#c6c2b6", 0.75).flat()
-        lintel.move(shift, 0, 0).rot(z=mid + 90).move(*polar(3.8 * math.cos(math.radians(20)), mid, top - 0.05 + 2.12))
-    # The low central stone, bedded in packed earth and ringed by small kerb stones.
-    slab = a.box(1.5, 1.02, 0.5, bevel=0.14, taper=(0.86, 0.8)).subdivide(1).jitter(0.06, seed=5, scale=1.2)
-    slab.color("#7d7a72", "#a9a59a").paint_up("#b7b3a8", 0.75).flat()
-    slab.rot(z=18).move(0, 0, top - 0.04)
-    for i in range(9):
-        t = i / 9 * TAU + 0.3
-        a.blob(0.13 + 0.035 * ((i * 5) % 3), 1, (1.1, 0.9, 0.7), lumps=0.2, seed=80 + i).rot(z=i * 50).move(
-            math.cos(t) * 1.42, math.sin(t) * 1.3, top + 0.05
-        ).color("#7d7a72", "#a9a59a")
+    def path_r(t):
+        return 0.11 * math.cos(2 * t + 1.0) + 0.05 * math.cos(5 * t + 2.2)
+
+    def turf(t):
+        return jk.mix(grass, grass_deep, 0.5 + 0.5 * math.cos(5 * t + 0.8))
+
+    # ---- the ground: packed round the altar, a worn path, trodden earth, then turf --------
+    rings = (
+        (lambda t, e, w: 1.2, 0.09, lambda t: packed),
+        (lambda t, e, w: 1.62 + path_r(t), 0.085, lambda t: earth),
+        (lambda t, e, w: 1.98 + path_r(t), 0.065, lambda t: worn),
+        (lambda t, e, w: 2.36 + path_r(t), 0.085, lambda t: jk.mix(earth, worn, at_gate(t, 0.24))),
+        (lambda t, e, w: w, 0.09, lambda t: jk.mix(jk.shade(earth, -0.1), worn, at_gate(t, 0.24))),
+        (lambda t, e, w: w + min(0.42, (e - w) * 0.45), 0.105, lambda t: jk.mix(grass, worn, at_gate(t, 0.2))),
+        (lambda t, e, w: e - min(0.45, (e - w) * 0.4), 0.105, lambda t: jk.mix(turf(t), earth, at_gate(t, 0.18))),
+        (lambda t, e, w: e - min(0.13, (e - w) * 0.2), 0.06, lambda t: jk.mix(grass_deep, earth, 0.85 * at_gate(t, 0.16))),
+        (lambda t, e, w: e, 0.0, lambda t: jk.mix(rim, jk.shade(earth, -0.25), 0.85 * at_gate(t, 0.16))),
+    )
+    verts, tones = [(0, 0, 0.095)], [packed]
+    for i, (radius, z, tone) in enumerate(rings):
+        for k in range(N):
+            t = (k + 0.5) / N * TAU
+            r = radius(t, edge_r(t) + ragged[k], tread_r(t))
+            verts.append((math.cos(t) * r, math.sin(t) * r, max(0.0, z + (rng.uniform(-0.012, 0.012) if z > 0.03 else 0.0))))
+            tones.append(tone(t))
+    faces = [(0, 1 + k, 1 + (k + 1) % N) for k in range(N)]
+    for ring in range(len(rings) - 1):
+        p, q = 1 + ring * N, 1 + (ring + 1) * N
+        faces += [(p + k, q + k, q + (k + 1) % N, p + (k + 1) % N) for k in range(N)]
+    ground = a.raw(verts, faces)
+    ground.bm.verts.index_update()
+    for f in ground.bm.faces:
+        for loop in f.loops:
+            c = jk.col(tones[loop.vert.index])
+            loop[ground.layer] = (c[0], c[1], c[2], 1.0)
+    gz = 0.06  # stones are bedded a little way into the turf
+
+    def rest(piece):
+        """Sit a lump on the ground: nothing of it may hang below the model's origin."""
+        return piece.warp(lambda co: (co.x, co.y, max(co.z, 0.02)))
+
+    def stand(piece, deg, yaw=0.0, lean=(0.0, 0.0), r=RR, seed=0, moss=0.5):
+        if lean != (0.0, 0.0):
+            piece.warp(lambda co: (co.x + lean[0] * co.z, co.y + lean[1] * co.z, co.z))
+        piece.rot(z=deg - 90 + yaw).move(*polar(r, deg, gz))
+        piece.warp(lambda co: (co.x, co.y, max(co.z, 0.01)))
+        return weather(piece, seed, moss)
+
+    def feet(deg, r=RR, out=0.44, turn=0.0, seed=0, tufts=2, cushion=True, chock=True):
+        """What gathers at a stone's foot: grass no one treads, a moss cushion, a packing stone."""
+        spots = ((out, 8), (-out + 0.04, -9), (out * 0.5, 15), (-out * 0.6, 13))
+        for k in range(tufts):
+            dr, dd = spots[(k + seed) % 4]
+            x, y, _ = polar(r + dr, deg + dd + turn)
+            tuft(a, x, y, 0.09, 0.95 + 0.25 * ((k + seed) % 3), P.MOSS if dr < 0 else grass_deep, seed=seed + k)
+        if cushion:
+            x, y, _ = polar(r + out * 0.86, deg - 7 - turn)
+            rest(a.blob(0.24, 1, (1.25, 1.0, 0.42), lumps=0.26, seed=seed + 9).rot(z=deg).move(x, y, 0.11)).color(jk.shade(STONE_MOSS, -0.2), STONE_MOSS)
+        if chock:
+            x, y, _ = polar(r - out * 0.9, deg + 6 + turn)
+            rest(a.blob(0.13, 1, (1.2, 0.9, 0.7), lumps=0.22, seed=seed + 17).rot(z=deg + 40).move(x, y, 0.13)).color(STONE_LO, STONE_HI)
+
+    # ---- the trilithons at the back: three uprights with levelled heads, two lintels -------
+    seat = 2.1
+    stand(megalith(a, [(0, 0.58, 0.33, 0.14), (0.35, 0.6, 0.34, 0.15), (1.15, 0.55, 0.31, 0.14), (1.8, 0.5, 0.29, 0.12), (seat, 0.48, 0.28, 0.1)], seed=11), 90, seed=1, moss=0.35)
+    stand(megalith(a, [(0, 0.5, 0.3, 0.13), (0.4, 0.52, 0.31, 0.14), (1.2, 0.47, 0.28, 0.12), (1.75, 0.44, 0.27, 0.11), (seat, 0.43, 0.26, 0.1)], seed=12), 54, yaw=9, seed=2, moss=0.3)
+    stand(
+        megalith(a, [(0, 0.52, 0.31, 0.13), (0.45, 0.54, 0.32, 0.14), (1.0, 0.5, 0.29, 0.12), (1.12, 0.45, 0.28, 0.11, -0.05, 0), (1.8, 0.43, 0.27, 0.1, -0.03, 0), (seat, 0.43, 0.26, 0.1, -0.02, 0)], seed=13),
+        126, yaw=-9, seed=3, moss=0.45,
+    )
+    half_chord = RR * math.sin(math.radians(18))
+    for mid, way, seed, lift in ((72, -1, 21, 0.0), (108, 1, 22, 0.035)):
+        length = 2 * half_chord + 0.17  # short of the middle stone's centre line, proud of the outer one
+        bar = megalith(a, [(0, 0.23, 0.3, 0.09), (0.8, 0.25, 0.32, 0.1), (1.9, 0.245, 0.31, 0.1), (length, 0.225, 0.29, 0.09)], seed=seed, rough=0.035, closed=True)
+        bar.rot(y=90).move(-length / 2, 0, 0).warp(lambda co: (co.x, co.y, max(co.z, -0.19)))
+        bar.move(way * 0.215, 0, 0.19).rot(z=mid + 90).move(*polar(RR * math.cos(math.radians(18)), mid, gz + seat + lift))
+        weather(bar, seed, 0.55, foot=-9)
+    # Chocks wedged under the lintel that sits proud.
+    for deg, r, s in ((93, RR - 0.2, 0.07), (124, RR + 0.16, 0.06)):
+        a.blob(s, 1, (1.3, 1.0, 0.55), lumps=0.2, seed=int(deg)).move(*polar(r, deg, gz + seat + 0.02)).color(STONE_LO, STONE_HI)
+    feet(90, seed=1, tufts=3)
+    feet(54, seed=2)
+    feet(126, seed=3, tufts=3)
+
+    # ---- the others, each its own character ---------------------------------------------
+    # A tall thin one that has begun to lean outward.
+    stand(
+        megalith(a, [(0, 0.4, 0.3, 0.12), (0.5, 0.43, 0.31, 0.13), (1.3, 0.39, 0.28, 0.11), (2.0, 0.33, 0.24, 0.1, 0.02, 0), (2.3, 0.23, 0.17, 0.07, 0.04, 0)], crown=(0.05, 0, 2.39), seed=14),
+        206, yaw=-4, lean=(0.03, 0.085), seed=4, moss=0.6,
+    )
+    feet(206, seed=4, tufts=3)
+    # One the frost has split from the head down: the halves still match, and lean apart.
+    whole = megalith(a, [(0, 0.56, 0.32, 0.14), (0.5, 0.58, 0.33, 0.15), (1.2, 0.53, 0.3, 0.13), (1.7, 0.44, 0.26, 0.11), (1.98, 0.3, 0.2, 0.08)], crown=(0.0, 0.0, 2.08), seed=15, closed=True)
+    whole.warp(lambda co: (co.x, co.y, co.z - 0.5 * max(0.0, co.x / 0.5) * (co.z / 2.0) ** 2))
+    other = a.add(whole.copy())
+    zig = [(0.0, -0.3), (-0.04, 0.5), (0.06, 0.95), (-0.03, 1.4), (0.07, 1.8), (0.01, 2.6)]
+    whole.cut(jk.profile_y(zig + [(1.6, 2.6), (1.6, -0.3)], 1.6, bevel=0))
+    other.cut(jk.profile_y([(-1.6, -0.3), (-1.6, 2.6)] + zig[::-1], 1.6, bevel=0))
+    whole.rot(y=-7).move(-0.08, 0, 0)
+    other.rot(y=11).move(0.1, 0.04, 0)
+    stand(whole, 166, yaw=6, seed=5, moss=0.4)
+    stand(other, 166, yaw=6, seed=6, moss=0.5)
+    tuft(a, *polar(RR + 0.04, 166.6)[:2], 0.09, 1.2, grass_deep, seed=3)
+    feet(166, out=0.46, seed=5, chock=False)
+    # The gate stones: a stout one with a broken shoulder, and its taller partner.
+    stand(
+        megalith(a, [(0, 0.55, 0.33, 0.15), (0.45, 0.58, 0.34, 0.16), (1.3, 0.53, 0.31, 0.14), (1.66, 0.5, 0.3, 0.13), (1.8, 0.37, 0.27, 0.11, -0.13, 0), (2.1, 0.3, 0.23, 0.09, -0.15, 0)], crown=(-0.16, 0, 2.2), seed=17),
+        246, yaw=4, seed=7, moss=0.35,
+    )
+    stand(
+        megalith(a, [(0, 0.47, 0.3, 0.13), (0.5, 0.5, 0.31, 0.14), (1.45, 0.44, 0.28, 0.12), (2.05, 0.36, 0.24, 0.1, 0.04, 0), (2.3, 0.24, 0.17, 0.07, 0.08, 0)], crown=(0.1, 0, 2.4), seed=18),
+        290, yaw=-6, lean=(-0.03, 0.0), seed=8, moss=0.3,
+    )
+    feet(246, seed=7, tufts=3)
+    feet(290, seed=8)
+    # One that snapped at the knee: the stump still stands, the shaft lies where it fell.
+    stump = megalith(a, [(0, 0.46, 0.3, 0.12), (0.3, 0.45, 0.29, 0.12), (0.46, 0.38, 0.25, 0.1, 0.03, 0)], crown=(0.08, 0.02, 0.56), seed=19)
+    stump.warp(lambda co: (co.x, co.y, co.z + (0.3 * co.x if co.z > 0.2 else 0.0)))
+    stand(stump, 324, seed=9, moss=0.7)
+    shaft = megalith(a, [(0, 0.42, 0.27, 0.11), (0.55, 0.43, 0.28, 0.11), (1.2, 0.38, 0.25, 0.1), (1.65, 0.3, 0.21, 0.09), (1.82, 0.2, 0.15, 0.06)], crown=(0.0, 0.0, 1.9), seed=20, closed=True)
+    sx, sy, _ = polar(RR, 324)
+    shaft.rot(x=90).rot(y=4).rot(z=194).move(sx - 0.12, sy + 0.48, 0.31).warp(lambda co: (co.x, co.y, max(co.z, 0.02)))
+    weather(shaft, 10, 0.9, foot=-9)
+    feet(324, seed=9, tufts=3, cushion=False)
+    for k, (dx, dy) in enumerate(((-0.85, 0.9), (0.0, 1.9), (-1.05, 2.3))):
+        tuft(a, sx + dx, sy + dy, 0.08, 1.05, grass_deep if k else P.MOSS, seed=k + 20)
+    # A squat old boulder, bowing in toward the altar.
+    stand(megalith(a, [(0, 0.5, 0.34, 0.16), (0.4, 0.55, 0.37, 0.18), (0.9, 0.48, 0.33, 0.16), (1.2, 0.34, 0.25, 0.11, 0, -0.03)], crown=(0.0, -0.05, 1.32), seed=23, rough=0.05), 10, yaw=-8, lean=(0.0, -0.1), seed=11, moss=0.8)
+    feet(10, out=0.5, seed=11, tufts=3)
+
+    # ---- the gate: a worn sill stone between the gate stones -----------------------------
+    sill = megalith(a, [(0, 0.62, 0.3, 0.12), (0.08, 0.59, 0.28, 0.11)], seed=31, rough=0.02)
+    sill.rot(z=3).move(*polar(RR, 268.5, 0.065)).color(jk.shade(STONE_LO, -0.12), jk.shade(STONE_LO, 0.12))
+
+    # ---- the altar: a levelled slab on two bearers, with what people leave on it ---------
+    with a.group() as altar:
+        for x in (-0.55, 0.55):
+            weather(megalith(a, [(0, 0.22, 0.46, 0.09), (0.3, 0.19, 0.4, 0.08)], seed=40 + int(x * 10), rough=0.03).move(x, 0, 0.07), 13, 0.3)
+        table = megalith(a, [(0, 0.9, 0.6, 0.24), (0.15, 0.97, 0.65, 0.26), (0.32, 0.92, 0.6, 0.24)], seed=42, rough=0.035, closed=True).move(0, 0, 0.36)
+        weather(table, 14, 0.0, foot=-9)
+        top = 0.68
+        # A clay bowl of grain and a wooden one of berries.
+        bowl = a.lathe([(0.11, 0.0), (0.25, 0.14), (0.205, 0.14), (0.0, 0.09)], 8).move(-0.45, 0.12, top)
+        bowl.color(jk.shade(P.CLAY, -0.25), P.CLAY).paint(lambda f: P.STRAW if f.normal.z > 0.3 and f.calc_center_median().z > top + 0.08 else None)
+        cup = a.lathe([(0.075, 0.0), (0.16, 0.1), (0.13, 0.1), (0.0, 0.065)], 7).move(0.02, -0.26, top)
+        cup.color(P.BARK_DARK, P.OAK_WOOD).paint(lambda f: "#8f2f3a" if f.normal.z > 0.3 and f.calc_center_median().z > top + 0.05 else None)
+        # A sheaf of grain and a bunch of herbs, each tied round the middle.
+        for x, y, turn, length, r0, r1, tone in ((0.42, 0.18, 24, 0.78, 0.055, 0.105, P.STRAW), (0.46, -0.24, -32, 0.58, 0.045, 0.095, P.SAGE)):
+            with a.group() as tied:
+                drum(a, (-length / 2, 0, 0.09), (length / 2, 0, 0.09), r0, 6, bevel=0, r2=r1).color(jk.shade(tone, -0.2), tone)
+                drum(a, (-0.035, 0, 0.09), (0.035, 0, 0.09), (r0 + r1) / 2 + 0.014, 6, bevel=0).color(CORD)
+            tied.rot(z=turn).move(x, y, top)
+        # Flower heads laid along the edge.
+        for k, (x, y) in enumerate(((-0.76, -0.3), (-0.62, -0.4), (-0.16, 0.44), (0.02, 0.48), (0.78, -0.04))):
+            a.cone(0.06, 0.04, 5).move(x, y, top).color(P.OFF_WHITE if k % 2 else P.AMBER)
+    altar.rot(z=14)
+    # A low kerb curls round the back of the altar, open toward the gate.
+    for k in range(8):
+        deg = 2 + k * 25.5
+        rest(a.blob(0.15 + 0.035 * ((k * 5) % 3), 1, (1.2, 0.85, 0.72), lumps=0.22, seed=50 + k).rot(z=deg + 90 + (k * 23) % 17).move(
+            *polar(1.42 + 0.05 * (k % 2), deg, 0.13)
+        )).color(STONE_LO, STONE_HI)
+    # A small cairn at the altar's foot, and a few pebbles that have rolled from it.
+    cx, cy = -1.22, -0.72
+    z = 0.09
+    for k, r in enumerate((0.22, 0.18, 0.145, 0.115, 0.08)):
+        rest(a.blob(r, 1, (1.15, 1.0, 0.5), lumps=0.18, seed=70 + k).rot(z=k * 67).move(cx + 0.02 * math.sin(k * 2.1), cy + 0.02 * math.cos(k * 1.7), z + r * 0.5)).color(STONE_LO, STONE_HI)
+        z += r * 0.86
+    for k, (dx, dy) in enumerate(((0.3, -0.16), (-0.28, 0.2), (0.1, 0.34))):
+        a.blob(0.07, 1, (1.1, 0.9, 0.6), lumps=0.2, seed=90 + k).move(cx + dx, cy + dy, 0.11).color(STONE_LO, STONE_HI)
+    # Someone has left a bowl and a sheaf at the foot of the great stone as well.
+    x, y, _ = polar(RR - 0.66, 85)
+    a.lathe([(0.09, 0.0), (0.2, 0.11), (0.165, 0.11), (0.0, 0.07)], 7).move(x, y, 0.09).color(jk.shade(P.CLAY, -0.25), P.CLAY).paint(
+        lambda f: "#8f2f3a" if f.normal.z > 0.3 and f.calc_center_median().z > 0.15 else None
+    )
+    with a.group() as tied:
+        drum(a, (-0.3, 0, 0.07), (0.3, 0, 0.07), 0.045, 6, bevel=0, r2=0.085).color(jk.shade(P.STRAW, -0.2), P.STRAW)
+        drum(a, (-0.03, 0, 0.07), (0.03, 0, 0.07), 0.078, 6, bevel=0).color(CORD)
+    tied.rot(z=38).move(*polar(RR - 0.7, 96, 0.09))
+
+    # ---- turf that no one treads: tufts along the ragged rim, and the flowers they pick ---
+    for k in range(13):
+        deg = 20 + k * 27.5 + (k * 37) % 11
+        if abs(((deg - 270 + 180) % 360) - 180) < 15:
+            continue
+        r = edge_r(math.radians(deg)) - 0.16 - 0.14 * (k % 3)
+        x, y, _ = polar(r, deg)
+        tuft(a, x, y, 0.05 if k % 3 == 0 else 0.08, 0.9 + 0.2 * (k % 3), grass_deep if k % 2 else P.MOSS, seed=k + 40)
+    for k, deg in enumerate((38, 97, 140, 201, 233, 318, 352)):
+        clump = a.blob(0.26 + 0.05 * (k % 3), 1, (1.3, 0.9, 0.3), lumps=0.3, seed=60 + k).rot(z=deg + 90)
+        rest(clump.move(*polar(edge_r(math.radians(deg)) - 0.2, deg, 0.04))).color(rim, grass_deep)
+    for k, (deg, dr) in enumerate(((148, 0.5), (152, 0.62), (186, 0.4), (30, 0.55), (35, 0.42), (318, 0.5))):
+        x, y, _ = polar(edge_r(math.radians(deg)) - dr, deg)
+        a.cone(0.05, 0.05, 5).move(x, y, 0.1).color(P.OFF_WHITE if k % 3 else P.AMBER)
 
 
 CONCRETE_LO, CONCRETE_HI = "#7f817c", "#a6a7a1"

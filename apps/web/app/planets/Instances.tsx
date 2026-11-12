@@ -83,12 +83,18 @@ function meshesFor(
   unlit: boolean,
 ) {
   const parts = propGeometry(kind);
-  // On an unlit world every prop is drawn as its dark twin, and nothing glows.
+  // On an unlit world every prop is drawn as its dark twin, and nothing glows: a lamp, a seam
+  // of light or a luminous crystal is still there, as plain glass in its own colours.
   const dark = unlit || kitDark(kind);
   const meshes = propParts
-    .filter((part) => parts[part] && !(unlit && part === 'glow'))
+    .filter((part) => parts[part])
     .map((part) => {
-      const material = part === 'lit' && dark ? materials.pane : materials[part];
+      const material =
+        part === 'lit' && dark
+          ? materials.pane
+          : part === 'glow' && unlit
+            ? materials.glass
+            : materials[part];
       const mesh = new THREE.InstancedMesh(parts[part]!, material, count);
       mesh.frustumCulled = false;
       if (tinted.includes(part)) mesh.instanceColor = new THREE.InstancedBufferAttribute(tints, 3);

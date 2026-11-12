@@ -396,67 +396,244 @@ def enforcer(a):
 # --------------------------------------------------------------------------------------------
 # The fallen titan
 # --------------------------------------------------------------------------------------------
-def lay_down(group, pivot_z, at, yaw=0.0, pitch=0.0, roll=0.0):
-    """Lay a standing assembly on its back, head toward -y, then settle it at `at`.
+def settle(pivot_z, at, yaw=0.0, pitch=0.0, roll=0.0, scale=1.0):
+    """The matrix that lays a standing assembly on its back, head toward -y, and settles its
+    pivot (a height on its own axis) at `at`.
 
-    Negative `pitch` lifts the head end; `roll` tips it about its own long axis."""
-    group.move(0, 0, -pivot_z).rot(x=-90).rot(z=180).rot(y=roll).rot(x=pitch).rot(z=yaw).move(*at)
+    Positive `pitch` sinks the -y end, positive `roll` sinks the +x side. `scale` grows the
+    assembly about the pivot first."""
+
+    def turn(degrees, axis):
+        return Matrix.Rotation(math.radians(degrees), 4, axis)
+
+    return (
+        Matrix.Translation(at)
+        @ turn(yaw, "Z")
+        @ turn(pitch, "X")
+        @ turn(roll, "Y")
+        @ turn(180, "Z")
+        @ turn(-90, "X")
+        @ Matrix.Scale(scale, 4)
+        @ Matrix.Translation((0, 0, -pivot_z))
+    )
 
 
 def moss(a, patches, seed=3):
+    """Low cushions of moss: (x, y, z, radius, flatness) each."""
     for i, (x, y, z, r, flat) in enumerate(patches):
-        a.blob(r, 2 if r > 0.5 else 1, (1, 1, flat), lumps=0.26, seed=seed + i * 3).move(x, y, z).color(P.LEAF_DEEP, P.MOSS)
+        a.blob(r, 2, (1, 1, flat), lumps=0.3, seed=seed + i * 3).move(x, y, z).color(P.LEAF_DEEP, P.MOSS)
+
+
+WEATHERED = (P.STEEL_DARK, jk.mix(P.STEEL_DARK, P.STEEL, 0.75))
+
+
+def wreck_chest(a):
+    """The fallen titan's trunk in its standing frame: ribbed waist, the broad chest with the
+    reactor torn out of its port, a chest plate sprung open either side, and the neck ring with
+    the cables that used to run to the head."""
+    ribs = [(0.3, 2.5)]
+    for i in range(3):
+        z = 2.55 + i * 0.13
+        ribs += [(0.37, z), (0.37, z + 0.07), (0.31, z + 0.1)]
+    a.lathe(ribs, 6, cap_top=False).scale(1.2, 0.92, 1).color(DARK, P.STEEL_DARK)
+    chest = a.loft(
+        [(0, 0.42, 0.36), (0.1, 0.5, 0.42), (0.52, 0.86, 0.56), (0.9, 0.95, 0.57), (1.06, 0.84, 0.48), (1.14, 0.56, 0.34)],
+        16,
+        3.6,
+    ).rot(x=90).move(0, 0, 2.86).color(P.SHADE_1, P.WHITE)
+    hollow = jk.ico(0.45, 2).jitter(0.05, 5, 2.4).scale(1.0, 0.9, 1.0).move(0, -0.5, 3.45).color(DARK, FRAME)
+    chest.cut(hollow).part("tint")
+    # The port ring still frames the hole; the reactor's seat is a darker ring deep inside.
+    collar(a, (0, -0.56, 3.45), 0.5, 0.1, "y", 14, WEATHERED[1], "base", caps=False)
+    collar(a, (0, -0.24, 3.45), 0.27, 0.1, "y", 10, P.STEEL_DARK)
+    # Two chest plates stand open like doors.
+    a.box(0.4, 0.06, 0.62, bevel=0.025).move(-0.78, -0.6, 3.12).rot(z=-36, pivot=(-0.98, -0.57, 0)).part("tint").color(P.SHADE_1, P.WHITE)
+    a.box(0.38, 0.06, 0.5, bevel=0.025).move(0.76, -0.6, 3.38).rot(z=58, pivot=(0.95, -0.57, 0)).part("tint").color(P.SHADE_1, P.WHITE)
+    for i in (-1, 1):
+        a.box(0.26, 0.04, 0.05, bevel=0).move(i * 0.3, -0.47, 3.0).color(DARK)
+    # The neck ring, and the cables the head tore loose.
+    collar(a, (0, 0.02, 4.0), 0.34, 0.14, "z", 10, P.STEEL_DARK, "base", caps=False)
+    a.cyl(0.3, 0.04, 10, bevel=0).move(0, 0.02, 4.02).color(DARK)
+    for x, y, reach, droop in ((-0.14, -0.08, 0.34, 0.2), (0.12, 0.02, 0.46, 0.3)):
+        a.tube([(x, y, 4.04), (x * 1.3, y - 0.04, 4.04 + reach * 0.6), (x * 1.5, y + droop, 4.04 + reach)], 0.04, 5).color(FRAME)
+
+
+def wreck_head(a):
+    """The titan's cab, life size for the wreck, upright at the origin and facing -y: shell,
+    dark windscreen, brow, ear housings and the stump of its neck."""
+    a.loft([(-0.62, 0, 0), (-0.56, 0.34, 0.3), (-0.16, 0.54, 0.5), (0.36, 0.56, 0.5), (0.6, 0.4, 0.34), (0.66, 0, 0)], 12, 3.2).part("tint").color(
+        P.SHADE_1, P.WHITE
+    )
+    a.loft([(-0.664, 0, 0), (-0.652, 0.24, 0.1), (-0.6, 0.38, 0.17), (-0.32, 0.526, 0.2), (-0.08, 0.582, 0.21)], 12, 3.2, caps="none").move(0, 0, 0.04).part("glass").color(
+        DARK, P.GLASS_DARK
+    )
+    a.box(0.92, 0.4, 0.1, bevel=0.04).move(0, -0.4, 0.26).part("tint").color(P.SHADE_2, P.SHADE_1)
+    for i in (-1, 1):
+        drum(a, (i * 0.58, 0.12, 0.0), 0.2, 0.12, "x", 8).color(*WEATHERED)
+    drum(a, (0, 0.1, -0.5), 0.3, 0.16, "z", 8).color(DARK, FRAME)
+    a.tube([(0.34, 0.24, 0.4), (0.42, 0.3, 0.86), (0.62, 0.38, 1.0)], 0.036, 5).color(*WEATHERED)
+
+
+def wreck_far_arm(a, side, wrist):
+    """The arm that lies along the body and has sunk: the pauldron and the gauntlet show."""
+    sx, sz = side * 1.04, 3.6
+    a.dome(0.47, 0.44, 12, 3, grounded=False).scale(1, 1.08, 1).move(sx + side * 0.08, 0, sz - 0.02).part("tint").color(P.SHADE_1, P.WHITE)
+    a.lathe([(0.2, -0.1), (0.46, -0.1), (0.5, -0.06), (0.5, 0.0)], 12, cap_bottom=False, cap_top=False).scale(1, 1.08, 1).move(
+        sx + side * 0.08, 0, sz - 0.02
+    ).part("metal").color(P.STEEL)
+    w = Vector(wrist)
+    limb(a, w + Vector((0.02, -0.22, 0.94)), w, (0.44, 0.48), (0.56, 0.62), sides=10).part("tint").color(P.SHADE_1, P.WHITE)
+
+
+def wreck_hand(a, wrist, toward, side):
+    """An open hand lying palm up beyond `wrist`: a palm, three fingers and a thumb curling
+    skyward. Built on the gauntlet's own axis (`toward`), in the titan's standing frame.
+    Returns the matrix of the hand's frame (x across the palm, y out of it, z along it)."""
+    w, d = Vector(wrist), Vector(toward).normalized()
+    m, _ = _basis(w, w + d, (1, 0, 0), "z")
+    m = m @ Matrix.Translation((0, 0, 0.06))
+    a.box(0.5, 0.2, 0.44, bevel=0.06).apply(m).color(DARK, FRAME)
+    for x, length in ((-0.17, 0.92), (0.0, 1.0), (0.17, 0.9)):
+        pts = [(x, 0.0, 0.4), (x, 0.03, 0.4 + 0.3 * length), (x, 0.17, 0.4 + 0.5 * length), (x, 0.34, 0.4 + 0.5 * length)]
+        a.tube(pts, [0.076, 0.072, 0.066, 0.06], 6).apply(m).color(FRAME, P.SLATE).smooth(40)
+    thumb = [(side * 0.2, 0.0, 0.16), (side * 0.4, 0.04, 0.3), (side * 0.46, 0.2, 0.36), (side * 0.42, 0.34, 0.36)]
+    a.tube(thumb, [0.08, 0.076, 0.07, 0.064], 6).apply(m).color(FRAME, P.SLATE).smooth(40)
+    return m
+
+
+def wreck_leg(a, side, hip=0.0, knee=0.0, dressed=True):
+    """A titan leg for the wreck, swung at the hip and knee (degrees). An undressed leg leaves
+    out the knee plate and joint collars that the ground would hide."""
+    x, hx = side * 0.48, side * 0.46
+    knee_at, hip_at = (x, 0.0, 1.42), (hx, 0.0, 2.36)
+    with a.group() as lower:
+        a.profile_x([(-0.56, 0.0), (0.42, 0.0), (0.42, 0.3), (0.28, 0.42), (-0.2, 0.42), (-0.56, 0.24)], 0.6, bevel=0.05).move(x, 0, 0).part(
+            "tint"
+        ).color(P.SHADE_3, P.SHADE_1)
+        a.profile_x([(-0.61, 0.0), (-0.33, 0.0), (-0.33, 0.34), (-0.61, 0.22)], 0.65, bevel=0.03).move(x, 0, 0).color(*WEATHERED)
+        # The sole, with its tread, is what a fallen boot shows the world.
+        a.box(0.5, 0.84, 0.04, bevel=0).move(x, -0.06, -0.04).color(DARK, FRAME)
+        for y in (-0.3, 0.16):
+            a.box(0.56, 0.16, 0.035, bevel=0).move(x, y, -0.07).color(FRAME, P.SLATE)
+        limb(a, (x, 0.0, 1.32), (x, 0.02, 0.36), (0.44, 0.5), (0.62, 0.7), sides=10).part("tint").color(P.SHADE_1, P.WHITE)
+        if dressed:
+            a.box(0.3, 0.1, 0.36, bevel=0.04, taper=(0.8, 1)).move(x, -0.3, 1.24).part("tint").color(P.SHADE_1, P.WHITE)
+    lower.rot(x=knee, pivot=knee_at)
+    with a.group() as upper:
+        if dressed:
+            joint(a, knee_at, 0.23, 0.56)
+        else:
+            drum(a, knee_at, 0.23, 0.56, "x", 10).color(*WEATHERED)
+        limb(a, (hx, 0.0, 2.3), (x, 0.0, 1.52), (0.5, 0.54), (0.4, 0.46), sides=10).part("tint").color(P.SHADE_1, P.WHITE)
+    for g in (lower, upper):
+        g.rot(x=hip, pivot=hip_at)
+
+
+def songbird(a, at, yaw=0.0, breast=P.ORANGE):
+    """A small bird perched on `at`, looking toward -y turned by `yaw`."""
+    back = P.WALNUT
+    with a.group() as g:
+        a.loft([(-0.1, 0, 0, 0.07), (-0.07, 0.04, 0.04, 0.075), (0.0, 0.058, 0.056, 0.056), (0.08, 0.036, 0.03, 0.04), (0.19, 0.016, 0.006, 0.03)], 6, 2.2).color(
+            breast, back
+        ).smooth(70)
+        a.sphere(0.047, 5, 3).move(0, -0.085, 0.112).color(back).smooth(80)
+        a.loft([(-0.165, 0, 0, 0.11), (-0.125, 0.014, 0.012, 0.11)], 4, 2.0).color(P.AMBER)
+    g.scale(1.55).rot(z=yaw).move(*at)
 
 
 @asset("titan-wreck", tint="#8a6a52", budget=4500)
 def titan_wreck(a):
-    # The chest and head lie propped on their back, head toward the front.
+    """A colossal worker titan fallen on its back and half taken by the forest. It lies draped
+    over the curve of the ground: an oak has rooted in the reactor port of its opened chest,
+    one arm is flung out with the hand open to the sky, one knee is raised and the other leg
+    has gone under so that only kneecap and boot break the surface. Its head has broken from
+    the neck and lies on one cheek, half sunk, looking back along the body."""
+    scale = 1.34
+    upper_at = settle(3.3, (0.58, -0.72, 0.2), yaw=4, pitch=6, roll=7, scale=scale)
+    lower_at = settle(2.36, (0.5, 0.5, 0.08), yaw=-4, pitch=-5, roll=3, scale=scale)
+
     with a.group() as upper:
-        titan_torso(a, pelvis=False, back=False, alive=False)
-        titan_head(a, alive=False, mast=4.84)
-        # One arm flung wide, the other thrown past the head.
-        titan_arm(a, -1, elbow=(-2.2, 0.16, 3.5), wrist=(-2.74, -0.66, 3.46))
-        titan_arm(a, 1, elbow=(1.5, 0.45, 4.4), wrist=(1.2, 0.74, 5.25))
-        # The broken spine and its cables.
-        a.cyl(0.2, 0.34, 8, bevel=0.03).move(0, 0, 2.22).part("metal").color(P.STEEL_DARK)
-        a.tube([(0.14, 0, 2.5), (0.3, -0.2, 2.2), (0.6, -0.5, 2.3)], 0.04, 5).color(DARK)
-        a.tube([(-0.14, 0.05, 2.5), (-0.36, -0.3, 2.1), (-0.3, -0.62, 2.3)], 0.035, 5).color(DARK)
-    lay_down(upper, 3.3, (0.3, -1.9, 0.25), yaw=8, pitch=-14, roll=3)
-    # Hips and legs came to rest a little apart, one knee still raised.
+        wreck_chest(a)
+        # The near arm is flung out, elbow wide, the forearm lying back toward the hip.
+        elbow, wrist = (-1.92, 0.17, 3.72), (-1.98, 0.15, 2.78)
+        titan_arm(a, -1, elbow=elbow, wrist=wrist, hand=False)
+        palm = wreck_hand(a, wrist, Vector(wrist) - Vector(elbow), 1)
+        wreck_far_arm(a, 1, (1.28, 0.62, 1.86))
+    upper.apply(upper_at)
     with a.group() as lower:
         a.box(0.78, 0.56, 0.44, bevel=0.08).move(0, 0, 2.12).color(DARK, FRAME)
-        titan_leg(a, -1, hip=-40, knee=82)
-        titan_leg(a, 1, hip=5, knee=10)
-    lay_down(lower, 2.5, (-0.3, 0.1, -0.08), yaw=-14, pitch=4, roll=-6)
-    # Moss drapes the shell where it meets the ground and pools in the hollows.
-    moss(
-        a,
-        [
-            (1.05, -1.45, 0.34, 0.62, 0.34),
-            (-0.98, -2.15, 0.62, 0.52, 0.4),
-            (0.38, -2.2, 1.0, 0.36, 0.3),
-            (1.0, -3.3, 0.1, 0.44, 0.34),
-            (2.55, -2.35, 0.2, 0.46, 0.38),
-            (-0.72, -4.35, 0.14, 0.36, 0.4),
-            (-1.0, 1.0, 0.26, 0.56, 0.36),
-            (0.42, 1.5, 0.5, 0.34, 0.4),
-            (-1.15, 2.75, 0.2, 0.4, 0.4),
-            (-0.5, -0.5, 0.06, 0.5, 0.3),
-        ],
+        wreck_leg(a, -1, hip=-58, knee=101)
+        wreck_leg(a, 1, dressed=False)
+    lower.apply(lower_at)
+    with a.group() as head:
+        wreck_head(a)
+    head_at = Matrix.Translation((0.2, -2.72, 0.2)) @ Matrix.Rotation(math.radians(24), 4, "Z") @ Matrix.Rotation(math.radians(-72), 4, "Y") @ Matrix.Rotation(
+        math.radians(-10), 4, "X"
     )
-    # A sapling has taken the gap where the waist broke.
-    parts.trunk(a, 1.1, 0.07, lean=0.12).move(0.2, -0.5, -0.05)
+    head.apply(head_at)
+
+    def on_upper(x, y, z):
+        return upper_at @ Vector((x, y, z))
+
+    def on_lower(x, y, z):
+        return lower_at @ Vector((x, y, z))
+
+    bark = (jk.shade(P.BARK, -0.18), jk.shade(P.BARK, 0.08))
+    # An oak has rooted in the reactor seat. Its roots pour out over the chest and under the
+    # sprung plates on their way to the soil.
+    seat = on_upper(0, -0.3, 3.45)
+    crown = seat + Vector((0.08, 0.04, 0.74))
+    a.tube([seat, seat + Vector((-0.04, 0.0, 0.3)), seat + Vector((0.03, 0.02, 0.56)), crown], [0.18, 0.13, 0.105, 0.075], 7).color(*bark).flat()
+    for dx, dy in ((0.36, 0.1), (-0.32, -0.16)):
+        a.tube([seat + Vector((0.02, 0.01, 0.46)), crown + Vector((dx * 0.6, dy * 0.6, -0.1)), crown + Vector((dx, dy, 0.08))], [0.06, 0.05, 0.035], 5).color(
+            *bark
+        ).flat()
     parts.canopy(
         a,
-        [(0.32, -0.5, 1.26, 0.38, 0.86), (0.1, -0.42, 1.5, 0.27, 0.86), (0.54, -0.62, 1.1, 0.25, 0.8)],
+        [
+            (crown.x, crown.y, crown.z + 0.26, 0.54, 0.8),
+            (crown.x + 0.44, crown.y + 0.12, crown.z + 0.1, 0.36, 0.82),
+            (crown.x - 0.4, crown.y - 0.18, crown.z + 0.12, 0.37, 0.8),
+            (crown.x + 0.02, crown.y + 0.36, crown.z + 0.34, 0.3, 0.85),
+        ],
         seed=5,
         part="base",
         low=P.LEAF_DEEP,
         high=P.LEAF,
     )
-    # Centre the sprawl on the footprint the world layouts reserve for it.
-    for piece in a.pieces:
-        piece.move(0.1, 0.9, 0)
+    roots = (
+        [(-0.1, -0.46, 3.4), (-0.5, -0.67, 3.3), (-0.92, -0.5, 3.18), (-1.06, -0.04, 3.12), (-1.3, 0.34, 3.02)],
+        [(0.1, -0.5, 3.4), (0.52, -0.67, 3.2), (0.93, -0.36, 3.08), (1.05, 0.1, 2.94), (1.22, 0.38, 2.78)],
+        [(-0.04, -0.5, 3.3), (-0.12, -0.64, 2.98), (-0.16, -0.46, 2.7), (-0.34, -0.2, 2.44), (-0.56, 0.3, 2.28)],
+    )
+    for path in roots:
+        a.tube([on_upper(*q) for q in path], [0.1, 0.085, 0.07, 0.055, 0.035], 5).color(*bark).flat()
+
+    # A young birch stands in the crook of the raised knee, and scrub has taken the hollows.
+    foot = Vector((1.66, 1.1, -0.2))
+    a.tube([foot, foot + Vector((0.03, 0.0, 0.6)), foot + Vector((-0.02, 0.02, 1.2))], [0.07, 0.055, 0.035], 6).color(P.STONE, P.BIRCH).flat()
+    parts.canopy(a, [(foot.x - 0.02, foot.y, foot.z + 1.36, 0.34, 0.95, 2), (foot.x + 0.16, foot.y + 0.1, foot.z + 1.08, 0.24, 0.9, 1)], seed=11, part="base", low=P.LEAF, high=P.LIME)
+    parts.canopy(
+        a,
+        [(2.3, -2.25, -0.34, 0.34, 0.8, 2), (-0.9, 1.5, -0.06, 0.38, 0.78, 2)],
+        seed=8,
+        part="base",
+        low=P.LEAF_DEEP,
+        high=P.LEAF,
+    )
+    # Moss lies on every shelf that faces the sky and banks up where metal meets earth.
+    shelves = [
+        (on_upper(0.56, -0.56, 3.8), 0.46, 0.2),
+        (on_upper(1.14, -0.44, 3.6), 0.48, 0.24),
+        (on_upper(-1.2, -0.46, 3.62), 0.42, 0.22),
+        (on_upper(1.3, 0.24, 2.3), 0.56, 0.24),
+        (on_lower(0.48, -0.24, 1.2), 0.46, 0.24),
+        (head_at @ Vector((0.5, 0.1, 0.0)), 0.44, 0.24),
+    ]
+    moss(a, [(q.x, q.y, q.z, r, flat) for q, r, flat in shelves])
+    # Two birds have the run of it: one on a fingertip, one on the head.
+    songbird(a, upper_at @ (palm @ Vector((0.0, 0.4, 0.9))), yaw=140)
+    songbird(a, head_at @ Vector((0.62, -0.2, 0.06)), yaw=30, breast=P.YELLOW)
 
 
 # --------------------------------------------------------------------------------------------

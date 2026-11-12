@@ -1369,14 +1369,50 @@ def corrugated(w, h, waves=4, rows=2, amp=0.03, twist=0.0, curl=0.0, droop=0.0):
     return piece.warp(fn)
 
 
-def along(g, p0, p1):
-    """Lay a group built along +y from the origin onto the line p0 -> p1."""
-    d = Vector(p1) - Vector(p0)
-    return g.apply(Matrix.Translation(p0) @ d.to_track_quat("Y", "Z").to_matrix().to_4x4())
+def girder(points, width=0.2, depth=0.18, t=0.036, up=(0, 0, 1)):
+    """An I-beam swept along a polyline and mitred at each bend. `up` is roughly the way the
+    web stands at the first leg."""
+    pts = [Vector(q) for q in points]
+    w, d = width / 2, depth / 2
+    section = [(-w, -d), (w, -d), (w, -d + t), (t / 2, -d + t), (t / 2, d - t), (w, d - t), (w, d), (-w, d), (-w, d - t), (-t / 2, d - t), (-t / 2, -d + t), (-w, -d + t)]
+    legs = [(b - a).normalized() for a, b in zip(pts, pts[1:])]
+    side = legs[0].cross(Vector(up)).normalized()
+    rise = side.cross(legs[0]).normalized()
+    verts = [pts[0] + side * u + rise * v for u, v in section]
+    for k, leg in enumerate(legs):
+        if k + 1 < len(legs):
+            # Mitre: carry this leg's section on to the plane that halves the bend.
+            normal = (leg + legs[k + 1]).normalized()
+            for u, v in section:
+                offset = side * u + rise * v
+                verts.append(pts[k + 1] + offset - leg * (offset.dot(normal) / leg.dot(normal)))
+            turn = leg.rotation_difference(legs[k + 1])
+            side, rise = turn @ side, turn @ rise
+        else:
+            verts += [pts[k + 1] + side * u + rise * v for u, v in section]
+    n = len(section)
+    faces = [tuple(range(n - 1, -1, -1)), tuple(range(len(verts) - n, len(verts)))]
+    for k in range(len(legs)):
+        faces += [(k * n + i, k * n + (i + 1) % n, (k + 1) * n + (i + 1) % n, (k + 1) * n + i) for i in range(n)]
+    return jk.raw(verts, faces)
 
 
-@asset("scrap", tint="#ffffff", budget=700, note="S8: a heap of roof sheets, a girder, a drum and a wheel.")
+def cog(r, teeth=8, depth=0.07, width=0.1):
+    """A spur gear lying in the xy plane with its back on z = 0: flat-topped teeth, V roots."""
+    outline = []
+    for i in range(teeth):
+        for frac, rad in ((-0.5, r - depth), (-0.2, r), (0.2, r)):
+            ang = (i + frac) / teeth * math.tau
+            outline.append((math.cos(ang) * rad, math.sin(ang) * rad))
+    return jk.prism(outline, width, bevel=0)
+
+
+@asset("scrap", tint="#ffffff", budget=700, note="S8: a scrap heap: car door, cable drum, bent girder, gear, roof sheet and a tyre.")
 def scrap(a):
+    # Composed as a low pyramid on a heap of compacted debris. Front: a car door leaning back on
+    # the heap, and a cable drum on its rims. Over the top: a girder, buckled where it crosses
+    # the crest. Behind and to the sides: a gear, a sheet of roofing iron and a tyre. Rust
+    # throughout; the door's old paint and the drum's timber are the only other colours.
     rust_lo, rust_hi = jk.shade(P.RUST, -0.3), jk.mix(P.RUST, P.ORANGE, 0.22)
     zinc_lo, zinc_hi = jk.mix(P.STEEL_DARK, P.RUST, 0.3), jk.mix(P.STEEL, P.SAND, 0.2)
     cx, cy = 0.05, 0.05
@@ -1384,40 +1420,63 @@ def scrap(a):
     def polar(angle, dist):
         return cx + math.cos(math.radians(angle)) * dist, cy + math.sin(math.radians(angle)) * dist
 
-    # The heap itself: compacted debris everything else leans on.
-    mound(a, cx, cy, 0.08, 0.62, (1.3, 1.1, 0.75), seed=2).color("#40352f", "#6a584b")
-    # A rusted roof sheet leans on the front, a galvanised one lies over the back.
-    # Each rests its lower edge on the ground and lies tangent to the heap; one corner has peeled up.
-    x, y = polar(-50, 0.67)
-    a.add(corrugated(1.0, 0.8, 5, 2, amp=0.03, droop=-0.14)).rot(x=44).rot(z=40).move(x, y, 0.32).color(rust_lo, rust_hi)
-    x, y = polar(130, 0.7)
-    a.add(corrugated(0.9, 0.7, 5, 2, amp=0.03, droop=-0.1)).rot(x=44).rot(z=-140).move(x, y, 0.29).color(zinc_lo, zinc_hi)
-    # A girder thrusts out of the top.
-    L = 1.02
-    with a.group() as girder:
-        for z in (-0.075, 0.075):
-            a.box(0.17, L, 0.026, bevel=0).move(0, L / 2, z - 0.013)
-        a.box(0.026, L, 0.15, bevel=0).move(0, L / 2, -0.075)
-    for piece in girder.pieces:
-        piece.color(rust_lo, rust_hi)
-    gx, gy = polar(75, 0.74)
-    along(girder, (0.0, 0.02, 0.34), (gx, gy, 0.94))
-    # A dented drum on its side, the heap's one note of old paint.
-    drum = a.lathe([(0.17, 0), (0.21, 0.03), (0.21, 0.2), (0.232, 0.235), (0.21, 0.27), (0.21, 0.43), (0.232, 0.465), (0.21, 0.5), (0.21, 0.67), (0.17, 0.7)], 8)
-    drum.warp(lambda co: (co.x, co.y, co.z) if co.y < 0 else (co.x, co.y * (1 - 0.5 * math.exp(-((co.z - 0.36) ** 2) / 0.02)), co.z))
-    faded = jk.mix(P.BLUE, P.STONE, 0.35)
-    x, y = polar(20, 0.95)
-    drum.rot(x=-90).move(0, -0.35, 0.19).rot(z=20).move(x, y, 0).color(jk.shade(faded, -0.35), faded)
-    # A wheel propped against the heap.
-    x, y = polar(-120, 0.86)
-    wheel = parts.wheel(a, 0.25, 0.15, hub=P.STEEL_DARK, sides=8).rot(y=34).rot(z=60).move(x, y, 0.05)
-    for piece in wheel.pieces:
-        piece.part("base")
-    # Bent pipe and a hooked reinforcement bar.
-    a.tube([(-0.42, 0.0, 0.34), (-0.74, -0.04, 0.34), (-0.92, -0.08, 0.2), (-1.0, -0.1, 0.03)], 0.05, 5).color(P.GUNMETAL, P.STEEL_DARK)
-    cable(a, [(-0.12, -0.05, 0.5), (-0.22, -0.12, 0.84), (-0.36, -0.16, 0.86), (-0.42, -0.18, 0.7)], 0.02, P.RUST)
+    # The heap itself: a dark core of compacted debris under a shingle of rusted plate.
+    mound(a, cx, cy, 0.08, 0.5, (1.25, 1.05, 0.95), seed=2).color(jk.mix(P.BARK_DARK, P.INK, 0.45), jk.mix(P.BARK, P.CHARCOAL, 0.35))
+    dark_lo, dark_hi = jk.mix(P.RUST, P.CHARCOAL, 0.6), jk.mix(P.RUST, P.CHARCOAL, 0.3)
+    worn_lo, worn_hi = jk.mix(P.RUST, P.BARK_DARK, 0.5), jk.mix(P.RUST, P.CLAY, 0.35)
+    for (x, y, z), (w, d), (rx, ry, rz), (low, high) in (
+        ((0.14, -0.36, 0.33), (0.66, 0.56), (58, 0, -8), (worn_lo, worn_hi)),
+        ((0.5, 0.06, 0.4), (0.5, 0.52), (10, 44, 20), (dark_lo, dark_hi)),
+        ((-0.3, 0.42, 0.34), (0.62, 0.5), (-48, -10, 28), (zinc_lo, zinc_hi)),
+        ((-0.42, -0.04, 0.38), (0.46, 0.44), (14, -46, -12), (dark_lo, dark_hi)),
+    ):
+        a.box(w, d, 0.035, bevel=0).move(0, 0, -0.0175).rot(x=rx, y=ry).rot(z=rz).move(x, y, z).color(low, high)
+    # A girder lies over the crest, buckled where it crosses it; its low end rests on the ground.
+    a.add(girder([(-0.98, 0.5, 0.11), (0.05, 0.12, 0.88), (0.64, 0.36, 0.56)])).color(rust_lo, rust_hi)
+    # A car door leans back on the heap: slanted front pillar, empty window, mirror and handle.
+    paint = jk.mix(P.TEAL, P.STONE, 0.3)
+    with a.group() as door:
+        panel = a.profile_y([(-0.42, 0.0), (0.4, 0.0), (0.42, 0.46), (0.4, 0.8), (-0.02, 0.8), (-0.42, 0.48)], 0.06, bevel=0)
+        panel.cut(jk.profile_y([(-0.27, 0.5), (0.33, 0.5), (0.325, 0.73), (-0.03, 0.73)], 0.3, bevel=0))
+        lo, hi = jk.col(jk.mix(P.RUST, paint, 0.15)), jk.col(paint)
+        for f in panel.bm.faces:
+            for loop in f.loops:
+                k = min(1.0, max(0.0, loop.vert.co.z / 0.3))
+                loop[panel.layer] = (lo[0] + (hi[0] - lo[0]) * k, lo[1] + (hi[1] - lo[1]) * k, lo[2] + (hi[2] - lo[2]) * k, 1.0)
+        a.box(0.8, 0.03, 0.035, bevel=0).move(0.0, -0.04, 0.4).color(jk.shade(paint, 0.25))
+        a.box(0.11, 0.035, 0.035, bevel=0).move(0.27, -0.045, 0.31).color(P.CHARCOAL)
+        a.box(0.12, 0.09, 0.08, bevel=0).move(-0.4, -0.08, 0.5).color(P.CHARCOAL, P.GUNMETAL)
+    door.rot(x=-28).rot(z=14)
+    x, y = polar(-128, 0.86)
+    door.move(x, y, 0)
+    # A cable drum on its rims: two timber flanges, a core still wound with cable, a steel hub.
+    timber = jk.mix(P.PINE_WOOD, P.STONE, 0.18)
+    R, W, t = 0.33, 0.36, 0.055
+    with a.group() as drum:
+        for z in (0.0, W - t):
+            a.cyl(R, t, 10, bevel=0).move(0, 0, z).color(jk.shade(timber, -0.25), timber)
+        a.lathe([(0.17, t), (0.17, W - t)], 8, cap_bottom=False, cap_top=False).color(P.INK, P.GUNMETAL)
+        a.cyl(0.085, 0.03, 6, bevel=0).move(0, 0, W).color(P.STEEL_DARK).paint(lambda f: P.INK if f.normal.z > 0.6 else None)
+        a.cyl(0.085, 0.03, 6, bevel=0).move(0, 0, -0.03).color(P.STEEL_DARK).paint(lambda f: P.INK if f.normal.z < -0.6 else None)
+    x, y = polar(-38, 0.93)
+    drum.rot(x=90).move(0, W / 2, 0).rot(y=7).rot(z=-20).move(x, y, R - 0.03)
+    # A gear leans on the heap's other shoulder.
+    with a.group() as wheel:
+        a.add(cog(0.33, 8, 0.075, 0.11)).color(jk.mix(P.GUNMETAL, P.RUST, 0.45), jk.mix(P.STEEL_DARK, P.RUST, 0.62))
+        a.cyl(0.11, 0.035, 6, bevel=0).move(0, 0, 0.11).color(P.STEEL_DARK).paint(lambda f: P.INK if f.normal.z > 0.6 else None)
+    x, y = polar(30, 0.9)
+    wheel.rot(z=11).rot(x=62).rot(z=120).move(x, y, 0.27)
+    # A sheet of roofing iron leans on the back, one corner peeled up.
+    x, y = polar(96, 0.74)
+    a.add(corrugated(0.95, 0.75, 4, 1, amp=0.032, droop=-0.12)).rot(x=46).rot(z=186).move(x, y, 0.3).color(zinc_lo, rust_hi)
+    # A tyre half under the heap, a bent pipe, a hooked reinforcing bar and loose blocks.
+    x, y = polar(186, 0.86)
+    a.torus(0.2, 0.085, 8, 4).rot(x=14, y=-12).move(x, y, 0.07).color(P.INK, P.CHARCOAL)
+    a.tube([(0.12, -0.3, 0.42), (0.2, -0.72, 0.36), (0.26, -0.92, 0.2), (0.28, -0.98, 0.02)], 0.05, 4).color(P.GUNMETAL, P.STEEL_DARK)
+    cable(a, [(-0.14, -0.06, 0.56), (-0.22, -0.14, 0.9), (-0.34, -0.18, 0.92), (-0.39, -0.2, 0.79)], 0.02, P.RUST)
+    for x, y, z, size, turn, tilt in ((-0.2, 0.86, 0.0, (0.3, 0.2, 0.05), 25, 6), (1.02, -0.02, 0.0, (0.24, 0.16, 0.12), -30, 0), (-0.55, 0.78, 0.0, (0.16, 0.12, 0.1), 60, 0)):
+        rubble_block(a, x, y, z, size, turn, dark_hi, tilt, bevel=0)
     # Reclaimed: weeds root in the lee of the heap.
-    x, y = polar(58, 0.95)
-    mound(a, x, y, 0.04, 0.15, (1.2, 1.0, 0.7), seed=4).color(P.LEAF_DEEP, P.MOSS)
-    mound(a, -0.8, -0.42, 0.03, 0.12, (1.0, 1.2, 0.7), seed=7).color(P.LEAF_DEEP, P.MOSS)
+    mound(a, 0.42, -0.9, 0.04, 0.13, (1.2, 1.0, 0.7), seed=4).color(P.LEAF_DEEP, P.MOSS)
+    mound(a, -0.86, 0.36, 0.03, 0.12, (1.0, 1.2, 0.7), seed=7).color(P.LEAF_DEEP, P.MOSS)
     settle(a)

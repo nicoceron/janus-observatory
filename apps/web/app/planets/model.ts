@@ -154,7 +154,8 @@ export class LayerBuilder {
     (options.puff ? this.cloud : this.solid).model(parts.tint, placed, tint);
     this.sheen.model(parts.metal, placed, options.metal);
     this.glass.model(parts.glass, placed);
-    if (options.lights !== false && !dim) this.glow.model(parts.glow, placed);
+    // Unlit, a lamp or a luminous crystal is still there, as plain glass in its own colours.
+    if (options.lights !== false) (dim ? this.glass : this.glow).model(parts.glow, placed);
     if (options.dark || dim) this.glass.model(parts.lit, placed, '#1b2733');
     else this.glow.model(parts.lit, placed);
   }

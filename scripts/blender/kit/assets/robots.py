@@ -73,64 +73,74 @@ def robot_walk(a):
 # --------------------------------------------------------------------------------------------
 @asset("sentinel", tint="#3a3f48", budget=1500, note="Security unit: armoured shell is the tint; one red sensor.")
 def sentinel(a):
+    """S1's watcher: a tall, narrow sentry in an armoured greatcoat, standing to attention. A
+    lighthouse head turns one red sensor band under a peaked cap, a lamp rides on each shoulder,
+    its shins are steel greaves over polished boots, a riot shield is slung on its back and a
+    baton hangs at its hip."""
     plate = (P.SHADE_1, P.WHITE)
     trim = (P.SHADE_3, P.SHADE_2)
-    # Legs: armoured boots and greaves under bare piston thighs.
+    steel = (P.STEEL_DARK, jk.mix(P.STEEL_DARK, P.STEEL, 0.7))
+    ember = jk.mix(P.GLOW_RED, "#5a0f0c", 0.3)
+    # Legs: polished boots, steel greaves with a knee guard, and the frame running up under the coat.
     for side in (-1, 1):
-        x = side * 0.17
-        a.loft([(-0.21, 0, 0), (-0.19, 0.085, 0.045, 0.045), (-0.03, 0.105, 0.07, 0.07), (0.1, 0.095, 0.06, 0.06), (0.125, 0, 0)], 8, 3).move(
+        x = side * 0.15
+        a.loft([(-0.27, 0, 0, 0.04), (-0.245, 0.074, 0.045, 0.045), (-0.08, 0.092, 0.066, 0.066), (0.11, 0.086, 0.06, 0.06), (0.16, 0, 0, 0.05)], 8, 3).move(
             x, 0, 0
-        ).part("tint").color(*trim)
-        upright(a, [(0, 0.07, 0.075), (0.1, 0.092, 0.097, 0.012), (0.36, 0.102, 0.107, 0.03), (0.46, 0.074, 0.08, 0.04)], 8, 3).move(
-            x, 0.01, 0.1
-        ).part("tint").color(*plate)
-        a.sphere(0.075, 6, 4).move(x, 0.0, 0.58).part("metal").color(P.CHROME)
-        a.tube([(x, 0.0, 0.6), (side * 0.15, 0.01, 0.9)], [0.078, 0.098], 8).part("tint").color(*trim)
-    a.box(0.44, 0.25, 0.17, bevel=0.05).move(0, 0.01, 0.84).part("tint").color(*trim)
-    a.cyl(0.125, 0.09, 10, bevel=0).move(0, 0.01, 0.99).part("metal").color(P.STEEL)
-    # Torso: a narrow waist flaring to a broad armoured chest.
+        ).part("metal").color(P.SHADE_2, P.WHITE)
+        greave = upright(a, [(0, 0.06, 0.074), (0.06, 0.078, 0.094, 0.008), (0.42, 0.088, 0.1, 0.022), (0.5, 0.068, 0.08, 0.026)], 8, 3).move(x, 0.01, 0.09)
+        greave.color(*steel).paint(lambda f: P.GUNMETAL if not 0.15 < f.calc_center_median().z < 0.51 else None)
+        a.sphere(0.08, 6, 3, (1.0, 0.7, 1.3)).move(x, -0.085, 0.65).part("tint").color(*plate)
+        a.tube([(x, 0.01, 0.58), (side * 0.13, 0.01, 0.98)], 0.055, 6, caps="none").color(P.INK, P.GUNMETAL)
+
+    # The greatcoat: an armoured skirt from the belt to the knee, with a vent at the front hem.
+    upright(a, [(0, 0.268, 0.2), (0.035, 0.28, 0.21), (0.3, 0.225, 0.172), (0.47, 0.178, 0.14)], 10, 3.2).move(0, 0.01, 0.76).part("tint").color(*plate)
+    upright(a, [(0, 0.286, 0.216), (0.05, 0.288, 0.217)], 10, 3.2, caps="none").move(0, 0.01, 0.775).part("tint").color(*trim)
+    a.profile_y([(-0.05, 0), (0.05, 0), (0, 0.24)], 0.02, bevel=0).rot(x=-7).move(0, -0.206, 0.762).color(P.INK)
+    upright(a, [(0, 0.19, 0.15), (0.065, 0.19, 0.15)], 10, 3.2).move(0, 0.01, 1.2).color(P.INK, P.CHARCOAL)
+    a.box(0.08, 0.03, 0.055, bevel=0).move(0, -0.155, 1.205).color(P.STEEL)
+    # Chest: tall and narrow, with a dark vent and one badge light.
     upright(
         a,
-        [(0, 0.16, 0.12), (0.08, 0.2, 0.14, 0.01), (0.26, 0.32, 0.19, 0.03), (0.37, 0.335, 0.19, 0.025), (0.44, 0.27, 0.15, 0.01), (0.47, 0, 0)],
-        12,
+        [(0, 0.17, 0.13), (0.06, 0.2, 0.15, 0.005), (0.27, 0.275, 0.18, 0.02), (0.38, 0.285, 0.18, 0.02), (0.44, 0.235, 0.15, 0.01), (0.47, 0.12, 0.09, 0)],
+        10,
         3.2,
-    ).move(0, 0, 1.04).part("tint").color(*plate)
-    a.box(0.24, 0.03, 0.1, bevel=0.025).move(0, -0.222, 1.28).color(P.INK)
-    # Shoulders, arms.
+    ).move(0, 0, 1.25).part("tint").color(*plate)
+    a.box(0.22, 0.03, 0.055, bevel=0).move(0, -0.204, 1.5).color(P.INK)
+    a.box(0.05, 0.02, 0.035, bevel=0).move(0.17, -0.2, 1.6).part("glow").color(P.GLOW_RED)
+
+    # Head: a lighthouse. The sensor band looks all the way round, the lens is where it looks
+    # now, and the peak of the cap shades it.
+    a.lathe([(0.125, 1.66), (0.168, 1.71), (0.158, 1.785), (0.128, 1.785)], 8).scale(1, 0.92, 1).part("tint").color(*trim)
+    a.lathe([(0.1, 1.76), (0.126, 1.785), (0.13, 1.832)], 10, cap_top=False).part("tint").color(*plate)
+    a.lathe([(0.126, 1.828), (0.138, 1.84), (0.138, 1.908), (0.126, 1.92)], 10, cap_bottom=False, cap_top=False).part("glow").color(ember)
+    a.lathe([(0.13, 1.916), (0.134, 1.958), (0.1, 2.014), (0.04, 2.038), (0, 2.042)], 10, cap_bottom=False).part("tint").color(*plate)
+    a.loft([(-0.222, 0.045, 0.006, 1.914), (-0.185, 0.105, 0.009, 1.92), (-0.1, 0.136, 0.011, 1.927)], 6, 2.0).color(P.INK)
+    a.sphere(0.044, 6, 4, (1.1, 0.55, 0.95)).move(0, -0.137, 1.872).part("glow").color(jk.mix(P.GLOW_ORANGE, P.GLOW_WHITE, 0.35))
+    a.tube([(-0.08, 0.06, 2.0), (-0.095, 0.085, 2.11)], [0.011, 0.007], 4).color(P.STEEL)
+
+    # Shoulders: pauldrons, each carrying a lamp; steel upper arms; gauntlets; closed fists.
     for side in (-1, 1):
-        a.sphere(0.18, 10, 6, (1.14, 1.16, 0.62)).rot(y=side * 24).move(side * 0.405, 0.0, 1.41).part("tint").color(*plate)
-        a.tube([(side * 0.42, 0.0, 1.32), (side * 0.45, 0.02, 0.98)], 0.055, 6).part("metal").color(P.STEEL, P.CHROME)
-        a.sphere(0.068, 6, 4).move(side * 0.45, 0.02, 0.95).part("metal").color(P.CHROME)
-    # Left arm: an armoured gauntlet and a closed fist, held a little forward.
-    with a.group() as g:
-        upright(a, [(0, 0.06, 0.065), (0.06, 0.086, 0.09), (0.25, 0.08, 0.085), (0.31, 0.055, 0.06)], 8, 3).move(-0.45, 0.02, 0.63).part(
+        a.sphere(0.145, 8, 4, (1.08, 1.15, 0.7)).rot(y=side * 20).move(side * 0.365, 0, 1.6).part("tint").color(*plate).smooth(70)
+        with a.group() as lamp:
+            a.lathe([(0.038, 0), (0.05, 0.02), (0.05, 0.15)], 8).rot(x=90).color(P.INK, P.GUNMETAL)
+            a.lathe([(0.042, 0), (0, 0.006)], 8, cap_bottom=False).rot(x=90).move(0, -0.15, 0).part("glow").color(P.LAMP)
+        lamp.rot(x=-8, z=side * 6).move(side * 0.385, -0.02, 1.728)
+        a.tube([(side * 0.4, 0, 1.56), (side * 0.445, 0.02, 1.2)], 0.048, 6, caps="none").color(*steel)
+        upright(a, [(0, 0.058, 0.064), (0.06, 0.082, 0.09), (0.28, 0.076, 0.084), (0.35, 0.05, 0.056)], 8, 3).move(side * 0.455, 0.02, 0.86).part(
             "tint"
         ).color(*plate)
-        a.box(0.115, 0.125, 0.12, bevel=0.035).move(-0.45, 0.02, 0.52).color(P.INK, P.CHARCOAL)
-    g.rot(x=-12, pivot=(-0.45, 0.02, 0.95))
-    # Right arm: a forearm cannon levelled forward.
-    a.loft([(0.09, 0.06, 0.06, 0.95, 0.45), (0.03, 0.09, 0.09, 0.95, 0.45), (-0.24, 0.09, 0.09, 0.95, 0.45), (-0.3, 0.068, 0.068, 0.95, 0.45)], 8, 3.5).part(
-        "tint"
-    ).color(*plate)
-    a.box(0.05, 0.2, 0.03, bevel=0).move(0.45, -0.13, 1.035).color(P.INK)
-    a.cyl(0.048, 0.24, 8, bevel=0).rot(x=90).move(0.45, -0.29, 0.95).part("metal").color(P.CHROME)
-    a.cyl(0.066, 0.06, 8, bevel=0).rot(x=90).move(0.45, -0.5, 0.95).part("metal").color(P.STEEL)
-    a.cyl(0.036, 0.012, 8, bevel=0).rot(x=90).move(0.45, -0.558, 0.95).part("glow").color(P.GLOW_RED)
-    # Head: a low helmet with a slit visor and the one red sensor.
-    a.cyl(0.075, 0.08, 8, bevel=0).move(0, 0, 1.48).part("metal").color(P.STEEL)
-    a.loft([(-0.16, 0, 0), (-0.145, 0.115, 0.085), (0, 0.155, 0.115), (0.125, 0.13, 0.095), (0.15, 0, 0)], 12, 3).move(0, 0, 1.63).part(
-        "tint"
-    ).color(*plate)
-    a.loft([(-0.174, 0, 0), (-0.16, 0.115, 0.045), (-0.095, 0.147, 0.062), (-0.07, 0.153, 0.066)], 12, 3, caps="none").move(0, 0, 1.635).part(
-        "glass"
-    ).color(P.INK)
-    a.sphere(0.042, 8, 4, (1, 0.5, 1)).move(0, -0.168, 1.635).part("glow").color(P.GLOW_RED)
-    a.box(0.04, 0.25, 0.055, bevel=0.012).move(0, 0.01, 1.722).part("tint").color(*trim)
-    # Power pack with vents, status pips and a whip antenna.
-    a.box(0.34, 0.13, 0.32, bevel=0.04).move(0, 0.2, 1.1).part("tint").color(*trim)
-    a.box(0.24, 0.02, 0.04, bevel=0).move(0, 0.262, 1.31).color(P.INK)
-    a.box(0.1, 0.016, 0.028, bevel=0).move(0, 0.266, 1.19).part("glow").color(P.GLOW_RED)
-    a.tube([(-0.13, 0.2, 1.4), (-0.16, 0.23, 1.92)], [0.014, 0.008], 4).part("metal").color(P.CHROME)
+        a.box(0.1, 0.12, 0.115, bevel=0.03).move(side * 0.455, 0.01, 0.755).color(P.INK, P.CHARCOAL)
+
+    # Slung on its back: a power pack and a riot shield with a view slit and a hazard band.
+    a.box(0.3, 0.11, 0.34, bevel=0.03).move(0, 0.215, 1.3).part("tint").color(*trim)
+    with a.group() as shield:
+        a.profile_y([(-0.2, 0), (0.2, 0), (0.2, 0.64), (0.13, 0.76), (-0.13, 0.76), (-0.2, 0.64)], 0.06, bevel=0.018).part("tint").color(*plate)
+        a.box(0.3, 0.02, 0.07, bevel=0).move(0, 0.03, 0.2).color(P.RED)
+        a.box(0.24, 0.02, 0.05, bevel=0).move(0, 0.03, 0.56).part("glass").color(P.INK, P.GLASS_DARK)
+    shield.rot(x=-8).move(0, 0.336, 0.84)
+    # The baton hangs from the belt behind the right hip.
+    a.tube([(0.25, 0.14, 1.22), (0.27, 0.19, 0.82)], [0.03, 0.026], 6).color(P.INK, P.GUNMETAL)
+    a.tube([(0.262, 0.166, 1.0), (0.267, 0.178, 0.9)], 0.032, 6, caps="none").part("glow").color(P.GLOW_ORANGE)
 
 
 # --------------------------------------------------------------------------------------------

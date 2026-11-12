@@ -31,7 +31,7 @@ _thing_ with an authored Blender model:
 | Observer and telescope                |     14 | `assets/observer.py`                                  |
 | Study plinth, colony and swarm pieces |      9 | `assets/stage.py`                                     |
 
-That is 262 models and 376,658 triangles, plus 20 unlit twins of buildings that share their lit
+That is 262 models and 380,843 triangles, plus 20 unlit twins of buildings that share their lit
 model's geometry. All paths are under `scripts/blender/kit/`. The Earth itself is also authored there
 (`earth.py`): continents are hand-drawn outlines with mountain ranges and dry and lush regions,
 replacing Decision 035's overlapping caps, whose coastlines read as pixels.
@@ -129,6 +129,31 @@ the Project Janus narratives: architecture, creatures, machines, proportions and
 measurements, the continents are a caricature rather than a geographic reconstruction, and no
 scenario is presented as more or less probable than another.
 
+## Second pass (same day)
+
+The user asked for the models and scenes I had listed as weaker to be finished rather than
+reported:
+
+- **Reworked models**: `lm-ruin`, `lm-stone-circle`, `crystal`, `spire`, `cloud-city`, `shrub`,
+  `vine`, `haystack`, `scrap`, `bio-skiff`, `hover-car`, `sentinel`, `titan-wreck`,
+  `sys-asteroid-b` and `sys-asteroid-d`, each rebuilt around a specific silhouette and story.
+- **The observer's eye is on the eyepiece.** The observing pose leaned the head past the eyepiece,
+  so it met the brow and the free arm crossed the mouth. The clip now leans and turns the
+  character at the waist; the right pupil stays within 0.002 units of the optical axis through
+  both holds, and unit tests pin it there on desktop and phone layouts. The telescope, its layout
+  and the camera's flight into it are unchanged.
+- **S2 is staged as districts.** Its recipe offered far more structures than the story tier keeps,
+  so the declutter left random survivors. It now offers about 45, placed on purpose: a great pit
+  with its excavator, conveyor and silos; the red company's enclave, launch site, tank row and
+  offshore rig; five rival compounds laid out alike, one per continent; an oil field; and empty
+  worked-out ground between them. Mined and ploughed faces are gathered into scars and estates
+  instead of a checkerboard. Every total derived from a published value is unchanged and tested.
+  S2's story view turns 7° east (`facing` 22 to 29) so the red chain sits inside the disc, and its
+  shuttle port, harbour cranes and pylons are gone.
+- **Unlit light is glass, not nothing.** On a body with no reported illumination a model's `glow`
+  part is drawn as plain glass in its own colours. Dropping it, as the first pass did, made a
+  model that is all light (S9's crystal gift) disappear.
+
 ## Cost and quality tiers
 
 An authored model costs far more than the box it replaced, and worlds repeat some models by the
@@ -141,17 +166,17 @@ dozen or the hundred. Three rules keep a world's cost near Decision 035's:
 - **The light tiers stay light.** At overview and minimal quality (the ten-world constellation and
   software rendering) satellites are 32-triangle `sat-speck`s, roads are drawn without markings
   and the shared ground carries no repeats of a landmark, only each world's hero pieces. Minimal
-  worlds are 23k–43k triangles, in the range Decision 035 drew.
-- **Story quality spends where it shows.** A story-quality world merges 43k–169k triangles of
-  terrain, landmarks and orbits and instances 45k–182k of props.
+  worlds are 23k–42k triangles, in the range Decision 035 drew.
+- **Story quality spends where it shows.** A story-quality world merges 43k–109k triangles of
+  terrain, landmarks and orbits and instances 46k–182k of props.
 
 ## What changed for the reader
 
 - Nothing in the story, the atlas, the data or the wording changed. Every illustration did.
-- The site downloads four model packs again: 0.57 MB for the opening Earth, 0.14 MB for the
-  observer, 1.67 MB for the scenario worlds and 1.16 MB for landmarks and system bodies (3.55 MB
-  in all, stored gzip-compressed). The home page's opening visuals come to 0.68 MB against the
-  1.5 MB mobile budget, and a whole guided journey to 4.5 MB against 20 MB.
+- The site downloads four model packs again: 0.58 MB for the opening Earth, 0.14 MB for the
+  observer, 1.71 MB for the scenario worlds and 1.19 MB for landmarks and system bodies (3.62 MB
+  in all, stored gzip-compressed). The home page's opening visuals come to 0.69 MB against the
+  1.5 MB mobile budget, and a whole guided journey to 4.6 MB against 20 MB.
 - **No light the table does not report.** Kit models carry their own lamps and lit windows, so
   the rule Decision 035 applied by hand is now enforced centrally: where Table 6 reports no
   artificial illumination for a body (`WorldModel.unlit`), no kit model on its surface glows,

@@ -2,8 +2,9 @@
 
 Foliage is the tint part, painted light on top and deeper underneath, so one instance colour reads
 as sunlit leaves. Trunks, soil, fruit and cut wood keep authored colours. Kinds the worlds recolour
-as a whole (bush, shrub, grass, cactus, dead-tree, boulder, rocks, ice-block, coral) are tint
-throughout. Organic forms are faceted; only the designed S5 flora is smooth.
+as a whole (bush, grass, cactus, dead-tree, boulder, rocks, ice-block, coral) are tint
+throughout; the shrub's leaves are tint, its wood and berries authored. Organic forms are
+faceted; only the designed S5 flora is smooth.
 
 All of it is original interpretive artwork: no species, count or dimension encodes a measurement.
 """
@@ -445,28 +446,63 @@ def bush(a):
     )
 
 
+def leaf_mass(r, seed, n=18, squash=(1.0, 1.0, 0.85), belly=0.5, rough=0.15):
+    """A clump of foliage: a faceted hull, domed on top and flattened underneath, where the
+    stem enters it. Centred on the origin (tint part)."""
+    points = []
+    for p in scatter(n, seed, rough):
+        z = p.z if p.z > 0 else p.z * belly
+        points.append(Vector((p.x * r * squash[0], p.y * r * squash[1], z * r * squash[2])))
+    return faceted(points, merge=0, open_base=False)
+
+
 @asset("shrub", tint="#8a8a4a", budget=700)
 def shrub(a):
-    # Dry scrub: mostly twig. Wiry stems fork low and wide; only some tips carry a small tuft.
-    def twig(points, radii):
-        return a.tube(points, radii, 4).part("tint").color(P.SHADE_3, P.SHADE_2).flat()
+    # Dryland scrub. Four woody stems fan straight out of the ground, with no trunk, and fork
+    # under their leaves: one big lobed pad on top, a ring of smaller ones stepping down around
+    # it with gaps between, a bleached dead twig standing clear, and berries under the pads.
+    wood = jk.mix(P.BARK, P.OAK_WOOD, 0.4)
+    dead = jk.mix(P.STONE, P.CREAM, 0.5)
 
-    stems = [(15, 0.18, 0.3, True, False), (85, 0.15, 0.45, True, True), (150, 0.21, 0.27, False, True), (215, 0.14, 0.5, True, False), (285, 0.2, 0.36, True, True)]
-    tips = []
-    for i, (turn, reach, height, left, right) in enumerate(stems):
-        knee = polar(reach * 0.5, turn + (16 if i % 2 else -16), height * 0.48)
-        fork = polar(reach * 0.8, turn, height * 0.74)
-        twig([(0, 0, -0.04), knee, fork], [0.03, 0.021, 0.014])
-        for sign, leafy in ((-1, left), (1, right)):
-            tip = polar(reach * (1.25 if sign < 0 else 1.05), turn + sign * 30, height * (1.0 if sign < 0 else 1.12))
-            twig([fork, tip], [0.013, 0.006])
-            if leafy:
-                tips.append(tip)
-    for i, tip in enumerate(tips):
-        leaf = a.add(tuft(0.085 + 0.012 * (i % 3), (1.15, 1.1, 0.62), seed=80 + i, n=16, rough=0.16)).move(tip[0], tip[1], tip[2])
-        sunlit(leaf, P.SHADE_1, P.WHITE, P.SHADE_2)
-    # Dead litter at the root keeps the stems from reading as a single trunk.
-    a.add(tuft(0.1, (1.25, 1.1, 0.45), seed=91, n=12, rough=0.2)).move(0.02, -0.02, 0.01).color(P.SHADE_3, P.SHADE_2)
+    def stem(points, radii, sides=4, colour=wood):
+        return a.tube(points, radii, sides).color(jk.shade(colour, -0.3), jk.shade(colour, 0.12)).flat()
+
+    stem([(-0.01, 0.01, -0.04), (-0.045, 0.02, 0.1), (-0.05, 0.03, 0.22), (-0.03, 0.03, 0.35)], [0.036, 0.029, 0.022, 0.015], 5)
+    stem([(-0.047, 0.025, 0.15), (-0.12, 0.1, 0.19), (-0.165, 0.145, 0.22)], [0.018, 0.014, 0.009])
+    stem([(0.015, -0.005, -0.04), (0.075, -0.025, 0.08), (0.15, -0.055, 0.17), (0.185, -0.07, 0.23)], [0.033, 0.026, 0.02, 0.013], 5)
+    stem([(0.11, -0.04, 0.12), (0.21, 0.04, 0.12), (0.26, 0.085, 0.145)], [0.016, 0.012, 0.008])
+    stem([(-0.015, -0.01, -0.04), (-0.085, -0.04, 0.07), (-0.16, -0.075, 0.15), (-0.195, -0.09, 0.2)], [0.031, 0.024, 0.018, 0.012])
+    stem([(-0.06, -0.03, 0.04), (-0.03, -0.14, 0.08), (0.0, -0.205, 0.13)], [0.016, 0.012, 0.008])
+    stem([(0.005, 0.015, -0.04), (0.04, 0.09, 0.1), (0.09, 0.15, 0.2), (0.11, 0.175, 0.26)], [0.031, 0.024, 0.018, 0.012])
+    # A dead twig, bleached pale, rises through the gap on the leeward side.
+    stem([(0.03, 0.01, -0.04), (0.16, 0.06, 0.2), (0.25, 0.06, 0.36), (0.3, 0.05, 0.48)], [0.02, 0.015, 0.01, 0.005], 4, dead)
+    stem([(0.22, 0.06, 0.31), (0.31, 0.0, 0.38)], [0.009, 0.005], 3, dead)
+    # (centre, radius, hull points, squash, seed) of each pad, largest first. The second entry
+    # is a shoulder on the big pad, so the crown has a lobed outline instead of one dome.
+    pads = [
+        ((-0.02, 0.035, 0.4), 0.172, 30, (1.05, 1.0, 0.82), 41),
+        ((-0.125, -0.04, 0.45), 0.1, 16, (1.0, 1.0, 0.8), 48),
+        ((0.19, -0.07, 0.27), 0.13, 22, (1.05, 0.95, 0.8), 42),
+        ((-0.2, -0.09, 0.235), 0.112, 18, (1.05, 0.95, 0.8), 44),
+        ((0.11, 0.18, 0.3), 0.112, 18, (1.0, 1.0, 0.8), 43),
+        ((-0.17, 0.15, 0.25), 0.092, 14, (1.0, 1.0, 0.78), 46),
+        ((0.0, -0.215, 0.165), 0.082, 14, (1.05, 0.95, 0.78), 45),
+        ((0.265, 0.09, 0.165), 0.062, 10, (1.0, 1.0, 0.78), 47),
+    ]
+    for (x, y, z), r, n, squash, seed in pads:
+        sunlit(a.add(leaf_mass(r, seed, n, squash, belly=0.62)).move(x, y, z), P.SHADE_2, P.WHITE, P.SHADE_3)
+    # Low suckers at the foot tie the stems to the ground.
+    for i, (turn, reach, r) in enumerate(((205, 0.095, 0.06), (20, 0.1, 0.052), (105, 0.085, 0.045))):
+        x, y, _ = polar(reach, turn)
+        a.add(leaf_mass(r, 50 + i, 10, (1.3, 1.0, 0.7))).move(x, y, -0.02).color(P.SHADE_3, P.SHADE_1)
+    # Berries under the pads: three, two and one toward the front, a pair behind.
+    spots = {2: [(-72, -28), (-36, -14), (-104, -8)], 3: [(-128, -24), (-165, -30)], 6: [(-80, -20)], 4: [(72, -24), (112, -8)]}
+    for index, where in spots.items():
+        (x, y, z), r, _n, squash, _seed = pads[index]
+        for turn, pitch in where:
+            t, k = math.radians(turn), math.radians(pitch)
+            d = (math.cos(k) * math.cos(t), math.cos(k) * math.sin(t), math.sin(k) * 0.62)
+            a.ico(0.026, 1).move(x + d[0] * r * squash[0] * 0.97, y + d[1] * r * squash[1] * 0.97, z + d[2] * r * squash[2] * 0.97).color(jk.shade(P.RED, -0.3), P.RED)
 
 
 @asset("cactus", tint="#5d8f4a", budget=700)
@@ -643,24 +679,48 @@ def crop(a):
                 leaf.move(x, y, 0.078).part("tint").color(P.SHADE_3, P.SHADE_1).flat()
 
 
+def vine_leaf(h, w, t=0.024):
+    """One broad leaf hanging from its stalk at the origin: tip down, face to the front."""
+    points = [(0, 0, 0), (-w, 0, -0.36 * h), (w, 0, -0.36 * h), (0, 0, -h), (0, -t, -0.4 * h), (0, t * 0.6, -0.4 * h)]
+    return faceted([Vector(q) for q in points], merge=0, open_base=False)
+
+
 @asset("vine", tint="#6aa04a", budget=400)
 def vine(a):
-    # A trellis row: three posts, two wires, a trained vine and hanging fruit.
-    for x in (-0.64, 0.0, 0.64):
-        a.cyl(0.036, 0.58, 4, r2=0.028, bevel=0.008, grounded=True).rot(z=45).move(x, 0, 0).color(jk.shade(P.OAK_WOOD, -0.22), P.OAK_WOOD)
+    # A length of vineyard trellis: three pointed stakes, a fruiting wire and a catch wire, and
+    # two old vines trained as a T along the fruiting wire. The leaves stand in separate
+    # clusters, big then small, so the stakes, the wires and the heads of the vines show between
+    # them, and the bunches hang clear underneath on both sides of the row.
+    timber = P.OAK_WOOD
+    bark = jk.mix(P.BARK, P.OAK_WOOD, 0.3)
+    for x, h in ((-0.63, 0.62), (0.0, 0.58), (0.63, 0.62)):
+        a.lathe([(0.045, 0), (0.045, h - 0.07), (0, h)], 4, cap_bottom=False, turn=math.pi / 4).move(x, 0, 0).color(jk.shade(timber, -0.28), timber)
     for z in (0.3, 0.5):
-        a.box(1.3, 0.014, 0.014, bevel=0).move(0, 0, z).color(P.STEEL_DARK)
-    for side in (-1, 1):
-        a.tube([(side * 0.3, 0.01, 0), (side * 0.35, -0.01, 0.24), (side * 0.3, 0, 0.5)], [0.032, 0.022, 0.014], 4).color(
-            jk.shade(P.BARK, -0.1), P.BARK
-        ).flat()
-    leaves = [(-0.48, 0.48, 0.16), (-0.24, 0.5, 0.17), (0.0, 0.46, 0.15), (0.24, 0.5, 0.17), (0.47, 0.47, 0.16), (-0.2, 0.3, 0.11)]
-    for i, (x, z, r) in enumerate(leaves):
-        lump = a.add(tuft(r, (1.15, 0.52, 0.8), seed=60 + i, n=22 if r > 0.12 else 12, rough=0.14)).move(x, 0.008 * (-1) ** i, z)
-        sunlit(lump)
+        a.tube([(-0.63, 0, z), (0.63, 0, z)], 0.008, 3).color(P.STEEL_DARK).no_ao()
+    for x, bow, left, right in ((-0.27, 0.03, -0.56, -0.07), (0.3, -0.028, 0.07, 0.55)):
+        a.tube([(x - bow * 0.3, 0, 0.0), (x + bow, -0.012, 0.16), (x, 0, 0.3)], [0.05, 0.037, 0.034], 4).color(jk.shade(bark, -0.3), jk.shade(bark, 0.1)).flat()
+        a.tube([(left, 0, 0.32), (x, 0, 0.304), (right, 0, 0.316)], [0.012, 0.03, 0.012], 4).color(jk.shade(bark, -0.1), jk.shade(bark, 0.12)).flat()
+    # Each leaf cluster: (x, z, half-width, half-height, hull points) and the leaves that hang
+    # out of it over the fruit, as (side of the row, across, roll, height) in cluster radii.
+    low_front, low_back, high_front, high_back = (-1, -0.45, 14, -0.42), (1, 0.38, -12, -0.42), (-1, 0.3, -20, 0.22), (1, -0.32, 18, 0.2)
+    clusters = [
+        ((-0.44, 0.465, 0.13, 0.145, 16), (low_front, high_front, low_back)),
+        ((-0.135, 0.41, 0.085, 0.1, 12), (low_front, low_back)),
+        ((0.155, 0.43, 0.1, 0.115, 12), (low_front, low_back)),
+        ((0.45, 0.455, 0.118, 0.135, 16), (low_front, high_front, low_back, high_back)),
+    ]
+    for i, ((x, z, rx, rz, n), leaves) in enumerate(clusters):
+        sunlit(a.add(tuft(rz, (rx / rz, 0.07 / rz, 1.0), seed=60 + i, n=n, rough=0.2)).move(x, 0.01 * (-1) ** i, z))
+        for face, dx, roll, dz in leaves:
+            high = dz > 0
+            leaf = a.add(vine_leaf(0.14 * (0.85 + 0.15 * (rx / 0.13)), 0.075)).rot(x=-34 if high else -24).rot(y=roll).rot(z=0 if face < 0 else 180)
+            sunlit(leaf.move(x + dx * rx, (0.022 if high else 0.046) * face, z + rz * dz), P.SHADE_2, P.WHITE)
     grape = jk.mix(P.VIOLET, P.NAVY, 0.45)
-    for x, y, z in ((-0.4, -0.05, 0.26), (0.1, -0.053, 0.28), (0.5, -0.048, 0.27)):
-        a.lathe([(0, 0), (0.046, 0.055), (0.035, 0.11), (0, 0.122)], 5).move(x, y, z).color(jk.shade(grape, -0.15), jk.shade(grape, 0.15)).flat()
+    for i, (x, y, k) in enumerate(((-0.49, -0.045, 1.0), (-0.14, 0.045, 0.85), (0.17, -0.045, 0.92), (0.47, 0.045, 1.05))):
+        # A lumpy drop, broad at the shoulder and blunt at the tip: the solid is turned so that
+        # it ends in a facet, not a point.
+        bunch = a.ico(0.066 * k, 1).rot(x=37.4).scale(1, 0.88, 1.22).taper(1.0, bottom=0.62).jitter(0.008, seed=i + 3, scale=14)
+        bunch.rot(z=40 * i).move(x, y, 0.3 - 0.066 * k).color(jk.shade(grape, -0.3), jk.shade(grape, 0.1)).flat()
 
 
 @asset("boulder", tint="#8d8a84", budget=400)

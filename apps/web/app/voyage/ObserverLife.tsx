@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { KitModel } from '../planets/KitModel';
-import { observerClip, placeLimb, type LimbNodes } from './observer-animation';
+import { OBSERVER_FACE, observerClip, placeLimb, type LimbNodes } from './observer-animation';
 
 type Vec = [number, number, number];
 
@@ -16,7 +16,7 @@ type Vec = [number, number, number];
  */
 function Eye({ side }: { side: number }) {
   return (
-    <group position={[side * 0.223, 0.245, 0.261]} rotation={[0, side * 0.38, side * -0.13]}>
+    <group {...OBSERVER_FACE.eye(side)}>
       {/* The lid, brow and monocle belong to the head; only the eye itself blinks. */}
       <group name={side < 0 ? 'leftBlink' : 'rightBlink'}>
         <KitModel kind="obs-eye" />
@@ -97,11 +97,13 @@ export function ObserverLife({
       0.53,
       0.64,
     );
+    // The free arm's elbow pole turns with the torso, so the arm stays in front of the chest
+    // when the stranger turns at the waist to the eyepiece.
     placeLimb(
       limbs[1],
       from(0, -0.32, -0.32, 0),
       free.position,
-      points[2].set(-0.84, -0.67, 0.5),
+      from(2, -0.84, -0.67, 0.5),
       0.57,
       0.72,
     );
@@ -130,7 +132,7 @@ export function ObserverLife({
           <KitModel kind="obs-scarf-tail" />
         </group>
         <group name="head">
-          <group position={[0.105, 0, 0.015]} rotation={[0, 0.04, 0]}>
+          <group position={OBSERVER_FACE.position} rotation={OBSERVER_FACE.rotation}>
             <KitModel kind="obs-head" />
             <Eye side={-1} />
             <Eye side={1} />

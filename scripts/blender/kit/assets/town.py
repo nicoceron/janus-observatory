@@ -421,44 +421,121 @@ def well(a):
 # --------------------------------------------------------------------------------------------
 # Rural and camp
 # --------------------------------------------------------------------------------------------
-def _thatch(a, r, z, h, top_r, sides, seed, low, high, turn=0.0, ragged=0.09):
-    """One forked layer of hay: a skirt whose eave hangs in ragged points over the layer below."""
-    profile = [(r * 0.5, 0.09), (r, 0), (r * (0.9 if top_r else 0.56), h * 0.45), (top_r, h)]
-    tier = lathe(a, profile, sides, cap_bottom=False, cap_top=False, turn=turn)
+def _lock(seed, i):
+    """Corner i of a thatch eave: how far it is pushed out, and how far it hangs as a share of
+    the layer's `ragged`. Even corners are the long locks, odd ones the furrows between them;
+    every fourth corner (2, 6, 10...) is a full lock of fixed length, because it carries a rope."""
+
+    def chance(k):
+        return (math.sin(seed * 12.9898 + i * 78.233 + k * 37.719) * 43758.5453) % 1.0
+
+    if i % 4 == 2:
+        return 1.05, 0.9
+    if i % 2 == 0:
+        return 1.02 + 0.05 * chance(1), 0.7 + 0.4 * chance(2)
+    return 0.96 + 0.03 * chance(1), 0.22 * chance(2)
+
+
+def _thatch(a, r, z, h, top_r, sides, seed, low, high, ragged=0.08, lip=0.05, soffit=True):
+    """One layer of combed thatch: a skirt with a thick eave at height z, hanging over the layer
+    below in ragged locks (see `_lock`). The strokes of the rake are painted down it: the
+    furrow that runs up from every short corner is deeper in tone than the locks beside it."""
+    profile = ([(r * 0.7, 0.06 + lip)] if soffit else []) + [(r, 0.0), (r, lip), (top_r, h)]
+    tier = lathe(a, profile, sides, cap_bottom=False, cap_top=False)
     step = math.tau / sides
 
-    def droop(co):
-        if abs(co.z) < 1e-6 and round((math.atan2(co.y, co.x) - turn) / step) % 2:
-            return (co.x * 1.05, co.y * 1.05, co.z - ragged)
-        return co
+    def corner(co):
+        return round(math.atan2(co.y, co.x) / step) % sides
 
-    return tier.warp(droop).jitter(0.025, seed=seed, scale=3.2).move(0, 0, z).color(low, high).flat()
+    def fringe(co):
+        if math.hypot(co.x, co.y) < 1e-6 or co.z > lip + 1e-6:
+            return co
+        push, drop = _lock(seed, corner(co))
+        return (co.x * push, co.y * push, co.z - ragged * drop)
+
+    tier.bm.verts.index_update()
+    # Every other corner of the eave and of the top ring; the soffit ring stays plain.
+    furrows = {v.index for v in tier.bm.verts if math.hypot(v.co.x, v.co.y) > 1e-6 and corner(v.co) % 2 and abs(v.co.z - 0.06 - lip) > 1e-6}
+    tier.warp(fringe).jitter(0.012, seed=seed, scale=3.2).move(0, 0, z).color(low, high).flat()
+    for f in tier.bm.faces:
+        for loop in f.loops:
+            if loop.vert.index in furrows:
+                c = loop[tier.layer]
+                loop[tier.layer] = (c[0] * 0.6, c[1] * 0.56, c[2] * 0.5, 1.0)
+    return tier
 
 
 @asset("haystack", tint="#ffffff", budget=500)
 def haystack(a):
+    # A round rick. A drum of packed hay leans out to the eave; a skirt of combed thatch and an
+    # overhanging cap shed the rain, both hanging in ragged locks; a tied sheaf closes the crown
+    # around the stack pole; four ropes run over the thatch with a stone on each end to hold it
+    # down in a wind. A ladder is left on the eave, and a hay fork leans over the loose straw
+    # raked up at the foot.
     rope = P.WALNUT
     gold = jk.mix(P.STRAW, P.ORANGE, 0.5)
     deep = jk.mix(P.THATCH, P.RUST, 0.55)
-    # A drum of packed hay under three forked layers, each hanging over the one below.
-    body = lathe(a, [(0.63, 0), (0.67, 0.16), (0.62, 0.42)], 12, cap_bottom=False, cap_top=False)
-    body.jitter(0.025, seed=5, scale=3.2).warp(lambda co: (co.x, co.y, max(co.z, 0.0))).color(deep, jk.mix(deep, gold, 0.7)).flat()
-    _thatch(a, 0.74, 0.36, 0.26, 0.47, 12, 9, jk.mix(deep, gold, 0.35), gold, turn=0.2)
-    _thatch(a, 0.55, 0.55, 0.2, 0.2, 10, 13, jk.mix(deep, gold, 0.55), jk.shade(gold, 0.1), turn=0.5, ragged=0.075)
-    _thatch(a, 0.33, 0.7, 0.24, 0.0, 8, 17, jk.mix(deep, gold, 0.7), jk.shade(gold, 0.22), turn=0.1, ragged=0.06)
-    # The stack pole shows through the crown.
-    a.tube([(0.0, 0.0, 0.84), (0.015, 0.01, 1.0)], [0.03, 0.022], 5).color(P.BARK, P.OAK_WOOD)
-    # Binding: a girdle rope, drawn tight under the first layer.
-    a.torus(0.665, 0.024, 12, 4).move(0, 0, 0.16).color(rope)
-    # A pitchfork left leaning on the stack.
-    foot, head = Vector((0.8, -0.22, 0.014)), Vector((0.6, -0.15, 0.7))
-    a.tube([foot, head], 0.017, 5).color(P.PINE_WOOD)
+    sides = 16
+    body = lathe(a, [(0.58, 0), (0.655, 0.22), (0.64, 0.45)], sides, cap_bottom=False, cap_top=False)
+    body.jitter(0.02, seed=5, scale=3.2).warp(lambda co: (co.x, co.y, max(co.z, 0.0))).color(jk.shade(deep, -0.1), jk.mix(deep, gold, 0.45)).flat()
+    r1, z1, rag1, lip1 = 0.73, 0.42, 0.12, 0.05
+    r2, z2, rag2, lip2 = 0.52, 0.65, 0.09, 0.045
+    _thatch(a, r1, z1, 0.25, 0.4, sides, 9, jk.mix(deep, gold, 0.45), gold, rag1, lip1)
+    _thatch(a, r2, z2, 0.24, 0.0, sides, 13, jk.mix(deep, gold, 0.75), jk.shade(gold, 0.22), rag2, lip2, soffit=False)
+    # The last sheaf, bound where the ropes meet, stands with its ears up around the stack pole.
+    crown = lathe(a, [(0.05, 0.875), (0.1, 0.97), (0, 0.935)], 6, cap_bottom=False)
+    crown.warp(lambda co: (co.x, co.y, co.z + (0.035 if co.z > 0.96 and round(math.atan2(co.y, co.x) / (math.tau / 6)) % 2 else 0.0)))
+    crown.color(jk.mix(deep, gold, 0.5), jk.shade(gold, 0.15)).flat()
+    a.tube([(0.0, 0.0, 0.92), (0.012, 0.008, 1.05)], [0.03, 0.022], 4).color(P.BARK, P.OAK_WOOD)
+    # Ropes over the thatch on four long locks, each ending in a stone that hangs clear of the wall.
+    for k in range(4):
+        ang = (2 + 4 * k) * math.tau / sides
+        c, s = math.cos(ang), math.sin(ang)
+
+        def at(r, z, c=c, s=s):
+            return (c * r, s * r, z)
+
+        end = at(r1 * 1.05 + 0.022, 0.19 - 0.03 * (k % 2))
+        a.tube([at(0.052, 0.895), at(r2 * 1.05 + 0.018, z2 - rag2 * 0.9 + lip2 + 0.02), at(r1 * 1.05 + 0.018, z1 - rag1 * 0.9 + lip1 + 0.02), end], 0.015, 3).color(rope).no_ao()
+        stone = lathe(a, [(0, -0.135), (0.075, -0.095), (0.062, -0.03), (0, 0.006)], 4, turn=0.5 * k)
+        stone.jitter(0.02, seed=k + 3, scale=11).rot(x=8 * (k - 1.5)).move(*end).color(jk.mix(P.STONE_DARK, P.BARK, 0.25), jk.mix(P.STONE, P.SAND, 0.3)).flat()
+    # The ladder rests on the eave, in a furrow between two ropes.
+    ang = math.radians(-22.5)
+    out, across = Vector((math.cos(ang), math.sin(ang), 0)), Vector((-math.sin(ang), math.cos(ang), 0))
+    foot, head = out * 0.92 + Vector((0, 0, 0.014)), out * 0.6 + Vector((0, 0, 0.82))
+    timber = P.PINE_WOOD
+    for side in (-1, 1):
+        beam(a, foot + across * 0.1 * side, head + across * 0.1 * side, 0.034, 0.03).color(jk.shade(timber, -0.25), timber)
+    for t in (0.14, 0.36, 0.58, 0.8):
+        mid = foot.lerp(head, t)
+        a.tube([mid - across * 0.1, mid + across * 0.1], 0.013, 3).color(jk.shade(timber, -0.1))
+    # A two-tined hay fork leaning on the eave, over the loose straw.
+    ang = math.radians(-112.5)
+    out, across = Vector((math.cos(ang), math.sin(ang), 0)), Vector((-math.sin(ang), math.cos(ang), 0))
+    foot, head = out * 0.86 + Vector((0, 0, 0.012)), out * 0.67 + Vector((0, 0, 0.7))
     along = (head - foot).normalized()
-    cross = Vector((0.28, 0.96, 0.0)).normalized()
-    a.tube([head - cross * 0.075, head + cross * 0.075], 0.012, 4).part("metal").color(P.STEEL)
-    for k in (-1, 0, 1):
-        base = head + cross * 0.07 * k
-        a.tube([base, base + along * 0.17], [0.012, 0.005], 4).part("metal").color(P.STEEL)
+    a.tube([foot, head], 0.017, 4).color(jk.shade(P.PINE_WOOD, -0.2), P.PINE_WOOD)
+    a.tube([head - across * 0.06, head + across * 0.06], 0.012, 3).part("metal").color(P.STEEL)
+    for k in (-1, 1):
+        base = head + across * 0.052 * k
+        a.tube([base, base + along * 0.18], [0.012, 0.005], 3).part("metal").color(P.STEEL)
+    # Loose straw raked off the stack lies in a ragged apron round the foot, under the fork.
+    verts, faces, reaches = [], [], (0.66, 0.85, 0.9, 0.79, 0.66)
+    for i, reach in enumerate(reaches):
+        k = i / (len(reaches) - 1)
+        ang = math.radians(-130 + 64 * k)
+        swell = math.sin(k * math.pi) ** 0.6
+        for r, z in ((0.57, 0.02 + 0.1 * swell), (0.6 + (reach - 0.6) * 0.6, 0.015 + 0.055 * swell), (reach, 0.0)):
+            verts.append((math.cos(ang) * r, math.sin(ang) * r, z))
+        if i:
+            b = (i - 1) * 3
+            faces += [(b, b + 1, b + 4, b + 3), (b + 1, b + 2, b + 5, b + 4)]
+    apron = a.raw(verts, faces)
+    if sum(f.normal.z for f in apron.bm.faces) < 0:
+        bmesh.ops.reverse_faces(apron.bm, faces=apron.bm.faces[:])
+        apron.bm.normal_update()
+    apron.color(jk.mix(deep, gold, 0.55), jk.shade(gold, 0.1)).flat()
+    a.tube([(0.2, -0.8, 0.012), (0.36, -0.73, 0.02)], 0.012, 3).color(gold)
 
 
 @asset("totem", tint="#9a6a3a", budget=500)

@@ -859,39 +859,82 @@ def bicycle(a):
 # --------------------------------------------------------------------------------------------
 # Hover traffic
 # --------------------------------------------------------------------------------------------
-@asset("hover-car", tint="#3d6fb5", grounded=False, budget=1400)
-def hover_car(a):
-    """A wheel-less pod: a pebble body under a teardrop canopy, riding on a glowing lift ring."""
-    a.lathe([(0.3, 0.2), (0.53, 0.24), (0.53, 0.3)], 16).scale(1, 1.55, 1).move(0, 0.02, 0).color(P.INK, P.CHARCOAL)
-    a.torus(0.55, 0.045, 20, 6).scale(1, 1.55, 1).move(0, 0.02, 0.215).part("glow").color(P.GLOW_CYAN)
+def lift_pod(a, x, y, r=0.2):
+    """A repulsor at a corner of a hover car, where a wheel would be: a dark drum under a
+    body-colour nacelle, with a lift ring glowing on its underside."""
+    side = 1 if x > 0 else -1
+    a.lathe([(r * 0.94, 0.2), (r, 0.224), (r, 0.39)], 10, cap_bottom=False, cap_top=False).move(x, y, 0).color(P.INK, P.CHARCOAL)
+    a.lathe([(0, 0.192), (r * 0.7, 0.178), (r * 0.94, 0.2)], 10).move(x, y, 0).part("glow").color(P.GLOW_CYAN)
+    cx = x + side * 0.012
     a.loft(
         [
-            (-1.05, 0.2, 0.055, 0.385),
-            (-0.97, 0.34, 0.095, 0.395),
-            (-0.7, 0.45, 0.13, 0.41),
-            (-0.25, 0.5, 0.155, 0.425),
-            (0.35, 0.5, 0.165, 0.435),
-            (0.8, 0.45, 0.15, 0.45),
-            (1.02, 0.36, 0.1, 0.46),
-            (1.08, 0.24, 0.05, 0.46),
+            (y - 0.31, 0, 0, 0.42, cx),
+            (y - 0.2, 0.155, 0.07, 0.426, cx),
+            (y + 0.0, 0.205, 0.09, 0.43, cx),
+            (y + 0.17, 0.16, 0.07, 0.426, cx),
+            (y + 0.27, 0.07, 0.03, 0.422, cx),
+            (y + 0.3, 0, 0, 0.42, cx),
         ],
-        14,
-        2.6,
-    ).part("tint").color(P.SHADE_1, P.WHITE)
-    a.loft(
-        [(-0.62, 0, 0, 0.5), (-0.52, 0.2, 0.06, 0.53), (-0.22, 0.34, 0.16, 0.6), (0.2, 0.36, 0.18, 0.62), (0.55, 0.3, 0.13, 0.6), (0.78, 0.16, 0.05, 0.57), (0.84, 0, 0, 0.56)],
-        12,
+        8,
         2.3,
-    ).part("glass").color(P.GLASS_DARK, P.GLASS_TINTED)
-    a.loft([(0.13, 0.366, 0.186, 0.62), (0.24, 0.366, 0.186, 0.62)], 12, 2.3).part("tint").color(P.SHADE_1, P.WHITE)
+    ).part("tint").color(P.SHADE_1, P.WHITE).smooth(80)
+
+
+@asset("hover-car", tint="#3d6fb5", grounded=False, budget=1400)
+def hover_car(a):
+    """A two-seat hover coupe: a low arrow-nosed hull with a creased shoulder line, a teardrop
+    canopy that runs back into a body-colour fairing and fin, a repulsor pod at each corner
+    where a wheel would be, and light blades wrapped round the nose and the tail."""
+    # (y, half-width, sill, deck, deck radius, sill radius, belt, lean above the belt)
+    rows = [
+        (-1.06, 0.22, 0.33, 0.465, 0.035, 0.03, 0.42, 0.2),
+        (-1.01, 0.3, 0.315, 0.48, 0.05, 0.04, 0.42, 0.5),
+        (-0.86, 0.375, 0.29, 0.5, 0.06, 0.05, 0.415, 0.8),
+        (-0.5, 0.44, 0.27, 0.532, 0.06, 0.05, 0.41, 0.85),
+        (0.2, 0.46, 0.27, 0.55, 0.06, 0.05, 0.41, 0.85),
+        (0.7, 0.45, 0.275, 0.555, 0.06, 0.05, 0.42, 0.8),
+        (0.98, 0.4, 0.3, 0.55, 0.05, 0.05, 0.45, 0.6),
+        (1.06, 0.34, 0.33, 0.54, 0.04, 0.04, 0.47, 0.3),
+    ]
+    hull(a, [(r[0], ring(r[1], r[2], r[3], r[4], r[5], 2, r[7], r[6])) for r in rows]).part("tint").color(P.SHADE_1, P.WHITE)
+
+    def half(y):
+        return _row(rows, y)[1]
+
+    def band(ys, z0, z1, lift):
+        """A strip wrapped round the hull's upright flank over the stations `ys`."""
+        return hull(a, [(y, ring(half(y) + lift, z0, z1, 0.008, 0.008, 1)) for y in ys])
+
+    # Nose: a dark fascia carrying a white light blade; tail: a red blade over two thrusters.
+    band((-1.064, -1.01, -0.9), 0.35, 0.428, 0.004).color(P.INK)
+    band((-1.068, -1.01, -0.92), 0.374, 0.408, 0.008).part("glow").color(P.GLOW_WHITE)
+    band((0.9, 0.98, 1.066), 0.425, 0.465, 0.006).part("glow").color(P.GLOW_RED)
     for side in (-1, 1):
-        a.box(0.02, 0.3, 0.035, bevel=0).move(side * 0.493, 0.42, 0.44).color(P.INK)
-        a.profile_x([(0.66, 0.5), (1.08, 0.5), (1.12, 0.74), (0.98, 0.74)], 0.04, bevel=0.01).move(side * 0.3, 0, 0).part("tint").color(
-            P.SHADE_1, P.WHITE
-        )
-    # Light blades wrap the nose and the tail along the body's waist.
-    a.loft([(-1.058, 0.2, 0.016, 0.385), (-0.97, 0.346, 0.016, 0.395), (-0.86, 0.398, 0.016, 0.402)], 14, 2.6).part("glow").color(P.GLOW_WHITE)
-    a.loft([(0.93, 0.405, 0.016, 0.456), (1.02, 0.366, 0.016, 0.46), (1.088, 0.246, 0.016, 0.46)], 14, 2.6).part("glow").color(P.GLOW_RED)
+        a.lathe([(0.052, 0), (0.06, 0.05), (0.044, 0.05)], 6, cap_bottom=False, cap_top=False).rot(x=-90).move(side * 0.16, 1.05, 0.385).color(P.INK)
+        a.lathe([(0.044, 0), (0, 0.006)], 6, cap_bottom=False).rot(x=-90).move(side * 0.16, 1.09, 0.385).part("glow").color(P.GLOW_CYAN)
+    # A bonnet panel a shade deeper than the wings, closed by a shut line at the cowl.
+    decal(a, rows, [(-1.03, 0.12), (-0.86, 0.2), (-0.56, 0.28)], 2, 0.004).part("tint").color(P.SHADE_2)
+    a.box(0.56, 0.016, 0.012, bevel=0).rot(x=5).move(0, -0.555, 0.521).color(P.INK)
+
+    # Canopy and fairing: one teardrop, glass ahead of the hoop and body colour behind it.
+    a.loft([(-0.5, 0, 0, 0.535), (-0.41, 0.2, 0.05, 0.555), (-0.18, 0.31, 0.13, 0.6), (0.07, 0.345, 0.17, 0.615), (0.3, 0.335, 0.165, 0.615)], 10, 2.6).part(
+        "glass"
+    ).color(P.GLASS_DARK, P.GLASS_TINTED)
+    a.loft([(0.3, 0.335, 0.165, 0.615), (0.55, 0.29, 0.125, 0.605), (0.8, 0.22, 0.075, 0.59), (0.98, 0.14, 0.035, 0.578), (1.04, 0, 0, 0.572)], 10, 2.6).part(
+        "tint"
+    ).color(P.SHADE_1, P.WHITE)
+    a.loft([(0.25, 0.353, 0.183, 0.615), (0.35, 0.349, 0.179, 0.613)], 10, 2.6).part("tint").color(P.SHADE_2, P.SHADE_1)
+    a.profile_x([(0.6, 0.7), (0.9, 0.6), (0.99, 0.8), (0.9, 0.83)], 0.036, bevel=0.01).part("tint").color(P.SHADE_2, P.SHADE_1)
+
+    # Repulsor pods, the plenum between them and a lit skirt line.
+    for side in (-1, 1):
+        for y in (-0.58, 0.66):
+            lift_pod(a, side * 0.42, y)
+        a.box(0.014, 0.76, 0.022, bevel=0).move(side * 0.372, 0.04, 0.222).part("glow").color(P.GLOW_CYAN)
+        # A dark sill and a sensor pod at the cowl.
+        a.box(0.012, 0.6, 0.024, bevel=0).move(side * (half(0.08) - 0.002), 0.08, 0.3).color(P.INK)
+        a.box(0.07, 0.05, 0.04, bevel=0).move(side * 0.39, -0.33, 0.548).part("tint").color(P.SHADE_1)
+    hull(a, [(y, ring(hw, 0.215, 0.31, 0.01, 0.04, 1)) for y, hw in ((-0.86, 0.26), (-0.5, 0.365), (0.75, 0.365), (0.98, 0.3))]).color(P.INK, P.CHARCOAL)
 
 
 @asset("hover-bus", tint="#e6e8ea", grounded=False, budget=1400)

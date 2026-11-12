@@ -888,8 +888,8 @@ POSES = {
     # Keys of observerClip() at t = 0 (at ease, looking out) and t = 4 (at the eyepiece).
     "rest": dict(chest=((0, 0, 0), (0, 0, 0)), head=((0, 0, 0), (-0.07, -0.45, 0.03)), free=((-0.48, -1.25, 0.25), -0.4), grip=0.0,
                  antennae=(0.0, 0.03), tail=(0.1, -0.16)),  # fmt: skip
-    "observe": dict(chest=((0.085, -0.035, 0.065), (0, 0.055, -0.105)), head=((0.06, -0.015, 0.075), (0.04, 0.25, -0.055)), free=(SUPPORT_HAND, 0.0),
-                    grip=0.3, antennae=(-0.1, -0.04), tail=(-0.06, 0.06)),  # fmt: skip
+    "observe": dict(chest=((-0.063, 0.01, 0.284), (0.2, 0.45, -0.02)), head=((-0.13, 0.055, 0.03), (-0.199, 0.106, 0.07)), free=(SUPPORT_HAND, 0.0),
+                    grip=0.3, antennae=(-0.1, -0.04), tail=(-0.12, 0.06)),  # fmt: skip
     # The raised-hand key (t = 7.8); no kind is registered for it: `observer_model(a, "hail")`.
     "hail": dict(chest=((-0.02, 0.02, -0.02), (0, -0.15, 0.04)), head=((-0.02, 0.035, 0), (-0.32, -0.55, 0.09)), free=((-0.86, 0.48, 0.05), -0.45),
                  grip=0.0, antennae=(0.2, -0.16), tail=(0.32, -0.34)),  # fmt: skip
@@ -941,9 +941,10 @@ def observer_model(a, pose="rest", scope=False):
     ]
     for side in (1, -1):
         limbs.append(((side * 0.2, -0.9, 0.0), Vector((side * 0.25, -1.65, 0.07)), (side * 0.28, -1.28, 0.6), 0.4, 0.43, 0.135, leg_upper_model, leg_lower_model))
-    for start, end, pole, upper, lower, radius, upper_model, lower_model in limbs:
+    for index, (start, end, pole, upper, lower, radius, upper_model, lower_model) in enumerate(limbs):
         start = chest_web @ Vector(start)
-        elbow = _elbow(start, end, Vector(pole), upper, lower)
+        # The left elbow's pole turns with the torso, as in the web rig.
+        elbow = _elbow(start, end, chest_web @ Vector(pole) if index == 1 else Vector(pole), upper, lower)
         girth = Matrix.Diagonal((radius / 0.12, 1, radius / 0.12, 1)) if upper_model is arm_upper_model else Matrix.Identity(4)
         girth = _TO_BLENDER @ girth @ _TO_WEB
         carry(a, _segment(start, elbow) @ girth, upper_model)

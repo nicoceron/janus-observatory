@@ -744,60 +744,235 @@ def _skin_patch(a, sections, sides, power, ys, ks, lift=0.008):
     return a.add(b.piece())
 
 
+# S5's grown tissue and its light: the tones of the bio-pod and bio-tower.
+_BONE = jk.mix(P.OFF_WHITE, P.VIOLET, 0.1)
+_BONE_DEEP = jk.mix(P.STONE, P.VIOLET, 0.22)
+_MINT = jk.mix(P.GLOW_GREEN, P.GLOW_CYAN, 0.45)
+_MINT_HOT = jk.mix(_MINT, "#ffffff", 0.55)
+_MINT_DEEP = jk.mix(_MINT, P.TEAL, 0.5)
+
+
+class _Pod:
+    """A seed pod as a boat hull, grown rather than built, split open along its seam.
+
+    `stations` run bow to stern as (y, half_beam, keel_z, top_z, roll). Each section swells into
+    a keel lobe, a side lobe and a rim lobe per side with creases between them. `roll` is how far
+    (degrees) the rim curls past upright: about 25 leaves the pod wide open, 87 closes it to a
+    slit along the crown. `bow` and `stern` are the (y, z) points it closes to. Surface points
+    are addressed by `u`, 0 on the centre line and 1 at the lip.
+    """
+
+    CREASES = (0.22, 0.66)
+    OUTER = (0.0, 0.11, 0.22, 0.367, 0.513, 0.66, 0.779, 0.898, 1.0)
+    INNER = (1.0, 0.66, 0.33, 0.0)
+
+    def __init__(self, stations, bow, stern, depth=0.18, wall=0.07):
+        self.stations = stations
+        self.bow, self.stern = bow, stern
+        self.depth, self.wall = depth, wall
+
+    def _point(self, station, side, u, k):
+        y, beam, keel, top, roll = station
+        h = (top - keel) / (1 + math.sin(math.radians(roll)))
+        t = math.radians(-90 + u * (90 + roll))
+        return (side * beam * math.cos(t) ** 0.8 * k, y, keel + h + h * math.sin(t) * k)
+
+    def _sunk(self, u):
+        """0 on the crown of a lobe, 1 in a crease."""
+        c1, c2 = self.CREASES
+        if u <= c1:
+            t = 0.5 + 0.5 * u / c1
+        elif u <= c2:
+            t = (u - c1) / (c2 - c1)
+        else:
+            t = 0.85 * (u - c2) / (1 - c2)
+        return 1 - max(0.0, math.sin(math.pi * t)) ** 0.6
+
+    def _on(self, station, side, u, us, k):
+        """A point on the faceted surface: straight between the section's own vertices."""
+        us = sorted(us)
+        for u0, u1 in zip(us, us[1:]):
+            if u <= u1:
+                f = (u - u0) / (u1 - u0)
+                p, q = self._point(station, side, u0, k(u0)), self._point(station, side, u1, k(u1))
+                return tuple(_lerp(a, b, f) for a, b in zip(p, q))
+        return self._point(station, side, us[-1], k(us[-1]))
+
+    def outer(self, i, side, u):
+        return self._on(self.stations[i], side, u, self.OUTER, lambda v: 1 - self.depth * self._sunk(v))
+
+    def inner(self, i, side, u):
+        return self._on(self.stations[i], side, u, self.INNER, lambda _: 1 - self.depth - self.wall)
+
+    def build(self, a, skin, hollow, lip, crease=0.3):
+        """Add the pod as one closed shell. Each colour is a (low, high) pair blended by height;
+        the creases of the skin are painted `crease` deeper."""
+        section = [("skin", self._sunk(u)) for u in reversed(self.OUTER)] + [("skin", self._sunk(u)) for u in self.OUTER[1:]]
+        section += [("hollow", 0.0)] * (2 * len(self.INNER) - 1)
+        count = len(section)
+        verts, index, sunk = [], [], []
+
+        def tip(point, into):
+            y, z = point
+            verts.extend([(0.0, y, z), (0.0, y + into, z - 0.012)])
+            sunk.extend([0.0, 0.0])
+            return [len(verts) - (2 if section[j][0] == "skin" else 1) for j in range(count)]
+
+        index.append(tip(self.bow, 0.035))
+        for i in range(len(self.stations)):
+            ring = [self.outer(i, -1, u) for u in reversed(self.OUTER)] + [self.outer(i, 1, u) for u in self.OUTER[1:]]
+            ring += [self.inner(i, 1, u) for u in self.INNER] + [self.inner(i, -1, u) for u in reversed(self.INNER[:-1])]
+            index.append(list(range(len(verts), len(verts) + count)))
+            verts.extend(ring)
+            sunk.extend(s for _, s in section)
+        index.append(tip(self.stern, -0.035))
+        faces, tags = [], []
+        for lo, hi in zip(index, index[1:]):
+            for j in range(count):
+                k = (j + 1) % count
+                quad = []
+                for v in (lo[j], lo[k], hi[k], hi[j]):
+                    if v not in quad:
+                        quad.append(v)
+                if len(quad) < 3:
+                    continue
+                faces.append(quad)
+                tags.append(section[j][0] if section[j][0] == section[k][0] else "lip")
+        piece = a.raw(verts, faces)
+        zs = [v[2] for v in verts]
+        z0, span = min(zs), (max(zs) - min(zs)) or 1.0
+        tones = {"skin": skin, "hollow": hollow, "lip": lip}
+        deep = {tuple(round(c, 5) for c in v): s for v, s in zip(verts, sunk)}
+        for face, tag in zip(list(piece.bm.faces), tags):
+            low, high = (jk.col(c) for c in tones[tag])
+            for loop in face.loops:
+                co = loop.vert.co
+                c = jk.mix(low, high, (co.z - z0) / span)
+                if tag == "skin":
+                    c = jk.shade(c, -crease * deep.get((round(co.x, 5), round(co.y, 5), round(co.z, 5)), 0.0))
+                loop[piece.layer] = (c[0], c[1], c[2], 1.0)
+        return piece
+
+    def suture(self, a, side, width=0.7, lift=0.006):
+        """A luminous strip along the inner half of one lip: the seam the pod split along."""
+        ends = [(0.0, self.bow[0], self.bow[1] + lift), (0.0, self.stern[0], self.stern[1] + lift)]
+        rows = [(ends[0], ends[0])]
+        for i in range(len(self.stations)):
+            rim, edge = self.outer(i, side, 1.0), self.inner(i, side, 1.0)
+            rows.append(
+                (
+                    tuple(_lerp(p, q, 1 - width) + (lift if k == 2 else 0.0) for k, (p, q) in enumerate(zip(rim, edge))),
+                    (edge[0], edge[1], edge[2] + lift),
+                )
+            )
+        rows.append((ends[1], ends[1]))
+        b = _Builder()
+        for (p0, q0), (p1, q1) in zip(rows, rows[1:]):
+            b.face([p0, p1, q1, q0], (0, 0, 1))
+        return a.add(b.piece()).part("glow").no_ao()
+
+
+def _fan(a, root, rays, thick=0.022, scallop=0.87, billow=0.035, shape=None):
+    """A membrane stretched over rays that fan out from `root` in the plane x = 0: (degrees up
+    from astern, length) each. The free edge sags between the ray tips and the panels billow.
+    `shape` warps every point (for a sail swung off the wind). Returns the piece and the tips."""
+    shape = shape or (lambda p: p)
+    steps = (0.36, 0.7, 1.0)
+
+    def at(deg, length, k, puff):
+        t = math.radians(deg)
+        return Vector(shape(Vector((puff, root[1] + math.cos(t) * length * k, root[2] + math.sin(t) * length * k))))
+
+    spokes = []
+    for i, (deg, length) in enumerate(rays):
+        spokes.append([at(deg, length, k, 0.0) for k in steps])
+        if i + 1 < len(rays):
+            d1, l1 = rays[i + 1]
+            spokes.append([at((deg + d1) / 2, (length + l1) / 2 * _lerp(1.0, scallop, k), k, billow * k) for k in steps])
+    hub = Vector(shape(Vector(root)))
+    half = Vector((thick / 2, 0, 0))
+    b = _Builder()
+    for s0, s1 in zip(spokes, spokes[1:]):
+        for sign in (1, -1):
+            off = half * sign
+            b.face([hub + off, s0[0] + off, s1[0] + off], off)
+            for k in range(len(steps) - 1):
+                b.face([s0[k] + off, s0[k + 1] + off, s1[k + 1] + off, s1[k] + off], off)
+        b.face([s0[-1] + half, s1[-1] + half, s1[-1] - half, s0[-1] - half], (0, s0[-1].y - hub.y, s0[-1].z - hub.z))
+    for spoke, way in ((spokes[0], (0, -1, 0)), (spokes[-1], (0, 0, -1))):
+        chain = [hub] + spoke
+        for p, q in zip(chain, chain[1:]):
+            b.face([p + half, q + half, q - half, p - half], way)
+    return a.add(b.piece()), [spokes[i * 2][-1] for i in range(len(rays))]
+
+
 @asset("bio-skiff", tint="#3cc9a8", budget=1400)
 def bio_skiff(a):
-    sides, power = 12, 2.2
-    pod = [
-        (-1.2, 0.0, 0.0, 0.2),
-        (-1.08, 0.07, 0.05, 0.12),
-        (-0.82, 0.19, 0.12, 0.0),
-        (-0.4, 0.31, 0.2, -0.08),
-        (0.1, 0.385, 0.245, -0.105),
-        (0.55, 0.33, 0.22, -0.1),
-        (0.85, 0.19, 0.14, -0.03),
-        (1.0, 0.0, 0.0, 0.06),
-    ]
-    pod = _refine(pod, 1)
-    a.loft(pod, sides, power).part("tint").color(P.SHADE_2, P.WHITE)
-    # Glowing seams: a midrib from stem to stern and leaf veins running out to the waterline.
-    glow = P.GLOW_CYAN
-    ys = [-1.12, -0.82, -0.4, 0.1, 0.55, 0.85, 0.96]
-    a.tube([_skin(pod, sides, power, y, 3, 0.004) for y in ys], 0.014, 4, caps="none").part("glow").color(glow)
-    for y in (-0.62, -0.18, 0.3):
-        for k_end in (0.9, 5.1):
-            pts = [_skin(pod, sides, power, y + 0.34 * t, 3 + (k_end - 3) * t, 0.004) for t in (0, 0.34, 0.67, 1)]
-            a.tube(pts, [0.012, 0.011, 0.01, 0.006], 4, caps="none").part("glow").color(glow)
-    # A by-the-wind membrane sail: a translucent arc on fin rays, set a little across the hull.
-    membrane = jk.mix(P.ICE, P.VIOLET, 0.3)
-    root_y, root_z, ry, rz = -0.12, 0.06, 0.5, 0.6
-    cusps = [168, 132, 100, 68, 36, 10]
-    outline = []
-    for c0, c1 in zip(cusps, cusps[1:]):
-        for t in (0.0, 0.5):
-            ang = math.radians(_lerp(c0, c1, t))
-            dip = 0.9 if t else 1.0
-            outline.append((root_y - math.cos(ang) * ry * dip, root_z + math.sin(ang) * rz * dip))
-    outline.append((root_y - math.cos(math.radians(cusps[-1])) * ry, root_z + math.sin(math.radians(cusps[-1])) * rz))
-    outline += [(root_y + 0.3, root_z - 0.02), (root_y - 0.34, root_z - 0.02)]
-
-    def cup(co):
-        lift = max(0.0, co.z - root_z) / rz
-        return (co.x + 0.11 * (co.y - root_y) + 0.05 * math.sin(lift * 2.4), co.y, co.z)
-
-    a.profile_x(outline, 0.02, bevel=0).warp(cup).part("glass").color(membrane, jk.shade(membrane, 0.3))
-    for ang in cusps[1:-1]:
-        c, sn = -math.cos(math.radians(ang)), math.sin(math.radians(ang))
-        pts = [(0, root_y + c * ry * t, root_z + sn * rz * t) for t in (0.04, 0.5, 0.99)]
-        a.tube(pts, [0.026, 0.02, 0.011], 5, caps="round").warp(cup).part("tint").color(P.SHADE_2, P.WHITE)
-    # The stalk curls up at the stern like a leaf stem.
-    a.tube([(0, 0.9, 0.04), (0, 1.02, 0.1), (0, 1.1, 0.24), (0, 1.06, 0.36)], [0.045, 0.036, 0.026, 0.02], 6, caps="round").part("tint").color(
-        P.SHADE_2, P.WHITE
+    """S5's living boat: a seed pod split open along its glowing seam, pale ribs across the
+    hollow, a fan of membrane on bony rays for a sail, a fiddlehead prow carrying a lantern bud,
+    a mushroom seat for one and a tendril tiller on a tail-fin rudder."""
+    pod = _Pod(
+        [
+            (-0.92, 0.08, 0.12, 0.36, 87),
+            (-0.83, 0.145, 0.05, 0.352, 87),
+            (-0.72, 0.2, 0.0, 0.345, 87),
+            (-0.5, 0.29, -0.07, 0.33, 86),
+            (-0.26, 0.345, -0.1, 0.27, 52),
+            (0.02, 0.375, -0.105, 0.225, 28),
+            (0.3, 0.38, -0.105, 0.215, 24),
+            (0.56, 0.34, -0.095, 0.225, 26),
+            (0.8, 0.23, -0.04, 0.27, 46),
+            (0.95, 0.1, 0.08, 0.32, 85),
+        ],
+        bow=(-1.02, 0.38),
+        stern=(1.02, 0.335),
     )
-    # A low blister over the passenger hollow, and a bow light.
-    a.loft([(0.3, 0, 0, 0.1), (0.38, 0.12, 0.07, 0.125), (0.56, 0.16, 0.09, 0.12), (0.74, 0.1, 0.055, 0.08), (0.82, 0, 0, 0.05)], 8, 2.2).part(
-        "glass"
-    ).color(jk.shade(membrane, -0.25), membrane)
-    a.sphere(0.035, 6, 4).move(0, -1.17, 0.2).part("glow").color(glow)
+    pod.build(a, (P.SHADE_2, P.WHITE), (P.SHADE_3, P.SHADE_2), (P.WHITE, P.WHITE)).part("tint")
+    for side in (-1, 1):
+        pod.suture(a, side).color(_MINT_DEEP, _MINT_HOT)
+    bone = (_BONE_DEEP, _BONE)
+    # Ribs across the hollow and a midrib along its floor, like the veins of the leaf it grew from.
+    for i in (5, 6):
+        us = (0.93, 0.66, 0.33)
+        pts = [pod.inner(i, -1, u) for u in us] + [pod.inner(i, 1, 0.0)] + [pod.inner(i, 1, u) for u in reversed(us)]
+        a.tube(pts, 0.02, 4, caps="none").color(*bone)
+    a.tube([pod.inner(i, 1, 0.0) for i in range(3, 9)], 0.022, 4, caps="none").color(*bone)
+    # A keel fin under the belly.
+    a.profile_x([(-0.34, -0.07), (0.44, -0.08), (0.34, -0.2), (-0.04, -0.2)], 0.034, bevel=0.01).part("tint").color(P.SHADE_3, P.SHADE_2)
+
+    # The sail: a fan of petal membrane on bony rays, rooted in the foredeck seam and swung a
+    # little off the wind.
+    petal = (jk.mix(P.MAGENTA, P.VIOLET, 0.25), P.PINK)
+    root = (0.0, -0.6, 0.32)
+
+    def swing(p):
+        dy, dz = p.y - root[1], p.z - root[2]
+        belly = math.sin(min(1.0, math.hypot(dy, dz) / 0.85) * math.pi)
+        return (p.x + 0.09 * dy + 0.045 * belly, p.y, p.z)
+
+    rays = [(103, 0.55), (79, 0.6), (55, 0.72), (33, 0.86), (13, 0.9)]
+    sail, tips = _fan(a, root, rays, shape=swing)
+    sail.part("glass").color(*petal)
+    hub = Vector(swing(Vector(root)))
+    for tip in tips:
+        a.tube([hub.lerp(tip, 0.02), hub.lerp(tip, 0.5), tip], [0.034, 0.024, 0.012], 5).part("tint").color(P.SHADE_2, P.WHITE)
+    a.sphere(0.06, 6, 4, (1, 1.2, 0.8)).move(*root).part("tint").color(P.SHADE_2, P.SHADE_1)
+
+    # The prow uncurls like a fern and carries a lantern bud.
+    curl = [(-0.98, 0.34), (-1.07, 0.43), (-1.15, 0.54), (-1.165, 0.65), (-1.11, 0.725), (-1.02, 0.725), (-0.975, 0.665), (-1.0, 0.61), (-1.05, 0.61)]
+    a.tube([(0, y, z) for y, z in curl], [0.055, 0.05, 0.044, 0.038, 0.032, 0.027, 0.023, 0.02, 0.018], 6).part("tint").color(P.SHADE_2, P.WHITE)
+    a.sphere(0.042, 6, 4).move(0, -1.06, 0.622).part("glow").color(_MINT_HOT)
+
+    # A mushroom seat for one.
+    floor = pod.inner(7, 1, 0.0)[2]
+    a.lathe([(0.075, 0), (0.045, 0.1), (0.065, 0.2)], 6, cap_bottom=False, cap_top=False).move(0, 0.56, floor).color(*bone)
+    a.sphere(0.15, 10, 5, (1, 1, 0.42)).move(0, 0.56, floor + 0.24).color(_BONE_DEEP, _BONE)
+
+    # Rudder: a tail fin on a bony stock, steered by a tendril that ends in a bud by the seat.
+    a.profile_x([(0.99, 0.27), (1.1, 0.33), (1.19, 0.3), (1.125, 0.13), (1.18, -0.02), (1.09, -0.07), (0.99, -0.05)], 0.026, bevel=0).part("glass").color(*petal)
+    a.tube([(0, 0.985, -0.05), (0, 1.0, 0.12), (0, 1.03, 0.41)], [0.02, 0.026, 0.024], 5).color(*bone)
+    a.tube([(0, 1.03, 0.4), (0.06, 0.93, 0.455), (0.16, 0.8, 0.44), (0.21, 0.68, 0.39), (0.215, 0.6, 0.37)], [0.026, 0.024, 0.021, 0.018, 0.016], 5).color(*bone)
+    a.sphere(0.034, 6, 4).move(0.215, 0.58, 0.372).part("glow").color(_MINT_HOT)
 
 
 # --------------------------------------------------------------------------------------------

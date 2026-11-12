@@ -4624,13 +4624,13 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:0885a66e6542fa7dda935a9ff44096007feaafa64309b1c6f0f556145917a6f3",
-      "derivativeChecksum": "sha256:9a579b248ff51cddae9ec8d86242cc2e18e21c79509889fe5f1a33514c67a30b",
+      "sourceChecksum": "sha256:a2f430f167c8e32918d88771208bba3c378669460ddbe69dc8db8b8fdfa9a1d2",
+      "derivativeChecksum": "sha256:153adfa9b18f1f995a9bf284fd83bd0d7b17286fbfb2fc474958ce2d86100111",
       "derivativePublicPath": "/assets/kit/v1/kit-core.bin",
       "maxDisplaySize": null,
       "transformations": [
         "Modeled in Blender 5.3 from the Python authoring modules under scripts/blender/kit/ (bmesh solids with chamfered edges, weighted normals and ambient occlusion baked into vertex colour). Editable sources: assets/blender/kit/*.blend.",
-        "Exported by scripts/blender/kit/export.py to a quantised, gzip-compressed pack of 68 models (572975 bytes; 1643940 decoded). Blender Z-up coordinates are converted to the web Y-up frame. The website instances the models and applies per-instance colour, motion and reflections."
+        "Exported by scripts/blender/kit/export.py to a quantised, gzip-compressed pack of 69 models (584160 bytes; 1665752 decoded). Blender Z-up coordinates are converted to the web Y-up frame. The website instances the models and applies per-instance colour, motion and reflections."
       ],
       "notes": [
         "Source checksum covers the concatenated UTF-8 files, in this order: scripts/blender/kit/__init__.py, scripts/blender/kit/assets/__init__.py, scripts/blender/kit/assets/animals.py, scripts/blender/kit/assets/heroes.py, scripts/blender/kit/assets/houses.py, scripts/blender/kit/assets/housing.py, scripts/blender/kit/assets/industry.py, scripts/blender/kit/assets/landmarks_a.py, scripts/blender/kit/assets/landmarks_b.py, scripts/blender/kit/assets/landmarks_c.py, scripts/blender/kit/assets/observer.py, scripts/blender/kit/assets/people.py, scripts/blender/kit/assets/plants.py, scripts/blender/kit/assets/robots.py, scripts/blender/kit/assets/rural.py, scripts/blender/kit/assets/sky.py, scripts/blender/kit/assets/space.py, scripts/blender/kit/assets/stage.py, scripts/blender/kit/assets/system.py, scripts/blender/kit/assets/terrain.py, scripts/blender/kit/assets/town.py, scripts/blender/kit/assets/vehicles_road.py, scripts/blender/kit/assets/vehicles_sea_air.py, scripts/blender/kit/build.py, scripts/blender/kit/earth.py, scripts/blender/kit/export.py, scripts/blender/kit/jk.py, scripts/blender/kit/palette.py, scripts/blender/kit/parts.py, scripts/blender/kit/review.py.",
@@ -4671,7 +4671,7 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:0885a66e6542fa7dda935a9ff44096007feaafa64309b1c6f0f556145917a6f3",
+      "sourceChecksum": "sha256:a2f430f167c8e32918d88771208bba3c378669460ddbe69dc8db8b8fdfa9a1d2",
       "derivativeChecksum": "sha256:c6e690214854cc034011677886b4ac8d8a986050c77b4556fa716b5281b48614",
       "derivativePublicPath": "/assets/kit/v1/kit-observer.bin",
       "maxDisplaySize": null,
@@ -4718,13 +4718,13 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:0885a66e6542fa7dda935a9ff44096007feaafa64309b1c6f0f556145917a6f3",
-      "derivativeChecksum": "sha256:774b60f4fa541e12beb1c6b7066a8e0de885d5626da8d8317988a78cf20ae80c",
+      "sourceChecksum": "sha256:a2f430f167c8e32918d88771208bba3c378669460ddbe69dc8db8b8fdfa9a1d2",
+      "derivativeChecksum": "sha256:2d553a4ce45c5b4f3502e664e9ae28550880264601d92e42d4b86de71581620c",
       "derivativePublicPath": "/assets/kit/v1/kit-worlds.bin",
       "maxDisplaySize": null,
       "transformations": [
         "Modeled in Blender 5.3 from the Python authoring modules under scripts/blender/kit/ (bmesh solids with chamfered edges, weighted normals and ambient occlusion baked into vertex colour). Editable sources: assets/blender/kit/*.blend.",
-        "Exported by scripts/blender/kit/export.py to a quantised, gzip-compressed pack of 138 models (1674524 bytes; 4681160 decoded). Blender Z-up coordinates are converted to the web Y-up frame. The website instances the models and applies per-instance colour, motion and reflections."
+        "Exported by scripts/blender/kit/export.py to a quantised, gzip-compressed pack of 137 models (1708033 bytes; 4728084 decoded). Blender Z-up coordinates are converted to the web Y-up frame. The website instances the models and applies per-instance colour, motion and reflections."
       ],
       "notes": [
         "Source checksum covers the concatenated UTF-8 files, in this order: scripts/blender/kit/__init__.py, scripts/blender/kit/assets/__init__.py, scripts/blender/kit/assets/animals.py, scripts/blender/kit/assets/heroes.py, scripts/blender/kit/assets/houses.py, scripts/blender/kit/assets/housing.py, scripts/blender/kit/assets/industry.py, scripts/blender/kit/assets/landmarks_a.py, scripts/blender/kit/assets/landmarks_b.py, scripts/blender/kit/assets/landmarks_c.py, scripts/blender/kit/assets/observer.py, scripts/blender/kit/assets/people.py, scripts/blender/kit/assets/plants.py, scripts/blender/kit/assets/robots.py, scripts/blender/kit/assets/rural.py, scripts/blender/kit/assets/sky.py, scripts/blender/kit/assets/space.py, scripts/blender/kit/assets/stage.py, scripts/blender/kit/assets/system.py, scripts/blender/kit/assets/terrain.py, scripts/blender/kit/assets/town.py, scripts/blender/kit/assets/vehicles_road.py, scripts/blender/kit/assets/vehicles_sea_air.py, scripts/blender/kit/build.py, scripts/blender/kit/earth.py, scripts/blender/kit/export.py, scripts/blender/kit/jk.py, scripts/blender/kit/palette.py, scripts/blender/kit/parts.py, scripts/blender/kit/review.py.",
@@ -4765,13 +4765,13 @@
         "responsive rendering",
         "web optimization"
       ],
-      "sourceChecksum": "sha256:0885a66e6542fa7dda935a9ff44096007feaafa64309b1c6f0f556145917a6f3",
-      "derivativeChecksum": "sha256:84b41c809a4e4dad664e0c0ef29ff7008b44fd169f0428c01cf1d30bfbde47d1",
+      "sourceChecksum": "sha256:a2f430f167c8e32918d88771208bba3c378669460ddbe69dc8db8b8fdfa9a1d2",
+      "derivativeChecksum": "sha256:6135c15fa7952f571ae954cd4ab474d3a450e92ddffef5900c4bd2c9c83394f1",
       "derivativePublicPath": "/assets/kit/v1/kit-landmarks.bin",
       "maxDisplaySize": null,
       "transformations": [
         "Modeled in Blender 5.3 from the Python authoring modules under scripts/blender/kit/ (bmesh solids with chamfered edges, weighted normals and ambient occlusion baked into vertex colour). Editable sources: assets/blender/kit/*.blend.",
-        "Exported by scripts/blender/kit/export.py to a quantised, gzip-compressed pack of 42 models (1159993 bytes; 2819816 decoded). Blender Z-up coordinates are converted to the web Y-up frame. The website instances the models and applies per-instance colour, motion and reflections."
+        "Exported by scripts/blender/kit/export.py to a quantised, gzip-compressed pack of 42 models (1188180 bytes; 2872808 decoded). Blender Z-up coordinates are converted to the web Y-up frame. The website instances the models and applies per-instance colour, motion and reflections."
       ],
       "notes": [
         "Source checksum covers the concatenated UTF-8 files, in this order: scripts/blender/kit/__init__.py, scripts/blender/kit/assets/__init__.py, scripts/blender/kit/assets/animals.py, scripts/blender/kit/assets/heroes.py, scripts/blender/kit/assets/houses.py, scripts/blender/kit/assets/housing.py, scripts/blender/kit/assets/industry.py, scripts/blender/kit/assets/landmarks_a.py, scripts/blender/kit/assets/landmarks_b.py, scripts/blender/kit/assets/landmarks_c.py, scripts/blender/kit/assets/observer.py, scripts/blender/kit/assets/people.py, scripts/blender/kit/assets/plants.py, scripts/blender/kit/assets/robots.py, scripts/blender/kit/assets/rural.py, scripts/blender/kit/assets/sky.py, scripts/blender/kit/assets/space.py, scripts/blender/kit/assets/stage.py, scripts/blender/kit/assets/system.py, scripts/blender/kit/assets/terrain.py, scripts/blender/kit/assets/town.py, scripts/blender/kit/assets/vehicles_road.py, scripts/blender/kit/assets/vehicles_sea_air.py, scripts/blender/kit/build.py, scripts/blender/kit/earth.py, scripts/blender/kit/export.py, scripts/blender/kit/jk.py, scripts/blender/kit/palette.py, scripts/blender/kit/parts.py, scripts/blender/kit/review.py.",

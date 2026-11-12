@@ -11,14 +11,19 @@ Rock and ice are faceted on purpose. Each body is a stack of vertex rings about 
 its strata follow real edge loops. It is then cut back to a couple of dozen flat planes, which is
 what makes it read as hewn rock and not as a smooth lump; craters are inset as concentric rings,
 and cracks are bevelled along mesh edges so an ore vein can sit in the groove as its own luminous
-inlay. The giant, its rings and the collector are smooth, as cloud, dust and machine should be.
+inlay. The elongated rock is a limb of such rings swept along a bent line, and the split rock is
+broken along a creased plane, so its two faces still fit each other. The giant, its rings and
+the collector are smooth, as cloud, dust and machine should be.
 
 Set JANUS_KIT_MEASURE=1 with `kit.py stats` to print how far each body strays from its stated
-radius and where its surface lies under the props the web app stands on it.
+radius and where its surface lies under the props the web app stands on it. For the elongated
+and the split rock it also prints the gap left to the main asteroid, their reach, and the
+triangles authored.
 """
 
 from __future__ import annotations
 
+import heapq
 import math
 import os
 import random
@@ -243,7 +248,7 @@ def _hull(points):
     bm = bmesh.new()
     verts = [bm.verts.new(Vector(p)) for p in points]
     hull = bmesh.ops.convex_hull(bm, input=verts, use_existing_faces=False)
-    spare = [g for g in hull["geom_interior"] + hull["geom_unused"] if isinstance(g, bmesh.types.BMVert)]
+    spare = list(dict.fromkeys(g for g in hull["geom_interior"] + hull["geom_unused"] if isinstance(g, bmesh.types.BMVert)))
     if spare:
         bmesh.ops.delete(bm, geom=spare, context="VERTS")
     bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
@@ -346,6 +351,18 @@ def _closest(line, p):
     return best
 
 
+def _along(line, values, s: float):
+    """A direction given at each point of a polyline, blended at arc length `s` along it."""
+    travelled = 0.0
+    for k, (a, b) in enumerate(zip(line, line[1:])):
+        step = (b - a).length
+        if travelled + step >= s or k == len(line) - 2:
+            t = max(0.0, min(1.0, (s - travelled) / step))
+            return values[k].lerp(values[k + 1], t).normalized()
+        travelled += step
+    return values[-1]
+
+
 def _walk(bm, start, end, rnd, wiggle: float, blocked, max_steps: int):
     """A path of mesh vertices from near `start` toward `end`, zigzagging along edges."""
     e = Vector(end).normalized()
@@ -393,18 +410,29 @@ def _crack(
     blocked=None,
     ridge: float = 0.45,
     max_steps: int = 60,
+    path=None,
+    normals: bool = False,
 ):
     """Carve a crack along mesh edges from `start` toward `end` (directions from the origin).
 
     The edge path is bevelled into a strip and its inner loops are pushed down, tapering to
     nothing at both ends. With `vein`, the faces at the bottom are returned so the caller can
-    lift them out as a glowing inlay. Returns {line, faces, half, total}.
+    lift them out as a glowing inlay. Returns {line, faces, half, total, ups}.
+
+    `path` gives the vertices to follow instead of walking between `start` and `end`. On a body
+    that is far from round, `normals` cuts the groove along the surface normal, not toward the
+    origin; `ups` then holds the outward direction at each point of the line.
     """
     bm = piece.bm
-    path = _walk(bm, start, end, random.Random(seed), wiggle, blocked, max_steps)
+    if path is None:
+        path = _walk(bm, start, end, random.Random(seed), wiggle, blocked, max_steps)
     if len(path) < 3:
         raise RuntimeError("crack is too short; move its ends")
     line = [x.co.copy() for x in path]
+    ups = None
+    if normals:
+        bm.normal_update()
+        ups = [x.normal.copy() for x in path]
     edges = [bm.edges.get((p, q)) for p, q in zip(path, path[1:])]
     before = set(bm.faces)
     bmesh.ops.bevel(
@@ -435,12 +463,13 @@ def _crack(
         centre = d < half * 0.28
         if not centre:
             x.co = q + (x.co - q) * (0.3 + 0.7 * k)
-        x.co -= x.co.normalized() * depth * k * ((1 - ridge) if (vein and centre) else 1.0)
+        out = _along(line, ups, s) if ups else x.co.normalized()
+        x.co -= out * depth * k * ((1 - ridge) if (vein and centre) else 1.0)
     seam = [f for f in strip if all(x not in outer or info[x][0] < half * 0.28 for x in f.verts)] if vein else []
     for f in strip:
         f.material_index = WALL
     bm.normal_update()
-    return dict(line=line, faces=seam, half=half, total=total, strip=len(strip), made=len(made))
+    return dict(line=line, faces=seam, half=half, total=total, strip=len(strip), made=len(made), ups=ups)
 
 
 def _detach(piece, faces, part: str):
@@ -478,11 +507,13 @@ def _paint_rock(
     beds=None,
     dust: float = 0.3,
     slab: float = 0.99,
+    bed_of=None,
 ):
     """Value-paint a tint rock: strata by ring, pale crater rims, deeper bowls and cracks.
 
     Dust evens out the undisturbed surface, so the beds only hint there; where the rock is cut
     back to a flat facet (`CUT`) or broken open (`BREAK`) they read at full strength.
+    `bed_of(face)` names a face's bed itself, for a body whose beds are not rings about `axis`.
     """
     w = Vector(axis).normalized()
     beds = _strata(seed, len(thetas) + 1) if beds is None else beds
@@ -494,7 +525,7 @@ def _paint_rock(
         if role == WALL:
             return _grey(wall)
         d = centre.normalized()
-        bed = beds[sum(1 for t in thetas if d.angle(w) > t)]
+        bed = beds[sum(1 for t in thetas if d.angle(w) > t)] if bed_of is None else bed_of(f)
         if role in (CUT, BREAK):
             # A cut shows its beds, and each plane keeps a value of its own.
             value = (1.0 - (1.0 - bed) * 1.2) * (0.97 + 0.05 * _n(f.normal * 2.9, seed + 21))
@@ -594,7 +625,7 @@ def _vein(a, piece, crack, crystals=(), size: float = 1.0, tones=ORE):
                 tangent = (q - p).normalized()
                 break
             travelled += step
-        up = point.normalized()
+        up = _along(line, crack["ups"], target) if crack.get("ups") else point.normalized()
         side = tangent.cross(up).normalized()
         foot = point - up * 0.16 * size
         _crystal(a, foot, up + tangent * lean + side * 0.12, 0.17 * size, 0.62 * size, tones, 5, k * 0.7)
@@ -659,6 +690,38 @@ def _measure(name: str, pieces, radius: float, stands=()):
         print(f"  stand {tuple(round(k, 2) for k in direction)}: surface at {reach:.3f} R (props stand at 0.92 R)")
 
 
+#: Where the story sets the main asteroid and its companions b and d, in this frame and at this
+#: scale (`rocks` in apps/web/app/planets/features.ts).
+MAIN_AT, B_AT, D_AT = (0.0, 0.0, -0.5), (-9.0, -0.5, -2.0), (3.5, -3.5, -8.5)
+_PROBE = {}
+
+
+def _clearance(pieces, at):
+    """Print the narrowest gap between a companion rock set at `at` and the main asteroid, and
+    how far the rock reaches from the middle of the cluster (set JANUS_KIT_MEASURE)."""
+    if not os.environ.get("JANUS_KIT_MEASURE"):
+        return
+    if "tree" not in _PROBE:
+        main = jk.Asset("probe")
+        asteroid_a(main)
+        main.pieces[0].bm.faces.ensure_lookup_table()
+        _PROBE["tree"] = BVHTree.FromBMesh(main.pieces[0].bm)
+    shift = Vector(at) - Vector(MAIN_AT)
+    points = [v.co for p in pieces for v in p.bm.verts]
+    gap = min(_PROBE["tree"].find_nearest(p + shift)[3] for p in points)
+    reach = max((p + Vector(at)).length for p in points)
+    own = max(p.length for p in points)
+    print(f"  gap to the main asteroid {gap:.2f}; reach from its own origin {own:.2f}, from the cluster's {reach:.2f}")
+
+
+def _tally(a):
+    """Print the triangles authored so far, which is what the budget counts (set JANUS_KIT_MEASURE)."""
+    if os.environ.get("JANUS_KIT_MEASURE"):
+        rock = [p for p in a.pieces if p._part == "tint"]
+        gaps = sum(1 for p in rock for e in p.bm.edges if len(e.link_faces) != 2)
+        print(f"  authored triangles {a.triangles}; open edges in the rock {gaps}")
+
+
 # --------------------------------------------------------------------------------------------
 # Asteroid works
 # --------------------------------------------------------------------------------------------
@@ -707,52 +770,321 @@ def asteroid_a(a):
             print("  crack", len(c["line"]), "verts", round(c["total"], 2), "long, half", round(c["half"], 3), "strip", c["strip"], "made", c["made"], "seam", len(c["faces"]))
 
 
+def _elbow(start, first, turn: float, second, soft: float):
+    """A bent line: from `start` along `first`, turning at arc length `turn` (rounded over
+    `soft` either side) and on along `second`. Returns point(u)."""
+    start, first, second = Vector(start), Vector(first).normalized(), Vector(second).normalized()
+    corner = start + first * turn
+
+    def point(u: float):
+        if u <= turn - soft:
+            return start + first * u
+        if u >= turn + soft:
+            return corner + second * (u - turn)
+        k = (u - turn + soft) / (2 * soft)
+        a, b = corner - first * soft, corner + second * soft
+        return a.lerp(corner, k).lerp(corner.lerp(b, k), k)
+
+    return point
+
+
+def _limb(stations, step: float, seed: int, lumps: float = 0.06, grain: float = 0.4, across=(1, 0, 0)):
+    """A faceted limb through `stations`: (centre, radius across, radius the other way) from tip
+    to tip, a radius of zero closing it in a point. Each ring of vertices stands square to the
+    limb and none twists, so the beds between rings read as bands across it.
+
+    Returns (piece, planes): `planes` holds each ring's (centre, direction along the limb), and
+    every face stores its bed, counted from the first tip, in the piece's `bed` layer.
+    """
+    rnd = random.Random(seed)
+    centres = [Vector(station[0]) for station in stations]
+    last = len(stations) - 1
+    verts, faces, beds, planes, loops = [], [], [], [], []
+    side = Vector(across)
+    for i, station in enumerate(stations):
+        c = centres[i]
+        tangent = (centres[min(i + 1, last)] - centres[max(i - 1, 0)]).normalized()
+        side = (side - tangent * side.dot(tangent)).normalized()
+        other = tangent.cross(side)
+        rx, ry = station[1], station[2]
+        if rx <= 0:
+            loops.append(len(verts))
+            verts.append(c)
+            continue
+        planes.append((c, tangent))
+        count = max(5, round(math.pi * (rx + ry) / step))
+        phase = rnd.random()
+        ts = sorted(((k + phase + (rnd.random() - 0.5) * 0.3) / count) % 1.0 for k in range(count))
+        index = []
+        for t in ts:
+            d = side * (math.cos(t * math.tau) * rx) + other * (math.sin(t * math.tau) * ry)
+            swell = 1 + lumps * _n(c + d, seed, grain) + lumps * 0.5 * _n(c + d, seed + 1, grain * 2.3)
+            index.append(len(verts))
+            verts.append(c + d * swell)
+        loops.append((index, ts))
+    for bed, (a, b) in enumerate(zip(loops, loops[1:])):
+        before = len(faces)
+        if isinstance(a, int):
+            ring = b[0]
+            faces += [(a, ring[k], ring[(k + 1) % len(ring)]) for k in range(len(ring))]
+        elif isinstance(b, int):
+            ring = a[0]
+            faces += [(b, ring[(k + 1) % len(ring)], ring[k]) for k in range(len(ring))]
+        else:
+            _zip(faces, a[0], a[1], b[0], b[1])
+        beds += [bed] * (len(faces) - before)
+    piece = jk.raw(verts, faces).flat().part("tint")
+    layer = piece.bm.faces.layers.int.new("bed")
+    piece.layer = piece.bm.loops.layers.color.get("c")
+    for f, bed in zip(piece.bm.faces, beds):
+        f[layer] = bed
+    return piece, planes
+
+
+def _saw(piece, normal, at: float, role: int = BREAK):
+    """Saw a closed piece off flat: everything beyond the plane `at` along `normal` goes, and
+    the cut is closed with a face of `role`."""
+    n = Vector(normal).normalized()
+    bm = piece.bm
+    cut = bmesh.ops.bisect_plane(
+        bm, geom=bm.verts[:] + bm.edges[:] + bm.faces[:], dist=1e-5,
+        plane_co=n * at, plane_no=n, clear_outer=True,
+    )
+    edges = [g for g in cut["geom_cut"] if isinstance(g, bmesh.types.BMEdge)]
+    for f in bmesh.ops.holes_fill(bm, edges=edges, sides=0)["faces"]:
+        f.material_index = role
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
+    bm.normal_update()
+    return piece
+
+
+def _score(piece, role: int, planes):
+    """Divide the faces of `role` along each of `planes` (point, normal), leaving the rest of
+    the piece alone: a sawn or broken face gets an edge wherever a bed or a fold crosses it."""
+    bm = piece.bm
+    for point, normal in planes:
+        faces = [f for f in bm.faces if f.material_index == role]
+        geom = faces + list({e for f in faces for e in f.edges}) + list({v for f in faces for v in f.verts})
+        bmesh.ops.bisect_plane(bm, geom=geom, dist=1e-5, plane_co=Vector(point), plane_no=Vector(normal))
+    bm.normal_update()
+    return [f for f in bm.faces if f.material_index == role]
+
+
+def _trace(piece, points, avoid=None):
+    """Mesh vertices along the shortest edges through the vertices nearest `points`: the line
+    a fracture takes. `avoid(point)` fences vertices off."""
+    bm = piece.bm
+    free = [v for v in bm.verts if avoid is None or not avoid(v.co)]
+    stops = [min(free, key=lambda v: (v.co - Vector(p)).length_squared) for p in points]
+    path = [stops[0]]
+    for start, goal in zip(stops, stops[1:]):
+        if goal is start:
+            continue
+        used = set(path[:-1])
+        best = {start: 0.0}
+        came = {}
+        frontier = [(0.0, 0, start)]
+        tick = 0
+        while frontier:
+            dist, _, v = heapq.heappop(frontier)
+            if v is goal:
+                break
+            if dist > best.get(v, 1e18):
+                continue
+            for edge in v.link_edges:
+                w = edge.other_vert(v)
+                if w in used or (avoid is not None and w is not goal and avoid(w.co)):
+                    continue
+                reach = dist + edge.calc_length()
+                if reach < best.get(w, 1e18):
+                    best[w] = reach
+                    came[w] = v
+                    tick += 1
+                    heapq.heappush(frontier, (reach, tick, w))
+        if goal not in came:
+            raise RuntimeError("no way through for the fracture; move its points")
+        leg = [goal]
+        while leg[-1] is not start:
+            leg.append(came[leg[-1]])
+        path += leg[::-1][1:]
+    return path
+
+
+def _boulder(a, centre, size: float, seed: int, squash=(1.0, 1.0, 0.8), value: float = 0.95):
+    """A loose block: a small faceted hull, each plane in its own close value."""
+    rnd = random.Random(seed)
+    points = []
+    for d in _scatter(11, seed, 1.2):
+        points.append(Vector(centre) + Vector((d.x * squash[0], d.y * squash[1], d.z * squash[2])) * size * rnd.uniform(0.82, 1.1))
+    block = _hull(points)
+    block.paint(lambda f: _grey(value * (0.9 + 0.12 * _n(f.normal * 2.3, seed))))
+    return a.add(block)
+
+
+def _bench(piece, role: int, up, back, at: float, rise: float, lean: float):
+    """Leave a step standing at the back of a sawn floor. The part of the `role` face that lies
+    beyond `at` along `back` is raised by `rise` along `up`, and its outer edge leans in by
+    `lean`, so the floor reads as cut down into the rock. Returns (riser faces, top face)."""
+    up, back = Vector(up).normalized(), Vector(back).normalized()
+    bm = piece.bm
+    parts = _score(piece, role, [(back * at, back)])
+    floor = max(parts, key=lambda f: f.calc_area())
+    middle = floor.calc_center_median()
+    behind = [f for f in parts if f is not floor and (f.calc_center_median() - middle).dot(back) > 0]
+    if len(behind) != 1:
+        raise RuntimeError("the bench needs one piece of floor behind its line; move the line")
+    top = bmesh.ops.extrude_discrete_faces(bm, faces=behind)["faces"][0]
+    line = up.cross(back)
+    for v in top.verts:
+        v.co += up * rise
+        if v.co.dot(back) - at > 1e-4:
+            flat = v.co - middle
+            flat -= up * flat.dot(up)
+            v.co -= flat.normalized() * lean
+        else:
+            # The ends of the riser lean in along it, or they would stand up as horns.
+            t = (v.co - middle).dot(line)
+            v.co -= line * math.copysign(min(lean, abs(t) * 0.4), t)
+    risers = []
+    for edge in top.edges:
+        for f in edge.link_faces:
+            if f is not top:
+                f.material_index = SLAB if all(abs(v.co.dot(back) - at) < 1e-3 for v in f.verts) else ROCK
+                risers.append(f)
+    top.material_index = ROCK
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
+    bm.normal_update()
+    return risers, top
+
+
+def _dent(piece, centre, radius: float, depth: float, toward):
+    """Press a smooth hollow into a piece: `depth` at `centre`, fading out by `radius`."""
+    centre, toward = Vector(centre), Vector(toward).normalized()
+    for v in piece.bm.verts:
+        k = _smooth(1 - (v.co - centre).length / radius)
+        if k > 0:
+            v.co -= toward * (depth * k)
+    piece.bm.normal_update()
+    return piece
+
+
 @asset("sys-asteroid-b", tint="#857a6e", grounded=False, budget=700)
 def asteroid_b(a):
-    """Elongated: a tall leaning column of banded rock, cut flat on top where a rig stands."""
+    """Elongated: a bent peanut of bedded rock, two knuckles and a waist, four times as long as
+    the waist is thick. A terrace is sawn into the upper knuckle for the rig, with a step left
+    standing behind it. A fracture carrying the ore runs down the front and round the waist,
+    the lower end has sheared off across the beds, and loose blocks lie in an old crater on
+    the far side.
+
+    The rig's place fixes the top of the rock, so the rest hangs below it: the origin lies
+    inside the upper knuckle, not at the middle of the whole."""
     R = 3.6
     s = Vector(STAND).normalized()
-    wide = Vector((0.9, 0.3, -0.03))
-    e1 = (wide - s * wide.dot(s)).normalized()
-    e2 = s.cross(e1)
-    centre, half = s * (-0.175 * R), 1.575 * R
+    back = Vector((0, 1, 0)) - s * s.y
+    back.normalize()
+    right = back.cross(s)
+    floor = 0.945 * R
+    upper = Vector((-0.47, 0.20, -0.86)).normalized()
+    lower = Vector((0.45, -0.25, -0.86)).normalized()
+    turn = 3.7
+    # The limb hangs from the terrace. It leans away to the left as it goes down, so it starts
+    # a little to the right of the rig, which leaves floor all round the rig's feet.
+    spine = _elbow(s * floor + back * 0.1 + right * 0.3, upper, turn, lower, 1.3)
+    # Arc length from the terrace, and the limb's radius there: knuckle, waist, knuckle.
+    profile = (
+        (-1.0, 0.0), (-0.55, 1.35), (0.0, 1.9), (0.65, 2.08), (1.45, 2.1), (2.2, 1.94), (2.9, 1.62),
+        (3.5, 1.34), (4.1, 1.22), (4.7, 1.24), (5.3, 1.36), (5.9, 1.54), (6.5, 1.7), (7.1, 1.82),
+        (7.7, 1.88), (8.3, 1.82), (8.85, 1.62), (9.35, 1.3), (9.75, 0.85), (10.05, 0.0),
+    )
 
-    def inside(p):
-        q = p - centre
-        t = q.dot(s) / half
-        if abs(t) >= 1:
-            return False
-        # Full shoulders under the cut top, a long taper to the foot, a slight lean.
-        lean = e1 * (0.12 * R * (t * t - 0.4)) + e2 * (0.07 * R * t)
-        side = q - s * (t * half) - lean
-        profile = (1 - t * t) ** 0.42 if t > 0 else (1 - (-t) ** 1.55) ** 0.9
-        x, y = side.dot(e1) / (0.58 * R), side.dot(e2) / (0.47 * R)
-        return x * x + y * y < profile * profile
+    def girth(u):
+        for (u0, r0), (u1, r1) in zip(profile, profile[1:]):
+            if u <= u1:
+                return r0 + (r1 - r0) * max(0.0, (u - u0) / (u1 - u0))
+        return 0.0
 
-    def reach(d):
-        return _reach(inside, d, 2.4 * R)
+    def along(u):
+        return (spine(u + 0.3) - spine(u - 0.3)).normalized()
 
-    def shape(d):
-        return reach(d) / R * (1 + 0.05 * _n(d, 61, 1.5) + 0.025 * _n(d, 62, 3.0))
+    def skin(u, toward):
+        """A point on the limb's skin at `u`, on the side that faces `toward`."""
+        t = along(u)
+        d = Vector(toward)
+        return spine(u) + (d - t * d.dot(t)).normalized() * girth(u)
 
-    thetas, counts = _spaced(reach, s, 0.9)
-    rock, thetas = _body(R, 0, thetas, 61, s, shape, counts=counts)
-    # Long facets down its length, then the flat working face on top.
+    rock, planes = _limb([(spine(u), r, r * 0.94) for u, r in profile], 0.95, 61, lumps=0.075)
+    bed = rock.bm.faces.layers.int["bed"]
+    # Hewn planes all the way down, each cut about the limb's own middle.
     rnd = random.Random(61)
-    for k in range(9):
-        turn = math.radians(k * 40 + rnd.uniform(-12, 12))
-        n = e1 * math.cos(turn) + e2 * math.sin(turn) + s * rnd.uniform(-0.3, 0.22)
-        _chip(rock, n, rnd.uniform(0.2, 0.38))
-    _chip(rock, -s + e1 * 0.5 - e2 * 0.2, 0.8)
-    _chip(rock, s, at=1.0 * R, role=SLAB)
-    craters = [((0.75, -0.6, -0.25), 0.85, 0.16, 8, 0.0)]
-    plans = [((-0.35, -0.9, 0.25), (-0.3, -0.3, -0.9), 4, (), True)]
-    cracks = _carve(rock, R, craters, plans, 0.2, 0.18)
-    _paint_rock(rock, s, thetas, 4, R)
+    count = 14
+    for k in range(count):
+        u = 0.3 + 8.7 * ((k * 5) % count + rnd.random()) / count
+        c, t = spine(u), along(u)
+        e1, e2, _ = _perp(t)
+        angle = k * 2.4 + rnd.uniform(-0.4, 0.4)
+        n = e1 * math.cos(angle) + e2 * math.sin(angle) + t * rnd.uniform(-0.3, 0.3)
+        _chip(rock, n, rnd.uniform(0.16, 0.36), centre=c, only=lambda p, c=c: (p - c).length < 2.5)
+    # The upper knuckle is squared off, so the terrace has straight edges.
+    head = spine(0.9)
+    for bearing, depth in ((15, 0.26), (80, 0.24), (150, 0.34), (215, 0.24), (285, 0.3)):
+        n = right * math.cos(math.radians(bearing)) + back * math.sin(math.radians(bearing)) + s * 0.22
+        _chip(rock, n, depth, centre=head, only=lambda p: (p - head).length < 2.9)
+    # Both knuckles are cut back to planes on the side of the main rock next door, where its
+    # flank and its chin come nearest, which keeps the old gap between the two.
+    toward_main = (Vector(MAIN_AT) - Vector(B_AT)).normalized()
+    _chip(rock, toward_main, centre=head, at=2.3 - toward_main.dot(head))
+    toward_chin = Vector((0.80, -0.08, 0.59)).normalized()
+    foot = spine(6.6)
+    _chip(rock, toward_chin, centre=foot, at=0.2 - toward_chin.dot(foot), only=lambda p: (p - foot).length < 2.8)
+    # The crook of the bend is pressed in, which sharpens the waist on that side.
+    crook = (lower - upper).normalized()
+    seat = spine(turn) + crook * (girth(turn) - 0.34)
+    _dent(rock, seat + crook * 0.4, 1.8, 0.44, crook)
+    # One old crater on the far side of the upper knuckle, set about the knuckle's own middle.
+    knuckle = spine(1.4)
+    hollow = Vector((-0.45, 0.85, 0.25)).normalized()
+    rock.move(*(-knuckle))
+    _crater(rock, hollow, 0.95, 0.2, 9)
+    bowl = _surface(rock, hollow) + knuckle
+    rock.move(*knuckle)
+    # The terrace for the rig, with a step left standing behind it. Then the sheared end, broken
+    # along two planes, which shows a stripe for every bed it cuts.
+    _saw(rock, s, floor, SLAB)
+    _bench(rock, SLAB, s, back, 1.35, 0.34, 0.3)
+    shear = Vector((0.375, -0.757, -0.539)).normalized()
+    _saw(rock, shear, shear.dot(spine(8.9)), BREAK)
+    snap = Vector((-0.3, -0.8, -0.52)).normalized()
+    _saw(rock, snap, snap.dot(spine(8.9) + shear * 0.1 - Vector((0.95, 0, 0))), BREAK)
+    for f in _score(rock, BREAK, planes[10:]):
+        centre = f.calc_center_median()
+        f[bed] = sum(1 for c, t in planes if (centre - c).dot(t) > 0)
+    # The fracture: from under the terrace's lip down the front, round the waist, and along
+    # the flank of the lower knuckle. It keeps off the terrace, the sheared end and the crook.
+    edge = lambda p: p.dot(s) > floor - 0.3 or p.dot(shear) > shear.dot(spine(8.9)) - 0.5 or (p - seat).length < 1.2
+    path = _trace(
+        rock,
+        [skin(0.8, (0.15, -1, 0)), skin(2.4, (0, -1, 0)), skin(4.0, (-0.3, -1, 0)), skin(5.5, (-0.6, -0.8, 0)), skin(7.0, (-0.9, -0.4, 0.2))],
+        avoid=edge,
+    )
+    crack = _crack(rock, None, None, 4, 0.15, 0.17, path=path, normals=True)
+    beds = _strata(4, len(profile))
+    _paint_rock(rock, s, (), 4, R, beds=beds, dust=0.5, bed_of=lambda f: beds[f[bed] % len(beds)])
+    stripes = (0.6, 0.84, 0.54, 0.76, 0.62, 0.9, 0.56, 0.8)
+    rock.paint(lambda f: _grey(stripes[f[bed] % len(stripes)]) if f.material_index == BREAK else None)
     a.add(rock)
-    for crack in cracks:
-        _vein(a, rock, crack)
+    _vein(a, rock, crack, ((0.3, 0.15),), 0.62)
+    # Loose blocks lying in the old crater.
+    e1, e2, _ = _perp(hollow)
+    _boulder(a, bowl + hollow * 0.1 + e1 * 0.14, 0.27, 5, value=1.0)
+    _boulder(a, bowl + hollow * 0.08 - e1 * 0.26 + e2 * 0.16, 0.17, 8, value=0.9)
     _measure("sys-asteroid-b", [rock], R, [STAND])
+    if os.environ.get("JANUS_KIT_MEASURE"):
+        deck = max((f for f in rock.bm.faces if f.material_index == SLAB), key=lambda f: f.calc_area())
+        rim = [v.co - s * floor for v in deck.verts]
+        edges = [(a_ + (b_ - a_) * max(0.0, min(1.0, -a_.dot(b_ - a_) / (b_ - a_).length_squared))).length for a_, b_ in zip(rim, rim[1:] + rim[:1])]
+        print(f"  terrace: {deck.calc_area():.1f} square, its edge {min(edges):.2f} to {max(p.length for p in rim):.2f} from the rig's middle")
+    _clearance([rock], B_AT)
+    _tally(a)
 
 
 @asset("sys-asteroid-c", tint="#857a6e", grounded=False, budget=700)
@@ -786,73 +1118,153 @@ def asteroid_c(a):
     _measure("sys-asteroid-c", [rock], R, [STAND])
 
 
-def _break(piece, normal, offset: float, bulge):
-    """Break a closed piece in two along a plane: (the part behind the plane, the part beyond).
-    Both get the same uneven break face, so the halves still fit each other."""
+def _cleave(piece, normal, offset: float, across, folds):
+    """Break a closed piece in two along a folded plane: (the part behind it, the part beyond).
+
+    The break lies `offset` along `normal` and is creased along lines square to `across`:
+    `folds` are (distance along `across`, height) pairs, straight between them and level
+    outside. Both parts get the same creases, so the two faces still fit each other, and each
+    is left as flat facets of role `BREAK`. Returns (behind, beyond, point): `point(t, w)` is
+    the place on the unbroken break `t` along `across` and `w` along the creases.
+    """
     n = Vector(normal).normalized()
+    r = Vector(across)
+    r = (r - n * r.dot(n)).normalized()
+    q = n.cross(r)
+
+    def height(t):
+        if t <= folds[0][0]:
+            return folds[0][1]
+        for (t0, h0), (t1, h1) in zip(folds, folds[1:]):
+            if t <= t1:
+                return h0 + (h1 - h0) * (t - t0) / (t1 - t0)
+        return folds[-1][1]
+
     halves = []
     for beyond in (False, True):
         bm = piece.bm.copy()
+        # Flatten the creases out, cut straight, score the cut along each crease, fold back.
+        for v in bm.verts:
+            v.co -= n * height(v.co.dot(r))
         cut = bmesh.ops.bisect_plane(
             bm, geom=bm.verts[:] + bm.edges[:] + bm.faces[:], dist=1e-5,
             plane_co=n * offset, plane_no=n, clear_outer=not beyond, clear_inner=beyond,
         )
         edges = [g for g in cut["geom_cut"] if isinstance(g, bmesh.types.BMEdge)]
-        caps = bmesh.ops.holes_fill(bm, edges=edges, sides=0)["faces"]
-        poked = bmesh.ops.poke(bm, faces=caps)
-        for v in poked["verts"]:
-            v.co += Vector(bulge)
-        for f in poked["faces"]:
+        for f in bmesh.ops.holes_fill(bm, edges=edges, sides=0)["faces"]:
             f.material_index = BREAK
+        half = jk.Piece(bm, piece._part).flat()
+        _score(half, BREAK, [(r * t, r) for t, _ in folds])
+        for v in bm.verts:
+            v.co += n * height(v.co.dot(r))
         bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
         bm.normal_update()
-        halves.append(jk.Piece(bm, piece._part).flat())
-    return halves
+        halves.append(half)
+    return halves[0], halves[1], lambda t, w: n * (offset + height(t)) + r * t + q * w
+
+
+def _fleck(a, base, axis, size: float, turn: float = 0.0):
+    """A grain of ore bedded in a broken face: a low three-sided point."""
+    return _crystal(a, base, axis, size * 0.62, size, ORE, 3, turn, slim=True)
 
 
 @asset("sys-asteroid-d", tint="#857a6e", grounded=False, budget=500)
 def asteroid_d(a):
-    """Split: a rock broken clean in two, the lower part drifting off the upper."""
+    """Split: an egg of rock broken through along a steep, creased face, so its two parts stand
+    side by side. The part that carries the rig stays put. The other has come away: opened
+    like a book toward the reader, turned a little on the break and slipped down along it, so
+    the creases and the outlines no longer meet. Both faces show the darker interior with
+    flecks of ore bedded in it, and chips still hang in the gap."""
     R = 2.4
     axis = (0.5, 0.45, 0.74)
+    # The break climbs from low on the left to high on the right, well clear of the rig, with
+    # two creases across it. The part beyond it, up and to the left, keeps the rig.
+    normal = Vector((-0.91, 0.08, 0.40)).normalized()
+    rise = Vector((0.40, 0.0, 0.91))
+    offset = -0.42 * R
+    folds = ((-3.0, 0.09), (-0.6, -0.12), (0.45, 0.16), (3.0, -0.1))
 
     def shape(d):
-        return _ellipsoid(d, 1.06, 0.96, 0.95) * (1 + 0.07 * _n(d, 71, 1.4) + 0.03 * _n(d, 72, 3.0))
+        # An egg: round where the rig stands, drawn out on the side that comes away.
+        long = 1 + 0.42 * _smooth((-d.dot(normal) - 0.25) / 0.65)
+        return _ellipsoid(d, 1.06, 0.96, 0.95) * long * (1 + 0.07 * _n(d, 71, 1.4) + 0.03 * _n(d, 72, 3.0))
 
     rock, thetas = _body(R, 19, 8, 71, axis, shape)
     _level(rock, R, 0.96, 1.06)
     _facets(rock, R, 14, 71, cut=(0.06, 0.13), top=(0.03, 0.05))
-    _crater(rock, (0.85, -0.2, 0.45), 0.8, 0.15, 8)
-    # The break runs slantwise under the rig, edge-on to the reader, so both parts show.
-    normal = Vector((-0.3, -0.34, -0.89)).normalized()
-    along = Vector((0.95, 0.0, -0.32))
-    along = (along - normal * along.dot(normal)).normalized()
-    across = normal.cross(along)
-    if across.y < 0:
-        across = -across
-    keep, off = _break(rock, normal, 0.12 * R, normal * 0.16 + along * 0.3 - across * 0.2)
+    _crater(rock, (-0.9, -0.42, 0.1), 0.7, 0.15, 8)
+    off, keep, point = _cleave(rock, normal, offset, rise, folds)
     rock.bm.free()
-    _paint_rock(keep, axis, thetas, 9, R)
-    _paint_rock(off, axis, thetas, 9, R)
-    # The loose part has drifted off, swinging a little open toward the reader.
-    hinge = normal * (0.12 * R) + across * (0.95 * R)
-    probe = normal * (0.12 * R) - across * (0.9 * R)
-    angle = math.radians(7)
+    rise = (rise - normal * rise.dot(normal)).normalized()
+    front = rise.cross(normal)
+    if front.y > 0:
+        front = -front
+    tones = (0.5, 0.62, 0.44)
 
-    def swing(theta):
-        return Matrix.Translation(hinge) @ Matrix.Rotation(theta, 4, along) @ Matrix.Translation(-hinge)
+    def interior(f):
+        if f.material_index != BREAK:
+            return None
+        t = f.calc_center_median().dot(rise)
+        k = sum(1 for fold, _ in folds[1:-1] if t > fold)
+        return _grey(tones[k] * (0.97 + 0.06 * _n(f.calc_center_median(), 9, 0.9)))
 
-    if ((swing(angle) @ probe) - probe).dot(normal) < 0:
-        angle = -angle
-    off.apply(Matrix.Translation(normal * 0.36 + along * 0.1) @ swing(angle))
+    for part in (keep, off):
+        _paint_rock(part, axis, thetas, 9, R)
+        part.paint(interior)
+    # The loose part has come away: opened about a hinge low at the back, turned on the break,
+    # slid toward the reader and slipped down along the break.
+    wide = (front * 0.75 + rise * 0.66).normalized()
+    middle = normal * offset
+    hinge = middle - wide * (0.95 * R)
+    turn = normal.cross(wide)
+    opened = math.radians(6.5)
+    if (Matrix.Rotation(opened, 4, turn) @ wide).dot(normal) > 0:
+        opened = -opened
+
+    def about(pivot, angle, direction):
+        return Matrix.Translation(pivot) @ Matrix.Rotation(angle, 4, direction) @ Matrix.Translation(-pivot)
+
+    adrift = (
+        Matrix.Translation(-normal * 0.36 + front * 0.35 - rise * 0.55)
+        @ about(hinge, opened, turn)
+        @ about(middle, math.radians(11), normal)
+    )
+    spin = adrift.to_3x3()
+    off.apply(adrift)
     a.add(keep)
     a.add(off)
-    # Two chips still hanging in the gap.
+
+    def facing(t):
+        """The outward direction of the loose part's broken face at `t` along the rise."""
+        for (t0, h0), (t1, h1) in zip(folds, folds[1:]):
+            if t <= t1:
+                return (normal - rise * ((h1 - h0) / (t1 - t0))).normalized()
+        return normal
+
+    # Ore flecks bedded in both faces.
+    for k, (t, w, size, loose) in enumerate((
+        (1.3, 1.1, 0.2, True), (-0.1, 1.45, 0.16, True), (-1.35, 0.6, 0.18, True), (-1.95, -0.5, 0.2, True),
+        (1.5, 0.3, 0.17, False), (-0.2, -0.9, 0.2, False),
+    )):
+        base, out = point(t, 0) + front * w, facing(t)
+        if loose:
+            _fleck(a, adrift @ (base - out * 0.03), spin @ out, size, k * 1.3)
+        else:
+            _fleck(a, base + out * 0.03, -out, size, k * 1.3)
+    # Chips still hanging in the gap.
     rnd = random.Random(7)
-    for where, size in ((normal * (0.12 * R + 0.42) - across * (0.8 * R) + along * 0.6, 0.2), (normal * (0.12 * R + 0.36) - across * (0.62 * R) - along * 0.9, 0.14)):
+    for t, w, size in ((1.75, 1.7, 0.24), (-1.2, 2.0, 0.18), (-1.9, -1.3, 0.15)):
+        where = point(t, 0) + front * w
+        where = (where + adrift @ where) / 2
         points = [where + Vector((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-1, 1))).normalized() * size * rnd.uniform(0.7, 1.3) for _ in range(7)]
         a.add(_paint_rock(_hull(points), axis, thetas, 9, R))
-    _measure("sys-asteroid-d", [keep, off], R, [STAND])
+    _measure("sys-asteroid-d", [keep], R, [STAND])
+    if os.environ.get("JANUS_KIT_MEASURE"):
+        stand = Vector(STAND).normalized()
+        near = min(v.co.normalized().angle(stand) for f in keep.bm.faces if f.material_index == BREAK for v in f.verts)
+        print(f"  the break comes within {math.degrees(near):.0f} degrees of the rig")
+    _clearance([keep, off], D_AT)
+    _tally(a)
 
 
 @asset("sys-asteroid-e", tint="#857a6e", grounded=False, budget=400)

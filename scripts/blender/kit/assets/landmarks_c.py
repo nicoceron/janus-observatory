@@ -800,108 +800,491 @@ def bunker(a):
     a.sphere(0.085, 8, 5).move(mx, my, 5.4).part("glow").color(P.GLOW_RED)
 
 
+def broken_wall(us, zs, tops, holes=(), thick=0.16, nudge=None):
+    """A wall panel with openings, torn off along a jagged line.
+
+    The panel stands in the x-z plane with its outer face on y = 0 looking toward -y and its inner
+    face on y = `thick`. `us` and `zs` are grid lines; `tops[i]` is the (left, right) height at
+    which strip i is broken off, so each strip ends in a slanted edge and neighbouring strips may
+    step. `holes` are (u0, u1, z0, z1) rectangles left open, and `nudge` moves grid points
+    {(u, z): (du, dz)} so a blast hole gets ragged, slanting sides. Returns the piece and one tag
+    per face: "out", "in" (suffixed "-edge" along the break), "reveal" (the side of an opening) or
+    "break" (torn masonry).
+    """
+    us = [round(u, 3) for u in us]
+    tops = [(round(lo, 3), round(hi, 3)) for lo, hi in tops]
+    steps = {min(tops[i][1], tops[i + 1][0]) for i in range(len(tops) - 1) if abs(tops[i][1] - tops[i + 1][0]) > 1e-6}
+    zs = sorted({round(z, 3) for z in zs} | steps)
+    nu, nz = len(us) - 1, len(zs) - 1
+
+    def is_hole(i, j):
+        if not (0 <= i < nu and 0 <= j < nz):
+            return False
+        u, z = (us[i] + us[i + 1]) / 2, (zs[j] + zs[j + 1]) / 2
+        return any(u0 < u < u1 and z0 < z < z1 for u0, u1, z0, z1 in holes)
+
+    def standing(i, j):
+        return 0 <= i < nu and 0 <= j < nz and zs[j] < max(tops[i]) - 1e-6
+
+    def solid(i, j):
+        return standing(i, j) and not is_hole(i, j)
+
+    def sided(i, side, j):
+        """Whether strip i has wall along its left (0) or right (1) edge in row j."""
+        return solid(i, j) and zs[j] < tops[i][side] - 1e-6
+
+    pts, index, faces, tags = [], {}, [], []
+
+    def vert(i, side, j, layer):
+        p = (us[i + side], layer * thick, min(zs[j], tops[i][side]))
+        if p not in index:
+            index[p] = len(pts)
+            pts.append(p)
+        return index[p]
+
+    def face(tag, *ids):
+        ids = [k for n, k in enumerate(ids) if k != ids[n - 1]]
+        if len(ids) >= 3:
+            faces.append(ids)
+            tags.append(tag)
+
+    for i in range(nu):
+        for j in range(nz):
+            if not solid(i, j):
+                continue
+            a0, b0, c0, d0 = vert(i, 0, j, 0), vert(i, 1, j, 0), vert(i, 1, j + 1, 0), vert(i, 0, j + 1, 0)
+            a1, b1, c1, d1 = vert(i, 0, j, 1), vert(i, 1, j, 1), vert(i, 1, j + 1, 1), vert(i, 0, j + 1, 1)
+            torn = "" if standing(i, j + 1) else "-edge"
+            face("out" + torn, a0, b0, c0, d0)
+            face("in" + torn, b1, a1, d1, c1)
+            if not solid(i, j - 1):
+                face("reveal" if is_hole(i, j - 1) else "break", b0, a0, a1, b1)
+            if not solid(i, j + 1):
+                face("reveal" if is_hole(i, j + 1) and standing(i, j + 1) else "break", d0, c0, c1, d1)
+            if a0 != d0 and not sided(i - 1, 1, j):
+                face("reveal" if is_hole(i - 1, j) and standing(i - 1, j) else "break", a0, d0, d1, a1)
+            if b0 != c0 and not sided(i + 1, 0, j):
+                face("reveal" if is_hole(i + 1, j) and standing(i + 1, j) else "break", c0, b0, b1, c1)
+    moved = {(round(u, 3), round(z, 3)): d for (u, z), d in (nudge or {}).items()}
+    bm = bmesh.new()
+    vs = [bm.verts.new((x + moved.get((x, z), (0, 0))[0], y, z + moved.get((x, z), (0, 0))[1])) for x, y, z in pts]
+    for ids in faces:
+        bm.faces.new([vs[k] for k in ids])
+    bm.normal_update()
+    return jk.Piece(bm).flat(), tags
+
+
+def stain(piece, fn):
+    """Multiply every corner's colour by `fn(co)`: soot, damp and dust."""
+    for f in piece.bm.faces:
+        for loop in f.loops:
+            k = fn(loop.vert.co)
+            c = loop[piece.layer]
+            loop[piece.layer] = (c[0] * k, c[1] * k, c[2] * k, 1.0)
+    return piece
+
+
+def floor_plate(a, outline, z, drop=None, thick=0.16, hub=None):
+    """A floor slab whose torn corners droop by `drop[k]`.
+
+    It is fanned from its first corner, or from `hub` (a point every corner can see) when the
+    outline has a re-entrant corner, so the sag shows as facets.
+    """
+    n = len(outline)
+    drop = drop or [0.0] * n
+    verts = [(x, y, z - drop[k]) for k, (x, y) in enumerate(outline)]
+    verts += [(x, y, z - drop[k] - thick) for k, (x, y) in enumerate(outline)]
+    if hub is None:
+        faces = [(0, k, k + 1) for k in range(1, n - 1)]
+        faces += [(n, n + k + 1, n + k) for k in range(1, n - 1)]
+    else:
+        verts += [(hub[0], hub[1], z), (hub[0], hub[1], z - thick)]
+        faces = [(2 * n, k, (k + 1) % n) for k in range(n)]
+        faces += [(2 * n + 1, n + (k + 1) % n, n + k) for k in range(n)]
+    faces += [(k, n + k, n + (k + 1) % n, (k + 1) % n) for k in range(n)]
+    return a.raw(verts, faces).flat()
+
+
+def bent_plate(a, path, half, thick, side):
+    """A slab that folds along `path` (points on the middle of its top face).
+
+    `side` is the horizontal direction its width runs along and `half[i]` the half-width at each
+    point, or a (left, right) pair for a ragged edge.
+    """
+    s = Vector(side).normalized()
+    pts = [Vector(p) for p in path]
+    n = len(pts)
+    verts, down = [], None
+    for i, p in enumerate(pts):
+        t = (pts[min(i + 1, n - 1)] - pts[max(i - 1, 0)]).normalized()
+        d = s.cross(t).normalized()
+        if (down is None and d.z > 0) or (down is not None and d.dot(down) < 0):
+            d = -d
+        down = d
+        left, right = half[i] if isinstance(half[i], (tuple, list)) else (half[i], half[i])
+        verts += [p - s * left, p + s * right, p + s * right + d * thick, p - s * left + d * thick]
+    faces = [(3, 2, 1, 0), (n * 4 - 4, n * 4 - 3, n * 4 - 2, n * 4 - 1)]
+    for i in range(n - 1):
+        p, q = i * 4, i * 4 + 4
+        faces += [(p + k, q + k, q + (k + 1) % 4, p + (k + 1) % 4) for k in range(4)]
+    return a.raw([tuple(v) for v in verts], faces).flat()
+
+
+def cloth(a, rows):
+    """An open sheet through a grid of points (rows of equal length); the bake gives it a back."""
+    n = len(rows[0])
+    verts = [tuple(p) for row in rows for p in row]
+    faces = [
+        (j * n + i, j * n + i + 1, (j + 1) * n + i + 1, (j + 1) * n + i)
+        for j in range(len(rows) - 1)
+        for i in range(n - 1)
+    ]
+    return a.raw(verts, faces)
+
+
 @asset(
     "lm-ruin",
     tint="#ffffff",
     budget=4500,
-    note="S8: the shell of a collapsed high-rise: missing floors, bent rebar, a rubble skirt, a survivors' lean-to and fire.",
+    note="S8: the shell of a collapsed high-rise: a sheared facade with a leaning crown, sagging and hanging floors, pancaked slabs on a rubble skirt, a survivors' lean-to, fire and lookout.",
 )
 def ruin(a):
+    wall_lo, wall_hi = "#7b766e", "#b5b0a5"
     conc_lo, conc_hi = "#6f6b65", "#a39f96"
-    slab_lo, slab_hi = "#7d7972", "#b1ada4"
+    slab_lo, slab_hi = "#77736c", "#b1ada4"
+    brick_lo, brick_hi = jk.shade(P.BRICK, -0.3), jk.shade(P.BRICK, -0.04)
+    rust = (jk.shade(P.RUST, -0.15), P.RUST)
+    crack_tone = "#34302d"
+    rooms = ("#8d9a8c", "#b3a384", "#a58c84", "#8a97a1")  # what is left of the paint indoors
+    tarp_lo, tarp_hi = "#b55f2c", "#e08c44"
+    wind_lo, wind_hi = "#7d7458", "#b3a985"
+    wood = (jk.shade(P.PINE_WOOD, -0.25), P.PINE_WOOD)
     rnd = random.Random(88)
-    storey, z0 = 1.12, 0.1
-    level = lambda k: z0 + k * storey  # noqa: E731
+    S, Z0, R, T = 1.12, 0.10, 1.29, 0.16
+    CUT = 6.9  # the crown has cracked loose from the body at this height
+    lv = lambda k: Z0 + k * S  # noqa: E731
+    sill = lambda k: lv(k) + 0.40  # noqa: E731
+    head = lambda k: lv(k) + 0.92  # noqa: E731
 
-    def bars(p, count=3, reach=0.5, up=1.0):
-        """Rebar left sticking out of broken concrete, bent every which way."""
+    def bars(p, count=2, reach=0.45, up=1.0, lean=(0.0, 0.0)):
+        """Rebar left sticking out of broken concrete; every other bar is bent over."""
         p = Vector(p)
-        for _ in range(count):
-            d1 = Vector((rnd.uniform(-0.4, 0.4), rnd.uniform(-0.4, 0.4), up)).normalized()
-            d2 = Vector((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-0.6, 0.5))).normalized()
-            q = p + Vector((rnd.uniform(-0.06, 0.06), rnd.uniform(-0.06, 0.06), 0))
+        for n in range(count):
+            d1 = Vector((lean[0] + rnd.uniform(-0.4, 0.4), lean[1] + rnd.uniform(-0.4, 0.4), up)).normalized()
+            q = p + Vector((rnd.uniform(-0.07, 0.07), rnd.uniform(-0.07, 0.07), 0))
             r = reach * rnd.uniform(0.6, 1.1)
-            a.tube([q, q + d1 * r * 0.55, q + d1 * r * 0.55 + d2 * r * 0.5], 0.03, 3).color(jk.shade(P.RUST, -0.15), P.RUST)
+            pts = [q, q + d1 * r * 0.6]
+            if n % 2 == 0:
+                d2 = Vector((lean[0] + rnd.uniform(-1, 1), lean[1] + rnd.uniform(-1, 1), rnd.uniform(-0.9, 0.3))).normalized()
+                pts.append(pts[-1] + d2 * r * 0.5)
+            a.tube(pts, 0.028, 3).color(*rust)
+
+    # ---- the four faces: what stands of each, and where fire came out of the windows ------
+    U = [-R, -0.86, -0.36, 0.0, 0.36, 0.86, R]
+    US = [-(R - T)] + U[1:-1] + [R - T]  # the side walls butt against the front and back ones
+    ZB = [0.02] + [f(k) for k in range(7) for f in (sill, head)]
+    ZC = [CUT, sill(6), head(6), sill(7), head(7), 9.5]
+
+    def lights(strip, storeys):
+        return [(U[strip], U[strip + 1], sill(k), head(k)) for k in storeys]
+
+    def plume(u, z, s):
+        su, sz, ru, rz = s
+        dz = (z - sz) / (rz if z >= sz else rz * 0.3)
+        return max(0.0, 1 - ((u - su) / ru) ** 2 - dz * dz)
+
+    def wall(us, tops, holes=(), soot=(), seed=0, shift=0, zs=ZB, nudge=None):
+        piece, tags = broken_wall(us, zs, tops, holes, T, nudge)
+        pick = random.Random(seed)
+        for f, tag in zip(piece.bm.faces, tags):
+            z = f.calc_center_median().z
+            spalled = tag.endswith("-edge") and pick.random() < 0.5
+            room = jk.shade(rooms[(int(max(0.0, z - Z0) / S) + shift) % len(rooms)], -0.1)
+            for loop in f.loops:
+                h = min(1.0, loop.vert.co.z / 9.5)
+                if tag == "break" or spalled:
+                    c = jk.mix(brick_lo, brick_hi, 0.3 + 0.7 * h)
+                elif tag.startswith("out"):
+                    c = jk.mix(wall_lo, wall_hi, h)
+                elif tag.startswith("in"):
+                    c = room
+                else:
+                    c = jk.mix(jk.shade(wall_lo, -0.2), jk.shade(wall_hi, -0.2), h)
+                c = jk.col(c)
+                loop[piece.layer] = (c[0], c[1], c[2], 1.0)
+        if soot:
+            # The site's tone curve flattens midtones, so smoke has to go nearly black to read.
+            stain(piece, lambda co: max(0.035, (1 - max(plume(co.x, co.z, s) for s in soot)) ** 2.6))
+        return a.add(piece)
+
+    def on_face(thing, face):
+        """Carry something built on a panel (outer face on y = 0) to a face of the tower."""
+        turn, at = {"front": (0, (0, -R, 0)), "right": (90, (R, 0, 0)), "back": (180, (0, R, 0)), "left": (-90, (-R, 0, 0))}[face]
+        return thing.rot(z=turn).move(*at)
+
+    def crack(face, pts):
+        on_face(a.tube([(u, -0.008, z) for u, z in pts], 0.02, 3), face).color(crack_tone).no_ao()
 
     with a.group() as tower:
-        a.box(2.74, 2.74, 0.6, bevel=0.04).move(0, 0, -0.48).color(conc_lo, slab_lo)
-        # ---- nine columns, broken off lower and lower toward the collapsed corner ---------
-        heights = {(1, -1): 9.5, (1, 0): 9.25, (0, -1): 8.35, (1, 1): 7.25, (0, 0): 5.35, (-1, -1): 5.3, (0, 1): 3.05, (-1, 0): 2.0, (-1, 1): 0.9}
-        for (ix, iy), h in heights.items():
-            a.box(0.23, 0.23, h - z0, bevel=0.025).move(ix * 1.1, iy * 1.1, z0).color(conc_lo, conc_hi)
-            if h < 9.4:
-                bars((ix * 1.1, iy * 1.1, h - 0.03), 3, 0.5)
-        # ---- floor plates: whole below, bitten away above, two storeys gone entirely ------
-        floors = {
-            1: [(-1.25, -1.25), (1.25, -1.25), (1.25, 1.25), (-0.3, 1.25), (-0.55, 0.8), (-0.95, 0.7), (-1.25, 0.25)],
-            2: [(-1.25, -1.25), (1.25, -1.25), (1.25, 1.25), (-0.15, 1.25), (-0.1, 0.7), (-0.6, 0.45), (-0.8, -0.05), (-1.25, -0.2)],
-            3: [(-1.25, -1.25), (1.25, -1.25), (1.25, 1.25), (0.45, 1.25), (0.3, 0.5), (-0.3, 0.2), (-0.5, -0.4), (-1.25, -0.55)],
-            4: [(-1.25, -1.25), (1.25, -1.25), (1.25, 1.25), (0.7, 1.25), (0.55, 0.3), (0.1, -0.1), (-0.5, -0.3), (-0.7, -0.75), (-1.25, -0.8)],
-            5: [(0.78, -1.25), (1.25, -1.25), (1.25, 1.0), (0.92, 0.9), (0.84, 0.2), (0.62, -0.5)],
-            6: [(-0.45, -1.25), (1.25, -1.25), (1.25, 0.75), (0.7, 0.55), (0.4, -0.1), (-0.1, -0.35), (-0.3, -0.9)],
-            7: [(0.1, -1.25), (1.25, -1.25), (1.25, 0.3), (0.75, 0.1), (0.5, -0.5), (0.2, -0.7)],
-            8: [(0.55, -1.25), (1.25, -1.25), (1.25, -0.2), (0.85, -0.45), (0.7, -0.9)],
-        }
-        for k, outline in floors.items():
-            a.prism(outline, 0.15, bevel=0.025).move(0, 0, level(k) - 0.15).color(slab_lo, slab_hi)
-            # Rebar droops from the broken edge of each plate.
-            edge = outline[3:-1] if k < 5 else outline[2:-1]
-            for (x, y) in edge[:: 2 if k < 5 else 1][:3]:
-                bars((x, y, level(k) - 0.07), 2, 0.42, up=-0.15)
-        # ---- what is left of the facade: spandrels on the right and back, brick infill ----
-        right = {1: (-1.25, 1.25), 2: (-1.25, 1.25), 3: (-1.25, 1.25), 4: (-1.25, 1.25), 5: (-1.25, 1.0), 6: (-1.25, 0.75), 7: (-1.25, 0.3), 8: (-1.25, -0.2)}
-        for k, (y_lo, y_hi) in right.items():
-            a.box(0.15, y_hi - y_lo, 0.42, bevel=0.02).move(1.18, (y_lo + y_hi) / 2, level(k)).color(conc_lo, conc_hi)
-        back = {1: (-0.3, 1.25), 2: (-0.15, 1.25), 3: (0.45, 1.25), 4: (0.7, 1.25)}
-        for k, (x_lo, x_hi) in back.items():
-            a.box(x_hi - x_lo, 0.15, 0.42, bevel=0.02).move((x_lo + x_hi) / 2, 1.18, level(k)).color(conc_lo, conc_hi)
-        a.box(2.5, 0.12, 0.3, bevel=0.02).move(0, -1.19, level(1)).color(conc_lo, conc_hi)
-        brick = (jk.shade(P.BRICK, -0.2), P.BRICK)
-        for k, y, hgt in ((0, 0.55, 0.97), (0, -0.55, 0.97), (1, 0.55, 0.55), (2, -0.55, 0.38), (3, 0.55, 0.55), (5, -0.55, 0.3)):
-            a.box(0.1, 0.86, hgt, bevel=0).move(1.19, y, level(k) + (0.42 if k else 0.0)).color(*brick)
-        for k, x, hgt in ((0, 0.55, 0.97), (1, 0.55, 0.55), (2, 0.6, 0.32)):
-            a.box(0.86, 0.1, hgt, bevel=0).move(x, 1.19, level(k) + (0.42 if k else 0.0)).color(*brick)
-        # ---- a fallen plate hangs by its steel; a dead cable swings from the top ----------
-        a.box(1.0, 1.05, 0.14, bevel=0.025).rot(x=-58).rot(z=38).move(-0.3, 0.42, 3.8).color(slab_lo, slab_hi)
-        for q in ((0.05, 0.05), (-0.25, -0.15)):
-            a.tube([(q[0], q[1], level(4) - 0.08), (q[0] - 0.12, q[1] + 0.14, 4.25), (q[0] - 0.2, q[1] + 0.22, 4.1)], 0.03, 3).color(P.RUST)
-        a.tube([(0.6, -1.2, level(8) - 0.1), (0.5, -1.3, 8.2), (0.46, -1.3, 7.3), (0.5, -1.27, 6.9)], 0.025, 3).color(P.INK)
-    tower.rot(x=1.6, y=-2.6)
+        a.box(2.8, 2.8, 0.56, bevel=0.04).move(0, 0, -0.46).color(conc_lo, slab_lo)
+        # Front: the corner stands, the middle is breached down to the second floor.
+        on_face(
+            wall(
+                U, [(4.38, 4.1), (3.26, 2.3), (2.3, 5.5), (6.62, 6.9), (6.9, 6.9), (6.9, 6.9)],
+                lights(1, (0, 1)) + lights(4, (1, 2, 3, 4, 5)) + [(0.36, 0.86, 0.0, head(0)), (0.36, 0.86, head(3), sill(4))],
+                soot=((0.61, head(4), 0.72, 1.7), (-1.29, 0.4, 0.9, 2.8), (-0.3, 2.4, 0.6, 1.8)),
+                seed=3,
+                nudge={(0.36, sill(3)): (-0.07, -0.16), (0.86, head(4)): (0.06, 0.12), (0.36, head(4)): (-0.05, 0.1)},
+            ),
+            "front",
+        )
+        # Right: a blast hole two storeys high, torn down toward the front.
+        on_face(
+            wall(
+                US, [(CUT, CUT), (CUT, CUT), (7.74, 7.3), (7.3, 6.62), (5.5, 4.5), (4.5, 4.98)],
+                lights(1, (0, 1, 5)) + lights(4, (0, 1, 2, 3))
+                + [(-0.86, -0.36, sill(2), head(4)), (-0.36, 0.0, sill(3), head(4)), (0.0, 0.86, sill(4), head(4))],
+                soot=((-0.3, head(4), 1.05, 2.0), (0.61, head(2), 0.72, 1.4), (0.61, head(0), 0.6, 0.9)),
+                seed=5, shift=1,
+                nudge={
+                    (-0.36, sill(3)): (-0.1, -0.34), (0.0, sill(4)): (-0.12, -0.36), (-0.86, sill(2)): (0.05, -0.12),
+                    (-0.36, sill(2)): (0.04, 0.14), (-0.86, head(4)): (0.07, 0.12), (0.0, head(4)): (0.03, 0.16), (0.36, sill(4)): (0.0, -0.1),
+                },
+            ),
+            "right",
+        )
+        on_face(
+            wall(
+                US[:1] + U[1:-1] + US[-1:], [(4.98, 4.7), (4.7, 3.86), (3.26, 2.9), (2.14, 1.8), (1.02, 0.6), (0.6, 0.3)],
+                lights(1, (0, 1, 2)), soot=((-0.61, head(1), 0.72, 1.3),), seed=7, shift=2,
+            ),
+            "back",
+        )
+        on_face(
+            wall(US, [(0.3, 0.5), (0.5, 1.02), (1.02, 1.62), (2.14, 2.6), (2.6, 3.4), (3.4, 4.38)], lights(4, (0, 1)), soot=((1.2, 0.6, 0.9, 2.6),), seed=9, shift=3),
+            "left",
+        )
+        _tally(a, "walls")
 
-    # ---- the rubble skirt -----------------------------------------------------------------
-    heap = a.lathe([(2.3, -0.3), (2.15, 0.02), (1.6, 0.42), (1.0, 0.85), (0.45, 1.1), (0, 1.16)], 12)
-    heap.scale(0.84, 1, 1).jitter(0.12, 9, 1.3).move(-0.55, 0.62, 0).color("#5f5b56", "#8a857c").flat()
-    for k in range(13):
-        ang, dist = rnd.uniform(1.2, 5.2), rnd.uniform(0.9, 2.05)
-        x, y = -0.55 + math.cos(ang) * dist * 0.84, 0.62 + math.sin(ang) * dist
-        if abs(x) < 1.3 and abs(y) < 1.3 and not (x < -0.2 and y > 0.2):
-            continue
-        z = max(0.02, 1.1 * (1 - dist / 2.3))
-        tone = (jk.shade(P.BRICK, -0.15), P.BRICK) if k % 3 == 0 else ("#77736c", "#a8a39a")
-        a.blob(rnd.uniform(0.2, 0.36), 1, (1, 0.8, 0.62), lumps=0.3, seed=k + 40).rot(z=k * 50).move(x, y, z).color(*tone)
-    for (x, y, z, rx, rz, w, d) in ((-1.5, 1.75, 0.5, 24, 30, 0.95, 0.7), (-0.2, 2.25, 0.42, -18, 100, 0.8, 0.62), (-1.95, 0.75, 0.3, 30, -40, 0.7, 0.55), (0.75, 1.95, 0.3, 16, 70, 0.75, 0.5)):
-        a.box(w, d, 0.13, bevel=0.025).rot(x=rx).rot(z=rz).move(x, y, z).color(slab_lo, slab_hi)
-        bars((x, y, z + 0.08), 2, 0.4)
+        # ---- corner columns outlast the walls; the one in the middle carries what is left --
+        for cx, cy, h in ((1.21, -1.21, CUT + 0.03), (-1.21, -1.21, 4.74), (1.21, 1.21, 5.4)):
+            a.box(0.3, 0.3, h, bevel=0.03).move(cx, cy, 0.02).color(jk.mix(conc_lo, "#1d1b1a", 0.7) if cx < 0 else conc_lo, conc_hi)
+            if h < 6:
+                bars((cx, cy, h), 2, 0.55)
+        a.box(0.3, 0.3, 0.8, bevel=0.03).rot(x=12, y=9).move(-1.2, 1.2, 0.0).color(conc_lo, conc_hi)
+        a.box(0.26, 0.26, 5.62, bevel=0.025).move(0, 0, 0.02).color(conc_lo, conc_hi)
+        bars((0, 0, 5.62), 3, 0.6)
+        beam(a, (0, -1.13, 5.41), (0, -0.1, 5.41), 0.2, 0.26, bevel=0.02).color(conc_lo, conc_hi)
 
-    # ---- the survivors' lean-to against the standing wall, and its fire -------------------
-    lz = 0.06
-    hi_x, lo_x = -1.3, -2.36
-    for y, tone in ((-1.02, ("#7a4530", "#9a5a3c")), (-0.4, ("#5f7178", "#7d9097"))):
-        beam(a, (hi_x, y, lz + 1.24), (lo_x, y, lz + 0.78), 0.6, 0.045, side=(0, 1, 0)).color(*tone)
-    rod(a, (hi_x - 0.02, -1.36, lz + 1.2), (hi_x - 0.02, -0.06, lz + 1.2), 0.035, 4).color(P.WALNUT)
-    rod(a, (lo_x + 0.05, -1.36, lz + 0.76), (lo_x + 0.05, -0.06, lz + 0.76), 0.03, 4).color(P.WALNUT)
-    for y in (-1.3, -0.12):
-        rod(a, (lo_x + 0.06, y, -0.1), (lo_x + 0.05, y, lz + 0.76), 0.035, 4).color(P.WALNUT)
-    a.profile_y([(lo_x + 0.05, lz), (hi_x, lz), (hi_x, lz + 1.18), (lo_x + 0.05, lz + 0.74)], 0.03, bevel=0).move(0, -0.1, 0).color("#55705f", "#6d8a76")
-    a.capsule(0.1, 0.72, 8, 2).rot(x=90).move(-1.62, -0.3, lz + 0.1).color(P.OLIVE)
-    a.box(0.3, 0.3, 0.26, bevel=0.03).move(-2.05, -0.42, lz).color(jk.shade(P.PINE_WOOD, -0.2), P.PINE_WOOD)
-    fx, fy = -1.95, -1.78
-    for k in range(5):
-        a.blob(0.075, 1, (1, 1, 0.7), lumps=0.2, seed=k + 5).move(fx + math.cos(k * 1.257) * 0.2, fy + math.sin(k * 1.257) * 0.2, 0.04).color(P.STONE_DARK, P.STONE)
-    rod(a, (fx - 0.16, fy - 0.06, 0.05), (fx + 0.16, fy + 0.06, 0.09), 0.035, 4).color(P.BARK_DARK)
-    rod(a, (fx - 0.06, fy + 0.15, 0.05), (fx + 0.05, fy - 0.15, 0.1), 0.035, 4).color(P.BARK_DARK)
-    a.cone(0.1, 0.3, 5).move(fx, fy, 0.08).part("glow").color(P.GLOW_ORANGE, "#ffd27a")
-    a.cone(0.055, 0.17, 4).move(fx + 0.05, fy + 0.03, 0.08).part("glow").color("#ffe08a")
+        # ---- floors: whole near the standing corner, sagging and torn toward the fallen one
+        floors = (
+            (1, [(1.33, -1.33), (1.33, 1.33), (-0.30, 1.33), (-0.45, 0.85), (-0.85, 0.65), (-1.0, 0.25), (-1.33, 0.05), (-1.33, -1.33)], None, None),
+            (2, [(1.33, -1.33), (1.33, 1.33), (0.05, 1.33), (-0.1, 0.7), (-0.55, 0.4), (-0.8, -0.1), (-1.33, -0.25), (-1.33, -1.33)], [0, 0, 0.05, 0.16, 0.3, 0.2, 0, 0], None),
+            (3, [(1.33, -1.33), (1.33, 1.33), (0.45, 1.33), (0.35, 0.55), (-0.15, 0.2), (-0.5, -0.45), (-0.9, -0.7), (-0.9, -1.0), (-0.02, -1.0), (-0.02, -1.33)], [0, 0, 0.05, 0.28, 0.5, 0.42, 0.34, 0.2, 0.1, 0], (0.6, -0.6)),
+            (3, [(-1.33, -1.33), (-0.8, -1.33), (-0.95, -1.0), (-1.33, -0.84)], [0, 0, 0.08, 0], None),
+            (4, [(1.33, -1.33), (1.33, 1.33), (0.5, 1.36), (0.42, 0.5), (0.3, 0.05), (-0.2, -0.3), (-0.3, -0.85), (-0.12, -1.33)], [0, 0, 0.04, 0.1, 0.26, 0.36, 0.2, 0.04], None),
+            (5, [(1.33, -1.33), (1.33, -0.55), (0.5, -0.7), (0.1, -0.9), (0.02, -1.33)], [0, 0, 0.08, 0.14, 0], None),
+            (6, [(1.33, -1.33), (1.33, 0.36), (0.85, 0.25), (0.5, -0.3), (0.1, -0.7), (0.02, -1.33)], [0, 0, 0.1, 0.26, 0.14, 0], None),
+        )
+        for k, outline, drop, hub in floors:
+            floor_plate(a, outline, lv(k), drop, hub=hub).color(slab_lo, slab_hi)
+            if drop:
+                worst = max(range(len(outline)), key=lambda i: drop[i])
+                x, y = outline[worst]
+                bars((x, y, lv(k) - drop[worst] - 0.08), 2, 0.42, up=-0.2, lean=(-0.5, 0.5))
+        _tally(a, "floors")
+
+        # The fifth floor let go of its far beam and hangs from the wall onto the fourth.
+        bent_plate(a, [(1.12, -0.2, lv(5)), (0.92, -0.2, lv(5) - 0.1), (0.36, -0.2, 4.8)], [(0.5, 0.5), (0.5, 0.5), (0.4, 0.52)], 0.15, (0, 1, 0)).color(slab_lo, slab_hi)
+        bars((0.36, -0.2, 4.74), 2, 0.4, up=-0.1, lean=(-0.8, 0))
+        # A tongue of the sixth hangs straight down on its steel; a beam swings beside it.
+        bent_plate(a, [(0.3, -0.5, lv(6) - 0.22), (0.22, -0.42, 6.38), (0.18, -0.38, 5.78)], [0.26, 0.25, 0.18], 0.14, (0.707, 0.707, 0)).color(slab_lo, slab_hi)
+        a.box(0.2, 0.22, 0.95, bevel=0.02).rot(x=-12, y=9).move(0.8, 0.34, 5.6).color(conc_lo, conc_hi)
+        a.tube([(0.85, 0.25, lv(6) - 0.2), (0.9, 0.5, 6.5), (0.94, 0.54, 6.52)], 0.028, 3).color(*rust)
+        a.tube([(1.05, 0.3, lv(6) - 0.16), (0.96, 0.52, 6.56)], 0.028, 3).color(*rust)
+        # The third floor folds out through the breach and hangs down the front.
+        bent_plate(a, [(-0.46, -1.0, 3.3), (-0.46, -1.36, 3.1), (-0.46, -1.5, 2.1), (-0.46, -1.55, 1.3)], [0.44, 0.44, (0.44, 0.4), (0.36, 0.3)], 0.14, (1, 0, 0)).color(slab_lo, slab_hi)
+        bars((-0.5, -1.55, 1.3), 2, 0.34, up=-1.0)
+        # A beam swings in the breach, off the end of the wall that still stands.
+        a.box(0.2, 0.22, 1.1, bevel=0.02).rot(x=2, y=12).move(-0.25, -1.42, 4.38).color(conc_lo, conc_hi)
+        a.tube([(0.05, -1.3, lv(5) - 0.08), (0.0, -1.4, 5.52), (-0.03, -1.42, 5.44)], 0.028, 3).color(*rust)
+        a.tube([(-0.1, -1.26, lv(5) - 0.1), (-0.08, -1.4, 5.5)], 0.028, 3).color(*rust)
+        # The second broke at the column line and drapes down onto the rubble behind.
+        bent_plate(a, [(-0.36, 0.5, 2.1), (-0.6, 0.72, 1.93)], [(0.5, 0.42), (0.46, 0.44)], 0.15, (0.71, 0.7, 0)).color(slab_lo, slab_hi)
+        bent_plate(a, [(-0.67, 0.8, 1.8), (-0.98, 1.04, 0.98)], [(0.5, 0.3), (0.34, 0.52)], 0.15, (0.71, 0.7, 0)).color(slab_lo, slab_hi)
+        for k in (-0.26, 0.2):
+            a.tube([(-0.57 + 0.71 * k, 0.69 + 0.7 * k, 1.9), (-0.64 + 0.71 * k, 0.77 + 0.7 * k, 1.87), (-0.7 + 0.71 * k, 0.83 + 0.7 * k, 1.72)], 0.028, 3).color(*rust)
+        _tally(a, "hangings")
+
+        # ---- the crown: two storeys of the corner, cracked loose and leaning inward --------
+        with a.group() as crown:
+            on_face(wall([0.36, 0.86, R], [(7.25, 9.0), (9.5, 9.5)], zs=ZC, seed=11), "front")
+            on_face(wall(US[:3], [(9.5, 9.5), (9.5, 8.5)], lights(1, (6, 7)), zs=ZC, seed=13, shift=1, nudge={(-0.36, head(6)): (0.06, 0.1)}), "right")
+            a.box(0.3, 0.3, 9.56 - CUT, bevel=0.03).move(1.21, -1.21, CUT).color(conc_lo, conc_hi)
+            floor_plate(a, [(1.33, -1.33), (1.33, -0.4), (1.0, -0.52), (0.62, -1.33)], lv(7), [0, 0, 0.07, 0]).color(slab_lo, slab_hi)
+            floor_plate(a, [(1.33, -1.33), (1.33, -0.5), (1.05, -0.62), (0.92, -1.33)], lv(8), [0, 0, 0.05, 0]).color(slab_lo, slab_hi)
+            a.box(0.52, 0.26, 0.07, bevel=0.02).move(1.07, -1.21, 9.5).color(slab_lo, slab_hi)
+            a.box(0.26, 0.9, 0.07, bevel=0.02).move(1.21, -0.82, 9.5).color(slab_lo, slab_hi)
+            bars((1.0, -0.5, lv(7) - 0.1), 2, 0.4, up=-0.2, lean=(-0.6, 0.4))
+            a.tube([(0.9, -1.32, 9.3), (0.72, -1.42, 8.4), (0.5, -1.4, 7.7), (0.44, -1.36, 7.2)], 0.022, 3).color(P.INK)
+        crown.rot(x=-5, y=-4.5, pivot=(R, -R, CUT))
+
+        # ---- the entrance: steps, and a canopy hanging by one end --------------------------
+        a.box(0.86, 0.34, 0.1, bevel=0.025).move(0.61, -1.5, 0.08).color(slab_lo, slab_hi)
+        a.box(0.9, 0.5, 0.09, bevel=0.02).move(0.61, -1.56, 1.16).rot(y=-22, pivot=(1.06, -1.56, 1.2)).color(slab_lo, slab_hi)
+        a.tube([(0.24, -1.3, 1.62), (0.24, -1.72, 1.05)], 0.022, 3).color(*rust)
+        # Shear cracks run from opening to opening; boards close the lowest windows.
+        crack("right", [(-0.36, sill(1)), (-0.2, 1.42), (-0.06, 1.46), (0.16, 1.16), (0.36, head(0))])
+        crack("right", [(0.36, sill(3)), (0.26, 3.62), (0.4, 3.44), (0.36, head(2))])
+        crack("right", [(-0.6, sill(2) - 0.1), (-0.52, 2.5), (-0.66, 2.3), (-0.56, head(1))])
+        crack("front", [(0.36, head(0)), (0.2, 1.26), (0.08, 1.22), (-0.12, 1.5), (-0.36, sill(1))])
+        crack("front", [(0.36, sill(2)), (0.2, 2.52), (0.24, 2.3), (0.04, 2.0)])
+        for face, u, k in (("right", -0.61, 0), ("right", 0.61, 0), ("front", -0.61, 0)):
+            for dz, tilt in ((0.12, 9), (0.34, -7)):
+                on_face(a.box(0.62, 0.035, 0.11, bevel=0).rot(y=tilt).move(u, -0.01, sill(k) + dz), face).color(*wood)
+        on_face(a.tube([(1.0, -0.06, 0.1), (1.0, -0.06, 3.9), (0.94, -0.1, 4.3), (0.8, -0.2, 4.42)], 0.05, 5), "right").color(P.SLATE, P.STEEL_DARK)
+
+        # ---- the lookout on the fourth floor: an awning thrown over the broken wall, a bedroll
+        # and a lamp. The sheet hangs down the outside, so the camp shows from the street side.
+        cloth(
+            a,
+            [
+                [(0.42, y, 5.52), (0.82, y, 5.3 - 0.05 * math.sin(k * 1.05)), (1.23, y, 5.1), (1.37, y + 0.02, 4.74 - 0.07 * (k % 2))]
+                for k, y in enumerate((0.42, 0.62, 0.82, 1.02))
+            ],
+        ).color(tarp_lo, tarp_hi)
+        for y in (0.42, 1.02):
+            rod(a, (0.44, y, lv(4) - 0.05), (0.42, y, 5.56), 0.026, 4).color(P.WALNUT)
+        rod(a, (1.22, 0.3, 5.08), (1.22, 1.12, 5.08), 0.028, 4).color(P.WALNUT)
+        a.capsule(0.085, 0.5, 6, 2).rot(x=90).move(0.88, 1.16, lv(4) + 0.08).color(P.OLIVE)
+        a.box(0.26, 0.26, 0.22, bevel=0.025).move(0.92, 0.55, lv(4)).color(*wood)
+        a.cyl(0.05, 0.14, 6, bevel=0.012).move(0.56, 0.84, lv(4)).part("glow").color(P.LAMP)
+        a.cyl(0.062, 0.03, 6, bevel=0).move(0.56, 0.84, lv(4) + 0.14).color(P.INK)
+        _tally(a, "tower")
+    tower.rot(x=-1.4, y=-3.0)
+
+    # ---- the ground the wreck stands in, and the rubble skirt on the fallen side ----------
+    apron = [
+        (-1.25, 0.5), (-1.9, 0.5), (-2.2, 0.1), (-2.28, -0.5), (-2.18, -1.0), (-2.3, -1.5), (-2.12, -1.8), (-1.7, -1.9),
+        (-1.2, -1.78), (-0.7, -1.86), (-0.1, -1.74), (0.5, -1.78), (0.98, -1.62), (1.22, -1.46), (1.22, -1.2), (-1.2, -1.2),
+    ]
+    n = len(apron)
+    mx, my = sum(p[0] for p in apron) / n, sum(p[1] for p in apron) / n
+    spread = [Vector((x - mx, y - my, 0)).normalized() * 0.17 for x, y in apron]
+    a.raw(
+        [(x, y, 0.035) for x, y in apron] + [(x + d.x, y + d.y, -0.3) for (x, y), d in zip(apron, spread)],
+        [tuple(range(n))] + [(k, n + k, n + (k + 1) % n, (k + 1) % n) for k in range(n)],
+    ).flat().color("#5f5b55", "#7f7a71")
+    hx, hy = -0.75, 0.8
+    lobes = (0.95, 1.55, 2.05, 2.1, 1.7, 1.25, 1.0, 0.9)
+    profile = ((0.0, 1.18), (0.3, 0.95), (0.55, 0.52), (0.8, 0.14), (1.0, -0.3))
+
+    def reach(t):
+        q = (t % TAU) / (TAU / 8)
+        k = (1 - math.cos((q - int(q)) * math.pi)) / 2
+        return lobes[int(q) % 8] + (lobes[(int(q) + 1) % 8] - lobes[int(q) % 8]) * k
+
+    def heap_z(x, y):
+        f = math.hypot(x - hx, y - hy) / reach(math.atan2(y - hy, x - hx))
+        for (f0, z0), (f1, z1) in zip(profile, profile[1:]):
+            if f <= f1:
+                return z0 + (z1 - z0) * (f - f0) / (f1 - f0)
+        return -0.3
+
+    verts = [(hx, hy, profile[0][1])]
+    for f, z in profile[1:]:
+        for k in range(16):
+            t = k / 16 * TAU
+            rr = reach(t) * f * (1 + (rnd.uniform(-0.07, 0.07) if f < 1 else 0))
+            verts.append((hx + math.cos(t) * rr, hy + math.sin(t) * rr, z + (rnd.uniform(-0.09, 0.09) if f < 1 else 0)))
+    faces = [(0, 1 + k, 1 + (k + 1) % 16) for k in range(16)]
+    for ring in range(3):
+        p, q = 1 + ring * 16, 17 + ring * 16
+        faces += [(p + k, q + k, q + (k + 1) % 16, p + (k + 1) % 16) for k in range(16)]
+    a.raw(verts, faces).flat().color("#57534e", "#8d887f")
+
+    # Pancaked floors fan out of the heap, the flattest at the bottom.
+    for hi, lo, half in (
+        ((-1.0, 1.06, 0.98), (-1.86, 1.9, 0.4), (0.5, 0.56)),
+        ((-1.06, 1.14, 0.72), (-1.98, 2.02, 0.27), (0.6, 0.5)),
+        ((-1.2, 1.26, 0.45), (-2.1, 2.14, 0.13), (0.52, 0.62)),
+    ):
+        bent_plate(a, [hi, lo], [half, (half[0] - 0.08, half[1] - 0.05)], 0.14, (0.71, 0.7, 0)).color(slab_lo, slab_hi)
+        bars((lo[0] + 0.14, lo[1] - 0.14, lo[2] - 0.02), 2, 0.3, up=0.7, lean=(-0.25, 0.25))
+    # A length of column, a flight of stairs and a piece of facade with its window.
+    a.box(0.26, 0.26, 1.25, bevel=0.025).rot(x=78).rot(z=62).move(-1.6, 0.75, heap_z(-1.9, 0.6) + 0.2).color(conc_lo, conc_hi)
+    bars((-2.12, 0.46, heap_z(-2.12, 0.46) + 0.2), 2, 0.28, up=0.5, lean=(-0.3, -0.3))
+    stair = [(0, 0), (0.14, -0.1), (0.98, 0.5), (0.98, 0.64), (0.72, 0.64), (0.72, 0.48), (0.48, 0.48), (0.48, 0.32), (0.24, 0.32), (0.24, 0.16), (0, 0.16)]
+    a.profile_x(stair, 0.6, bevel=0).rot(x=-10, y=8).rot(z=188).move(0.2, 2.4, 0.06).color(slab_lo, slab_hi).flat()
+    piece, tags = broken_wall([-0.56, -0.24, 0.24, 0.56], [0, 0.26, 0.8, 1.06], [(1.06, 0.92), (0.92, 1.06), (1.06, 0.66)], [(-0.24, 0.24, 0.26, 0.8)], T)
+    for f, tag in zip(piece.bm.faces, tags):
+        c = jk.col(jk.mix(brick_lo, brick_hi, 0.6) if tag == "break" else rooms[1] if tag.startswith("in") else wall_hi if tag.startswith("out") else wall_lo)
+        for loop in f.loops:
+            loop[piece.layer] = (c[0], c[1], c[2], 1.0)
+    a.add(piece).rot(z=180).rot(x=38).rot(z=-9).move(-0.62, 2.2, 0.06)
+    # Shards, bricks and a twisted pipe; a small fan under the floor that hangs out in front.
+    shards = ((-0.35, 1.75, 0.6, 20, 18), (0.45, 1.62, 0.5, 80, -14), (-2.05, 1.25, 0.55, 140, 22), (-1.55, 2.55, 0.5, 60, 10), (-0.75, 2.55, 0.42, 10, -12), (-1.9, 0.05, 0.46, 100, 16))
+    front_fan = ((-0.62, -1.62, 0.5, 30, 14), (-0.2, -1.74, 0.4, 110, -10))
+    for k, (x, y, w, turn, tilt) in enumerate(shards + front_fan):
+        ring = [(math.cos(i * 1.257 + k) * w * (0.38 + 0.2 * ((i * 7 + k) % 3) / 2), math.sin(i * 1.257 + k) * w * (0.3 + 0.16 * ((i * 5 + k) % 3) / 2)) for i in range(5)]
+        z = heap_z(x, y) + 0.04 if k < len(shards) else 0.07
+        a.prism(ring, 0.13, bevel=0).rot(x=tilt).rot(z=turn).move(x, y, z).color(slab_lo, slab_hi).flat()
+        if k % 3 == 0:
+            bars((x, y, z + 0.08), 2, 0.3, up=0.6)
+    a.blob(0.36, 1, (1.25, 0.8, 0.5), lumps=0.3, seed=21).move(-0.45, -1.62, 0.03).color("#57534e", "#8d887f")
+    for k in range(7):
+        t, d = rnd.uniform(0.3, 4.3), rnd.uniform(0.5, 0.82)
+        x, y = (hx + math.cos(t) * reach(t) * d, hy + math.sin(t) * reach(t) * d) if k < 5 else (-0.9 + 0.75 * (k - 5), -1.7 - 0.06 * (k - 5))
+        a.box(0.2, 0.11, 0.1, bevel=0).rot(x=rnd.uniform(-20, 20), z=rnd.uniform(0, 180)).move(x, y, (heap_z(x, y) if k < 5 else 0.04) + 0.02).color(brick_lo, brick_hi)
+    a.tube([(-0.3, 1.5, heap_z(-0.3, 1.5) - 0.05), (-0.22, 1.72, 0.95), (0.0, 2.02, 1.02), (0.3, 2.3, 0.62)], 0.045, 4).color(*rust)
+    _tally(a, "rubble")
+
+    # ---- the survivors' lean-to against the standing corner ------------------------------
+    y0, y1 = -1.42, 0.1
+    ts = (0.0, 0.25, 0.5, 0.75, 1.0)
+
+    def tarp_point(s, t):
+        z = 1.53 - 0.58 * s - 0.1 * math.sin(math.pi * s) - 0.07 * s * math.sin(math.pi * t)
+        return (-1.47 - 0.97 * s, y0 + (y1 - y0) * t, z)
+
+    rows = [[tarp_point(s, t) for s in ts] + [(-2.47, y0 + (y1 - y0) * t, 0.83 - 0.05 * math.sin(math.pi * t) - 0.04 * (j % 2))] for j, t in enumerate(ts)]
+    tarp = cloth(a, rows).color(tarp_lo, tarp_hi)
+    tarp.paint(lambda f: "#6d8d99" if f.calc_center_median().y > -0.3 and f.calc_center_median().x < -1.95 else None)
+    rod(a, (-1.47, y0 - 0.16, 1.54), (-1.47, y1 + 0.06, 1.54), 0.035, 5).color(P.WALNUT)
+    for t in (0.0, 1.0):
+        x, y, z = tarp_point(1.0, t)
+        rod(a, (x + 0.03, y + (0.05 if t == 0 else -0.05), -0.12), (x, y, z + 0.07), 0.035, 5).color(P.WALNUT)
+    # A second sheet closes the windward end.
+    cloth(a, [[tarp_point(s, 1.0) for s in ts], [(-1.47 - 0.97 * s, y1 + 0.07, 0.45 + 0.35 * (1 - s)) for s in ts], [(-1.47 - 0.97 * s, y1 + 0.02, 0.03) for s in ts]]).color(wind_lo, wind_hi)
+    # Stores: crates, a water drum, a bedroll.
+    a.box(0.36, 0.36, 0.3, bevel=0.03).rot(z=8).move(-1.72, -0.22, 0.04).color(*wood)
+    a.box(0.3, 0.3, 0.26, bevel=0.03).rot(z=-14).move(-1.7, -0.24, 0.34).color(*wood)
+    a.box(0.34, 0.3, 0.28, bevel=0.03).rot(z=24).move(-2.16, -0.3, 0.04).color(jk.shade(P.OAK_WOOD, -0.2), P.OAK_WOOD)
+    a.cyl(0.17, 0.44, 8, bevel=0.03).move(-2.2, -1.22, 0.04).color("#3f6f8a", "#5f8fa8")
+    a.capsule(0.1, 0.78, 6, 2).rot(x=90).move(-1.72, -0.56, 0.14).color(P.OLIVE)
+    # A lamp hangs from the end of the ridge pole.
+    rod(a, (-1.47, y0 - 0.1, 1.52), (-1.47, y0 - 0.1, 1.36), 0.012, 3).color(P.INK)
+    a.cyl(0.07, 0.035, 6, bevel=0).move(-1.47, y0 - 0.1, 1.33).color(P.INK)
+    a.cyl(0.055, 0.15, 6, bevel=0.012).move(-1.47, y0 - 0.1, 1.18).part("glow").color(P.LAMP)
+    a.cyl(0.065, 0.03, 6, bevel=0).move(-1.47, y0 - 0.1, 1.15).color(P.INK)
+
+    # ---- the fire: a ring of rubble, logs, a pot on a tripod ------------------------------
+    fx, fy = -1.94, -1.66
+    a.cyl(0.36, 0.02, 9, bevel=0, grounded=True).move(fx, fy, 0.04).color("#3b3734")
+    for k in range(6):
+        a.blob(0.085 + 0.02 * (k % 2), 1, (1, 1, 0.75), lumps=0.2, seed=k + 5).move(fx + math.cos(k * 1.047) * 0.27, fy + math.sin(k * 1.047) * 0.27, 0.08).color(P.STONE_DARK, P.STONE)
+    a.cyl(0.2, 0.03, 8, bevel=0).move(fx, fy, 0.05).part("glow").color("#ff7a2a")
+    for k in range(3):
+        t = k * 2.094 + 0.4
+        rod(a, (fx + math.cos(t) * 0.22, fy + math.sin(t) * 0.22, 0.07), (fx - math.cos(t) * 0.06, fy - math.sin(t) * 0.06, 0.2), 0.04, 5).color(P.BARK_DARK, P.BARK)
+    for x, y, r, h, tone in ((0.0, 0.0, 0.14, 0.56, "#ff9a3a"), (0.08, -0.05, 0.085, 0.4, "#ffd27a"), (-0.07, 0.06, 0.08, 0.32, "#ff7a2a")):
+        a.lathe([(r * 0.5, 0), (r, h * 0.22), (r * 0.62, h * 0.55), (0, h)], 5).move(fx + x, fy + y, 0.1).part("glow").color(tone).flat()
+    for k in range(3):
+        t = k * 2.094 + 1.45
+        rod(a, (fx + math.cos(t) * 0.33, fy + math.sin(t) * 0.33, 0.02), (fx, fy, 1.02), 0.016, 3).color(P.INK)
+    a.lathe([(0.05, 0.0), (0.11, 0.03), (0.12, 0.13), (0.09, 0.17)], 6).move(fx, fy, 0.66).color(P.CHARCOAL, P.SLATE)
+    rod(a, (fx, fy, 0.83), (fx, fy, 1.01), 0.01, 3).color(P.INK)
+    _tally(a, "camp")
 
 
 # --------------------------------------------------------------------------------------------

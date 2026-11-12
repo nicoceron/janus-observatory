@@ -810,61 +810,102 @@ def shrub(a, x, y, z, r, turn=0.0):
 # --------------------------------------------------------------------------------------------
 # High-technology city set
 # --------------------------------------------------------------------------------------------
-@asset("spire", tint="#e6e8ea", budget=2400)
+@asset("spire", tint="#e6e8ea", budget=2000)
 def spire(a):
-    z0 = 0.46
-    # Podium: two hexagonal steps, and stairs up to the entrance on the front side.
-    a.prism(hexagon(1.05), 0.26, bevel=0.05, grounded=True).color(P.CONCRETE_DARK, P.CONCRETE)
-    a.prism(hexagon(0.8), z0 - 0.26, bevel=0.04).move(0, 0, 0.26).color(P.STEEL_DARK, P.STEEL)
-    a.box(0.7, 0.22, 0.13, bevel=0.025, grounded=True).move(0, -1.0, 0).color(P.CONCRETE_DARK, P.CONCRETE)
-    a.box(0.56, 0.2, 0.1, bevel=0.02).move(0, -0.78, 0.26).color(P.STEEL_DARK, P.STEEL)
-    # Lobby: a glazed hexagonal atrium around the foot of the shaft.
-    a.lathe([(0.6, z0), (0.48, 1.5), (0.41, 2.3)], 6, cap_bottom=False, cap_top=False).part("glass").color(P.GLASS_TINTED, P.GLASS)
-    for k in range(6):
-        a.tube([polar(0.605, k * 60, z0), polar(0.485, k * 60, 1.5), polar(0.415, k * 60, 2.3)], 0.032, 4, caps="none").part("tint").color(P.SHADE_1, P.WHITE)
-    a.lathe([(0.64, z0), (0.64, z0 + 0.07), (0.58, z0 + 0.1)], 6, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_2, P.SHADE_1)
-    a.lathe([(0.4, 2.26), (0.46, 2.3), (0.46, 2.4), (0.36, 2.46)], 6, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_1, P.WHITE)
-    a.box(0.44, 0.26, 0.5, bevel=0.035).move(0, -0.56, z0).part("tint").color(P.SHADE_1, P.WHITE)
-    a.box(0.26, 0.03, 0.36, bevel=0.015).move(0, -0.695, z0).color(P.SLATE, jk.shade(P.SLATE, 0.14))
-    a.box(0.26, 0.03, 0.05, bevel=0).move(0, -0.695, z0 + 0.39).part("glow").color(P.LAMP)
+    # A needle that turns as it climbs. Three piers leave a fanned plinth, wind round a glazed
+    # three-sided shaft bound by hoops of light, swell round a faceted lantern near the top and
+    # close again under the mast: one continuous braid from the ground to the tip.
+    z0, zn, zg, zt = 0.46, 5.7, 6.72, 8.5  # plinth top, neck, lantern girdle, closure
 
-    # Shaft, with a strip of glazing up each face between the buttresses.
-    shaft = [(0.37, 2.4), (0.3, 3.7), (0.24, 5.3), (0.19, 6.5), (0.17, 6.86)]
-    a.lathe(shaft, 6, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_1, P.WHITE)
-    cos30 = math.cos(math.radians(30))
+    def turned(z):
+        return 90 + 42.0 * (z - z0)
+
+    def reach(z):
+        """Radius of the piers' centre line."""
+        if z <= zn:
+            t = (z - z0) / (zn - z0)
+            return 0.29 + 0.15 * (1 - t) + 0.28 * (1 - t) ** 4
+        if z <= zg:
+            return 0.29 + 0.51 * (z - zn) / (zg - zn)
+        return 0.1 + 0.7 * (1 - ((z - zg) / (zt - zg)) ** 1.1)
+
+    def girth(z):
+        if z <= zn:
+            return 1.3 - 0.5 * (z - z0) / (zn - z0)
+        return 0.8 - 0.3 * (z - zn) / (zt - zn)
+
+    def nose(z):
+        return reach(z) + 0.085 * girth(z)
+
+    # Plinth: three plates fanned like a turning stair, so the twist starts at the ground and the
+    # plates step down to the front as the way in.
+    def plate(r, turn):
+        return [polar(r, turn + 90 + k * 120 + side * 16)[:2] for k in range(3) for side in (-1, 1)]
+
+    a.prism(plate(1.12, -40), 0.18, bevel=0.028, grounded=True).color(P.CONCRETE_DARK, P.CONCRETE)
+    a.prism(plate(1.0, -20), 0.14, bevel=0.024).move(0, 0, 0.18).part("tint").color(P.SHADE_3, P.SHADE_2)
+    a.prism(plate(0.9, 0), 0.14, bevel=0.024).move(0, 0, 0.32).part("tint").color(P.SHADE_2, P.SHADE_1)
+
+    # Glazing between the piers: three-sided up the shaft, opening to six sides in the lantern.
+    def section(z):
+        r = reach(z) - 0.03
+        swell = 0.5 + 0.42 * smoothstep(zn, zn + 0.5, z)
+        return [polar(r if i % 2 == 0 else r * swell, turned(z) + i * 60, z) for i in range(6)]
+
+    shaft = [z0, 0.72, 1.0, 1.32, 1.68, 2.08, 2.5, 2.92, 3.34, 3.76, 4.18, 4.58, 4.96, 5.34, zn]
+    crown = [zn, 6.2, zg, 7.3, 7.9, zt]
+    glass = a.add(skin([section(z) for z in shaft])).part("glass")
+    storeys = {round(z, 3): i for i, z in enumerate(shaft)}
+
+    def storey(f):
+        i = storeys.get(round(min(v.co.z for v in f.verts), 3), 0)
+        tone = jk.mix(P.GLASS_DARK, P.GLASS, 0.25 + 0.5 * i / len(shaft))
+        return jk.shade(tone, -0.22) if i % 2 else tone
+
+    glass.paint(storey)
+    rings = [section(z) for z in crown]
+    faces = []
+    for k in range(len(rings) - 1):
+        for i in range(6):
+            j = (i + 1) % 6
+            faces += [(k * 6 + i, k * 6 + j, k * 6 + 6 + i), (k * 6 + j, k * 6 + 6 + j, k * 6 + 6 + i)]
+    gem = a.add(jk.raw([p for ring in rings for p in ring], faces)).part("glass").flat()
+    gem.bm.faces.index_update()
+    gem.paint(lambda f: jk.shade(jk.mix(P.GLASS_TINTED, P.GLASS, 0.1 + 0.9 * smoothstep(-0.5, 0.6, f.normal.z)), -0.1 if f.index % 2 else 0.06))
+
+    # Piers: blades with a narrow outer face.
     for k in range(3):
         rings = []
-        for z in (2.62, 3.7, 5.0):
-            ap = profile_at(shaft, z)[0] * cos30
-            rings.append([(-0.06, -ap + 0.01, z), (-0.06, -ap - 0.014, z), (0.06, -ap - 0.014, z), (0.06, -ap + 0.01, z)])
-        a.add(skin(rings, closed=False)).rot(z=k * 120).part("glass").color(P.GLASS_DARK, P.GLASS_TINTED)
+        for z in shaft + crown[1:]:
+            t = math.radians(turned(z) + k * 120)
+            out, along = Vector((math.cos(t), math.sin(t), 0)), Vector((-math.sin(t), math.cos(t), 0))
+            c, g = out * reach(z) + Vector((0, 0, z)), girth(z)
+            rings.append([c + out * 0.085 * g - along * 0.055 * g, c + out * 0.085 * g + along * 0.055 * g, c - out * 0.11 * g + along * 0.1 * g, c - out * 0.11 * g - along * 0.1 * g])
+        a.add(skin(rings)).part("tint").color(P.SHADE_1, P.WHITE)
 
-    # Three buttress blades sweep from the podium into the shaft and carry two rings of light.
-    for k in range(3):
-        with a.group() as leg:
-            a.tube(
-                [(0, 0.78, 0.3), (0, 0.6, 1.5), (0, 0.47, 2.7), (0, 0.345, 4.1), (0, 0.25, 5.3)],
-                [0.12, 0.1, 0.085, 0.07, 0.05],
-                6,
-                squash=0.5,
-            ).part("metal").color(P.STEEL, P.CHROME)
-            a.box(0.26, 0.34, 0.14, bevel=0.035).move(0, 0.78, 0.24).color(P.GUNMETAL, P.STEEL_DARK)
-        leg.rot(z=k * 120)
-    for z, r in ((2.7, 0.47), (4.1, 0.345)):
-        a.torus(r, 0.042, 18, 4).move(0, 0, z).part("glow").color(P.GLOW_CYAN)
-    a.lathe([(0.25, 5.16), (0.31, 5.24), (0.31, 5.38), (0.24, 5.46)], 6, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_1, P.WHITE)
+    # Hoops of light: two bind the shaft, and three stack up the lantern from its girdle.
+    for z, r, segments in ((2.3, 0.045, 18), (4.0, 0.045, 18), (zg, 0.06, 22), (7.32, 0.045, 16), (7.9, 0.04, 12)):
+        a.torus(nose(z) + 0.03 + r * 0.5, r, segments, 3).move(0, 0, z).part("glow").color(P.GLOW_CYAN)
 
-    # Sky deck: a saucer with a lit rim and a band of windows.
-    a.lathe([(0.17, 6.8), (0.5, 7.06), (0.585, 7.11)], 12, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_2, P.WHITE)
-    a.lathe([(0.585, 7.11), (0.585, 7.19)], 12, cap_bottom=False, cap_top=False).part("glow").color(P.GLOW_CYAN)
-    a.lathe([(0.585, 7.19), (0.55, 7.22)], 12, cap_bottom=False, cap_top=False).part("tint").color(P.WHITE)
-    a.lathe([(0.55, 7.22), (0.52, 7.42)], 12, cap_bottom=False, cap_top=False).part("glass").color(P.GLASS_TINTED, P.GLASS)
-    a.lathe([(0.52, 7.42), (0.58, 7.44), (0.58, 7.5), (0.3, 7.66), (0.13, 7.74)], 12, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_1, P.WHITE)
-    # Needle and its tip light.
-    a.lathe([(0.13, 7.72), (0.1, 7.8), (0.075, 8.4), (0.115, 8.44), (0.115, 8.5), (0.05, 8.54), (0.03, 9.46)], 8, cap_bottom=False, cap_top=False).part("metal").color(
-        P.STEEL, P.CHROME
-    )
-    a.lathe([(0, 9.42), (0.075, 9.58), (0, 9.9)], 6).part("glow").color(P.GLOW_CYAN, "#eaffff").flat().no_ao()
+    # A lift car climbs each pier.
+    for k, z in enumerate((1.55, 3.15, 4.85)):
+        deg = turned(z) + k * 120
+        with a.group() as car:
+            a.capsule(0.13, 0.48, 6, 2).scale(1, 0.9, 1).move(0, -0.12, -0.24).part("tint").color(P.SHADE_1, P.WHITE)
+            a.lathe([(0.136, -0.06), (0.136, 0.08)], 6, cap_bottom=False, cap_top=False).scale(1, 0.9, 1).move(0, -0.12, 0).part("glass").color(P.GLASS_DARK, P.GLASS_TINTED)
+            a.box(0.08, 0.12, 0.08, bevel=0).move(0, -0.04, -0.04).color(P.GUNMETAL)
+            a.lathe([(0.06, -0.24), (0, -0.28)], 6, cap_bottom=False).move(0, -0.12, 0).part("glow").color(P.GLOW_CYAN).no_ao()
+        car.rot(z=deg + 90).move(*polar(nose(z), deg, z))
+
+    # Way in: a portal on the front face of the shaft, with a lit lintel.
+    a.box(0.48, 0.3, 0.54, bevel=0.035, taper=(0.84, 1.0)).move(0, -0.47, z0).part("tint").color(P.SHADE_1, P.WHITE)
+    a.box(0.26, 0.03, 0.36, bevel=0.015).move(0, -0.63, z0).color(P.SLATE, jk.shade(P.SLATE, 0.14))
+    a.box(0.26, 0.03, 0.05, bevel=0).move(0, -0.63, z0 + 0.39).part("glow").color(P.LAMP)
+
+    # Mast and tip light.
+    a.lathe([(0.12, zt - 0.1), (0.17, zt - 0.04), (0.17, zt + 0.04), (0.09, zt + 0.12)], 6, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_1, P.WHITE)
+    a.lathe([(0.09, zt + 0.1), (0.06, zt + 0.2), (0.035, 9.56)], 6, cap_bottom=False, cap_top=False).part("metal").color(P.STEEL, P.CHROME)
+    a.lathe([(0, 9.5), (0.075, 9.63), (0, 9.9)], 6).part("glow").color(P.GLOW_CYAN, "#eaffff").flat().no_ao()
 
 
 @asset("arcology", tint="#c9ced6", budget=2400)
@@ -1210,50 +1251,151 @@ def beacon(a):
 # --------------------------------------------------------------------------------------------
 # Scenario pieces: S9's crystal gift, the old robot wreck, S10's cloud city
 # --------------------------------------------------------------------------------------------
-CRY_DEEP = "#4450c4"
-CRY_MID = "#5fd6f5"
-CRY_PALE = "#c4f0ff"
-CRY_HOT = "#f2feff"
-CRY_ROSE = "#b99cff"
-CRY_SUN = Vector((-0.48, -0.62, 0.62)).normalized()
+# The gift is unlit, so its facets are painted by hand. One ramp of six deliberate steps runs
+# from violet-indigo in the roots and shadow faces, through azure and cyan, to a white-hot core.
+CRY_RAMP = ("#17125c", "#4030c0", "#2c7fe6", "#3fc9f5", "#9eecff", "#f5ffff")
+CRY_SUN = Vector((-0.5, -0.6, 0.62)).normalized()
 
 
-def gem(a, r, h, x=0.0, y=0.0, lean=(0.0, 0.0), turn=0.0, sides=6, tip=0.24):
-    """One terminated crystal growing out of the ground at (x, y): a prism with a two-stage
-    point. `lean` tips it (degrees about x, then y). Being unlit glow, its facets are painted:
-    each takes a tone from the way it faces, deeper at the root and hotter at the point."""
-    sink = r * 0.85
-    z1, z2 = h * (1 - tip), h * (1 - tip * 0.4)
-    piece = a.lathe([(r * 0.88, -sink), (r, z1), (r * 0.52, z2), (0, h)], sides, cap_bottom=False, turn=math.radians(turn))
-    piece.rot(x=lean[0], y=lean[1]).move(x, y, 0)
-    piece.warp(lambda co: (co.x, co.y, max(co.z, 0.0)))
-    top = max(v.co.z for v in piece.bm.verts)
-    piece.bm.faces.index_update()
-
-    def tone(co, f):
-        lit = 0.5 + 0.5 * f.normal.dot(CRY_SUN)
-        c = jk.mix(CRY_DEEP, CRY_MID, lit / 0.55) if lit < 0.55 else jk.mix(CRY_MID, CRY_PALE, ((lit - 0.55) / 0.45) ** 1.2)
-        if f.index % 2:
-            c = jk.mix(c, CRY_ROSE, 0.34)
-        u = max(0.0, co.z / top)
-        c = jk.mix(c, CRY_DEEP, 0.5 * (1 - u) ** 1.6)
-        return jk.mix(c, CRY_HOT, 0.3 * u**4)
-
-    paint_verts(piece, tone)
-    return piece.part("glow").flat().no_ao()
+def cry_tone(v: float):
+    """A colour from the crystal ramp: 0 is the deepest step, 5 the hottest."""
+    v = min(len(CRY_RAMP) - 1.0, max(0.0, v))
+    i = min(int(v), len(CRY_RAMP) - 2)
+    return jk.mix(CRY_RAMP[i], CRY_RAMP[i + 1], v - i)
 
 
-@asset("crystal", tint="#ffffff", budget=700)
+def shard(a, r, h, x=0.0, y=0.0, lean=(0.0, 0.0), turn=0.0, tip=0.24, bias=(0.0, 0.0), tones=(1.3, 3.9), veins=(), floor=0.0, sides=6, girdle=True, flat=0.86, step=None, tilt=0.3):
+    """One terminated crystal standing at (x, y) on the plane z = floor.
+
+    A prism with a slight waist, a narrow bright girdle and a point set off the axis by `bias`
+    (in radii), so its end faces differ in size like a grown crystal's. `lean` tips it (degrees
+    about x, then y). `tones` are the ramp steps of alternate prism faces: neighbours never share
+    a tone, and each end face takes the opposite tone to the prism face below it. Faces listed in
+    `veins` carry a recessed seam with a white-hot floor, the light inside showing through, which
+    runs on up the end face to the point (so a seamed crystal keeps its tones to the tip).
+    `step` = (height fraction, scale) grows the crystal in two stages with a bright ledge between.
+    `tilt` inclines the ledge and the shoulder toward the point, as growth planes are, so no
+    face ends square.
+    """
+    pose = Matrix.Translation((x, y, floor)) @ Matrix.Rotation(math.radians(lean[1]), 4, "Y") @ Matrix.Rotation(math.radians(lean[0]), 4, "X")
+    # Outline entries: (point on the unit section, inward step of a seam vertex, kind, face).
+    # `kind` describes the strip that starts at the entry.
+    outline = []
+    none = Vector((0, 0))
+    for i in range(sides):
+        t0, t1 = math.radians(turn + i * 360 / sides), math.radians(turn + (i + 1) * 360 / sides)
+        p, q = Vector((math.cos(t0), math.sin(t0) * flat)), Vector((math.cos(t1), math.sin(t1) * flat))
+        outline.append((p, none, "side", i))
+        if i in veins:
+            sink = -((p + q) / 2).normalized() * 0.13
+            outline += [(p.lerp(q, 0.35), none, "wall", i), (p.lerp(q, 0.42), sink, "core", i), (p.lerp(q, 0.58), sink, "wall", i), (p.lerp(q, 0.65), none, "side", i)]
+    n = len(outline)
+    zs = h * (1 - tip)
+    off = Vector((bias[0], bias[1])) * r
+    # Rings above the seat: (height, scale, centre, band of faces below the ring).
+    mid = Vector((0, 0))
+    if step:
+        hs, sc = h * step[0], step[1]
+        levels = [(hs, 1.0, mid, "body"), (hs + r * 0.1, sc, mid, "girdle"), (zs, sc * 0.95, mid, "body")]
+    else:
+        sc = 1.0
+        levels = [(h * 0.34, 1.0, mid, "body"), (zs, 0.94, mid, "body")]
+    if girdle:
+        levels.append((zs + r * 0.13, sc * 0.82, off * 0.1, "girdle"))
+
+    rise = off.normalized() * tilt if off.length > 1e-6 else off
+
+    def ring(z, s, centre):
+        return [
+            pose @ Vector((centre.x + (p.x + sink.x) * r * s, centre.y + (p.y + sink.y) * r * s, z + (p + sink).dot(rise) * r * s))
+            for p, sink, _, _ in outline
+        ]
+
+    rings = [ring(*level[:3]) for level in levels]
+    us = [level[0] / h for level in levels for _ in range(n)]
+    # The foot: every edge of the prism runs on down to one plane just inside the seat, so a
+    # leaning crystal still meets it cleanly and nothing reaches below the ground.
+    low = ring(-h * 0.34, 0.9, mid)
+    foot = []
+    for w, below in zip(rings[0], low):
+        d = below - w
+        k = (floor - 0.03 - w.z) / d.z if d.z < -1e-6 else 0.0
+        foot.append(w + d * k)
+    rings.insert(0, foot)
+    us = [0.0] * n + us
+    verts = [p for ring_ in rings for p in ring_] + [pose @ Vector((off.x, off.y, h))]
+    us.append(1.0)
+    faces, meta = [], []
+    for k in range(len(rings) - 1):
+        for j in range(n):
+            j2 = (j + 1) % n
+            faces.append((k * n + j, k * n + j2, (k + 1) * n + j2, (k + 1) * n + j))
+            meta.append((outline[j][2], outline[j][3], levels[k][3]))
+    top = (len(rings) - 1) * n
+    for j in range(n):
+        faces.append((top + j, top + (j + 1) % n, len(verts) - 1))
+        meta.append(("side", outline[j][3], "tip"))
+
+    piece = jk.raw(verts, faces)
+    bm = piece.bm
+    bm.verts.index_update()
+    bm.faces.index_update()
+    middle = pose @ Vector((0, 0, h * 0.5))
+    for f in bm.faces:
+        kind, i, band = meta[f.index]
+        out = f.normal if f.normal.dot(f.calc_center_median() - middle) >= 0 else -f.normal
+        v = tones[(i + (band == "tip" and not veins)) % 2] + 0.6 * out.dot(CRY_SUN)
+        ceiling = 4.6 if band == "tip" else 4.1
+        if kind == "wall":
+            v += 1.4
+            ceiling = 5.0
+        elif band == "tip":
+            v += 0.45
+        elif band == "girdle":
+            v, ceiling = max(v + 1.5, 4.3), 5.0
+        for loop in f.loops:
+            u = us[loop.vert.index]
+            if kind == "core":
+                c = cry_tone(3.4 + 1.6 * smoothstep(0.0, 0.22, u))
+            else:
+                c = cry_tone(min(ceiling, v + 1.7 * (u - 0.42)))
+            loop[piece.layer] = (c[0], c[1], c[2], 1.0)
+    return a.add(piece).part("glow").flat().no_ao()
+
+
+@asset("crystal", tint="#ffffff", budget=900)
 def crystal(a):
-    gem(a, 0.44, 3.4, 0.06, 0.0, lean=(0, 2))
-    gem(a, 0.29, 2.2, 0.5, 0.06, lean=(-4, 16), turn=20)
-    gem(a, 0.25, 1.65, -0.38, -0.06, lean=(6, -17), turn=-12)
-    gem(a, 0.18, 0.95, 0.24, -0.18, lean=(14, 8), turn=30)
-    gem(a, 0.16, 0.8, -0.16, 0.2, lean=(-16, -6), turn=8)
-    gem(a, 0.13, 0.6, 0.8, -0.1, lean=(8, 33), turn=14)
-    gem(a, 0.12, 0.5, -0.66, 0.1, lean=(-6, -30), turn=-20)
-    gem(a, 0.1, 0.42, -0.22, -0.3, lean=(24, -14), turn=10)
-    gem(a, 0.11, 0.5, 0.44, 0.3, lean=(-24, 12), turn=-8)
+    # The seat: a low dark lozenge with a brass bezel, the one made thing under the grown ones.
+    plan = [(1.04, 0.0), (0.56, 0.54), (-0.56, 0.54), (-1.04, 0.0), (-0.56, -0.54), (0.56, -0.54)]
+    deck = 0.15
+
+    def loop(inset, z):
+        return [(px, py, z) for px, py in offset_loop(plan, -inset)]
+
+    a.add(skin([loop(0, 0), loop(0, 0.07), loop(0.04, 0.11), loop(0.09, 0.11)])).color(P.INK, P.CHARCOAL)
+    a.add(skin([loop(0.09, 0.11), loop(0.09, 0.155), loop(0.115, 0.17), loop(0.15, deck)])).part("metal").color(P.BRASS, P.GOLD)
+    # The deck inside the bezel, faintly lit by what stands on it.
+    inlay = jk.raw(loop(0.15, deck) + [(0.0, 0.0, deck)], [(i, (i + 1) % 6, 6) for i in range(6)])
+    paint_verts(inlay, lambda co, f: jk.mix(P.INK, CRY_RAMP[2], 0.42 * (1 - smoothstep(0.0, 0.9, co.length))))
+    a.add(inlay)
+
+    # The cluster, composed like cut stems: a dominant shard with a seam of light in three of its
+    # faces, a second at two-thirds of its height leaning one way, a third at a third of it
+    # reclining the other way, and young bright growth round the root.
+    shard(a, 0.42, 3.25, -0.14, 0.02, lean=(1.5, 2.5), tip=0.22, bias=(0.3, 0.18), tones=(1.0, 3.1), veins=(0, 2, 4), floor=deck, step=(0.36, 0.86), tilt=0.5)
+    shard(a, 0.29, 2.42, 0.36, 0.06, lean=(-3, 13), turn=18, tip=0.25, bias=(0.28, 0.0), tones=(2.0, 3.6), veins=(0, 4), floor=deck, tilt=0.4)
+    shard(a, 0.22, 1.3, -0.5, -0.05, lean=(6, -37), turn=-14, tip=0.3, bias=(-0.25, 0.1), tones=(3.3, 1.5), floor=deck)
+    shard(a, 0.17, 0.98, 0.2, -0.24, lean=(14, 8), turn=30, tip=0.3, bias=(0.1, -0.2), tones=(3.8, 2.3), floor=deck)
+    shard(a, 0.16, 0.84, -0.2, 0.26, lean=(-15, -6), turn=8, tip=0.3, bias=(-0.1, 0.2), tones=(2.2, 3.7), floor=deck)
+    for r, h, x, y, lean, turn, tones in (
+        (0.125, 0.6, 0.6, -0.05, (8, 36), 14, (2.6, 4.1)),
+        (0.1, 0.4, 0.46, 0.24, (-25, 14), -8, (2.4, 4.0)),
+        (0.1, 0.38, -0.54, 0.16, (-20, -22), -20, (4.0, 2.4)),
+    ):
+        shard(a, r, h, x, y, lean=lean, turn=turn, tip=0.36, tones=tones, floor=deck, sides=5, girdle=False)
+    # A measured row of three seedlings: order where a natural cluster would have none.
+    for k, (x, h) in enumerate(((-0.3, 0.36), (-0.46, 0.25), (-0.59, 0.16))):
+        shard(a, 0.062 - k * 0.012, h, x, -0.3 + k * 0.045, tip=0.34, tones=(3.4, 4.6), floor=deck, sides=4, girdle=False, turn=45, flat=1.0)
 
 
 def tuft(a, x, y, blades=5, h=0.3, seed=1):
@@ -1373,66 +1515,142 @@ def robot_wreck(a):
 
 @asset("cloud-city", tint="#f1efe7", grounded=False, budget=2400)
 def cloud_city(a):
-    n, deck = 24, 0.5
-    # Hull: a lens-shaped disc with a lit promenade round its rim. The origin is the centre of
-    # its underside.
-    a.lathe([(0.56, 0.0), (1.3, 0.07), (1.9, 0.2), (2.1, 0.3)], n, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_3, P.SHADE_1)
-    a.lathe([(2.1, 0.3), (2.1, 0.38)], n, cap_bottom=False, cap_top=False).part("glow").color(P.GLOW_WHITE)
-    a.lathe([(2.1, 0.38), (2.05, 0.46), (1.94, deck), (1.1, deck)], n, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_1, P.WHITE)
-    # A ring of parkland on the deck.
-    a.lathe([(1.76, deck - 0.01), (1.74, deck + 0.04), (1.19, deck + 0.04)], n, cap_bottom=False, cap_top=False).color(P.LEAF_DEEP, P.LEAF).flat()
+    deck = lawn = 0.5
+    warm = (P.WINDOW, P.LAMP)
+    hull = dict(sides=18, cap_bottom=False, cap_top=False, turn=math.radians(10))
+    # Hull: a lens-shaped disc. The origin is the centre of its underside. Round its rim run
+    # the windows of the promenade and, on the shoulder above them, a band of light that shows
+    # from above as well as from the side.
+    belly = a.lathe([(0.6, 0.0), (1.3, 0.07), (1.9, 0.2), (2.1, 0.29)], **hull).part("tint").color(P.SHADE_3, P.SHADE_1)
+    belly.paint(lambda f: P.SHADE_3 if max(v.co.z for v in f.verts) < 0.08 else None)
+    a.lathe([(2.1, 0.29), (2.1, 0.36)], **hull).part("glass").color(P.GLASS_DARK, P.GLASS_TINTED)
+    a.lathe([(2.1, 0.36), (2.035, 0.455)], **hull).part("glow").color(P.GLOW_WHITE)
+    a.lathe([(2.035, 0.455), (1.98, deck), (1.84, deck)], **hull).part("tint").color(P.SHADE_1, P.WHITE)
+    # The garden ring: parkland between the rim walk and the great dome, where the towers stand.
+    a.lathe([(1.84, lawn), (1.06, lawn)], **hull).color(P.LEAF).flat()
 
-    # The great dome: a garden under glass, ribbed, with a mast at its crown.
-    a.lathe([(1.2, deck), (1.2, deck + 0.1), (1.12, deck + 0.16)], 16, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_1, P.WHITE)
-    base = deck + 0.16
-    arc = [(1.12, base), (1.1, base + 0.2), (1.0, base + 0.44), (0.76, base + 0.71), (0.42, base + 0.89), (0.15, base + 0.94)]
+    # The great dome: a garden under glass, carried by six ribs and a tension ring, with a lit
+    # cupola over its oculus.
+    base = deck + 0.17
+    a.lathe([(1.1, deck - 0.01), (1.1, deck + 0.12), (1.02, base)], 12, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_1, P.WHITE)
+    arc = [(1.02, base), (1.0, base + 0.2), (0.9, base + 0.44), (0.68, base + 0.66), (0.4, base + 0.8)]
 
     def garden(co, f):
         ang = math.atan2(co.y, co.x)
         up = co.z - base
-        treeline = 0.25 + 0.1 * math.sin(ang * 3 + 0.6) + 0.07 * math.sin(ang * 5 + 1.9)
+        treeline = 0.22 + 0.1 * math.sin(ang * 3 + 0.6) + 0.07 * math.sin(ang * 5 + 1.9)
         if up < treeline:
             return jk.mix(P.LEAF_DEEP, P.LEAF, smoothstep(0, treeline, up) * 0.9)
-        return jk.mix(P.GLASS_TINTED, P.ICE, smoothstep(treeline, 0.94, up))
+        return jk.mix(P.GLASS_TINTED, P.ICE, smoothstep(treeline, 0.8, up))
 
-    paint_verts(a.lathe(arc, 16, cap_bottom=False, cap_top=False).part("glass").flat(), garden)
-    for k in range(8):
-        a.tube([polar(r + 0.004, k * 45, z) for r, z in arc[:1] + arc[2:]], 0.03, 4, caps="none").part("tint").color(P.SHADE_1, P.WHITE)
-    crown = base + 0.94
-    a.lathe([(0.15, crown - 0.02), (0.21, crown + 0.03), (0.21, crown + 0.1), (0.1, crown + 0.16)], 8, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_1, P.WHITE)
-    a.lathe([(0.1, crown + 0.16), (0.055, crown + 0.2), (0.022, crown + 0.42)], 6, cap_bottom=False, cap_top=False).part("metal").color(P.STEEL, P.CHROME)
-    a.lathe([(0, crown + 0.39), (0.05, crown + 0.44), (0, crown + 0.5)], 6).part("glow").color(P.GLOW_RED).flat().no_ao()
+    paint_verts(a.lathe(arc, 12, cap_bottom=False, cap_top=False).part("glass").flat(), garden)
+    for k in range(6):
+        t = math.radians(k * 60)
+        out, along = Vector((math.cos(t), math.sin(t), 0)), Vector((-math.sin(t), math.cos(t), 0))
+        rings = [[out * (r - 0.02) + along * 0.045 + Vector((0, 0, z)), out * (r - 0.02) - along * 0.045 + Vector((0, 0, z)), out * (r + 0.075) + Vector((0, 0, z + 0.02))] for r, z in arc]
+        a.add(skin(rings)).part("tint").color(P.SHADE_1, P.WHITE)
+    a.lathe([(0.9, base + 0.39), (0.95, base + 0.44), (0.9, base + 0.49)], 12, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_1, P.WHITE)
+    crown = base + 0.8
+    a.lathe([(0.4, crown - 0.04), (0.45, crown + 0.02), (0.45, crown + 0.07), (0.2, crown + 0.13)], 12, cap_bottom=False, cap_top=False).part("tint").color(P.SHADE_1, P.WHITE)
+    a.lathe([(0.27, crown + 0.1), (0.25, crown + 0.26)], 6, cap_bottom=False, cap_top=False).part("glow").color(*warm).no_ao()
+    a.lathe([(0.25, crown + 0.26), (0.31, crown + 0.29), (0.06, crown + 0.42), (0.025, crown + 0.62)], 6, cap_bottom=False).part("tint").color(P.SHADE_1, P.WHITE)
+    # Its porch faces the open garden, with a path out to the rim walk.
+    a.box(0.3, 0.2, 0.24, bevel=0, taper=(0.86, 0.9)).move(0, -1.12, lawn - 0.01).part("tint").color(P.SHADE_1, P.WHITE)
+    a.box(0.15, 0.03, 0.16, bevel=0).move(0, -1.215, lawn).part("glow").color(*warm)
+    a.add(jk.raw([(-0.07, -1.84, lawn + 0.006), (0.07, -1.84, lawn + 0.006), (0.07, -1.2, lawn + 0.006), (-0.07, -1.2, lawn + 0.006)], [(0, 1, 2, 3)])).part("tint").color(P.SHADE_1)
 
-    # Three smaller domes in the park, and three towers between them.
+    # The skyline: six buildings round the dome, each its own design, climbing in a spiral from
+    # a low conservatory to the great tower. Skybridges step up from one to the next.
+    def band(x, y, sides, profile, part="tint", low=P.SHADE_1, high=P.WHITE, turn=0.0):
+        piece = a.lathe([(r, lawn + z) for r, z in profile], sides, cap_bottom=False, cap_top=False, turn=math.radians(turn))
+        return piece.move(x, y, 0).part(part).color(low, high)
+
+    spots = [polar(1.47, deg)[:2] for deg in (318, 6, 54, 102, 150, 198)]
+    # 1. Conservatory: a low glasshouse.
+    x, y = spots[0]
+    band(x, y, 8, [(0.34, -0.02), (0.34, 0.1), (0.3, 0.14)])
+    band(x, y, 8, [(0.3, 0.14), (0.27, 0.3), (0.16, 0.43), (0, 0.48)], "glass", jk.mix(P.LEAF, P.GLASS_TINTED, 0.5), P.ICE).flat()
+    # 2. Stepped drum under a shallow cone.
+    x, y = spots[1]
+    band(x, y, 8, [(0.3, -0.02), (0.29, 0.3), (0.25, 0.33)])
+    band(x, y, 8, [(0.25, 0.33), (0.25, 0.385)], "glow", *warm)
+    band(x, y, 8, [(0.25, 0.385), (0.235, 0.6), (0.285, 0.64), (0.285, 0.68), (0.0, 0.8)])
+    # 3. Glazed block: curtain walls between a plinth, a lit cornice and a planted roof.
+    x, y = spots[2]
+    for shell, part, low, high in (
+        ([(0.0, -0.02), (0.0, 0.1), (0.025, 0.1)], "tint", P.SHADE_2, P.SHADE_1),
+        ([(0.025, 0.1), (0.025, 0.5)], "glass", P.GLASS_TINTED, P.GLASS),
+        ([(0.025, 0.5), (-0.02, 0.5), (-0.02, 0.56)], "tint", P.SHADE_1, P.WHITE),
+        ([(-0.02, 0.56), (-0.02, 0.61)], "glow", *warm),
+        ([(-0.02, 0.61), (0.05, 0.64), (0.05, 0.9)], "glass", P.GLASS_TINTED, P.GLASS),
+        ([(0.05, 0.9), (0.02, 0.9), (0.02, 0.98)], "tint", P.SHADE_1, P.WHITE),
+    ):
+        a.add(tier(0.52, 0.1, [(d, lawn + z) for d, z in shell])).rot(z=54).move(x, y, 0).part(part).color(low, high)
+    a.add(tier(0.52, 0.1, [(0.02, lawn + 0.96)], cap_top=True)).rot(z=54).move(x, y, 0).color(P.LEAF_DEEP, P.LEAF)
+    # 4. Mushroom tower: a slim stem under a cantilevered observation ring.
+    x, y = spots[3]
+    band(x, y, 8, [(0.21, -0.02), (0.165, 0.76), (0.37, 0.9)])
+    band(x, y, 8, [(0.37, 0.9), (0.37, 0.95)], "glow", *warm)
+    band(x, y, 8, [(0.37, 0.95), (0.34, 1.05)], "glass", P.GLASS_TINTED, P.GLASS)
+    band(x, y, 8, [(0.34, 1.05), (0.37, 1.07), (0.3, 1.14), (0.0, 1.22)])
+    # 5. Hexagonal tower with setbacks and a glass crown.
+    x, y = spots[4]
+    band(x, y, 6, [(0.27, -0.02), (0.26, 0.5), (0.22, 0.54)], turn=30)
+    band(x, y, 6, [(0.22, 0.54), (0.22, 0.59)], "glow", *warm, turn=30)
+    band(x, y, 6, [(0.22, 0.59), (0.21, 0.98), (0.18, 1.02)], turn=30)
+    band(x, y, 6, [(0.18, 1.02), (0.18, 1.06)], "glow", *warm, turn=30)
+    band(x, y, 6, [(0.18, 1.06), (0.16, 1.26), (0, 1.46)], "glass", P.GLASS_TINTED, P.ICE, turn=30).flat()
+    # 6. The great tower: three stages, a crown and a mast.
+    x, y = spots[5]
+    band(x, y, 8, [(0.31, -0.02), (0.3, 0.46), (0.26, 0.5)])
+    band(x, y, 8, [(0.26, 0.5), (0.26, 0.55)], "glow", *warm)
+    band(x, y, 8, [(0.26, 0.55), (0.245, 0.9), (0.21, 0.94)])
+    band(x, y, 8, [(0.21, 0.94), (0.21, 0.985)], "glow", *warm)
+    band(x, y, 8, [(0.21, 0.985), (0.195, 1.24), (0.25, 1.3), (0.25, 1.36), (0.05, 1.5)])
+    band(x, y, 5, [(0.05, 1.5), (0.02, 1.7)], "metal", P.STEEL, P.CHROME)
+    band(x, y, 5, [(0.0, 1.67), (0.045, 1.71), (0.0, 1.76)], "glow", P.GLOW_RED).flat().no_ao()
+    for (i, j), z, r0, r1 in (((1, 2), 0.42, 0.25, 0.22), ((2, 3), 0.55, 0.22, 0.17), ((3, 4), 0.7, 0.17, 0.2), ((4, 5), 0.84, 0.2, 0.24)):
+        p, q = Vector(spots[i]), Vector(spots[j])
+        d = (q - p).normalized()
+        p, q = p + d * r0, q - d * r1
+        m = (p + q) / 2
+        a.box((q - p).length + 0.06, 0.085, 0.05, bevel=0).rot(z=math.degrees(math.atan2(d.y, d.x))).move(m.x, m.y, lawn + z).part("tint").color(P.SHADE_1, P.WHITE)
+
+    # The open front of the garden: trees and a pond.
+    for k, (deg, r, s) in enumerate(((232, 1.5, 0.16), (250, 1.68, 0.12), (284, 1.4, 0.15), (296, 1.68, 0.12))):
+        x, y, _ = polar(r, deg)
+        a.lathe([(0, 0), (s, s * 0.5), (s * 0.8, s * 1.2), (0, s * 1.85)], 4, turn=0.5 * k).move(x, y, lawn - 0.01).color(P.LEAF_DEEP, P.LIME).flat()
+    a.add(jk.raw([polar(0.2, k * 60 + 10, lawn + 0.006) for k in range(6)], [tuple(range(6))])).scale(1.25, 0.8, 1).rot(z=-14).move(-0.46, -1.44, 0).part("glass").color(P.GLASS_TINTED, P.GLASS)
+
+    # Rim: three docking arms with a lift pod moored at each, and three engine pods between
+    # them under the rim, to hold station in the wind.
     for k in range(3):
-        x, y, _ = polar(1.52, 90 + k * 120)
-        a.lathe([(0.34, deck), (0.34, deck + 0.1), (0.3, deck + 0.14)], 8, cap_bottom=False, cap_top=False).move(x, y, 0).part("tint").color(P.SHADE_1, P.WHITE)
-        a.lathe([(0.3, deck + 0.14), (0.26, deck + 0.31), (0.15, deck + 0.43), (0, deck + 0.47)], 8, cap_bottom=False).move(x, y, 0).part("glass").color(
-            jk.mix(P.LEAF, P.GLASS_TINTED, 0.55), P.ICE
-        ).flat()
-    for k, height in enumerate((0.9, 1.05, 0.78)):
-        x, y, _ = polar(1.52, 270 + k * 120)
-        mid, top = deck + height * 0.56, deck + height
-        a.lathe([(0.24, deck), (0.21, mid)], 8, cap_bottom=False, cap_top=False).move(x, y, 0).part("tint").color(P.SHADE_1, P.WHITE)
-        a.lathe([(0.21, mid), (0.205, mid + 0.08)], 8, cap_bottom=False, cap_top=False).move(x, y, 0).part("glow").color(P.GLOW_WHITE)
-        a.lathe([(0.205, mid + 0.08), (0.19, top - 0.12), (0.26, top - 0.07), (0.26, top - 0.02), (0, top + 0.07)], 8, cap_bottom=False).move(x, y, 0).part(
-            "tint"
-        ).color(P.SHADE_1, P.WHITE)
-        a.tube([(x, y, top + 0.04), (x, y, top + 0.24)], 0.012, 4).part("metal").color(P.STEEL)
-
-    # Below: the ballast keel with an observation band and a running light, four stabilising
-    # fins, and four engine pods under the rim to hold station in the wind.
-    a.lathe([(0.58, 0.02), (0.5, -0.14), (0.34, -0.3), (0.32, -0.4)], 10, cap_bottom=False, cap_top=False).color(P.STEEL_DARK, P.STEEL)
-    a.lathe([(0.32, -0.4), (0.315, -0.47)], 10, cap_bottom=False, cap_top=False).part("glow").color(P.GLOW_WHITE)
-    a.lathe([(0.315, -0.47), (0.3, -0.56), (0.2, -0.76), (0.07, -0.85)], 10, cap_bottom=False, cap_top=False).color(jk.shade(P.STEEL_DARK, -0.15), P.STEEL_DARK)
-    a.lathe([(0, -0.92), (0.06, -0.89), (0.07, -0.85)], 8, cap_top=False).part("glow").color(P.GLOW_CYAN).no_ao()
-    for k in range(4):
-        a.profile_y([(0.27, -0.64), (1.12, 0.0), (1.12, 0.1), (0.27, 0.06)], 0.07, bevel=0.015).rot(z=45 + k * 90).part("tint").color(P.SHADE_3, P.SHADE_1)
+        with a.group() as arm:
+            a.box(0.42, 0.13, 0.05, bevel=0).move(2.08, 0, deck - 0.03).part("tint").color(P.SHADE_2, P.WHITE)
+            a.sphere(0.1, 6, 3, (1, 1, 1.25)).move(2.2, 0, deck - 0.15).part("tint").color(P.SHADE_1, P.WHITE)
+            a.lathe([(0.05, 0), (0, -0.04)], 5, cap_bottom=False).move(2.2, 0, deck - 0.27).part("glow").color(P.GLOW_ORANGE).no_ao()
+        arm.rot(z=k * 120)
         with a.group() as pod:
-            a.loft([(-0.27, 0, 0), (-0.22, 0.075, 0.075), (0.0, 0.1, 0.1), (0.2, 0.085, 0.085), (0.26, 0.06, 0.06)], 6, 2.0, caps="none").move(2.13, 0, 0.13).part(
-                "tint"
-            ).color(P.SHADE_2, P.WHITE)
-            a.box(0.26, 0.14, 0.07, bevel=0).move(2.02, 0, 0.17).part("tint").color(P.SHADE_2)
-            a.lathe([(0.06, 0), (0, 0.012)], 6, cap_bottom=False).rot(x=-90).move(2.13, 0.26, 0.13).part("glow").color(P.GLOW_ORANGE).no_ao()
-            a.box(0.36, 0.014, 0.03, bevel=0).rot(y=35).move(2.13, -0.25, 0.13).color(P.GUNMETAL)
-        pod.rot(z=k * 90)
+            a.loft([(-0.27, 0, 0), (-0.2, 0.08, 0.08), (0.02, 0.1, 0.1), (0.24, 0.07, 0.07)], 6, 2.0, caps="none").move(2.1, 0, 0.12).part("tint").color(P.SHADE_2, P.WHITE)
+            a.box(0.2, 0.12, 0.08, bevel=0).move(1.98, 0, 0.14).part("tint").color(P.SHADE_2)
+            a.lathe([(0.066, 0), (0, 0.012)], 6, cap_bottom=False).rot(x=-90).move(2.1, 0.24, 0.12).part("glow").color(P.GLOW_ORANGE).no_ao()
+        pod.rot(z=60 + k * 120)
+
+    # Below: the keel. A machinery drum with an observation band, a stem that ends in a ballast
+    # bulb with a running light, four vanes that brace the stem to the hull, and a curved
+    # ballast tank slung between each pair of vanes.
+    a.lathe([(0.7, 0.03), (0.6, -0.1), (0.5, -0.14)], 8, cap_bottom=False, cap_top=False).color(P.STEEL_DARK, P.STEEL)
+    a.lathe([(0.5, -0.14), (0.49, -0.19)], 8, cap_bottom=False, cap_top=False).part("glow").color(*warm)
+    a.lathe([(0.49, -0.19), (0.2, -0.24), (0.18, -0.5), (0.28, -0.56), (0.3, -0.66), (0.22, -0.79), (0.07, -0.86)], 8, cap_bottom=False, cap_top=False).color(jk.shade(P.STEEL_DARK, -0.15), P.STEEL)
+    a.lathe([(0, -0.92), (0.06, -0.89), (0.07, -0.86)], 8, cap_top=False).part("glow").color(P.GLOW_CYAN).no_ao()
+    # Each vane is a blade: full thickness in the middle, ground to an edge all round.
+    outline = [(0.2, -0.76), (0.46, -0.62), (0.6, -0.3), (1.24, -0.02), (1.24, 0.1), (0.2, 0.06)]
+    inner = offset_loop(outline, -0.05)
+    verts = [(x, 0.0, z) for x, z in outline] + [(x, side * 0.045, z) for side in (-1, 1) for x, z in inner]
+    faces = [tuple(range(6, 12)), tuple(range(17, 11, -1))]
+    for i in range(6):
+        j = (i + 1) % 6
+        faces += [(i, j, 6 + j, 6 + i), (j, i, 12 + i, 12 + j)]
+    for k in range(4):
+        a.add(jk.raw(verts, faces)).rot(z=k * 90).part("tint").color(P.SHADE_3, P.SHADE_1)
+        a.torus(0.8, 0.075, 3, 5, arc=58).rot(z=16 + k * 90).move(0, 0, -0.2).color(P.STEEL_DARK, P.STEEL)
