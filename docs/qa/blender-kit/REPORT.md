@@ -5,6 +5,10 @@ this work.
 
 ## What was reviewed
 
+The captures this report shows are generated files and stay local, as for every QA report in this
+repository (`docs/qa/**/*.jpg` is ignored). Regenerate them with the commands in
+`assets/blender/kit/README.md`, or see the process archive under `media/kit-process/`.
+
 - **Every model.** All 262 kit models were rendered on review sheets from the front (azimuth 35)
   and back (150), and the families that are seen from above (homes, terrain, system bodies) from
   an elevated view. Each family was authored against
