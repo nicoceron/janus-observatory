@@ -6,8 +6,7 @@ import { onOrbit, orbitMatrix, satellite, type LayerBuilder } from '../model';
 import { orderedSwarm } from '../orbits';
 import type { Face } from '../globe';
 import type { Tone } from '../kit';
-import { U } from '../props/library';
-import { citizenKinds, walkerKinds } from '../props/people';
+import { citizenKinds, U, walkerKinds } from '../props/library';
 import { makeRoute } from '../scene/collect';
 import { flights, roads, seaLanes } from '../scene/network';
 import { bareFlora } from '../scene/presets';
@@ -22,40 +21,11 @@ import { buildTown, type TownStyle } from '../scene/towns';
 const capital = { lat: 40, lon: 30 };
 
 export function watchtower(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.solid.prism(m, 0.2 * s, 0.17 * s, 0.06 * s, 8, '#4d5158');
-  layer.solid.prism(local(m, 0, 0.06 * s, 0), 0.075 * s, 0.045 * s, 0.84 * s, 6, '#80858d');
-  layer.solid.prism(local(m, 0, 0.6 * s, 0), 0.17 * s, 0.15 * s, 0.035 * s, 12, '#3a3e45');
-  layer.glow.prism(local(m, 0, 0.635 * s, 0), 0.152 * s, 0.152 * s, 0.012 * s, 12, '#ffb357');
-  layer.solid.prism(local(m, 0, 0.76 * s, 0), 0.12 * s, 0.1 * s, 0.03 * s, 10, '#3a3e45');
-  layer.glow.dome(local(m, 0, 0.84 * s, 0), 0.055 * s, '#ff3b30', 8, 1);
-  layer.glow.dome(local(m, 0, 0.84 * s, 0, 0, 1, [Math.PI, 0]), 0.055 * s, '#ff3b30', 8, 1);
-  layer.solid.prism(local(m, 0, 0.89 * s, 0), 0.028 * s, 0, 0.3 * s, 6, '#9aa0a8');
+  layer.kit('lm-watchtower', m, s / 10);
 }
 
 export function eliteSettlement(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.sheen.torus(m, 0.5 * s, 0.075 * s, '#eef0f2', 24, 5);
-  layer.solid.torus(local(m, 0, 0.012 * s, 0), 0.47 * s, 0.05 * s, '#5fcf7a', 24, 4);
-  layer.sheen.prism(local(m, 0, -0.16 * s, 0), 0.09 * s, 0.09 * s, 0.32 * s, 8, '#d9dde2');
-  for (let i = 0; i < 4; i++) {
-    const a = (i / 4) * Math.PI * 2 + Math.PI / 4;
-    layer.sheen.beam(
-      new THREE.Vector3().applyMatrix4(m),
-      new THREE.Vector3(Math.cos(a) * 0.46 * s, 0, Math.sin(a) * 0.46 * s).applyMatrix4(m),
-      0.018 * s,
-      '#c9cdd2',
-    );
-  }
-  layer.sheen.panel(local(m, 0, 0.17 * s, 0), 1.1 * s, 0.22 * s, '#294a82', '#c9cdd2');
-  for (let i = 0; i < 12; i++) {
-    const a = (i / 12) * Math.PI * 2;
-    layer.glow.box(
-      local(m, Math.cos(a) * 0.5 * s, 0.07 * s, Math.sin(a) * 0.5 * s, -a),
-      0.05 * s,
-      0.018 * s,
-      0.03 * s,
-      '#fff1c8',
-    );
-  }
+  layer.kit('lm-elite-settlement', m, s / 10);
 }
 
 /** One block: identical everywhere, taller only where power concentrates. */
@@ -66,8 +36,7 @@ export function allocationBlock(
   h: number,
   lit: boolean,
 ) {
-  layer.solid.box(m, w, h, w, '#a2a4a9', '#686b72');
-  if (lit) layer.glow.box(local(m, 0, h, 0), w * 0.7, w * 0.08, w * 0.18, '#ffb357');
+  layer.kit('lm-allocation-block', m, [w / 10, h / 11, w / 10], { dark: !lit });
 }
 
 export const s1: EarthBrief = {

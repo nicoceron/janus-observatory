@@ -1,13 +1,12 @@
 import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
-import { gunzipSync } from 'node:zlib';
 const origin =
   process.env.JANUS_PUBLIC_BASE_URL || 'https://janus-observatory.nicocerond.workers.dev';
 const report = {
   origin,
   checkedAt: new Date().toISOString(),
   routes: [],
-  models: [],
+  kitPacks: [],
   downloads: [],
 };
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -59,23 +58,25 @@ for (const path of [
     throw new Error(`Download hash mismatch: ${path}`);
   report.downloads.push({ path, bytes: data.length, sha256 });
 }
-const manifest = JSON.parse(
+// The artwork: every kit pack the manifest names must be served byte for byte.
+const kit = JSON.parse(
   await readFile(
-    new URL('../docs/qa/cloudflare-release/model-transfer.json', import.meta.url),
+    new URL('../apps/web/app/planets/props/kit.generated.json', import.meta.url),
     'utf8',
   ),
 );
-for (const model of manifest.models) {
-  const path = '/assets/blender/' + model.path + '.gz';
+for (const [name, pack] of Object.entries(kit.packs)) {
+  const path = `${pack.path}?v=${pack.sha256.slice(0, 12)}`;
   const response = await fetch(origin + path);
-  const compressed = Buffer.from(await response.arrayBuffer());
-  if (
-    !response.ok ||
-    digest(compressed) !== model.compressedSha256 ||
-    digest(gunzipSync(compressed)) !== model.sha256
-  )
-    throw new Error(`Model hash mismatch: ${path}`);
-  report.models.push({ path, status: response.status, bytes: compressed.length, lossless: true });
+  const body = Buffer.from(await response.arrayBuffer());
+  if (!response.ok || digest(body) !== pack.sha256 || body.length !== pack.bytes)
+    throw new Error(`Kit pack mismatch: ${name}`);
+  report.kitPacks.push({
+    path: pack.path,
+    status: response.status,
+    bytes: body.length,
+    sha256: pack.sha256,
+  });
 }
 const missing = await fetch(origin + '/this-route-does-not-exist');
 if (missing.status !== 404) throw new Error('Missing route did not return 404');
@@ -85,5 +86,5 @@ await writeFile(
   JSON.stringify(report, null, 2) + '\n',
 );
 console.log(
-  `Public verification passed: ${report.routes.length} pages, ${report.models.length} model hashes, ${report.downloads.length} downloads, health and 404.`,
+  `Public verification passed: ${report.routes.length} pages, ${report.kitPacks.length} kit pack hashes, ${report.downloads.length} downloads, health and 404.`,
 );

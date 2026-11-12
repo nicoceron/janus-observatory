@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-12",
+  "command": "scripts/visual-regression.sh",
+  "image": "mcr.microsoft.com/playwright:v1.62.1-noble@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac",
+  "platform": "linux/amd64, emulated by Docker Desktop 29.9.3 on Apple Silicon",
+  "browser": "The image's headless Chromium (Playwright 1.62.1) with SwiftShader WebGL. The site draws its software tier there: worlds at minimal quality, without instanced props.",
+  "server": "host production build (next build, then next start) on 127.0.0.1:3200, reached from the container as http://host.docker.internal:3200",
+  "checkout": "this repository mounted at /work, after main (2bace26) was merged into the branch; the container uses the host's node_modules and its own browsers, and installs or builds nothing",
+  "spec": "main's apps/web/e2e-visual/visual-regression.spec.ts, unchanged",
+  "comparisonCompleted": true,
+  "testsPassed": 4,
+  "runs": [
+    {
+      "state": "main's four baselines against the kit",
+      "result": "3 passed, 1 failed: first-light-earth.png, 107749 pixels different (ratio 0.08), all on the globe and its satellites"
+    },
+    {
+      "state": "--update-snapshots -g \"First light\"",
+      "result": "first-light-earth.png regenerated"
+    },
+    {
+      "state": "fresh server, fresh container, no --update-snapshots",
+      "result": "4 passed, 0 failed"
+    }
+  ],
+  "baselineChanges": ["first-light-earth.png"],
+  "unchangedBaselines": [
+    "atlas-categorical-observing-matrix.png",
+    "first-light-reading-s1.png",
+    "observatory-s9-atmosphere-fingerprint.png"
+  ],
+  "baselines": {
+    "atlas-categorical-observing-matrix.png": {
+      "size": "1230x1801",
+      "sha256": "2369f4e7f4ebac2870bab2ca14ede62b71433c7a5248d588e663586d954afd02"
+    },
+    "first-light-earth.png": {
+      "size": "1430x1000",
+      "sha256": "c72cfebbd607b9fc5c646951824cb4e8cb1fef236676dda8f7b545ead6ef62df"
+    },
+    "first-light-reading-s1.png": {
+      "size": "1430x676",
+      "sha256": "951a73773631697260bbda7faed9b2484fb0c69a88d5df52362fbd114484c5b7"
+    },
+    "observatory-s9-atmosphere-fingerprint.png": {
+      "size": "1230x1632",
+      "sha256": "d057d789173a57e5484d8be5891a8541691b2ff5c9922d7dd5aa8b49bcccd69e"
+    }
+  },
+  "verification": "The regenerated image was looked at beside main's before it was accepted: the title, copy and background are identical and the globe is the kit's Earth. A separate comparison of the final files then passed 4 of 4. Linux Chromium against the host production build, not hosted CI or a Linux application build. The comparison runs reused the production build that the end-to-end suite had just made from the same commit."
+}

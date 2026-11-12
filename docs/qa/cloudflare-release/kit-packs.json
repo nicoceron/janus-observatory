@@ -1,0 +1,34 @@
+{
+  "note": "The Blender kit packs (Decision 038), staged as built: already gzip-compressed and requested with their checksum in the query string.",
+  "packs": [
+    {
+      "name": "core",
+      "path": "/assets/kit/v1/kit-core.bin",
+      "bytes": 584160,
+      "decodedBytes": 1665752,
+      "sha256": "153adfa9b18f1f995a9bf284fd83bd0d7b17286fbfb2fc474958ce2d86100111"
+    },
+    {
+      "name": "observer",
+      "path": "/assets/kit/v1/kit-observer.bin",
+      "bytes": 138585,
+      "decodedBytes": 309460,
+      "sha256": "c6e690214854cc034011677886b4ac8d8a986050c77b4556fa716b5281b48614"
+    },
+    {
+      "name": "worlds",
+      "path": "/assets/kit/v1/kit-worlds.bin",
+      "bytes": 1708033,
+      "decodedBytes": 4728084,
+      "sha256": "2d553a4ce45c5b4f3502e664e9ae28550880264601d92e42d4b86de71581620c"
+    },
+    {
+      "name": "landmarks",
+      "path": "/assets/kit/v1/kit-landmarks.bin",
+      "bytes": 1188180,
+      "decodedBytes": 2872808,
+      "sha256": "6135c15fa7952f571ae954cd4ab474d3a450e92ddffef5900c4bd2c9c83394f1"
+    }
+  ],
+  "bytes": 3618958
+}

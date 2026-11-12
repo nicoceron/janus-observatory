@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { extentOf } from './earth';
-import { frame, local, Mesher, type Tone } from './kit';
+import { local, type Tone } from './kit';
 import {
   LayerBuilder,
   onOrbit,
@@ -11,7 +11,7 @@ import {
   type WorldModel,
 } from './model';
 import { propFootprint, propHeight, propScale, U } from './props/library';
-import { fbm, rng } from './random';
+import { rng } from './random';
 import { makeRoute, Props, Traffic } from './scene/collect';
 import type { Pick } from './scene/towns';
 import { eliteSettlement } from './worlds/s1';
@@ -282,18 +282,17 @@ function settle(
   );
 }
 
-function rocky(mesh: Mesher, centre: THREE.Vector3, r: number, tone: Tone, seed: number) {
-  mesh.blob(new THREE.Matrix4().makeTranslation(centre.x, centre.y, centre.z), r, tone, 0.2, seed);
-}
-
 export function buildFeature(feature: Feature, scenario: string, quality: Quality): WorldModel {
   const layers: Layer[] = [];
   const light = accent[scenario] ?? '#ffe6a8';
   const random = rng(feature.length * 31 + scenario.length * 7 + 3);
-  const mesh = new Mesher(7);
-  const glow = new Mesher(8, 0);
-  const sheen = new Mesher(9, 0.02);
-  const detail = Math.max(2, Math.round(quality.detail / 4));
+  // The feature's own bodies are kit models, authored ten times this scale.
+  const body = new LayerBuilder('feature', 'surface', 7);
+  const { glow } = body;
+  const at = (v: THREE.Vector3, rotate?: THREE.Matrix4) => {
+    const m = new THREE.Matrix4().makeTranslation(v.x, v.y, v.z);
+    return rotate ? m.multiply(rotate) : m;
+  };
   const props = new Props(quality.life, quality.furnish !== false);
   const traffic = new Traffic();
   const kit = kits[scenario] ?? kits.S3;
@@ -308,9 +307,13 @@ export function buildFeature(feature: Feature, scenario: string, quality: Qualit
       [-0.4, 0.75, -0.35, 0.2],
       [1.05, -0.55, 0.2, 0.15],
     ];
+    const models = ['a', 'c', 'b', 'd', 'e', 'f'];
     rocks.forEach(([x, y, z, r], i) => {
       const centre = new THREE.Vector3(x, y, z);
-      rocky(mesh, centre, r, i % 2 ? '#8a7f72' : '#77706a', i + 41);
+      // Each rock carries its own ore veins.
+      body.kit(`sys-asteroid-${models[i]}`, at(centre), 0.1, {
+        tint: i % 2 ? '#8a7f72' : '#77706a',
+      });
       if (i === 0) settle(props, kit, 'mine', centre, r, random, 0.75, 4, 1.4);
       else if (i < 4)
         standOn(
@@ -321,47 +324,15 @@ export function buildFeature(feature: Feature, scenario: string, quality: Qualit
           new THREE.Vector3(0.2, 1, 0.5),
           random,
         );
-      // Ore veins catch the light.
-      if (i < 3)
-        glow.gem(
-          local(new THREE.Matrix4().makeTranslation(x, y, z), r * 0.5, -r * 0.2, r * 0.75, i),
-          r * 0.12,
-          r * 0.3,
-          '#7fe0ff',
-          5,
-          0.5,
-        );
     });
     if (life) shipping(traffic, kit, random, 1.15);
   } else if (feature === 'outer') {
-    const giant = new THREE.IcosahedronGeometry(0.8, detail + 1);
-    const p = giant.getAttribute('position');
-    const bands: Tone[] = ['#d9b98a', '#c9956a', '#e8d6b0', '#b98a62', '#e2c79a'];
-    for (let i = 0; i < p.count; i += 3) {
-      const c = [0, 1, 2].map((k) => new THREE.Vector3().fromBufferAttribute(p, i + k));
-      const y = (c[0].y + c[1].y + c[2].y) / 3;
-      mesh.tri(
-        c[0],
-        c[1],
-        c[2],
-        bands[
-          Math.floor((y + 0.8) * 5 + fbm(c[0].x, c[0].y, c[0].z, 5, 2, 3) * 0.8) % bands.length
-        ],
-      );
-    }
-    giant.dispose();
     const ring = new THREE.Matrix4().makeRotationFromEuler(new THREE.Euler(0.45, 0, 0.2));
-    for (let i = 0; i < 40; i++) {
-      const a = (i / 40) * Math.PI * 2,
-        b = ((i + 1) / 40) * Math.PI * 2;
-      const q = (r: number, t: number) =>
-        new THREE.Vector3(Math.cos(t) * r, 0, Math.sin(t) * r).applyMatrix4(ring);
-      mesh.quad(q(1.05, a), q(1.05, b), q(1.45, b), q(1.45, a), i % 2 ? '#cbb59a' : '#b9a488');
-      mesh.quad(q(1.45, a), q(1.45, b), q(1.05, b), q(1.05, a), '#a8937a');
-    }
+    body.kit('sys-gas-giant', new THREE.Matrix4(), 0.1);
+    body.kit('sys-rings', ring, 0.1);
     // The settled moon, brought forward so its town faces the reader.
     const moon = new THREE.Vector3(0.95, 0.6, 0.85);
-    rocky(mesh, moon, 0.36, '#c9c6bf', 3);
+    body.kit('sys-ice-moon', at(moon), 0.1);
     settle(props, kit, 'settle', moon, 0.36, random, 0.45, 3, 1.8);
     glow.box(
       local(new THREE.Matrix4().makeTranslation(moon.x, moon.y, moon.z), 0, 0.3, 0.12),
@@ -384,38 +355,15 @@ export function buildFeature(feature: Feature, scenario: string, quality: Qualit
     layers.push(orbit.finish());
     if (life) shipping(traffic, kit, random, 1.6, 1);
   } else if (feature === 'kuiper') {
-    const body = new THREE.Vector3(0, 0, 0);
-    mesh.blob(new THREE.Matrix4().scale(new THREE.Vector3(1, 0.85, 0.9)), 0.7, '#cfe0ea', 0.18, 12);
-    mesh.blob(
-      new THREE.Matrix4().makeTranslation(0.4, -0.3, -0.25).scale(new THREE.Vector3(1, 0.8, 1)),
-      0.35,
-      '#b9cfdc',
-      0.2,
-      13,
-    );
-    settle(props, kit, 'mine', body, 0.6, random, 0.7, 4, 1.7);
-    for (let i = 0; i < 4; i++) {
-      const dir = new THREE.Vector3(Math.cos(i * 1.7), 0.2, Math.sin(i * 1.7)).normalize();
-      glow.gem(frame(dir.clone().multiplyScalar(0.62), dir, i), 0.05, 0.16, '#bff6ff', 5, 0.5);
-    }
+    const centre = new THREE.Vector3(0, 0, 0);
+    // The body carries its own glowing ice spires.
+    body.kit('sys-kuiper-body', new THREE.Matrix4(), 0.1);
+    settle(props, kit, 'mine', centre, 0.6, random, 0.7, 4, 1.7);
     if (life) shipping(traffic, kit, random, 1.1, 1);
   } else {
-    const sun = new THREE.IcosahedronGeometry(0.55, 2);
-    const p = sun.getAttribute('position');
-    const tones: Tone[] = ['#ffd36a', '#ffc24a', '#ffe08a', '#ffb43a'];
-    for (let i = 0; i < p.count; i += 3) {
-      const c = [0, 1, 2].map((k) => new THREE.Vector3().fromBufferAttribute(p, i + k));
-      glow.tri(c[0], c[1], c[2], tones[(i / 3) % tones.length]);
-    }
-    sun.dispose();
+    body.kit('sys-sun', new THREE.Matrix4(), 0.1);
   }
-  layers.unshift({
-    name: 'feature',
-    frame: 'surface',
-    solid: mesh.triangles ? mesh.geometry() : undefined,
-    glow: glow.triangles ? glow.geometry() : undefined,
-    sheen: sheen.triangles ? sheen.geometry() : undefined,
-  });
+  layers.unshift(body.finish());
   if (feature === 'solar') {
     // Collector swarm: panels with lit seams on several inclined rings, and collector stations.
     for (let r = 0; r < 5; r++) {
@@ -425,14 +373,12 @@ export function buildFeature(feature: Feature, scenario: string, quality: Qualit
       });
       const panels = Math.round(22 * quality.density) + 8;
       for (let i = 0; i < panels; i++) {
-        const m = onOrbit(0.85 + r * 0.13, (i / panels) * Math.PI * 2 + random() * 0.1).multiply(
-          new THREE.Matrix4().makeRotationX(Math.PI / 2),
-        );
-        swarm.sheen.panel(m, 0.1, 0.14, i % 3 ? '#1f2230' : '#3a2f1c', '#3a3f55');
-        if (i % 4 === 0) swarm.glow.box(m, 0.11, 0.004, 0.01, r % 2 ? '#6ff6ff' : '#ffc85a');
+        const angle = (i / panels) * Math.PI * 2 + random() * 0.1;
+        // Collectors face the Sun; their frame's +y points away from it.
+        swarm.kit('sys-collector', onOrbit(0.85 + r * 0.13, angle), 0.1);
       }
       for (let k = 0; k < 2; k++)
-        machineNode(swarm, onOrbit(0.85 + r * 0.13, k * Math.PI + r), 0.05);
+        machineNode(swarm, onOrbit(0.85 + r * 0.13, k * Math.PI + r), 0.05, true);
       layers.push(swarm.finish());
     }
   }

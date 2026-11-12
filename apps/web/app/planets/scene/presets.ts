@@ -1,6 +1,5 @@
 import type { Tone } from '../kit';
-import { U } from '../props/library';
-import { citizenKinds, walkerKinds } from '../props/people';
+import { citizenKinds, U, walkerKinds } from '../props/library';
 import type { Flora } from './wilds';
 import type { TownStyle } from './towns';
 

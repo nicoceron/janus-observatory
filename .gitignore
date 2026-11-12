@@ -52,6 +52,7 @@ docs/qa/cinematic-rebuild/browser/
 docs/qa/cinematic-rebuild/debug-*.png
 docs/qa/cinematic-rebuild/observer/motion/
 assets/blender/*.blend1
+assets/blender/kit/*.blend1
 
 # Playwright runtime traces are temporary browser output, not source.
 docs/qa/**/test-artifacts/
@@ -69,3 +70,6 @@ docs/qa/**/*.log
 .open-next/
 .wrangler/
 .dev.vars*
+
+# Kit process captures for social media stay local (large, regenerated often).
+media/kit-process/

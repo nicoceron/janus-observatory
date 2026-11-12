@@ -12,6 +12,13 @@ test('companions emerge continuously behind Earth across the old midpoint and re
   await page.getByRole('button', { name: '03 S2 Wild West', exact: true }).click();
   const anchors = await storyHandoff(page, 's2', 's3');
   const canvas = page.locator('canvas');
+  // The handoff shows S3's system. Its Earth is a kit model, built in idle time once the packs
+  // have arrived (Decision 038), which a jump made the instant the page is ready can outrun.
+  await expect
+    .poll(async () => JSON.parse((await canvas.getAttribute('data-planet-models')) ?? '[]'), {
+      timeout: 45000,
+    })
+    .toContain('world:S3');
   const samples: { phase: number; reveal: number; position: number[] }[] = [];
   for (const phase of [3.3, 3.49, 3.51, 3.75, 4, 3.75, 3.51, 3.49, 3.3]) {
     await page.evaluate(

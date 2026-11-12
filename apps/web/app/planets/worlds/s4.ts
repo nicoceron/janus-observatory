@@ -1,9 +1,7 @@
 import * as THREE from 'three';
 import { type EarthBrief } from '../earth';
 import { coveredFaces, lightShare, satelliteCount } from '../encoding';
-import { local } from '../kit';
 import { onOrbit, orbitMatrix, type LayerBuilder } from '../model';
-import { tent, tree } from '../parts';
 import type { Tone } from '../kit';
 import { U } from '../props/library';
 import { makeRoute } from '../scene/collect';
@@ -17,75 +15,17 @@ import { buildTown, type TownStyle } from '../scene/towns';
  * S4 · Living with the Land. "After the peak of high technology, people live by subsistence,
  * simple tools, and artisanal crafts… settlements migrate with seasonal and planetary cycles."
  */
-const hides = ['#c4955f', '#a7714a', '#d8b98a', '#8f6844'];
 
-export function camp(
-  layer: LayerBuilder,
-  m: THREE.Matrix4,
-  s: number,
-  random: () => number,
-  fire: boolean,
-) {
-  const count = 3 + Math.floor(random() * 3);
-  for (let i = 0; i < count; i++) {
-    const a = (i / count) * Math.PI * 2 + random() * 0.4;
-    tent(
-      layer.solid,
-      local(m, Math.cos(a) * 0.3 * s, 0, Math.sin(a) * 0.3 * s),
-      0.26 * s,
-      hides[i % hides.length],
-    );
-  }
-  layer.solid.prism(m, 0.08 * s, 0.07 * s, 0.015 * s, 6, '#5d4a3a');
-  if (fire) layer.glow.gem(local(m, 0, 0.015 * s, 0), 0.045 * s, 0.1 * s, '#ff9a3a', 4);
-  layer.cloud.blob(local(m, 0.03 * s, 0.22 * s, 0), 0.05 * s, '#c9c6c0', 0.3, 7);
-  layer.solid.box(local(m, -0.18 * s, 0, 0.05 * s, 0.4), 0.1 * s, 0.06 * s, 0.02 * s, '#7a5a3a');
+export function camp(layer: LayerBuilder, m: THREE.Matrix4, s: number, fire: boolean) {
+  layer.kit('lm-camp', m, s / 10, { lights: fire });
 }
 
 export function relicTower(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  const lean = local(m, 0, 0, 0, 0.3, 1, [0.12, 0.08]);
-  layer.solid.box(lean, 0.3 * s, 0.45 * s, 0.3 * s, '#8b8d88', '#4f7d3a');
-  const upper = local(lean, 0.02 * s, 0.45 * s, 0, 0.2, 1, [0.1, -0.06]);
-  layer.solid.box(upper, 0.26 * s, 0.35 * s, 0.26 * s, '#9a9c96', '#5b8a43');
-  const broken = local(upper, -0.04 * s, 0.35 * s, 0.02 * s, 0.4, 1, [-0.2, 0.15]);
-  layer.solid.box(broken, 0.18 * s, 0.14 * s, 0.2 * s, '#a4a59f', '#6a9a4a');
-  for (const [x, y, z] of [
-    [0.15, 0.2, 0.1],
-    [-0.16, 0.5, -0.05],
-    [0.12, 0.66, -0.13],
-  ])
-    layer.solid.blob(
-      local(lean, x * s, y * s, z * s),
-      0.09 * s,
-      '#4f8a3c',
-      0.35,
-      Math.round(y * 100),
-    );
-  tree(layer.solid, local(broken, 0, 0.14 * s, 0), 'round', '#3f7f37', 0.22 * s);
-  for (let i = 0; i < 5; i++)
-    layer.solid.blob(
-      local(m, (i - 2) * 0.13 * s, 0, (i % 2 ? 0.3 : -0.28) * s),
-      0.06 * s,
-      '#8d8e88',
-      0.4,
-      i + 3,
-    );
+  layer.kit('lm-relic-tower', m, s / 10);
 }
 
 export function stoneCircle(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.solid.prism(m, 0.5 * s, 0.5 * s, 0.01 * s, 12, '#9fae62');
-  for (let i = 0; i < 9; i++) {
-    const a = (i / 9) * Math.PI * 2;
-    layer.solid.box(
-      local(m, Math.cos(a) * 0.38 * s, 0.01 * s, Math.sin(a) * 0.38 * s, -a),
-      0.07 * s,
-      (0.18 + (i % 3) * 0.04) * s,
-      0.05 * s,
-      '#9b978c',
-      '#b4b0a4',
-    );
-  }
-  layer.solid.box(local(m, 0, 0.01 * s, 0), 0.14 * s, 0.05 * s, 0.1 * s, '#88857c');
+  layer.kit('lm-stone-circle', m, s / 10);
 }
 
 export const s4: EarthBrief = {
@@ -199,7 +139,6 @@ export const s4: EarthBrief = {
       }),
       world.on(sites[0], random() * 6),
       0.09,
-      random,
       random() < lit * 1.4,
     );
     // Horses graze beside the camps; small plots of food grow near water.
@@ -320,14 +259,7 @@ export const s4: EarthBrief = {
     });
     for (let i = 0; i < satelliteCount(earth.satellite_belt); i++) {
       const m = onOrbit(1.24, i * 2.4 + 1).multiply(new THREE.Matrix4().makeRotationX(0.8));
-      relic.solid.box(m, 0.014, 0.018, 0.014, '#7b7670');
-      relic.solid.panel(
-        local(m, 0.03, 0.01, 0, 0, 1, [0.4, 1.3]),
-        0.012,
-        0.04,
-        '#3a4150',
-        '#6b6560',
-      );
+      relic.kit('sat-wreck', m, 0.022, { tint: '#7b7670' });
     }
   },
 };

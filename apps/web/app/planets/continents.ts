@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { kitData } from './props/pack';
 
 /** Latitude/longitude in degrees to a unit direction. Longitude 0 faces the default camera (+z). */
 export function direction(lat: number, lon: number, target = new THREE.Vector3()) {
@@ -19,116 +20,83 @@ export function latLon(v: THREE.Vector3) {
   };
 }
 
-type Blob = [lat: number, lon: number, radius: number];
+type Relief = {
+  width: number;
+  height: number;
+  land: Uint8Array;
+  range: Uint8Array;
+  dry: Uint8Array;
+  lush: Uint8Array;
+  limit: number;
+};
+let relief: Relief | null = null;
 
 /**
- * A hand-drawn caricature of Earth's continents from overlapping caps. Every scenario is the same
+ * The shared Earth relief, authored in the Blender kit (scripts/blender/kit/earth.py): a
+ * hand-drawn caricature of the continents on a one-degree grid. Every scenario is the same
  * planet, so every world shares these coastlines; only what each future did to them differs.
  * Shapes are illustrative, not a geographic reconstruction.
  */
-const land: Blob[] = [
-  // North America and Greenland
-  [62, -112, 17],
-  [67, -150, 8],
-  [52, -95, 14],
-  [41, -100, 13],
-  [35, -86, 9],
-  [45, -74, 7],
-  [29, -82, 3.5],
-  [23, -103, 8],
-  [16, -92, 4.5],
-  [10, -83, 3],
-  [73, -40, 11],
-  [62, -72, 8],
-  [70, -95, 7],
-  // South America
-  [6, -66, 9],
-  [-7, -61, 14],
-  [-12, -46, 9],
-  [-24, -59, 10],
-  [-34, -65, 7],
-  [-44, -70, 5],
-  [-51, -71, 3],
-  // Europe
-  [49, 10, 9],
-  [53, 26, 11],
-  [63, 15, 6],
-  [66, 26, 6],
-  [40, -4, 5],
-  [43, 13, 2.5],
-  [54, -3, 3],
-  // Africa
-  [26, 3, 13],
-  [25, 24, 12],
-  [12, -3, 11],
-  [8, 22, 13],
-  [9, 40, 6],
-  [-4, 24, 12],
-  [-16, 28, 11],
-  [-27, 24, 7],
-  [-19, 46.5, 3.5],
-  // Asia
-  [60, 62, 13],
-  [62, 92, 17],
-  [65, 128, 15],
-  [66, 158, 9],
-  [46, 72, 13],
-  [46, 102, 13],
-  [33, 106, 11],
-  [29, 118, 7],
-  [36, 137, 3],
-  [24, 46, 9],
-  [32, 55, 8],
-  [39, 36, 5],
-  [22, 79, 9],
-  [12, 78, 4],
-  [16, 102, 6],
-  [1, 113, 4.5],
-  [-1, 102, 3.5],
-  [-5, 141, 4.5],
-  // Australia and New Zealand
-  [-25, 134, 13],
-  [-19, 124, 5],
-  [-33, 148, 5],
-  [-42, 173, 2.5],
-];
-
-/** Mountain spines that lift inland relief: Himalaya, Andes, Rockies, Alps, Rift and Urals. */
-const ranges: Blob[] = [
-  [31, 84, 9],
-  [-18, -68, 7],
-  [-35, -70, 5],
-  [45, -112, 8],
-  [46, 10, 3],
-  [0, 36, 5],
-  [58, 60, 4],
-  [40, 76, 6],
-  [-22, 20, 4],
-];
-
-const toCaps = (blobs: Blob[]) =>
-  blobs.map(([lat, lon, radius]) => ({
-    centre: direction(lat, lon),
-    radius: THREE.MathUtils.degToRad(radius),
-  }));
-const landCaps = toCaps(land),
-  rangeCaps = toCaps(ranges);
-
-function capField(caps: ReturnType<typeof toCaps>, v: THREE.Vector3) {
-  let best = -Infinity;
-  for (const cap of caps) {
-    const angle = Math.acos(THREE.MathUtils.clamp(cap.centre.dot(v), -1, 1));
-    best = Math.max(best, 1 - angle / cap.radius);
-  }
-  return best;
+function earth(): Relief {
+  if (relief) return relief;
+  const { meta, bytes } = kitData('earth');
+  const width = meta.width as number,
+    height = meta.height as number;
+  const cells = width * height;
+  relief = {
+    width,
+    height,
+    land: bytes.subarray(0, cells),
+    range: bytes.subarray(cells, cells * 2),
+    dry: bytes.subarray(cells * 2, cells * 3),
+    lush: bytes.subarray(cells * 3, cells * 4),
+    limit: meta.landLimit as number,
+  };
+  return relief;
 }
 
-/** Positive inside continents; about 0 at the coastline; strongly negative in open ocean. */
+/** Bilinear sample of one channel at a unit direction, 0..255. */
+function sample(channel: Uint8Array, r: Relief, v: THREE.Vector3) {
+  const length = Math.hypot(v.x, v.y, v.z) || 1;
+  const lat = THREE.MathUtils.radToDeg(Math.asin(THREE.MathUtils.clamp(v.y / length, -1, 1)));
+  const lon = THREE.MathUtils.radToDeg(Math.atan2(v.x, v.z));
+  const x = lon + 179.5,
+    y = THREE.MathUtils.clamp(lat + 89.5, 0, r.height - 1);
+  const x0 = Math.floor(x),
+    y0 = Math.min(r.height - 2, Math.floor(y));
+  const fx = x - x0,
+    fy = y - y0;
+  const xa = (x0 + r.width) % r.width,
+    xb = (x0 + 1 + r.width) % r.width;
+  const top = channel[y0 * r.width + xa] * (1 - fx) + channel[y0 * r.width + xb] * fx;
+  const bottom =
+    channel[(y0 + 1) * r.width + xa] * (1 - fx) + channel[(y0 + 1) * r.width + xb] * fx;
+  return top * (1 - fy) + bottom * fy;
+}
+
+/**
+ * Signed distance to the coast in units of about fourteen degrees: positive inside continents,
+ * zero on the coastline, strongly negative in open ocean.
+ */
 export function continentField(v: THREE.Vector3) {
-  const antarctic = (-v.y - Math.sin(THREE.MathUtils.degToRad(68))) * 9;
-  return Math.max(capField(landCaps, v), antarctic);
+  const r = earth();
+  return ((sample(r.land, r, v) / 255) * 2 - 1) * (r.limit / 14);
 }
 
+/** 0..1 strength of the authored mountain spines. */
 export function rangeField(v: THREE.Vector3) {
-  return Math.max(0, capField(rangeCaps, v));
+  const r = earth();
+  return sample(r.range, r, v) / 255;
+}
+
+/** 0..1 authored aridity: the great deserts. */
+export function dryField(v: THREE.Vector3) {
+  const r = earth();
+  return sample(r.dry, r, v) / 255;
+}
+
+/** 0..1 authored forest density: rainforests and boreal belts. */
+export function lushField(v: THREE.Vector3) {
+  const r = earth();
+  return sample(r.lush, r, v) / 255;
 }

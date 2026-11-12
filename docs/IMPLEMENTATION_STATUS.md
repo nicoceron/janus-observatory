@@ -1,5 +1,7 @@
 # Janus Observatory implementation evidence ledger
 
+Current artwork: the Blender model kit, [Decision 038](DECISION_038_BLENDER_KIT.md), with [verification](qa/blender-kit/REPORT.md).
+
 Current editable planet polish: [Decision 028](DECISION_028_PLANET_POLISH.md), with [individual world review](qa/planet-polish-2026-09-20/REPORT.md).
 
 Current deployment and fixed-resolution decision: [Decision 027](DECISION_027_FREE_CLOUDFLARE.md).

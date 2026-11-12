@@ -19,7 +19,10 @@ import {
   type Quality,
   type WorldModel,
 } from './model';
+import { lightShare } from './encoding';
 import { frame } from './kit';
+import { surfaces } from './materials';
+import { earthRelief } from './scene/relief';
 import { animals, plant, type Fauna, type Flora } from './scene/wilds';
 
 export type EarthBrief = {
@@ -44,7 +47,8 @@ export function extentOf(layers: Layer[]) {
   let extent = 1;
   const v = new THREE.Vector3();
   for (const layer of layers)
-    for (const geometry of [layer.solid, layer.sheen, layer.glow, layer.cloud, layer.beam]) {
+    for (const surface of surfaces) {
+      const geometry = layer[surface];
       if (!geometry) continue;
       const position = geometry.getAttribute('position');
       for (let i = 0; i < position.count; i++) {
@@ -67,6 +71,7 @@ export function buildEarthWorld(
     steps: 6,
     height: earthHeight(brief.climate.sea),
     flatten: true,
+    shore: 0.012,
   });
   paintEarth(faces, brief.climate, brief.palette);
   const world = new WorldContext(faces, quality, brief.seed);
@@ -79,7 +84,10 @@ export function buildEarthWorld(
       ),
     );
   world.view = new THREE.Vector3(0, 0, 1).applyQuaternion(pose.invert());
+  world.dim = lightShare(signals.bodies.Earth.artificial_illumination) === 0;
   brief.decorate(world, signals);
+  // Mountains, dunes and ice stand wherever the story left the land alone.
+  earthRelief(world, brief.climate.iceLat);
 
   if (brief.flora) plant(world, brief.flora);
   if (brief.fauna) animals(world, brief.fauna);
@@ -104,7 +112,11 @@ export function buildEarthWorld(
   }
 
   const layers: Layer[] = [
-    { name: 'globe', frame: 'surface', solid: globeGeometry(faces, brief.seed) },
+    {
+      name: 'globe',
+      frame: 'surface',
+      ...globeGeometry(faces, { water: true, bank: brief.palette.shore }),
+    },
     ...world.finish(),
   ];
   return {
@@ -116,6 +128,7 @@ export function buildEarthWorld(
     pitch: brief.pitch ?? 0.2,
     extent: extentOf(layers),
     ...world.population(layers),
+    unlit: world.dim,
   };
 }
 

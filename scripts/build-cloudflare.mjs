@@ -8,7 +8,6 @@ const env = {
   ...process.env,
   JANUS_PUBLIC_BASE_URL:
     process.env.JANUS_PUBLIC_BASE_URL || 'https://janus-observatory.nicocerond.workers.dev',
-  NEXT_PUBLIC_JANUS_COMPRESSED_MODELS: 'true',
   JANUS_RESEARCH_PREVIEW_ENABLED: 'false',
   JANUS_AGENT_LIVE_ENABLED: 'false',
   NEXT_PUBLIC_JANUS_TELEMETRY_ENABLED: 'false',

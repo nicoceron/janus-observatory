@@ -64,17 +64,10 @@ export function chaoticSwarm(
     const radius = world.random.range(shell[0], shell[1]);
     const m = frame(up.clone().multiplyScalar(radius), up, world.random() * 6);
     const lit = look.light && world.random() < (look.lightShare ?? 1) ? look.light : undefined;
-    if (look.broken && world.random() < look.broken) {
-      layer.sheen.box(m, look.size, look.size * 1.2, look.size, look.body);
-      layer.sheen.panel(
-        m
-          .clone()
-          .multiply(new THREE.Matrix4().makeRotationZ(0.9))
-          .setPosition(new THREE.Vector3().setFromMatrixPosition(m).addScaledVector(up, look.size)),
-        look.size * 0.25,
-        look.size * 2,
-        world.random.pick(look.wings),
-      );
-    } else satellite(layer, m, look.size, look.body, world.random.pick(look.wings), lit);
+    // The draw keeps the random sequence the same for wrecks and working satellites.
+    const wings = world.random.pick(look.wings);
+    if (look.broken && world.random() < look.broken)
+      layer.kit('sat-wreck', m, look.size * 1.6, { tint: look.body });
+    else satellite(layer, m, look.size, look.body, wings, lit);
   }
 }

@@ -129,15 +129,20 @@ export function animals(world: WorldContext, fauna: Fauna) {
       });
     }
   }
+  // Whales keep to open ocean, a full circuit clear of every coast.
   const deep = world.faces.filter((f) => !f.land && (f.biome === 'deep' || f.biome === 'ocean'));
-  for (const home of world.scatter(deep, fauna.whales ?? 0, 20)) {
+  const open = world
+    .scatter(deep, (fauna.whales ?? 0) * 4, 20)
+    .filter((home) => world.around(home, 13).every((f) => !f.land))
+    .slice(0, fauna.whales ?? 0);
+  for (const home of open) {
     const loop: THREE.Vector3[] = [];
     for (let i = 0; i < 16; i++)
-      loop.push(offset(home.up, (i / 16) * Math.PI * 2, 5 * U).multiplyScalar(0.9995));
+      loop.push(offset(home.up, (i / 16) * Math.PI * 2, 3.5 * U).multiplyScalar(0.9995));
     traffic.add('whale', makeRoute(loop, true), {
       count: 1,
-      speed: 0.006,
-      size: 1.6,
+      speed: 0.005,
+      size: 1.25,
       pingpong: false,
       random,
     });

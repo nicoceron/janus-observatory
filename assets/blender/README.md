@@ -1,5 +1,11 @@
 # Editable Janus worlds
 
+> **Current artwork lives in [kit/](kit/README.md)** ([Decision 038](../../docs/DECISION_038_BLENDER_KIT.md)). The world
+> files described below are the sources of the earlier Blender planets (Decision 020). Their web
+> exports were withdrawn from publication on 2026-11-12: the site no longer loads or serves them,
+> and a build that writes new exports under `apps/web/public/assets/blender/` must not be
+> published. The sources and their ledger records are kept for provenance.
+
 Open these source files in **Blender 5.2**. Each opens on its assembled Earth scene; use the **Scene** dropdown to switch to a companion or system destination. `Moon` is the scene name for Luna.
 
 | Source                       | Scenes available                                          |

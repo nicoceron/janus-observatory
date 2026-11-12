@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import type { Tone } from '../kit';
 import type { WorldContext } from '../model';
 import { U } from '../props/library';
-import { makeRoute, ribbon } from './collect';
+import { makeRoute, ribbon, road } from './collect';
 import { arc } from './surface';
 import type { Town } from './towns';
 
@@ -47,7 +47,8 @@ export function roads(
       const points = dirs.map((dir) =>
         surface.land(dir) ? surface.point(dir, 0.0016) : dir.clone().multiplyScalar(1.006),
       );
-      ribbon(world.ground.solid, points, options.width, options.tone);
+      road(world.ground.solid, points, options.width, options.tone, true, world.ground.lean);
+      world.lanes.push({ points: dirs, half: options.width / 2 });
       dirs.forEach((dir, i) => {
         if (i % 3 === 0) world.occupy(dir, options.width * 1.5);
         if (!surface.land(dir) && i % 4 === 0)
@@ -106,6 +107,7 @@ export function rails(
     const dirs = arc(a.centre, b.centre, 0.006);
     const points = dirs.map((dir) => world.surface.point(dir, 2.2 * U));
     ribbon(world.ground.sheen, points, 0.5 * U, options.tone);
+    world.lanes.push({ points: dirs, half: 0.45 * U });
     dirs.forEach((dir, i) => {
       if (i % 4 === 2)
         world.props.add(
@@ -113,6 +115,8 @@ export function rails(
           world.surface.point(dir, -0.0004),
           points[Math.min(points.length - 1, i + 1)].clone().sub(points[i]),
           1,
+          undefined,
+          true,
         );
     });
     if (world.quality.life)
@@ -141,7 +145,8 @@ export function seaLanes(world: WorldContext, ports: THREE.Vector3[], fleet: Fle
       .slice(0, lanes);
     for (const other of near) {
       if (ports.indexOf(other) < ports.indexOf(port)) continue;
-      const dirs = arc(port, other, 0.008).filter((dir) => !surface.land(dir));
+      // Ships are long: they keep a berth of open water from every coast.
+      const dirs = arc(port, other, 0.008).filter((dir) => surface.offshore(dir, 2.4 * U));
       if (dirs.length < 6) continue;
       // Keep the longest contiguous run of open water.
       const runs: THREE.Vector3[][] = [[]];
@@ -187,7 +192,7 @@ export function harbourLoops(world: WorldContext, ports: THREE.Vector3[], fleet:
         .addScaledVector(east, Math.cos(a) * 4 * U)
         .addScaledVector(north, Math.sin(a) * 3 * U)
         .normalize();
-      if (world.surface.land(dir)) continue;
+      if (!world.surface.offshore(dir, 1.1 * U)) continue;
       loop.push(dir.multiplyScalar(1.0004));
     }
     if (loop.length < 6) continue;
@@ -202,7 +207,11 @@ export function harbourLoops(world: WorldContext, ports: THREE.Vector3[], fleet:
   }
 }
 
-/** Aircraft on arcs between large towns. */
+/**
+ * Aircraft on circuits over pairs of large towns. Each flies the whole great circle through both
+ * at cruising height, above the clouds and every skyline, so it never turns back over a town or
+ * passes through a tower.
+ */
 export function flights(
   world: WorldContext,
   hubs: THREE.Vector3[],
@@ -215,16 +224,26 @@ export function flights(
     const a = world.random.pick(hubs),
       b = world.random.pick(hubs.filter((h) => h !== a));
     if (!b || a.angleTo(b) < 0.25) continue;
-    const dirs = arc(a, b, 0.01);
-    const points = dirs.map((dir, i) => {
-      const t = i / (dirs.length - 1);
-      return dir.clone().multiplyScalar(1.03 + altitude * Math.sin(Math.PI * t) ** 0.6);
-    });
-    world.traffic.add(world.random.pick(fleet.kinds), makeRoute(points), {
+    const axis = a.clone().cross(b);
+    if (axis.lengthSq() < 1e-8) continue;
+    axis.normalize();
+    const height = 1.21 + altitude * 0.3 * world.random();
+    const points: THREE.Vector3[] = [];
+    for (let i = 0; i < 72; i++) {
+      const turn = (i / 72) * Math.PI * 2;
+      points.push(
+        a
+          .clone()
+          .applyAxisAngle(axis, turn)
+          .multiplyScalar(height + 0.008 * Math.sin(turn * 3)),
+      );
+    }
+    world.traffic.add(world.random.pick(fleet.kinds), makeRoute(points, true), {
       count: fleet.per,
       speed: fleet.speed,
       size: fleet.size,
       tints: fleet.tints,
+      pingpong: false,
       random: world.random,
     });
   }

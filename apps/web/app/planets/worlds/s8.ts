@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import { claim, type EarthBrief } from '../earth';
 import { coveredFaces, decades, hazeStrength, lightShare, satelliteCount } from '../encoding';
-import { local } from '../kit';
 import type { LayerBuilder } from '../model';
 import { chaoticSwarm } from '../orbits';
 import type { Tone } from '../kit';
@@ -19,69 +18,15 @@ import { buildTown, type TownStyle } from '../scene/towns';
  * population waits for stability."
  */
 export function silentCore(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.solid.prism(m, 0.55 * s, 0.5 * s, 0.04 * s, 9, '#2d2a2f', '#3a3540');
-  for (let i = 0; i < 6; i++) {
-    const a = (i / 6) * Math.PI * 2;
-    const shard = local(m, Math.cos(a) * 0.36 * s, 0.03 * s, Math.sin(a) * 0.36 * s, -a, 1, [
-      Math.cos(a) * 0.35,
-      Math.sin(a) * 0.35,
-    ]);
-    layer.sheen.gem(shard, 0.06 * s, (0.2 + (i % 3) * 0.08) * s, '#26232c', 4, 0.2);
-  }
-  const core = local(m, 0, 0.04 * s, 0, 0.3, 1, [0.08, -0.05]);
-  layer.sheen.box(core, 0.2 * s, 0.7 * s, 0.2 * s, '#1f1d24', '#2c2933');
-  layer.sheen.box(
-    local(core, 0.02 * s, 0.7 * s, 0, 0.6, 1, [0.3, 0.2]),
-    0.16 * s,
-    0.14 * s,
-    0.14 * s,
-    '#1f1d24',
-  );
-  for (const y of [0.18, 0.36, 0.52])
-    layer.glow.box(
-      local(core, 0, y * s, 0.101 * s, 0, 1, [0, 0.4]),
-      0.14 * s,
-      0.012 * s,
-      0.002 * s,
-      '#9a6aff',
-    );
+  layer.kit('lm-silent-core', m, s / 10);
 }
 
 export function bunker(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.solid.prism(m, 0.45 * s, 0.35 * s, 0.12 * s, 6, '#6f6560', '#5f5652');
-  layer.sheen.prism(local(m, 0, 0.12 * s, 0), 0.22 * s, 0.2 * s, 0.05 * s, 6, '#4a4e55', '#3b3f45');
-  layer.glow.box(local(m, 0, 0.17 * s, 0), 0.2 * s, 0.006 * s, 0.03 * s, '#ffcf7a');
-  layer.solid.prism(
-    local(m, 0.3 * s, 0.1 * s, 0.1 * s),
-    0.012 * s,
-    0.008 * s,
-    0.45 * s,
-    4,
-    '#8a8a8a',
-  );
-  layer.solid.box(local(m, -0.28 * s, 0.1 * s, 0, 0.3), 0.14 * s, 0.1 * s, 0.1 * s, '#5a524d');
+  layer.kit('lm-bunker', m, s / 10);
 }
 
-export function ruin(layer: LayerBuilder, m: THREE.Matrix4, s: number, random: () => number) {
-  const tilt: [number, number] = [random() * 0.3 - 0.15, random() * 0.3 - 0.15];
-  const t = local(m, 0, 0, 0, random() * 3, 1, tilt);
-  const h = (0.5 + random() * 0.5) * s;
-  layer.solid.box(t, 0.22 * s, h, 0.22 * s, '#6d6a66', '#57534f');
-  layer.solid.box(
-    local(t, 0.03 * s, h, 0, 0.4, 1, [0.5, -0.3]),
-    0.15 * s,
-    0.1 * s,
-    0.18 * s,
-    '#8a4a32',
-  );
-  for (let i = 0; i < 4; i++)
-    layer.solid.blob(
-      local(m, (random() - 0.5) * 0.6 * s, 0, (random() - 0.5) * 0.6 * s),
-      0.06 * s,
-      i % 2 ? '#6d6a66' : '#8a4a32',
-      0.4,
-      i + 11,
-    );
+export function ruin(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
+  layer.kit('lm-ruin', m, s / 10);
 }
 
 export const s8: EarthBrief = {
@@ -234,8 +179,7 @@ export const s8: EarthBrief = {
     ruins.forEach((face, i) => {
       face.used = true;
       face.tone = '#6a6560';
-      if (i === 0)
-        ruin(world.layer('ruin', 'surface', { landmark: 'ruin' }), world.on(face), 0.08, random);
+      if (i === 0) ruin(world.layer('ruin', 'surface', { landmark: 'ruin' }), world.on(face), 0.08);
       else if (world.thin(0.06))
         sprinkle(
           world,

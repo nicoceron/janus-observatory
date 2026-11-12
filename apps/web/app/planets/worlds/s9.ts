@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import type { EarthBrief } from '../earth';
 import { satelliteCount } from '../encoding';
-import { local } from '../kit';
 import { onOrbit, orbitMatrix, type LayerBuilder } from '../model';
 import type { Tone } from '../kit';
 import { U } from '../props/library';
@@ -18,43 +17,12 @@ import { buildTown, type TownStyle } from '../scene/towns';
  * Earth to support a post-scarcity human economy."
  */
 export function gift(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.solid.prism(m, 0.3 * s, 0.28 * s, 0.03 * s, 6, '#d9dcd6');
-  layer.sheen.gem(local(m, 0, 0.03 * s, 0, 0.3), 0.14 * s, 0.9 * s, '#bfe9ff', 5, 0.3);
-  for (let i = 0; i < 3; i++) {
-    const a = (i / 3) * Math.PI * 2;
-    layer.sheen.gem(
-      local(m, Math.cos(a) * 0.2 * s, 0.03 * s, Math.sin(a) * 0.2 * s, a, 1, [
-        Math.sin(a) * 0.25,
-        Math.cos(a) * 0.25,
-      ]),
-      0.06 * s,
-      0.35 * s,
-      '#d7c9ff',
-      4,
-      0.3,
-    );
-  }
+  layer.kit('lm-gift', m, s / 10);
 }
 
-export function machineNode(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.sheen.gem(m, 0.35 * s, 0.9 * s, '#1f2230', 3, 0.5);
-  layer.sheen.gem(
-    local(m, 0, 0.45 * s, 0, Math.PI / 3, 1, [Math.PI, 0]),
-    0.35 * s,
-    0.9 * s,
-    '#262a3b',
-    3,
-    0.5,
-  );
-  layer.glow.torus(
-    local(m, 0, 0.45 * s, 0, 0, 1, [Math.PI / 2, 0]),
-    0.5 * s,
-    0.015 * s,
-    '#6ff6ff',
-    18,
-    3,
-  );
-  layer.glow.gem(local(m, 0, 0.3 * s, 0), 0.06 * s, 0.3 * s, '#a78bff', 4);
+/** A node of the machines' halo; `far` draws the light model that fills the rest of the ring. */
+export function machineNode(layer: LayerBuilder, m: THREE.Matrix4, s: number, far = false) {
+  layer.kit(far ? 'machine-node-mini' : 'lm-machine-node', m, s / 10);
 }
 
 export const s9: EarthBrief = {
@@ -208,8 +176,9 @@ export const s9: EarthBrief = {
       .layer('halo', 'orbit', { matrix: orbitMatrix(0.5, 0.8) })
       .glow.torus(new THREE.Matrix4(), 1.42, 0.0022, '#6ff6ff', 128, 3);
     for (let i = 0; i < count; i++) {
-      const hero = i % Math.max(1, Math.round(count / 6)) === 0;
-      machineNode(nodes, onOrbit(1.42, (i / count) * Math.PI * 2), hero ? 0.05 : 0.022);
+      // Six full nodes mark the halo; the light tiers keep one.
+      const hero = nodes.lean ? i === 0 : i % Math.max(1, Math.round(count / 6)) === 0;
+      machineNode(nodes, onOrbit(1.42, (i / count) * Math.PI * 2), hero ? 0.05 : 0.022, !hero);
     }
   },
 };

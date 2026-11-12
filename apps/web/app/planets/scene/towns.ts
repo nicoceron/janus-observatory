@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import type { Tone } from '../kit';
 import type { WorldContext } from '../model';
 import { propFootprint, U } from '../props/library';
-import { disc, makeRoute, ribbon } from './collect';
+import { disc, makeRoute, road } from './collect';
 import { offset, tangents } from './surface';
 
 /** [kind, weight, size range in person units, optional tints]. */
@@ -51,6 +51,22 @@ export function choose(picks: Pick[], random: () => number) {
 }
 
 const STEP = 0.0025;
+
+/** The longest stretch of a street that stays `clear` radians away from a centre. */
+function clearRun(dirs: THREE.Vector3[], centre: THREE.Vector3, clear: number) {
+  let best: THREE.Vector3[] = [],
+    run: THREE.Vector3[] = [];
+  for (const dir of dirs) {
+    if (dir.angleTo(centre) > clear) run.push(dir);
+    else {
+      if (run.length > best.length) best = run;
+      run = [];
+    }
+  }
+  return run.length > best.length ? run : best;
+}
+/** Pavement between a street's edge and its buildings, where the walkers go. */
+const SETBACK = 0.4 * U;
 
 /** Lay out one settlement around a unit direction and fill it with buildings, people and traffic. */
 export function buildTown(
@@ -145,11 +161,17 @@ export function buildTown(
       if (other.dir.distanceToSquared(dir) < ((other.r + r) * 0.92) ** 2) return false;
     return true;
   };
-  const place = (pick: Pick, dir: THREE.Vector3, facing: THREE.Vector3, sizeScale = 1) => {
+  const place = (
+    pick: Pick,
+    dir: THREE.Vector3,
+    facing: THREE.Vector3,
+    sizeScale = 1,
+    free = false,
+  ) => {
     const [lo, hi] = pick[2] ?? [1, 1];
     const size = (lo + (hi - lo) * random()) * sizeScale;
     const tint = pick[3]?.length ? pick[3][Math.floor(random() * pick[3].length)] : undefined;
-    props.add(pick[0], ground(dir, -0.0006), facing, size, tint);
+    props.add(pick[0], ground(dir, -0.0006), facing, size, tint, free);
   };
   const footprint = (pick: Pick) => propFootprint(pick[0]) * (pick[2]?.[1] ?? 1) * U;
 
@@ -157,7 +179,16 @@ export function buildTown(
   const stride = Math.max(1, Math.round(style.lot.spacing / STEP));
   for (const dirs of streets) {
     const points = dirs.map((dir) => ground(dir));
-    if (style.street) ribbon(world.ground.solid, points, style.street.width, style.street.tone);
+    if (style.street)
+      road(
+        world.ground.solid,
+        points,
+        style.street.width,
+        style.street.tone,
+        false,
+        world.ground.lean,
+      );
+    world.lanes.push({ points: dirs, half });
     for (let i = Math.max(1, Math.round(stride / 2)); i < dirs.length - 1; i += stride) {
       const here = dirs[i];
       const along = dirs[i + 1]
@@ -171,7 +202,7 @@ export function buildTown(
         const fp = footprint(pick);
         const lot = here
           .clone()
-          .addScaledVector(side, s * (half + fp + 0.4 * U))
+          .addScaledVector(side, s * (half + fp + SETBACK))
           .normalize();
         if (lot.angleTo(up) > R * 1.05 || !surface.land(lot)) continue;
         if (!clearOfLots(lot, fp) || !clearOfStreets(lot, fp)) continue;
@@ -189,6 +220,8 @@ export function buildTown(
             ),
             side.clone().multiplyScalar(-s),
             1,
+            undefined,
+            true,
           );
         if (style.people && life && random() < 0.2)
           props.add(
@@ -215,7 +248,7 @@ export function buildTown(
         return ground(
           dir
             .clone()
-            .addScaledVector(side, half + 0.5 * U)
+            .addScaledVector(side, half + SETBACK * 0.55)
             .normalize(),
           0.0002,
         );
@@ -227,12 +260,14 @@ export function buildTown(
         random,
       });
     }
-    if (style.cars && dirs.length > 8)
+    // Cars keep to the stretch of street clear of the plaza's centrepiece.
+    const drive = style.plaza?.centre ? clearRun(dirs, up, 1.7 * U) : dirs;
+    if (style.cars && drive.length > 8)
       traffic.add(
         world.random.pick(style.cars.kinds),
-        makeRoute(dirs.map((dir) => ground(dir, 0.0014))),
+        makeRoute(drive.map((dir) => ground(dir, 0.0014))),
         {
-          count: Math.max(1, Math.round((style.cars.count * dirs.length) / 40)),
+          count: Math.max(1, Math.round((style.cars.count * drive.length) / 40)),
           speed: style.cars.speed ?? 0.004,
           size: style.cars.size ?? 1,
           tints: style.cars.tints,
@@ -250,10 +285,37 @@ export function buildTown(
       style.plaza.tone,
       12,
     );
-    placed.push({ dir: up, r: style.plaza.radius * scale });
     if (style.plaza.centre)
-      place(choose(style.plaza.centre, random), up, offset(up, 0, 0.01).sub(up));
+      place(choose(style.plaza.centre, random), up, offset(up, 0, 0.01).sub(up), 1, true);
   }
+
+  // Street frontage rarely fits buildings this large, so the town is completed as a deliberate
+  // cluster: buildings in rings round the centre, facing it, clear of the roadway and each other.
+  if (style.layout !== 'camp') {
+    const want = Math.min(9, Math.max(3, Math.round((R / U) ** 2 / 3.4)));
+    const reach = Math.max(R * 1.12, 4.3 * U);
+    const centrepiece = style.plaza?.centre ? 1.1 * U : 0;
+    const start = random() * Math.PI * 2;
+    for (const fit of [0.85, 0.62]) {
+      for (let d = 1.9 * U; d <= reach && placed.length < want; d += 0.7 * U) {
+        const around = Math.max(5, Math.round((Math.PI * 2 * d) / (1.1 * U)));
+        for (let i = 0; i < around && placed.length < want; i++) {
+          const dir = offset(up, start + d * 9 + (i / around) * Math.PI * 2, d);
+          if (!surface.land(dir) || world.occupied(dir)) continue;
+          const r = d / R;
+          const pick = choose(d < Math.max(R * 0.6, 2.7 * U) ? style.core : style.edge, random);
+          const fp = footprint(pick);
+          if (d < centrepiece + fp) continue;
+          const limit = (half + fp * fit + 0.2 * U) ** 2;
+          if (pathPoints.some((q) => q.distanceToSquared(dir) < limit)) continue;
+          if (placed.some((o) => o.dir.distanceToSquared(dir) < ((o.r + fp) * 1.02) ** 2)) continue;
+          placed.push({ dir, r: fp });
+          place(pick, dir, up.clone().sub(dir), style.rise?.(r) ?? 1);
+        }
+      }
+    }
+  }
+  if (style.plaza) placed.push({ dir: up, r: style.plaza.radius * scale });
 
   // Camps and loose settlements: dwellings in rings around a shared centre.
   if (style.layout === 'camp')
@@ -285,7 +347,8 @@ export function buildTown(
       props.add(
         style.perimeter.kind,
         ground(dir, -0.0004),
-        offset(up, a + 0.05, R * 1.08).sub(dir),
+        // A wall runs along the ring, so it faces outward.
+        dir.clone().sub(up),
         style.perimeter.size ?? 1,
         style.perimeter.tint,
       );

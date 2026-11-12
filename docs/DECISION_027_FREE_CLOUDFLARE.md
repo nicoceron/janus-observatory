@@ -1,5 +1,9 @@
 # Decision 027: fixed resolution and Cloudflare Free
 
+> Superseded in part by [Decision 038](DECISION_038_BLENDER_KIT.md) (2026-11-12): the 59 GLB exports
+> and their gzip transport described below are no longer published; the deployment serves the
+> Blender kit packs instead. The adapter, caching and Free-plan limits below remain current.
+
 User direction: optimize without lowering resolution, then deploy on Cloudflare for free.
 
 The previous adaptive supersampling control is removed. Both canvases retain their original fixed `dpr={[1, 1.5]}`; load never changes resolution. Geometry, lighting and animation remain unchanged. Immutable Blender local transforms are calculated once while their world transforms continue following animated parents. Procedural terrain is constructed only when its Blender replacement is absent. Meshopt decoding uses one worker with an idle cleanup; serialized loading and bounded caches remain.

@@ -1,8 +1,10 @@
 # Janus Observatory - Master Product, Data, Architecture, and Execution Plan
 
+Current artwork: every model on the site (citizens, creatures, plants, buildings, vehicles, landmarks, terrain, system bodies, the observer and the telescope) is an authored Blender kit model, [Decision 038](DECISION_038_BLENDER_KIT.md), with [art direction](KIT_ART_DIRECTION.md) and [verification](qa/blender-kit/REPORT.md). It supersedes the code-drawn artwork of Decision 035.
+
 Current title typography: Nostromo display face, [Decision 037](DECISION_037_NOSTROMO_TITLES.md), superseding the headline face of Decisions 025 and 036. Its web licence is unconfirmed.
 
-Current planets: story-drawn procedural low-poly worlds, [Decision 035](DECISION_035_STORY_DRAWN_LOW_POLY_WORLDS.md), superseding the planet artwork of Decisions 014–020, 028 and 034.
+Current world recipes: story-drawn procedural low-poly worlds, [Decision 035](DECISION_035_STORY_DRAWN_LOW_POLY_WORLDS.md), superseding the planet artwork of Decisions 014–020, 028 and 034. Its staging rules (proportions, towns, roads, lights) are revised by Decision 038.
 
 Current Observatory scenario-switch layout stability:
 [verification and implementation](qa/observatory-stability/REPORT.md).

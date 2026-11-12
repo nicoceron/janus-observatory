@@ -4,7 +4,7 @@ import { claim, extentOf } from './earth';
 import { accent } from './features';
 import { coveredFaces, hazeStrength, lightShare, satelliteCount } from './encoding';
 import { buildFaces, globeGeometry, type Face } from './globe';
-import { local, type Tone } from './kit';
+import { type Tone } from './kit';
 import {
   onOrbit,
   orbitMatrix,
@@ -16,6 +16,7 @@ import {
 } from './model';
 import { orderedSwarm } from './orbits';
 import { U } from './props/library';
+import { bodyRelief } from './scene/relief';
 import { makeRoute } from './scene/collect';
 import { setPieces, sprinkle } from './scene/sites';
 import { offset } from './scene/surface';
@@ -115,6 +116,8 @@ function surface(body: Companion, style: Style | undefined, detail: number): Fac
       relief: 0.06,
       steps: 6,
       flatten: terraformed,
+      // Terraformed Mars has seas: give them clean coastlines, as on Earth.
+      shore: terraformed ? 0.012 : undefined,
       height: (v) => {
         const olympus =
           Math.max(0, 1 - v.distanceTo(new THREE.Vector3(-0.75, 0.3, 0.58)) / 0.3) * 0.8;
@@ -173,7 +176,9 @@ function surface(body: Companion, style: Style | undefined, detail: number): Fac
   return faces;
 }
 
+/** A point of light on the ground; never drawn where the table reports no illumination. */
 function lamp(world: WorldContext, face: Face, tone: Tone, size = 0.02) {
+  if (world.dim) return;
   world.ground.glow.box(world.within(face), size, size, size, tone);
 }
 
@@ -192,7 +197,11 @@ function furnish(
   const built = claim(
     faces,
     coveredFaces(cells.surface_modification, faces.length),
-    (f) => 2 - f.up.distanceTo(new THREE.Vector3(0.3, 0.4, 0.86).normalize()) + random() * 0.4,
+    // On a terraformed world the works stand on its land, not in its new seas.
+    (f) =>
+      style === 'terraform' && !f.land
+        ? null
+        : 2 - f.up.distanceTo(new THREE.Vector3(0.3, 0.4, 0.86).normalize()) + random() * 0.4,
   );
   const mark = (face: Face, tone: Tone) => {
     face.used = true;
@@ -203,19 +212,10 @@ function furnish(
       for (const face of built) {
         mark(face, '#8a8d93');
         const grid = world.aligned(face);
-        for (const [x, z] of [
-          [-1, 0],
-          [1, 0],
-        ])
-          world.ground.solid.box(
-            local(grid, x * face.size * 0.14, 0, z),
-            face.size * 0.2,
-            face.size * 0.14,
-            face.size * 0.2,
-            '#a2a4a9',
-            '#686b72',
-          );
-        if (random() < lit) lamp(world, face, light, face.size * 0.025);
+        // One block a face, its windows lit as often as the body's illumination allows.
+        const on = random() < lit;
+        world.ground.kit('micro-block', grid, face.size * 0.3, { dark: !on });
+        if (on) lamp(world, face, light, face.size * 0.025);
       }
       break;
     case 'resort':
@@ -248,37 +248,22 @@ function furnish(
           ),
         );
         if (world.thin(0.12))
-          world.ground.sheen.prism(
-            world.within(face),
-            face.size * 0.1,
-            face.size * 0.1,
-            face.size * 0.2,
-            6,
-            '#9aa6b1',
-          );
+          world.ground.kit('micro-tank', world.within(face), face.size * 0.2, { metal: '#9aa6b1' });
         if (random() < lit * 0.3) lamp(world, face, light, face.size * 0.025);
       }
       break;
     case 'works':
       for (const face of built) {
         mark(face, '#5a4034');
-        world.ground.solid.box(
-          world.aligned(face),
-          face.size * 0.4,
-          face.size * 0.08,
-          face.size * 0.4,
-          '#6f7a86',
-          '#8a949e',
-        );
-        if (random() < 0.4) lamp(world, face, light, face.size * 0.025);
+        const on = random() < 0.4;
+        world.ground.kit('micro-works', world.aligned(face), face.size * 0.4, { dark: !on });
+        if (on) lamp(world, face, light, face.size * 0.025);
       }
       break;
     case 'hatch': {
       const face = built[0] ?? world.faceAt(10, 10);
       mark(face, '#6f6560');
-      const m = world.on(face);
-      world.ground.solid.prism(m, 0.07, 0.05, 0.02, 6, '#5f5652');
-      world.ground.glow.box(local(m, 0, 0.02, 0), 0.04, 0.002, 0.008, light);
+      world.ground.kit('lm-hatch', world.on(face), 0.1);
       break;
     }
     case 'machine-dark':
@@ -299,20 +284,17 @@ function furnish(
             : '#fff0c0';
       for (const face of built) {
         mark(face, random.pick(palette[style]));
-        if (random() < (style === 'machine-light' ? 0.08 : 0.22)) {
+        // Lit seams, where the table reports light at all.
+        if (random() < (style === 'machine-light' ? 0.08 : 0.22) && !world.dim) {
           const [a, b, c] = face.corners.map((p) =>
             p.clone().lerp(face.centre, 0.55).addScaledVector(face.up, 0.002),
           );
           world.ground.glow.tri(a, b, c, seam);
         }
         if (world.thin(0.05))
-          world.ground.sheen.gem(
-            world.within(face),
-            face.size * 0.12,
-            face.size * 0.5,
-            palette[style][2],
-            3,
-          );
+          world.ground.kit('micro-shard', world.within(face), face.size * 0.5, {
+            metal: palette[style][2],
+          });
       }
       break;
     }
@@ -757,8 +739,12 @@ export function buildCompanion(
 ): WorldModel {
   const style = styles[scenario]?.[body];
   const faces = surface(body, style, quality.detail);
+  // Natural ground shades smoothly from one tone to the next; whatever a scenario builds or
+  // repaints afterwards keeps crisp facets.
+  for (const face of faces) face.wild = face.tone;
   const world = new WorldContext(faces, quality, body.length * 97 + scenario.length * 13);
   const cells = signals.bodies[body];
+  world.dim = lightShare(cells.artificial_illumination) === 0;
   const tilt = body === 'Mars' ? 0.44 : body === 'Venus' ? 0.05 : 0.12;
   // The camera looks at the body along -z after its pose, as for the Earths.
   world.view = new THREE.Vector3(0, 0, 1).applyQuaternion(
@@ -774,6 +760,7 @@ export function buildCompanion(
       escorts: 1,
     });
   if (style) stations(world, body, style);
+  bodyRelief(world, body);
   // Bodies worked only from orbit carry a station on their own ring.
   if (style === 'orbit') {
     const ring = world.layer('station', 'orbit', {
@@ -846,7 +833,14 @@ export function buildCompanion(
   );
 
   const layers: Layer[] = [
-    { name: 'globe', frame: 'surface', solid: globeGeometry(faces, 5) },
+    {
+      name: 'globe',
+      frame: 'surface',
+      ...globeGeometry(
+        faces,
+        body === 'Mars' && style === 'terraform' ? { water: true, bank: '#d9c9a0' } : {},
+      ),
+    },
     ...world.finish(),
   ];
   return {
@@ -858,5 +852,6 @@ export function buildCompanion(
     pitch: 0.15,
     extent: extentOf(layers),
     ...world.population(layers),
+    unlit: world.dim,
   };
 }

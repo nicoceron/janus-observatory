@@ -1,12 +1,11 @@
 import * as THREE from 'three';
 import { type EarthBrief } from '../earth';
-import { coveredFaces, hazeStrength, lightShare, satelliteCount } from '../encoding';
-import { frame, local } from '../kit';
+import { coveredFaces, hazeStrength, satelliteCount } from '../encoding';
+import { frame } from '../kit';
 import type { LayerBuilder } from '../model';
 import { orderedSwarm } from '../orbits';
-import { tree, turbine } from '../parts';
 import type { Tone } from '../kit';
-import { U } from '../props/library';
+import { propHeight, U } from '../props/library';
 import { flights, harbourLoops, rails, roads, seaLanes } from '../scene/network';
 import { citizens, earthFlora } from '../scene/presets';
 import { farmland, harbour, setPieces } from '../scene/sites';
@@ -18,72 +17,12 @@ import { buildTown, type TownStyle } from '../scene/towns';
  * decentralized, Earth remains civilization's hub, and small settlements reach the Moon, Mars,
  * and outer Solar System."
  */
-export function gardenTown(
-  layer: LayerBuilder,
-  m: THREE.Matrix4,
-  s: number,
-  lit: number,
-  random: () => number,
-  civic = false,
-) {
-  layer.solid.prism(m, 0.55 * s, 0.55 * s, 0.02 * s, 10, '#b9d98e', '#a7cf7c');
-  const homes = civic ? 9 : 6;
-  for (let i = 0; i < homes; i++) {
-    const a = (i / homes) * Math.PI * 2 + random() * 0.3;
-    const r = (0.28 + random() * 0.14) * s;
-    const home = local(m, Math.cos(a) * r, 0.02 * s, Math.sin(a) * r, -a);
-    const w = (0.12 + random() * 0.05) * s;
-    layer.solid.box(home, w, 0.09 * s, w * 0.8, '#f4efe2', '#6fbf61');
-    if (random() < lit)
-      layer.glow.box(local(home, 0, 0.04 * s, w * 0.41), w * 0.5, 0.03 * s, 0.002 * s, '#ffe6a8');
-  }
-  layer.sheen.dome(local(m, 0, 0.02 * s, 0), 0.17 * s, '#bfe9f2', 8, 2);
-  layer.solid.prism(
-    local(m, 0.12 * s, 0.02 * s, -0.12 * s),
-    0.03 * s,
-    0.02 * s,
-    (civic ? 0.6 : 0.36) * s,
-    6,
-    '#e3b84b',
-  );
-  layer.solid.prism(
-    local(m, 0.12 * s, (civic ? 0.62 : 0.38) * s, -0.12 * s),
-    0.02 * s,
-    0,
-    0.1 * s,
-    6,
-    '#e3b84b',
-  );
-  for (let i = 0; i < 3; i++)
-    tree(
-      layer.solid,
-      local(m, (random() - 0.5) * 0.5 * s, 0.02 * s, (random() - 0.5) * 0.5 * s),
-      'round',
-      '#3f9a4d',
-      0.14 * s,
-    );
+export function gardenTown(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
+  layer.kit('lm-garden-town', m, s / 10);
 }
 
 export function tetherHub(layer: LayerBuilder, m: THREE.Matrix4, s: number) {
-  layer.sheen.torus(m, 0.4 * s, 0.05 * s, '#f1efe7', 20, 4);
-  layer.sheen.prism(local(m, 0, -0.12 * s, 0), 0.1 * s, 0.1 * s, 0.24 * s, 8, '#e3b84b');
-  for (let i = 0; i < 6; i++) {
-    const a = (i / 6) * Math.PI * 2;
-    layer.sheen.beam(
-      new THREE.Vector3().applyMatrix4(m),
-      new THREE.Vector3(Math.cos(a) * 0.4 * s, 0, Math.sin(a) * 0.4 * s).applyMatrix4(m),
-      0.012 * s,
-      '#d8d4c8',
-    );
-    layer.glow.box(
-      local(m, Math.cos(a) * 0.4 * s, 0.05 * s, Math.sin(a) * 0.4 * s),
-      0.04 * s,
-      0.02 * s,
-      0.04 * s,
-      '#fff0c0',
-    );
-  }
-  layer.sheen.panel(local(m, 0, 0.14 * s, 0), 0.9 * s, 0.14 * s, '#3b6fb6', '#e3b84b');
+  layer.kit('lm-tether-hub', m, s / 10);
 }
 
 export const s3: EarthBrief = {
@@ -161,7 +100,6 @@ export const s3: EarthBrief = {
       4,
       { spacing: 40, escort: ['gardener-bot', 1, [1, 1], ['#7fbf5a', '#e0a830']], escorts: 2 },
     );
-    const lit = lightShare(earth.artificial_illumination);
     const land = faces.filter((f) => f.land && !['ice', 'peak', 'mountain'].includes(f.biome));
     const bright: Tone[] = [
       '#f2efe6',
@@ -237,9 +175,6 @@ export const s3: EarthBrief = {
         world.layer('garden-town', 'surface', { landmark: 'garden-town' }),
         world.on(sites[0], random() * 6, 1, -0.001),
         0.12,
-        lit,
-        random,
-        true,
       );
 
     // Orchards and fields close to every town.
@@ -264,7 +199,12 @@ export const s3: EarthBrief = {
       const count = 3;
       for (let k = 0; k < count; k++) {
         const dir = offset(face.up, (k / count) * Math.PI * 2, 2.6 * U);
-        if (layer) turbine(layer.solid, frame(world.surface.point(dir, -0.0004), dir, 0.3), 0.16);
+        if (layer)
+          layer.kit(
+            'turbine',
+            frame(world.surface.point(dir, -0.0004), dir, 0.3),
+            0.3 / propHeight('turbine'),
+          );
         else
           world.props.add(
             'turbine',
@@ -311,7 +251,7 @@ export const s3: EarthBrief = {
     hub.used = true;
     const tether = world.layer('tether', 'surface', { landmark: 'tether' });
     const top = hub.up.clone().multiplyScalar(1.5);
-    tether.sheen.prism(world.on(hub), 0.12, 0.08, 0.07, 8, '#e3b84b');
+    tether.kit('lm-tether-anchor', world.on(hub), 0.1, { metal: '#e3b84b' });
     tether.sheen.beam(hub.centre, top, 0.009, '#f2d27a', 6);
     tetherHub(tether, frame(top, hub.up), 0.22);
     // Beside the tether: fusion power and a spaceport for the Moon, Mars and the outer system.

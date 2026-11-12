@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import type { Face } from '../globe';
 
+const probe = new THREE.Vector3();
 const ray = new THREE.Vector3(),
   hit = new THREE.Vector3(),
   ab = new THREE.Vector3(),
@@ -130,6 +131,16 @@ export class Surface {
 
   land(direction: THREE.Vector3) {
     return this.face(direction).land;
+  }
+
+  /** Open water with no land within `berth` radians: room for a hull, clear of every coast. */
+  offshore(direction: THREE.Vector3, berth: number) {
+    if (this.land(direction)) return false;
+    const up = probe.copy(direction).normalize().clone();
+    for (const reach of [berth, berth / 2])
+      for (let i = 0; i < 8; i++)
+        if (this.land(offset(up, (i / 8) * Math.PI * 2 + reach * 40, reach))) return false;
+    return true;
   }
 }
 

@@ -12,6 +12,8 @@ import {
   collapseDataset,
 } from '../lib/canonical-core';
 import { Voyage } from './voyage/Voyage';
+import { Preload } from './components/Preload';
+import { kitPackUrl } from './planets/props/kit-url';
 import { CivilizationChart, SignalMatrix } from './voyage/Charts';
 import { worlds } from './voyage/worlds';
 import { systemPortrait } from '../lib/system-portrait';
@@ -66,6 +68,8 @@ export default function Home() {
   }));
   return (
     <main id="main">
+      {/* The opening Earth is drawn from the core kit pack: fetch it alongside the scripts. */}
+      <Preload href={kitPackUrl('core')} />
       <Voyage
         systems={systems.map((system) => system.art)}
         signals={allScenarioProfiles.map(worldSignals)}
