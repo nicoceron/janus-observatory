@@ -1,7 +1,8 @@
 # Blender kit QA report
 
 2026-11-12, for [Decision 038](../../DECISION_038_BLENDER_KIT.md). Canonical data is unchanged by
-this work.
+this work. The results below are for the branch after `main` (Decisions 036 and 037) was merged
+into it.
 
 ## What was reviewed
 
@@ -38,52 +39,43 @@ work-in-progress passes and video are in the uncommitted process archive (`media
 | `pnpm format:check`                                                              | Passes for this work. It still reports files under `.claude/worktrees/`, which are other checkouts and not part of this change.       |
 | `pnpm lint`                                                                      | Pass                                                                                                                                  |
 | `pnpm typecheck`                                                                 | Pass                                                                                                                                  |
-| `pnpm test` (unit)                                                               | Pass: 46 files, 195 tests                                                                                                             |
+| `pnpm test` (unit)                                                               | Pass: 47 files, 200 tests                                                                                                             |
 | `pnpm lint:python`, `pnpm test:python`                                           | Pass (pipeline untouched)                                                                                                             |
 | `pnpm source:validate`, `data:generate:check`, `data:validate`, `links:validate` | Pass                                                                                                                                  |
 | `pnpm assets:validate`                                                           | Pass: the four kit packs are admitted as `janus.kit.v1.*` with source and pack checksums                                              |
 | `pnpm build`                                                                     | Pass                                                                                                                                  |
-| `pnpm bundle:check`                                                              | Pass: home JavaScript 202 KB of 256 KB; opening visuals 0.69 MB of 1.5 MB (mobile); guided journey 4.6 MB of 20 MB; no file over 4 MB |
+| `pnpm bundle:check`                                                              | Pass: home JavaScript 202 KB of 256 KB; opening visuals 0.67 MB of 1.5 MB (mobile); guided journey 4.5 MB of 20 MB; no file over 4 MB |
 | `lint:resilience`, `test:resilience`, `resilience:validate`, `eval:research`     | Pass                                                                                                                                  |
 | `pnpm source:reproduce:strict`                                                   | Pass: strict reproducibility from 15 checksum-locked source PDFs                                                                      |
-| `pnpm build:cloudflare`                                                          | Pass: worker 2,770 KiB of the 3,072 KiB Free limit; the staged kit packs match the manifest; credential scan clean                    |
-| Playwright, all five profiles (`pnpm test:e2e`, production build)                | 328 pass, 6 fail, 6 skipped. Every failure also fails on unmodified `main`; see below.                                                |
-| Visual regression (pinned Linux container)                                       | 4 of 4 pass, twice from a clean build, after the suite was repaired and its four baselines regenerated; see below.                    |
+| `pnpm build:cloudflare`                                                          | Pass: worker 2,763 KiB of the 3,072 KiB Free limit; the staged kit packs match the manifest; credential scan clean                    |
+| Playwright, all five profiles (`pnpm test:e2e`, production build)                | 399 pass, 0 fail, 6 skipped (skips written into the tests: desktop-only and Chromium-only cases); see below.                          |
+| Visual regression (pinned Linux container)                                       | 4 of 4 pass. Three baselines are `main`'s, unchanged; the opening Earth was regenerated for the kit; see below.                       |
 
 All of this was run on the authoring machine, not in hosted CI.
 
-**The six end-to-end failures, all present on `main`:**
+**Browser suite.** Chromium, Firefox, WebKit, mobile Chromium (Pixel 7) and mobile WebKit
+(iPhone 15) each pass every test they run: 81, 80, 80, 79 and 79.
 
-- `story.spec.ts` "the story is complete before WebGL…" on Chromium, Firefox and WebKit: staged
-  scenario copy is inert until its chapter is active (recorded in
-  [Decision 035's report](../low-poly-worlds/REPORT.md)).
-- `chapter-sync.spec.ts:3` and `spatial-system.spec.ts:5` on mobile Chromium: confirmed on a clean
-  checkout of `main`.
-- `story-system.spec.ts:6` on mobile WebKit: in S9 the "Solar collectors" tap target is projected
-  under the site header (at 176, 112) and cannot be tapped. Confirmed on a clean checkout of
-  `main`, at the same position. This one is a real defect in the phone layout, not only a test.
+- The first run after the merge had two failures, both `organic-reveal.spec.ts` on desktop and
+  mobile Chromium, which draw with software WebGL. They exposed defect 7 below, which was fixed
+  in the build queue. The test also now waits for the world it inspects to be mounted before it
+  samples, as the system sweep already did.
+- An earlier version of this report listed six failures and called them present on `main`. They
+  were present on a copy of `main` that was three merges behind. The current `main` had already
+  repaired them, and its versions of those tests are the ones kept.
+- Headless Firefox once failed to create a WebGL context when the one test was repeated three
+  times in two parallel workers; the page then showed its fallback article, as designed. It did
+  not happen in the full runs.
 
-**The visual-regression suite was repaired afterwards and passes.** It had been failing since
-before this work, for reasons of its own, and is fixed on the branch `fix/visual-suite`:
+**Visual regression.** `main` had repaired this suite and re-rendered its baselines for
+Decisions 036 and 037. Its spec and three of its baselines (the article without WebGL, the
+Observatory fingerprint, the Atlas matrix) pass unchanged against the kit. The fourth,
+`first-light-earth.png`, is the opening Earth, which the kit redraws: 107,749 pixels differed, all
+on the globe and its satellites, with the title and copy identical. It was regenerated, looked at
+beside `main`'s image, and accepted; it shows the kit's Earth as the container's software WebGL
+draws it (minimal quality, without instanced props). Thresholds are unchanged.
 
-- The opening Earth test expected `data-motion="reduced"` on the homepage, which has run in full
-  motion on purpose since [Decision 023](../../DECISION_023_STORY_CLEANUP.md). The suite now
-  chooses Reduced with the Motion control on the accessibility page, as a reader does, and checks
-  that the homepage still reports full motion and leaves that saved choice alone. The capture is
-  taken with the browser clock paused 100 frames after the stage's first frame, with the world
-  held at its authored rest pose for the capture only.
-- The article test clicked "Read without animation", which Decision 023 removed. It now reaches
-  the article the way the product offers it: with WebGL unavailable.
-- The Observatory and Atlas baselines predated the dark inner-page shell of
-  [Decision 025](../../DECISION_025_SHARED_WORLD_PAGES.md). That shell's side gutters are 7vw
-  where the old ones were 8vw, so a section measures 1228.4 px at this viewport and is captured
-  as 1230 px, where the stored images were 1200 px. Their captures now hide the fixed site header
-  and use a viewport tall enough to hold the whole section.
-
-All four baselines were regenerated and each image was looked at before it was accepted;
-`first-light-earth.png` now shows the kit's Earth as the container's software WebGL draws it
-(minimal quality, without instanced props). Pixel thresholds are unchanged. No application code
-was changed. To reproduce, with Docker Desktop running and the workspace installed:
+To reproduce, with Docker Desktop running and the workspace installed:
 
 ```sh
 scripts/visual-regression.sh
@@ -91,15 +83,14 @@ scripts/visual-regression.sh
 
 It builds the site, serves it on port 3200, and compares in the pinned container
 (`mcr.microsoft.com/playwright:v1.62.1-noble@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac`,
-linux/amd64) with that container's Chromium. Two runs, each from a removed build directory, passed
-4 of 4; [the environment record](visual-environment.json) has the details. After an intended
-visual change, `scripts/visual-regression.sh --update-snapshots` rewrites the baselines, which
-must then be looked at one by one.
+linux/amd64) with that container's Chromium; [the environment record](visual-environment.json)
+has the details. After an intended visual change, `scripts/visual-regression.sh
+--update-snapshots` rewrites the baselines, which must then be looked at one by one.
 
 New tests written with the work: kit pack decoding and bounds, unlit twins, the Earth relief
 blob, the inflate fallback, the loader's listener re-entrancy, lanes that keep props off roads,
 open-water berths, toy proportions, town clusters, aircraft altitude, the unlit-world rule for
-props, and the ledger entries for the four packs.
+props, the build queue's order, and the ledger entries for the four packs.
 
 ## Defects found and fixed during QA
 
@@ -123,6 +114,12 @@ props, and the ledger entries for the four packs.
    standing in roads, walls built across their ring, ships aground in straits, aircraft flying
    through towers, and sawtooth colour borders on the Moon, terraformed Mars and S5. Each is
    described in Decision 038.
+7. **A world built after its own moons.** The idle build queue put the most recent request first,
+   and a system mounts its Earth before its companions, so the companions were built first. With
+   software rendering, where about one model is built every half second, a quick jump left the
+   next world's moons and planets on screen for about 2.4 s without their Earth. `main`'s queue
+   has the same order; its code-drawn models were cheap enough to hide it. A shown world is now
+   built before any shown companion (`planets/queue.ts`), and the Earth arrives in about 0.5 s.
 
 ## Second pass
 
@@ -159,6 +156,9 @@ sheets from the front, back and above and then in the browser, on its world or s
   rendering only.
 - **Keyboard, reduced-motion and WebGL-fallback behaviour** were exercised by the Chromium
   end-to-end suite (accessibility scans, reduced motion, the fallback article), not by hand.
-- **The live site beyond a smoke check.** After deploying to
-  `janus-observatory.nicocerond.workers.dev` the home page, one atlas world and the observer
-  chapter were opened in a real browser; the end-to-end suite was not run against the deployment.
+- **The live site beyond a smoke check.** On `janus-observatory.nicocerond.workers.dev` the home
+  page, one atlas world and the observer chapter are opened in a real browser after a deploy; the
+  end-to-end suite is not run against the deployment.
+- **The first half second after a jump on software rendering.** A reader who jumps to a chapter
+  the instant the page is ready can still see the next world's companions before its Earth for
+  one idle period (about 0.5 s). How long that takes on a phone was not measured.

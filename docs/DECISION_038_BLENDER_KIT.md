@@ -191,8 +191,8 @@ dozen or the hundred. Three rules keep a world's cost near Decision 035's:
 - Nothing in the story, the atlas, the data or the wording changed. Every illustration did.
 - The site downloads four model packs again: 0.58 MB for the opening Earth, 0.14 MB for the
   observer, 1.71 MB for the scenario worlds and 1.19 MB for landmarks and system bodies (3.62 MB
-  in all, stored gzip-compressed). The home page's opening visuals come to 0.69 MB against the
-  1.5 MB mobile budget, and a whole guided journey to 4.6 MB against 20 MB.
+  in all, stored gzip-compressed). The home page's opening visuals come to 0.67 MB against the
+  1.5 MB mobile budget, and a whole guided journey to 4.5 MB against 20 MB.
 - **No light the table does not report.** Kit models carry their own lamps and lit windows, so
   the rule Decision 035 applied by hand is now enforced centrally: where Table 6 reports no
   artificial illumination for a body (`WorldModel.unlit`), no kit model on its surface glows,
@@ -223,6 +223,10 @@ as follows:
   use a server that is already running.
 - **Visual baselines** are `main`'s, except the opening Earth, which the kit redraws; see the QA
   report.
+
+The merged site then showed one fault, which is fixed: the idle build queue built a world's
+companion bodies before the world itself (`planets/queue.ts` now ranks a shown world first). The
+QA report lists it as defect 7.
 
 ## Verification
 
