@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { storyHandoff } from './helpers/story-handoff';
 
 test.setTimeout(60000);
 
@@ -43,20 +44,34 @@ test('names appear only on demand and interaction follows the scene through moti
   ).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(moon).toBeFocused();
-  const original = await earth.boundingBox();
-  const scroll = await page.evaluate(() => scrollY);
-  const travel = await page
-    .locator('#s3')
-    .evaluate((el) => el.getBoundingClientRect().height * 0.25);
-  await page.evaluate((distance) => window.scrollBy(0, distance), travel);
-  await expect
-    .poll(async () => {
-      const current = (await earth.boundingBox())!;
-      return Math.hypot(current.x - original!.x, current.y - original!.y);
-    })
-    .toBeGreaterThan(1);
+  const canvas = page.locator('canvas');
   // Compare in canvas coordinates: mobile Safari can offset the visual viewport while scrolling.
   // Read both rectangles in the same task to catch stale targets without mixing coordinate spaces.
+  const centre = () =>
+    earth.evaluate((el) => {
+      const r = el.getBoundingClientRect();
+      const canvasRect = document.querySelector('canvas')!.getBoundingClientRect();
+      return [r.x + r.width / 2 - canvasRect.x, r.y + r.height / 2 - canvasRect.y];
+    });
+  const original = await centre();
+  const scroll = await page.evaluate(() => scrollY);
+  // A quarter of the way into the handoff to S4. On a phone the scene first holds still while the
+  // chapter's prose is read (Decision 033), so a distance measured from the chapter's rest would
+  // end inside that hold.
+  const [start, end] = await storyHandoff(page, 's3', 's4');
+  await page.evaluate(
+    (y) => window.scrollTo({ top: y, behavior: 'instant' }),
+    start + (end - start) * 0.25,
+  );
+  await expect
+    .poll(async () => Number(await canvas.getAttribute('data-scene')))
+    .toBeCloseTo(4.25, 2);
+  await expect
+    .poll(async () => {
+      const current = await centre();
+      return Math.hypot(current[0] - original[0], current[1] - original[1]);
+    })
+    .toBeGreaterThan(1);
   const offsets = await region.locator('[data-spatial-visible="true"]').evaluateAll((elements) =>
     elements.map((el) => {
       const [x, y] = (el as HTMLElement).dataset.projectedCenter!.split(',').map(Number);
@@ -78,9 +93,7 @@ test('names appear only on demand and interaction follows the scene through moti
   );
   expect(Math.max(...offsets.map((p) => p.error)), JSON.stringify(offsets)).toBeLessThan(0.05);
   await page.evaluate((y) => window.scrollTo(0, y), scroll);
-  await expect
-    .poll(async () => Number(await page.locator('canvas').getAttribute('data-scene')))
-    .toBeCloseTo(4, 2);
+  await expect.poll(async () => Number(await canvas.getAttribute('data-scene'))).toBeCloseTo(4, 2);
   await page.mouse.move(0, 0);
   await page.screenshot({ path: `docs/qa/spatial-systems/${info.project.name}-interaction.png` });
 });

@@ -8,7 +8,8 @@ test('scenario copy and worlds share arrivals, holds and reverse transitions', a
   await expect(canvas).toHaveAttribute('data-scene', '4.000', { timeout: 60000 });
   const copy = page.locator('#s3 [data-chapter-copy]');
   await expect(copy).toHaveCount(1);
-  const phone = info.project.name === 'mobile-webkit';
+  // Decision 033: on a phone the copy stays in normal document flow, whichever engine draws it.
+  const phone = page.viewportSize()!.width <= 760;
   await expect(page.locator('#s3 [data-copy-slot]')).toHaveAttribute(
     'data-copy-layout',
     phone ? 'flow' : 'staged',

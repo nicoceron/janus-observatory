@@ -43,8 +43,19 @@ test('every published destination is visible together and opens its own inspecto
         exact: true,
       });
       await expect(button).toBeInViewport({ ratio: 0.999 });
+      // Tappable: the whole target lies below the fixed header and takes the pointer at its centre.
+      // Both rectangles are read in one task, so they share a coordinate space on mobile Safari.
+      const target = await button.evaluate((el) => {
+        const r = el.getBoundingClientRect();
+        return {
+          top: r.top,
+          header: document.querySelector('[data-site-header]')!.getBoundingClientRect().bottom,
+          receives: el.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)),
+        };
+      });
+      expect(target.top, `S${i + 1} ${id}`).toBeGreaterThanOrEqual(target.header);
+      expect(target.receives, `S${i + 1} ${id}`).toBe(true);
       const box = await button.boundingBox();
-      expect(box!.y).toBeGreaterThanOrEqual(70);
       expect(box!.y + box!.height).toBeLessThan(page.viewportSize()!.height - 60);
       expect(await button.getAttribute('aria-pressed')).toBeNull();
     }

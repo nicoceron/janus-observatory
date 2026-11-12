@@ -15,12 +15,14 @@ test('the story is complete before WebGL and links every scenario to its data', 
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Ten futures.One question.');
   await expect(page.locator('[data-world]')).toHaveCount(10);
+  // The whole article is in the document from the first response. Once the page hydrates, a
+  // staged chapter's copy is inert until its chapter is active (Decision 033), so completeness is
+  // read from the document, which holds whether or not that has happened yet.
   for (let i = 1; i <= 10; i++) {
     const world = page.locator(`[data-world="S${i}"]`);
-    await expect(world.getByRole('link', { name: 'Explore this civilization ↗' })).toHaveAttribute(
-      'href',
-      `/atlas/s${i}`,
-    );
+    const link = world.locator('a', { hasText: 'Explore this civilization ↗' });
+    await expect(link).toHaveCount(1);
+    await expect(link).toHaveAttribute('href', `/atlas/s${i}`);
     await expect(world.locator('a[href*="arxiv.org"]')).toHaveCount(0);
   }
   await expect(
@@ -31,6 +33,18 @@ test('the story is complete before WebGL and links every scenario to its data', 
       exact: true,
     }),
   ).toBeAttached();
+  // A reader is offered each scenario's link, by role and name, while that chapter is the active one.
+  for (let i = 1; i <= 10; i++) {
+    await page.evaluate((id) => {
+      location.hash = id;
+    }, `s${i}`);
+    await expect(page.locator('[data-voyage]')).toHaveAttribute('data-active-chapter', `s${i}`);
+    await expect(
+      page
+        .locator(`[data-world="S${i}"]`)
+        .getByRole('link', { name: 'Explore this civilization ↗' }),
+    ).toHaveAttribute('href', `/atlas/s${i}`);
+  }
 });
 
 test('keyboard jumps and fast reversals reconcile to the final chapter', async ({ page }) => {
