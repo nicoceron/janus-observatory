@@ -13,6 +13,19 @@ await writeFile(
   'export const production = {};\nexport const development = {};\nexport const test = {};\n',
 );
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
+// The Blender kit packs (Decision 036) are requested with their checksum in the query string
+// (`kit-core.bin?v=<sha>`), so a pack's URL changes whenever its bytes do and it can be cached
+// for good. They are already gzip-compressed and are staged as they are.
+const kit = JSON.parse(
+  await readFile(join(root, 'apps/web/app/planets/props/kit.generated.json'), 'utf8'),
+);
+for (const [name, pack] of Object.entries(kit.packs)) {
+  const staged = await readFile(join(output, pack.path)).catch(() => null);
+  if (!staged || hash(staged) !== pack.sha256 || staged.length !== pack.bytes)
+    throw new Error(
+      `Kit pack ${name} is missing from the deployment or does not match its manifest.`,
+    );
+}
 const models = [];
 async function compress(directory, relative = '') {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -57,6 +70,8 @@ await writeFile(
   Cache-Control: public, max-age=31536000, immutable
 /assets/blender/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/assets/kit/*
+  Cache-Control: public, max-age=31536000, immutable
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin

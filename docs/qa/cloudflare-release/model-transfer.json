@@ -4,17 +4,17 @@
   "models": [
     {
       "path": "v1/origin/earth-mobile.glb",
-      "bytes": 689332,
-      "transferredBytes": 339347,
-      "sha256": "f1741609f25d8942c8dbd8e397c217585a61d8ce3c595531943ae4526041f91d",
-      "compressedSha256": "2d299fdcaa8d8fa56c3596e5185ec6cffc6ee590fd28fb2c3e6f6898247bf2e0"
+      "bytes": 690588,
+      "transferredBytes": 348705,
+      "sha256": "18d553a447b0e0b6138fc8d81600e810b5f1080256e121a6e0b18fc90f533c20",
+      "compressedSha256": "f17c6c579c968bdeec793b44099f638dc27f06ac2d42f019a92f256f12f1bda6"
     },
     {
       "path": "v1/origin/earth.glb",
-      "bytes": 764616,
-      "transferredBytes": 380197,
-      "sha256": "9cb7b59e107a03c09c144c8535d9032c2e498b646312e0090751cfab7d1be7ad",
-      "compressedSha256": "52c2992f6cd9c380f8ad5d66077f1472833ab8a46f006a492619a0454d34c4c1"
+      "bytes": 795764,
+      "transferredBytes": 397209,
+      "sha256": "eb2177913541356191eb17d4cb5e85a1dbe7ed80ed2ad1f4c62f0b8b1b6cf97b",
+      "compressedSha256": "572434ddaf487576449a7ec0c07f831581b2a444369c0868021d6eec2ed8f84b"
     },
     {
       "path": "v1/s1/Mars.glb",
@@ -32,38 +32,38 @@
     },
     {
       "path": "v1/s1/Venus.glb",
-      "bytes": 103716,
-      "transferredBytes": 58723,
-      "sha256": "8e46e4d8f004c6837edac058411dda13e799c34e1ecee3fee65e270e094ffd30",
-      "compressedSha256": "7b016fffd9f41e5b9892568da855113898fbfea4334ba4fcd19148e4dcd67eef"
+      "bytes": 101944,
+      "transferredBytes": 57138,
+      "sha256": "35e7a5af4e8ca98ab8debe111576c50001a1886966b809e34018fbd158ab43ac",
+      "compressedSha256": "b017727b087751f48d7127c7f06a115c722783e3f4078c43c7e70c79e19ec777"
     },
     {
       "path": "v1/s1/asteroids.glb",
-      "bytes": 63568,
-      "transferredBytes": 36645,
-      "sha256": "367796326a5f56bb265ebf2d4bb1ab0947b5c9a7c4a2a22c0a260387a8d45a55",
-      "compressedSha256": "17c732df2eea933a46108144669c19f3a5571b701b9b6320f9e8324c53a7e7f8"
+      "bytes": 63540,
+      "transferredBytes": 36618,
+      "sha256": "49089a2a01f7178d4f125aba3be0b802afb61f88cc4c89c86c54578c21308f0c",
+      "compressedSha256": "c5445ef9aa6b7ab494606272c4b81bf2f07f2c5b846f30c98c3c6f01ae2c3d13"
     },
     {
       "path": "v1/s1/earth-mobile.glb",
-      "bytes": 529580,
-      "transferredBytes": 218991,
-      "sha256": "f80a8330eae1f34dbc86df5c54a5dd66ccb3151886c17a0c165d42dcb223d756",
-      "compressedSha256": "5b45000d894e949244cc98b5651d55816996a8d74ccf01e275fb8f543a7d0abf"
+      "bytes": 536524,
+      "transferredBytes": 225772,
+      "sha256": "2a5372a052e28b248ceb9249160587bf2142f06bea010a28e4ca05b777c5b036",
+      "compressedSha256": "84e5689070469174511b67a4a8ca785cec4b801fc8b233cd219534642114276d"
     },
     {
       "path": "v1/s1/earth.glb",
-      "bytes": 595664,
-      "transferredBytes": 266042,
-      "sha256": "538c3310f34318ac61531a3c6e381f8b598be440965c8f566bd825ef24e2a6c0",
-      "compressedSha256": "463aed913c8dea74071a00319655f86ac5499d6e13fad57d3f36c7e41516acd4"
+      "bytes": 604576,
+      "transferredBytes": 273142,
+      "sha256": "359b9526d3763a93b16dddcb2037f6157bac5de92ff89f277aa8a2e4d2d5a8d9",
+      "compressedSha256": "b5be1193b8d59b0278e678944ded162463530c377e63024a3ec4b5f9035cc6af"
     },
     {
       "path": "v1/s1/outer.glb",
-      "bytes": 85228,
-      "transferredBytes": 42117,
-      "sha256": "147fa6e8e3316abe8615a6f80a9cc410a6f01a187d604867e2d15656d60c012b",
-      "compressedSha256": "c4f9fc7d6c4cc1c6eba295eb429dd0a78f57538a1bbdf12d50fb3e312e96ff7f"
+      "bytes": 84132,
+      "transferredBytes": 41698,
+      "sha256": "3eb71e36985441b85c743e9d769f568309d55d32a4e48f763a5c2fe76dd173d4",
+      "compressedSha256": "495748925015814a1e217629f96636baadd2901c4d8b5cf3a7b5460389f8a39c"
     },
     {
       "path": "v1/s10/Mars.glb",
@@ -81,31 +81,31 @@
     },
     {
       "path": "v1/s10/Venus.glb",
-      "bytes": 113768,
-      "transferredBytes": 63513,
-      "sha256": "9d5064f3fa837612a474235669196e50034998c95e86776c68d58d938f292880",
-      "compressedSha256": "9af0943ab3da529991cc72fa40db8be5b24d88408ff1c9e9336595dba8f028ba"
+      "bytes": 111972,
+      "transferredBytes": 61950,
+      "sha256": "b1462a1bc4dd5743bb05f01c39b7c09231b3c50a64afc5ca1df71856f4735c85",
+      "compressedSha256": "b561f8cac54c54b6a47ec9cbfe1d71416ff6721696881d50c7f0536c7d6215ad"
     },
     {
       "path": "v1/s10/asteroids.glb",
-      "bytes": 83112,
-      "transferredBytes": 45102,
-      "sha256": "7bdd6c2231d220722ad954955c05007ef280c576cf283baec318bd5437eeac90",
-      "compressedSha256": "1709b8c87ef1d031d791eaf3cf7da3effe71f4862792a20ab2ce002a05c39762"
+      "bytes": 82992,
+      "transferredBytes": 45054,
+      "sha256": "e685c71688c2c4c0d188bc8b40eb5021ac447943532bb750364c57dc19378c56",
+      "compressedSha256": "9f107720ca8269ace3195b05c0999767022b11f46436dfb8f2dfd4af50ae3c0b"
     },
     {
       "path": "v1/s10/earth-mobile.glb",
-      "bytes": 595012,
-      "transferredBytes": 278455,
-      "sha256": "d5b73b9220f0cb6a4aaebf8ae2e3bd334ae52317dabb47fe9a943493311e7e57",
-      "compressedSha256": "d2bd79857e3856d19773da71b42e59fe6d5e00f8930238d780889d4a20aa6ca5"
+      "bytes": 613536,
+      "transferredBytes": 293915,
+      "sha256": "48ca7ce3da98b47313bacba221c6bb69be054767f7e2135def6b17525573eb04",
+      "compressedSha256": "4f2b4a19ba4cb1ea7df196a56dc4e0c2fa84af7704e300775f1ab837ad6b61af"
     },
     {
       "path": "v1/s10/earth.glb",
-      "bytes": 672840,
-      "transferredBytes": 332536,
-      "sha256": "6c303d92bbc5d0f04b579c30b34b65fe89a5009938d748a11f8e812f03d5e919",
-      "compressedSha256": "bef1aa080678ff0230786bbb961a2e19aa82637a85a8ad79062385ee8ddf2692"
+      "bytes": 681632,
+      "transferredBytes": 342621,
+      "sha256": "33a67ef372b1e9f945e2a8348c18a94ecc71aebaede6ee3be41a087f4f15db49",
+      "compressedSha256": "2fd5157358b40126638c8a6a7eaee78b464587ec4e1425c2fd825816a3529cf4"
     },
     {
       "path": "v1/s10/kuiper.glb",
@@ -116,10 +116,10 @@
     },
     {
       "path": "v1/s10/outer.glb",
-      "bytes": 104192,
-      "transferredBytes": 53836,
-      "sha256": "e722850c30e4c3b6323349a9964c1bbaec7d1890461a6aab324ba919395b9ff5",
-      "compressedSha256": "61cf38b9a117dfd8849aaba43b3ed1d4767cfbe4cac6c0d969facccb66355b30"
+      "bytes": 104000,
+      "transferredBytes": 53737,
+      "sha256": "24dc180a45bfd70009f76afd8e9b33021c5cb7b010f2d91f7806803c618ec9b6",
+      "compressedSha256": "a049d34505df6301c82268c1574995093c61a671c0a1e46b79739811e7842d5a"
     },
     {
       "path": "v1/s2/Mars.glb",
@@ -137,24 +137,24 @@
     },
     {
       "path": "v1/s2/asteroids.glb",
-      "bytes": 73840,
-      "transferredBytes": 42025,
-      "sha256": "de599e86e389c9c86da199d4ce00a5b54e6855b6e7fd7b414d2b777dc8adab11",
-      "compressedSha256": "ca1dd4f1407096efdaddba19d103e328ea91cfa1732013f237ba794c826c37a8"
+      "bytes": 73424,
+      "transferredBytes": 41648,
+      "sha256": "f50847f387383318f678751012f1f7695fb0bf062b69fde2bd8542c3fe0e6fc5",
+      "compressedSha256": "34dfa9d8785971a0c3bbde6f99aba80604ebee259ad995d39815cd4d12a44b45"
     },
     {
       "path": "v1/s2/earth-mobile.glb",
-      "bytes": 545344,
-      "transferredBytes": 257757,
-      "sha256": "81ef58c48a2d75097724b5f9a35ba08c934f592cb9f72c9345752a60a6b9b0e1",
-      "compressedSha256": "434b1bd6c0a682d3ccf937207da940a32f32232517c314dc6760d7543bf3c01d"
+      "bytes": 567560,
+      "transferredBytes": 277170,
+      "sha256": "1b5a9afe3667f16547afd5601b59e09ad86e933df30d32dca57b4777650d94ba",
+      "compressedSha256": "9b5d85a5a9d708db074b3deda805f34f08b2de448fd90b99e70bde1d66eba42f"
     },
     {
       "path": "v1/s2/earth.glb",
-      "bytes": 632208,
-      "transferredBytes": 318035,
-      "sha256": "4ef2a20ea9c2b24306f2c777c8014ec75211bc61f4563e4069e4bb10720b6bec",
-      "compressedSha256": "31ebbd06971066de7cc059e68868eca6adb11e9a92c4388ebec4988a21689e92"
+      "bytes": 655964,
+      "transferredBytes": 338620,
+      "sha256": "92876c8f4d8f0a1d40687bd3f037e3c40cb1de26702e34f7108b54df46af60f2",
+      "compressedSha256": "a7fd96a59ebda35597f9237991d9d2dec792706258698e3f9e8cd0a8644b08a6"
     },
     {
       "path": "v1/s3/Mars.glb",
@@ -172,45 +172,45 @@
     },
     {
       "path": "v1/s3/asteroids.glb",
-      "bytes": 89104,
-      "transferredBytes": 47621,
-      "sha256": "b4341560bfd0e9ef79bb47ca4efa43e3dbc247650bbb840332dd834d7d50a8d8",
-      "compressedSha256": "039fcc9489955a19c8d756f757f761ef51555ca3ae06fc22e67a1e4483135344"
+      "bytes": 88872,
+      "transferredBytes": 47490,
+      "sha256": "b4c243862e084f39ecd2a8b86548a4f9d5afddddf817be4aa3f277219f317ae4",
+      "compressedSha256": "f803d7401d4f88c50e10cb6e491cd7395c2fc69fcc1e69336bee4019871f13e5"
     },
     {
       "path": "v1/s3/earth-mobile.glb",
-      "bytes": 755660,
-      "transferredBytes": 368585,
-      "sha256": "38361bd5db449eb89b1af6e4dcf188e42b72aeec5d45a358b147f0128e871dc7",
-      "compressedSha256": "b85c6854a3b1a5952857171ae4fdce2b9b4880f89ee45a603c9f29be084dfe5f"
+      "bytes": 780184,
+      "transferredBytes": 388713,
+      "sha256": "1b4949d9e9a43f8592d8f118cd5ab7ee08a995fe5fd375bae378fd704e768d04",
+      "compressedSha256": "3971bcba9929eabbba0442fcb00c4efcf7c08658dacfb667c465c2262e75fe1e"
     },
     {
       "path": "v1/s3/earth.glb",
-      "bytes": 846600,
-      "transferredBytes": 424370,
-      "sha256": "9b858784da70aee56b90d4e14934805404f386c4c3f27563f76fcb6779933f84",
-      "compressedSha256": "15ab3beea3d054e937e0234371250cda6410c317f80c46033b55124273f15e02"
+      "bytes": 852076,
+      "transferredBytes": 436691,
+      "sha256": "133ec6660ac808d8694f2a8af361fb3c4b92b724971db2c22ad1cdd619568a01",
+      "compressedSha256": "2cd690ff5d974134478dcdbf660130ff98f33b58cad71d47560ecc38255156f4"
     },
     {
       "path": "v1/s3/outer.glb",
-      "bytes": 144716,
-      "transferredBytes": 74277,
-      "sha256": "da8eb2426715f02ec35404e24326468bf5b7cf9791158886f6cf0819f9099a8b",
-      "compressedSha256": "4e54b9ebf0b67cd80e4071a3de77882e1dda7801172ae6c8377c0e34162ebcb8"
+      "bytes": 142336,
+      "transferredBytes": 73288,
+      "sha256": "82a95da8f5ebb05354eb048c440636b12ab63f66f2ef13132ba87651b37a8aba",
+      "compressedSha256": "fb94044bdbe6ff4340ba69e5911daa43f3957c98159e4bdc8f7b815a8b5f8b6f"
     },
     {
       "path": "v1/s4/earth-mobile.glb",
-      "bytes": 346188,
-      "transferredBytes": 200288,
-      "sha256": "f9d6fa97980249102d46c9bc575cb22dd15fd9573f5b23b9670868636fbbd213",
-      "compressedSha256": "fe34a6c60901ad5ef4f2a37e4001c11f0bc017eabb61c2d4d22ea5ddc207277c"
+      "bytes": 359156,
+      "transferredBytes": 211898,
+      "sha256": "bef4adbc394438e6fdb6903c5cc7fa904532aa9e5ade78dffeff7637a7bda808",
+      "compressedSha256": "1a7d077ff80cec6512a7f71d9a1a348058182a29ca4cc271732e432fd4c30c4b"
     },
     {
       "path": "v1/s4/earth.glb",
-      "bytes": 410596,
-      "transferredBytes": 247604,
-      "sha256": "a38b173cf06defe796e970ec0d9f53c8442329bf3a5c1dbf813f55e5398b6108",
-      "compressedSha256": "c07ead5e3adcdc9b3ee6d829fcd2a037e46388c29487f21d7560445bc7bde7a5"
+      "bytes": 435716,
+      "transferredBytes": 267883,
+      "sha256": "1f918ae0070c037c17365fc998e0f6b99928d28d3a70c00be9d21ed3e55fa4fc",
+      "compressedSha256": "7473a045c0d51ed2fa4b70eb84be2b0c33ffcb2ff9804fc5b0a94135c4a40870"
     },
     {
       "path": "v1/s5/Mars.glb",
@@ -228,31 +228,31 @@
     },
     {
       "path": "v1/s5/Venus.glb",
-      "bytes": 94704,
-      "transferredBytes": 56854,
-      "sha256": "e3cad99fddac091586e4b6a4f218463511c8607c6d43515989827d2bda370f8e",
-      "compressedSha256": "efcde82836e5386dfae54f4c80bc58a86bb3148781371837aeaf2d316b9ed901"
+      "bytes": 92912,
+      "transferredBytes": 55247,
+      "sha256": "53f47cbcc414ae59eac5f918d096fd2657bf8421737807925a8a50d01518b1b7",
+      "compressedSha256": "d66fda04d4c30dfae15e15869454de6598e5e2e9af180df28a24fd99169ae26a"
     },
     {
       "path": "v1/s5/asteroids.glb",
-      "bytes": 83100,
-      "transferredBytes": 43629,
-      "sha256": "e9ce6965b69f78ee6aaf72d1ecfef3c3d75dc49ba27533db049907dc4b71115c",
-      "compressedSha256": "1267f983241449c9bb89311686e57913d7022bf5d30342eb1a0fbd29328480a9"
+      "bytes": 83072,
+      "transferredBytes": 43643,
+      "sha256": "9f920fa971871a321c9a84682450fca329a56dfe921fe8794165835217a3ed3d",
+      "compressedSha256": "ce4235d170199ccb8f5ad76033fde3a93cf98f2dd1c081c82b0610e931fd51ad"
     },
     {
       "path": "v1/s5/earth-mobile.glb",
-      "bytes": 730084,
-      "transferredBytes": 402209,
-      "sha256": "4ad83c4e9a92cec51726cb7b0806209c365d13739fc9cfbe12d03940ff47448e",
-      "compressedSha256": "f915af353f376a16d5f1cee57f26f39450b2aacfff149e090dc678e37ba0773d"
+      "bytes": 739712,
+      "transferredBytes": 411687,
+      "sha256": "899efa6cc4b71d79e0d7b4c73c3da89f652465f7aba77064ba140c528ae8e24f",
+      "compressedSha256": "adf9745b511503ccb1707704d0df0c5eb2a0ab2b87b808caa5b92b897d1437aa"
     },
     {
       "path": "v1/s5/earth.glb",
-      "bytes": 831636,
-      "transferredBytes": 465270,
-      "sha256": "c8767715324fd0e9d933ea08e8a1bb2a81363bc12d49c1625e60ef797697a663",
-      "compressedSha256": "e34792c65e00e20e635c2c78043175ce5f873be926436f4ba7b2cc72c2a22767"
+      "bytes": 843284,
+      "transferredBytes": 476601,
+      "sha256": "a7a3c1f2c02a5cd8440b14124a92c5028ab01c14c05ce9a05872c307ac0c7f40",
+      "compressedSha256": "3f2ea368900d0bbfbe4e5f6622db3fc4960b21fdc976d5f4d6f6935bd0f3d7f6"
     },
     {
       "path": "v1/s5/kuiper.glb",
@@ -263,10 +263,10 @@
     },
     {
       "path": "v1/s5/outer.glb",
-      "bytes": 104908,
-      "transferredBytes": 52908,
-      "sha256": "9052e48340fc8885617b495717dbbcc44277a697de3cf2d7914f48322b804491",
-      "compressedSha256": "a91975bd6f67358b0ea5c5ca19bd016bd5022706cffc072e3e7d3b8568daeb72"
+      "bytes": 104304,
+      "transferredBytes": 52826,
+      "sha256": "b9f23ba60a75e1a13a220c54dbdbe1bcfc8b86da1110ddaaffac782df4d7d9eb",
+      "compressedSha256": "3c0d803f014526c5cb2729b12f16927193815c38760078508bdfd0e9fff0cd9c"
     },
     {
       "path": "v1/s6/Mars.glb",
@@ -284,31 +284,31 @@
     },
     {
       "path": "v1/s6/Venus.glb",
-      "bytes": 169432,
-      "transferredBytes": 94909,
-      "sha256": "731fe73e8367e0cbf1ee9eadc43b9ef2a0d7c530f875cff2563be0011bde3b73",
-      "compressedSha256": "68184b604a904d981df514a1ae828fb24bf08f1b04a3bc7dfeb28a3cc84012ad"
+      "bytes": 167656,
+      "transferredBytes": 93337,
+      "sha256": "b25004c2dd11e389230acc38aee173dc5b0568cceaa3253931e40d3d3ab862ad",
+      "compressedSha256": "8c8e50447d15d49125e8c954ef51c5011795dfd59755be3106c7358ba3f952c3"
     },
     {
       "path": "v1/s6/asteroids.glb",
-      "bytes": 79792,
-      "transferredBytes": 42566,
-      "sha256": "2f022566e0036ce480d2d66e389eb99d7a42e7bd5775d6e8cce8d1cf9801eca9",
-      "compressedSha256": "299e43258f397be46ffc587914f55819a47bc8bb11438da9c2f7c53817c89a03"
+      "bytes": 79616,
+      "transferredBytes": 42642,
+      "sha256": "cfb7f50e2589971fe76a6f6749b69e60876ba6242c97790d8c491437c0b55743",
+      "compressedSha256": "255369aafb69e2e3e0ab625f8a7adec3c7c10e573f20eaeaa15c54c66e0db090"
     },
     {
       "path": "v1/s6/earth-mobile.glb",
-      "bytes": 591960,
-      "transferredBytes": 265039,
-      "sha256": "885f79a9b06c1977c146c030076747d705eb7b867b9f1df8d417e88005dfe96a",
-      "compressedSha256": "88f702c0cc7a4d9345c63faed3c00c331a4e5702e6c1de32c2f6270fedf369bb"
+      "bytes": 596064,
+      "transferredBytes": 268914,
+      "sha256": "aea8d60ff3757fd78bcd5cab8f418da9f7316c07d0f4265e5e601943548ecda7",
+      "compressedSha256": "2c0f02cf41c9eff86ca1e1f7049870820bf6ad7f8f606879625283d5091e87e5"
     },
     {
       "path": "v1/s6/earth.glb",
-      "bytes": 686648,
-      "transferredBytes": 302349,
-      "sha256": "df7c69d384cb6e8f46e2079767709518a73d8798cfce239e99c6aa249f78fa9f",
-      "compressedSha256": "fc062984aff158f97e36746010799c0dbb068ee839f73dff0fca076f40091437"
+      "bytes": 690292,
+      "transferredBytes": 306156,
+      "sha256": "ab261d5a0750e6b084284c3cb11557dfabcc3e8a698661d057a4b3224bacb1aa",
+      "compressedSha256": "34c760f33997f3d7a794b5d118c26e177bae469e648af152496679fde3b0ab69"
     },
     {
       "path": "v1/s6/kuiper.glb",
@@ -319,17 +319,17 @@
     },
     {
       "path": "v1/s7/earth-mobile.glb",
-      "bytes": 529984,
-      "transferredBytes": 280258,
-      "sha256": "ec9bb1258f86309fc92207b951d3518d6985071ef4070136dccee6dcf3e6a975",
-      "compressedSha256": "6aca4dd9911e63c0782cbb793a622b45c68d2132db9b80721823c1254ca97079"
+      "bytes": 524332,
+      "transferredBytes": 281270,
+      "sha256": "f2ef09d424ff64cec3ef4cd041e54eeb18fdfc39c2911b4866b1e5affe5f228b",
+      "compressedSha256": "200c5ea9b6133f01787c66a51b9240a27951336b54642059235a6287ff3300b1"
     },
     {
       "path": "v1/s7/earth.glb",
-      "bytes": 586968,
-      "transferredBytes": 323384,
-      "sha256": "cccc292317cbd8787d38b63b7c65ce7326bed3252a441c7077740b9946747ea3",
-      "compressedSha256": "b808211910f74cb61993709c206689692a5ad50d1a1a955f833d39cb88421b34"
+      "bytes": 600132,
+      "transferredBytes": 337003,
+      "sha256": "c7a87a62b91e75d00b2a2e86201c629b82844d341f3583c26d85e98e40f19874",
+      "compressedSha256": "7f27d0eb316b24fce51941833b76a28781c586a4f7171d61007c5e401936be3f"
     },
     {
       "path": "v1/s8/Moon.glb",
@@ -340,17 +340,17 @@
     },
     {
       "path": "v1/s8/earth-mobile.glb",
-      "bytes": 332484,
-      "transferredBytes": 166546,
-      "sha256": "ecc81502e792faa9fc7311c26e70f4c4535794a15a99e5b14326f0f4461dbd1b",
-      "compressedSha256": "96c9cb6ffefcec394e0a5e5f86c583f90df2ac9b51b4ad8c6434434ddd5b9a22"
+      "bytes": 345732,
+      "transferredBytes": 178784,
+      "sha256": "04dc3d6e2c983596eee0382a3b105ff24008f015f7b23c64ca1d647198a287b6",
+      "compressedSha256": "a5a9c09a77668054bc79024177d9c04cdbf2fa0d384cb6f172f472177a95f55b"
     },
     {
       "path": "v1/s8/earth.glb",
-      "bytes": 388448,
-      "transferredBytes": 210089,
-      "sha256": "808b52be56c01dccfd601840fea2b4c45b7fac8be85807f22d1057b6f75ceab3",
-      "compressedSha256": "c3ea8246510217a5e9ddb555da6038349568d00eb01d3fecd445c5c0e21f0682"
+      "bytes": 409744,
+      "transferredBytes": 228661,
+      "sha256": "2f67df8a745083804d2102fec23a63009ea1ae82d0f7292389333a6132014c76",
+      "compressedSha256": "a486104e73bc0e39f01baea0afec36576f8e3e38612830f6369c596d60afc016"
     },
     {
       "path": "v1/s9/Mars.glb",
@@ -368,31 +368,31 @@
     },
     {
       "path": "v1/s9/Venus.glb",
-      "bytes": 116860,
-      "transferredBytes": 67631,
-      "sha256": "9a38c617edae1c9d7404516db15c3940bea7a3fc04b57ec69ca788cba408f8e0",
-      "compressedSha256": "5d4a9d0936554fe4c47f4b86e254f0bc32b67f0b3de73197d7770055405b1658"
+      "bytes": 115088,
+      "transferredBytes": 66049,
+      "sha256": "672acefb567cd1c6680cbdcc32becdb28aa837d1c43a267f370f2d847eb460a6",
+      "compressedSha256": "7ac9160224022af07c6174363a794782aa8d33c4a0b75e6545ca46e65f1d27b9"
     },
     {
       "path": "v1/s9/asteroids.glb",
-      "bytes": 63224,
-      "transferredBytes": 36239,
-      "sha256": "bf1b1e4f0c8a5d89fde0163943052184e329526586e6b772833720e19fe0be4c",
-      "compressedSha256": "48087fe6280923d5095bc36d1490cf46089805617e88bdddf5d1394c5c95fd4c"
+      "bytes": 63160,
+      "transferredBytes": 36197,
+      "sha256": "fd76a2200cd41f938df4d329658209d094e6e5922f31653414b5b5a2923a336c",
+      "compressedSha256": "fd6cf8d9ae060831dca7213b79421fff8c06b3d183c689d830cfefc2857b5f9f"
     },
     {
       "path": "v1/s9/earth-mobile.glb",
-      "bytes": 302840,
-      "transferredBytes": 162576,
-      "sha256": "66859db529ddbc0698ffc66b6a990c2fdd554d4d6feafbf4ce0a3907043ca500",
-      "compressedSha256": "91fa5e3b963631cae850c88ee3c40617f1cd1bf36104084931f80c698315bfec"
+      "bytes": 316680,
+      "transferredBytes": 174906,
+      "sha256": "44c55ebb1d0d4914c07c98c4cbb71493c51bfe58080dceffcb6aaed9ea3f5607",
+      "compressedSha256": "7ab1952a3ccb0a5b0089dfde29d50def08e5e14b5a77dd216c025a145f724e2e"
     },
     {
       "path": "v1/s9/earth.glb",
-      "bytes": 381060,
-      "transferredBytes": 218233,
-      "sha256": "a9c2c721e24f458ac5d9d839a8f67d60d159c72f7b2c399c373f9c9525a89a7b",
-      "compressedSha256": "57761da9bbd63d19da44f2e02a0e28df6ce0225c0c5d167e7c42368982fb7f4e"
+      "bytes": 391656,
+      "transferredBytes": 227776,
+      "sha256": "0172ef963018bd09211c70f24738ef3fae2d260959755374d5559f872567b7eb",
+      "compressedSha256": "88f23c027c614757f48873177035ba6ae348e04a476900fbc07ef3e3101d9391"
     },
     {
       "path": "v1/s9/kuiper.glb",
@@ -403,10 +403,10 @@
     },
     {
       "path": "v1/s9/outer.glb",
-      "bytes": 73700,
-      "transferredBytes": 38327,
-      "sha256": "80711a84627787eb1ad50a6e36b06c4cab179430aa3a3908a08784ff44e31f6e",
-      "compressedSha256": "0856fa8008cdce4b0015474980a9c06908d004083665ea5a8100b752e7ca74f5"
+      "bytes": 73680,
+      "transferredBytes": 38213,
+      "sha256": "365fd8d394d4b2b88cfaa3d8dc6e03bfd0ffd721e121a2a58e40a8ccc13a9eae",
+      "compressedSha256": "d11dec40968a58355772907f2d89513784597a2855a56b5b0f3b8318cbb5d71e"
     },
     {
       "path": "v1/s9/solar.glb",
@@ -416,6 +416,6 @@
       "compressedSha256": "6b87a5148e1de78c84dc1b6ac530b120d5d3d33e07ed785a1557262f7293e3ff"
     }
   ],
-  "originalBytes": 18675760,
-  "transferredBytes": 10068703
+  "originalBytes": 18946648,
+  "transferredBytes": 10324493
 }
