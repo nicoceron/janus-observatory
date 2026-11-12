@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-12",
+  "command": "scripts/visual-regression.sh",
+  "image": "mcr.microsoft.com/playwright:v1.62.1-noble@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac",
+  "platform": "linux/amd64, emulated by Docker Desktop 29.9.3 on Apple Silicon",
+  "browser": "The image's headless Chromium 151.0.7922.34 (Playwright 1.62.1) with SwiftShader WebGL. The site draws its software tier there: worlds at minimal quality, without instanced props.",
+  "server": "host production build (next build, then next start) on 127.0.0.1:3200, reached from the container as http://host.docker.internal:3200",
+  "checkout": "this repository mounted at /work; the container uses the host's node_modules and its own browsers, and installs or builds nothing",
+  "comparisonCompleted": true,
+  "testsPassed": 4,
+  "cleanRuns": [
+    {
+      "started": "2026-11-12T16:03:40Z",
+      "state": "apps/web/.next and test-results removed, fresh build, fresh server, fresh container, no --update-snapshots",
+      "result": "4 passed, 0 failed"
+    },
+    {
+      "started": "2026-11-12T16:04:17Z",
+      "state": "apps/web/.next and test-results removed, fresh build, fresh server, fresh container, no --update-snapshots",
+      "result": "4 passed, 0 failed"
+    }
+  ],
+  "baselineChanges": [
+    "atlas-categorical-observing-matrix.png",
+    "first-light-earth.png",
+    "first-light-reading-s1.png",
+    "observatory-s9-atmosphere-fingerprint.png"
+  ],
+  "unchangedBaselines": [],
+  "baselines": {
+    "atlas-categorical-observing-matrix.png": {
+      "size": "1230x1740",
+      "sha256": "fe8842f25926b1ee9af03ddfcf0badc628fa6fcae0d5c7aeeff5dba4fadc6d6a"
+    },
+    "first-light-earth.png": {
+      "size": "1430x1000",
+      "sha256": "0307289f04d4b1c203bc5ab7d9d9cf41b482f6ba2bf86fd52b504535afe46583"
+    },
+    "first-light-reading-s1.png": {
+      "size": "1430x691",
+      "sha256": "8416653f9ea7de74bbb3f9fcc70392812079df593e626ef2a13a57a1f0dd5939"
+    },
+    "observatory-s9-atmosphere-fingerprint.png": {
+      "size": "1230x1739",
+      "sha256": "514e549191db5c267bfded5226150d35512259bd9c8fff7a3c81a4dc4ebd5214"
+    }
+  },
+  "repeatability": "With the pixel allowance temporarily set to zero, three of four further comparisons matched all four baselines exactly and one differed by 5 pixels on first-light-earth.png (allowance 120). Thresholds and allowances are unchanged from the previous suite.",
+  "verification": "All four baselines were regenerated with --update-snapshots and each image was looked at before it was accepted; two separate clean comparisons of the final files then passed (as had two before the documentation was written). Linux Chromium against the host production build, not hosted CI or a Linux application build."
+}
