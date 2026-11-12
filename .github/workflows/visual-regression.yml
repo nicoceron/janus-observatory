@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     # Playwright 1.62.1 on Ubuntu 24.04 (Noble), pinned to the linux/amd64 manifest.
+    # scripts/visual-regression.sh runs this suite locally and reads the image from the line below.
     container:
       image: mcr.microsoft.com/playwright:v1.62.1-noble@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac
       options: --ipc=host

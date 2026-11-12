@@ -1,7 +1,11 @@
 import { defineConfig } from '@playwright/test';
 
 const port = 3200;
-const baseURL = process.env.PLAYWRIGHT_VISUAL_BASE_URL ?? `http://127.0.0.1:${port}`;
+// When set, the production server is already running somewhere the browser can reach (the
+// pinned container driving a build served by the host: scripts/visual-regression.sh), so this
+// configuration neither builds nor starts one.
+const externalServer = process.env.PLAYWRIGHT_VISUAL_BASE_URL;
+const baseURL = externalServer ?? `http://127.0.0.1:${port}`;
 
 export default defineConfig({
   testDir: './apps/web/e2e-visual',
@@ -39,17 +43,19 @@ export default defineConfig({
     video: 'off',
     viewport: { width: 1440, height: 1000 },
   },
-  webServer: {
-    command:
-      'pnpm --filter @janus/web build && pnpm --filter @janus/web start --hostname 127.0.0.1 --port 3200',
-    env: {
-      JANUS_ENABLE_HTTPS_UPGRADE: 'false',
-      NEXT_TELEMETRY_DISABLED: '1',
-    },
-    reuseExistingServer: false,
-    timeout: 240_000,
-    url: baseURL,
-  },
+  webServer: externalServer
+    ? undefined
+    : {
+        command:
+          'pnpm --filter @janus/web build && pnpm --filter @janus/web start --hostname 127.0.0.1 --port 3200',
+        env: {
+          JANUS_ENABLE_HTTPS_UPGRADE: 'false',
+          NEXT_TELEMETRY_DISABLED: '1',
+        },
+        reuseExistingServer: false,
+        timeout: 240_000,
+        url: baseURL,
+      },
   projects: [
     {
       name: 'chromium-swiftshader-linux',

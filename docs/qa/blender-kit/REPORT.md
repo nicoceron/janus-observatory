@@ -48,7 +48,7 @@ work-in-progress passes and video are in the uncommitted process archive (`media
 | `pnpm source:reproduce:strict`                                                   | Pass: strict reproducibility from 15 checksum-locked source PDFs                                                                      |
 | `pnpm build:cloudflare`                                                          | Pass: worker 2,770 KiB of the 3,072 KiB Free limit; the staged kit packs match the manifest; credential scan clean                    |
 | Playwright, all five profiles (`pnpm test:e2e`, production build)                | 328 pass, 6 fail, 6 skipped. Every failure also fails on unmodified `main`; see below.                                                |
-| Visual regression (pinned Linux container)                                       | 4 of 4 fail, none on the artwork; see below.                                                                                          |
+| Visual regression (pinned Linux container)                                       | 4 of 4 pass, twice from a clean build, after the suite was repaired and its four baselines regenerated; see below.                    |
 
 All of this was run on the authoring machine, not in hosted CI.
 
@@ -63,11 +63,38 @@ All of this was run on the authoring machine, not in hosted CI.
   under the site header (at 176, 112) and cannot be tapped. Confirmed on a clean checkout of
   `main`, at the same position. This one is a real defect in the phone layout, not only a test.
 
-**The visual-regression suite is stale.** Two tests fail in their own steps before any screenshot
-(one waits for a "Read without animation" button that no longer exists; one expects
-`data-motion="reduced"` and gets `full`), and the two 2D baselines are 1200 px wide where the pages
-now render 1230 px. None of this was introduced here and no baseline was changed; this suite was
-not re-run on `main`.
+**The visual-regression suite was repaired afterwards and passes.** It had been failing since
+before this work, for reasons of its own, and is fixed on the branch `fix/visual-suite`:
+
+- The opening Earth test expected `data-motion="reduced"` on the homepage, which has run in full
+  motion on purpose since [Decision 023](../../DECISION_023_STORY_CLEANUP.md). The suite now
+  chooses Reduced with the Motion control on the accessibility page, as a reader does, and checks
+  that the homepage still reports full motion and leaves that saved choice alone. The capture is
+  taken with the browser clock paused 100 frames after the stage's first frame, with the world
+  held at its authored rest pose for the capture only.
+- The article test clicked "Read without animation", which Decision 023 removed. It now reaches
+  the article the way the product offers it: with WebGL unavailable.
+- The Observatory and Atlas baselines predated the dark inner-page shell of
+  [Decision 025](../../DECISION_025_SHARED_WORLD_PAGES.md). That shell's side gutters are 7vw
+  where the old ones were 8vw, so a section measures 1228.4 px at this viewport and is captured
+  as 1230 px, where the stored images were 1200 px. Their captures now hide the fixed site header
+  and use a viewport tall enough to hold the whole section.
+
+All four baselines were regenerated and each image was looked at before it was accepted;
+`first-light-earth.png` now shows the kit's Earth as the container's software WebGL draws it
+(minimal quality, without instanced props). Pixel thresholds are unchanged. No application code
+was changed. To reproduce, with Docker Desktop running and the workspace installed:
+
+```sh
+scripts/visual-regression.sh
+```
+
+It builds the site, serves it on port 3200, and compares in the pinned container
+(`mcr.microsoft.com/playwright:v1.62.1-noble@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac`,
+linux/amd64) with that container's Chromium. Two runs, each from a removed build directory, passed
+4 of 4; [the environment record](visual-environment.json) has the details. After an intended
+visual change, `scripts/visual-regression.sh --update-snapshots` rewrites the baselines, which
+must then be looked at one by one.
 
 New tests written with the work: kit pack decoding and bounds, unlit twins, the Earth relief
 blob, the inflate fallback, the loader's listener re-entrancy, lanes that keep props off roads,
