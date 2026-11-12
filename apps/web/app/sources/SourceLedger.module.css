@@ -106,7 +106,9 @@
   margin-bottom: 10px;
 }
 
+/* Source titles are citations: they stay whole, in the text face, rather than in long capitals. */
 .entryIdentity h3 {
+  font-family: var(--font-body);
   font-size: clamp(1rem, 1.8vw, 1.5rem);
   font-weight: 520;
   letter-spacing: -0.02em;

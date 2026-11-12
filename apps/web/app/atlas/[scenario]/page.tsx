@@ -170,7 +170,7 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
 
       <section className={styles.recordSection} aria-labelledby="observation-record-title">
         <header className={styles.recordSectionHeader}>
-          <h2 id="observation-record-title">What a telescope could see.</h2>
+          <h2 id="observation-record-title">What could be seen.</h2>
           <p>
             Five instruments, from the observing study. “Nothing listed” means the study lists no
             sign for that instrument—not that this civilization has no technology.

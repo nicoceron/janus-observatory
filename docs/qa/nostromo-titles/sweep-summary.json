@@ -1,0 +1,402 @@
+[
+  {
+    "viewport": "desktop",
+    "route": "/",
+    "displayElements": 37,
+    "maxLinesBefore": 3,
+    "maxLinesAfter": 3,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/observatory",
+    "displayElements": 17,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/atlas",
+    "displayElements": 20,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/atlas/s1",
+    "displayElements": 15,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/atlas/s2",
+    "displayElements": 15,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/atlas/s3",
+    "displayElements": 15,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/atlas/s4",
+    "displayElements": 15,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/atlas/s5",
+    "displayElements": 15,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/atlas/s6",
+    "displayElements": 15,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/atlas/s7",
+    "displayElements": 15,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/atlas/s8",
+    "displayElements": 15,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/atlas/s9",
+    "displayElements": 15,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/atlas/s10",
+    "displayElements": 15,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/research",
+    "displayElements": 4,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/research/resilience",
+    "displayElements": 7,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/methods",
+    "displayElements": 10,
+    "maxLinesBefore": 3,
+    "maxLinesAfter": 3,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/sources",
+    "displayElements": 5,
+    "maxLinesBefore": 5,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/accessibility",
+    "displayElements": 6,
+    "maxLinesBefore": 3,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/privacy",
+    "displayElements": 5,
+    "maxLinesBefore": 1,
+    "maxLinesAfter": 1,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "desktop",
+    "route": "/missing-page",
+    "displayElements": 3,
+    "maxLinesBefore": 1,
+    "maxLinesAfter": 1,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/",
+    "displayElements": 36,
+    "maxLinesBefore": 4,
+    "maxLinesAfter": 3,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/observatory",
+    "displayElements": 16,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 3,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/atlas",
+    "displayElements": 19,
+    "maxLinesBefore": 3,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/atlas/s1",
+    "displayElements": 14,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/atlas/s2",
+    "displayElements": 14,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/atlas/s3",
+    "displayElements": 14,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/atlas/s4",
+    "displayElements": 14,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/atlas/s5",
+    "displayElements": 14,
+    "maxLinesBefore": 3,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/atlas/s6",
+    "displayElements": 14,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/atlas/s7",
+    "displayElements": 14,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/atlas/s8",
+    "displayElements": 14,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/atlas/s9",
+    "displayElements": 14,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/atlas/s10",
+    "displayElements": 14,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/research",
+    "displayElements": 3,
+    "maxLinesBefore": 5,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/research/resilience",
+    "displayElements": 6,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 3,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/methods",
+    "displayElements": 9,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/sources",
+    "displayElements": 4,
+    "maxLinesBefore": 4,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/accessibility",
+    "displayElements": 5,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 3,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/privacy",
+    "displayElements": 4,
+    "maxLinesBefore": 2,
+    "maxLinesAfter": 2,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  },
+  {
+    "viewport": "phone",
+    "route": "/missing-page",
+    "displayElements": 2,
+    "maxLinesBefore": 1,
+    "maxLinesAfter": 1,
+    "overflowBefore": 0,
+    "overflowAfter": 0,
+    "pageOverflowAfterPx": 0
+  }
+]

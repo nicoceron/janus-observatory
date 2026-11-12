@@ -646,7 +646,7 @@ export function ObservatoryExplorer() {
 
       <section className={styles.matrixSection} aria-labelledby="matrix-title">
         <header className={styles.sectionHeader}>
-          <h2 id="matrix-title">All ten futures, all five instruments.</h2>
+          <h2 id="matrix-title">Ten futures, five instruments.</h2>
           <p>Each cell is a yes-or-no from the observing study, not a score.</p>
         </header>
         <div className={styles.legend} aria-label="Legend">

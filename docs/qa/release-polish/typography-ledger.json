@@ -34,5 +34,31 @@
     "retrievedAt": "2026-09-14",
     "usage": "Self-hosted through next/font/google, latin subset, font-display swap. No glyph edits.",
     "sourceVersion": "Google Fonts distribution retrieved 2026-09-14; exact build files recorded in font-build.json"
+  },
+  {
+    "family": "Nostromo",
+    "style": "Bold. The single cut supplied; its name table reads family \"Nostromo Regular\", style \"Bold\".",
+    "admissionStatus": "pending_license",
+    "license": "Unconfirmed. Commercial foundry; the file was supplied by the project owner without a licence. A web-font licence must be confirmed before public release. OS/2 fsType 8 (editable embedding) is a document-embedding flag, not a web licence.",
+    "foundry": "Great Scott, designer Daniel Feldt (name table IDs 8, 9, 11, 12)",
+    "sourceUrl": "http://greatscott.se",
+    "licenseUrl": null,
+    "licensePublicPath": null,
+    "retrievedAt": "2026-11-10",
+    "usage": "Titles and headings only (Decision 037). Self-hosted through next/font/local and preloaded; size-adjust 70%; font-display swap. Subset only, no glyph edits.",
+    "sourceVersion": "Version 1.000;hotconv 1.0.109;makeotfexe 2.5.65596 (name ID 5)",
+    "original": {
+      "file": "NOSTROMOREGULAR-BOLD_0.OTF",
+      "format": "OpenType (CFF)",
+      "bytes": 51576,
+      "checksum": "sha256:62edf1db8164c46ad16b7b7eb5df4a4c59c1bb7026d4b148efebc5579e562717"
+    },
+    "derivative": {
+      "path": "apps/web/app/fonts/nostromo-bold-latin.woff2",
+      "format": "WOFF2",
+      "bytes": 8536,
+      "checksum": "sha256:1dd38ddd81595b12c37090e1ec44ce238d374493cf653292281d1ba963e5cf50"
+    },
+    "transformation": "pyftsubset (fontTools 4.62.1) --flavor=woff2 --unicodes=\"U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD\" --layout-features=\"kern,mark,mkmk,liga,case,lnum,pnum,tnum,ccmp,locl\". Keeps Latin-1 and the punctuation block; drops Latin Extended-A. Retained features: kern, case, locl, pnum, tnum."
   }
 ]

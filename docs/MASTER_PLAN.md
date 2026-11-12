@@ -1,5 +1,7 @@
 # Janus Observatory - Master Product, Data, Architecture, and Execution Plan
 
+Current title typography: Nostromo display face, [Decision 037](DECISION_037_NOSTROMO_TITLES.md), superseding the headline face of Decisions 025 and 036. Its web licence is unconfirmed.
+
 Current planets: story-drawn procedural low-poly worlds, [Decision 035](DECISION_035_STORY_DRAWN_LOW_POLY_WORLDS.md), superseding the planet artwork of Decisions 014–020, 028 and 034.
 
 Current Observatory scenario-switch layout stability:

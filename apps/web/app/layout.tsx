@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
-import { Hanken_Grotesk, Newsreader } from 'next/font/google';
+import { Hanken_Grotesk } from 'next/font/google';
+import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
 
 import { MotionPreference } from './components/MotionPreference';
@@ -14,12 +15,18 @@ const body = Hanken_Grotesk({
   display: 'swap',
 });
 
-// Headlines: an optical-size serif in the tradition of astronomy books and almanacs.
-const display = Newsreader({
-  subsets: ['latin'],
+// Titles: Nostromo Bold, a wide unicase display face, so every title reads in capitals. It ships
+// as one Latin subset (Decision 037). The single bold cut answers every weight, and size-adjust
+// shrinks it to sit with the text. Its fallback in globals.css is sized to match.
+const nostromo = localFont({
+  src: './fonts/nostromo-bold-latin.woff2',
   variable: '--font-display',
-  axes: ['opsz'],
+  weight: '100 900',
+  style: 'normal',
   display: 'swap',
+  adjustFontFallback: false,
+  fallback: ['Janus Display Fallback', 'Arial', 'sans-serif'],
+  declarations: [{ prop: 'size-adjust', value: '70%' }],
 });
 
 export const metadata: Metadata = {
@@ -69,7 +76,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <head>
         <link rel="describedby" href={`${siteOrigin}/llms.txt`} type="text/markdown" />
       </head>
-      <body className={`${body.variable} ${display.variable}`}>
+      <body className={`${body.variable} ${nostromo.variable}`}>
         {children}
         <MotionPreference />
         <OperationalTelemetry />
