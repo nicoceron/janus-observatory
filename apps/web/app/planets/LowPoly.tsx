@@ -18,6 +18,7 @@ import { lowPower } from './renderer';
 
 export { lowPower };
 import { kitReady, loadKit, subscribeKit } from './props/pack';
+import { enqueue, rankOf, type Rank } from './queue';
 
 export type QualityName = keyof typeof qualities;
 
@@ -90,7 +91,7 @@ function useKit(scope: Scope) {
 
 const scopeOf = (id: string): Scope => (id === 'present' ? 'core' : 'all');
 
-const pending: { key: string; build: () => WorldModel; scope: Scope }[] = [];
+const pending: { key: string; build: () => WorldModel; scope: Scope; rank: Rank }[] = [];
 const listeners = new Map<string, Set<() => void>>();
 let pumping = false;
 
@@ -153,13 +154,7 @@ function pump() {
 
 function prewarm(key: string, build: () => WorldModel, urgent = false, scope: Scope = 'all') {
   if (cache.has(key)) return;
-  const queued = pending.findIndex((job) => job.key === key);
-  if (queued >= 0) {
-    if (urgent) pending.unshift(...pending.splice(queued, 1));
-    return;
-  }
-  if (urgent) pending.unshift({ key, build, scope });
-  else pending.push({ key, build, scope });
+  enqueue(pending, { key, build, scope, rank: rankOf(key, urgent) });
   pump();
 }
 
@@ -284,8 +279,8 @@ export function useWarmShaders() {
 const mounted = new WeakMap<HTMLCanvasElement, Map<string, number>>();
 
 /**
- * Publish which models a canvas is showing, for tests and diagnostics. Procedural worlds are ready
- * as soon as their model is built: there are no downloads or decoder workers to wait for.
+ * Publish which models a canvas is showing, for tests and diagnostics. A world is listed once its
+ * model is built, which waits for the kit packs it needs and then for its turn in the idle queue.
  */
 function useMounted(name: string, shown = true) {
   const canvas = useThree((state) => state.gl.domElement);

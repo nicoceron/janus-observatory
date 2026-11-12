@@ -5,6 +5,10 @@ telescope of [Decision 035](DECISION_035_STORY_DRAWN_LOW_POLY_WORLDS.md). Decisi
 recipes (which future shows what, driven by which published value), story choreography, camera,
 layout anchors, accessibility behaviour and canonical data are unchanged.
 
+This decision was numbered 036 while its branch was open. It was renumbered when `main`, which
+had meanwhile recorded [Decision 036](DECISION_036_PLAIN_LANGUAGE_SHIPPING_POLISH.md) and
+[Decision 037](DECISION_037_NOSTROMO_TITLES.md), was merged into it.
+
 ## Request and approach
 
 The user rejected the artwork of Decision 035 as crude and asked for every asset on the site to
@@ -199,6 +203,26 @@ dozen or the hundred. Three rules keep a world's cost near Decision 035's:
 - The published illumination share no longer varies how many windows of the S2 enclave and the
   S3 garden town are lit: a kit landmark's windows are all lit or, on an unlit world, all dark.
   The share still decides lit allocation blocks, lamps and lit ground on every world.
+
+## Merged with `main`
+
+The branch was started from a copy of `main` that was three merges behind. Bringing in the
+current `main` (Decisions 036 and 037 and its repair of the browser and visual suites) settled
+as follows:
+
+- **Type, copy, header and transitions are `main`'s.** The kit changes none of them.
+- **Tests that both sides had repaired are `main`'s**: the visual-regression spec, and the
+  chapter-sync, spatial-system, story and story-system specs with their handoff helper. The
+  branch's own repairs of the same tests were dropped.
+- **A phone layout change made on the branch was withdrawn.** It moved the story's system
+  composition down so that no tap target sat under the header. `main` had already fixed the
+  blocked tap in the header itself, which passes pointer input through its empty space, without
+  moving anything.
+- **Kept from the branch**: `scripts/visual-regression.sh`, which runs the visual suite on this
+  machine in the pinned container, and the switch in `playwright.visual.config.ts` that lets it
+  use a server that is already running.
+- **Visual baselines** are `main`'s, except the opening Earth, which the kit redraws; see the QA
+  report.
 
 ## Verification
 
