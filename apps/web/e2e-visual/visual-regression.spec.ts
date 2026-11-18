@@ -79,6 +79,25 @@ test('First light preserves the approved composition in a deterministic rest pos
       { timeout: 60000 },
     )
     .toBe('ready');
+  // The faceted worlds swap their code-drawn stand-ins for Blender exports once those load, so a
+  // capture taken before every visible library is ready depends on the runner's loading speed.
+  await expect
+    .poll(
+      async () => {
+        await page.clock.runFor(16);
+        const canvas = page.locator('canvas').first();
+        const libraries = JSON.parse(
+          (await canvas.getAttribute('data-blender-libraries')) ?? '[]',
+        ) as { state: string }[];
+        return (
+          (await canvas.getAttribute('data-blender-state')) === 'ready' &&
+          libraries.length > 0 &&
+          libraries.every((library) => library.state === 'ready')
+        );
+      },
+      { timeout: 60000 },
+    )
+    .toBe(true);
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-mode', 'full');
   await expect(page.getByRole('button', { name: 'Read without animation' })).toHaveCount(0);
   expect(await page.evaluate(() => localStorage.getItem('janus-motion-preference'))).toBe(
@@ -109,11 +128,7 @@ test('First light preserves the approved composition in a deterministic rest pos
   await page.clock.runFor(32);
   await expect(page.locator('[data-voyage]')).toHaveAttribute('data-mode', 'full');
   await expect(page.locator('html')).toHaveAttribute('data-motion', 'reduced');
-  // The faceted globe is all hard polygon edges. CI's x86 SwiftShader and the same pinned image
-  // under emulation on Apple silicon (scripts/visual-regression.sh) rasterize about 1,700 edge
-  // pixels differently, the same on every run; a real change to the scene moves tens of
-  // thousands (the 2026-11-17 polish: 49,435).
-  await screenshot(page.locator('[data-chapter="0"]'), 'first-light-earth.png', 2500);
+  await screenshot(page.locator('[data-chapter="0"]'), 'first-light-earth.png', 120);
 });
 
 test('The complete story remains legible as an article when WebGL is unavailable', async ({
