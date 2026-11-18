@@ -19,6 +19,7 @@ from contextlib import contextmanager
 import bmesh
 import bpy
 from mathutils import Matrix, Vector
+from mathutils.kdtree import KDTree
 
 TAU = math.tau
 WORLD_IDS = {f"S{i}" for i in range(1, 11)}
@@ -70,7 +71,8 @@ class _Builder:
         self.ground = None
         hull, metal, accent, glass, green = STYLE[world]
         if selection == "Moon":
-            terrain = ("9ba7ad", "718391", "c3c6bd")
+            # Neutral regolith greys at gentle contrast; the earlier blue slate read as camouflage.
+            terrain = ("a9aba7", "8b8f90", "cbcac1")
         elif selection == "Mars":
             terrain = ("ba7d5c", "8f5345", "dca277")
         elif selection == "Venus":
@@ -827,8 +829,22 @@ def _mars_valley(normal):
     return extent, distance, width, main, branch
 
 
+def _coarse_cells():
+    """Face centres of a subdivision-3 icosphere: colour regions are chosen per coarse cell so
+    patches read as clean groups of facets rather than single-facet pixel noise."""
+    bm = bmesh.new()
+    bmesh.ops.create_icosphere(bm, subdivisions=3, radius=1)
+    tree = KDTree(len(bm.faces))
+    for i, face in enumerate(bm.faces):
+        tree.insert(face.calc_center_median().normalized(), i)
+    tree.balance()
+    bm.free()
+    return tree
+
+
 def _terrain(b, body, radius=0.82):
     obj = b.ico("faceted_planetary_body", radius, subdivisions=5 if body in {"Moon", "Mars"} else 4)
+    cells = _coarse_cells()
     obj.data.materials.append(b.mats["terrain_dark"])
     obj.data.materials.append(b.mats["terrain_light"])
     obj.data.materials.append(b.mats["green"])
@@ -859,9 +875,10 @@ def _terrain(b, body, radius=0.82):
             displacement *= 0.22
         vertex.co = normal * (radius + displacement)
     for polygon in obj.data.polygons:
-        center = sum(
+        fine = sum(
             (obj.data.vertices[i].co for i in polygon.vertices), Vector()
         ) / len(polygon.vertices)
+        center = cells.find(fine.normalized())[0] * radius
         patch = math.sin(center.x * 7 + 0.4) * math.cos(center.z * 6 - center.y * 4)
         polygon.material_index = 2 if patch > 0.38 else 1 if patch < -0.30 else 0
         if body == "Mars" and b.world == "S5":
@@ -885,7 +902,8 @@ def _terrain(b, body, radius=0.82):
                 if distance < size * 0.64:
                     face.material_index = 1
                 elif abs(distance - size) < 0.032:
-                    face.material_index = 2 if face.index % 4 == 0 else 0
+                    # The ejecta rim is lit relief; tinting every fourth facet only added speckle.
+                    face.material_index = 0
     if body == "Mars":
         for longitude, latitude, size in (
             (-49, -3, 0.10),
@@ -1703,10 +1721,29 @@ def _embed_regolith_berm(b, obj):
     obj.data.update()
 
 
+def _conform_mound(b, obj, sink=0.026):
+    """Bend a mound around the body: each vertex keeps its height above the site's tangent plane
+    but measured from the curved surface, so a wide berm settles into the regolith instead of
+    capping the body like a flat disc."""
+    if b.ground is None:
+        return
+    frame, radius = b.ground
+    to_surface = frame.inverted() @ b._world_matrix(obj)
+    from_surface = to_surface.inverted()
+    up = (to_surface @ Vector((0, 0, 0))).normalized()
+    for vertex in obj.data.vertices:
+        point = to_surface @ vertex.co
+        height = point.dot(up) - radius
+        vertex.co = from_surface @ (point.normalized() * (radius + max(height, -sink)))
+    obj.data.update()
+
+
 def _refuge_settlement(b, body="Moon"):
     # Deep regolith berms cover the pressure volumes; only protected access is exposed.
+    # A low rounded mound that settles into the regolith; the flatter, coarser berm read as a
+    # mesa slab laid on the Moon.
     main_berm = b.ico(
-        "buried_refuge_berm", 0.28, (0, 0.065, 0.041), "terrain", (1.26, 0.95, 0.53), 2
+        "buried_refuge_berm", 0.28, (0, 0.065, 0.026), "terrain", (1.26, 0.95, 0.44), 3
     )
     secondary_berm = b.ico(
         "secondary_pressure_berm",
@@ -1716,8 +1753,8 @@ def _refuge_settlement(b, body="Moon"):
         (1.12, 1, 0.56),
         1,
     )
-    _embed_regolith_berm(b, main_berm)
-    _embed_regolith_berm(b, secondary_berm)
+    _conform_mound(b, main_berm)
+    _conform_mound(b, secondary_berm)
     b.box(
         "reinforced_tunnel_retaining_head",
         (0.25, 0.20, 0.15),
@@ -2957,6 +2994,19 @@ def build_system_world(world_id: str, selection: str, system: dict) -> list:
             root["published_activity"] = activity
             _terrain(b, selection)
             if activity == "orbital":
+                # A faint track through the station places it in orbit; without it the station
+                # read as a part that had come loose from the body.
+                station = Vector((0.39, -0.22, 1.33))
+                track_normal = station.cross(Vector((1, 0, 0))).normalized()
+                b.ring(
+                    "orbital_track",
+                    station.length,
+                    0.0035,
+                    (0, 0, 0),
+                    "light",
+                    Vector((0, 0, 1)).rotation_difference(track_normal).to_euler(),
+                    segments=120,
+                )
                 with b.group(
                     "separated_orbital_activity",
                     (0.39, -0.22, 1.33),

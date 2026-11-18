@@ -1,6 +1,6 @@
 # Editable Janus worlds
 
-Open these source files in **Blender 5.2**. Each opens on its assembled Earth scene; use the **Scene** dropdown to switch to a companion or system destination. `Moon` is the scene name for Luna.
+Open these source files in **Blender 5.2 or 5.3** (the November 2026 polish was built with 5.3, which reproduces the 5.2 exports exactly). Each opens on its assembled Earth scene; use the **Scene** dropdown to switch to a companion or system destination. `Moon` is the scene name for Luna.
 
 | Source                       | Scenes available                                          |
 | ---------------------------- | --------------------------------------------------------- |

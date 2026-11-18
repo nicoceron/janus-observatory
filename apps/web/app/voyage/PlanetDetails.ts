@@ -1,7 +1,7 @@
 import { originRiver } from './origin-world';
 import * as THREE from 'three';
 import { Sculpture, surface, wrapOnGlobe, type Vec } from './sculpture';
-import { quarryBase, quarrySite } from './terrain';
+import { LAND_BASE, landRadius, quarryBase, quarrySite } from './terrain';
 import { Ground } from './planet-surface';
 import { addWorldBiomes } from './WorldBiomes';
 import type { WorldArt } from './worlds';
@@ -126,7 +126,7 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
         // Streets are assembled only from connected activity routes.
         break;
       case 'extraction': {
-        const frame = surface(...quarrySite, 1.025);
+        const frame = surface(...quarrySite, LAND_BASE);
         const origin = new THREE.Vector3().setFromMatrixPosition(frame),
           ex = new THREE.Vector3().setFromMatrixColumn(frame, 0).normalize(),
           ez = new THREE.Vector3().setFromMatrixColumn(frame, 2).normalize();
@@ -458,7 +458,9 @@ export function addWorldDetails(s: Sculpture, art: WorldArt, globeScale: number,
           for (const x of [-0.052, 0.052]) s.box([0.012, 0.03, 0.17], '#c1a78e', [x, 0.055, 0], m);
           if (i === 1) s.box([0.025, 0.045, 0.02], '#d4bf9b', [0.1, 0.058, 0], m);
         });
-        const bridge = g.pose(-1, -5);
+        // Anchored at rim height, not the canyon floor: the two broken spans reach out from
+        // either lip of the rift instead of hanging inside it.
+        const bridge = surface(-1, -5, landRadius(art, g.direction(-1, -5)) * globeScale + 0.004);
         for (const side of [-1, 1]) {
           s.box([0.16, 0.025, 0.075], '#c0a48d', [side * 0.17, 0.065, 0], bridge, [
             0,

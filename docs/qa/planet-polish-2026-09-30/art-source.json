@@ -1,7 +1,7 @@
 {
   "id": "janus.low-poly.worlds.v7",
   "version": "planet-polish-v25-2026-09-30",
-  "sourceChecksum": "sha256:5d1ac070637c6945c0adc3a6771a309905556894355bfb936c4cc0062ae8a698",
+  "sourceChecksum": "sha256:8b874d0f3adc0d0e179f705821d55934ab95ec96538604403bc2b830cc940bbe",
   "files": [
     "apps/web/app/voyage/worlds.ts",
     "apps/web/app/voyage/origin-world.ts",

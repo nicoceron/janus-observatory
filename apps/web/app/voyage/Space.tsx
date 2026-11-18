@@ -46,7 +46,8 @@ function worldPose(world: number, scene: number, mobile: boolean): Pose {
   const x = mobile ? 0 : 2.75;
   if (scene === 0)
     return world === -1
-      ? [mobile ? 0 : 2.95, mobile ? 0.5 : 0.0, 0, mobile ? 1.05 : 2.55]
+      ? // On phones the globe sits wholly in the gap between the title and the question.
+        [mobile ? 0 : 2.95, mobile ? 0.62 : 0.0, 0, mobile ? 1.0 : 2.55]
       : [12, 0, -10, 0];
   if (scene === 1) {
     if (world === -1) return [-9, 0, -8, 0];

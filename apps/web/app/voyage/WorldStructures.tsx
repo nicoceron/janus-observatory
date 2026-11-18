@@ -3,7 +3,7 @@
 import { useEffect, useMemo } from 'react';
 import * as THREE from 'three';
 import { Sculpture, surface, wrapOnGlobe, type Vec } from './sculpture';
-import { landRadius, quarryBase, quarryOutline, quarrySite } from './terrain';
+import { LAND_BASE, landRadius, quarryBase, quarryOutline, quarrySite } from './terrain';
 import { addWorldDetails } from './PlanetDetails';
 import { membrane, curveTube } from './modeling';
 import type { WorldArt } from './worlds';
@@ -15,14 +15,7 @@ const cream = '#e9dfbd',
   green = '#5c8973',
   coral = '#c68773';
 
-function tree(
-  s: Sculpture,
-  lon: number,
-  lat: number,
-  height = 0.34,
-  radius = 1.035,
-  color = green,
-) {
+function tree(s: Sculpture, lon: number, lat: number, height = 0.34, radius = 1.02, color = green) {
   const m = surface(lon, lat, radius);
   s.cylinder(0.018, 0.025, height * 0.4, '#8b7660', [0, height * 0.15, 0], m, 5);
   s.cone(height * 0.37, height * 0.75, color, [0, height * 0.52, 0], m);
@@ -30,7 +23,7 @@ function tree(
 }
 /** A small massif: main summit, lower shoulder and cap, so it never reads as a flat card. */
 function peak(s: Sculpture, lon: number, lat: number, h: number, rock = '#9aa79b', cap = cream) {
-  const m = surface(lon, lat, 1.02);
+  const m = surface(lon, lat, 1.005);
   const shade = new THREE.Color(rock).multiplyScalar(0.86).getStyle();
   s.cone(h * 0.5, h, rock, [0, h * 0.42, 0], m, 6);
   s.cone(h * 0.36, h * 0.6, shade, [h * 0.3, h * 0.22, h * 0.1], m, 5);
@@ -101,7 +94,7 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
         [38, 14, 0.18, 0.18],
       ];
       towers.forEach(([lon, lat, h, w], i) => {
-        const m = surface(lon, lat, 1.015).scale(new THREE.Vector3(1, 0.68, 1));
+        const m = surface(lon, lat, 1.0).scale(new THREE.Vector3(1, 0.68, 1));
         if (!clear(new THREE.Vector3().setFromMatrixPosition(m), w * 0.82)) return;
         s.box([w * 1.25, 0.065, w * 1.25], '#798b8d', [0, 0.025, 0], m);
         if (i % 4 === 1) {
@@ -193,7 +186,7 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
     case 'extraction': {
       // Unequal benches with an open descending haul ramp, rather than concentric target rings.
       // The pit is wrapped onto the globe: its top bench meets the surrounding ground.
-      wrapOnGlobe(s, surface(...quarrySite, 1.025), quarryBase(art), (q) => {
+      wrapOnGlobe(s, surface(...quarrySite, LAND_BASE), quarryBase(art), (q) => {
         const sections = 14;
         const at = (radius: number, angle: number, y: number): Vec => {
           const [x, z] = quarryOutline(radius, angle);
@@ -425,7 +418,7 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
         [37, 31],
         [-38, 37],
         [-20, 55],
-      ].forEach(([lon, lat], i) => tree(s, lon, lat, 0.27 + i * 0.014, 1.035, '#7e985e'));
+      ].forEach(([lon, lat], i) => tree(s, lon, lat, 0.27 + i * 0.014, 1.02, '#7e985e'));
       const ruin = surface(24, 5);
       if (clear(new THREE.Vector3().setFromMatrixPosition(ruin), 0.3)) {
         for (let i = 0; i < 3; i++)
@@ -453,8 +446,8 @@ export function buildWorldGeometry(art: WorldArt, globeScale: number, mobile = f
       // Earth stays quiet; machine construction belongs to the separate solar-system portrait.
       break;
     case 'duality': {
-      tree(s, -35, 44, 0.21, 1.035);
-      tree(s, -16, 56, 0.23, 1.035);
+      tree(s, -35, 44, 0.21, 1.02);
+      tree(s, -16, 56, 0.23, 1.02);
       break;
     }
   }

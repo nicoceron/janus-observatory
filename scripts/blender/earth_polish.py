@@ -1319,15 +1319,18 @@ def polish_part(
         seed_object.data.materials.clear()
         mat = _material("cloud")
         shader = mat.node_tree.nodes.get("Principled BSDF")
-        shader.inputs["Emission Color"].default_value = (0.65, 0.75, 0.9, 1)
-        shader.inputs["Emission Strength"].default_value = 0.12
+        shader.inputs["Emission Color"].default_value = (0.62, 0.72, 0.86, 1)
+        # Lift the shaded underside to a pale sky blue so the bank never reads as grey rock.
+        shader.inputs["Emission Strength"].default_value = 0.34
+        shader.inputs["Roughness"].default_value = 1.0
         seed_object.data.materials.append(mat)
         for attribute in list(seed_object.data.color_attributes):
             seed_object.data.color_attributes.remove(attribute)
         modifier = seed_object.modifiers.new("Fused cumulus silhouette", "REMESH")
         modifier.mode = "VOXEL"
-        modifier.voxel_size = 0.018
-        modifier.adaptivity = 0.55
+        # Even, slightly larger voxels give regular facets instead of a craggy, rock-like crust.
+        modifier.voxel_size = 0.022
+        modifier.adaptivity = 0.2
         modifier.use_smooth_shade = False
         seed_object["janus_weather"] = "Editable cumulus lobes; fused on export; no runtime simulation."
         return []

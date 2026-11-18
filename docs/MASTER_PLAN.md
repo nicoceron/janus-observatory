@@ -2,7 +2,7 @@
 
 Current title typography: Nostromo display face, [Decision 037](DECISION_037_NOSTROMO_TITLES.md), superseding the headline face of Decisions 025 and 036. Its web licence is unconfirmed.
 
-Current planets: faceted Blender-finished worlds (Decisions 014–020, 028 and 034), restored by [Decision 039](DECISION_039_RESTORE_FACETED_WORLDS.md), which withdraws the code-drawn worlds of Decision 035 and the Blender kit of Decision 038.
+Current planets: faceted Blender-finished worlds (Decisions 014–020, 028 and 034), restored by [Decision 039](DECISION_039_RESTORE_FACETED_WORLDS.md), which withdraws the code-drawn worlds of Decision 035 and the Blender kit of Decision 038. Polished by [Decision 040](DECISION_040_FACETED_POLISH.md): a low coast step, cumulus clouds, clean body surfaces and grounded parts.
 
 Current Observatory scenario-switch layout stability:
 [verification and implementation](qa/observatory-stability/REPORT.md).

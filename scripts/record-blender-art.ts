@@ -11,7 +11,7 @@ import { systemPortrait } from '../apps/web/lib/system-portrait';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const qa = 'docs/qa/blender-finish';
 const prefix = 'janus.blender.v1.';
-const version = 'blender-planet-polish-v12-2026-09-30';
+const version = 'blender-faceted-polish-v13-2026-11-17';
 const worlds = ['origin', ...allScenarioProfiles.map((profile) => profile.id.toLowerCase())];
 
 type Input = { path: string; checksum: string; bytes: number };
@@ -181,8 +181,12 @@ export async function recordBlenderArt() {
   for (const world of worlds) {
     const receiptPath = `${qa}/model-${world}.json`;
     const model = JSON.parse(await readFile(resolve(root, receiptPath), 'utf8')) as ModelReceipt;
-    if (model.world !== world || !model.interpretive || !/^5\.2(?:\.|\b)/.test(model.blender)) {
-      throw new Error(`${receiptPath}: expected interpretive ${world} model from Blender 5.2.`);
+    // Blender 5.3 reproduces the 5.2 exports byte for byte apart from the version stamp
+    // (checked 2026-11-17), so either release is admitted. The versions used are recorded below.
+    if (model.world !== world || !model.interpretive || !/^5\.[23](?:\.|\b)/.test(model.blender)) {
+      throw new Error(
+        `${receiptPath}: expected interpretive ${world} model from Blender 5.2 or 5.3.`,
+      );
     }
     versions.add(model.blender);
     const sourcePath = `assets/blender/${world}.blend`;
