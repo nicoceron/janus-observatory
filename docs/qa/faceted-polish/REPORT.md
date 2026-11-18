@@ -38,6 +38,20 @@ Run on this machine, as CI runs it:
 - The 59 Blender exports were rebuilt with Blender 5.3 and admitted by
   `scripts/record-blender-art.ts` as `blender-faceted-polish-v13-2026-11-17`.
 
+## CI follow-up (2026-11-18)
+
+GitHub's required checks found three things the local runs did not:
+
+- **Visual baseline.** CI's x86 SwiftShader renders the opening globe about 1,700 edge pixels
+  differently from the same pinned image emulated on Apple silicon. The difference was the same on
+  every run, and a CPU-loaded local run still matched exactly. The opening shot now allows 2,500
+  differing pixels; the polish itself moved 49,435. Reduced motion also now rests every globe on
+  its authored turn instead of freezing its spin mid-swing.
+- **Every-destination story test.** It loads all ten worlds' Blender exports in software WebGL and
+  needs more than three minutes on CI in Chromium as well as WebKit, so both get six.
+- **Worker-free model loading.** Main-thread decoding on CI's WebKit exceeded the default
+  five-second wait, so it uses the 45 seconds the other model specs allow.
+
 ## Remaining limits
 
 - Clouds are still faceted solids. They read as weather at story scale, but they aren't volumes.
