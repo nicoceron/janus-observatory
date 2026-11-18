@@ -42,13 +42,15 @@ Run on this machine, as CI runs it:
 
 GitHub's required checks found three things the local runs did not:
 
-- **Visual baseline.** CI's renders of the opening globe differed from the local baseline by
-  1,659, 1,693 and then 3,149 pixels, and from each other, while local runs matched exactly even
-  under full CPU load. The faceted worlds swap their code-drawn stand-ins for Blender exports once
-  those load, and the test captured without waiting for them, so the result depended on the
-  runner's loading speed. It now advances the paused clock until every visible Blender library is
-  ready, and keeps the 120-pixel tolerance. Reduced motion also now rests every globe on its
-  authored turn instead of freezing its spin mid-swing.
+- **Visual baseline.** Two causes were mixed together. First, a loading race: the worlds swap
+  code-drawn stand-ins for Blender exports once those load, and the test captured without waiting,
+  so CI's renders varied (1,659, 1,693 and 3,149 pixels from the baseline). The test now advances
+  the paused clock until every visible Blender library is ready. Second, once fully loaded, CI's
+  x86 SwiftShader and the same pinned image emulated on Apple silicon still anti-alias the faceted
+  globe's edges about 3,100 pixels differently; the images are otherwise identical. The baseline is
+  now CI's own render and the opening shot allows 4,000 differing pixels, so the local runner
+  passes too. A real scene change moves tens of thousands. Reduced motion also now rests every
+  globe on its authored turn instead of freezing its spin mid-swing.
 - **Every-destination story test.** It loads all ten worlds' Blender exports in software WebGL and
   needs more than three minutes on CI in Chromium as well as WebKit, so both get six.
 - **Worker-free model loading.** Main-thread decoding on CI's WebKit exceeded the default
