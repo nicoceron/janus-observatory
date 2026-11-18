@@ -163,7 +163,6 @@ export function terrainGeometry(art: WorldArt, mobile: boolean) {
     emit(topB, lowA, lowB, cliff);
   };
   const point = (n: THREE.Vector3, raised: boolean) => {
-    const elevation = landform(n.x, n.y, n.z, art.seed) - art.seaLevel;
     const rift = art.form === 'fractured' && Math.abs(n.x + 0.14 * Math.sin(n.y * 5) - 0.03) < 0.1;
     const quarry = art.form === 'extraction' ? quarryDepth(n) : 0;
     return n
