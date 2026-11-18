@@ -59,8 +59,9 @@ conflicts were resolved by hand.
 - `design/faceted-worlds` (tag): `2eb0a46`, the state this decision restores.
 
 Decisions 035 and 038, the kit art direction and their QA reports stay in `docs/` as history.
-The kit's local Blender sources (`assets/blender/kit/`) and process captures
-(`media/kit-process/`) remain on disk, ignored by git.
+The kit's Blender sources (`assets/blender/kit/*.blend`) and export scripts are in the tag and
+the archive branch. Only their ignored `.blend1` backups and the process captures
+(`media/kit-process/`) remain in this checkout.
 
 ## Verification
 
