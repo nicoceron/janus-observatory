@@ -86,7 +86,7 @@ export const lifePlans: Record<WorldArt['form'], LifePlan[]> = {
         landmark: 'derrick',
         access: [0.15, 0.18],
       },
-      to: { label: 'Ore conveyor', at: [39, 4], landmark: 'conveyor', access: [-0.24, 0] },
+      to: { label: 'Ore conveyor', at: [39, 4], landmark: 'conveyor', access: [-0.31, 0] },
       travel: 18,
       dwell: 8,
       size: 0.75,

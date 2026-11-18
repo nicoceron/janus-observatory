@@ -94,7 +94,8 @@ export class Sculpture {
   }
 }
 
-export function surface(lon: number, lat: number, radius = 1.035) {
+/** Default radius sits a hand's breadth above the land base (see terrain.ts LAND_BASE). */
+export function surface(lon: number, lat: number, radius = 1.02) {
   const a = THREE.MathUtils.degToRad(lon),
     b = THREE.MathUtils.degToRad(lat);
   const n = new THREE.Vector3(Math.sin(a) * Math.cos(b), Math.sin(b), Math.cos(a) * Math.cos(b));

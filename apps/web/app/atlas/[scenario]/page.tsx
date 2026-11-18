@@ -8,7 +8,6 @@ import assetLedger from '../../../../../data/assets/ledger.json';
 import { getScenarioProfile, sourceRefHref, sourceRefLabel } from '../../../lib/canonical';
 import { growthLabel, morphologyRows, plainReading } from '../../../lib/plain-labels';
 import { WorldPortrait } from '../../components/WorldPortrait';
-import { worldSignals } from '../../../lib/world-signals';
 import { QuantityComparison, ReferenceEarthNote } from '../../components/QuantityComparison';
 import { InnerPage } from '../../components/InnerPage';
 import styles from '../atlas.module.css';
@@ -107,7 +106,7 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
       </nav>
 
       <section className={styles.recordHero} aria-label={`${profile.id} at a glance`}>
-        <WorldPortrait world={Number(profile.id.slice(1)) - 1} signals={worldSignals(profile)} />
+        <WorldPortrait world={Number(profile.id.slice(1)) - 1} />
         <dl className={styles.recordLedger}>
           <div>
             <dt>Population in 1,000 years</dt>

@@ -1,10 +1,8 @@
 # Janus Observatory - Master Product, Data, Architecture, and Execution Plan
 
-Current artwork: every model on the site (citizens, creatures, plants, buildings, vehicles, landmarks, terrain, system bodies, the observer and the telescope) is an authored Blender kit model, [Decision 038](DECISION_038_BLENDER_KIT.md), with [art direction](KIT_ART_DIRECTION.md) and [verification](qa/blender-kit/REPORT.md). It supersedes the code-drawn artwork of Decision 035.
-
 Current title typography: Nostromo display face, [Decision 037](DECISION_037_NOSTROMO_TITLES.md), superseding the headline face of Decisions 025 and 036. Its web licence is unconfirmed.
 
-Current world recipes: story-drawn procedural low-poly worlds, [Decision 035](DECISION_035_STORY_DRAWN_LOW_POLY_WORLDS.md), superseding the planet artwork of Decisions 014–020, 028 and 034. Its staging rules (proportions, towns, roads, lights) are revised by Decision 038.
+Current planets: faceted Blender-finished worlds (Decisions 014–020, 028 and 034), restored by [Decision 039](DECISION_039_RESTORE_FACETED_WORLDS.md), which withdraws the code-drawn worlds of Decision 035 and the Blender kit of Decision 038. Polished by [Decision 040](DECISION_040_FACETED_POLISH.md): a low coast step, cumulus clouds, clean body surfaces and grounded parts.
 
 Current Observatory scenario-switch layout stability:
 [verification and implementation](qa/observatory-stability/REPORT.md).
@@ -13,7 +11,7 @@ Current instrument explanations, reference quantities, and guided observation:
 [Decision 029](DECISION_029_OBSERVER_LEARNING.md), with
 [verification](qa/observer-learning/REPORT.md).
 
-Current site and journey polish: [Decision 034](DECISION_034_CONTOUR_COASTS_AND_EXPERIENCE_POLISH.md), with [world-by-world review](qa/planet-polish-2026-09-30/REPORT.md); its contour coastlines and grounded sites belong to the Blender planets that Decision 035 replaces.
+Current contour coastlines, grounded sites and experience polish: [Decision 034](DECISION_034_CONTOUR_COASTS_AND_EXPERIENCE_POLISH.md), with [world-by-world review](qa/planet-polish-2026-09-30/REPORT.md).
 
 Previous editable planet polish: [Decision 028](DECISION_028_PLANET_POLISH.md), with [individual world review](qa/planet-polish-2026-09-20/REPORT.md).
 

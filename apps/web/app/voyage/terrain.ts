@@ -12,10 +12,17 @@ export function landform(x: number, y: number, z: number, seed: number) {
   );
 }
 
+/**
+ * Coast step of the faceted globes. Land stands a low, readable step above a full sea, so a
+ * continent reads as part of the planet rather than a plate laid on it (Decision 040).
+ */
+export const LAND_BASE = 1.01;
+export const SEA_RADIUS = 0.985;
+
 /** Radius of the raised land plate before scenario carving (quarry, rift) is applied. */
 export function landRadius(art: WorldArt, n: THREE.Vector3) {
   const elevation = landform(n.x, n.y, n.z, art.seed) - art.seaLevel;
-  return 1.025 + Math.max(0, elevation) * art.relief * 0.45;
+  return LAND_BASE + Math.max(0, elevation) * art.relief * 0.45;
 }
 
 /** S2's open pit, shared by the carved terrain and the bench construction above it. */
@@ -63,8 +70,8 @@ export function quarryDepth(n: THREE.Vector3) {
   const along = n.dot(quarryAxis);
   if (along <= 0.7) return 0;
   // Gnomonic tangent coordinates match how the benches are wrapped onto the globe.
-  const x = (n.dot(quarryX) / along) * 1.025,
-    z = (n.dot(quarryZ) / along) * 1.025;
+  const x = (n.dot(quarryX) / along) * LAND_BASE,
+    z = (n.dot(quarryZ) / along) * LAND_BASE;
   const rho = Math.hypot(x, z) / quarryEdgeRadius(Math.atan2(z, x));
   return THREE.MathUtils.clamp((1.05 - rho) / 0.15, 0, 1) * 0.1 + Math.max(0, 1 - rho) * 0.3;
 }
@@ -76,7 +83,7 @@ export function quarryBase(art: WorldArt) {
     const [x, z] = quarryOutline(0.51, (i / 48) * Math.PI * 2);
     const direction = quarryAxis
       .clone()
-      .multiplyScalar(1.025)
+      .multiplyScalar(LAND_BASE)
       .addScaledVector(quarryX, x)
       .addScaledVector(quarryZ, z)
       .normalize();
@@ -156,16 +163,11 @@ export function terrainGeometry(art: WorldArt, mobile: boolean) {
     emit(topB, lowA, lowB, cliff);
   };
   const point = (n: THREE.Vector3, raised: boolean) => {
-    const elevation = landform(n.x, n.y, n.z, art.seed) - art.seaLevel;
     const rift = art.form === 'fractured' && Math.abs(n.x + 0.14 * Math.sin(n.y * 5) - 0.03) < 0.1;
     const quarry = art.form === 'extraction' ? quarryDepth(n) : 0;
     return n
       .clone()
-      .multiplyScalar(
-        (raised ? 1.025 + Math.max(0, elevation) * art.relief * 0.45 : 0.925) -
-          (rift ? 0.13 : 0) -
-          quarry,
-      );
+      .multiplyScalar((raised ? landRadius(art, n) : SEA_RADIUS) - (rift ? 0.13 : 0) - quarry);
   };
   for (let i = 0; i < p.count; i += 3) {
     const face = i / 3;

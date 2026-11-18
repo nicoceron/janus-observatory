@@ -1,14 +1,14 @@
 {
   "schemaVersion": "1.0.0",
-  "version": "blender-planet-polish-v12-2026-09-30",
+  "version": "blender-faceted-polish-v13-2026-11-17",
   "contentOrigin": "interpretive",
   "assetPrefix": "janus.blender.v1.",
   "checksumAlgorithm": "sha256",
   "inputFiles": [
     {
       "path": "scripts/blender/earth_polish.py",
-      "checksum": "sha256:fbf1968677233c357e6af80e097b2b3acbf8dec66d7aaf5565a5f1301668c0a2",
-      "bytes": 47823
+      "checksum": "sha256:fcc7a60690867d95639f16932979f4c62f1843e7e076a33b3709c2ebcf49bf26",
+      "bytes": 48068
     },
     {
       "path": "scripts/blender/finish_world.py",
@@ -17,8 +17,8 @@
     },
     {
       "path": "scripts/blender/system_worlds.py",
-      "checksum": "sha256:555af578ac409125e5a6ede2c4f5165f2239a3379f083d02b1590053037e1ff8",
-      "bytes": 110451
+      "checksum": "sha256:b1c63707cb2811822706fe0c0e9092237b3b13bdbb38514c71447cf39618e179",
+      "bytes": 112664
     },
     {
       "path": "scripts/export-blender-seeds.ts",
@@ -27,60 +27,60 @@
     },
     {
       "path": "scripts/record-blender-art.ts",
-      "checksum": "sha256:feb4a616b8d4e456c067adf16a1fec69343f23f3d19d73bb87f58310e401bc27",
-      "bytes": 18903
+      "checksum": "sha256:e9e7d5a7f9bba023998e6ad68fe2c2615ff48034697e9e323a5f49005a9a2c45",
+      "bytes": 19098
     }
   ],
   "seedExchangeReceipt": {
     "path": "docs/qa/blender-finish/seeds.json",
-    "checksum": "sha256:701a5c5e35298bca4e50ce696f0f3f4bfa56f5a6c48b025f42db60422598491e",
+    "checksum": "sha256:8a83e0dfdf9a4ecf5eb46963a430138ce12aadc57526ee4451ab0e59f18fbda4",
     "bytes": 1927
   },
   "sources": [
     {
       "world": "origin",
       "path": "assets/blender/origin.blend",
-      "checksum": "sha256:c3d9bf3982c019233242d8b08688eb5320b49539899f7cf3328c808c2f471b54",
-      "bytes": 720279,
+      "checksum": "sha256:1ed07ac4511878db863719b09f36b815a5b851d089d6d48a6b6166c5c6a0362b",
+      "bytes": 718516,
       "seed": {
         "path": "assets/blender/seeds/origin.json",
-        "checksum": "sha256:ba6580087ec6ea0896478e4721617b0ae1cbd47784fd38acd9e862fa10019f28",
-        "bytes": 8692141
+        "checksum": "sha256:8c1209d0f959806b5f43cd28e75509d310d2790da74a7c5873c596f04f446af1",
+        "bytes": 8598379
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-origin.json",
-        "checksum": "sha256:1b463ba406d5cea5cafee23c5cdb8bda338dbdce0147b917bd420a08fc9a83ca",
-        "bytes": 1688
+        "checksum": "sha256:f982a8b31beefbc65cc923b8948541a94b3d0a7a1bf760ac9b6ea6c6d3f8a723",
+        "bytes": 1684
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-origin.resources.json",
-        "checksum": "sha256:a0c2c64826dbbe3130071acd129ff1f487b9e3f322fd449f3bdfaec186e05a41",
-        "bytes": 85063
+        "checksum": "sha256:dfeb4047e9950299a6ac1c07877d4dbcff74df8cfb2e39da83aee04bd95b11c9",
+        "bytes": 98672
       },
       "scenes": [
         "ORIGIN • Earth"
       ],
-      "blender": "5.2.1 LTS"
+      "blender": "5.3.0"
     },
     {
       "world": "s1",
       "path": "assets/blender/s1.blend",
-      "checksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "bytes": 1059412,
+      "checksum": "sha256:b1b677b8367063ea1e247ec64e0a7f6f34b0da28f23b70ee1ae677a95e08fc7e",
+      "bytes": 1072345,
       "seed": {
         "path": "assets/blender/seeds/s1.json",
-        "checksum": "sha256:da4aa6f1f3f2ceab2e4ddb4c2d5bf3a811989ea2a77e50545d23cfa781fd1b8e",
-        "bytes": 4958948
+        "checksum": "sha256:88e74364ec7485a777ac33e95d2636bb83f25366c2070bc4c106707b8851101b",
+        "bytes": 5308242
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s1.json",
-        "checksum": "sha256:4034bf9f3999d6b523b5dacd900599226207d80d00999c6a5e08765eead75466",
-        "bytes": 3103
+        "checksum": "sha256:507460ccba9fcd5a50ce460ec2f233310bb9600195fc60fb5f842eed81406c04",
+        "bytes": 3099
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s1.resources.json",
-        "checksum": "sha256:86f6389d9b7c19537b7165ed88c68073050abd8646eb04ce7ce348dc076efc5c",
-        "bytes": 55237
+        "checksum": "sha256:6e888771c1518482441ece2b0759cab6a8b587de430c1898baf533f9d136c28d",
+        "bytes": 68749
       },
       "scenes": [
         "S1 • asteroids",
@@ -90,27 +90,27 @@
         "S1 • outer",
         "S1 • Venus"
       ],
-      "blender": "5.2.1 LTS"
+      "blender": "5.3.0"
     },
     {
       "world": "s2",
       "path": "assets/blender/s2.blend",
-      "checksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
-      "bytes": 998135,
+      "checksum": "sha256:eab874245325f6c11e2d004564b78cb8c5231d6d408049c0743bd5d2b197d5ad",
+      "bytes": 981590,
       "seed": {
         "path": "assets/blender/seeds/s2.json",
-        "checksum": "sha256:a22cfc9536ac3ff8422dcded0a721416287f8e77061a3933c277f30e9b5726ea",
-        "bytes": 6000804
+        "checksum": "sha256:e99173a818ee9a87421a4760161c9834156c2c0394551784c161ea7c8b6b63e1",
+        "bytes": 6067625
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s2.json",
-        "checksum": "sha256:298055aa2ea1bf4b41924505b97a3667ef801d371fb33b0451173efc10ab4b29",
-        "bytes": 2484
+        "checksum": "sha256:8cda541b8b579b00a506fe15314405946cd9df7e47eabea77d4aec1a30f121b2",
+        "bytes": 2480
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s2.resources.json",
-        "checksum": "sha256:d6b7d232debc2ed7f9c5c748992d555c83f723fdc20da9c18d04b7c147e60329",
-        "bytes": 58711
+        "checksum": "sha256:d14ad468b0291422957585c53cc696dc1102c6fb3be93a24a13c5754af5d3aba",
+        "bytes": 72225
       },
       "scenes": [
         "S2 • asteroids",
@@ -118,27 +118,27 @@
         "S2 • Mars",
         "S2 • Moon"
       ],
-      "blender": "5.2.1 LTS"
+      "blender": "5.3.0"
     },
     {
       "world": "s3",
       "path": "assets/blender/s3.blend",
-      "checksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
-      "bytes": 1208369,
+      "checksum": "sha256:578f2e9823faa2da32e86f911459cc306051fdaf30566e1de715cd4192ba7edf",
+      "bytes": 1192042,
       "seed": {
         "path": "assets/blender/seeds/s3.json",
-        "checksum": "sha256:81b3352d3d0facadb9f09200083a98f383a10c63429ab1060cda163ae8a9de3e",
-        "bytes": 7376118
+        "checksum": "sha256:17f20b735de80ada377190161582b9e727608111a5aefaede199783373c41e2b",
+        "bytes": 7371261
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s3.json",
-        "checksum": "sha256:5d10dbb7ae43c43d75ecaff021af4d331dabc54e6ac2c706dd9ac768a04e8b26",
-        "bytes": 2877
+        "checksum": "sha256:f99ba61b12afb967dd1b7e21c0d6c8ae827612b78bd43a97d025497a4bb2a6c4",
+        "bytes": 2873
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s3.resources.json",
-        "checksum": "sha256:0eb88fb8aaf1885e136ffc5af1d7914e0ad133140f45515eeabe5f6620007fbd",
-        "bytes": 81786
+        "checksum": "sha256:36e5a8917b1954963cb62fc26b19104e7371666016cb55148b0a931d30208e79",
+        "bytes": 95299
       },
       "scenes": [
         "S3 • asteroids",
@@ -147,52 +147,52 @@
         "S3 • Moon",
         "S3 • outer"
       ],
-      "blender": "5.2.1 LTS"
+      "blender": "5.3.0"
     },
     {
       "world": "s4",
       "path": "assets/blender/s4.blend",
-      "checksum": "sha256:00c6855e5e7be9a231b4bf9464ebaec6f898f959b9c4ee1acef9ea8bcfcce9c3",
-      "bytes": 476183,
+      "checksum": "sha256:735c7a49d05bc575141cb8239c15f37a0d065732c0f86f9f94975f4c332c3160",
+      "bytes": 471995,
       "seed": {
         "path": "assets/blender/seeds/s4.json",
-        "checksum": "sha256:a82d08f03364814fd48283a9a3e4033fd61e52e4c39dfa32ee26a38046637d91",
-        "bytes": 3144706
+        "checksum": "sha256:00de59a0af0474d9e2375ff311234eea6adf55f0090441143179edf0af9d7c9f",
+        "bytes": 3118477
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s4.json",
-        "checksum": "sha256:0f8451ef0c9c81381e2cbb627a6f91193097d79fe1e0fff9ce1f2335da2330d3",
-        "bytes": 1922
+        "checksum": "sha256:27d2d862133afa311ec7f57e9c5d4d01390dca2b9410128a55969e89fe80165e",
+        "bytes": 1918
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s4.resources.json",
-        "checksum": "sha256:235e0b91ecbc705d74335b6f263dcc146d2090997823b1c096c4f34370aefe6d",
-        "bytes": 72185
+        "checksum": "sha256:d0c61e26341f2d8caf27a21cc7013b4d0b82193cf6e6a45f11c2ca1b36f293a7",
+        "bytes": 85696
       },
       "scenes": [
         "S4 • Earth"
       ],
-      "blender": "5.2.1 LTS"
+      "blender": "5.3.0"
     },
     {
       "world": "s5",
       "path": "assets/blender/s5.blend",
-      "checksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "bytes": 1200352,
+      "checksum": "sha256:83429135f9399771634e96ae8b67378424bfa134e86e7793f025db537494593c",
+      "bytes": 1182379,
       "seed": {
         "path": "assets/blender/seeds/s5.json",
-        "checksum": "sha256:18763c7ae8d7c4b88906e46515263af403b3e877380800bc7453fe7904791a5e",
-        "bytes": 6230112
+        "checksum": "sha256:e40d0e0d017b96217f244a2bf5f0f4f74e134a16bbeefb5c5d96d10f16487da2",
+        "bytes": 6229601
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s5.json",
-        "checksum": "sha256:d194c4d8d7b5d75c49613cf0920d6ae0421e0f531865d79a7129ab089d46df04",
-        "bytes": 3203
+        "checksum": "sha256:1ea46597a8836ef7cba5554dd5a181b9d72d45868ebc3ced57f1468932de39e7",
+        "bytes": 3199
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s5.resources.json",
-        "checksum": "sha256:f20690f2f65ca05c609f8895fce5cd5bcfd98d49086ba3fd7904d7ab65e85bd8",
-        "bytes": 55241
+        "checksum": "sha256:05be298b1724fa23dc9b629b4c33025f9c53723cf4e44745ab07d3a9e11c2f70",
+        "bytes": 68748
       },
       "scenes": [
         "S5 • asteroids",
@@ -203,27 +203,27 @@
         "S5 • outer",
         "S5 • Venus"
       ],
-      "blender": "5.2.1 LTS"
+      "blender": "5.3.0"
     },
     {
       "world": "s6",
       "path": "assets/blender/s6.blend",
-      "checksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "bytes": 1016560,
+      "checksum": "sha256:c8b794c856a9bbc7e821f9dea4dd370f4ea7484e851a5a34eb49dd1471dfa481",
+      "bytes": 1000116,
       "seed": {
         "path": "assets/blender/seeds/s6.json",
-        "checksum": "sha256:0e43abc576d30523e22e3378a064c6e35a76a94917a2a31b56a1a82ad6f70e26",
-        "bytes": 3804585
+        "checksum": "sha256:bc5c4cb2746c3b8d7eac4c1aecbc39bb447458db4aa22f3b1d21270775349eca",
+        "bytes": 3804399
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s6.json",
-        "checksum": "sha256:14e8e768f0f02cc61a13f50d38ff7481b007b2c9bc0276362505c39c472d023e",
-        "bytes": 3096
+        "checksum": "sha256:a9508038cc08ab605c359d861c5862eb614c486eb17414aa7d5ce666509da10c",
+        "bytes": 3092
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s6.resources.json",
-        "checksum": "sha256:8999819ad13c87bfc1d19e0ca7c195433c2f07030d13cf0928f97d7b42e2e99f",
-        "bytes": 55236
+        "checksum": "sha256:8918ddd3a53ccde084c5f396f42439719d4d2089f4cd0f743c0c17676687b7c2",
+        "bytes": 68744
       },
       "scenes": [
         "S6 • asteroids",
@@ -233,78 +233,78 @@
         "S6 • Moon",
         "S6 • Venus"
       ],
-      "blender": "5.2.1 LTS"
+      "blender": "5.3.0"
     },
     {
       "world": "s7",
       "path": "assets/blender/s7.blend",
-      "checksum": "sha256:f4d8b7cb1a0e0db65479b5d5429ad9829b0bb478276ff8cb446412af3ebcd454",
-      "bytes": 589639,
+      "checksum": "sha256:b02b3915c98be865b81549aa27a1f363f96f25593ba359b0964b69398c160d3c",
+      "bytes": 585594,
       "seed": {
         "path": "assets/blender/seeds/s7.json",
-        "checksum": "sha256:5d9ff3ae2bad44c761eae79caa5b646756a40dbd0dba28c5100cacec9d72b756",
-        "bytes": 6054113
+        "checksum": "sha256:568ae5b181919c289f6f1048aaad90485707052c8fe1bfe044f2030127ab1576",
+        "bytes": 6051513
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s7.json",
-        "checksum": "sha256:b937c1e5e273a34d7736b2d5f6e811c5ce86d4295199758dca41158a0a4de24c",
-        "bytes": 1682
+        "checksum": "sha256:a0189222821ac32a571e042edbfd575f94ff9dc4d507e434433af395867770cf",
+        "bytes": 1678
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s7.resources.json",
-        "checksum": "sha256:91855b7fd503e2f33dfbd3a8b29139f38b53443a36edfab7b2215ccbd9de44c9",
-        "bytes": 65383
+        "checksum": "sha256:8d28fcc19ba8ef8c6d010f426c53d0acd64db39058a56dba916302a3ff0a76c7",
+        "bytes": 78888
       },
       "scenes": [
         "S7 • Earth"
       ],
-      "blender": "5.2.1 LTS"
+      "blender": "5.3.0"
     },
     {
       "world": "s8",
       "path": "assets/blender/s8.blend",
-      "checksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
-      "bytes": 570704,
+      "checksum": "sha256:57948f05104e72a480d7daf1aba074871d70e5e57e9b52ed8ebf3be997794687",
+      "bytes": 606943,
       "seed": {
         "path": "assets/blender/seeds/s8.json",
-        "checksum": "sha256:cec67d135c446fab439ee575ea94c5f5f03f0b6d7d5eab86469d44d1704bacec",
-        "bytes": 3916454
+        "checksum": "sha256:a3fd604e482b8f39da8199ffd8118c497ded9a7023d1c24c6435a7cea422d2d6",
+        "bytes": 4401835
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s8.json",
-        "checksum": "sha256:1a5645929b715ed072e21454db248bca06ea1f16b7f7562760f2483406cb169b",
-        "bytes": 1807
+        "checksum": "sha256:5d5d030b42072a12825b28effdacd69358d7e5d60d8c88d2d94d35347e5abea7",
+        "bytes": 1803
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s8.resources.json",
-        "checksum": "sha256:450d6ad1ec3ff88f97814dd837d8e3297c602fc61b4597d0ed41a7ba55a39cd0",
-        "bytes": 55236
+        "checksum": "sha256:21ac8b6f1f1be7fcb9cdc38e3b78482391954cec01ea1b8d604528157f6fd2dd",
+        "bytes": 68744
       },
       "scenes": [
         "S8 • Earth",
         "S8 • Moon"
       ],
-      "blender": "5.2.1 LTS"
+      "blender": "5.3.0"
     },
     {
       "world": "s9",
       "path": "assets/blender/s9.blend",
-      "checksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "bytes": 803062,
+      "checksum": "sha256:ce4eaaeba1c991600d02a76741f4039b3e741f2b15dc7835404f5d028d86c285",
+      "bytes": 798862,
       "seed": {
         "path": "assets/blender/seeds/s9.json",
-        "checksum": "sha256:437be61fcd683cd474543e7e9470ef219562744f1dcb5024325d2809993e9e85",
-        "bytes": 1952773
+        "checksum": "sha256:352dda715b227d7dbe41bd1b05d356993fa9c2c161f7b1c31545eb6d0e4ff55b",
+        "bytes": 1950000
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s9.json",
-        "checksum": "sha256:d54147a1d7cb434f594c2fc5d73c325b54668b88428a87d41af7a354c885b17c",
-        "bytes": 3170
+        "checksum": "sha256:491946fa4482642241e5ff07f5b747ba7f7f8f594ba2a6e050deb6867dc9c45b",
+        "bytes": 3166
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s9.resources.json",
-        "checksum": "sha256:c2aaa539f6b3c6765b2f69b6fe12cd9fe94207558c6113c63649e2a0f299ef3e",
-        "bytes": 58638
+        "checksum": "sha256:4bcbd6d6ef7b859b8f6ab751a28914e2f252624d9d9366681e0d39be965dfee0",
+        "bytes": 72145
       },
       "scenes": [
         "S9 • asteroids",
@@ -316,27 +316,27 @@
         "S9 • solar",
         "S9 • Venus"
       ],
-      "blender": "5.2.1 LTS"
+      "blender": "5.3.0"
     },
     {
       "world": "s10",
       "path": "assets/blender/s10.blend",
-      "checksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "bytes": 1027193,
+      "checksum": "sha256:4bd0f28cd02d1e72ecc1a65e9247102dd2526bd3d8122d22a84494cbe5e1c44d",
+      "bytes": 1007821,
       "seed": {
         "path": "assets/blender/seeds/s10.json",
-        "checksum": "sha256:0df41bfd4f9a9e47be5e9a16978ca69576b383b1722661a007b8cba6e672162a",
-        "bytes": 2903388
+        "checksum": "sha256:d4640a998bb27d7c4da7e163769b668fc201eeabaaac6bbf5f3aaa5552b32452",
+        "bytes": 2900329
       },
       "modelReceipt": {
         "path": "docs/qa/blender-finish/model-s10.json",
-        "checksum": "sha256:41a7454b7ce1f5ae23880e910bdc7547131cbe0b2880b05a30e8129bbb134e3a",
-        "bytes": 3277
+        "checksum": "sha256:958eb4805e207a00af8e15bf33d8de3f5877cca87e585a9c593942ec8016e6bc",
+        "bytes": 3273
       },
       "resourceReceipt": {
         "path": "docs/qa/blender-finish/build-s10.resources.json",
-        "checksum": "sha256:0631a1409f41a45c0bbfd177a9150ebee23a5dc17401bc5aeacf331a1e09f714",
-        "bytes": 65660
+        "checksum": "sha256:3661bb7af0510fab1c1c8b83056425eec80cc940769e4a8cda98a5840153bc57",
+        "bytes": 79193
       },
       "scenes": [
         "S10 • asteroids",
@@ -347,7 +347,7 @@
         "S10 • outer",
         "S10 • Venus"
       ],
-      "blender": "5.2.1 LTS"
+      "blender": "5.3.0"
     }
   ],
   "derivatives": [
@@ -358,10 +358,10 @@
       "path": "apps/web/public/assets/blender/v1/origin/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/origin/earth-mobile.glb",
       "sourcePath": "assets/blender/origin.blend",
-      "sourceChecksum": "sha256:c3d9bf3982c019233242d8b08688eb5320b49539899f7cf3328c808c2f471b54",
-      "derivativeChecksum": "sha256:18d553a447b0e0b6138fc8d81600e810b5f1080256e121a6e0b18fc90f533c20",
-      "bytes": 690588,
-      "triangles": 23196,
+      "sourceChecksum": "sha256:1ed07ac4511878db863719b09f36b815a5b851d089d6d48a6b6166c5c6a0362b",
+      "derivativeChecksum": "sha256:1554fdc6afb10f8f790780843935da1568d9550e6916c7c9ca05e36140a5fd8c",
+      "bytes": 689536,
+      "triangles": 23252,
       "parts": [
         "Terrain",
         "Structures",
@@ -378,7 +378,7 @@
         "Cloud_3",
         "Cloud_4"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -423,10 +423,10 @@
       "path": "apps/web/public/assets/blender/v1/origin/earth.glb",
       "publicPath": "/assets/blender/v1/origin/earth.glb",
       "sourcePath": "assets/blender/origin.blend",
-      "sourceChecksum": "sha256:c3d9bf3982c019233242d8b08688eb5320b49539899f7cf3328c808c2f471b54",
-      "derivativeChecksum": "sha256:eb2177913541356191eb17d4cb5e85a1dbe7ed80ed2ad1f4c62f0b8b1b6cf97b",
-      "bytes": 795764,
-      "triangles": 26164,
+      "sourceChecksum": "sha256:1ed07ac4511878db863719b09f36b815a5b851d089d6d48a6b6166c5c6a0362b",
+      "derivativeChecksum": "sha256:11c74a654b9223b50b8d9cc9d070059b948947f593ebbddc98c2c357d3257c5c",
+      "bytes": 798152,
+      "triangles": 26312,
       "parts": [
         "Terrain",
         "Structures",
@@ -443,7 +443,7 @@
         "Cloud_3",
         "Cloud_4"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -488,14 +488,14 @@
       "path": "apps/web/public/assets/blender/v1/s1/asteroids.glb",
       "publicPath": "/assets/blender/v1/s1/asteroids.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "derivativeChecksum": "sha256:49089a2a01f7178d4f125aba3be0b802afb61f88cc4c89c86c54578c21308f0c",
+      "sourceChecksum": "sha256:b1b677b8367063ea1e247ec64e0a7f6f34b0da28f23b70ee1ae677a95e08fc7e",
+      "derivativeChecksum": "sha256:eeb0a29fc3946f7094f2ede041cbebc4bc8bb90de2ea4327707ce4a765dcf236",
       "bytes": 63540,
       "triangles": 2524,
       "parts": [
         "S1_asteroids"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -514,10 +514,10 @@
       "path": "apps/web/public/assets/blender/v1/s1/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s1/earth-mobile.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "derivativeChecksum": "sha256:2a5372a052e28b248ceb9249160587bf2142f06bea010a28e4ca05b777c5b036",
-      "bytes": 536524,
-      "triangles": 20441,
+      "sourceChecksum": "sha256:b1b677b8367063ea1e247ec64e0a7f6f34b0da28f23b70ee1ae677a95e08fc7e",
+      "derivativeChecksum": "sha256:dd12b7b23dad36479e05700880dcd3c82ad9b1bcc21f473b977d2167ee9bca91",
+      "bytes": 559828,
+      "triangles": 21265,
       "parts": [
         "Terrain",
         "Structures",
@@ -534,7 +534,7 @@
         "Study_mars-base",
         "Study_orbital-habitat"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -579,10 +579,10 @@
       "path": "apps/web/public/assets/blender/v1/s1/earth.glb",
       "publicPath": "/assets/blender/v1/s1/earth.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "derivativeChecksum": "sha256:359b9526d3763a93b16dddcb2037f6157bac5de92ff89f277aa8a2e4d2d5a8d9",
-      "bytes": 604576,
-      "triangles": 22481,
+      "sourceChecksum": "sha256:b1b677b8367063ea1e247ec64e0a7f6f34b0da28f23b70ee1ae677a95e08fc7e",
+      "derivativeChecksum": "sha256:aae57efc482e69d811dfaa374e93005186bbfe805b62382c17ddd2da71a4858c",
+      "bytes": 640376,
+      "triangles": 23793,
       "parts": [
         "Terrain",
         "Structures",
@@ -599,7 +599,7 @@
         "Study_mars-base",
         "Study_orbital-habitat"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -644,14 +644,14 @@
       "path": "apps/web/public/assets/blender/v1/s1/Mars.glb",
       "publicPath": "/assets/blender/v1/s1/Mars.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "derivativeChecksum": "sha256:c3026e5e52b979976744a0b2d89f0c7387ae422e65a5c38d6ea5e9de21d731a0",
-      "bytes": 252036,
+      "sourceChecksum": "sha256:b1b677b8367063ea1e247ec64e0a7f6f34b0da28f23b70ee1ae677a95e08fc7e",
+      "derivativeChecksum": "sha256:2ace0ec8c2e516a50506a21b15bb93e76d9d2d81a6bcf95291bd73a26805ec68",
+      "bytes": 251696,
       "triangles": 11080,
       "parts": [
         "S1_Mars"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -670,14 +670,14 @@
       "path": "apps/web/public/assets/blender/v1/s1/Moon.glb",
       "publicPath": "/assets/blender/v1/s1/Moon.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "derivativeChecksum": "sha256:0915b6f0fa760f6f9db98a86a32d117799cf839a0cff3908516edadea4381dd1",
-      "bytes": 220852,
+      "sourceChecksum": "sha256:b1b677b8367063ea1e247ec64e0a7f6f34b0da28f23b70ee1ae677a95e08fc7e",
+      "derivativeChecksum": "sha256:27c1f8374fc096a73c989188ead3e36a41d9b6877ec62a74972d6a740f719b4d",
+      "bytes": 220244,
       "triangles": 9348,
       "parts": [
         "S1_Moon"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -696,14 +696,14 @@
       "path": "apps/web/public/assets/blender/v1/s1/outer.glb",
       "publicPath": "/assets/blender/v1/s1/outer.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "derivativeChecksum": "sha256:3eb71e36985441b85c743e9d769f568309d55d32a4e48f763a5c2fe76dd173d4",
+      "sourceChecksum": "sha256:b1b677b8367063ea1e247ec64e0a7f6f34b0da28f23b70ee1ae677a95e08fc7e",
+      "derivativeChecksum": "sha256:dcee6bf1b44f795db6e3dc6d26a0e3071d04cd62c8fb8f1189565c78f1bdd3ae",
       "bytes": 84132,
       "triangles": 3232,
       "parts": [
         "S1_outer"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -722,19 +722,19 @@
       "path": "apps/web/public/assets/blender/v1/s1/Venus.glb",
       "publicPath": "/assets/blender/v1/s1/Venus.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "sourceChecksum": "sha256:643016c274e267d3be8aa9a0a694eb681221e105c068b635d4754b32cb05f34c",
-      "derivativeChecksum": "sha256:35e7a5af4e8ca98ab8debe111576c50001a1886966b809e34018fbd158ab43ac",
-      "bytes": 101944,
-      "triangles": 4236,
+      "sourceChecksum": "sha256:b1b677b8367063ea1e247ec64e0a7f6f34b0da28f23b70ee1ae677a95e08fc7e",
+      "derivativeChecksum": "sha256:717781e6446039fe76060730e0798173906a5ee008bd5d28ae197f2ab26a4c60",
+      "bytes": 125048,
+      "triangles": 5436,
       "parts": [
         "S1_Venus"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
       "meshCount": 1,
-      "materialCount": 9,
+      "materialCount": 10,
       "animationCount": 0,
       "namedNodes": [
         "S1_Venus • modeled surfaces",
@@ -748,14 +748,14 @@
       "path": "apps/web/public/assets/blender/v1/s2/asteroids.glb",
       "publicPath": "/assets/blender/v1/s2/asteroids.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
-      "derivativeChecksum": "sha256:f50847f387383318f678751012f1f7695fb0bf062b69fde2bd8542c3fe0e6fc5",
+      "sourceChecksum": "sha256:eab874245325f6c11e2d004564b78cb8c5231d6d408049c0743bd5d2b197d5ad",
+      "derivativeChecksum": "sha256:136c18fde9b038fc14ff364f4ae7d8617781deaadb02d03003fe73fe66263307",
       "bytes": 73424,
       "triangles": 3000,
       "parts": [
         "S2_asteroids"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -774,10 +774,10 @@
       "path": "apps/web/public/assets/blender/v1/s2/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s2/earth-mobile.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
-      "derivativeChecksum": "sha256:1b5a9afe3667f16547afd5601b59e09ad86e933df30d32dca57b4777650d94ba",
-      "bytes": 567560,
-      "triangles": 21264,
+      "sourceChecksum": "sha256:eab874245325f6c11e2d004564b78cb8c5231d6d408049c0743bd5d2b197d5ad",
+      "derivativeChecksum": "sha256:ef1dd95b35da9dcda36d5bf956375fb948713a0707abdfe0da389248aa654f64",
+      "bytes": 571736,
+      "triangles": 21422,
       "parts": [
         "Terrain",
         "Structures",
@@ -793,7 +793,7 @@
         "Study_lunar-base",
         "Study_mars-base"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -836,10 +836,10 @@
       "path": "apps/web/public/assets/blender/v1/s2/earth.glb",
       "publicPath": "/assets/blender/v1/s2/earth.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
-      "derivativeChecksum": "sha256:92876c8f4d8f0a1d40687bd3f037e3c40cb1de26702e34f7108b54df46af60f2",
-      "bytes": 655964,
-      "triangles": 24112,
+      "sourceChecksum": "sha256:eab874245325f6c11e2d004564b78cb8c5231d6d408049c0743bd5d2b197d5ad",
+      "derivativeChecksum": "sha256:c2cf3d9cf9790427ad14ea0721ce0854be06d309cc1b44769c7296a63183573a",
+      "bytes": 663700,
+      "triangles": 24374,
       "parts": [
         "Terrain",
         "Structures",
@@ -855,7 +855,7 @@
         "Study_lunar-base",
         "Study_mars-base"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -898,14 +898,14 @@
       "path": "apps/web/public/assets/blender/v1/s2/Mars.glb",
       "publicPath": "/assets/blender/v1/s2/Mars.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
-      "derivativeChecksum": "sha256:e3cb828e551172e6ae392f2b27e094c9a29662b7c99766e2722e98f3a4da31bf",
-      "bytes": 262364,
+      "sourceChecksum": "sha256:eab874245325f6c11e2d004564b78cb8c5231d6d408049c0743bd5d2b197d5ad",
+      "derivativeChecksum": "sha256:4ae109bd10007de5ddecaa6748d83a672069e9965356566ad20ac66c8eecfe70",
+      "bytes": 262040,
       "triangles": 11652,
       "parts": [
         "S2_Mars"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -924,14 +924,14 @@
       "path": "apps/web/public/assets/blender/v1/s2/Moon.glb",
       "publicPath": "/assets/blender/v1/s2/Moon.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "sourceChecksum": "sha256:eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
-      "derivativeChecksum": "sha256:ca23430fe5ace9f1eb99dc11ac65eb69bc3ef84002d20d0ade6a7a2fb8469882",
-      "bytes": 232216,
+      "sourceChecksum": "sha256:eab874245325f6c11e2d004564b78cb8c5231d6d408049c0743bd5d2b197d5ad",
+      "derivativeChecksum": "sha256:4ee911b3532aefcb4c2077f1b55ffae0b24c842c535d6cf7c618ef481b370e3d",
+      "bytes": 231600,
       "triangles": 9944,
       "parts": [
         "S2_Moon"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -950,14 +950,14 @@
       "path": "apps/web/public/assets/blender/v1/s3/asteroids.glb",
       "publicPath": "/assets/blender/v1/s3/asteroids.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
-      "derivativeChecksum": "sha256:b4c243862e084f39ecd2a8b86548a4f9d5afddddf817be4aa3f277219f317ae4",
+      "sourceChecksum": "sha256:578f2e9823faa2da32e86f911459cc306051fdaf30566e1de715cd4192ba7edf",
+      "derivativeChecksum": "sha256:4fb93e3a3e908f991682edff23ffedf853f8d8ce0a9c8c331ec268e6c4456884",
       "bytes": 88872,
       "triangles": 3828,
       "parts": [
         "S3_asteroids"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -976,10 +976,10 @@
       "path": "apps/web/public/assets/blender/v1/s3/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s3/earth-mobile.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
-      "derivativeChecksum": "sha256:1b4949d9e9a43f8592d8f118cd5ab7ee08a995fe5fd375bae378fd704e768d04",
-      "bytes": 780184,
-      "triangles": 29942,
+      "sourceChecksum": "sha256:578f2e9823faa2da32e86f911459cc306051fdaf30566e1de715cd4192ba7edf",
+      "derivativeChecksum": "sha256:99f43286a53963db9ca7156272fbbead1c677d9562dbf9a83adaaa182715a461",
+      "bytes": 782420,
+      "triangles": 30090,
       "parts": [
         "Terrain",
         "Structures",
@@ -998,7 +998,7 @@
         "Study_lunar-base",
         "Study_mars-base"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1047,10 +1047,10 @@
       "path": "apps/web/public/assets/blender/v1/s3/earth.glb",
       "publicPath": "/assets/blender/v1/s3/earth.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
-      "derivativeChecksum": "sha256:133ec6660ac808d8694f2a8af361fb3c4b92b724971db2c22ad1cdd619568a01",
-      "bytes": 852076,
-      "triangles": 31998,
+      "sourceChecksum": "sha256:578f2e9823faa2da32e86f911459cc306051fdaf30566e1de715cd4192ba7edf",
+      "derivativeChecksum": "sha256:3968d6697dc6a14ff857b3536a381856e057343dbc940fc5b519ef38a88e984f",
+      "bytes": 854452,
+      "triangles": 32146,
       "parts": [
         "Terrain",
         "Structures",
@@ -1069,7 +1069,7 @@
         "Study_lunar-base",
         "Study_mars-base"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1118,14 +1118,14 @@
       "path": "apps/web/public/assets/blender/v1/s3/Mars.glb",
       "publicPath": "/assets/blender/v1/s3/Mars.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
-      "derivativeChecksum": "sha256:39138573228d03a54b91644558958c9e015a0c44bcb0b121e505c8660010cb24",
-      "bytes": 303364,
+      "sourceChecksum": "sha256:578f2e9823faa2da32e86f911459cc306051fdaf30566e1de715cd4192ba7edf",
+      "derivativeChecksum": "sha256:e93b1e00bf6e7fbd6562da2e41406697fe7cf0868f371a9ed1d01d82f82a9cc4",
+      "bytes": 303048,
       "triangles": 13904,
       "parts": [
         "S3_Mars"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1144,14 +1144,14 @@
       "path": "apps/web/public/assets/blender/v1/s3/Moon.glb",
       "publicPath": "/assets/blender/v1/s3/Moon.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
-      "derivativeChecksum": "sha256:0f76b01a022c7dba85fbfb93424fe4c05fad97159c99af36d7c293f53264c2b2",
-      "bytes": 280872,
+      "sourceChecksum": "sha256:578f2e9823faa2da32e86f911459cc306051fdaf30566e1de715cd4192ba7edf",
+      "derivativeChecksum": "sha256:704ba9219f57daa2cc66b43b19fedd6c2947058b5a632d3a182c48c6457d63a6",
+      "bytes": 280260,
       "triangles": 12664,
       "parts": [
         "S3_Moon"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1170,14 +1170,14 @@
       "path": "apps/web/public/assets/blender/v1/s3/outer.glb",
       "publicPath": "/assets/blender/v1/s3/outer.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "sourceChecksum": "sha256:c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
-      "derivativeChecksum": "sha256:82a95da8f5ebb05354eb048c440636b12ab63f66f2ef13132ba87651b37a8aba",
+      "sourceChecksum": "sha256:578f2e9823faa2da32e86f911459cc306051fdaf30566e1de715cd4192ba7edf",
+      "derivativeChecksum": "sha256:a91fc266d67a98f54571a15906f5e51a0ce53bba893171566c5bdca54b503a10",
       "bytes": 142336,
       "triangles": 6548,
       "parts": [
         "S3_outer"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1196,10 +1196,10 @@
       "path": "apps/web/public/assets/blender/v1/s4/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s4/earth-mobile.glb",
       "sourcePath": "assets/blender/s4.blend",
-      "sourceChecksum": "sha256:00c6855e5e7be9a231b4bf9464ebaec6f898f959b9c4ee1acef9ea8bcfcce9c3",
-      "derivativeChecksum": "sha256:bef4adbc394438e6fdb6903c5cc7fa904532aa9e5ade78dffeff7637a7bda808",
-      "bytes": 359156,
-      "triangles": 10053,
+      "sourceChecksum": "sha256:735c7a49d05bc575141cb8239c15f37a0d065732c0f86f9f94975f4c332c3160",
+      "derivativeChecksum": "sha256:3f72998f6e78595d0890c1ab6e43a20ca5dcd22416e296392a1fbaa14dd4e061",
+      "bytes": 359776,
+      "triangles": 10137,
       "parts": [
         "Terrain",
         "Structures",
@@ -1221,7 +1221,7 @@
         "Cloud_1",
         "Cloud_2"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1276,10 +1276,10 @@
       "path": "apps/web/public/assets/blender/v1/s4/earth.glb",
       "publicPath": "/assets/blender/v1/s4/earth.glb",
       "sourcePath": "assets/blender/s4.blend",
-      "sourceChecksum": "sha256:00c6855e5e7be9a231b4bf9464ebaec6f898f959b9c4ee1acef9ea8bcfcce9c3",
-      "derivativeChecksum": "sha256:1f918ae0070c037c17365fc998e0f6b99928d28d3a70c00be9d21ed3e55fa4fc",
-      "bytes": 435716,
-      "triangles": 12249,
+      "sourceChecksum": "sha256:735c7a49d05bc575141cb8239c15f37a0d065732c0f86f9f94975f4c332c3160",
+      "derivativeChecksum": "sha256:b4d3cf4251fcebb1b1a14bca4ba74b5d9c0d5d412d539b58160380b997da8446",
+      "bytes": 437976,
+      "triangles": 12385,
       "parts": [
         "Terrain",
         "Structures",
@@ -1301,7 +1301,7 @@
         "Cloud_1",
         "Cloud_2"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1356,14 +1356,14 @@
       "path": "apps/web/public/assets/blender/v1/s5/asteroids.glb",
       "publicPath": "/assets/blender/v1/s5/asteroids.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:9f920fa971871a321c9a84682450fca329a56dfe921fe8794165835217a3ed3d",
+      "sourceChecksum": "sha256:83429135f9399771634e96ae8b67378424bfa134e86e7793f025db537494593c",
+      "derivativeChecksum": "sha256:9039498a5cd6dc28e3e7fde9da7d4fc224eb635eb766db4063ee9e94b9290e8b",
       "bytes": 83072,
       "triangles": 3376,
       "parts": [
         "S5_asteroids"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1382,9 +1382,9 @@
       "path": "apps/web/public/assets/blender/v1/s5/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s5/earth-mobile.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:899efa6cc4b71d79e0d7b4c73c3da89f652465f7aba77064ba140c528ae8e24f",
-      "bytes": 739712,
+      "sourceChecksum": "sha256:83429135f9399771634e96ae8b67378424bfa134e86e7793f025db537494593c",
+      "derivativeChecksum": "sha256:411f5a327d27506da21685b5ba5cb5c5046a55b415acdd4578d58a305bc4fc35",
+      "bytes": 739464,
       "triangles": 27024,
       "parts": [
         "Terrain",
@@ -1400,7 +1400,7 @@
         "Study_lunar-base",
         "Study_mars-base"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1441,9 +1441,9 @@
       "path": "apps/web/public/assets/blender/v1/s5/earth.glb",
       "publicPath": "/assets/blender/v1/s5/earth.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:a7a3c1f2c02a5cd8440b14124a92c5028ab01c14c05ce9a05872c307ac0c7f40",
-      "bytes": 843284,
+      "sourceChecksum": "sha256:83429135f9399771634e96ae8b67378424bfa134e86e7793f025db537494593c",
+      "derivativeChecksum": "sha256:257418fc478d4e6a1bb68b3e0a620aca8e214a45acd7dcc382ddf48058c027b4",
+      "bytes": 843848,
       "triangles": 30364,
       "parts": [
         "Terrain",
@@ -1459,7 +1459,7 @@
         "Study_lunar-base",
         "Study_mars-base"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1500,14 +1500,14 @@
       "path": "apps/web/public/assets/blender/v1/s5/kuiper.glb",
       "publicPath": "/assets/blender/v1/s5/kuiper.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:5df422221f02005504328776303032228250726f86a750c11679b4285d30a956",
+      "sourceChecksum": "sha256:83429135f9399771634e96ae8b67378424bfa134e86e7793f025db537494593c",
+      "derivativeChecksum": "sha256:6c035b3c925194aab13f4f085964878eff84ddb13cc688029d16dd7b7fa071b8",
       "bytes": 128992,
       "triangles": 5212,
       "parts": [
         "S5_kuiper"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1526,14 +1526,14 @@
       "path": "apps/web/public/assets/blender/v1/s5/Mars.glb",
       "publicPath": "/assets/blender/v1/s5/Mars.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:5a619ea3bbadf89da72df83e388f04dd76088c528e0a0cd5fa76c1ab59a61dd4",
-      "bytes": 272136,
+      "sourceChecksum": "sha256:83429135f9399771634e96ae8b67378424bfa134e86e7793f025db537494593c",
+      "derivativeChecksum": "sha256:17b4503e3f822957344ea4a8929599c3ecfcfdf22546910e77415f0b8f3080c3",
+      "bytes": 271448,
       "triangles": 12084,
       "parts": [
         "S5_Mars"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1552,14 +1552,14 @@
       "path": "apps/web/public/assets/blender/v1/s5/Moon.glb",
       "publicPath": "/assets/blender/v1/s5/Moon.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:8c9855b7385482e751cb348a6a479d41ddbdaac8182cd342a2fe9366a3c84b9e",
-      "bytes": 241816,
+      "sourceChecksum": "sha256:83429135f9399771634e96ae8b67378424bfa134e86e7793f025db537494593c",
+      "derivativeChecksum": "sha256:aa104ec44a6bf92640e62858adc22aba76d1b4beb0b86e5178ae2d8362f7928c",
+      "bytes": 241204,
       "triangles": 10476,
       "parts": [
         "S5_Moon"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1578,14 +1578,14 @@
       "path": "apps/web/public/assets/blender/v1/s5/outer.glb",
       "publicPath": "/assets/blender/v1/s5/outer.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:b9f23ba60a75e1a13a220c54dbdbe1bcfc8b86da1110ddaaffac782df4d7d9eb",
+      "sourceChecksum": "sha256:83429135f9399771634e96ae8b67378424bfa134e86e7793f025db537494593c",
+      "derivativeChecksum": "sha256:9cd429a9182f56113cff7905d923d58aaf80d1e14695852dd1e9831b78fe04a9",
       "bytes": 104304,
       "triangles": 4360,
       "parts": [
         "S5_outer"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1604,14 +1604,14 @@
       "path": "apps/web/public/assets/blender/v1/s5/Venus.glb",
       "publicPath": "/assets/blender/v1/s5/Venus.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "sourceChecksum": "sha256:8e79e55ab4a2d54ed3ed0a21a3b2a08c587db5252659b42032cde7d3aba8c450",
-      "derivativeChecksum": "sha256:53f47cbcc414ae59eac5f918d096fd2657bf8421737807925a8a50d01518b1b7",
-      "bytes": 92912,
+      "sourceChecksum": "sha256:83429135f9399771634e96ae8b67378424bfa134e86e7793f025db537494593c",
+      "derivativeChecksum": "sha256:2508d8e826dd88df32eb85ed9e3a7641ec780e576b66127c7ab231a60636d679",
+      "bytes": 92752,
       "triangles": 3520,
       "parts": [
         "S5_Venus"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1630,14 +1630,14 @@
       "path": "apps/web/public/assets/blender/v1/s6/asteroids.glb",
       "publicPath": "/assets/blender/v1/s6/asteroids.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "derivativeChecksum": "sha256:cfb7f50e2589971fe76a6f6749b69e60876ba6242c97790d8c491437c0b55743",
+      "sourceChecksum": "sha256:c8b794c856a9bbc7e821f9dea4dd370f4ea7484e851a5a34eb49dd1471dfa481",
+      "derivativeChecksum": "sha256:9a56461eccd112ffc79221d6cfe832e6c71003e9a5280f3917403419f94ed9f7",
       "bytes": 79616,
       "triangles": 3392,
       "parts": [
         "S6_asteroids"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1656,9 +1656,9 @@
       "path": "apps/web/public/assets/blender/v1/s6/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s6/earth-mobile.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "derivativeChecksum": "sha256:aea8d60ff3757fd78bcd5cab8f418da9f7316c07d0f4265e5e601943548ecda7",
-      "bytes": 596064,
+      "sourceChecksum": "sha256:c8b794c856a9bbc7e821f9dea4dd370f4ea7484e851a5a34eb49dd1471dfa481",
+      "derivativeChecksum": "sha256:de79e67362099bf242c0632858772c1d79955e1d52cbf0732f4e8de2b428f18c",
+      "bytes": 596124,
       "triangles": 22288,
       "parts": [
         "Terrain",
@@ -1675,7 +1675,7 @@
         "Study_mars-base",
         "Study_venus-facility"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1718,9 +1718,9 @@
       "path": "apps/web/public/assets/blender/v1/s6/earth.glb",
       "publicPath": "/assets/blender/v1/s6/earth.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "derivativeChecksum": "sha256:ab261d5a0750e6b084284c3cb11557dfabcc3e8a698661d057a4b3224bacb1aa",
-      "bytes": 690292,
+      "sourceChecksum": "sha256:c8b794c856a9bbc7e821f9dea4dd370f4ea7484e851a5a34eb49dd1471dfa481",
+      "derivativeChecksum": "sha256:eb4e3e2db7658c059ce5a389378195e4cdfd6cdeb7fc08d7be8861d286587893",
+      "bytes": 690236,
       "triangles": 25186,
       "parts": [
         "Terrain",
@@ -1737,7 +1737,7 @@
         "Study_mars-base",
         "Study_venus-facility"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1780,14 +1780,14 @@
       "path": "apps/web/public/assets/blender/v1/s6/kuiper.glb",
       "publicPath": "/assets/blender/v1/s6/kuiper.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "derivativeChecksum": "sha256:dbd2078a6f6eb465d885b277cb9eedac63686091458db1ef68415ee3fe050729",
+      "sourceChecksum": "sha256:c8b794c856a9bbc7e821f9dea4dd370f4ea7484e851a5a34eb49dd1471dfa481",
+      "derivativeChecksum": "sha256:26dd4fa2cfd30996200b26e9f9ccb2ebeeceb05f297a4826227afcb7f3775a2d",
       "bytes": 128680,
       "triangles": 5332,
       "parts": [
         "S6_kuiper"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1806,14 +1806,14 @@
       "path": "apps/web/public/assets/blender/v1/s6/Mars.glb",
       "publicPath": "/assets/blender/v1/s6/Mars.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "derivativeChecksum": "sha256:be3ee853ca857a2bf41edc3ee6c86efae0aa3267704f76fbdbe64748df17a753",
-      "bytes": 269512,
+      "sourceChecksum": "sha256:c8b794c856a9bbc7e821f9dea4dd370f4ea7484e851a5a34eb49dd1471dfa481",
+      "derivativeChecksum": "sha256:48f16f307bfba72de3a6612bac674def63ce74f32ba04776bd8ce06831a2e387",
+      "bytes": 268404,
       "triangles": 11812,
       "parts": [
         "S6_Mars"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1832,14 +1832,14 @@
       "path": "apps/web/public/assets/blender/v1/s6/Moon.glb",
       "publicPath": "/assets/blender/v1/s6/Moon.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "derivativeChecksum": "sha256:e0b32a0be67e1484c1724c5b4fd85cd993ff084cd506b2f1637efc8ecdf5134b",
-      "bytes": 254412,
+      "sourceChecksum": "sha256:c8b794c856a9bbc7e821f9dea4dd370f4ea7484e851a5a34eb49dd1471dfa481",
+      "derivativeChecksum": "sha256:ca0ad7268c31d7e4193a7c62aa0748e30ce3522ea09e446d27fa930c0c062c5b",
+      "bytes": 253804,
       "triangles": 11196,
       "parts": [
         "S6_Moon"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1858,14 +1858,14 @@
       "path": "apps/web/public/assets/blender/v1/s6/Venus.glb",
       "publicPath": "/assets/blender/v1/s6/Venus.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "sourceChecksum": "sha256:b14b2242cbbc1dd9712e894fb422cf8026c5039bd1f6541e8ab044375145c6e0",
-      "derivativeChecksum": "sha256:b25004c2dd11e389230acc38aee173dc5b0568cceaa3253931e40d3d3ab862ad",
-      "bytes": 167656,
+      "sourceChecksum": "sha256:c8b794c856a9bbc7e821f9dea4dd370f4ea7484e851a5a34eb49dd1471dfa481",
+      "derivativeChecksum": "sha256:50bfd87abf7a108d964c9633389fd8bbf5af4138193aa7bc9931e8efc337f45e",
+      "bytes": 167488,
       "triangles": 7784,
       "parts": [
         "S6_Venus"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1884,10 +1884,10 @@
       "path": "apps/web/public/assets/blender/v1/s7/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s7/earth-mobile.glb",
       "sourcePath": "assets/blender/s7.blend",
-      "sourceChecksum": "sha256:f4d8b7cb1a0e0db65479b5d5429ad9829b0bb478276ff8cb446412af3ebcd454",
-      "derivativeChecksum": "sha256:f2ef09d424ff64cec3ef4cd041e54eeb18fdfc39c2911b4866b1e5affe5f228b",
-      "bytes": 524332,
-      "triangles": 16994,
+      "sourceChecksum": "sha256:b02b3915c98be865b81549aa27a1f363f96f25593ba359b0964b69398c160d3c",
+      "derivativeChecksum": "sha256:3021640e7c640e10326f2fd60247e5a769c4d45cdd5bd66c7864d6203cf080b7",
+      "bytes": 517756,
+      "triangles": 17054,
       "parts": [
         "Terrain",
         "Structures",
@@ -1904,7 +1904,7 @@
         "Life_vessel_cutter_body",
         "Cloud_0"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -1949,10 +1949,10 @@
       "path": "apps/web/public/assets/blender/v1/s7/earth.glb",
       "publicPath": "/assets/blender/v1/s7/earth.glb",
       "sourcePath": "assets/blender/s7.blend",
-      "sourceChecksum": "sha256:f4d8b7cb1a0e0db65479b5d5429ad9829b0bb478276ff8cb446412af3ebcd454",
-      "derivativeChecksum": "sha256:c7a87a62b91e75d00b2a2e86201c629b82844d341f3583c26d85e98e40f19874",
-      "bytes": 600132,
-      "triangles": 19222,
+      "sourceChecksum": "sha256:b02b3915c98be865b81549aa27a1f363f96f25593ba359b0964b69398c160d3c",
+      "derivativeChecksum": "sha256:ae3d2dc74125184c01abdae8ab536977ff52339011a5731aee915c3fd715595d",
+      "bytes": 595740,
+      "triangles": 19280,
       "parts": [
         "Terrain",
         "Structures",
@@ -1969,7 +1969,7 @@
         "Life_vessel_cutter_body",
         "Cloud_0"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2014,10 +2014,10 @@
       "path": "apps/web/public/assets/blender/v1/s8/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s8/earth-mobile.glb",
       "sourcePath": "assets/blender/s8.blend",
-      "sourceChecksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
-      "derivativeChecksum": "sha256:04dc3d6e2c983596eee0382a3b105ff24008f015f7b23c64ca1d647198a287b6",
-      "bytes": 345732,
-      "triangles": 11570,
+      "sourceChecksum": "sha256:57948f05104e72a480d7daf1aba074871d70e5e57e9b52ed8ebf3be997794687",
+      "derivativeChecksum": "sha256:518e714c73abf6d04d60c71dd7eae3351289aa54a6e4612ce453e13efacaab52",
+      "bytes": 392168,
+      "triangles": 13250,
       "parts": [
         "Terrain",
         "Structures",
@@ -2031,7 +2031,7 @@
         "Life_machine_salvage-crane_extra1",
         "Study_lunar-base"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2070,10 +2070,10 @@
       "path": "apps/web/public/assets/blender/v1/s8/earth.glb",
       "publicPath": "/assets/blender/v1/s8/earth.glb",
       "sourcePath": "assets/blender/s8.blend",
-      "sourceChecksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
-      "derivativeChecksum": "sha256:2f67df8a745083804d2102fec23a63009ea1ae82d0f7292389333a6132014c76",
-      "bytes": 409744,
-      "triangles": 13332,
+      "sourceChecksum": "sha256:57948f05104e72a480d7daf1aba074871d70e5e57e9b52ed8ebf3be997794687",
+      "derivativeChecksum": "sha256:7c46d15ac4ac4dd239482ecc58a4d9f56557f2e731183aab35a7d66b1b75fa19",
+      "bytes": 460312,
+      "triangles": 15112,
       "parts": [
         "Terrain",
         "Structures",
@@ -2087,7 +2087,7 @@
         "Life_machine_salvage-crane_extra1",
         "Study_lunar-base"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2126,14 +2126,14 @@
       "path": "apps/web/public/assets/blender/v1/s8/Moon.glb",
       "publicPath": "/assets/blender/v1/s8/Moon.glb",
       "sourcePath": "assets/blender/s8.blend",
-      "sourceChecksum": "sha256:d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
-      "derivativeChecksum": "sha256:0999cbccb7cfe546ad6c2bc20893b96d93be7c54c72439c93439cbfcfbc9a255",
-      "bytes": 220812,
-      "triangles": 9296,
+      "sourceChecksum": "sha256:57948f05104e72a480d7daf1aba074871d70e5e57e9b52ed8ebf3be997794687",
+      "derivativeChecksum": "sha256:050b31d44ab40d5cd01956ce33cfe8a23446d5578d270cdab3c8195641386f44",
+      "bytes": 226684,
+      "triangles": 9536,
       "parts": [
         "S8_Moon"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2152,14 +2152,14 @@
       "path": "apps/web/public/assets/blender/v1/s9/asteroids.glb",
       "publicPath": "/assets/blender/v1/s9/asteroids.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:fd76a2200cd41f938df4d329658209d094e6e5922f31653414b5b5a2923a336c",
+      "sourceChecksum": "sha256:ce4eaaeba1c991600d02a76741f4039b3e741f2b15dc7835404f5d028d86c285",
+      "derivativeChecksum": "sha256:1a2ee751b724f5af4781813441b2d708f640ac982822cea5139d43621a53e028",
       "bytes": 63160,
       "triangles": 2404,
       "parts": [
         "S9_asteroids"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2178,10 +2178,10 @@
       "path": "apps/web/public/assets/blender/v1/s9/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s9/earth-mobile.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:44c55ebb1d0d4914c07c98c4cbb71493c51bfe58080dceffcb6aaed9ea3f5607",
-      "bytes": 316680,
-      "triangles": 10502,
+      "sourceChecksum": "sha256:ce4eaaeba1c991600d02a76741f4039b3e741f2b15dc7835404f5d028d86c285",
+      "derivativeChecksum": "sha256:f1907b6142c20bd0d9e3e6bd9d7c1606208b9b68ee8e0481338e5f78911931e0",
+      "bytes": 318536,
+      "triangles": 10606,
       "parts": [
         "Terrain",
         "Structures",
@@ -2192,7 +2192,7 @@
         "Study_machine-station",
         "Study_venus-facility"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2225,10 +2225,10 @@
       "path": "apps/web/public/assets/blender/v1/s9/earth.glb",
       "publicPath": "/assets/blender/v1/s9/earth.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:0172ef963018bd09211c70f24738ef3fae2d260959755374d5559f872567b7eb",
-      "bytes": 391656,
-      "triangles": 12560,
+      "sourceChecksum": "sha256:ce4eaaeba1c991600d02a76741f4039b3e741f2b15dc7835404f5d028d86c285",
+      "derivativeChecksum": "sha256:0bb8d63b3ce0f81e016ea5251067f1ba3d9ff735c9617abd5122d56b1367c737",
+      "bytes": 393572,
+      "triangles": 12664,
       "parts": [
         "Terrain",
         "Structures",
@@ -2239,7 +2239,7 @@
         "Study_machine-station",
         "Study_venus-facility"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2272,14 +2272,14 @@
       "path": "apps/web/public/assets/blender/v1/s9/kuiper.glb",
       "publicPath": "/assets/blender/v1/s9/kuiper.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:361fbd7757e6673fe80557ed45e1a14a7a823e0c54eb2465b0d9bef86a03cf8c",
+      "sourceChecksum": "sha256:ce4eaaeba1c991600d02a76741f4039b3e741f2b15dc7835404f5d028d86c285",
+      "derivativeChecksum": "sha256:efa64cdc65733341c386feedc56decb8a2f9aaed7bdb900f965eda72a13bf7f0",
       "bytes": 112868,
       "triangles": 4468,
       "parts": [
         "S9_kuiper"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2298,14 +2298,14 @@
       "path": "apps/web/public/assets/blender/v1/s9/Mars.glb",
       "publicPath": "/assets/blender/v1/s9/Mars.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:b1fd74409f0e32b39646544b2f60b513f3cde1bf66eac8041283fe1571250412",
-      "bytes": 190624,
+      "sourceChecksum": "sha256:ce4eaaeba1c991600d02a76741f4039b3e741f2b15dc7835404f5d028d86c285",
+      "derivativeChecksum": "sha256:5b6686a2a436d9eb6609184f130413140156acad86861d1ecf0d550ceb2d1307",
+      "bytes": 190300,
       "triangles": 7780,
       "parts": [
         "S9_Mars"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2324,19 +2324,19 @@
       "path": "apps/web/public/assets/blender/v1/s9/Moon.glb",
       "publicPath": "/assets/blender/v1/s9/Moon.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:31f080b65c5a2be1575b4daab8d775a709862805fcc82e9adac7bb97417e4975",
-      "bytes": 168300,
-      "triangles": 6636,
+      "sourceChecksum": "sha256:ce4eaaeba1c991600d02a76741f4039b3e741f2b15dc7835404f5d028d86c285",
+      "derivativeChecksum": "sha256:aa14d78a616cae0f8ccd5fe8438e8b2201ecd0e79624088c9e7a3a9c578fd3c4",
+      "bytes": 190960,
+      "triangles": 7836,
       "parts": [
         "S9_Moon"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
       "meshCount": 1,
-      "materialCount": 7,
+      "materialCount": 8,
       "animationCount": 0,
       "namedNodes": [
         "S9_Moon • modeled surfaces",
@@ -2350,14 +2350,14 @@
       "path": "apps/web/public/assets/blender/v1/s9/outer.glb",
       "publicPath": "/assets/blender/v1/s9/outer.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:365fd8d394d4b2b88cfaa3d8dc6e03bfd0ffd721e121a2a58e40a8ccc13a9eae",
+      "sourceChecksum": "sha256:ce4eaaeba1c991600d02a76741f4039b3e741f2b15dc7835404f5d028d86c285",
+      "derivativeChecksum": "sha256:4abedff3337f6a20b0d177281aeae4e1ca0867f7521c61503a04592f41b0ec2d",
       "bytes": 73680,
       "triangles": 2724,
       "parts": [
         "S9_outer"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2376,14 +2376,14 @@
       "path": "apps/web/public/assets/blender/v1/s9/solar.glb",
       "publicPath": "/assets/blender/v1/s9/solar.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:e0adf970111ae3fa8f2c213d9e1a1a221febff535769b7625974203809b5b6d5",
+      "sourceChecksum": "sha256:ce4eaaeba1c991600d02a76741f4039b3e741f2b15dc7835404f5d028d86c285",
+      "derivativeChecksum": "sha256:3c378aff72cf73bfdb419710d27c1d2275cbc4184f993cc12bddf7fb688a1514",
       "bytes": 78708,
       "triangles": 3580,
       "parts": [
         "S9_solar"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2402,14 +2402,14 @@
       "path": "apps/web/public/assets/blender/v1/s9/Venus.glb",
       "publicPath": "/assets/blender/v1/s9/Venus.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "sourceChecksum": "sha256:9098546e71680d037e45d8099b5659c0800574ec9a5228182e0edc8f35cfde92",
-      "derivativeChecksum": "sha256:672acefb567cd1c6680cbdcc32becdb28aa837d1c43a267f370f2d847eb460a6",
-      "bytes": 115088,
+      "sourceChecksum": "sha256:ce4eaaeba1c991600d02a76741f4039b3e741f2b15dc7835404f5d028d86c285",
+      "derivativeChecksum": "sha256:f435fc62cd207c4fe9d13456f0b554f23fdca580a532c140de2fee5939e940dd",
+      "bytes": 114916,
       "triangles": 4956,
       "parts": [
         "S9_Venus"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2428,14 +2428,14 @@
       "path": "apps/web/public/assets/blender/v1/s10/asteroids.glb",
       "publicPath": "/assets/blender/v1/s10/asteroids.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:e685c71688c2c4c0d188bc8b40eb5021ac447943532bb750364c57dc19378c56",
+      "sourceChecksum": "sha256:4bd0f28cd02d1e72ecc1a65e9247102dd2526bd3d8122d22a84494cbe5e1c44d",
+      "derivativeChecksum": "sha256:5d1b4f3299a23129286b7a60738e41c271fda0a8556e376bb198b8015781e6da",
       "bytes": 82992,
       "triangles": 3476,
       "parts": [
         "S10_asteroids"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2454,10 +2454,10 @@
       "path": "apps/web/public/assets/blender/v1/s10/earth-mobile.glb",
       "publicPath": "/assets/blender/v1/s10/earth-mobile.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:48ca7ce3da98b47313bacba221c6bb69be054767f7e2135def6b17525573eb04",
-      "bytes": 613536,
-      "triangles": 23276,
+      "sourceChecksum": "sha256:4bd0f28cd02d1e72ecc1a65e9247102dd2526bd3d8122d22a84494cbe5e1c44d",
+      "derivativeChecksum": "sha256:368f4e6b1b317e8350710dea6d29afb4c89c2c67fc62cb8f541b2e24fdc50b47",
+      "bytes": 615040,
+      "triangles": 23380,
       "parts": [
         "Terrain",
         "Structures",
@@ -2474,7 +2474,7 @@
         "Study_mars-base",
         "Study_orbital-habitat"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2519,10 +2519,10 @@
       "path": "apps/web/public/assets/blender/v1/s10/earth.glb",
       "publicPath": "/assets/blender/v1/s10/earth.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:33a67ef372b1e9f945e2a8348c18a94ecc71aebaede6ee3be41a087f4f15db49",
-      "bytes": 681632,
-      "triangles": 25114,
+      "sourceChecksum": "sha256:4bd0f28cd02d1e72ecc1a65e9247102dd2526bd3d8122d22a84494cbe5e1c44d",
+      "derivativeChecksum": "sha256:ca9e82a6eb61b85b18f7b878e8eff11adb33d35333668e7abf267164f0f70f86",
+      "bytes": 683308,
+      "triangles": 25218,
       "parts": [
         "Terrain",
         "Structures",
@@ -2539,7 +2539,7 @@
         "Study_mars-base",
         "Study_orbital-habitat"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2584,14 +2584,14 @@
       "path": "apps/web/public/assets/blender/v1/s10/kuiper.glb",
       "publicPath": "/assets/blender/v1/s10/kuiper.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:b5825cb820ec52419a87ca2b853a4182a676cf09985bea460f2516904da1a43b",
+      "sourceChecksum": "sha256:4bd0f28cd02d1e72ecc1a65e9247102dd2526bd3d8122d22a84494cbe5e1c44d",
+      "derivativeChecksum": "sha256:b0fdc78fa3df6288beb10d59d0e38ec0f1d9e5ab12c0fb7e3cbe97816d6d52e9",
       "bytes": 123832,
       "triangles": 5024,
       "parts": [
         "S10_kuiper"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2610,14 +2610,14 @@
       "path": "apps/web/public/assets/blender/v1/s10/Mars.glb",
       "publicPath": "/assets/blender/v1/s10/Mars.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:9834aae4f040aac0ac58bdc2d1aa4daab5c1387ec578b87d9cbeae0d851e7a1c",
-      "bytes": 299608,
+      "sourceChecksum": "sha256:4bd0f28cd02d1e72ecc1a65e9247102dd2526bd3d8122d22a84494cbe5e1c44d",
+      "derivativeChecksum": "sha256:984615c4e3e0e320da82daa02b8335df8dd0f4d87ef58ba645b4fa6c2aec26d9",
+      "bytes": 299280,
       "triangles": 13684,
       "parts": [
         "S10_Mars"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2636,14 +2636,14 @@
       "path": "apps/web/public/assets/blender/v1/s10/Moon.glb",
       "publicPath": "/assets/blender/v1/s10/Moon.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:7fa905c8792c6744408cbe66619ca43f3e715f226c114f93cff8fa20e85bf906",
-      "bytes": 241040,
+      "sourceChecksum": "sha256:4bd0f28cd02d1e72ecc1a65e9247102dd2526bd3d8122d22a84494cbe5e1c44d",
+      "derivativeChecksum": "sha256:3a51793fccf344c64e8437e37c069ecd3a011b13ba54ba7a43d8a288aaaf56d0",
+      "bytes": 240432,
       "triangles": 10420,
       "parts": [
         "S10_Moon"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2662,14 +2662,14 @@
       "path": "apps/web/public/assets/blender/v1/s10/outer.glb",
       "publicPath": "/assets/blender/v1/s10/outer.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:24dc180a45bfd70009f76afd8e9b33021c5cb7b010f2d91f7806803c618ec9b6",
+      "sourceChecksum": "sha256:4bd0f28cd02d1e72ecc1a65e9247102dd2526bd3d8122d22a84494cbe5e1c44d",
+      "derivativeChecksum": "sha256:5eaffd48b83625c8b94d1913a6dc71169020e6ff8a989f84a9b285735e9b7f7d",
       "bytes": 104000,
       "triangles": 4304,
       "parts": [
         "S10_outer"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2688,14 +2688,14 @@
       "path": "apps/web/public/assets/blender/v1/s10/Venus.glb",
       "publicPath": "/assets/blender/v1/s10/Venus.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "sourceChecksum": "sha256:9cfe079eb53491073c937fe75847004aa843de80c63f75326d1a3fbd65029a70",
-      "derivativeChecksum": "sha256:b1462a1bc4dd5743bb05f01c39b7c09231b3c50a64afc5ca1df71856f4735c85",
-      "bytes": 111972,
+      "sourceChecksum": "sha256:4bd0f28cd02d1e72ecc1a65e9247102dd2526bd3d8122d22a84494cbe5e1c44d",
+      "derivativeChecksum": "sha256:f109c2018abd6d55347257b5eea67eacfa737231f1c0c1a80d3453859355d24c",
+      "bytes": 111816,
       "triangles": 4688,
       "parts": [
         "S10_Venus"
       ],
-      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "generator": "Khronos glTF Blender I/O v5.3.43",
       "extensions": [
         "EXT_meshopt_compression"
       ],
@@ -2719,7 +2719,7 @@
     "originalProjectRights": true,
     "canonicalScientificDataModified": false,
     "blenderVersions": [
-      "5.2.1 LTS"
+      "5.3.0"
     ]
   },
   "limits": [

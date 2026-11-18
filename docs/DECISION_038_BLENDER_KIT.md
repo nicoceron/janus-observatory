@@ -1,5 +1,9 @@
 # Decision 038 — The Blender model kit
 
+> Withdrawn by [Decision 039](DECISION_039_RESTORE_FACETED_WORLDS.md) (2026-11-17): the site
+> returned to the faceted Blender worlds of Decisions 014–034. The kit is kept at the
+> `design/blender-kit` tag and the `archive/blender-kit` branch.
+
 2026-11-12. Supersedes the code-drawn props, landmarks, globes, system bodies, observer and
 telescope of [Decision 035](DECISION_035_STORY_DRAWN_LOW_POLY_WORLDS.md). Decision 035's world
 recipes (which future shows what, driven by which published value), story choreography, camera,

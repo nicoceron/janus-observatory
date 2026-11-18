@@ -1,14 +1,14 @@
 {
   "world": "s3",
-  "blender": "5.2.1 LTS",
+  "blender": "5.3.0",
   "source": "assets/blender/s3.blend",
-  "sourceSha256": "c5285bd1266bca940b19cbfb95568a6a32bcf01152ba396ce36f98263067cece",
+  "sourceSha256": "578f2e9823faa2da32e86f911459cc306051fdaf30566e1de715cd4192ba7edf",
   "exports": [
     {
       "path": "apps/web/public/assets/blender/v1/s3/earth.glb",
-      "bytes": 852076,
-      "sha256": "133ec6660ac808d8694f2a8af361fb3c4b92b724971db2c22ad1cdd619568a01",
-      "triangles": 31998,
+      "bytes": 854452,
+      "sha256": "3968d6697dc6a14ff857b3536a381856e057343dbc940fc5b519ef38a88e984f",
+      "triangles": 32146,
       "parts": [
         "Terrain",
         "Structures",
@@ -30,9 +30,9 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s3/earth-mobile.glb",
-      "bytes": 780184,
-      "sha256": "1b4949d9e9a43f8592d8f118cd5ab7ee08a995fe5fd375bae378fd704e768d04",
-      "triangles": 29942,
+      "bytes": 782420,
+      "sha256": "99f43286a53963db9ca7156272fbbead1c677d9562dbf9a83adaaa182715a461",
+      "triangles": 30090,
       "parts": [
         "Terrain",
         "Structures",
@@ -54,8 +54,8 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s3/Moon.glb",
-      "bytes": 280872,
-      "sha256": "0f76b01a022c7dba85fbfb93424fe4c05fad97159c99af36d7c293f53264c2b2",
+      "bytes": 280260,
+      "sha256": "704ba9219f57daa2cc66b43b19fedd6c2947058b5a632d3a182c48c6457d63a6",
       "triangles": 12664,
       "parts": [
         "S3_Moon"
@@ -63,8 +63,8 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s3/Mars.glb",
-      "bytes": 303364,
-      "sha256": "39138573228d03a54b91644558958c9e015a0c44bcb0b121e505c8660010cb24",
+      "bytes": 303048,
+      "sha256": "e93b1e00bf6e7fbd6562da2e41406697fe7cf0868f371a9ed1d01d82f82a9cc4",
       "triangles": 13904,
       "parts": [
         "S3_Mars"
@@ -73,7 +73,7 @@
     {
       "path": "apps/web/public/assets/blender/v1/s3/asteroids.glb",
       "bytes": 88872,
-      "sha256": "b4c243862e084f39ecd2a8b86548a4f9d5afddddf817be4aa3f277219f317ae4",
+      "sha256": "4fb93e3a3e908f991682edff23ffedf853f8d8ce0a9c8c331ec268e6c4456884",
       "triangles": 3828,
       "parts": [
         "S3_asteroids"
@@ -82,7 +82,7 @@
     {
       "path": "apps/web/public/assets/blender/v1/s3/outer.glb",
       "bytes": 142336,
-      "sha256": "82a95da8f5ebb05354eb048c440636b12ab63f66f2ef13132ba87651b37a8aba",
+      "sha256": "a91fc266d67a98f54571a15906f5e51a0ce53bba893171566c5bdca54b503a10",
       "triangles": 6548,
       "parts": [
         "S3_outer"

@@ -9,27 +9,26 @@ import { BlenderPart } from './BlenderAssets';
 import { cloudPose } from './cloud-motion';
 export function cloudGeometry(variant: number) {
   const s = new Sculpture();
+  // A low-poly cumulus: a broad base, a taller crown and shoulder puffs, all clipped flat
+  // underneath so the bank reads as weather lit from above rather than a floating boulder.
   const lobes = [
-    [-0.105, 0.025, 0.012, 0.064],
-    [-0.025, 0.056, 0, 0.082],
-    [0.104, 0.021, 0.005, 0.057],
-    [0.044, 0.092, -0.012, 0.073],
-    [-0.067, 0.092, 0.018, 0.043],
-    [0.064, 0.019, 0.049, 0.05],
+    [-0.098, 0.03, 0.01, 0.062],
+    [-0.022, 0.058, 0, 0.084],
+    [0.088, 0.034, 0.004, 0.066],
+    [0.036, 0.09, -0.01, 0.07],
+    [-0.066, 0.078, 0.016, 0.05],
+    [0.056, 0.03, 0.05, 0.052],
   ];
   lobes
     .slice(0, 4 + (variant % 3))
     .forEach(([x, y, z, r], i) =>
-      s.ico(
-        r,
-        i % 2 ? '#ffffff' : '#e7f1f7',
-        [x, y, z],
-        [1.08, i === 3 ? 0.92 : 0.76, 0.94],
-        undefined,
-        1,
-      ),
+      s.ico(r, i % 2 ? '#ffffff' : '#eef5fa', [x, y, z], [1.12, 0.86, 1], undefined, 1),
     );
-  return s.finish();
+  const geometry = s.finish();
+  const position = geometry.attributes.position;
+  for (let i = 0; i < position.count; i++) position.setY(i, Math.max(position.getY(i), 0.012));
+  geometry.computeVertexNormals();
+  return geometry;
 }
 /** Elevated, separately clocked cloud banks. No cloud is baked into the terrain mesh. */
 export function WorldClouds({
@@ -78,7 +77,12 @@ export function WorldClouds({
         >
           <BlenderPart name={'Cloud_' + i}>
             <mesh geometry={g}>
-              <meshStandardMaterial vertexColors roughness={1} />
+              <meshStandardMaterial
+                vertexColors
+                roughness={1}
+                emissive="#a9bdd6"
+                emissiveIntensity={0.32}
+              />
             </mesh>
           </BlenderPart>
         </group>

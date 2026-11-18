@@ -34,7 +34,14 @@ export function Planet({
   const spin = useRef<THREE.Group>(null);
   const time = useRef(0);
   useFrame((_, delta) => {
-    if (inspect || reduced || !spin.current || !isVisible(spin.current)) return;
+    if (inspect || !spin.current || !isVisible(spin.current)) return;
+    if (reduced) {
+      // Reduced motion rests every world on its authored view, whatever time had elapsed; motion
+      // resumes smoothly from there.
+      time.current = 0;
+      spin.current.rotation.y = art.turn;
+      return;
+    }
     time.current += Math.min(delta, 0.05);
     // Keep the authored landmark silhouette in view throughout a long reading pause.
     spin.current.rotation.y = art.turn + Math.sin(time.current * 0.22) * 0.18;

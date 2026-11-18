@@ -153,21 +153,32 @@ export function addScenarioBiomes(
         m,
       );
     } else if (art.form === 'fractured' && i % 3 !== 0) {
-      s.ico(0.075, '#ac8a7c', [0, 0.02, 0], [1.2, 0.45, 0.8], m);
-      if (i % 2) s.box([0.09, 0.02, 0.046], '#9b8d84', [0.035, 0.045, 0], m, [0, i * 0.6, -0.1]);
+      // A settled rubble pile: one low mound half in the ground, two loose stones beside it
+      // and, on every other pile, a plank resting across it rather than hovering above.
+      s.ico(0.075, '#ac8a7c', [0, 0.008, 0], [1.2, 0.45, 0.8], m);
+      s.ico(0.032, '#c09a88', [0.058, 0.012, 0.022], [1, 0.75, 1], m);
+      s.ico(0.024, '#8f7468', [-0.06, 0.008, -0.026], [1, 0.7, 1], m);
+      if (i % 2) s.box([0.09, 0.012, 0.04], '#9b8d84', [0.03, 0.03, 0], m, [0, i * 0.6, -0.22]);
     } else {
       if (i % 3 !== 0) {
         if (art.form === 'ecumenopolis') {
           // Low-rise urban fabric between the towers; a city world has no loose boulders.
+          // Each pair stands on its own paved lot with a window band and a rooftop unit, so it
+          // reads as a city block rather than loose crates.
           const tall = 0.045 + (i % 4) * 0.014,
-            low = 0.03 + ((i + 1) % 3) * 0.011;
+            low = 0.03 + ((i + 1) % 3) * 0.011,
+            lot = 0.006;
+          s.box([0.16, lot, 0.12], '#666a6c', [0.012, lot / 2, 0.006], m);
           s.box(
             [0.085, tall, 0.07],
             ['#b8ad97', '#a39785', '#c7bda6'][i % 3],
-            [-0.02, tall / 2, 0],
+            [-0.02, lot + tall / 2, 0],
             m,
           );
-          s.box([0.06, low, 0.075], '#8e8a7e', [0.045, low / 2, 0.012], m);
+          s.box([0.087, 0.009, 0.072], '#3f4d58', [-0.02, lot + tall * 0.64, 0], m);
+          s.box([0.024, 0.012, 0.022], '#74797d', [-0.034, lot + tall + 0.006, 0.012], m);
+          s.box([0.06, low, 0.075], '#8e8a7e', [0.045, lot + low / 2, 0.012], m);
+          s.box([0.062, 0.007, 0.077], '#3f4d58', [0.045, lot + low * 0.6, 0.012], m);
         } else s.ico(0.064, art.highland, [0, 0.018, 0], [1.3, 0.55, 0.85], m);
         continue;
       }

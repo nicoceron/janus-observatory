@@ -1,5 +1,5 @@
 {
-  "version": "blender-planet-polish-v12-2026-09-30",
+  "version": "blender-faceted-polish-v13-2026-11-17",
   "manifest": "docs/qa/blender-finish/art-manifest.json",
   "rightsReport": "docs/qa/blender-finish/asset-rights.md",
   "editableSources": [
@@ -53,355 +53,355 @@
       "id": "janus.blender.v1.origin.earth-mobile",
       "href": "/assets/blender/v1/origin/earth-mobile.glb",
       "sourcePath": "assets/blender/origin.blend",
-      "derivativeChecksum": "sha256:18d553a447b0e0b6138fc8d81600e810b5f1080256e121a6e0b18fc90f533c20"
+      "derivativeChecksum": "sha256:1554fdc6afb10f8f790780843935da1568d9550e6916c7c9ca05e36140a5fd8c"
     },
     {
       "id": "janus.blender.v1.origin.earth",
       "href": "/assets/blender/v1/origin/earth.glb",
       "sourcePath": "assets/blender/origin.blend",
-      "derivativeChecksum": "sha256:eb2177913541356191eb17d4cb5e85a1dbe7ed80ed2ad1f4c62f0b8b1b6cf97b"
+      "derivativeChecksum": "sha256:11c74a654b9223b50b8d9cc9d070059b948947f593ebbddc98c2c357d3257c5c"
     },
     {
       "id": "janus.blender.v1.s1.asteroids",
       "href": "/assets/blender/v1/s1/asteroids.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "derivativeChecksum": "sha256:49089a2a01f7178d4f125aba3be0b802afb61f88cc4c89c86c54578c21308f0c"
+      "derivativeChecksum": "sha256:eeb0a29fc3946f7094f2ede041cbebc4bc8bb90de2ea4327707ce4a765dcf236"
     },
     {
       "id": "janus.blender.v1.s1.earth-mobile",
       "href": "/assets/blender/v1/s1/earth-mobile.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "derivativeChecksum": "sha256:2a5372a052e28b248ceb9249160587bf2142f06bea010a28e4ca05b777c5b036"
+      "derivativeChecksum": "sha256:dd12b7b23dad36479e05700880dcd3c82ad9b1bcc21f473b977d2167ee9bca91"
     },
     {
       "id": "janus.blender.v1.s1.earth",
       "href": "/assets/blender/v1/s1/earth.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "derivativeChecksum": "sha256:359b9526d3763a93b16dddcb2037f6157bac5de92ff89f277aa8a2e4d2d5a8d9"
+      "derivativeChecksum": "sha256:aae57efc482e69d811dfaa374e93005186bbfe805b62382c17ddd2da71a4858c"
     },
     {
       "id": "janus.blender.v1.s1.mars",
       "href": "/assets/blender/v1/s1/Mars.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "derivativeChecksum": "sha256:c3026e5e52b979976744a0b2d89f0c7387ae422e65a5c38d6ea5e9de21d731a0"
+      "derivativeChecksum": "sha256:2ace0ec8c2e516a50506a21b15bb93e76d9d2d81a6bcf95291bd73a26805ec68"
     },
     {
       "id": "janus.blender.v1.s1.moon",
       "href": "/assets/blender/v1/s1/Moon.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "derivativeChecksum": "sha256:0915b6f0fa760f6f9db98a86a32d117799cf839a0cff3908516edadea4381dd1"
+      "derivativeChecksum": "sha256:27c1f8374fc096a73c989188ead3e36a41d9b6877ec62a74972d6a740f719b4d"
     },
     {
       "id": "janus.blender.v1.s1.outer",
       "href": "/assets/blender/v1/s1/outer.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "derivativeChecksum": "sha256:3eb71e36985441b85c743e9d769f568309d55d32a4e48f763a5c2fe76dd173d4"
+      "derivativeChecksum": "sha256:dcee6bf1b44f795db6e3dc6d26a0e3071d04cd62c8fb8f1189565c78f1bdd3ae"
     },
     {
       "id": "janus.blender.v1.s1.venus",
       "href": "/assets/blender/v1/s1/Venus.glb",
       "sourcePath": "assets/blender/s1.blend",
-      "derivativeChecksum": "sha256:35e7a5af4e8ca98ab8debe111576c50001a1886966b809e34018fbd158ab43ac"
+      "derivativeChecksum": "sha256:717781e6446039fe76060730e0798173906a5ee008bd5d28ae197f2ab26a4c60"
     },
     {
       "id": "janus.blender.v1.s2.asteroids",
       "href": "/assets/blender/v1/s2/asteroids.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "derivativeChecksum": "sha256:f50847f387383318f678751012f1f7695fb0bf062b69fde2bd8542c3fe0e6fc5"
+      "derivativeChecksum": "sha256:136c18fde9b038fc14ff364f4ae7d8617781deaadb02d03003fe73fe66263307"
     },
     {
       "id": "janus.blender.v1.s2.earth-mobile",
       "href": "/assets/blender/v1/s2/earth-mobile.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "derivativeChecksum": "sha256:1b5a9afe3667f16547afd5601b59e09ad86e933df30d32dca57b4777650d94ba"
+      "derivativeChecksum": "sha256:ef1dd95b35da9dcda36d5bf956375fb948713a0707abdfe0da389248aa654f64"
     },
     {
       "id": "janus.blender.v1.s2.earth",
       "href": "/assets/blender/v1/s2/earth.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "derivativeChecksum": "sha256:92876c8f4d8f0a1d40687bd3f037e3c40cb1de26702e34f7108b54df46af60f2"
+      "derivativeChecksum": "sha256:c2cf3d9cf9790427ad14ea0721ce0854be06d309cc1b44769c7296a63183573a"
     },
     {
       "id": "janus.blender.v1.s2.mars",
       "href": "/assets/blender/v1/s2/Mars.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "derivativeChecksum": "sha256:e3cb828e551172e6ae392f2b27e094c9a29662b7c99766e2722e98f3a4da31bf"
+      "derivativeChecksum": "sha256:4ae109bd10007de5ddecaa6748d83a672069e9965356566ad20ac66c8eecfe70"
     },
     {
       "id": "janus.blender.v1.s2.moon",
       "href": "/assets/blender/v1/s2/Moon.glb",
       "sourcePath": "assets/blender/s2.blend",
-      "derivativeChecksum": "sha256:ca23430fe5ace9f1eb99dc11ac65eb69bc3ef84002d20d0ade6a7a2fb8469882"
+      "derivativeChecksum": "sha256:4ee911b3532aefcb4c2077f1b55ffae0b24c842c535d6cf7c618ef481b370e3d"
     },
     {
       "id": "janus.blender.v1.s3.asteroids",
       "href": "/assets/blender/v1/s3/asteroids.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "derivativeChecksum": "sha256:b4c243862e084f39ecd2a8b86548a4f9d5afddddf817be4aa3f277219f317ae4"
+      "derivativeChecksum": "sha256:4fb93e3a3e908f991682edff23ffedf853f8d8ce0a9c8c331ec268e6c4456884"
     },
     {
       "id": "janus.blender.v1.s3.earth-mobile",
       "href": "/assets/blender/v1/s3/earth-mobile.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "derivativeChecksum": "sha256:1b4949d9e9a43f8592d8f118cd5ab7ee08a995fe5fd375bae378fd704e768d04"
+      "derivativeChecksum": "sha256:99f43286a53963db9ca7156272fbbead1c677d9562dbf9a83adaaa182715a461"
     },
     {
       "id": "janus.blender.v1.s3.earth",
       "href": "/assets/blender/v1/s3/earth.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "derivativeChecksum": "sha256:133ec6660ac808d8694f2a8af361fb3c4b92b724971db2c22ad1cdd619568a01"
+      "derivativeChecksum": "sha256:3968d6697dc6a14ff857b3536a381856e057343dbc940fc5b519ef38a88e984f"
     },
     {
       "id": "janus.blender.v1.s3.mars",
       "href": "/assets/blender/v1/s3/Mars.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "derivativeChecksum": "sha256:39138573228d03a54b91644558958c9e015a0c44bcb0b121e505c8660010cb24"
+      "derivativeChecksum": "sha256:e93b1e00bf6e7fbd6562da2e41406697fe7cf0868f371a9ed1d01d82f82a9cc4"
     },
     {
       "id": "janus.blender.v1.s3.moon",
       "href": "/assets/blender/v1/s3/Moon.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "derivativeChecksum": "sha256:0f76b01a022c7dba85fbfb93424fe4c05fad97159c99af36d7c293f53264c2b2"
+      "derivativeChecksum": "sha256:704ba9219f57daa2cc66b43b19fedd6c2947058b5a632d3a182c48c6457d63a6"
     },
     {
       "id": "janus.blender.v1.s3.outer",
       "href": "/assets/blender/v1/s3/outer.glb",
       "sourcePath": "assets/blender/s3.blend",
-      "derivativeChecksum": "sha256:82a95da8f5ebb05354eb048c440636b12ab63f66f2ef13132ba87651b37a8aba"
+      "derivativeChecksum": "sha256:a91fc266d67a98f54571a15906f5e51a0ce53bba893171566c5bdca54b503a10"
     },
     {
       "id": "janus.blender.v1.s4.earth-mobile",
       "href": "/assets/blender/v1/s4/earth-mobile.glb",
       "sourcePath": "assets/blender/s4.blend",
-      "derivativeChecksum": "sha256:bef4adbc394438e6fdb6903c5cc7fa904532aa9e5ade78dffeff7637a7bda808"
+      "derivativeChecksum": "sha256:3f72998f6e78595d0890c1ab6e43a20ca5dcd22416e296392a1fbaa14dd4e061"
     },
     {
       "id": "janus.blender.v1.s4.earth",
       "href": "/assets/blender/v1/s4/earth.glb",
       "sourcePath": "assets/blender/s4.blend",
-      "derivativeChecksum": "sha256:1f918ae0070c037c17365fc998e0f6b99928d28d3a70c00be9d21ed3e55fa4fc"
+      "derivativeChecksum": "sha256:b4d3cf4251fcebb1b1a14bca4ba74b5d9c0d5d412d539b58160380b997da8446"
     },
     {
       "id": "janus.blender.v1.s5.asteroids",
       "href": "/assets/blender/v1/s5/asteroids.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:9f920fa971871a321c9a84682450fca329a56dfe921fe8794165835217a3ed3d"
+      "derivativeChecksum": "sha256:9039498a5cd6dc28e3e7fde9da7d4fc224eb635eb766db4063ee9e94b9290e8b"
     },
     {
       "id": "janus.blender.v1.s5.earth-mobile",
       "href": "/assets/blender/v1/s5/earth-mobile.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:899efa6cc4b71d79e0d7b4c73c3da89f652465f7aba77064ba140c528ae8e24f"
+      "derivativeChecksum": "sha256:411f5a327d27506da21685b5ba5cb5c5046a55b415acdd4578d58a305bc4fc35"
     },
     {
       "id": "janus.blender.v1.s5.earth",
       "href": "/assets/blender/v1/s5/earth.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:a7a3c1f2c02a5cd8440b14124a92c5028ab01c14c05ce9a05872c307ac0c7f40"
+      "derivativeChecksum": "sha256:257418fc478d4e6a1bb68b3e0a620aca8e214a45acd7dcc382ddf48058c027b4"
     },
     {
       "id": "janus.blender.v1.s5.kuiper",
       "href": "/assets/blender/v1/s5/kuiper.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:5df422221f02005504328776303032228250726f86a750c11679b4285d30a956"
+      "derivativeChecksum": "sha256:6c035b3c925194aab13f4f085964878eff84ddb13cc688029d16dd7b7fa071b8"
     },
     {
       "id": "janus.blender.v1.s5.mars",
       "href": "/assets/blender/v1/s5/Mars.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:5a619ea3bbadf89da72df83e388f04dd76088c528e0a0cd5fa76c1ab59a61dd4"
+      "derivativeChecksum": "sha256:17b4503e3f822957344ea4a8929599c3ecfcfdf22546910e77415f0b8f3080c3"
     },
     {
       "id": "janus.blender.v1.s5.moon",
       "href": "/assets/blender/v1/s5/Moon.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:8c9855b7385482e751cb348a6a479d41ddbdaac8182cd342a2fe9366a3c84b9e"
+      "derivativeChecksum": "sha256:aa104ec44a6bf92640e62858adc22aba76d1b4beb0b86e5178ae2d8362f7928c"
     },
     {
       "id": "janus.blender.v1.s5.outer",
       "href": "/assets/blender/v1/s5/outer.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:b9f23ba60a75e1a13a220c54dbdbe1bcfc8b86da1110ddaaffac782df4d7d9eb"
+      "derivativeChecksum": "sha256:9cd429a9182f56113cff7905d923d58aaf80d1e14695852dd1e9831b78fe04a9"
     },
     {
       "id": "janus.blender.v1.s5.venus",
       "href": "/assets/blender/v1/s5/Venus.glb",
       "sourcePath": "assets/blender/s5.blend",
-      "derivativeChecksum": "sha256:53f47cbcc414ae59eac5f918d096fd2657bf8421737807925a8a50d01518b1b7"
+      "derivativeChecksum": "sha256:2508d8e826dd88df32eb85ed9e3a7641ec780e576b66127c7ab231a60636d679"
     },
     {
       "id": "janus.blender.v1.s6.asteroids",
       "href": "/assets/blender/v1/s6/asteroids.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "derivativeChecksum": "sha256:cfb7f50e2589971fe76a6f6749b69e60876ba6242c97790d8c491437c0b55743"
+      "derivativeChecksum": "sha256:9a56461eccd112ffc79221d6cfe832e6c71003e9a5280f3917403419f94ed9f7"
     },
     {
       "id": "janus.blender.v1.s6.earth-mobile",
       "href": "/assets/blender/v1/s6/earth-mobile.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "derivativeChecksum": "sha256:aea8d60ff3757fd78bcd5cab8f418da9f7316c07d0f4265e5e601943548ecda7"
+      "derivativeChecksum": "sha256:de79e67362099bf242c0632858772c1d79955e1d52cbf0732f4e8de2b428f18c"
     },
     {
       "id": "janus.blender.v1.s6.earth",
       "href": "/assets/blender/v1/s6/earth.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "derivativeChecksum": "sha256:ab261d5a0750e6b084284c3cb11557dfabcc3e8a698661d057a4b3224bacb1aa"
+      "derivativeChecksum": "sha256:eb4e3e2db7658c059ce5a389378195e4cdfd6cdeb7fc08d7be8861d286587893"
     },
     {
       "id": "janus.blender.v1.s6.kuiper",
       "href": "/assets/blender/v1/s6/kuiper.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "derivativeChecksum": "sha256:dbd2078a6f6eb465d885b277cb9eedac63686091458db1ef68415ee3fe050729"
+      "derivativeChecksum": "sha256:26dd4fa2cfd30996200b26e9f9ccb2ebeeceb05f297a4826227afcb7f3775a2d"
     },
     {
       "id": "janus.blender.v1.s6.mars",
       "href": "/assets/blender/v1/s6/Mars.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "derivativeChecksum": "sha256:be3ee853ca857a2bf41edc3ee6c86efae0aa3267704f76fbdbe64748df17a753"
+      "derivativeChecksum": "sha256:48f16f307bfba72de3a6612bac674def63ce74f32ba04776bd8ce06831a2e387"
     },
     {
       "id": "janus.blender.v1.s6.moon",
       "href": "/assets/blender/v1/s6/Moon.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "derivativeChecksum": "sha256:e0b32a0be67e1484c1724c5b4fd85cd993ff084cd506b2f1637efc8ecdf5134b"
+      "derivativeChecksum": "sha256:ca0ad7268c31d7e4193a7c62aa0748e30ce3522ea09e446d27fa930c0c062c5b"
     },
     {
       "id": "janus.blender.v1.s6.venus",
       "href": "/assets/blender/v1/s6/Venus.glb",
       "sourcePath": "assets/blender/s6.blend",
-      "derivativeChecksum": "sha256:b25004c2dd11e389230acc38aee173dc5b0568cceaa3253931e40d3d3ab862ad"
+      "derivativeChecksum": "sha256:50bfd87abf7a108d964c9633389fd8bbf5af4138193aa7bc9931e8efc337f45e"
     },
     {
       "id": "janus.blender.v1.s7.earth-mobile",
       "href": "/assets/blender/v1/s7/earth-mobile.glb",
       "sourcePath": "assets/blender/s7.blend",
-      "derivativeChecksum": "sha256:f2ef09d424ff64cec3ef4cd041e54eeb18fdfc39c2911b4866b1e5affe5f228b"
+      "derivativeChecksum": "sha256:3021640e7c640e10326f2fd60247e5a769c4d45cdd5bd66c7864d6203cf080b7"
     },
     {
       "id": "janus.blender.v1.s7.earth",
       "href": "/assets/blender/v1/s7/earth.glb",
       "sourcePath": "assets/blender/s7.blend",
-      "derivativeChecksum": "sha256:c7a87a62b91e75d00b2a2e86201c629b82844d341f3583c26d85e98e40f19874"
+      "derivativeChecksum": "sha256:ae3d2dc74125184c01abdae8ab536977ff52339011a5731aee915c3fd715595d"
     },
     {
       "id": "janus.blender.v1.s8.earth-mobile",
       "href": "/assets/blender/v1/s8/earth-mobile.glb",
       "sourcePath": "assets/blender/s8.blend",
-      "derivativeChecksum": "sha256:04dc3d6e2c983596eee0382a3b105ff24008f015f7b23c64ca1d647198a287b6"
+      "derivativeChecksum": "sha256:518e714c73abf6d04d60c71dd7eae3351289aa54a6e4612ce453e13efacaab52"
     },
     {
       "id": "janus.blender.v1.s8.earth",
       "href": "/assets/blender/v1/s8/earth.glb",
       "sourcePath": "assets/blender/s8.blend",
-      "derivativeChecksum": "sha256:2f67df8a745083804d2102fec23a63009ea1ae82d0f7292389333a6132014c76"
+      "derivativeChecksum": "sha256:7c46d15ac4ac4dd239482ecc58a4d9f56557f2e731183aab35a7d66b1b75fa19"
     },
     {
       "id": "janus.blender.v1.s8.moon",
       "href": "/assets/blender/v1/s8/Moon.glb",
       "sourcePath": "assets/blender/s8.blend",
-      "derivativeChecksum": "sha256:0999cbccb7cfe546ad6c2bc20893b96d93be7c54c72439c93439cbfcfbc9a255"
+      "derivativeChecksum": "sha256:050b31d44ab40d5cd01956ce33cfe8a23446d5578d270cdab3c8195641386f44"
     },
     {
       "id": "janus.blender.v1.s9.asteroids",
       "href": "/assets/blender/v1/s9/asteroids.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:fd76a2200cd41f938df4d329658209d094e6e5922f31653414b5b5a2923a336c"
+      "derivativeChecksum": "sha256:1a2ee751b724f5af4781813441b2d708f640ac982822cea5139d43621a53e028"
     },
     {
       "id": "janus.blender.v1.s9.earth-mobile",
       "href": "/assets/blender/v1/s9/earth-mobile.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:44c55ebb1d0d4914c07c98c4cbb71493c51bfe58080dceffcb6aaed9ea3f5607"
+      "derivativeChecksum": "sha256:f1907b6142c20bd0d9e3e6bd9d7c1606208b9b68ee8e0481338e5f78911931e0"
     },
     {
       "id": "janus.blender.v1.s9.earth",
       "href": "/assets/blender/v1/s9/earth.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:0172ef963018bd09211c70f24738ef3fae2d260959755374d5559f872567b7eb"
+      "derivativeChecksum": "sha256:0bb8d63b3ce0f81e016ea5251067f1ba3d9ff735c9617abd5122d56b1367c737"
     },
     {
       "id": "janus.blender.v1.s9.kuiper",
       "href": "/assets/blender/v1/s9/kuiper.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:361fbd7757e6673fe80557ed45e1a14a7a823e0c54eb2465b0d9bef86a03cf8c"
+      "derivativeChecksum": "sha256:efa64cdc65733341c386feedc56decb8a2f9aaed7bdb900f965eda72a13bf7f0"
     },
     {
       "id": "janus.blender.v1.s9.mars",
       "href": "/assets/blender/v1/s9/Mars.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:b1fd74409f0e32b39646544b2f60b513f3cde1bf66eac8041283fe1571250412"
+      "derivativeChecksum": "sha256:5b6686a2a436d9eb6609184f130413140156acad86861d1ecf0d550ceb2d1307"
     },
     {
       "id": "janus.blender.v1.s9.moon",
       "href": "/assets/blender/v1/s9/Moon.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:31f080b65c5a2be1575b4daab8d775a709862805fcc82e9adac7bb97417e4975"
+      "derivativeChecksum": "sha256:aa14d78a616cae0f8ccd5fe8438e8b2201ecd0e79624088c9e7a3a9c578fd3c4"
     },
     {
       "id": "janus.blender.v1.s9.outer",
       "href": "/assets/blender/v1/s9/outer.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:365fd8d394d4b2b88cfaa3d8dc6e03bfd0ffd721e121a2a58e40a8ccc13a9eae"
+      "derivativeChecksum": "sha256:4abedff3337f6a20b0d177281aeae4e1ca0867f7521c61503a04592f41b0ec2d"
     },
     {
       "id": "janus.blender.v1.s9.solar",
       "href": "/assets/blender/v1/s9/solar.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:e0adf970111ae3fa8f2c213d9e1a1a221febff535769b7625974203809b5b6d5"
+      "derivativeChecksum": "sha256:3c378aff72cf73bfdb419710d27c1d2275cbc4184f993cc12bddf7fb688a1514"
     },
     {
       "id": "janus.blender.v1.s9.venus",
       "href": "/assets/blender/v1/s9/Venus.glb",
       "sourcePath": "assets/blender/s9.blend",
-      "derivativeChecksum": "sha256:672acefb567cd1c6680cbdcc32becdb28aa837d1c43a267f370f2d847eb460a6"
+      "derivativeChecksum": "sha256:f435fc62cd207c4fe9d13456f0b554f23fdca580a532c140de2fee5939e940dd"
     },
     {
       "id": "janus.blender.v1.s10.asteroids",
       "href": "/assets/blender/v1/s10/asteroids.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:e685c71688c2c4c0d188bc8b40eb5021ac447943532bb750364c57dc19378c56"
+      "derivativeChecksum": "sha256:5d1b4f3299a23129286b7a60738e41c271fda0a8556e376bb198b8015781e6da"
     },
     {
       "id": "janus.blender.v1.s10.earth-mobile",
       "href": "/assets/blender/v1/s10/earth-mobile.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:48ca7ce3da98b47313bacba221c6bb69be054767f7e2135def6b17525573eb04"
+      "derivativeChecksum": "sha256:368f4e6b1b317e8350710dea6d29afb4c89c2c67fc62cb8f541b2e24fdc50b47"
     },
     {
       "id": "janus.blender.v1.s10.earth",
       "href": "/assets/blender/v1/s10/earth.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:33a67ef372b1e9f945e2a8348c18a94ecc71aebaede6ee3be41a087f4f15db49"
+      "derivativeChecksum": "sha256:ca9e82a6eb61b85b18f7b878e8eff11adb33d35333668e7abf267164f0f70f86"
     },
     {
       "id": "janus.blender.v1.s10.kuiper",
       "href": "/assets/blender/v1/s10/kuiper.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:b5825cb820ec52419a87ca2b853a4182a676cf09985bea460f2516904da1a43b"
+      "derivativeChecksum": "sha256:b0fdc78fa3df6288beb10d59d0e38ec0f1d9e5ab12c0fb7e3cbe97816d6d52e9"
     },
     {
       "id": "janus.blender.v1.s10.mars",
       "href": "/assets/blender/v1/s10/Mars.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:9834aae4f040aac0ac58bdc2d1aa4daab5c1387ec578b87d9cbeae0d851e7a1c"
+      "derivativeChecksum": "sha256:984615c4e3e0e320da82daa02b8335df8dd0f4d87ef58ba645b4fa6c2aec26d9"
     },
     {
       "id": "janus.blender.v1.s10.moon",
       "href": "/assets/blender/v1/s10/Moon.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:7fa905c8792c6744408cbe66619ca43f3e715f226c114f93cff8fa20e85bf906"
+      "derivativeChecksum": "sha256:3a51793fccf344c64e8437e37c069ecd3a011b13ba54ba7a43d8a288aaaf56d0"
     },
     {
       "id": "janus.blender.v1.s10.outer",
       "href": "/assets/blender/v1/s10/outer.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:24dc180a45bfd70009f76afd8e9b33021c5cb7b010f2d91f7806803c618ec9b6"
+      "derivativeChecksum": "sha256:5eaffd48b83625c8b94d1913a6dc71169020e6ff8a989f84a9b285735e9b7f7d"
     },
     {
       "id": "janus.blender.v1.s10.venus",
       "href": "/assets/blender/v1/s10/Venus.glb",
       "sourcePath": "assets/blender/s10.blend",
-      "derivativeChecksum": "sha256:b1462a1bc4dd5743bb05f01c39b7c09231b3c50a64afc5ca1df71856f4735c85"
+      "derivativeChecksum": "sha256:f109c2018abd6d55347257b5eea67eacfa737231f1c0c1a80d3453859355d24c"
     }
   ]
 }

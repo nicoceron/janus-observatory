@@ -2,14 +2,15 @@ import { expect, test } from '@playwright/test';
 import { activateSpatialTarget } from './helpers/spatial-input';
 import { allScenarioProfiles } from '../lib/canonical-core';
 import { systemPortrait } from '../lib/system-portrait';
-import { selectionName, systemSelections } from '../app/planets/explore';
+import { selectionName, systemSelections } from '../app/voyage/inspection';
 
 test('every published destination is visible together and opens its own inspector without replacing the system', async ({
   page,
   isMobile,
 }, info) => {
-  // Ten worlds rendered by WebKit's software WebGL in CI need more than three minutes.
-  test.setTimeout(info.project.name.includes('webkit') ? 360000 : 180000);
+  // Ten worlds, each loading its Blender exports, rendered by software WebGL on a CI runner need
+  // more than three minutes in every engine.
+  test.setTimeout(360000);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
@@ -29,12 +30,12 @@ test('every published destination is visible together and opens its own inspecto
     const ids = systemSelections(systemPortrait(allScenarioProfiles[i]).art);
     const region = page.getByLabel(`Explore S${i + 1} models`, { exact: true });
     await expect(region.getByRole('button')).toHaveCount(ids.length);
-    // Every destination is a mounted low-poly model: the Earth plus one body per published place.
     await expect
       .poll(
         async () =>
-          JSON.parse((await canvas.getAttribute('data-planet-models')) ?? '[]').filter(
-            (key: string) => key === `world:S${i + 1}` || key.startsWith(`body:S${i + 1}:`),
+          JSON.parse((await canvas.getAttribute('data-blender-libraries')) ?? '[]').filter(
+            (a: { url: string; state: string }) =>
+              a.url.includes(`/s${i + 1}/`) && a.state === 'ready',
           ).length,
         { timeout: 45000 },
       )

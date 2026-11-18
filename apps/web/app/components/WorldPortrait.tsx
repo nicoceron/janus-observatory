@@ -2,10 +2,8 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 import styles from './WorldPortrait.module.css';
-import type { WorldSignals } from '../../lib/world-signals';
-import { worldStories } from '../planets/stories';
 const PortraitCanvas = dynamic(() => import('./PortraitCanvas'), { ssr: false });
-export function WorldPortrait({ world, signals }: { world: number; signals: WorldSignals }) {
+export function WorldPortrait({ world }: { world: number }) {
   const root = useRef<HTMLDivElement>(null);
   const [near, setNear] = useState(false);
   const [active, setActive] = useState(false);
@@ -37,16 +35,11 @@ export function WorldPortrait({ world, signals }: { world: number; signals: Worl
         </p>
       </noscript>
       {near && !failed && (
-        <PortraitCanvas
-          world={world}
-          signals={signals}
-          active={active}
-          onFailure={() => setFailed(true)}
-        />
+        <PortraitCanvas world={world} active={active} onFailure={() => setFailed(true)} />
       )}
       <p className={failed ? styles.fallback : 'srOnly'}>
-        {failed ? '3D view unavailable. ' : ''}Illustration of future S{world + 1}.{' '}
-        {worldStories[world].depiction} The description and data are on this page.
+        {failed ? '3D view unavailable. ' : ''}Illustration of future S{world + 1}. The description
+        and data are on this page.
       </p>
     </div>
   );

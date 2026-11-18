@@ -11,6 +11,7 @@ import { objectFamilies } from './ScenarioBiomes';
 import { landmarkSites } from './WorldLandmarks';
 import type { LifeSubject } from './LifeActor';
 import { Vector3 } from 'three';
+import { LAND_BASE, SEA_RADIUS } from './terrain';
 describe('living world construction', () => {
   it('connects distinct destinations with supported open paths, continuous arrivals and genuine task pauses', () => {
     for (const art of [presentEarth, ...worlds])
@@ -60,7 +61,9 @@ describe('living world construction', () => {
                 }
                 const support = ground.project(p.clone().normalize(), 0).length();
                 expect(p.length(), art.id + ' ' + job.subject.kind).toBeGreaterThan(support);
-                if (job.route === 'water') expect(support).toBeLessThan(scale * 0.981);
+                // Boats ride on open water: below the coast step, never on the raised land.
+                if (job.route === 'water')
+                  expect(support).toBeLessThan(scale * (SEA_RADIUS + LAND_BASE) * 0.5);
                 if (job.route === 'road' || job.route === 'wildlife')
                   expect(support).toBeGreaterThan(
                     scale *

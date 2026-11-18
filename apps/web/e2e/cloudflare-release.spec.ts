@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 test('model loading works without compression streams or background workers', async ({ page }) => {
+  // Without a worker the exports decode on the main thread; software WebGL on CI needs longer
+  // than the default five seconds, so these waits match the other model specs.
   await page.addInitScript(() => {
     Object.defineProperty(window, 'DecompressionStream', { value: undefined });
     Object.defineProperty(window, 'Worker', { value: undefined });
@@ -8,21 +10,26 @@ test('model loading works without compression streams or background workers', as
   await page.goto('/atlas');
   const canvas = page.locator('[data-world-portrait] canvas');
   await canvas.scrollIntoViewIfNeeded();
-  await expect(canvas).toHaveAttribute('data-planet-state', 'ready');
-  await expect(canvas).toHaveAttribute('data-planet-models', /world:S3/);
+  await expect(canvas).toHaveAttribute('data-blender-state', 'ready', { timeout: 45000 });
+  await expect(canvas).toHaveAttribute('data-blender-missing-parts', '');
 });
 
-test('procedural worlds start no decoder workers and keep the model available', async ({
+test('decompression worker is released after loading and keeps the model available', async ({
   page,
 }) => {
   const started: string[] = [];
-  page.on('worker', (worker) => started.push(worker.url()));
+  const closed: string[] = [];
+  page.on('worker', (worker) => {
+    started.push(worker.url());
+    worker.on('close', () => closed.push(worker.url()));
+  });
   await page.goto('/atlas');
   const canvas = page.locator('[data-world-portrait] canvas');
   await canvas.scrollIntoViewIfNeeded();
-  await expect(canvas).toHaveAttribute('data-planet-state', 'ready');
-  expect(started).toEqual([]);
-  await expect(canvas).toHaveAttribute('data-planet-state', 'ready');
+  await expect(canvas).toHaveAttribute('data-blender-state', 'ready', { timeout: 45000 });
+  await expect.poll(() => started.length).toBeGreaterThan(0);
+  await expect.poll(() => closed.length, { timeout: 10000 }).toBe(started.length);
+  await expect(canvas).toHaveAttribute('data-blender-state', 'ready', { timeout: 45000 });
 });
 
 test('downloads retain their exact published hashes on the deployment runtime', async ({

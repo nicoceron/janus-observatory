@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import * as THREE from 'three';
 import {
+  LAND_BASE,
+  SEA_RADIUS,
+  landRadius,
   landform,
   quarryAxis,
   quarryBase,
@@ -46,7 +49,7 @@ describe('contour coastlines', () => {
     const geometry = terrainGeometry(presentEarth, false);
     const walls = faces(geometry).filter((face) => {
       const radii = face.map((v) => v.length());
-      return Math.max(...radii) > 1.02 && Math.min(...radii) < 0.93;
+      return Math.max(...radii) > LAND_BASE - 0.001 && Math.min(...radii) < SEA_RADIUS + 0.001;
     });
     expect(walls.length).toBeGreaterThan(100);
     for (const [a, b, c] of walls) {
@@ -66,7 +69,7 @@ describe('S2 open pit', () => {
   const toGlobe = (x: number, z: number) =>
     quarryAxis
       .clone()
-      .multiplyScalar(1.025)
+      .multiplyScalar(LAND_BASE)
       .addScaledVector(ex, x)
       .addScaledVector(ez, z)
       .normalize();
@@ -80,8 +83,7 @@ describe('S2 open pit', () => {
       for (const fraction of [0.95, 0.7, 0.4]) {
         const n = toGlobe(...quarryOutline(0.51 * fraction, angle));
         const benchTop = base - ((1 - fraction) * 0.51 * 0.04) / 0.079;
-        const ground =
-          1.025 + Math.max(0, landform(n.x, n.y, n.z, art.seed) - art.seaLevel) * art.relief * 0.45;
+        const ground = landRadius(art, n);
         expect(ground - quarryDepth(n)).toBeLessThan(benchTop);
       }
     }

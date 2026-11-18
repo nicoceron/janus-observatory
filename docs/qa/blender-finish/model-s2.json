@@ -1,14 +1,14 @@
 {
   "world": "s2",
-  "blender": "5.2.1 LTS",
+  "blender": "5.3.0",
   "source": "assets/blender/s2.blend",
-  "sourceSha256": "eaefcbeaa6511fb6dd1660e843ec72be50a3461f70c035b30774c143fdcf724a",
+  "sourceSha256": "eab874245325f6c11e2d004564b78cb8c5231d6d408049c0743bd5d2b197d5ad",
   "exports": [
     {
       "path": "apps/web/public/assets/blender/v1/s2/earth.glb",
-      "bytes": 655964,
-      "sha256": "92876c8f4d8f0a1d40687bd3f037e3c40cb1de26702e34f7108b54df46af60f2",
-      "triangles": 24112,
+      "bytes": 663700,
+      "sha256": "c2cf3d9cf9790427ad14ea0721ce0854be06d309cc1b44769c7296a63183573a",
+      "triangles": 24374,
       "parts": [
         "Terrain",
         "Structures",
@@ -27,9 +27,9 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s2/earth-mobile.glb",
-      "bytes": 567560,
-      "sha256": "1b5a9afe3667f16547afd5601b59e09ad86e933df30d32dca57b4777650d94ba",
-      "triangles": 21264,
+      "bytes": 571736,
+      "sha256": "ef1dd95b35da9dcda36d5bf956375fb948713a0707abdfe0da389248aa654f64",
+      "triangles": 21422,
       "parts": [
         "Terrain",
         "Structures",
@@ -48,8 +48,8 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s2/Moon.glb",
-      "bytes": 232216,
-      "sha256": "ca23430fe5ace9f1eb99dc11ac65eb69bc3ef84002d20d0ade6a7a2fb8469882",
+      "bytes": 231600,
+      "sha256": "4ee911b3532aefcb4c2077f1b55ffae0b24c842c535d6cf7c618ef481b370e3d",
       "triangles": 9944,
       "parts": [
         "S2_Moon"
@@ -57,8 +57,8 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s2/Mars.glb",
-      "bytes": 262364,
-      "sha256": "e3cb828e551172e6ae392f2b27e094c9a29662b7c99766e2722e98f3a4da31bf",
+      "bytes": 262040,
+      "sha256": "4ae109bd10007de5ddecaa6748d83a672069e9965356566ad20ac66c8eecfe70",
       "triangles": 11652,
       "parts": [
         "S2_Mars"
@@ -67,7 +67,7 @@
     {
       "path": "apps/web/public/assets/blender/v1/s2/asteroids.glb",
       "bytes": 73424,
-      "sha256": "f50847f387383318f678751012f1f7695fb0bf062b69fde2bd8542c3fe0e6fc5",
+      "sha256": "136c18fde9b038fc14ff364f4ae7d8617781deaadb02d03003fe73fe66263307",
       "triangles": 3000,
       "parts": [
         "S2_asteroids"

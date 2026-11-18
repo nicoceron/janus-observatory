@@ -1,14 +1,14 @@
 {
   "world": "s8",
-  "blender": "5.2.1 LTS",
+  "blender": "5.3.0",
   "source": "assets/blender/s8.blend",
-  "sourceSha256": "d9abadbdb9525859eb133df428cf5eaef9e3064c5ba37a14bb0002f29390207c",
+  "sourceSha256": "57948f05104e72a480d7daf1aba074871d70e5e57e9b52ed8ebf3be997794687",
   "exports": [
     {
       "path": "apps/web/public/assets/blender/v1/s8/earth.glb",
-      "bytes": 409744,
-      "sha256": "2f67df8a745083804d2102fec23a63009ea1ae82d0f7292389333a6132014c76",
-      "triangles": 13332,
+      "bytes": 460312,
+      "sha256": "7c46d15ac4ac4dd239482ecc58a4d9f56557f2e731183aab35a7d66b1b75fa19",
+      "triangles": 15112,
       "parts": [
         "Terrain",
         "Structures",
@@ -25,9 +25,9 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s8/earth-mobile.glb",
-      "bytes": 345732,
-      "sha256": "04dc3d6e2c983596eee0382a3b105ff24008f015f7b23c64ca1d647198a287b6",
-      "triangles": 11570,
+      "bytes": 392168,
+      "sha256": "518e714c73abf6d04d60c71dd7eae3351289aa54a6e4612ce453e13efacaab52",
+      "triangles": 13250,
       "parts": [
         "Terrain",
         "Structures",
@@ -44,9 +44,9 @@
     },
     {
       "path": "apps/web/public/assets/blender/v1/s8/Moon.glb",
-      "bytes": 220812,
-      "sha256": "0999cbccb7cfe546ad6c2bc20893b96d93be7c54c72439c93439cbfcfbc9a255",
-      "triangles": 9296,
+      "bytes": 226684,
+      "sha256": "050b31d44ab40d5cd01956ce33cfe8a23446d5578d270cdab3c8195641386f44",
+      "triangles": 9536,
       "parts": [
         "S8_Moon"
       ]

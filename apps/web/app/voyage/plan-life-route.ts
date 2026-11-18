@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { Ground, type MapPoint } from './planet-surface';
+import { LAND_BASE, SEA_RADIUS } from './terrain';
 import { Sculpture } from './sculpture';
 import { landmarkSites, landmarkGeometry } from './WorldLandmarks';
 import { lifeGeometry } from './life-geometry';
@@ -34,6 +35,9 @@ function coordinates(p: THREE.Vector3): MapPoint {
   const n = p.clone().normalize();
   return [THREE.MathUtils.radToDeg(Math.atan2(n.x, n.z)), THREE.MathUtils.radToDeg(Math.asin(n.y))];
 }
+/** Halfway up the coast step: below it is open water, above it is land. */
+const COAST = (SEA_RADIUS + LAND_BASE) / 2;
+
 /** Ground and water connections retain their working stops; airborne motion circles the globe. */
 export function planLifeRoute(
   art: WorldArt,
@@ -94,7 +98,7 @@ export function planLifeRoute(
         art.form === 'engineered'
           ? !water
           : water
-            ? h < scale * 0.98
+            ? h < scale * COAST
             : h > scale * (art.form === 'fractured' ? 0.87 : 0.99);
       let hullClear = true;
       if (water && supported) {
@@ -108,7 +112,7 @@ export function planLifeRoute(
             .addScaledVector(east, Math.cos(a) * hullRadius)
             .addScaledVector(north, Math.sin(a) * hullRadius)
             .normalize();
-          if (g.project(edge, 0).length() >= scale * 0.983) hullClear = false;
+          if (g.project(edge, 0).length() >= scale * COAST) hullClear = false;
         }
       }
       return (

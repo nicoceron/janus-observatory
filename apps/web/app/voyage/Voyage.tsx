@@ -7,13 +7,12 @@ import { gsap } from 'gsap';
 import { chapters } from './worlds';
 import { useJourneyScroll } from './use-journey-scroll';
 import type { SystemPortrait } from '../../lib/system-portrait';
-import type { WorldSignals } from '../../lib/world-signals';
 import s from './voyage.module.css';
 import { SiteHeader } from '../components/SiteHeader';
 import { SpaceBackdrop } from './SpaceBackdrop';
 import { ExploreContext } from './WorldExplore';
 import { Inspector, type ViewAdjustment } from './Inspector';
-import type { Inspection } from '../planets/explore';
+import type { Inspection } from './inspection';
 
 const Space = dynamic(() => import('./Space'), { ssr: false });
 
@@ -31,12 +30,10 @@ function spatialContextAvailable() {
 export function Voyage({
   children,
   systems,
-  signals,
   chapterTitles,
 }: {
   children: ReactNode;
   systems: SystemPortrait[];
-  signals: WorldSignals[];
   chapterTitles: Record<string, string>;
 }) {
   const [inspection, setInspection] = useState<Inspection | null>(null);
@@ -158,7 +155,6 @@ export function Voyage({
           {mount && !reading && !failed && (
             <Space
               systems={systems}
-              signals={signals}
               inspection={inspection}
               onSelect={selectObject}
               view={view}

@@ -120,8 +120,13 @@ export function scenarioObject(
       break;
     }
     case 'watchtower': {
+      // Footing, mast, gallery deck, cab and roof: a watched post, not a stick with a box.
+      const cab = 0.26 + v * 0.023;
+      s.cylinder(0.072, 0.088, 0.028, '#858b88', [0, 0.014, 0], m, 8);
       s.cylinder(0.021, 0.06, 0.24 + v * 0.045, ink, [0, 0.12, 0], m, 6);
-      s.box([0.2, 0.068, 0.11], ivory, [0, 0.26 + v * 0.023, 0], m, [0, -0.2, 0]);
+      s.cylinder(0.118, 0.118, 0.012, '#6f7b80', [0, cab - 0.044, 0], m, 8);
+      s.box([0.2, 0.068, 0.11], ivory, [0, cab, 0], m, [0, -0.2, 0]);
+      s.box([0.214, 0.014, 0.124], '#4d5b64', [0, cab + 0.041, 0], m, [0, -0.2, 0]);
       s.ico(0.055, '#5e7e88', [0, 0.26 + v * 0.023, 0.059], [1, 0.7, 0.38], m);
       s.ico(0.019, '#dd9e77', [0, 0.26 + v * 0.023, 0.082], [1, 1, 0.25], m);
       s.bar([0.075, 0.29, 0], [0.075, 0.37, 0], 0.005, brass, m);
@@ -152,6 +157,11 @@ export function scenarioObject(
       break;
     }
     case 'conveyor': {
+      // Loading hopper at the low end, a head tower and the ore it has delivered at the top.
+      s.box([0.07, 0.07, 0.1], '#7f7a6c', [-0.19, 0.035, 0], m);
+      s.cylinder(0.062, 0.03, 0.045, brass, [-0.19, 0.092, 0], m, 4);
+      s.box([0.05, 0.13, 0.06], ink, [0.19, 0.065, 0], m);
+      s.cone(0.075, 0.07, '#bb9167', [0.27, 0.033, 0.01], m, 6);
       s.box([0.32, 0.02, 0.085], ink, [0, 0.083, 0], m, [0, 0, 0.16]);
       for (const side of [-1, 1])
         s.bar([-0.16, 0.061, side * 0.055], [0.16, 0.11, side * 0.055], 0.009, brass, m);
@@ -470,10 +480,28 @@ export function scenarioObject(
       break;
     }
     case 'pylon': {
+      // A snapped line: the leaning tower on its footing, its crossarm fallen beside it, and the
+      // next pylon still standing with the cable sagging between them.
+      s.box([0.2, 0.012, 0.09], '#7f7773', [0, 0.006, 0], m);
       for (const x of [-0.075, 0.075])
         s.bar([x, 0, 0], [x * 0.3 + 0.025, 0.26, 0.015], 0.011, '#8d8480', m);
       s.bar([-0.1, 0.2, 0], [0.08, 0.16, 0.025], 0.012, ink, m);
       s.bar([-0.1, 0.2, 0], [-0.14, 0.055, 0.025], 0.004, brass, m);
+      for (const x of [-0.1, 0.08])
+        s.cylinder(
+          0.008,
+          0.008,
+          0.026,
+          '#cfd6d2',
+          [x, 0.178 + (x < 0 ? 0.01 : -0.008), 0.026],
+          m,
+          6,
+        );
+      s.bar([0.06, 0.014, 0.07], [0.21, 0.02, 0.02], 0.009, '#8d8480', m);
+      s.bar([-0.24, 0, -0.09], [-0.24, 0.21, -0.09], 0.009, '#8d8480', m);
+      s.bar([-0.3, 0.19, -0.09], [-0.18, 0.19, -0.09], 0.007, ink, m);
+      s.bar([-0.24, 0.19, -0.09], [-0.17, 0.12, -0.045], 0.003, brass, m);
+      s.bar([-0.17, 0.12, -0.045], [-0.1, 0.2, 0], 0.003, brass, m);
       break;
     }
     case 'gift': {
