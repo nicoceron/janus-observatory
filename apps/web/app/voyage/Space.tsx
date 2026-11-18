@@ -4,7 +4,6 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import {
   Component,
   Suspense,
-  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -13,17 +12,7 @@ import {
   type RefObject,
 } from 'react';
 import * as THREE from 'three';
-import { presentEarth } from './origin-world';
-import {
-  LowPolyBody,
-  LowPolyWorld,
-  lowPower,
-  prewarmBody,
-  prewarmWorld,
-  useWarmShaders,
-  WORLD_ENVELOPE,
-} from '../planets/LowPoly';
-import { presentSignals, type WorldSignals } from '../../lib/world-signals';
+import { Planet, presentEarth } from './Planet';
 import { ObserverLife } from './ObserverLife';
 import { smooth, chapterFrame, type FlightState } from './scroll';
 import { worlds } from './worlds';
@@ -31,7 +20,8 @@ import { Telescope, telescopeLayout } from './Telescope';
 import { canvasMetadata } from './canvas-metadata';
 import { opticalTravel } from './optical-travel';
 import { InspectionScene } from './InspectionScene';
-import { systemSelections, type Inspection } from '../planets/explore';
+import { StoryBody } from './StoryBody';
+import { systemSelections, type Inspection } from './inspection';
 import { systemLayout, screenToScene } from './system-layout';
 import { hideSpatialTargets, hideSpatialTarget, placeSpatialTarget } from './spatial-targets';
 import { companionReveal, behindEarth } from './companion-reveal';
@@ -41,7 +31,6 @@ import s from './voyage.module.css';
 
 type Props = {
   systems: SystemPortrait[];
-  signals: WorldSignals[];
   flight: RefObject<FlightState>;
   reduced: boolean;
   onReady: () => void;
@@ -112,7 +101,6 @@ function worldPose(world: number, scene: number, mobile: boolean): Pose {
 function Scene({
   flight,
   systems,
-  signals,
   inspection,
   onSelect,
   view,
@@ -120,12 +108,12 @@ function Scene({
   onReady,
 }: Omit<Props, 'onFailure'>) {
   const { size, invalidate, gl, camera } = useThree();
-  useWarmShaders();
   const mobile = size.width <= 760;
   const layouts = useMemo(
     () => systems.map((system) => systemLayout(size.width, size.height, systemSelections(system))),
     [systems, size],
   );
+  const earthEnvelope = (index: number) => (index === 0 ? 3.35 : index === 5 ? 2.85 : 3.05);
   const framing = mobile ? 1 : Math.min(1, size.width / size.height / 1.55);
   const groups = useRef<(THREE.Group | null)[]>([]);
   const companions = useRef(new Map<string, THREE.Group>());
@@ -174,51 +162,16 @@ function Scene({
   useEffect(() => {
     onReady();
   }, [onReady]);
-  // Build ahead in idle time: the overview first, then the chapters around the reader.
-  useEffect(() => {
-    const low = lowPower(gl);
-    const quality = low ? 'minimal' : mobile ? 'compact' : 'story';
-    const grid = low ? 'minimal' : 'overview';
-    if (chapter <= 1) signals.forEach((s, i) => prewarmWorld(worlds[i].id, s, grid));
-    for (const next of [chapter, chapter + 1, chapter - 1, chapter + 2]) {
-      const i = next - 2;
-      if (i < 0 || i >= signals.length) continue;
-      prewarmWorld(worlds[i].id, signals[i], quality);
-      for (const id of systemSelections(systems[i]).slice(1))
-        prewarmBody(
-          worlds[i].id,
-          signals[i],
-          id,
-          low ? 'minimal' : mobile ? 'overview' : 'compact',
-        );
-    }
-  }, [chapter, mobile, signals, systems, gl]);
-  // On a software rasterizer every drawn frame blocks input until it is rasterized. While an
-  // anchor travel scrolls the page, hold the scene and draw once on arrival, so the travel stays
-  // interruptible by the next wheel or touch.
-  const held = useCallback(
-    () =>
-      lowPower(gl) &&
-      document.querySelector<HTMLElement>('[data-voyage]')?.dataset.anchorTravel === 'moving',
-    [gl],
-  );
-  useEffect(() => {
-    const root = document.querySelector('[data-voyage]');
-    if (!root || !lowPower(gl)) return;
-    const observer = new MutationObserver(() => invalidate());
-    observer.observe(root, { attributes: true, attributeFilter: ['data-anchor-travel'] });
-    return () => observer.disconnect();
-  }, [gl, invalidate]);
   useEffect(() => {
     const frame = () => {
       if (flight.current.progress > 0.02) setExpedition(true);
       setChapter(Math.round(flight.current.progress));
-      if (!held()) invalidate();
+      invalidate();
     };
     frame();
     window.addEventListener('janus:flight', frame);
     return () => window.removeEventListener('janus:flight', frame);
-  }, [invalidate, flight, held]);
+  }, [invalidate, flight]);
   useFrame((_, delta) => {
     if (inspection) {
       hideSpatialTargets();
@@ -244,12 +197,17 @@ function Scene({
         if (scene === 16 && index === 0 && flight.current.closingPortrait) {
           const slot = flight.current.closingPortrait;
           const point = screenToScene(slot.x, slot.y, size.height, size.width);
-          return [point.x, point.y, 0, (slot.diameter * point.perPixel) / WORLD_ENVELOPE];
+          return [point.x, point.y, 0, (slot.diameter * point.perPixel) / 3.05];
         }
         if (scene >= 2 && scene <= 11 && index === scene - 1) {
           const earth = layouts[index - 1][0];
           const point = screenToScene(earth.x, earth.y, size.height, size.width);
-          return [point.x, point.y, 0, (earth.diameter * point.perPixel) / WORLD_ENVELOPE];
+          return [
+            point.x,
+            point.y,
+            0,
+            (earth.diameter * point.perPixel) / earthEnvelope(index - 1),
+          ];
         }
         const value = worldPose(index - 1, scene, mobile);
         return [value[0] * framing, value[1], value[2], value[3] * framing];
@@ -333,7 +291,7 @@ function Scene({
         place = layout[order];
       const earthPoint = screenToScene(earth.x, earth.y, size.height, size.width);
       const point = screenToScene(place.x, place.y, size.height, size.width, place.z);
-      const baseScale = (earth.diameter * earthPoint.perPixel) / WORLD_ENVELOPE;
+      const baseScale = (earth.diameter * earthPoint.perPixel) / earthEnvelope(world);
       let x = (point.x - earthPoint.x) / baseScale;
       let y = (point.y - earthPoint.y) / baseScale;
       let z = point.z / baseScale;
@@ -374,11 +332,11 @@ function Scene({
       const layout = layouts[activeWorld],
         earth = layout[0];
       const earthPosition = screenToScene(earth.x, earth.y, size.height, size.width);
-      const baseScale = (earth.diameter * earthPosition.perPixel) / WORLD_ENVELOPE;
+      const baseScale = (earth.diameter * earthPosition.perPixel) / earthEnvelope(activeWorld);
       parent.updateWorldMatrix(true, true);
       for (const place of layout) {
         let object: THREE.Group = parent;
-        let diameter = WORLD_ENVELOPE;
+        let diameter = earthEnvelope(activeWorld);
         if (place.id !== 'Earth') {
           const child = companions.current.get(`${activeWorld}:${place.id}`);
           if (!child) {
@@ -456,7 +414,7 @@ function Scene({
         aScene >= 2 && aScene <= 11 ? 'system' : 'Earth',
       );
     }
-    if (!reduced && flight.current.active && !held()) invalidate();
+    if (!reduced && flight.current.active) invalidate();
   });
   return (
     <>
@@ -491,19 +449,11 @@ function Scene({
             (expedition &&
               (Math.abs(chapter - (i + 1)) <= 1 ||
                 (chapter >= 12 && chapter <= 13 && i === 9)))) && (
-            <LowPolyWorld
-              live={i === 0 ? chapter === 0 || chapter === 16 : chapter === i + 1}
-              eager={i === 0 ? chapter === 0 || chapter === 16 : chapter === i + 1}
-              id={i === 0 ? 'present' : art.id}
-              signals={i === 0 ? presentSignals : signals[i - 1]}
+            <Planet
+              art={art}
               reduced={reduced}
-              quality={
-                i === 0 || chapter === i + 1 || (chapter >= 12 && chapter <= 13 && i === 9)
-                  ? mobile
-                    ? 'compact'
-                    : 'story'
-                  : 'overview'
-              }
+              mobile={mobile}
+              detailed={i > 0 && chapter === i + 1}
             />
           )}
           {i > 0 &&
@@ -513,7 +463,7 @@ function Scene({
               const earth = layouts[i - 1][0];
               const earthPoint = screenToScene(earth.x, earth.y, size.height, size.width);
               const point = screenToScene(place.x, place.y, size.height, size.width, place.z);
-              const scale = (earth.diameter * earthPoint.perPixel) / WORLD_ENVELOPE;
+              const scale = (earth.diameter * earthPoint.perPixel) / earthEnvelope(i - 1);
               return (
                 <group
                   key={place.id}
@@ -524,14 +474,13 @@ function Scene({
                   }}
                   visible={false}
                 >
-                  <LowPolyBody
-                    live={chapter === i + 1}
-                    eager={chapter === i + 1}
-                    scenario={art.id}
-                    signals={signals[i - 1]}
+                  <StoryBody
+                    art={art}
+                    system={systems[i - 1]}
                     selection={place.id}
                     reduced={reduced}
-                    quality={mobile ? 'overview' : 'compact'}
+                    mobile={mobile}
+                    embedded
                     size={(place.diameter * point.perPixel) / scale}
                   />
                 </group>
@@ -543,7 +492,6 @@ function Scene({
         <InspectionScene
           key={inspection.world}
           inspection={inspection}
-          signals={signals[inspection.world]}
           system={systems[inspection.world]}
           reduced={reduced}
           onSelect={onSelect}

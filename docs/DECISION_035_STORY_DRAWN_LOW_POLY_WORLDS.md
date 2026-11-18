@@ -1,9 +1,13 @@
 # Decision 035 — Story-drawn low-poly worlds
 
+> Withdrawn by [Decision 039](DECISION_039_RESTORE_FACETED_WORLDS.md) (2026-11-17): the site
+> returned to the faceted Blender worlds this decision replaced. Kept at the
+> `design/code-drawn-worlds` tag.
+
 > Superseded in part by [Decision 038](DECISION_038_BLENDER_KIT.md) (2026-11-12): every code-drawn
 > model described below is now an authored Blender kit model, and the toy proportions, town
 > layout and lighting rules are revised there. The world recipes and published-value encodings
-> below remain current.
+> below stayed current until Decision 039.
 
 2026-09-30, merged with `main` on 2026-10-01. Supersedes the planet, companion and
 explorer-study artwork of Decisions 014–020 and 028, and the planet artwork of Decision 034

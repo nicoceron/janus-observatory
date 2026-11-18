@@ -1,6 +1,6 @@
 # Janus Observatory implementation evidence ledger
 
-Current artwork: the Blender model kit, [Decision 038](DECISION_038_BLENDER_KIT.md), with [verification](qa/blender-kit/REPORT.md).
+Current artwork: the faceted Blender worlds, restored by [Decision 039](DECISION_039_RESTORE_FACETED_WORLDS.md), latest polish [Decision 034](DECISION_034_CONTOUR_COASTS_AND_EXPERIENCE_POLISH.md) with [review](qa/planet-polish-2026-09-30/REPORT.md).
 
 Current editable planet polish: [Decision 028](DECISION_028_PLANET_POLISH.md), with [individual world review](qa/planet-polish-2026-09-20/REPORT.md).
 

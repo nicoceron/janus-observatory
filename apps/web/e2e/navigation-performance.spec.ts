@@ -74,7 +74,7 @@ test('primary navigation and the story index return from a research route to S3'
 test('render resolution remains fixed while the model animates', async ({ page }) => {
   await page.goto('/atlas');
   const canvas = page.locator('[data-world-portrait] canvas');
-  await expect(canvas).toHaveAttribute('data-planet-state', 'ready');
+  await expect(canvas).toHaveAttribute('data-blender-state', 'ready');
   await canvas.scrollIntoViewIfNeeded();
   const size = await canvas.evaluate((c) => ({
     buffer: (c as HTMLCanvasElement).width,

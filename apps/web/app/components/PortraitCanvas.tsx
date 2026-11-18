@@ -2,20 +2,10 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Component, Suspense, useEffect, type ReactNode } from 'react';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import type { WorldSignals } from '../../lib/world-signals';
-import { LowPolyWorld } from '../planets/LowPoly';
+import { Planet } from '../voyage/Planet';
+import { worlds } from '../voyage/worlds';
 import { useReducedMotionPreference } from './MotionPreference';
-function Model({
-  world,
-  signals,
-  active,
-  reduced,
-}: {
-  world: number;
-  signals: WorldSignals;
-  active: boolean;
-  reduced: boolean;
-}) {
+function Model({ world, active, reduced }: { world: number; active: boolean; reduced: boolean }) {
   const { camera, gl, invalidate, size } = useThree();
   useEffect(() => {
     const controls = new OrbitControls(camera, gl.domElement);
@@ -46,12 +36,12 @@ function Model({
   });
   return (
     <group scale={2.25}>
-      <LowPolyWorld
+      <Planet
         key={world}
-        id={signals.id}
-        signals={signals}
-        quality={size.width < 600 ? 'compact' : 'story'}
+        art={worlds[world]}
         reduced={reduced || !active}
+        mobile={size.width < 600}
+        detailed
       />
     </group>
   );
@@ -73,12 +63,10 @@ class Boundary extends Component<
 }
 export default function PortraitCanvas({
   world,
-  signals,
   active,
   onFailure,
 }: {
   world: number;
-  signals: WorldSignals;
   active: boolean;
   onFailure: () => void;
 }) {
@@ -97,7 +85,7 @@ export default function PortraitCanvas({
         <directionalLight position={[-6, 7, 4]} intensity={2.3} color="#fff1d8" />
         <directionalLight position={[4, 2, -2]} intensity={2} color="#87dfef" />
         <Suspense fallback={null}>
-          <Model world={world} signals={signals} active={active} reduced={reduced} />
+          <Model world={world} active={active} reduced={reduced} />
         </Suspense>
       </Canvas>
     </Boundary>

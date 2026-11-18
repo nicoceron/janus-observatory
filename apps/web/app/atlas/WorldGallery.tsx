@@ -3,7 +3,6 @@ import Link from '../components/AppLink';
 import { useState } from 'react';
 import { allScenarioProfiles } from '../../lib/canonical-core';
 import { WorldPortrait } from '../components/WorldPortrait';
-import { worldSignals } from '../../lib/world-signals';
 import s from './atlas.module.css';
 export function WorldGallery() {
   const [world, setWorld] = useState(2);
@@ -16,7 +15,7 @@ export function WorldGallery() {
         <p>{profile.morphology.canonicalSummary.value}</p>
         <Link href={`/atlas/${profile.id.toLowerCase()}`}>Explore this civilization ↗</Link>
       </div>
-      <WorldPortrait world={world} signals={worldSignals(profile)} />
+      <WorldPortrait world={world} />
       <noscript>
         <nav aria-label="The ten futures">
           {allScenarioProfiles.map((p) => (
